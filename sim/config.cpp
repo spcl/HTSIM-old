@@ -1,23 +1,21 @@
-// -*- c-basic-offset: 4; indent-tabs-mode: nil -*-        
-#include <math.h>
+// -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
 #include "config.h"
 #include "tcppacket.h"
+#include <math.h>
 
 double drand() {
-    int r=rand();
-    int m=RAND_MAX;
-    double d = (double)r/(double)m;
+    int r = rand();
+    int m = RAND_MAX;
+    double d = (double)r / (double)m;
     return d;
 }
 
-int pareto(int xm, int mean){
-    double oneoveralpha = ((double)mean-xm)/mean;
-    return (int)((double)xm/pow(drand(),oneoveralpha));
+int pareto(int xm, int mean) {
+    double oneoveralpha = ((double)mean - xm) / mean;
+    return (int)((double)xm / pow(drand(), oneoveralpha));
 }
 
-double exponential(double lambda){
-    return -log(drand())/lambda;
-}
+double exponential(double lambda) { return -log(drand()) / lambda; }
 
 simtime_picosec timeFromSec(double secs) {
     simtime_picosec psecs = (simtime_picosec)(secs * 1000000000000.0);
@@ -70,7 +68,7 @@ mem_b memFromPkt(double pkts) {
 }
 
 linkspeed_bps speedFromGbps(double Gbitps) {
-    double bps = Gbitps*1000000000;
+    double bps = Gbitps * 1000000000;
     return (linkspeed_bps)bps;
 }
 
@@ -81,7 +79,7 @@ linkspeed_bps speedFromMbps(uint64_t Mbitps) {
 }
 
 linkspeed_bps speedFromMbps(double Mbitps) {
-    double bps = Mbitps*1000000;
+    double bps = Mbitps * 1000000;
     return (linkspeed_bps)bps;
 }
 
@@ -92,17 +90,14 @@ linkspeed_bps speedFromKbps(uint64_t Kbitps) {
 }
 
 linkspeed_bps speedFromPktps(double packetsPerSec) {
-    double bitpersec = packetsPerSec*8*Packet::data_packet_size();
-    linkspeed_bps spd = (linkspeed_bps) bitpersec;
+    double bitpersec = packetsPerSec * 8 * Packet::data_packet_size();
+    linkspeed_bps spd = (linkspeed_bps)bitpersec;
     return spd;
 }
 
 double speedAsPktps(linkspeed_bps bps) {
-    double pktps = ((double)bps)/(8.0*Packet::data_packet_size());
+    double pktps = ((double)bps) / (8.0 * Packet::data_packet_size());
     return pktps;
 }
 
-mem_pkts memFromPkts(double pkts) {
-    return (int)(ceil(pkts));
-}
-
+mem_pkts memFromPkts(double pkts) { return (int)(ceil(pkts)); }

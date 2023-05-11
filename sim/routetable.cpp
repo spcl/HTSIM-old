@@ -1,37 +1,37 @@
-// -*- c-basic-offset: 4; indent-tabs-mode: nil -*-  
-#include <climits>
+// -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
 #include "routetable.h"
 #include "network.h"
-#include "queue.h"
 #include "pipe.h"
+#include "queue.h"
+#include <climits>
 
-void RouteTable::addRoute(int destination, Route* port, int cost, packet_direction direction){  
+void RouteTable::addRoute(int destination, Route *port, int cost,
+                          packet_direction direction) {
     if (_fib.find(destination) == _fib.end())
-        _fib[destination] = new vector<FibEntry*>(); 
-    
-    assert(port!=NULL);
+        _fib[destination] = new vector<FibEntry *>();
 
-    _fib[destination]->push_back(new FibEntry(port,cost,direction));
+    assert(port != NULL);
+
+    _fib[destination]->push_back(new FibEntry(port, cost, direction));
 }
 
-void RouteTable::addHostRoute(int destination, Route* port, int flowid){  
+void RouteTable::addHostRoute(int destination, Route *port, int flowid) {
     if (_hostfib.find(destination) == _hostfib.end())
-        _hostfib[destination] = new unordered_map<int, HostFibEntry*>(); 
-    
-    assert(port!=NULL);
+        _hostfib[destination] = new unordered_map<int, HostFibEntry *>();
 
-    (*_hostfib[destination])[flowid] = new HostFibEntry(port,flowid);
+    assert(port != NULL);
+
+    (*_hostfib[destination])[flowid] = new HostFibEntry(port, flowid);
 }
 
-
-vector<FibEntry*>* RouteTable::getRoutes(int destination){
+vector<FibEntry *> *RouteTable::getRoutes(int destination) {
     if (_fib.find(destination) == _fib.end())
         return NULL;
-    else        
+    else
         return _fib[destination];
 }
 
-HostFibEntry* RouteTable::getHostRoute(int destination,int flowid){
+HostFibEntry *RouteTable::getHostRoute(int destination, int flowid) {
     if (_hostfib.find(destination) == _hostfib.end() ||
         _hostfib[destination]->find(flowid) == _hostfib[destination]->end())
         return NULL;
@@ -40,6 +40,6 @@ HostFibEntry* RouteTable::getHostRoute(int destination,int flowid){
     }
 }
 
-void RouteTable::setRoutes(int destination, vector<FibEntry*>* routes){
+void RouteTable::setRoutes(int destination, vector<FibEntry *> *routes) {
     _fib[destination] = routes;
 }

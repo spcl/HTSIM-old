@@ -1,53 +1,53 @@
-// -*- c-basic-offset: 4; indent-tabs-mode: nil -*-        
+// -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
 #include "generic_topology.h"
-#include "config.h"
 #include "compositequeue.h"
-#include <string>
+#include "config.h"
 #include <algorithm>
-#include <stdlib.h>
 #include <fstream>
+#include <stdlib.h>
+#include <string>
 
 // A topology that is loadable from a file
 
-GenericTopology::GenericTopology(Logfile* lg, EventList* ev){
-  _logfile = lg;
-  _eventlist = ev;
+GenericTopology::GenericTopology(Logfile *lg, EventList *ev) {
+    _logfile = lg;
+    _eventlist = ev;
 }
 
-
-bool GenericTopology::load(const char* filename){
-    FILE* f = fopen(filename,"r");
+bool GenericTopology::load(const char *filename) {
+    FILE *f = fopen(filename, "r");
     if (!f)
         return false;
 
-    // we need to do two passes, one to build the ID tables, and one to fill in all the cross-references
+    // we need to do two passes, one to build the ID tables, and one to fill in
+    // all the cross-references
     bool result = load(f, 0);
     if (!result) {
         return false;
     }
-    f = fopen(filename,"r");
+    f = fopen(filename, "r");
     return load(f, 1);
 }
 
-char* skip_whitespace(char *s) {
+char *skip_whitespace(char *s) {
     while (*s == ' ' || *s == '\t') {
         s++;
     }
     return s;
 }
 
-bool trim_comma(string& str) {
+bool trim_comma(string &str) {
     uint32_t len = str.size();
-    if (str[len-1] == ',') {
-        str.erase(len-1);
+    if (str[len - 1] == ',') {
+        str.erase(len - 1);
         return true;
     }
     return false;
 }
 
-void tokenize(string str, std::vector<std::string>& tokens) {
-    std::string buf;                 // Have a buffer string
-    std::stringstream ss(str);       // Insert the string into a stream
+void tokenize(string str, std::vector<std::string> &tokens) {
+    std::string buf;           // Have a buffer string
+    std::stringstream ss(str); // Insert the string into a stream
     while (ss >> buf) {
         if (buf != "") {
             bool has_comma = trim_comma(buf);
@@ -59,7 +59,8 @@ void tokenize(string str, std::vector<std::string>& tokens) {
     }
 }
 
-bool get_attribute(std::vector<std::string>& tokens, uint32_t &ix, std::vector<std::string>& attribute) {
+bool get_attribute(std::vector<std::string> &tokens, uint32_t &ix,
+                   std::vector<std::string> &attribute) {
     attribute.clear();
     if (tokens.size() <= ix + 1) {
         return false;
@@ -79,15 +80,15 @@ bool get_attribute(std::vector<std::string>& tokens, uint32_t &ix, std::vector<s
 //  Lowercases string
 //
 template <typename T>
-std::basic_string<T> lowercase(const std::basic_string<T>& s)
-{
+std::basic_string<T> lowercase(const std::basic_string<T> &s) {
     std::basic_string<T> s2 = s;
     std::transform(s2.begin(), s2.end(), s2.begin(), ::tolower);
     return s2;
 }
 
-Host* GenericTopology::find_host(const string& id) {
-    // linear scan though vector is slow, but we only do this at startup so probably OK.  Otherwise add a map.
+Host *GenericTopology::find_host(const string &id) {
+    // linear scan though vector is slow, but we only do this at startup so
+    // probably OK.  Otherwise add a map.
     for (uint32_t i = 0; i < _hosts.size(); i++) {
         if (_hosts[i]->nodename() == id) {
             return _hosts[i];
@@ -96,14 +97,16 @@ Host* GenericTopology::find_host(const string& id) {
     return NULL;
 }
 
-void GenericTopology::parse_host(std::vector<std::string>& tokens, int pass, std::fstream& gv) {
+void GenericTopology::parse_host(std::vector<std::string> &tokens, int pass,
+                                 std::fstream &gv) {
     assert(tokens.size() >= 2);
     string id = tokens[1];
     assert(tokens[2] == ",");
     Host *host = 0;
     if (pass == 0) {
         if (find_host(id)) {
-            cerr << "Duplicate host id " << id << " found - terminating" << endl;
+            cerr << "Duplicate host id " << id << " found - terminating"
+                 << endl;
             abort();
         } else {
             host = new Host(id);
@@ -129,8 +132,9 @@ void GenericTopology::parse_host(std::vector<std::string>& tokens, int pass, std
     }
 }
 
-Switch* GenericTopology::find_switch(const string& id) {
-    // linear scan though vector is slow, but we only do this at startup so probably OK.  Otherwise add a map.
+Switch *GenericTopology::find_switch(const string &id) {
+    // linear scan though vector is slow, but we only do this at startup so
+    // probably OK.  Otherwise add a map.
     for (uint32_t i = 0; i < _switches.size(); i++) {
         if (_switches[i]->nodename() == id) {
             return _switches[i];
@@ -139,14 +143,16 @@ Switch* GenericTopology::find_switch(const string& id) {
     return NULL;
 }
 
-void GenericTopology::parse_switch(std::vector<std::string>& tokens, int pass, std::fstream& gv) {
+void GenericTopology::parse_switch(std::vector<std::string> &tokens, int pass,
+                                   std::fstream &gv) {
     assert(tokens.size() >= 2);
     string id = tokens[1];
     assert(tokens[2] == ",");
     Switch *sw = 0;
     if (pass == 0) {
         if (find_switch(id)) {
-            cerr << "Duplicate switch id " << id << " found - terminating" << endl;
+            cerr << "Duplicate switch id " << id << " found - terminating"
+                 << endl;
             abort();
         } else {
             sw = new Switch(*_eventlist, id);
@@ -172,8 +178,9 @@ void GenericTopology::parse_switch(std::vector<std::string>& tokens, int pass, s
     }
 }
 
-BaseQueue* GenericTopology::find_queue(const string& id) {
-    // linear scan though vector is slow, but we only do this at startup so probably OK.  Otherwise add a map.
+BaseQueue *GenericTopology::find_queue(const string &id) {
+    // linear scan though vector is slow, but we only do this at startup so
+    // probably OK.  Otherwise add a map.
     for (uint32_t i = 0; i < _queues.size(); i++) {
         if (_queues[i]->nodename() == id) {
             return _queues[i];
@@ -182,28 +189,32 @@ BaseQueue* GenericTopology::find_queue(const string& id) {
     return NULL;
 }
 
-void GenericTopology::parse_queue(std::vector<std::string>& tokens, int pass, std::fstream& gv) {
+void GenericTopology::parse_queue(std::vector<std::string> &tokens, int pass,
+                                  std::fstream &gv) {
     assert(tokens.size() >= 2);
     string id = tokens[1];
     assert(tokens[2] == ",");
     BaseQueue *q = 0;
     if (pass == 0) {
         if (find_queue(id)) {
-            cerr << "Duplicate switch id " << id << " found - terminating" << endl;
+            cerr << "Duplicate switch id " << id << " found - terminating"
+                 << endl;
             abort();
-        } 
+        }
     } else {
         q = find_queue(id);
-        if (!q) cerr << "failed to find queue " << id <<endl;
+        if (!q)
+            cerr << "failed to find queue " << id << endl;
         assert(q);
     }
-    // On pass 0, we will create the queue, once we know what type of queue to create, and the relevant params
-    // On pass 1, we will link it into the network
+    // On pass 0, we will create the queue, once we know what type of queue to
+    // create, and the relevant params On pass 1, we will link it into the
+    // network
     vector<string> attribute;
     string queuetype;
     linkspeed_bps linkspeed = 0;
     mem_b queuesize = 0;
-    QueueLogger* queuelogger = 0;
+    QueueLogger *queuelogger = 0;
     uint32_t ix = 3;
     while (get_attribute(tokens, ix, attribute)) {
         if (pass == 0 && attribute[0] == "type") {
@@ -229,7 +240,7 @@ void GenericTopology::parse_queue(std::vector<std::string>& tokens, int pass, st
                     exit(1);
                 }
                 simtime_picosec log_period = timeFromUs(stof(attribute[2]));
-                queuelogger = new QueueLoggerSampling(log_period,  *_eventlist);
+                queuelogger = new QueueLoggerSampling(log_period, *_eventlist);
                 _logfile->addLogger(*queuelogger);
             }
         } else if (pass == 1 && attribute[0] == "dst") {
@@ -239,15 +250,16 @@ void GenericTopology::parse_queue(std::vector<std::string>& tokens, int pass, st
             }
             string next_item = attribute[1];
             // a queue can feed an pipe or another queue; rarely a host directly
-            PacketSink* next = find_pipe(next_item);
+            PacketSink *next = find_pipe(next_item);
             if (!next) {
                 next = find_queue(next_item);
-            } 
+            }
             if (!next) {
                 next = find_host(next_item);
-            } 
+            }
             if (!next) {
-                cerr << "Next item ID " << next_item << " not found for queue ID " << id << endl;
+                cerr << "Next item ID " << next_item
+                     << " not found for queue ID " << id << endl;
                 exit(1);
             }
             q->setNext(next);
@@ -266,13 +278,15 @@ void GenericTopology::parse_queue(std::vector<std::string>& tokens, int pass, st
         if (queuetype == "queue") {
             q = new Queue(linkspeed, queuesize, *_eventlist, queuelogger);
         } else if (queuetype == "random") {
-            q = new RandomQueue(linkspeed, queuesize, *_eventlist, queuelogger, memFromPkt(RANDOM_BUFFER));
+            q = new RandomQueue(linkspeed, queuesize, *_eventlist, queuelogger,
+                                memFromPkt(RANDOM_BUFFER));
         } else if (queuetype == "composite") {
-            q = new CompositeQueue(linkspeed, queuesize, *_eventlist, queuelogger);
+            q = new CompositeQueue(linkspeed, queuesize, *_eventlist,
+                                   queuelogger);
         } else if (queuetype == "fairscheduler") {
             q = new FairScheduler(linkspeed, *_eventlist, queuelogger);
         } else {
-             cerr << "No valid type specified for Queue " << id << endl;
+            cerr << "No valid type specified for Queue " << id << endl;
         }
         assert(q);
         q->forceName(id);
@@ -281,8 +295,9 @@ void GenericTopology::parse_queue(std::vector<std::string>& tokens, int pass, st
     }
 }
 
-Pipe* GenericTopology::find_pipe(const string& id) {
-    // linear scan though vector is slow, but we only do this at startup so probably OK.  Otherwise add a map.
+Pipe *GenericTopology::find_pipe(const string &id) {
+    // linear scan though vector is slow, but we only do this at startup so
+    // probably OK.  Otherwise add a map.
     for (uint32_t i = 0; i < _pipes.size(); i++) {
         if (_pipes[i]->nodename() == id) {
             return _pipes[i];
@@ -291,15 +306,17 @@ Pipe* GenericTopology::find_pipe(const string& id) {
     return NULL;
 }
 
-void GenericTopology::parse_pipe(std::vector<std::string>& tokens, int pass, std::fstream& gv) {
+void GenericTopology::parse_pipe(std::vector<std::string> &tokens, int pass,
+                                 std::fstream &gv) {
     assert(tokens.size() >= 2);
     string id = tokens[1];
     Pipe *pipe = 0;
     if (pass == 0) {
         if (find_queue(id)) {
-            cerr << "Duplicate pipe id " << id << " found - terminating" << endl;
+            cerr << "Duplicate pipe id " << id << " found - terminating"
+                 << endl;
             abort();
-        } 
+        }
     } else {
         pipe = find_pipe(id);
         assert(pipe);
@@ -309,7 +326,7 @@ void GenericTopology::parse_pipe(std::vector<std::string>& tokens, int pass, std
     vector<string> attribute;
     simtime_picosec latency = 0;
     string reverse_id = "";
-    PacketSink* prev = 0;
+    PacketSink *prev = 0;
     string prev_item = "";
     uint32_t ix = 3;
     while (get_attribute(tokens, ix, attribute)) {
@@ -340,13 +357,13 @@ void GenericTopology::parse_pipe(std::vector<std::string>& tokens, int pass, std
             }
             string next_item = attribute[1];
             // a pipe can feed a switch, host, or queue
-            PacketSink* next = find_switch(next_item);
+            PacketSink *next = find_switch(next_item);
             if (!next) {
                 next = find_queue(next_item);
-            } 
+            }
             if (!next) {
                 next = find_host(next_item);
-            } 
+            }
             if (!next) {
                 cerr << "Next item not found for pipe ID " << id << endl;
                 exit(1);
@@ -363,12 +380,13 @@ void GenericTopology::parse_pipe(std::vector<std::string>& tokens, int pass, std
             prev = find_switch(prev_item);
             if (!prev) {
                 prev = find_queue(prev_item);
-            } 
+            }
             if (!prev) {
                 prev = find_host(prev_item);
-            } 
+            }
             if (!prev) {
-                cerr << "Prev item " << prev_item << " not found for pipe ID " << id << endl;
+                cerr << "Prev item " << prev_item << " not found for pipe ID "
+                     << id << endl;
                 exit(1);
             }
         }
@@ -390,10 +408,11 @@ void GenericTopology::parse_pipe(std::vector<std::string>& tokens, int pass, std
     } else {
         if (reverse_id != "") {
             if (!prev) {
-                cerr << "Src not specified for reverse pipe with ID " << reverse_id << endl;
+                cerr << "Src not specified for reverse pipe with ID "
+                     << reverse_id << endl;
                 exit(1);
             }
-            Pipe* reverse_pipe = find_pipe(reverse_id);
+            Pipe *reverse_pipe = find_pipe(reverse_id);
             assert(reverse_pipe);
             reverse_pipe->setNext(prev);
             gv << reverse_id << " -> " << prev_item << endl;
@@ -401,33 +420,32 @@ void GenericTopology::parse_pipe(std::vector<std::string>& tokens, int pass, std
     }
 }
 
-bool GenericTopology::load(FILE* f, int pass){
-    cout << "Load, pass " << pass << "**************************************************************\n";
-    if (fscanf(f,"Hosts %d\n",&_no_of_hosts) != 1) {
+bool GenericTopology::load(FILE *f, int pass) {
+    cout << "Load, pass " << pass
+         << "**************************************************************\n";
+    if (fscanf(f, "Hosts %d\n", &_no_of_hosts) != 1) {
         cerr << "Parse error: failed to find number of hosts\n";
         return false;
     }
-    
-    if (fscanf(f,"Switches %d\n",&_no_of_switches) != 1) {
+
+    if (fscanf(f, "Switches %d\n", &_no_of_switches) != 1) {
         cerr << "Parse error: Failed to find number of switches\n";
         return false;
     }
-    if (fscanf(f,"Links %d\n",&_no_of_links) != 1) {
+    if (fscanf(f, "Links %d\n", &_no_of_links) != 1) {
         cerr << "Parse error: Failed to find number of switches\n";
         return false;
     }
 
     std::fstream gv;
-    gv.open ("topo.gv", std::fstream::out);
+    gv.open("topo.gv", std::fstream::out);
     gv << "digraph {" << endl;
-     
-    
 
     char line[256];
     std::vector<std::string> tokens;
-    while(fgets(line, 255, f)) {
+    while (fgets(line, 255, f)) {
         tokens.clear();
-        char* s = skip_whitespace(line);
+        char *s = skip_whitespace(line);
         if (*s == '#' || *s == '\n') {
             // nothing to parse on this line
             continue;
@@ -447,22 +465,20 @@ bool GenericTopology::load(FILE* f, int pass){
             parse_pipe(tokens, pass, gv);
         }
     }
-    
+
     fclose(f);
     gv << "}\n";
     gv.close();
     return true;
 }
 
-vector<const Route*>* GenericTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
-    vector<const Route*>* paths = new vector<const Route*>();
+vector<const Route *> *
+GenericTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
+    vector<const Route *> *paths = new vector<const Route *>();
     // TBD
     return paths;
 }
 
-vector<uint32_t>* GenericTopology::get_neighbours(uint32_t src){
-  return NULL;
-}
+vector<uint32_t> *GenericTopology::get_neighbours(uint32_t src) { return NULL; }
 
-void GenericTopology::draw() {
-}
+void GenericTopology::draw() {}

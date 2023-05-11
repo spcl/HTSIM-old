@@ -1,95 +1,91 @@
-// -*- c-basic-offset: 4; indent-tabs-mode: nil -*-        
+// -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
 #include "prioqueue.h"
 #include <math.h>
 
 #include <iostream>
 #include <sstream>
 
-CtrlPrioQueue::CtrlPrioQueue(linkspeed_bps bitrate, mem_b maxsize, EventList& eventlist, 
-                               QueueLogger* logger)
-  : Queue(bitrate, maxsize, eventlist, logger)
-{
-  _num_packets = 0;
-  _num_acks = 0;
-  _num_nacks = 0;
-  _num_pulls = 0;
-  _num_drops = 0;
+CtrlPrioQueue::CtrlPrioQueue(linkspeed_bps bitrate, mem_b maxsize,
+                             EventList &eventlist, QueueLogger *logger)
+        : Queue(bitrate, maxsize, eventlist, logger) {
+    _num_packets = 0;
+    _num_acks = 0;
+    _num_nacks = 0;
+    _num_pulls = 0;
+    _num_drops = 0;
 
-  _queuesize_high = _queuesize_low = 0;
-  _serv = QUEUE_INVALID;
-  stringstream ss;
-  ss << "compqueue(" << bitrate/1000000 << "Mb/s," << maxsize << "bytes)";
-  _nodename = ss.str();
-}
-
-void CtrlPrioQueue::beginService(){
-  if (!_enqueued_high.empty()){
-    _serv = QUEUE_HIGH;
-    eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_high.back()));
-  } else if (!_enqueued_low.empty()){
-    _serv = QUEUE_LOW;
-    eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_low.back()));
-  } else {
-    assert(0);
+    _queuesize_high = _queuesize_low = 0;
     _serv = QUEUE_INVALID;
-  }
+    stringstream ss;
+    ss << "compqueue(" << bitrate / 1000000 << "Mb/s," << maxsize << "bytes)";
+    _nodename = ss.str();
 }
 
-void
-CtrlPrioQueue::completeService(){
-  Packet* pkt;
-
-  if (_serv==QUEUE_LOW){
-    assert(!_enqueued_low.empty());
-    pkt = _enqueued_low.back();
-    _enqueued_low.pop_back();
-    _queuesize_low -= pkt->size();
-    _num_packets++;
-  } else if (_serv==QUEUE_HIGH) {
-    assert(!_enqueued_high.empty());
-    pkt = _enqueued_high.back();
-    _enqueued_high.pop_back();
-    _queuesize_high -= pkt->size();
-    switch (pkt->type()) {
-    case NDPACK:
-    case NDPLITEACK:
-        _num_acks++;
-        break;
-    case NDPNACK:
-        _num_nacks++;
-        break;
-    case NDPPULL:
-    case NDPLITEPULL:
-        _num_pulls++;
-        break;
-    default:
-        abort(); // add case statements above if this is hit
+void CtrlPrioQueue::beginService() {
+    if (!_enqueued_high.empty()) {
+        _serv = QUEUE_HIGH;
+        eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_high.back()));
+    } else if (!_enqueued_low.empty()) {
+        _serv = QUEUE_LOW;
+        eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_low.back()));
+    } else {
+        assert(0);
+        _serv = QUEUE_INVALID;
     }
-  } else {
-      assert(0);
-  }
-    
-  pkt->flow().logTraffic(*pkt,*this,TrafficLogger::PKT_DEPART);
-  if (_logger) _logger->logQueue(*this, QueueLogger::PKT_SERVICE, *pkt);
-  pkt->sendOn();
-
-  //_virtual_time += drainTime(pkt);
-
-  _serv = QUEUE_INVALID;
-  
-  //cout << "E[ " << _enqueued_low.size() << " " << _enqueued_high.size() << " ]" << endl;
-
-  if (!_enqueued_high.empty()||!_enqueued_low.empty())
-    beginService();
 }
 
-void
-CtrlPrioQueue::doNextEvent() {
-  completeService();
+void CtrlPrioQueue::completeService() {
+    Packet *pkt;
+
+    if (_serv == QUEUE_LOW) {
+        assert(!_enqueued_low.empty());
+        pkt = _enqueued_low.back();
+        _enqueued_low.pop_back();
+        _queuesize_low -= pkt->size();
+        _num_packets++;
+    } else if (_serv == QUEUE_HIGH) {
+        assert(!_enqueued_high.empty());
+        pkt = _enqueued_high.back();
+        _enqueued_high.pop_back();
+        _queuesize_high -= pkt->size();
+        switch (pkt->type()) {
+        case NDPACK:
+        case NDPLITEACK:
+            _num_acks++;
+            break;
+        case NDPNACK:
+            _num_nacks++;
+            break;
+        case NDPPULL:
+        case NDPLITEPULL:
+            _num_pulls++;
+            break;
+        default:
+            abort(); // add case statements above if this is hit
+        }
+    } else {
+        assert(0);
+    }
+
+    pkt->flow().logTraffic(*pkt, *this, TrafficLogger::PKT_DEPART);
+    if (_logger)
+        _logger->logQueue(*this, QueueLogger::PKT_SERVICE, *pkt);
+    pkt->sendOn();
+
+    //_virtual_time += drainTime(pkt);
+
+    _serv = QUEUE_INVALID;
+
+    // cout << "E[ " << _enqueued_low.size() << " " << _enqueued_high.size() <<
+    // " ]" << endl;
+
+    if (!_enqueued_high.empty() || !_enqueued_low.empty())
+        beginService();
 }
 
-CtrlPrioQueue::queue_priority_t 
-CtrlPrioQueue::getPriority(Packet& pkt) {
+void CtrlPrioQueue::doNextEvent() { completeService(); }
+
+CtrlPrioQueue::queue_priority_t CtrlPrioQueue::getPriority(Packet &pkt) {
     queue_priority_t prio = Q_LO;
     switch (pkt.type()) {
     case TCPACK:
@@ -119,13 +115,11 @@ CtrlPrioQueue::getPriority(Packet& pkt) {
     return prio;
 }
 
-void
-CtrlPrioQueue::receivePacket(Packet& pkt)
-{
-    pkt.flow().logTraffic(pkt,*this,TrafficLogger::PKT_ARRIVE);
+void CtrlPrioQueue::receivePacket(Packet &pkt) {
+    pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_ARRIVE);
     queue_priority_t prio = getPriority(pkt);
-    mem_b* queuesize = 0;
-    list<Packet*>* enqueued = 0;
+    mem_b *queuesize = 0;
+    list<Packet *> *enqueued = 0;
 
     switch (prio) {
     case Q_LO:
@@ -141,7 +135,7 @@ CtrlPrioQueue::receivePacket(Packet& pkt)
     }
 
     if (*queuesize + pkt.size() > _maxsize) {
-        Packet* dropped_pkt = 0;
+        Packet *dropped_pkt = 0;
         if (drand() < 0.5) {
             dropped_pkt = &pkt;
             cout << "drop arriving!\n";
@@ -153,7 +147,8 @@ CtrlPrioQueue::receivePacket(Packet& pkt)
             enqueued->push_front(&pkt);
             *queuesize += pkt.size();
         }
-        if (_logger) _logger->logQueue(*this, QueueLogger::PKT_DROP, *dropped_pkt);
+        if (_logger)
+            _logger->logQueue(*this, QueueLogger::PKT_DROP, *dropped_pkt);
         switch (pkt.type()) {
         case NDPLITERTS:
             cout << "RTS dropped ";
@@ -167,22 +162,22 @@ CtrlPrioQueue::receivePacket(Packet& pkt)
         default:
             abort();
         }
-        dropped_pkt->flow().logTraffic(*dropped_pkt,*this,TrafficLogger::PKT_DROP);
-        cout << "B[ " << _enqueued_low.size() << " " << enqueued->size() << " ] DROP " 
-             << dropped_pkt->flow().get_id() << endl;
+        dropped_pkt->flow().logTraffic(*dropped_pkt, *this,
+                                       TrafficLogger::PKT_DROP);
+        cout << "B[ " << _enqueued_low.size() << " " << enqueued->size()
+             << " ] DROP " << dropped_pkt->flow().get_id() << endl;
         dropped_pkt->free();
         _num_drops++;
     } else {
         enqueued->push_front(&pkt);
         *queuesize += pkt.size();
     }
-    
-    if (_serv==QUEUE_INVALID) {
+
+    if (_serv == QUEUE_INVALID) {
         beginService();
     }
 }
 
-mem_b 
-CtrlPrioQueue::queuesize() const {
+mem_b CtrlPrioQueue::queuesize() const {
     return _queuesize_low + _queuesize_high;
 }

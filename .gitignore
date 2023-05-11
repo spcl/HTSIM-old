@@ -5,3 +5,7 @@
 *#
 *.o
 .DS_store
+htsim_*
+*.rates
+*.urates
+*.asc

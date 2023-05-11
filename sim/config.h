@@ -1,16 +1,15 @@
-// -*- c-basic-offset: 4; indent-tabs-mode: nil -*-        
+// -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <stdint.h>
-#include <sys/types.h>
 #include <assert.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include <sys/types.h>
 
 double drand();
-
 
 #ifdef _WIN32
 // Ways to refer to integer types
@@ -24,6 +23,27 @@ typedef long long sint64_t;
 
 // Specify units for simulation time, link speed, buffer capacity
 typedef uint64_t simtime_picosec;
+
+extern simtime_picosec GLOBAL_TIME;
+extern int PKT_SIZE_MODERN;
+extern uint64_t LINK_SPEED_MODERN;
+extern int SINGLE_PKT_TRASMISSION_TIME_MODERN;
+extern int LINK_DELAY_MODERN;
+extern uint64_t HOPS;
+extern uint64_t BASE_RTT_MODERN;
+extern uint64_t TARGET_RTT_MODERN;
+extern uint64_t BDP_MODERN_UEC;
+extern uint64_t MAX_CWD_MODERN_UEC;
+extern bool COLLECT_DATA;
+extern uint64_t MAX_CWD_MODERN_UEC;
+extern uint64_t MIN_K_ECN_MODERN;
+extern uint64_t MAX_K_ECN_MODERN;
+extern uint64_t INFINITE_BUFFER_SIZE;
+extern uint64_t BDP_MODERN_NDP;
+extern uint64_t MAX_CWD_MODERN_NDP;
+extern uint64_t BDP_OLD_NDP;
+extern uint64_t MAX_CWD_OLD_NDP;
+extern uint64_t ENABLE_FAST_DROP;
 
 int pareto(int xm, int mean);
 double exponential(double lambda);
@@ -53,13 +73,13 @@ typedef uint32_t addr_t;
 typedef uint16_t port_t;
 
 // Gumph
-#if defined (__cplusplus) && !defined(__STL_NO_NAMESPACES)
+#if defined(__cplusplus) && !defined(__STL_NO_NAMESPACES)
 using namespace std;
 #endif
 
 #ifdef _WIN32
-#define max(a,b) (((a)>(b))?(a):(b))
-#define min(a,b) (((a)<(b))?(a):(b))
+#define max(a, b) (((a) > (b)) ? (a) : (b))
+#define min(a, b) (((a) < (b)) ? (a) : (b))
 #endif
 
 #endif
