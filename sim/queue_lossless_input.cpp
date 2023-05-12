@@ -9,17 +9,15 @@ uint64_t LosslessInputQueue::_high_threshold = 0;
 uint64_t LosslessInputQueue::_low_threshold = 0;
 
 LosslessInputQueue::LosslessInputQueue(EventList &eventlist)
-        : Queue(speedFromGbps(1), Packet::data_packet_size() * 2000, eventlist,
-                NULL),
-          VirtualQueue(), _state_recv(READY) {
+        : Queue(speedFromGbps(1), Packet::data_packet_size() * 2000, eventlist, NULL), VirtualQueue(),
+          _state_recv(READY) {
     assert(_high_threshold > 0);
     assert(_high_threshold > _low_threshold);
 }
 
 LosslessInputQueue::LosslessInputQueue(EventList &eventlist, BaseQueue *peer)
-        : Queue(speedFromGbps(1), Packet::data_packet_size() * 2000, eventlist,
-                NULL),
-          VirtualQueue(), _state_recv(READY) {
+        : Queue(speedFromGbps(1), Packet::data_packet_size() * 2000, eventlist, NULL), VirtualQueue(),
+          _state_recv(READY) {
     assert(_high_threshold > 0);
     assert(_high_threshold > _low_threshold);
 
@@ -32,11 +30,9 @@ LosslessInputQueue::LosslessInputQueue(EventList &eventlist, BaseQueue *peer)
     peer->setRemoteEndpoint(this);
 }
 
-LosslessInputQueue::LosslessInputQueue(EventList &eventlist, BaseQueue *peer,
-                                       Switch *sw)
-        : Queue(speedFromGbps(1), Packet::data_packet_size() * 2000, eventlist,
-                NULL),
-          VirtualQueue(), _state_recv(READY) {
+LosslessInputQueue::LosslessInputQueue(EventList &eventlist, BaseQueue *peer, Switch *sw)
+        : Queue(speedFromGbps(1), Packet::data_packet_size() * 2000, eventlist, NULL), VirtualQueue(),
+          _state_recv(READY) {
     assert(_high_threshold > 0);
     assert(_high_threshold > _low_threshold);
 
@@ -68,8 +64,7 @@ void LosslessInputQueue::receivePacket(Packet &pkt) {
     // sz " << _queuesize << endl;
 
     if (_queuesize > _maxsize) {
-        cout << " Queue " << _name
-             << " LOSSLESS not working! I should have dropped this packet"
+        cout << " Queue " << _name << " LOSSLESS not working! I should have dropped this packet"
              << _queuesize / Packet::data_packet_size() << endl;
     }
 

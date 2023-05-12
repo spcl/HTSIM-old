@@ -36,8 +36,7 @@
 #define PERIODIC 0
 #include "main.h"
 
-uint32_t RTT =
-        10; // this is per link delay; identical RTT microseconds = 0.001 ms
+uint32_t RTT = 10; // this is per link delay; identical RTT microseconds = 0.001 ms
 uint32_t DEFAULT_NODES = 16;
 // uint32_t N=128;
 
@@ -151,8 +150,7 @@ int main(int argc, char **argv) {
 
     logfile.setStartTime(timeFromSec(0));
 
-    TcpSinkLoggerSampling sinkLogger =
-            TcpSinkLoggerSampling(timeFromMs(1000), eventlist);
+    TcpSinkLoggerSampling sinkLogger = TcpSinkLoggerSampling(timeFromMs(1000), eventlist);
     logfile.addLogger(sinkLogger);
 
     // TcpLoggerSimple logTcp;logfile.addLogger(logTcp);
@@ -172,8 +170,7 @@ int main(int argc, char **argv) {
 
     uint32_t dest;
 
-    QueueLoggerFactory qlf(&logfile, QueueLoggerFactory::LOGGER_SAMPLING,
-                           eventlist);
+    QueueLoggerFactory qlf(&logfile, QueueLoggerFactory::LOGGER_SAMPLING, eventlist);
     qlf.set_sample_period(timeFromUs(1000.0));
 
 #if USE_FIRST_FIT
@@ -183,19 +180,15 @@ int main(int argc, char **argv) {
 #endif
 
 #ifdef FAT_TREE
-    FatTreeTopology *top =
-            new FatTreeTopology(no_of_nodes, linkspeed, memFromPkt(8), &qlf,
-                                &eventlist, ff, RANDOM, 0);
+    FatTreeTopology *top = new FatTreeTopology(no_of_nodes, linkspeed, memFromPkt(8), &qlf, &eventlist, ff, RANDOM, 0);
 #endif
 
 #ifdef OV_FAT_TREE
-    OversubscribedFatTreeTopology *top =
-            new OversubscribedFatTreeTopology(&logfile, &eventlist, ff);
+    OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(&logfile, &eventlist, ff);
 #endif
 
 #ifdef MH_FAT_TREE
-    MultihomedFatTreeTopology *top =
-            new MultihomedFatTreeTopology(&logfile, &eventlist, ff);
+    MultihomedFatTreeTopology *top = new MultihomedFatTreeTopology(&logfile, &eventlist, ff);
 #endif
 
 #ifdef STAR
@@ -248,8 +241,7 @@ int main(int argc, char **argv) {
     map<uint32_t, vector<uint32_t> *>::iterator it;
 
     uint32_t connID = 0;
-    for (it = conns->connections.begin(); it != conns->connections.end();
-         it++) {
+    for (it = conns->connections.begin(); it != conns->connections.end(); it++) {
         uint32_t src = (*it).first;
         destinations = (*it).second;
 
@@ -310,9 +302,8 @@ int main(int argc, char **argv) {
                     tot_subs += crt_subflow_count;
                     cnt_con++;
 
-                    it_sub = crt_subflow_count > net_paths[src][dest]->size()
-                                     ? net_paths[src][dest]->size()
-                                     : crt_subflow_count;
+                    it_sub = crt_subflow_count > net_paths[src][dest]->size() ? net_paths[src][dest]->size()
+                                                                              : crt_subflow_count;
 
 #ifdef MH_FAT_TREE
                     int use_all = it_sub == net_paths[src][dest]->size();
@@ -334,13 +325,11 @@ int main(int argc, char **argv) {
                         // if (connection==1)
                         // tcpSrc->set_app_limit(9000);
 
-                        tcpSrc->setName("mtcp_" + ntoa(src) + "_" +
-                                        ntoa(inter) + "_" + ntoa(dest) + "(" +
+                        tcpSrc->setName("mtcp_" + ntoa(src) + "_" + ntoa(inter) + "_" + ntoa(dest) + "(" +
                                         ntoa(connection) + ")");
                         logfile.writeName(*tcpSrc);
 
-                        tcpSnk->setName("mtcp_sink_" + ntoa(src) + "_" +
-                                        ntoa(inter) + "_" + ntoa(dest) + "(" +
+                        tcpSnk->setName("mtcp_sink_" + ntoa(src) + "_" + ntoa(inter) + "_" + ntoa(dest) + "(" +
                                         ntoa(connection) + ")");
                         logfile.writeName(*tcpSnk);
 
@@ -394,20 +383,13 @@ int main(int argc, char **argv) {
                         int min = -1, max = -1, minDist = 1000, maxDist = 0;
                         if (subflow_count == 1) {
                             // find shortest and longest path
-                            for (uint32_t dd = 0;
-                                 dd < net_paths[src][dest]->size(); dd++) {
-                                if (net_paths[src][dest]->at(dd)->size() <
-                                    minDist) {
-                                    minDist = net_paths[src][dest]
-                                                      ->at(dd)
-                                                      ->size();
+                            for (uint32_t dd = 0; dd < net_paths[src][dest]->size(); dd++) {
+                                if (net_paths[src][dest]->at(dd)->size() < minDist) {
+                                    minDist = net_paths[src][dest]->at(dd)->size();
                                     min = dd;
                                 }
-                                if (net_paths[src][dest]->at(dd)->size() >
-                                    maxDist) {
-                                    maxDist = net_paths[src][dest]
-                                                      ->at(dd)
-                                                      ->size();
+                                if (net_paths[src][dest]->at(dd)->size() > maxDist) {
+                                    maxDist = net_paths[src][dest]->at(dd)->size();
                                     max = dd;
                                 }
                             }
@@ -423,19 +405,16 @@ int main(int argc, char **argv) {
                           it_sub<=K/2){ uint32_t choice2 = rand()%(K/2);*/
 
                         if (choice >= net_paths[src][dest]->size()) {
-                            printf("Weird path choice %lu out of %lu\n", choice,
-                                   net_paths[src][dest]->size());
+                            printf("Weird path choice %lu out of %lu\n", choice, net_paths[src][dest]->size());
                             exit(1);
                         }
 
 #if PRINT_PATHS
-                        paths << "Route from " << ntoa(src) << " to "
-                              << ntoa(dest) << "  (" << choice << ") -> ";
+                        paths << "Route from " << ntoa(src) << " to " << ntoa(dest) << "  (" << choice << ") -> ";
                         print_path(paths, net_paths[src][dest]->at(choice));
 #endif
 
-                        routeout =
-                                new Route(*(net_paths[src][dest]->at(choice)));
+                        routeout = new Route(*(net_paths[src][dest]->at(choice)));
                         routeout->push_back(tcpSnk);
 
                         routein = new Route();
@@ -447,14 +426,11 @@ int main(int argc, char **argv) {
                         mtcp->addSubflow(tcpSrc);
 
                         if (inter == 0) {
-                            mtcp->setName("multipath" + ntoa(src) + "_" +
-                                          ntoa(dest) + "(" + ntoa(connection) +
-                                          ")");
+                            mtcp->setName("multipath" + ntoa(src) + "_" + ntoa(dest) + "(" + ntoa(connection) + ")");
                             logfile.writeName(*mtcp);
                         }
 
-                        tcpSrc->connect(*routeout, *routein, *tcpSnk,
-                                        timeFromMs(extrastarttime));
+                        tcpSrc->connect(*routeout, *routein, *tcpSnk, timeFromMs(extrastarttime));
 
 #ifdef PACKET_SCATTER
                         tcpSrc->set_paths(net_paths[src][dest]);
@@ -473,16 +449,14 @@ int main(int argc, char **argv) {
     //    ShortFlows* sf = new ShortFlows(2560, eventlist, net_paths,conns,lg,
     //    &tcpRtxScanner);
 
-    cout << "Mean number of subflows " << ntoa((double)tot_subs / cnt_con)
-         << endl;
+    cout << "Mean number of subflows " << ntoa((double)tot_subs / cnt_con) << endl;
 
     // Record the setup
     int pktsize = Packet::data_packet_size();
     logfile.write("# pktsize=" + ntoa(pktsize) + " bytes");
     logfile.write("# subflows=" + ntoa(subflow_count));
     logfile.write("# hostnicrate = " + ntoa(linkspeed / 1000000) + " Mbps");
-    logfile.write("# corelinkrate = " + ntoa(HOST_NIC * CORE_TO_HOST) +
-                  " pkt/sec");
+    logfile.write("# corelinkrate = " + ntoa(HOST_NIC * CORE_TO_HOST) + " pkt/sec");
     // logfile.write("# buffer = " + ntoa((double)
     // (queues_na_ni[0][1]->_maxsize) / ((double) pktsize)) + " pkt");
     double rtt = timeAsSec(timeFromUs(RTT));

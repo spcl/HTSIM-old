@@ -27,12 +27,11 @@ uint32_t HPCCSrc::_global_node_count = 0;
 
 simtime_picosec HPCCSrc::_T = timeFromUs(12.0); // Known baseline RTT
 double HPCCSrc::_eta = 0.95;                    // Target link utilization
-uint32_t HPCCSrc::_max_stages = 5; // Maximum stages for additive increases
-uint32_t HPCCSrc::_N = 10;         // maximum number of flows.
-uint32_t HPCCSrc::_Wai = 0;        // Additive increase amount.
+uint32_t HPCCSrc::_max_stages = 5;              // Maximum stages for additive increases
+uint32_t HPCCSrc::_N = 10;                      // maximum number of flows.
+uint32_t HPCCSrc::_Wai = 0;                     // Additive increase amount.
 
-HPCCSrc::HPCCSrc(HPCCLogger *logger, TrafficLogger *pktlogger,
-                 EventList &eventlist, linkspeed_bps rate)
+HPCCSrc::HPCCSrc(HPCCLogger *logger, TrafficLogger *pktlogger, EventList &eventlist, linkspeed_bps rate)
         : BaseQueue(rate, eventlist, NULL), _logger(logger), _flow(pktlogger) {
     _mss = Packet::data_packet_size();
     _end_trigger = NULL;
@@ -82,8 +81,7 @@ HPCCSrc::HPCCSrc(HPCCLogger *logger, TrafficLogger *pktlogger,
     _link_count = 0;
     _last_update_seq = 0;
 
-    cout << "Initial CWND is " << _cwnd << " target RTT " << timeAsUs(_T)
-         << " rate " << rate << endl;
+    cout << "Initial CWND is " << _cwnd << " target RTT " << timeAsUs(_T) << " rate " << rate << endl;
     _flightsize = 0;
     _U = _eta;
 }
@@ -96,9 +94,7 @@ HPCCSrc::HPCCSrc(HPCCLogger *logger, TrafficLogger *pktlogger,
   return 0;
   }*/
 
-void HPCCSrc::set_traffic_logger(TrafficLogger *pktlogger) {
-    _flow.set_logger(pktlogger);
-}
+void HPCCSrc::set_traffic_logger(TrafficLogger *pktlogger) { _flow.set_logger(pktlogger); }
 
 void HPCCSrc::log_me() {
     // avoid looping
@@ -112,8 +108,7 @@ void HPCCSrc::log_me() {
 }
 
 void HPCCSrc::startflow() {
-    cout << "startflow " << _flow._name << " at " << timeAsUs(eventlist().now())
-         << endl;
+    cout << "startflow " << _flow._name << " at " << timeAsUs(eventlist().now()) << endl;
     _flow_started = true;
     _highest_sent = 0;
     _last_acked = 0;
@@ -125,12 +120,9 @@ void HPCCSrc::startflow() {
     eventlist().sourceIsPendingRel(*this, 0);
 }
 
-void HPCCSrc::set_end_trigger(Trigger &end_trigger) {
-    _end_trigger = &end_trigger;
-}
+void HPCCSrc::set_end_trigger(Trigger &end_trigger) { _end_trigger = &end_trigger; }
 
-void HPCCSrc::connect(Route *routeout, Route *routeback, HPCCSink &sink,
-                      simtime_picosec starttime) {
+void HPCCSrc::connect(Route *routeout, Route *routeback, HPCCSink &sink, simtime_picosec starttime) {
     assert(routeout);
     _route = routeout;
 
@@ -155,9 +147,8 @@ void HPCCSrc::processNack(const HPCCNack &nack) {
     _last_acked = nack.ackno();
     _rtx_packets_sent += _highest_sent - _last_acked;
 
-    cout << "HPCC " << _name << " go back n from " << _highest_sent << " to "
-         << _last_acked << " at " << timeAsUs(eventlist().now()) << " us"
-         << endl;
+    cout << "HPCC " << _name << " go back n from " << _highest_sent << " to " << _last_acked << " at "
+         << timeAsUs(eventlist().now()) << " us" << endl;
 
     if (_flow_size && _highest_sent > _flow_size && _last_acked < _flow_size) {
         // restart the pacing of packets, this has stopped once we've passed the
@@ -196,13 +187,13 @@ void HPCCSrc::processAck(const HPCCAck &ack) {
     */
     if (ackno > _last_update_seq) {
         _cwnd = computeWind(measureInFlight(ack), true);
-        cout << "CWND1 " << _cwnd << " ACKNO " << ackno << " at "
-             << timeAsUs(eventlist().now()) << " src " << _nodename << endl;
+        cout << "CWND1 " << _cwnd << " ACKNO " << ackno << " at " << timeAsUs(eventlist().now()) << " src " << _nodename
+             << endl;
         _last_update_seq = _highest_sent;
     } else {
         _cwnd = computeWind(measureInFlight(ack), false);
-        cout << "CWND2 " << _cwnd << " ACKNO " << ackno << " at "
-             << timeAsUs(eventlist().now()) << " src " << _nodename << endl;
+        cout << "CWND2 " << _cwnd << " ACKNO " << ackno << " at " << timeAsUs(eventlist().now()) << " src " << _nodename
+             << endl;
     }
 
     _pacing_rate = _cwnd * 8 * pow(10, 12) / _T;
@@ -216,8 +207,7 @@ void HPCCSrc::processAck(const HPCCAck &ack) {
         _logger->logHPCC(*this, HPCCLogger::HPCC_RCV);
 
     if (ackno >= _flow_size) {
-        cout << "Flow " << _name << " finished at "
-             << timeAsUs(eventlist().now()) << " total bytes " << ackno << endl;
+        cout << "Flow " << _name << " finished at " << timeAsUs(eventlist().now()) << " total bytes " << ackno << endl;
         _done = true;
         if (_end_trigger) {
             _end_trigger->activate();
@@ -296,8 +286,7 @@ void HPCCSrc::send_packet() {
         // _highest_sent+1 << " at " << timeAsUs(eventlist().now()) << endl;
     }
 
-    p = HPCCPacket::newpkt(_flow, *_route, _highest_sent + 1, _mss, false,
-                           last_packet, _dstaddr);
+    p = HPCCPacket::newpkt(_flow, *_route, _highest_sent + 1, _mss, false, last_packet, _dstaddr);
 
     assert(p);
     p->set_pathid(_pathid);
@@ -306,8 +295,7 @@ void HPCCSrc::send_packet() {
     p->set_ts(eventlist().now());
 
     if (_log_me) {
-        cout << "Sent " << _highest_sent + 1 << " Flow Size: " << _flow_size
-             << endl;
+        cout << "Sent " << _highest_sent + 1 << " Flow Size: " << _flow_size << endl;
     }
     _highest_sent += _mss;
     _packets_sent++;
@@ -337,8 +325,7 @@ void HPCCSrc::doNextEvent() {
         return;
     }
 
-    if (_time_last_sent == 0 ||
-        eventlist().now() - _time_last_sent >= _packet_spacing) {
+    if (_time_last_sent == 0 || eventlist().now() - _time_last_sent >= _packet_spacing) {
         if (_cwnd >= _flightsize + _mss)
             send_packet();
 
@@ -374,14 +361,12 @@ double HPCCSrc::measureInFlight(const HPCCAck &ack) {
 
     if (ack._int_hop == _link_count) {
         for (i = 0; i < _link_count; i++) {
-            txRate = (ack._int_info[i]._txbytes - _link_info[i]._txbytes) * 8 *
-                     pow(10, 12) / (ack._int_info[i]._ts - _link_info[i]._ts);
+            txRate = (ack._int_info[i]._txbytes - _link_info[i]._txbytes) * 8 * pow(10, 12) /
+                     (ack._int_info[i]._ts - _link_info[i]._ts);
 
-            uprime =
-                    min(ack._int_info[i]._queuesize, _link_info[i]._queuesize) *
-                            8 * pow(10, 12) /
-                            ((double)ack._int_info[i]._linkrate * _T) +
-                    txRate / ack._int_info[i]._linkrate;
+            uprime = min(ack._int_info[i]._queuesize, _link_info[i]._queuesize) * 8 * pow(10, 12) /
+                             ((double)ack._int_info[i]._linkrate * _T) +
+                     txRate / ack._int_info[i]._linkrate;
             if (uprime > u) {
                 u = uprime;
                 tau = ack._int_info[i]._ts - _link_info[i]._ts;
@@ -439,8 +424,7 @@ HPCCPacket::seq_t HPCCSrc::computeWind(double U, bool updateWc) {
 ////////////////////////////////////////////////////////////////
 
 /* Only use this constructor when there is only one for to this receiver */
-HPCCSink::HPCCSink()
-        : DataReceiver("HPCC_sink"), _cumulative_ack(0), _total_received(0) {
+HPCCSink::HPCCSink() : DataReceiver("HPCC_sink"), _cumulative_ack(0), _total_received(0) {
     _src = 0;
 
     _nodename = "HPCCsink";

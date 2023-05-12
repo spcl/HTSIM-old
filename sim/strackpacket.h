@@ -15,8 +15,7 @@ class STrackPacket : public Packet {
   public:
     typedef uint64_t seq_t;
 
-    inline static STrackPacket *newpkt(PacketFlow &flow, const Route &route,
-                                       seq_t seqno, int size) {
+    inline static STrackPacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, int size) {
         STrackPacket *p = _packetdb.allocPacket();
         p->set_route(flow, route, size,
                      seqno + size - 1); // The STrack sequence number is the
@@ -28,8 +27,7 @@ class STrackPacket : public Packet {
         return p;
     }
 
-    inline static STrackPacket *
-    new_syn_pkt(PacketFlow &flow, const Route &route, seq_t seqno, int size) {
+    inline static STrackPacket *new_syn_pkt(PacketFlow &flow, const Route &route, seq_t seqno, int size) {
         STrackPacket *p = newpkt(flow, route, seqno, size);
         p->_syn = true;
         return p;
@@ -52,8 +50,7 @@ class STrackAck : public Packet {
   public:
     typedef STrackPacket::seq_t seq_t;
 
-    inline static STrackAck *newpkt(PacketFlow &flow, const Route &route,
-                                    seq_t seqno, seq_t ackno,
+    inline static STrackAck *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t ackno,
                                     simtime_picosec ts_echo) {
         STrackAck *p = _packetdb.allocPacket();
         p->set_route(flow, route, ACKSIZE, ackno);

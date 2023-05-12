@@ -15,8 +15,7 @@
 
 class CallbackPipe : public Pipe {
   public:
-    CallbackPipe(simtime_picosec delay, EventList &eventlist,
-                 PacketSink *callback);
+    CallbackPipe(simtime_picosec delay, EventList &eventlist, PacketSink *callback);
     virtual void doNextEvent(); // inherited from Pipe
   private:
     PacketSink *_callback;

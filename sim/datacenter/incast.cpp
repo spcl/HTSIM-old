@@ -3,8 +3,7 @@
 #include <vector>
 using namespace std;
 
-Incast::Incast(uint64_t b, EventList &eventlist)
-        : EventSource(eventlist, "Incast"), _finished(0), _bytes(b) {}
+Incast::Incast(uint64_t b, EventList &eventlist) : EventSource(eventlist, "Incast"), _finished(0), _bytes(b) {}
 
 void Incast::doNextEvent() {
     if (_flows.size() == 0)

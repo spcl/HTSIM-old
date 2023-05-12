@@ -22,8 +22,8 @@ class Logger;
 
 class RawLogEvent {
   public:
-    RawLogEvent(double time, uint32_t type, uint32_t id, uint32_t ev,
-                double val1, double val2, double val3, string name);
+    RawLogEvent(double time, uint32_t type, uint32_t id, uint32_t ev, double val1, double val2, double val3,
+                string name);
     virtual string str();
     double _time;
     uint32_t _type;
@@ -42,8 +42,8 @@ class Logfile {
     void setStartTime(simtime_picosec starttime);
     void write(const string &msg);
     void writeName(Logged &logged);
-    void writeRecord(uint32_t type, uint32_t id, uint32_t ev, double val1,
-                     double val2, double val3); // prepend uint64_t time
+    void writeRecord(uint32_t type, uint32_t id, uint32_t ev, double val1, double val2,
+                     double val3); // prepend uint64_t time
     void addLogger(Logger &logger);
     simtime_picosec _starttime;
 

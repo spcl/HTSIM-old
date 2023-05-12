@@ -13,12 +13,10 @@ const double QcnQueue::GAMMA = 2;
 PacketDB<QcnPacket> QcnPacket::_packetdb;
 PacketDB<QcnAck> QcnAck::_packetdb;
 
-QcnReactor::QcnReactor(QcnLogger *logger, TrafficLogger *pktlogger,
-                       EventList &eventlist)
+QcnReactor::QcnReactor(QcnLogger *logger, TrafficLogger *pktlogger, EventList &eventlist)
         : EventSource(eventlist, "qcn"), _logger(logger), _flow(pktlogger) {}
 
-void QcnReactor::connect(route_t &route, routes_t &routesback,
-                         simtime_picosec startTime, linkspeed_bps linkspeed) {
+void QcnReactor::connect(route_t &route, routes_t &routesback, simtime_picosec startTime, linkspeed_bps linkspeed) {
     _route = &route;
     _routesback = &routesback;
     _flow.set_id(get_id()); // identify the packet flow with the QCN source that
@@ -39,14 +37,12 @@ void QcnReactor::doNextEvent() {
     // Ignore timer cycles for now, i.e. scheduling is only to send packets
     // Send this packet
     int pktsize = QcnPacket::PKTSIZE;
-    QcnPacket *p = QcnPacket::newpkt(_flow, *_route, *_routesback, *this,
-                                     pktsize, _seqno);
+    QcnPacket *p = QcnPacket::newpkt(_flow, *_route, *_routesback, *this, pktsize, _seqno);
     _logger->logQcn(*this, QcnLogger::QCN_SEND, 0);
     p->sendOn();
     // Schedule the next packet
     _seqno++;
-    simtime_picosec nextPacketDue =
-            timeFromSec(8 * pktsize / (double)_currentRate);
+    simtime_picosec nextPacketDue = timeFromSec(8 * pktsize / (double)_currentRate);
     eventlist().sourceIsPendingRel(*this, nextPacketDue);
     // Act on the packet-counter
     onPacketSent();
@@ -65,8 +61,8 @@ void QcnEndpoint::receivePacket(Packet &pkt) {
     p->free();
 };
 
-QcnQueue::QcnQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist,
-                   QueueLogger *logger, QcnLogger *qcnlogger)
+QcnQueue::QcnQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger,
+                   QcnLogger *qcnlogger)
         : Queue(bitrate, maxsize, eventlist, logger), _qcnlogger(qcnlogger) {
     _packetsTillNextFeedback = 0;
     _lastSampledQueuesize = 0;
@@ -102,8 +98,7 @@ void QcnReactor::onFeedback(double fb) {
         _targetRate = _currentRate;
     _packetCycles = 0;
     _packetsSentInCurrentCycle = 0;
-    _currentRate = qmax(_currentRate * (1 + QcnReactor::GAIN * fb),
-                        QcnReactor::MINRATE);
+    _currentRate = qmax(_currentRate * (1 + QcnReactor::GAIN * fb), QcnReactor::MINRATE);
     _logger->logQcn(*this, QcnLogger::QCN_DECD, 0);
 }
 
@@ -112,8 +107,7 @@ void QcnQueue::onPacketReceived(QcnPacket &qpkt) {
     if (_packetsTillNextFeedback <= 0) {
         double fbrange = _targetQueuesize * (1 + 2 * QcnQueue::GAMMA);
         double fb1 = -(_queuesize - _targetQueuesize) / fbrange;
-        double fb2 = -QcnQueue::GAMMA * (_queuesize - _lastSampledQueuesize) /
-                     fbrange;
+        double fb2 = -QcnQueue::GAMMA * (_queuesize - _lastSampledQueuesize) / fbrange;
         double fb = qmax(-1, fb1 + fb2);
         if (fb < 0) {
             _qcnlogger->logQcnQueue(*this, QcnLogger::QCN_FB, fb, fb1, fb2);

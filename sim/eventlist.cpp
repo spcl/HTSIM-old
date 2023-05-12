@@ -45,9 +45,7 @@ void EventList::sourceIsPending(EventSource &src, simtime_picosec when) {
         _pendingsources.insert(make_pair(when, &src));
 }
 
-void EventList::triggerIsPending(TriggerTarget &target) {
-    _pending_triggers.push_back(&target);
-}
+void EventList::triggerIsPending(TriggerTarget &target) { _pending_triggers.push_back(&target); }
 
 void EventList::cancelPendingSource(EventSource &src) {
     pendingsources_t::iterator i = _pendingsources.begin();
@@ -60,8 +58,7 @@ void EventList::cancelPendingSource(EventSource &src) {
     }
 }
 
-void EventList::reschedulePendingSource(EventSource &src,
-                                        simtime_picosec when) {
+void EventList::reschedulePendingSource(EventSource &src, simtime_picosec when) {
     cancelPendingSource(src);
     sourceIsPending(src, when);
 }

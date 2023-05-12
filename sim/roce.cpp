@@ -29,8 +29,7 @@ uint32_t RoceSrc::_global_rto_count = 0;
 /* _min_rto can be tuned using SetMinRTO. Don't change it here.  */
 simtime_picosec RoceSrc::_min_rto = timeFromUs((uint32_t)DEFAULT_RTO_MIN);
 
-RoceSrc::RoceSrc(RoceLogger *logger, TrafficLogger *pktlogger,
-                 EventList &eventlist, linkspeed_bps rate)
+RoceSrc::RoceSrc(RoceLogger *logger, TrafficLogger *pktlogger, EventList &eventlist, linkspeed_bps rate)
         : BaseQueue(rate, eventlist, NULL), _logger(logger), _flow(pktlogger) {
     _mss = Packet::data_packet_size();
     _end_trigger = NULL;
@@ -73,8 +72,7 @@ RoceSrc::RoceSrc(RoceLogger *logger, TrafficLogger *pktlogger,
 
     _state_send = READY;
     _time_last_sent = 0;
-    _packet_spacing = (simtime_picosec)((Packet::data_packet_size() + roce_acksize) *
-                                        (pow(10.0, 12.0) * 8) / _bitrate);
+    _packet_spacing = (simtime_picosec)((Packet::data_packet_size() + roce_acksize) * (pow(10.0, 12.0) * 8) / _bitrate);
 }
 
 /*mem_b RoceSrc::queuesize(){
@@ -85,9 +83,7 @@ RoceSrc::RoceSrc(RoceLogger *logger, TrafficLogger *pktlogger,
   return 0;
   }*/
 
-void RoceSrc::set_traffic_logger(TrafficLogger *pktlogger) {
-    _flow.set_logger(pktlogger);
-}
+void RoceSrc::set_traffic_logger(TrafficLogger *pktlogger) { _flow.set_logger(pktlogger); }
 
 void RoceSrc::log_me() {
     // avoid looping
@@ -101,8 +97,7 @@ void RoceSrc::log_me() {
 }
 
 void RoceSrc::startflow() {
-    cout << "startflow " << _flow._name << " at " << timeAsUs(eventlist().now())
-         << endl;
+    cout << "startflow " << _flow._name << " at " << timeAsUs(eventlist().now()) << endl;
     _flow_started = true;
     _highest_sent = 0;
     _last_acked = 0;
@@ -114,12 +109,9 @@ void RoceSrc::startflow() {
     eventlist().sourceIsPendingRel(*this, 0);
 }
 
-void RoceSrc::set_end_trigger(Trigger &end_trigger) {
-    _end_trigger = &end_trigger;
-}
+void RoceSrc::set_end_trigger(Trigger &end_trigger) { _end_trigger = &end_trigger; }
 
-void RoceSrc::connect(Route *routeout, Route *routeback, RoceSink &sink,
-                      simtime_picosec starttime) {
+void RoceSrc::connect(Route *routeout, Route *routeback, RoceSink &sink, simtime_picosec starttime) {
     assert(routeout);
     _route = routeout;
 
@@ -145,9 +137,8 @@ void RoceSrc::processNack(const RoceNack &nack) {
     _rtx_packets_sent += _highest_sent - _last_acked;
 
     if (_log_me)
-        cout << "Src " << get_id() << " go back n from " << _highest_sent
-             << " to " << _last_acked << " at " << timeAsUs(eventlist().now())
-             << " us" << endl;
+        cout << "Src " << get_id() << " go back n from " << _highest_sent << " to " << _last_acked << " at "
+             << timeAsUs(eventlist().now()) << " us" << endl;
 
     if (_flow_size && _highest_sent >= _flow_size && _last_acked < _flow_size) {
         // restart the pacing of packets, this has stopped once we've passed the
@@ -208,8 +199,8 @@ void RoceSrc::processAck(const RoceAck &ack) {
     if (_log_me)
         cout << "Src " << get_id() << " ackno " << ackno << endl;
     if (ackno >= _flow_size) {
-        cout << "Flow " << _name << " " << get_id() << " finished at "
-             << timeAsUs(eventlist().now()) << " total bytes " << ackno << endl;
+        cout << "Flow " << _name << " " << get_id() << " finished at " << timeAsUs(eventlist().now()) << " total bytes "
+             << ackno << endl;
         _done = true;
         if (_end_trigger) {
             _end_trigger->activate();
@@ -279,8 +270,7 @@ void RoceSrc::send_packet() {
         cout << "Src " << get_id() << " send_packet\n";
     assert(_flow_started);
 
-    if (_flow_size &&
-        (_last_acked >= _flow_size || _highest_sent > _flow_size)) {
+    if (_flow_size && (_last_acked >= _flow_size || _highest_sent > _flow_size)) {
         // flow is finished
         if (_log_me)
             cout << "Src " << get_id() << " flow is finished, not sending\n";
@@ -290,14 +280,12 @@ void RoceSrc::send_packet() {
     if (_flow_size && _highest_sent + _mss >= _flow_size) {
         last_packet = true;
         if (_log_me) {
-            cout << _name << " " << get_id()
-                 << " sending last packet with SEQNO " << _highest_sent + 1
-                 << " at " << timeAsUs(eventlist().now()) << endl;
+            cout << _name << " " << get_id() << " sending last packet with SEQNO " << _highest_sent + 1 << " at "
+                 << timeAsUs(eventlist().now()) << endl;
         }
     }
 
-    p = RocePacket::newpkt(_flow, *_route, _highest_sent + 1, _mss, false,
-                           last_packet, _dstaddr);
+    p = RocePacket::newpkt(_flow, *_route, _highest_sent + 1, _mss, false, last_packet, _dstaddr);
 
     assert(p);
     p->set_pathid(_pathid);
@@ -306,8 +294,7 @@ void RoceSrc::send_packet() {
     p->set_ts(eventlist().now());
 
     if (_log_me) {
-        cout << "Src " << get_id() << " sent " << _highest_sent + 1
-             << " Flow Size: " << _flow_size << endl;
+        cout << "Src " << get_id() << " sent " << _highest_sent + 1 << " Flow Size: " << _flow_size << endl;
     }
     _highest_sent += _mss;
     _packets_sent++;
@@ -336,13 +323,11 @@ void RoceSrc::doNextEvent() {
 
     if (_flow_size && _highest_sent >= _flow_size) {
         if (_log_me)
-            cout << "Src " << get_id() << " stopping send coz highest_sent is "
-                 << _highest_sent << endl;
+            cout << "Src " << get_id() << " stopping send coz highest_sent is " << _highest_sent << endl;
         return;
     }
 
-    if (_time_last_sent == 0 ||
-        eventlist().now() - _time_last_sent >= _packet_spacing) {
+    if (_time_last_sent == 0 || eventlist().now() - _time_last_sent >= _packet_spacing) {
         send_packet();
         _time_last_sent = eventlist().now();
     }
@@ -358,8 +343,7 @@ void RoceSrc::doNextEvent() {
 ////////////////////////////////////////////////////////////////
 
 /* Only use this constructor when there is only one for to this receiver */
-RoceSink::RoceSink()
-        : DataReceiver("roce_sink"), _cumulative_ack(0), _total_received(0) {
+RoceSink::RoceSink() : DataReceiver("roce_sink"), _cumulative_ack(0), _total_received(0) {
     _src = 0;
 
     _nodename = "rocesink";
@@ -442,8 +426,7 @@ void RoceSink::send_ack(simtime_picosec ts) {
     RoceAck *ack = 0;
     ack = RoceAck::newpkt(_src->_flow, *_route, _cumulative_ack, _srcaddr);
     if (_log_me)
-        cout << "Sink " << get_id() << " sending ack " << _cumulative_ack
-             << endl;
+        cout << "Sink " << get_id() << " sending ack " << _cumulative_ack << endl;
     ack->set_pathid(0);
     ack->sendOn();
 }

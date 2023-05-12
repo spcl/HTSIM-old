@@ -30,8 +30,7 @@ static bool print = false;
 
 LogSimInterface::LogSimInterface() {}
 
-LogSimInterface::LogSimInterface(UecLogger *logger, TrafficLogger *pktLogger,
-                                 EventList &eventList, Topology *topo,
+LogSimInterface::LogSimInterface(UecLogger *logger, TrafficLogger *pktLogger, EventList &eventList, Topology *topo,
                                  std::vector<const Route *> ***routes) {
     _logger = logger;
     _flow = pktLogger;
@@ -39,23 +38,19 @@ LogSimInterface::LogSimInterface(UecLogger *logger, TrafficLogger *pktLogger,
     _topo = topo;
     _netPaths = routes;
     _latest_recv = new graph_node_properties();
-    _ndpRtxScanner =
-            new NdpRtxTimerScanner(timeFromUs((uint32_t)1000), *_eventlist);
-    _uecRtxScanner =
-            new UecRtxTimerScanner(BASE_RTT_MODERN * 1000 / 4, *_eventlist);
+    _ndpRtxScanner = new NdpRtxTimerScanner(timeFromUs((uint32_t)1000), *_eventlist);
+    _uecRtxScanner = new UecRtxTimerScanner(BASE_RTT_MODERN * 1000 / 4, *_eventlist);
 }
 
 void LogSimInterface::set_cwd(int cwd) { _cwd = cwd; }
 
-void LogSimInterface::htsim_schedule(u_int32_t host, int to, int size, int tag,
-                                     u_int64_t start_time_event,
+void LogSimInterface::htsim_schedule(u_int32_t host, int to, int size, int tag, u_int64_t start_time_event,
                                      int my_offset) {
     // Send event to htsim for actual send
     send_event(host, to, size, tag, start_time_event);
 
     // Save Event for internal tracking
-    std::string to_hash = std::to_string(host) + "@" + std::to_string(to) +
-                          "@" + std::to_string(tag);
+    std::string to_hash = std::to_string(host) + "@" + std::to_string(to) + "@" + std::to_string(tag);
     printf("Scheduling Event (%s) of size %d from %d to %d tag %d start_tiem "
            "%lu - Time is %lu\n ",
            to_hash.c_str(), size, host, to, tag, start_time_event, GLOBAL_TIME);
@@ -68,8 +63,7 @@ void LogSimInterface::htsim_schedule(u_int32_t host, int to, int size, int tag,
     active_sends[to_hash] = entry;
 }
 
-void LogSimInterface::send_event(int from, int to, int size, int tag,
-                                 u_int64_t start_time_event) {
+void LogSimInterface::send_event(int from, int to, int size, int tag, u_int64_t start_time_event) {
 
     // Create UEC Src and Dest
     if (_protocolName == UEC_PROTOCOL) {
@@ -77,25 +71,20 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         uint64_t rtt = BASE_RTT_MODERN * 1000;
         uint64_t bdp = BDP_MODERN_UEC; // TODO: calculate instead of hardcoding
         uint64_t queueDrainTime =
-                _queuesize * 8 * 1000 /
-                (HOST_NIC / 1000); // convert queuesize to bits, then divide by
-                                   // link speed converted from Mbps to bpps
+                _queuesize * 8 * 1000 / (HOST_NIC / 1000); // convert queuesize to bits, then divide by
+                                                           // link speed converted from Mbps to bpps
 
-        UecSrc *uecSrc = new UecSrc(_logger, _flow, *_eventlist, rtt, bdp,
-                                    queueDrainTime);
+        UecSrc *uecSrc = new UecSrc(_logger, _flow, *_eventlist, rtt, bdp, queueDrainTime);
         uecSrc->setFlowSize(size);
         uecSrc->setCwnd(MAX_CWD_MODERN_UEC);
         printf("CWD Start %d - From %d To %d\n", uecSrc->_cwnd, from, to);
-        uecSrc->setName("uec_" + std::to_string(from) + "_" +
-                        std::to_string(to));
-        uecSrc->set_flow_over_hook(std::bind(&LogSimInterface::flow_over, this,
-                                             std::placeholders::_1));
+        uecSrc->setName("uec_" + std::to_string(from) + "_" + std::to_string(to));
+        uecSrc->set_flow_over_hook(std::bind(&LogSimInterface::flow_over, this, std::placeholders::_1));
         uecSrc->from = from;
         uecSrc->to = to;
         uecSrc->tag = tag;
         printf("Setting %d %d %d\n", from, to, tag);
-        std::string to_hash = std::to_string(from) + "@" + std::to_string(to) +
-                              "@" + std::to_string(tag);
+        std::string to_hash = std::to_string(from) + "@" + std::to_string(to) + "@" + std::to_string(tag);
         connection_log[to_hash] = uecSrc;
         _uecSrcVector.push_back(uecSrc);
         UecSink *uecSink = new UecSink();
@@ -133,12 +122,9 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         _ndpSrcVector.push_back(ndpSrc);
         ndpSrc->setCwnd(MAX_CWD_MODERN_UEC);
         ndpSrc->set_flowsize(size);
-        ndpSrc->set_flow_over_hook(std::bind(&LogSimInterface::flow_over, this,
-                                             std::placeholders::_1));
+        ndpSrc->set_flow_over_hook(std::bind(&LogSimInterface::flow_over, this, std::placeholders::_1));
         if (_puller_map.count(to) == 0) {
-            _puller_map[to] = new NdpPullPacer(
-                    *_eventlist, speedFromMbps(static_cast<double>(HOST_NIC)),
-                    1);
+            _puller_map[to] = new NdpPullPacer(*_eventlist, speedFromMbps(static_cast<double>(HOST_NIC)), 1);
         }
         NdpSink *ndpSnk = new NdpSink(_puller_map[to]);
         ndpSrc->from = from;
@@ -146,8 +132,7 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         ndpSrc->tag = tag;
         printf("sink tag is %d\n", ndpSnk->tag);
 
-        ndpSrc->setName("NDP_" + std::to_string(from) + "_" +
-                        std::to_string(to));
+        ndpSrc->setName("NDP_" + std::to_string(from) + "_" + std::to_string(to));
         ndpSnk->setName("NDP_Sink");
         _ndpRtxScanner->registerNdp(*ndpSrc);
 
@@ -179,9 +164,7 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
 void LogSimInterface::update_active_map(std::string to_hash, int size) {
 
     // Check that the flow actually exists
-    active_sends[to_hash].bytes_left_to_recv =
-            active_sends[to_hash].bytes_left_to_recv -
-            Packet::data_packet_size();
+    active_sends[to_hash].bytes_left_to_recv = active_sends[to_hash].bytes_left_to_recv - Packet::data_packet_size();
     printf("Updated is %d\n", active_sends[to_hash].bytes_left_to_recv);
     if (active_sends[to_hash].bytes_left_to_recv <= 0) {
 
@@ -194,8 +177,7 @@ bool LogSimInterface::all_sends_delivered() { return active_sends.size() == 0; }
 void LogSimInterface::flow_over(const Packet &p) {
 
     // Get Unique Hash
-    std::string to_hash = std::to_string(p.from) + "@" + std::to_string(p.to) +
-                          "@" + std::to_string(p.tag);
+    std::string to_hash = std::to_string(p.from) + "@" + std::to_string(p.to) + "@" + std::to_string(p.tag);
     // active_sends[to_hash].bytes_left_to_recv = 0;
     printf("Flow Finished %d@%d@%d at %lu\n", p.from, p.to, p.tag, GLOBAL_TIME);
     fflush(stdout);
@@ -256,8 +238,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
     if (true) {
         // Temp Only
         filename_goal = "../lgs/input/" + filename_goal;
-        std::cout << "Current working directory: "
-                  << std::filesystem::current_path() << std::endl;
+        std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl;
 
         // return 1;
     }
@@ -337,9 +318,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
     }
 
     // the active queue
-    std::priority_queue<graph_node_properties,
-                        std::vector<graph_node_properties>, aqcompare_func>
-            aq;
+    std::priority_queue<graph_node_properties, std::vector<graph_node_properties>, aqcompare_func> aq;
     // the queues for each host
     std::vector<ruq_t> rq(p), uq(p); // receive queue, unexpected queue
     // next available time for o, g(receive) and g(send)
@@ -366,8 +345,8 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 
     printf("Starting %lu\n", parser.schedules.size());
 
-    for (Parser::schedules_t::iterator sched = parser.schedules.begin();
-         sched != parser.schedules.end(); ++sched, ++host) {
+    for (Parser::schedules_t::iterator sched = parser.schedules.begin(); sched != parser.schedules.end();
+         ++sched, ++host) {
         // initialize free operations (only once per run!)
         // sched->init_free_operations();
 
@@ -382,8 +361,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
         num_events += sched->GetNumNodes();
 
         // walk all new free operations and throw them in the queue
-        for (SerializedGraph::nodelist_t::iterator freeop = free_ops.begin();
-             freeop != free_ops.end(); ++freeop) {
+        for (SerializedGraph::nodelist_t::iterator freeop = free_ops.begin(); freeop != free_ops.end(); ++freeop) {
             // if(print) std::cout << *freeop << " " ;
 
             freeop->host = host;
@@ -395,21 +373,20 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
             switch (freeop->type) {
             case OP_LOCOP:
                 if (0)
-                    printf("init %i (%i,%i) loclop: %lu\n", host, freeop->proc,
-                           freeop->nic, (long unsigned int)freeop->size);
+                    printf("init %i (%i,%i) loclop: %lu\n", host, freeop->proc, freeop->nic,
+                           (long unsigned int)freeop->size);
                 break;
             case OP_SEND:
                 if (0)
-                    printf("init %i (%i,%i) send to: %i, tag: %i, size: %lu\n",
-                           host, freeop->proc, freeop->nic, freeop->target,
-                           freeop->tag, (long unsigned int)freeop->size);
+                    printf("init %i (%i,%i) send to: %i, tag: %i, size: %lu\n", host, freeop->proc, freeop->nic,
+                           freeop->target, freeop->tag, (long unsigned int)freeop->size);
                 break;
             case OP_RECV:
                 if (0)
                     printf("init %i (%i,%i) recvs from: %i, tag: %i, size: "
                            "%lu\n",
-                           host, freeop->proc, freeop->nic, freeop->target,
-                           freeop->tag, (long unsigned int)freeop->size);
+                           host, freeop->proc, freeop->nic, freeop->target, freeop->tag,
+                           (long unsigned int)freeop->size);
                 break;
             default:
                 printf("not implemented!\n");
@@ -437,9 +414,8 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
         printf("----------------------------    ENTERING WHILE        // "
                "---------------------------- | %ld %ld -  %d %d - %d %d %lu - "
                "%d %d %d\n",
-               aq.top().time, htsim_time, 1, first_cycle, size_queue(rq, p),
-               size_queue(uq, p), aq.size(), aq.top().host, aq.top().target,
-               aq.top().tag);
+               aq.top().time, htsim_time, 1, first_cycle, size_queue(rq, p), size_queue(uq, p), aq.size(),
+               aq.top().host, aq.top().target, aq.top().tag);
 
         graph_node_properties temp_elem = aq.top();
         while (!aq.empty() && aq.top().time <= htsim_time) {
@@ -464,12 +440,10 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                 if (print)
                     printf("[%i] found loclop of length %lu - t: %lu (CPU: "
                            "%i)\n",
-                           elem.host, (ulint)elem.size, (ulint)elem.time,
-                           elem.proc);
+                           elem.host, (ulint)elem.size, (ulint)elem.time, elem.proc);
                 if (nexto[elem.host][elem.proc] <= elem.time) {
                     // check if OS Noise occurred
-                    osnoise.get_noise(elem.host, elem.time,
-                                      elem.time + elem.size);
+                    osnoise.get_noise(elem.host, elem.time, elem.time + elem.size);
                     nexto[elem.host][elem.proc] = elem.size + htsim_time;
                     // printf("====================== Updated time is %ld
                     // ===============================1\n",
@@ -502,33 +476,30 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 
                 // htsim_time = GLOBAL_TIME;
                 if (elem.target == 999999999 || elem.target == 9999999) {
-                    std::cout << "Time at Step " << elem.host << ": "
-                              << htsim_time << " - Tag " << elem.tag << "\n";
+                    std::cout << "Time at Step " << elem.host << ": " << htsim_time << " - Tag " << elem.tag << "\n";
                     parser.schedules[elem.host].MarkNodeAsStarted(elem.offset);
                     parser.schedules[elem.host].MarkNodeAsDone(elem.offset);
                     break;
                 }
 
                 if (0)
-                    printf("[%i] found send to %i - t: %lu (CPU: %i)\n",
-                           elem.host, elem.target, (ulint)elem.time, elem.proc);
+                    printf("[%i] found send to %i - t: %lu (CPU: %i)\n", elem.host, elem.target, (ulint)elem.time,
+                           elem.proc);
                 if (std::max(nexto[elem.host][elem.proc],
-                             nextgs[elem.host][elem.nic]) <=
-                    elem.time) { // local o,g available!
+                             nextgs[elem.host][elem.nic]) <= elem.time) { // local o,g available!
                     if (print)
                         printf("-- satisfy local irequires\n");
                     parser.schedules[elem.host].MarkNodeAsStarted(elem.offset);
 
-                    lgs_interface->htsim_schedule(elem.host, elem.target,
-                                                  elem.size, elem.tag,
-                                                  elem.starttime, elem.offset);
+                    lgs_interface->htsim_schedule(elem.host, elem.target, elem.size, elem.tag, elem.starttime,
+                                                  elem.offset);
                     parser.schedules[elem.host].MarkNodeAsDone(elem.offset);
                 }
             } break;
             case OP_RECV: {
                 if (0)
-                    printf("[%i] found recv from %i - t: %lu (CPU: %i)\n",
-                           elem.host, elem.target, (ulint)elem.time, elem.proc);
+                    printf("[%i] found recv from %i - t: %lu (CPU: %i)\n", elem.host, elem.target, (ulint)elem.time,
+                           elem.proc);
 
                 parser.schedules[elem.host].MarkNodeAsStarted(elem.offset);
                 check_hosts.push_back(elem.host);
@@ -560,8 +531,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                     // printf("############ Host added is %d\n\n", elem.host);
                     rq[elem.host].push_back(nelem);
 #else
-                    rq[elem.host][std::make_pair(nelem.tag, nelem.src)].push(
-                            nelem);
+                    rq[elem.host][std::make_pair(nelem.tag, nelem.src)].push(nelem);
 #endif
                 }
             } break;
@@ -571,18 +541,15 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                 if (print)
                     printf("[%i] found msg from %i, t: %lu (CPU: %i) - %d %d "
                            "%d\n",
-                           elem.host, elem.target, (ulint)elem.time, elem.proc,
-                           elem.nic, elem.proc, elem.offset);
+                           elem.host, elem.target, (ulint)elem.time, elem.proc, elem.nic, elem.proc, elem.offset);
                 uint64_t earliestfinish = 0;
                 // NUMBER of elements that were searched during message matching
                 int32_t match_attempts;
                 printf("nexto[elem.host][elem.proc] %ld (%d %d) - "
                        "nextgr[elem.host][elem.nic] %ld(% d % d) - time % ld\n",
-                       nexto[elem.host][elem.proc], elem.host, elem.proc,
-                       nextgr[elem.host][elem.nic], elem.host, elem.nic,
-                       elem.time);
-                if (std::max(nexto[elem.host][elem.proc],
-                             nextgr[elem.host][elem.nic]) <=
+                       nexto[elem.host][elem.proc], elem.host, elem.proc, nextgr[elem.host][elem.nic], elem.host,
+                       elem.nic, elem.time);
+                if (std::max(nexto[elem.host][elem.proc], nextgr[elem.host][elem.nic]) <=
                     elem.time /* local o,g available! */) {
                     // if (print) {
                     // printf("Reaching here %d %d - %d %d\n", nexto.size(),
@@ -594,11 +561,9 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                     //  check if OS Noise occurred
                     // btime_t noise = osnoise.get_noise(elem.host, elem.time,
                     // elem.time+o);
-                    nexto[elem.host][elem.proc] =
-                            elem.time +
-                            0; /* message is only received after G is charged !!
-                                  TODO: consuming o seems a bit odd in the LogGP
-                                  model but well in practice */
+                    nexto[elem.host][elem.proc] = elem.time + 0; /* message is only received after G is charged !!
+                                                                    TODO: consuming o seems a bit odd in the LogGP
+                                                                    model but well in practice */
                     ;
                     nextgr[elem.host][elem.nic] = elem.time + 0;
                     // printf("====================== Updated time is %ld
@@ -618,18 +583,15 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                     if (match_attempts >= 0) { // found it in RQ
                         if (0) {
                             // RECORD match queue statistics
-                            std::pair<int, btime_t> match =
-                                    std::make_pair(match_attempts, elem.time);
+                            std::pair<int, btime_t> match = std::make_pair(match_attempts, elem.time);
                             rq_matches[elem.host].push_back(match);
                             /* Amount of time spent in queue */
-                            rq_times[elem.host].push_back(
-                                    elem.time - matched_elem.starttime);
+                            rq_times[elem.host].push_back(elem.time - matched_elem.starttime);
                         }
 
                         if (print)
                             printf("-- Found in RQ\n");
-                        parser.schedules[elem.host].MarkNodeAsDone(
-                                matched_elem.offset);
+                        parser.schedules[elem.host].MarkNodeAsDone(matched_elem.offset);
                         // check_hosts.push_back(elem.host);
                         // printf("Reached after DONE \n"); fflush(stdout);
 
@@ -646,13 +608,11 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 #ifdef LIST_MATCH
                         uq[elem.host].push_back(nelem);
 #else
-                        uq[elem.host][std::make_pair(nelem.tag, nelem.src)]
-                                .push(nelem);
+                        uq[elem.host][std::make_pair(nelem.tag, nelem.src)].push(nelem);
 #endif
                     }
                 } else {
-                    elem.time = std::max(std::max(nexto[elem.host][elem.proc],
-                                                  nextgr[elem.host][elem.nic]),
+                    elem.time = std::max(std::max(nexto[elem.host][elem.proc], nextgr[elem.host][elem.nic]),
                                          earliestfinish);
                     if (0)
                         printf("-- msg o,g not available -- reinserting\n");
@@ -682,11 +642,9 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
         recev_msg.updated = false;
         // We Run NS-3 if we have a compute message or if we have still some
         // data in the network
-        printf("Current elem time is %ld while NS3 %ld\n", temp_elem.time,
-               htsim_time);
+        printf("Current elem time is %ld while NS3 %ld\n", temp_elem.time, htsim_time);
         fflush(stdout);
-        if (!lgs_interface
-                     ->all_sends_delivered() /*&& temp_elem.type != OP_MSG*/) {
+        if (!lgs_interface->all_sends_delivered() /*&& temp_elem.type != OP_MSG*/) {
             if (temp_elem.time > htsim_time) {
                 // printf("Running until\n");
                 //  htsim_time = htsim_simulate_until(temp_elem.time,
@@ -710,8 +668,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
         if (recev_msg.updated) {
             printf("..... Received a MSG -- host %d to target %d, proc %d - "
                    "Type %d\n",
-                   recev_msg.host, recev_msg.target, recev_msg.proc,
-                   temp_elem.type);
+                   recev_msg.host, recev_msg.target, recev_msg.proc, temp_elem.type);
             aq.push(recev_msg);
             lgs_interface->reset_latest_receive();
         } else {
@@ -720,8 +677,8 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
         }
 
         host = 0;
-        for (Parser::schedules_t::iterator sched = parser.schedules.begin();
-             sched != parser.schedules.end(); ++sched, ++host) {
+        for (Parser::schedules_t::iterator sched = parser.schedules.begin(); sched != parser.schedules.end();
+             ++sched, ++host) {
             // printf("Starting to parse new ops %d\n", 1);
             fflush(stdout);
             // host = *iter;
@@ -737,9 +694,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
             // printf("Free Op Size %d\n", free_ops.size());
 
             // walk all new free operations and throw them in the queue
-            for (SerializedGraph::nodelist_t::iterator freeop =
-                         free_ops.begin();
-                 freeop != free_ops.end(); ++freeop) {
+            for (SerializedGraph::nodelist_t::iterator freeop = free_ops.begin(); freeop != free_ops.end(); ++freeop) {
                 // if(print) std::cout << *freeop << " " ;
                 // new_events = true;
 
@@ -756,8 +711,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                     if (print)
                         printf("%i (%i,%i) loclop: %lu, time: %lu, offset: "
                                "%i\n",
-                               host, freeop->proc, freeop->nic,
-                               (long unsigned int)freeop->size,
+                               host, freeop->proc, freeop->nic, (long unsigned int)freeop->size,
                                (long unsigned int)freeop->time, freeop->offset);
                     break;
                 case OP_SEND:
@@ -767,25 +721,23 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                     if (0)
                         printf("%i (%i,%i) send to: %i, tag: %i, size: %lu, "
                                "time: %lu, offset: %i\n",
-                               host, freeop->proc, freeop->nic, freeop->target,
-                               freeop->tag, (long unsigned int)freeop->size,
-                               (long unsigned int)freeop->time, freeop->offset);
+                               host, freeop->proc, freeop->nic, freeop->target, freeop->tag,
+                               (long unsigned int)freeop->size, (long unsigned int)freeop->time, freeop->offset);
                     break;
                 case OP_RECV:
                     freeop->time = nexto[host][freeop->proc];
                     if (print)
                         printf("%i (%i,%i) recvs from: %i, tag: %i, size: %lu, "
                                "time: %lu, offset: %i\n",
-                               host, freeop->proc, freeop->nic, freeop->target,
-                               freeop->tag, (long unsigned int)freeop->size,
-                               (long unsigned int)freeop->time, freeop->offset);
+                               host, freeop->proc, freeop->nic, freeop->target, freeop->tag,
+                               (long unsigned int)freeop->size, (long unsigned int)freeop->time, freeop->offset);
                     break;
                 default:
                     printf("not implemented!\n");
                 }
                 freeop->time = GLOBAL_TIME;
-                printf("Unlocked operation host %d target %d at time %lu\n",
-                       freeop->host, freeop->target, freeop->time);
+                printf("Unlocked operation host %d target %d at time %lu\n", freeop->host, freeop->target,
+                       freeop->time);
                 aq.push(*freeop);
             }
         }
@@ -807,8 +759,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 #endif
     printf("PERFORMANCE: Processes: %i \t Events: %lu \t Time: %lu s \t Speed: "
            "%.2f ev/s\n",
-           p, (long unsigned int)aqtime, (long unsigned int)diff,
-           (float)aqtime / (float)diff);
+           p, (long unsigned int)aqtime, (long unsigned int)diff, (float)aqtime / (float)diff);
     printf("AQ is %lu\n", aq.size());
     // check if all queues are empty!!
     bool ok = true;
@@ -816,19 +767,15 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 
 #ifdef LIST_MATCH
         if (!uq[i].empty()) {
-            printf("unexpected queue on host %i contains %lu elements!\n", i,
-                   (ulint)uq[i].size());
-            for (ruq_t::iterator iter = uq[i].begin(); iter != uq[i].end();
-                 ++iter) {
+            printf("unexpected queue on host %i contains %lu elements!\n", i, (ulint)uq[i].size());
+            for (ruq_t::iterator iter = uq[i].begin(); iter != uq[i].end(); ++iter) {
                 printf(" src: %i, tag: %i\n", iter->src, iter->tag);
             }
             ok = false;
         }
         if (!rq[i].empty()) {
-            printf("receive queue on host %i contains %lu elements!\n", i,
-                   (ulint)rq[i].size());
-            for (ruq_t::iterator iter = rq[i].begin(); iter != rq[i].end();
-                 ++iter) {
+            printf("receive queue on host %i contains %lu elements!\n", i, (ulint)rq[i].size());
+            for (ruq_t::iterator iter = rq[i].begin(); iter != rq[i].end(); ++iter) {
                 printf(" src: %i, tag: %i\n", iter->src, iter->tag);
             }
             ok = false;
@@ -841,8 +788,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
             printf("Times: \n");
             host = 0;
             for (uint i = 0; i < p; ++i) {
-                btime_t maxo =
-                        *(std::max_element(nexto[i].begin(), nexto[i].end()));
+                btime_t maxo = *(std::max_element(nexto[i].begin(), nexto[i].end()));
                 // btime_t maxgr=*(std::max_element(nextgr[i].begin(),
                 // nextgr[i].end())); btime_t
                 // maxgs=*(std::max_element(nextgs[i].begin(),
@@ -854,8 +800,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
             long long unsigned int max = 0;
             int host = 0;
             for (uint i = 0; i < p; ++i) { // find maximum end time
-                btime_t maxo =
-                        *(std::max_element(nexto[i].begin(), nexto[i].end()));
+                btime_t maxo = *(std::max_element(nexto[i].begin(), nexto[i].end()));
                 // btime_t maxgr=*(std::max_element(nextgr[i].begin(),
                 // nextgr[i].end())); btime_t
                 // maxgs=*(std::max_element(nextgs[i].begin(),
@@ -867,8 +812,8 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                     max = cur;
                 }
             }
-            std::cout << "Maximum finishing time at host " << host << ": "
-                      << max << " (" << (double)max / 1e9 << " s)\n";
+            std::cout << "Maximum finishing time at host " << host << ": " << max << " (" << (double)max / 1e9
+                      << " s)\n";
         }
 
         // WRITE match queue statistics
@@ -909,17 +854,14 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
             std::ofstream rq_hit_file(filename);
 
             if (!rq_hit_file.is_open()) {
-                std::cerr << "Can't open rq-hit data file (" << filename << ")"
-                          << std::endl;
+                std::cerr << "Can't open rq-hit data file (" << filename << ")" << std::endl;
             } else {
                 // WRITE one line per rank
-                for (auto per_rank_matches = rq_matches.begin();
-                     per_rank_matches != rq_matches.end(); per_rank_matches++) {
-                    for (auto match_pair = (*per_rank_matches).begin();
-                         match_pair != (*per_rank_matches).end();
+                for (auto per_rank_matches = rq_matches.begin(); per_rank_matches != rq_matches.end();
+                     per_rank_matches++) {
+                    for (auto match_pair = (*per_rank_matches).begin(); match_pair != (*per_rank_matches).end();
                          match_pair++) {
-                        rq_hit_file << (*match_pair).first << ","
-                                    << (*match_pair).second << " ";
+                        rq_hit_file << (*match_pair).first << "," << (*match_pair).second << " ";
                     }
                     rq_hit_file << std::endl;
                 }
@@ -932,17 +874,14 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
             std::ofstream uq_hit_file(filename);
 
             if (!uq_hit_file.is_open()) {
-                std::cerr << "Can't open uq-hit data file (" << filename << ")"
-                          << std::endl;
+                std::cerr << "Can't open uq-hit data file (" << filename << ")" << std::endl;
             } else {
                 // WRITE one line per rank
-                for (auto per_rank_matches = uq_matches.begin();
-                     per_rank_matches != uq_matches.end(); per_rank_matches++) {
-                    for (auto match_pair = (*per_rank_matches).begin();
-                         match_pair != (*per_rank_matches).end();
+                for (auto per_rank_matches = uq_matches.begin(); per_rank_matches != uq_matches.end();
+                     per_rank_matches++) {
+                    for (auto match_pair = (*per_rank_matches).begin(); match_pair != (*per_rank_matches).end();
                          match_pair++) {
-                        uq_hit_file << (*match_pair).first << ","
-                                    << (*match_pair).second << " ";
+                        uq_hit_file << (*match_pair).first << "," << (*match_pair).second << " ";
                     }
                     uq_hit_file << std::endl;
                 }
@@ -955,16 +894,13 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
             std::ofstream rq_miss_file(filename);
 
             if (!rq_miss_file.is_open()) {
-                std::cerr << "Can't open rq-miss data file (" << filename << ")"
-                          << std::endl;
+                std::cerr << "Can't open rq-miss data file (" << filename << ")" << std::endl;
             } else {
                 // WRITE one line per rank
-                for (auto per_rank_misses = rq_misses.begin();
-                     per_rank_misses != rq_misses.end(); per_rank_misses++) {
-                    for (auto miss_pair = (*per_rank_misses).begin();
-                         miss_pair != (*per_rank_misses).end(); miss_pair++) {
-                        rq_miss_file << (*miss_pair).first << ","
-                                     << (*miss_pair).second << " ";
+                for (auto per_rank_misses = rq_misses.begin(); per_rank_misses != rq_misses.end(); per_rank_misses++) {
+                    for (auto miss_pair = (*per_rank_misses).begin(); miss_pair != (*per_rank_misses).end();
+                         miss_pair++) {
+                        rq_miss_file << (*miss_pair).first << "," << (*miss_pair).second << " ";
                     }
                     rq_miss_file << std::endl;
                 }
@@ -977,16 +913,13 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
             std::ofstream uq_miss_file(filename);
 
             if (!uq_miss_file.is_open()) {
-                std::cerr << "Can't open uq-miss data file (" << filename << ")"
-                          << std::endl;
+                std::cerr << "Can't open uq-miss data file (" << filename << ")" << std::endl;
             } else {
                 // WRITE one line per rank
-                for (auto per_rank_misses = uq_misses.begin();
-                     per_rank_misses != uq_misses.end(); per_rank_misses++) {
-                    for (auto miss_pair = (*per_rank_misses).begin();
-                         miss_pair != (*per_rank_misses).end(); miss_pair++) {
-                        uq_miss_file << (*miss_pair).first << ","
-                                     << (*miss_pair).second << " ";
+                for (auto per_rank_misses = uq_misses.begin(); per_rank_misses != uq_misses.end(); per_rank_misses++) {
+                    for (auto miss_pair = (*per_rank_misses).begin(); miss_pair != (*per_rank_misses).end();
+                         miss_pair++) {
+                        uq_miss_file << (*miss_pair).first << "," << (*miss_pair).second << " ";
                     }
                     uq_miss_file << std::endl;
                 }

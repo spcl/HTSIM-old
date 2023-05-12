@@ -3,9 +3,7 @@
 #include <iostream>
 #include <sstream>
 
-CallbackPipe::CallbackPipe(simtime_picosec delay, EventList &eventlist,
-                           PacketSink *c)
-        : Pipe(delay, eventlist) {
+CallbackPipe::CallbackPipe(simtime_picosec delay, EventList &eventlist, PacketSink *c) : Pipe(delay, eventlist) {
     stringstream ss;
     ss << "callbackpipe(" << delay / 1000000 << "us)";
     _nodename = ss.str();

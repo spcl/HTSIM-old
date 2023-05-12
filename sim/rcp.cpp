@@ -5,8 +5,7 @@
 //  RCP SOURCE
 ////////////////////////////////////////////////////////////////
 
-RcpSrc::RcpSrc(RcpLogger *logger, TrafficLogger *pktlogger,
-               EventList &eventlist)
+RcpSrc::RcpSrc(RcpLogger *logger, TrafficLogger *pktlogger, EventList &eventlist)
         : EventSource(eventlist, "rcp"), _logger(logger), _flow(pktlogger) {
     _maxcwnd = 30000;
     _highest_sent = 0;
@@ -26,8 +25,7 @@ void RcpSrc::startflow() {
     send_packets();
 }
 
-void TcpSrc::connect(route_t &routeout, route_t &routeback, TcpSink &sink,
-                     simtime_picosec starttime) {
+void TcpSrc::connect(route_t &routeout, route_t &routeback, TcpSink &sink, simtime_picosec starttime) {
     _route = &routeout;
     _sink = &sink;
     _flow.id = id; // identify the packet flow with the TCP source that
@@ -152,15 +150,13 @@ void TcpSrc::inflate_window() {
         newly_acked -= increase;
     }
     // additive increase
-    _cwnd +=
-            (newly_acked * _mss) / _cwnd; // XXX beware large windows, when this
-                                          // increase gets to be very small
+    _cwnd += (newly_acked * _mss) / _cwnd; // XXX beware large windows, when this
+                                           // increase gets to be very small
 }
 
 void TcpSrc::send_packets() {
     while (_last_acked + _cwnd >= _highest_sent + _mss) {
-        TcpPacket *p =
-                TcpPacket::newpkt(_flow, *_route, _highest_sent + 1, _mss);
+        TcpPacket *p = TcpPacket::newpkt(_flow, *_route, _highest_sent + 1, _mss);
         p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATESEND);
         _highest_sent += _mss; // XX beware wrapping
         _last_sent_time = eventlist().now();
@@ -223,8 +219,7 @@ void TcpSink::receivePacket(Packet &pkt) {
     if (seqno == _cumulative_ack + 1) { // it's the next expected seq no
         _cumulative_ack = seqno + size - 1;
         /* are there any additional received packets we can now ack? */
-        while (!_received.empty() &&
-               (_received.front() == _cumulative_ack + 1)) {
+        while (!_received.empty() && (_received.front() == _cumulative_ack + 1)) {
             _received.pop_front();
             _cumulative_ack += size;
         }
@@ -260,15 +255,12 @@ void TcpSink::send_ack() {
 //  TCP RETRANSMISSION TIMER
 ////////////////////////////////////////////////////////////////
 
-TcpRtxTimerScanner::TcpRtxTimerScanner(simtime_picosec scanPeriod,
-                                       EventList &eventlist)
+TcpRtxTimerScanner::TcpRtxTimerScanner(simtime_picosec scanPeriod, EventList &eventlist)
         : EventSource(eventlist, "RtxScanner"), _scanPeriod(scanPeriod) {
     eventlist.sourceIsPendingRel(*this, _scanPeriod);
 }
 
-void TcpRtxTimerScanner::registerTcp(TcpSrc &tcpsrc) {
-    _tcps.push_back(&tcpsrc);
-}
+void TcpRtxTimerScanner::registerTcp(TcpSrc &tcpsrc) { _tcps.push_back(&tcpsrc); }
 
 void TcpRtxTimerScanner::doNextEvent() {
     simtime_picosec now = eventlist().now();

@@ -7,8 +7,7 @@
 #include <math.h>
 #include <sstream>
 
-LosslessOutputQueue::LosslessOutputQueue(linkspeed_bps bitrate, mem_b maxsize,
-                                         EventList &eventlist,
+LosslessOutputQueue::LosslessOutputQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist,
                                          QueueLogger *logger, int ECN, int K)
         : Queue(bitrate, maxsize, eventlist, logger), _state_send(READY) {
     // assume worst case: PAUSE frame waits for one MSS packet to be sent to
@@ -23,8 +22,7 @@ LosslessOutputQueue::LosslessOutputQueue(linkspeed_bps bitrate, mem_b maxsize,
     _txbytes = 0;
 
     stringstream ss;
-    ss << "queue lossless output(" << bitrate / 1000000 << "Mb/s," << maxsize
-       << "bytes)";
+    ss << "queue lossless output(" << bitrate / 1000000 << "Mb/s," << maxsize << "bytes)";
     _nodename = ss.str();
 }
 
@@ -86,8 +84,7 @@ void LosslessOutputQueue::receivePacket(Packet &pkt, VirtualQueue *prev) {
     _queuesize += pkt.size();
 
     if (_queuesize > _maxsize) {
-        cout << " Queue " << _name
-             << " LOSSLESS not working! I should have dropped this packet"
+        cout << " Queue " << _name << " LOSSLESS not working! I should have dropped this packet"
              << _queuesize / Packet::data_packet_size() << endl;
     }
 

@@ -17,10 +17,7 @@ string itoa(uint64_t n);
 
 extern int N;
 
-OversubscribedFatTreeTopology::OversubscribedFatTreeTopology(mem_b queuesize,
-                                                             Logfile *lg,
-                                                             EventList *ev,
-                                                             FirstFit *fit,
+OversubscribedFatTreeTopology::OversubscribedFatTreeTopology(mem_b queuesize, Logfile *lg, EventList *ev, FirstFit *fit,
                                                              queue_type q) {
     logfile = lg;
     eventlist = ev;
@@ -34,28 +31,21 @@ OversubscribedFatTreeTopology::OversubscribedFatTreeTopology(mem_b queuesize,
     init_network();
 }
 
-Queue *
-OversubscribedFatTreeTopology::alloc_src_queue(QueueLogger *queueLogger) {
-    return new PriorityQueue(speedFromMbps((uint64_t)HOST_NIC),
-                             memFromPkt(FEEDER_BUFFER), *eventlist,
-                             queueLogger);
+Queue *OversubscribedFatTreeTopology::alloc_src_queue(QueueLogger *queueLogger) {
+    return new PriorityQueue(speedFromMbps((uint64_t)HOST_NIC), memFromPkt(FEEDER_BUFFER), *eventlist, queueLogger);
 }
 
 Queue *OversubscribedFatTreeTopology::alloc_queue(QueueLogger *queueLogger) {
     return alloc_queue(queueLogger, HOST_NIC);
 }
 
-Queue *OversubscribedFatTreeTopology::alloc_queue(QueueLogger *queueLogger,
-                                                  uint64_t speed) {
+Queue *OversubscribedFatTreeTopology::alloc_queue(QueueLogger *queueLogger, uint64_t speed) {
     if (qt == RANDOM)
-        return new RandomQueue(speedFromMbps(speed), _queuesize, *eventlist,
-                               queueLogger, memFromPkt(RANDOM_BUFFER));
+        return new RandomQueue(speedFromMbps(speed), _queuesize, *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
     else if (qt == COMPOSITE)
-        return new CompositeQueue(speedFromMbps(speed), _queuesize, *eventlist,
-                                  queueLogger);
+        return new CompositeQueue(speedFromMbps(speed), _queuesize, *eventlist, queueLogger);
     else if (qt == ECN)
-        return new ECNQueue(speedFromMbps(speed), _queuesize, *eventlist,
-                            queueLogger, memFromPkt(15));
+        return new ECNQueue(speedFromMbps(speed), _queuesize, *eventlist, queueLogger, memFromPkt(15));
     assert(0);
 }
 
@@ -96,26 +86,22 @@ void OversubscribedFatTreeTopology::init_network() {
             logfile->addLogger(*queueLogger);
 
             queues_nlp_ns[j][k] = alloc_queue(queueLogger);
-            queues_nlp_ns[j][k]->setName("LS_" + ntoa(j) + "-" + "DST_" +
-                                         ntoa(k));
+            queues_nlp_ns[j][k]->setName("LS_" + ntoa(j) + "-" + "DST_" + ntoa(k));
             logfile->writeName(*(queues_nlp_ns[j][k]));
 
             pipes_nlp_ns[j][k] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_nlp_ns[j][k]->setName("Pipe-nt-ns-" + ntoa(j) + "-" +
-                                        ntoa(k));
+            pipes_nlp_ns[j][k]->setName("Pipe-nt-ns-" + ntoa(j) + "-" + ntoa(k));
             logfile->writeName(*(pipes_nlp_ns[j][k]));
 
             // Uplink
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
             queues_ns_nlp[k][j] = alloc_src_queue(queueLogger);
-            queues_ns_nlp[k][j]->setName("SRC_" + ntoa(k) + "-" + "LS_" +
-                                         ntoa(j));
+            queues_ns_nlp[k][j]->setName("SRC_" + ntoa(k) + "-" + "LS_" + ntoa(j));
             logfile->writeName(*(queues_ns_nlp[k][j]));
 
             pipes_ns_nlp[k][j] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_ns_nlp[k][j]->setName("Pipe-ns-nt-" + ntoa(k) + "-" +
-                                        ntoa(j));
+            pipes_ns_nlp[k][j]->setName("Pipe-ns-nt-" + ntoa(k) + "-" + ntoa(j));
             logfile->writeName(*(pipes_ns_nlp[k][j]));
 
             if (ff) {
@@ -143,13 +129,11 @@ void OversubscribedFatTreeTopology::init_network() {
             logfile->addLogger(*queueLogger);
             queues_nup_nlp[k][j] = alloc_queue(queueLogger);
 
-            queues_nup_nlp[k][j]->setName("US_" + ntoa(k) + "-" + "LS_" +
-                                          ntoa(j));
+            queues_nup_nlp[k][j]->setName("US_" + ntoa(k) + "-" + "LS_" + ntoa(j));
             logfile->writeName(*(queues_nup_nlp[k][j]));
 
             pipes_nup_nlp[k][j] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_nup_nlp[k][j]->setName("Pipe-na-nt-" + ntoa(k) + "-" +
-                                         ntoa(j));
+            pipes_nup_nlp[k][j]->setName("Pipe-na-nt-" + ntoa(k) + "-" + ntoa(j));
             logfile->writeName(*(pipes_nup_nlp[k][j]));
 
             // Uplink
@@ -157,13 +141,11 @@ void OversubscribedFatTreeTopology::init_network() {
             logfile->addLogger(*queueLogger);
             queues_nlp_nup[j][k] = alloc_queue(queueLogger);
 
-            queues_nlp_nup[j][k]->setName("LS_" + ntoa(j) + "-" + "US_" +
-                                          ntoa(k));
+            queues_nlp_nup[j][k]->setName("LS_" + ntoa(j) + "-" + "US_" + ntoa(k));
             logfile->writeName(*(queues_nlp_nup[j][k]));
 
             pipes_nlp_nup[j][k] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_nlp_nup[j][k]->setName("Pipe-nt-na-" + ntoa(j) + "-" +
-                                         ntoa(k));
+            pipes_nlp_nup[j][k]->setName("Pipe-nt-na-" + ntoa(j) + "-" + ntoa(k));
             logfile->writeName(*(pipes_nlp_nup[j][k]));
 
             if (ff) {
@@ -190,13 +172,11 @@ void OversubscribedFatTreeTopology::init_network() {
             logfile->addLogger(*queueLogger);
 
             queues_nup_nc[j][k] = alloc_queue(queueLogger);
-            queues_nup_nc[j][k]->setName("US_" + ntoa(j) + "-" + "CS_" +
-                                         ntoa(k));
+            queues_nup_nc[j][k]->setName("US_" + ntoa(j) + "-" + "CS_" + ntoa(k));
             logfile->writeName(*(queues_nup_nc[j][k]));
 
             pipes_nup_nc[j][k] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_nup_nc[j][k]->setName("Pipe-nup-nc-" + ntoa(j) + "-" +
-                                        ntoa(k));
+            pipes_nup_nc[j][k]->setName("Pipe-nup-nc-" + ntoa(j) + "-" + ntoa(k));
             logfile->writeName(*(pipes_nup_nc[j][k]));
 
             // Uplink
@@ -208,14 +188,12 @@ void OversubscribedFatTreeTopology::init_network() {
             // queues_nc_nup[k][j] = alloc_queue(queueLogger,HOST_NIC/10);
             // else
             queues_nc_nup[k][j] = alloc_queue(queueLogger);
-            queues_nc_nup[k][j]->setName("CS_" + ntoa(k) + "-" + "US_" +
-                                         ntoa(j));
+            queues_nc_nup[k][j]->setName("CS_" + ntoa(k) + "-" + "US_" + ntoa(j));
 
             logfile->writeName(*(queues_nc_nup[k][j]));
 
             pipes_nc_nup[k][j] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_nc_nup[k][j]->setName("Pipe-nc-nup-" + ntoa(k) + "-" +
-                                        ntoa(j));
+            pipes_nc_nup[k][j]->setName("Pipe-nc-nup-" + ntoa(k) + "-" + ntoa(j));
             logfile->writeName(*(pipes_nc_nup[k][j]));
 
             if (ff) {
@@ -235,9 +213,7 @@ void OversubscribedFatTreeTopology::init_network() {
 
 void check_non_null(Route *rt);
 
-vector<const Route *> *
-OversubscribedFatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest,
-                                               bool reverse) {
+vector<const Route *> *OversubscribedFatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
     vector<const Route *> *paths = new vector<const Route *>();
 
     Route *routeout;
@@ -260,8 +236,7 @@ OversubscribedFatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest,
 
         uint32_t pod = HOST_POD(src);
         // there are K/2 paths between the source and the destination
-        for (uint32_t upper = MIN_POD_ID(pod); upper <= MAX_POD_ID(pod);
-             upper++) {
+        for (uint32_t upper = MIN_POD_ID(pod); upper <= MAX_POD_ID(pod); upper++) {
             routeout = new Route();
 
             routeout->push_back(queues_ns_nlp[src][HOST_POD_SWITCH(src)]);
@@ -283,10 +258,8 @@ OversubscribedFatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest,
     } else {
         uint32_t pod = HOST_POD(src);
 
-        for (uint32_t upper = MIN_POD_ID(pod); upper <= MAX_POD_ID(pod);
-             upper++)
-            for (uint32_t core = (upper % (K / 2)) * K / 2;
-                 core < ((upper % (K / 2)) + 1) * K / 2; core++) {
+        for (uint32_t upper = MIN_POD_ID(pod); upper <= MAX_POD_ID(pod); upper++)
+            for (uint32_t core = (upper % (K / 2)) * K / 2; core < ((upper % (K / 2)) + 1) * K / 2; core++) {
                 // upper is nup
 
                 routeout = new Route();
@@ -294,8 +267,7 @@ OversubscribedFatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest,
                 routeout->push_back(queues_ns_nlp[src][HOST_POD_SWITCH(src)]);
                 routeout->push_back(pipes_ns_nlp[src][HOST_POD_SWITCH(src)]);
 
-                routeout->push_back(
-                        queues_nlp_nup[HOST_POD_SWITCH(src)][upper]);
+                routeout->push_back(queues_nlp_nup[HOST_POD_SWITCH(src)][upper]);
                 routeout->push_back(pipes_nlp_nup[HOST_POD_SWITCH(src)][upper]);
 
                 routeout->push_back(queues_nup_nc[upper][core]);
@@ -310,10 +282,8 @@ OversubscribedFatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest,
                 routeout->push_back(queues_nc_nup[core][upper2]);
                 routeout->push_back(pipes_nc_nup[core][upper2]);
 
-                routeout->push_back(
-                        queues_nup_nlp[upper2][HOST_POD_SWITCH(dest)]);
-                routeout->push_back(
-                        pipes_nup_nlp[upper2][HOST_POD_SWITCH(dest)]);
+                routeout->push_back(queues_nup_nlp[upper2][HOST_POD_SWITCH(dest)]);
+                routeout->push_back(pipes_nup_nlp[upper2][HOST_POD_SWITCH(dest)]);
 
                 routeout->push_back(queues_nlp_ns[HOST_POD_SWITCH(dest)][dest]);
                 routeout->push_back(pipes_nlp_ns[HOST_POD_SWITCH(dest)][dest]);
@@ -389,9 +359,7 @@ int64_t OversubscribedFatTreeTopology::find_destination(Queue *queue) {
     return -1;
 }
 
-void OversubscribedFatTreeTopology::print_path(std::ofstream &paths,
-                                               uint32_t src,
-                                               const Route *route) {
+void OversubscribedFatTreeTopology::print_path(std::ofstream &paths, uint32_t src, const Route *route) {
     paths << "SRC_" << src << " ";
 
     if (route->size() / 2 == 2) {
@@ -408,8 +376,7 @@ void OversubscribedFatTreeTopology::print_path(std::ofstream &paths,
         paths << "CS_" << find_core_switch((RandomQueue *)route->at(5)) << " ";
         paths << "US_" << find_up_switch((RandomQueue *)route->at(7)) << " ";
         paths << "LS_" << find_lp_switch((RandomQueue *)route->at(9)) << " ";
-        paths << "DST_" << find_destination((RandomQueue *)route->at(11))
-              << " ";
+        paths << "DST_" << find_destination((RandomQueue *)route->at(11)) << " ";
     } else {
         paths << "Wrong hop count " << ntoa(route->size() / 2);
     }

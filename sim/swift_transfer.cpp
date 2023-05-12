@@ -15,11 +15,8 @@ uint64_t generateFlowSize() {
     return 90000; // * (0.5 + drand());
 }
 
-SwiftSrcTransfer::SwiftSrcTransfer(SwiftLogger *logger,
-                                   TrafficLogger *pktLogger,
-                                   EventList &eventlist, uint64_t bytes_to_send,
-                                   vector<const Route *> *p,
-                                   EventSource *stopped)
+SwiftSrcTransfer::SwiftSrcTransfer(SwiftLogger *logger, TrafficLogger *pktLogger, EventList &eventlist,
+                                   uint64_t bytes_to_send, vector<const Route *> *p, EventSource *stopped)
         : SwiftSrc(logger, pktLogger, eventlist) {
     _is_active = false;
     _ssthresh = 0xffffffff;
@@ -59,8 +56,8 @@ void SwiftSrcTransfer::reset(uint64_t bb, int shouldRestart) {
         eventlist().sourceIsPendingRel(*this, timeFromMs(1));
 }
 
-void SwiftSrcTransfer::connect(const Route &routeout, const Route &routeback,
-                               SwiftSink &sink, simtime_picosec starttime) {
+void SwiftSrcTransfer::connect(const Route &routeout, const Route &routeback, SwiftSink &sink,
+                               simtime_picosec starttime) {
     _is_active = false;
 
     SwiftSrc::connect(routeout, routeback, sink, starttime);
@@ -96,8 +93,8 @@ void SwiftSrcTransfer::receivePacket(Packet &pkt) {
                 _is_active = false;
 
                 cout << endl
-                     << "Flow " << _bytes_to_send << " finished after "
-                     << timeAsMs(eventlist().now() - _started) << endl;
+                     << "Flow " << _bytes_to_send << " finished after " << timeAsMs(eventlist().now() - _started)
+                     << endl;
 
                 if (_flow_stopped) {
                     _flow_stopped->doNextEvent();
@@ -109,8 +106,8 @@ void SwiftSrcTransfer::receivePacket(Packet &pkt) {
                     // log finish time
 
                     cout << endl
-                         << "Flow " << _bytes_to_send << " finished after "
-                         << timeAsMs(eventlist().now() - _started) << endl;
+                         << "Flow " << _bytes_to_send << " finished after " << timeAsMs(eventlist().now() - _started)
+                         << endl;
 
                     // reset all the subflows, including this one.
                     int bb = generateFlowSize();
@@ -119,8 +116,7 @@ void SwiftSrcTransfer::receivePacket(Packet &pkt) {
                     int subflows_to_activate = bb >= 1000000 ? 8 : 1;
                     int crt_subflow = 0;
 
-                    for (it = _mSrc->_subflows.begin();
-                         it != _mSrc->_subflows.end(); it++) {
+                    for (it = _mSrc->_subflows.begin(); it != _mSrc->_subflows.end(); it++) {
                         SwiftSrc *t = (*it);
                         SwiftSrcTransfer *crt = (SwiftSrcTransfer *)t;
                         crt->_is_active = false;
@@ -136,8 +132,7 @@ void SwiftSrcTransfer::receivePacket(Packet &pkt) {
     }
 }
 
-void SwiftSrcTransfer::rtx_timer_hook(simtime_picosec now,
-                                      simtime_picosec period) {
+void SwiftSrcTransfer::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
     if (!_is_active)
         return;
 
@@ -146,9 +141,8 @@ void SwiftSrcTransfer::rtx_timer_hook(simtime_picosec now,
     if (_highest_sent == 0)
         return;
 
-    cout << "Transfer timeout: active " << _is_active << " bytes to send "
-         << _bytes_to_send << " sent " << _last_acked << " established? "
-         << _established << " HSENT " << _highest_sent << endl;
+    cout << "Transfer timeout: active " << _is_active << " bytes to send " << _bytes_to_send << " sent " << _last_acked
+         << " established? " << _established << " HSENT " << _highest_sent << endl;
 
     SwiftSrc::rtx_timer_hook(now, period);
 }

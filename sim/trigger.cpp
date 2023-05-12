@@ -3,17 +3,11 @@
 #include <algorithm>
 using namespace std;
 
-Trigger::Trigger(EventList &eventlist, triggerid_t id)
-        : _eventlist(eventlist), _id(id) {}
+Trigger::Trigger(EventList &eventlist, triggerid_t id) : _eventlist(eventlist), _id(id) {}
 
-void Trigger::add_target(TriggerTarget &target) {
-    _targets.push_back(&target);
-};
+void Trigger::add_target(TriggerTarget &target) { _targets.push_back(&target); };
 
-SingleShotTrigger::SingleShotTrigger(EventList &eventlist, triggerid_t id)
-        : Trigger(eventlist, id) {
-    _done = false;
-}
+SingleShotTrigger::SingleShotTrigger(EventList &eventlist, triggerid_t id) : Trigger(eventlist, id) { _done = false; }
 
 void SingleShotTrigger::activate() {
     assert(!_done);
@@ -26,10 +20,7 @@ void SingleShotTrigger::activate() {
     _done = true;
 }
 
-MultiShotTrigger::MultiShotTrigger(EventList &eventlist, triggerid_t id)
-        : Trigger(eventlist, id) {
-    _next = 0;
-}
+MultiShotTrigger::MultiShotTrigger(EventList &eventlist, triggerid_t id) : Trigger(eventlist, id) { _next = 0; }
 
 void MultiShotTrigger::activate() {
     if (_next >= _targets.size()) {
@@ -38,14 +29,12 @@ void MultiShotTrigger::activate() {
         return;
     }
     vector<TriggerTarget *>::iterator i;
-    cout << "Multishot Trigger " << _id << " fired, " << _targets.size()
-         << " targets\n";
+    cout << "Multishot Trigger " << _id << " fired, " << _targets.size() << " targets\n";
     _eventlist.triggerIsPending(*(_targets[_next]));
     _next++;
 }
 
-BarrierTrigger::BarrierTrigger(EventList &eventlist, triggerid_t id,
-                               size_t activations_needed)
+BarrierTrigger::BarrierTrigger(EventList &eventlist, triggerid_t id, size_t activations_needed)
         : Trigger(eventlist, id) {
     _activations_remaining = activations_needed;
 }
@@ -55,9 +44,7 @@ void BarrierTrigger::activate() {
     assert(_targets.size() > 0);
     _activations_remaining--;
     if (_activations_remaining > 0) {
-        cout << "Trigger " << _id
-             << " activated, activations remaining: " << _activations_remaining
-             << endl;
+        cout << "Trigger " << _id << " activated, activations remaining: " << _activations_remaining << endl;
         return;
     }
     vector<TriggerTarget *>::iterator i;

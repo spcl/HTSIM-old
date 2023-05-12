@@ -15,8 +15,7 @@ class CbrSink;
 
 class CbrSrc : public EventSource {
   public:
-    CbrSrc(EventList &eventlist, linkspeed_bps rate, simtime_picosec active = 0,
-           simtime_picosec idle = 0);
+    CbrSrc(EventList &eventlist, linkspeed_bps rate, simtime_picosec active = 0, simtime_picosec idle = 0);
 
     void connect(route_t &routeout, CbrSink &sink, simtime_picosec startTime);
     void send_packet();
@@ -26,8 +25,7 @@ class CbrSrc : public EventSource {
     linkspeed_bps _bitrate;
     int _crt_id;
     int _mss;
-    simtime_picosec _period, _active_time, _idle_time, _start_active,
-            _end_active;
+    simtime_picosec _period, _active_time, _idle_time, _start_active, _end_active;
     bool _is_active;
 
   private:
@@ -47,9 +45,9 @@ class CbrSink : public PacketSink, public DataReceiver {
     CbrSink();
     ~CbrSink(){};
     void receivePacket(Packet &pkt);
-    uint32_t _last_id;  // the id of the last packet we have received
-    uint32_t _received; // number of packets received;_last_id-_received =
-                        // dropped packets
+    uint32_t _last_id;        // the id of the last packet we have received
+    uint32_t _received;       // number of packets received;_last_id-_received =
+                              // dropped packets
     uint64_t _cumulative_ack; //_received * 1000 - this is for loggers
 
     uint64_t cumulative_ack() { return _cumulative_ack; }

@@ -5,9 +5,7 @@
 #include <iostream>
 #include <sstream>
 
-CompositePrioQueue::CompositePrioQueue(linkspeed_bps bitrate, mem_b maxsize,
-                                       EventList &eventlist,
-                                       QueueLogger *logger)
+CompositePrioQueue::CompositePrioQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger)
         : Queue(bitrate, maxsize, eventlist, logger) {
     _ratio_high = 10;
     _ratio_low = 1;
@@ -44,13 +42,11 @@ void CompositePrioQueue::beginService() {
 
         if (_crt < _ratio_high) {
             _serv = QUEUE_HIGH;
-            eventlist().sourceIsPendingRel(*this,
-                                           drainTime(_enqueued_high.back()));
+            eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_high.back()));
         } else {
             assert(_crt < _ratio_high + _ratio_low);
             _serv = QUEUE_LOW;
-            eventlist().sourceIsPendingRel(*this,
-                                           drainTime(_enqueued_low.back()));
+            eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_low.back()));
         }
         return;
     }
@@ -98,8 +94,7 @@ void CompositePrioQueue::receivePacket(Packet &pkt) {
     pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_ARRIVE);
     if (!pkt.header_only()) {
         if (_queuesize_low + pkt.size() <= _maxsize ||
-            ((pkt.path_len() == _enqueued_low.front()->path_len()) &&
-             drand() < 0.5) ||
+            ((pkt.path_len() == _enqueued_low.front()->path_len()) && drand() < 0.5) ||
             ((pkt.path_len() < _max_path_len_queued))) {
             // regular packet; don't drop the arriving packet
 
@@ -120,15 +115,13 @@ void CompositePrioQueue::receivePacket(Packet &pkt) {
 
                 if (pkt.path_len() < _max_path_len_queued) {
                     // we're going to drop the low priority packet
-                    cout << "Trim1 " << pkt.path_len() << " max "
-                         << _max_path_len_queued << "\n";
+                    cout << "Trim1 " << pkt.path_len() << " max " << _max_path_len_queued << "\n";
                     trim_low_priority_packet(pkt.path_len());
                 } else {
                     // we're here because the last packet in the queue
                     // had the same path length and the coin-toss came
                     // up tails.  Drop the last packet in the queue.
-                    cout << "Trim2 " << pkt.path_len() << " max "
-                         << _max_path_len_queued << "\n";
+                    cout << "Trim2 " << pkt.path_len() << " max " << _max_path_len_queued << "\n";
                     trim_low_priority_packet(pkt.path_len() - 1);
                 }
             }
@@ -149,8 +142,7 @@ void CompositePrioQueue::receivePacket(Packet &pkt) {
             return;
         } else {
             // strip packet the arriving packet - low priority queue is full
-            cout << "B [ " << _enqueued_low.size() << " "
-                 << _enqueued_high.size() << " ] STRIP" << endl;
+            cout << "B [ " << _enqueued_low.size() << " " << _enqueued_high.size() << " ] STRIP" << endl;
             pkt.strip_payload();
             _stripped++;
             pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_TRIM);
@@ -165,8 +157,8 @@ void CompositePrioQueue::receivePacket(Packet &pkt) {
         if (_logger)
             _logger->logQueue(*this, QueueLogger::PKT_DROP, pkt);
         pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_DROP);
-        cout << "D[ " << _enqueued_low.size() << " " << _enqueued_high.size()
-             << " ] DROP " << pkt.flow().get_id() << endl;
+        cout << "D[ " << _enqueued_low.size() << " " << _enqueued_high.size() << " ] DROP " << pkt.flow().get_id()
+             << endl;
         pkt.free();
         _num_drops++;
         return;
@@ -211,8 +203,7 @@ Packet *CompositePrioQueue::dequeue_low_packet() {
     uint32_t path_len = pkt->path_len();
     assert(_enqueued_path_lens[path_len] > 0);
     _enqueued_path_lens[path_len]--;
-    if ((path_len == _max_path_len_queued) &&
-        (_enqueued_path_lens[path_len] == 0)) {
+    if ((path_len == _max_path_len_queued) && (_enqueued_path_lens[path_len] == 0)) {
         // we just dequeued the last packet with the longest path len
         find_max_path_len_queued();
     }
@@ -239,9 +230,7 @@ Packet *CompositePrioQueue::dequeue_high_packet() {
     return pkt;
 }
 
-mem_b CompositePrioQueue::queuesize() const {
-    return _queuesize_low + _queuesize_high;
-}
+mem_b CompositePrioQueue::queuesize() const { return _queuesize_low + _queuesize_high; }
 
 void CompositePrioQueue::find_max_path_len_queued() {
     // we recalculate _max_path_len_queued because we dequeued
@@ -290,37 +279,29 @@ void CompositePrioQueue::trim_low_priority_packet(uint32_t prio) {
             uint32_t path_len = booted_pkt->path_len();
             assert(_enqueued_path_lens[path_len] > 0);
             _enqueued_path_lens[path_len]--;
-            if ((path_len == _max_path_len_queued) &&
-                (_enqueued_path_lens[path_len] == 0)) {
+            if ((path_len == _max_path_len_queued) && (_enqueued_path_lens[path_len] == 0)) {
                 // we just dequeued the last packet with the longest path len
                 find_max_path_len_queued();
             }
             check_queued();
 
-            cout << "C [ " << _enqueued_low.size() << " "
-                 << _enqueued_high.size() << " ] STRIP" << endl;
-            cout << "Arriving: " << prio
-                 << " booted: " << booted_pkt->path_len() << " posn: " << c
-                 << endl;
+            cout << "C [ " << _enqueued_low.size() << " " << _enqueued_high.size() << " ] STRIP" << endl;
+            cout << "Arriving: " << prio << " booted: " << booted_pkt->path_len() << " posn: " << c << endl;
             booted_pkt->strip_payload();
             if (_queuesize_high + booted_pkt->size() > _maxsize) {
                 // there's no space in the header queue either
                 _dropped++;
-                booted_pkt->flow().logTraffic(*booted_pkt, *this,
-                                              TrafficLogger::PKT_DROP);
+                booted_pkt->flow().logTraffic(*booted_pkt, *this, TrafficLogger::PKT_DROP);
                 booted_pkt->free();
                 if (_logger)
-                    _logger->logQueue(*this, QueueLogger::PKT_DROP,
-                                      *booted_pkt);
+                    _logger->logQueue(*this, QueueLogger::PKT_DROP, *booted_pkt);
             } else {
                 _stripped++;
-                booted_pkt->flow().logTraffic(*booted_pkt, *this,
-                                              TrafficLogger::PKT_TRIM);
+                booted_pkt->flow().logTraffic(*booted_pkt, *this, TrafficLogger::PKT_TRIM);
                 _enqueued_high.push_front(booted_pkt);
                 _queuesize_high += booted_pkt->size();
                 if (_logger)
-                    _logger->logQueue(*this, QueueLogger::PKT_TRIM,
-                                      *booted_pkt);
+                    _logger->logQueue(*this, QueueLogger::PKT_TRIM, *booted_pkt);
             }
             check_queued();
             return;

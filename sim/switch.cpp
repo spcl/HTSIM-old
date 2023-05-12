@@ -16,8 +16,7 @@ int Switch::addPort(BaseQueue *q) {
 }
 
 void Switch::sendPause(LosslessQueue *problem, unsigned int wait) {
-    cout << "Switch " << _name << " link " << problem->_name
-         << " blocked, sending pause " << wait << endl;
+    cout << "Switch " << _name << " link " << problem->_name << " blocked, sending pause " << wait << endl;
 
     for (size_t i = 0; i < _ports.size(); i++) {
         LosslessQueue *q = (LosslessQueue *)_ports.at(i);
@@ -50,8 +49,8 @@ void Switch::add_logger(Logfile &log, simtime_picosec sample_period) {
     // we want to log the sum of all queues on the switch, so we have
     // one logger that is shared by all ports
     assert(_ports.size() > 0);
-    MultiQueueLoggerSampling *queue_logger = new MultiQueueLoggerSampling(
-            get_id(), sample_period, _ports.at(0)->eventlist());
+    MultiQueueLoggerSampling *queue_logger =
+            new MultiQueueLoggerSampling(get_id(), sample_period, _ports.at(0)->eventlist());
     log.addLogger(*queue_logger);
     for (size_t i = 0; i < _ports.size(); i++) {
         // cout << "adding logger to switch " << nodename() << " id " <<

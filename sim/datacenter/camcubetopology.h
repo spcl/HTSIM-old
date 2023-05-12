@@ -37,8 +37,7 @@ class CamCubeTopology : public Topology {
 
     void init_network();
     virtual vector<const Route *> *get_paths(int src, int dest);
-    virtual vector<Route *> *get_paths_camcube(int src, int dest,
-                                               int first = 1);
+    virtual vector<Route *> *get_paths_camcube(int src, int dest, int first = 1);
 
     void count_queue(Queue *);
     void print_path(std::ofstream &paths, int src, const Route *route);

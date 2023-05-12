@@ -20,8 +20,7 @@
 
 class CompositeQueue : public Queue {
   public:
-    CompositeQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist,
-                   QueueLogger *logger);
+    CompositeQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger);
     virtual void receivePacket(Packet &pkt);
     virtual void doNextEvent();
     // should really be private, but loggers want to see

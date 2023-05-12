@@ -28,8 +28,7 @@ class QcnPacket : public Packet {
 
   public:
     typedef uint32_t seq_t;
-    inline static QcnPacket *newpkt(PacketFlow &flow, route_t &route,
-                                    routes_t &routesback, PacketSink &reactor,
+    inline static QcnPacket *newpkt(PacketFlow &flow, route_t &route, routes_t &routesback, PacketSink &reactor,
                                     int size, seq_t seqno) {
         QcnPacket *p = _packetdb.allocPacket();
         p->set_route(flow, route, size, seqno);
@@ -59,8 +58,7 @@ class QcnAck : public Packet {
         QcnAck *p = _packetdb.allocPacket();
         assert(datapkt._nexthop >= 1);
         route_t *routeback = (*datapkt._routesback)[datapkt._nexthop - 1];
-        p->set_route(*datapkt._flow, *routeback, QcnAck::ACK_SIZE,
-                     datapkt._seqno);
+        p->set_route(*datapkt._flow, *routeback, QcnAck::ACK_SIZE, datapkt._seqno);
         p->_reactor = datapkt._reactor;
         p->_fb = fb;
         return p;
@@ -88,10 +86,8 @@ class QcnAck : public Packet {
 
 class QcnReactor : public PacketSink, public EventSource {
   public:
-    QcnReactor(QcnLogger *logger, TrafficLogger *pktlogger,
-               EventList &eventlist);
-    void connect(route_t &route, routes_t &routesback,
-                 simtime_picosec startTime, linkspeed_bps linkspeed);
+    QcnReactor(QcnLogger *logger, TrafficLogger *pktlogger, EventList &eventlist);
+    void connect(route_t &route, routes_t &routesback, simtime_picosec startTime, linkspeed_bps linkspeed);
     void doNextEvent();
     void receivePacket(Packet &pkt);
     const static double GAIN;
@@ -128,8 +124,7 @@ class QcnEndpoint : public PacketSink {
 
 class QcnQueue : public Queue {
   public:
-    QcnQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist,
-             QueueLogger *logger, QcnLogger *qcnlogger);
+    QcnQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger, QcnLogger *qcnlogger);
     void receivePacket(Packet &pkt);
     QcnLogger *_qcnlogger;
     int _packetsTillNextFeedback;

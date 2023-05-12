@@ -6,9 +6,8 @@
 //  TCP PERIODIC SOURCE
 ////////////////////////////////////////////////////////////////
 
-TcpSrcPeriodic::TcpSrcPeriodic(TcpLogger *logger, TrafficLogger *pktLogger,
-                               EventList &eventlist, simtime_picosec active,
-                               simtime_picosec idle)
+TcpSrcPeriodic::TcpSrcPeriodic(TcpLogger *logger, TrafficLogger *pktLogger, EventList &eventlist,
+                               simtime_picosec active, simtime_picosec idle)
         : TcpSrc(logger, pktLogger, eventlist) {
     _start_active = 0;
     _end_active = 0;
@@ -38,8 +37,7 @@ void TcpSrcPeriodic::reset() {
     _RFC2988_RTO_timeout = timeInf;
 }
 
-void TcpSrcPeriodic::connect(const Route &routeout, const Route &routeback,
-                             TcpSink &sink, simtime_picosec starttime) {
+void TcpSrcPeriodic::connect(const Route &routeout, const Route &routeback, TcpSink &sink, simtime_picosec starttime) {
     _is_active = false;
 
     TcpSrc::connect(routeout, routeback, sink, starttime);
@@ -53,20 +51,17 @@ void TcpSrcPeriodic::doNextEvent() {
     }
 
     if (_is_active) {
-        if (eventlist().now() >= _end_active && _idle_time != 0 &&
-            _active_time != 0) {
+        if (eventlist().now() >= _end_active && _idle_time != 0 && _active_time != 0) {
             _is_active = false;
 
             // this clears RTOs too
             reset();
-            eventlist().sourceIsPendingRel(
-                    *this, (simtime_picosec)(2 * drand() * _idle_time));
+            eventlist().sourceIsPendingRel(*this, (simtime_picosec)(2 * drand() * _idle_time));
         } else if (_rtx_timeout_pending) {
             TcpSrc::doNextEvent();
         } else {
-            cout << "Wrong place to be in: doNextDEvent 1" << eventlist().now()
-                 << " end active " << _end_active << "timeout "
-                 << _rtx_timeout_pending << endl;
+            cout << "Wrong place to be in: doNextDEvent 1" << eventlist().now() << " end active " << _end_active
+                 << "timeout " << _rtx_timeout_pending << endl;
             // maybe i got a timeout here. How?
             exit(1);
         }
@@ -74,8 +69,7 @@ void TcpSrcPeriodic::doNextEvent() {
         _is_active = true;
         ((TcpSinkPeriodic *)_sink)->reset();
         _start_active = eventlist().now();
-        _end_active =
-                _start_active + (simtime_picosec)(2 * drand() * _active_time);
+        _end_active = _start_active + (simtime_picosec)(2 * drand() * _active_time);
         eventlist().sourceIsPending(*this, _end_active);
         startflow();
     }

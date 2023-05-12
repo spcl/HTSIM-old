@@ -6,8 +6,7 @@
 #include "queue_lossless_output.h"
 #include "routetable.h"
 
-FatTreeSwitch::FatTreeSwitch(EventList &eventlist, string s, switch_type t,
-                             uint32_t id, simtime_picosec delay,
+FatTreeSwitch::FatTreeSwitch(EventList &eventlist, string s, switch_type t, uint32_t id, simtime_picosec delay,
                              FatTreeTopology *ft)
         : Switch(eventlist, s) {
     _id = id;
@@ -29,8 +28,7 @@ void FatTreeSwitch::receivePacket(Packet &pkt) {
         // processing.
         for (size_t i = 0; i < _ports.size(); i++) {
             LosslessQueue *q = (LosslessQueue *)_ports.at(i);
-            if (q->getRemoteEndpoint() &&
-                ((Switch *)q->getRemoteEndpoint())->getID() == p->senderID()) {
+            if (q->getRemoteEndpoint() && ((Switch *)q->getRemoteEndpoint())->getID() == p->senderID()) {
                 q->receivePacket(pkt);
                 break;
             }
@@ -76,9 +74,7 @@ uint32_t mhash(uint32_t x) {
     return x;
 }
 
-uint32_t FatTreeSwitch::adaptive_route_p2c(vector<FibEntry *> *ecmp_set,
-                                           int8_t (*cmp)(FibEntry *,
-                                                         FibEntry *)) {
+uint32_t FatTreeSwitch::adaptive_route_p2c(vector<FibEntry *> *ecmp_set, int8_t (*cmp)(FibEntry *, FibEntry *)) {
     uint32_t choice = 0, min = UINT32_MAX;
     uint32_t start, i = 0;
     static const uint16_t nr_choices = 2;
@@ -99,8 +95,7 @@ uint32_t FatTreeSwitch::adaptive_route_p2c(vector<FibEntry *> *ecmp_set,
     return choice;
 }
 
-uint32_t FatTreeSwitch::adaptive_route(vector<FibEntry *> *ecmp_set,
-                                       int8_t (*cmp)(FibEntry *, FibEntry *)) {
+uint32_t FatTreeSwitch::adaptive_route(vector<FibEntry *> *ecmp_set, int8_t (*cmp)(FibEntry *, FibEntry *)) {
     uint32_t choice = 0;
 
     uint32_t best_choices[256];
@@ -128,9 +123,7 @@ uint32_t FatTreeSwitch::adaptive_route(vector<FibEntry *> *ecmp_set,
     return choice;
 }
 
-uint32_t FatTreeSwitch::replace_worst_choice(vector<FibEntry *> *ecmp_set,
-                                             int8_t (*cmp)(FibEntry *,
-                                                           FibEntry *),
+uint32_t FatTreeSwitch::replace_worst_choice(vector<FibEntry *> *ecmp_set, int8_t (*cmp)(FibEntry *, FibEntry *),
                                              uint32_t my_choice) {
     uint32_t best_choice = 0;
     uint32_t worst_choice = 0;
@@ -281,8 +274,7 @@ uint16_t FatTreeSwitch::_ar_fraction = 0;
 uint16_t FatTreeSwitch::_ar_sticky = FatTreeSwitch::PER_PACKET;
 simtime_picosec FatTreeSwitch::_sticky_delta = timeFromUs((uint32_t)10);
 double FatTreeSwitch::_ecn_threshold_fraction = 1.0;
-int8_t (*FatTreeSwitch::fn)(FibEntry *,
-                            FibEntry *) = &FatTreeSwitch::compare_queuesize;
+int8_t (*FatTreeSwitch::fn)(FibEntry *, FibEntry *) = &FatTreeSwitch::compare_queuesize;
 
 Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
     vector<FibEntry *> *available_hops = _fib->getRoutes(pkt.dst());
@@ -297,16 +289,13 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
             case NIX:
                 abort();
             case ECMP:
-                ecmp_choice =
-                        freeBSDHash(pkt.flow_id(), pkt.pathid(), _hash_salt) %
-                        available_hops->size();
+                ecmp_choice = freeBSDHash(pkt.flow_id(), pkt.pathid(), _hash_salt) % available_hops->size();
                 break;
             case ADAPTIVE_ROUTING:
                 if (_ar_sticky == FatTreeSwitch::PER_PACKET) {
                     ecmp_choice = adaptive_route(available_hops, fn);
                 } else if (_ar_sticky == FatTreeSwitch::PER_FLOWLET) {
-                    if (_flowlet_maps.find(pkt.flow_id()) !=
-                        _flowlet_maps.end()) {
+                    if (_flowlet_maps.find(pkt.flow_id()) != _flowlet_maps.end()) {
                         FlowletInfo *f = _flowlet_maps[pkt.flow_id()];
 
                         // only reroute an existing flow if its inter packet
@@ -317,13 +306,9 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
                         if (eventlist().now() - f->_last > _sticky_delta &&
                             /*eventlist().now() - _last_choice > _pipe->delay()
                                + BaseQueue::_update_period  &&*/
-                                            random() %
-                                            2 ==
-                                    0) {
-                            uint32_t new_route =
-                                    adaptive_route(available_hops, fn);
-                            if (fn(available_hops->at(f->_egress),
-                                   available_hops->at(new_route)) < 0) {
+                            random() % 2 == 0) {
+                            uint32_t new_route = adaptive_route(available_hops, fn);
+                            if (fn(available_hops->at(f->_egress), available_hops->at(new_route)) < 0) {
                                 f->_egress = new_route;
                                 _last_choice = eventlist().now();
                                 // cout << "Switch " << _type << ":" << _id << "
@@ -344,19 +329,15 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
                         // timeAsUs(eventlist().now()) << endl;
                         _last_choice = eventlist().now();
 
-                        _flowlet_maps[pkt.flow_id()] =
-                                new FlowletInfo(ecmp_choice, eventlist().now());
+                        _flowlet_maps[pkt.flow_id()] = new FlowletInfo(ecmp_choice, eventlist().now());
                     }
                 }
 
                 break;
             case ECMP_ADAPTIVE:
-                ecmp_choice =
-                        freeBSDHash(pkt.flow_id(), pkt.pathid(), _hash_salt) %
-                        available_hops->size();
+                ecmp_choice = freeBSDHash(pkt.flow_id(), pkt.pathid(), _hash_salt) % available_hops->size();
                 if (random() % 100 < 50)
-                    ecmp_choice = replace_worst_choice(available_hops, fn,
-                                                       ecmp_choice);
+                    ecmp_choice = replace_worst_choice(available_hops, fn, ecmp_choice);
                 break;
             case RR:
                 if (_crt_route >= 5 * available_hops->size()) {
@@ -375,9 +356,7 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
                     ecmp_choice = _crt_route % available_hops->size();
                     _crt_route++;
                 } else
-                    ecmp_choice = freeBSDHash(pkt.flow_id(), pkt.pathid(),
-                                              _hash_salt) %
-                                  available_hops->size();
+                    ecmp_choice = freeBSDHash(pkt.flow_id(), pkt.pathid(), _hash_salt) % available_hops->size();
 
                 break;
             }
@@ -416,8 +395,7 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
                     Route *r = new Route();
                     r->push_back(_ft->queues_nlp_nup[_id][k]);
                     r->push_back(_ft->pipes_nlp_nup[_id][k]);
-                    r->push_back(
-                            _ft->queues_nlp_nup[_id][k]->getRemoteEndpoint());
+                    r->push_back(_ft->queues_nlp_nup[_id][k]->getRemoteEndpoint());
                     _fib->addRoute(pkt.dst(), r, 1, UP);
 
                     /*
@@ -431,16 +409,14 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
             }
         }
     } else if (_type == AGG) {
-        if (_ft->get_tiers() == 2 ||
-            _ft->HOST_POD(pkt.dst()) == 2 * _id / _ft->getK()) {
+        if (_ft->get_tiers() == 2 || _ft->HOST_POD(pkt.dst()) == 2 * _id / _ft->getK()) {
             // must go down!
             // target NLP id is 2 * pkt.dst()/K
             uint32_t target_tor = _ft->HOST_POD_SWITCH(pkt.dst());
             Route *r = new Route();
             r->push_back(_ft->queues_nup_nlp[_id][target_tor]);
             r->push_back(_ft->pipes_nup_nlp[_id][target_tor]);
-            r->push_back(
-                    _ft->queues_nup_nlp[_id][target_tor]->getRemoteEndpoint());
+            r->push_back(_ft->queues_nup_nlp[_id][target_tor]->getRemoteEndpoint());
 
             _fib->addRoute(pkt.dst(), r, 1, DOWN);
         } else {
@@ -453,30 +429,21 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
                 for (uint32_t l = 0; l < _ft->getK() / 2; l++) {
                     uint32_t k = podpos * _ft->getK() / 2 + l;
 
-                    uint32_t next_upper_pod =
-                            _ft->MIN_POD_ID(_ft->HOST_POD(pkt.dst())) +
-                            2 * k / (_ft->getK());
+                    uint32_t next_upper_pod = _ft->MIN_POD_ID(_ft->HOST_POD(pkt.dst())) + 2 * k / (_ft->getK());
 
-                    if (_ft->queues_nup_nc[_id][k] == NULL ||
-                        _ft->queues_nc_nup[k][next_upper_pod] == NULL) {
+                    if (_ft->queues_nup_nc[_id][k] == NULL || _ft->queues_nc_nup[k][next_upper_pod] == NULL) {
                         // failed link, continue to next one. !
-                        cout << "Skipping path with failed link AGG" << _id
-                             << "-CORE" << k << "("
-                             << (_ft->queues_nup_nc[_id][k] == NULL ? "FAILED)"
-                                                                    : " OK)");
+                        cout << "Skipping path with failed link AGG" << _id << "-CORE" << k << "("
+                             << (_ft->queues_nup_nc[_id][k] == NULL ? "FAILED)" : " OK)");
                         cout << " CORE" << k << "-AGG" << next_upper_pod << "("
-                             << (_ft->queues_nc_nup[k][next_upper_pod] == NULL
-                                         ? "FAILED)"
-                                         : "OK)")
-                             << endl;
+                             << (_ft->queues_nc_nup[k][next_upper_pod] == NULL ? "FAILED)" : "OK)") << endl;
                         continue;
                     }
 
                     Route *r = new Route();
                     r->push_back(_ft->queues_nup_nc[_id][k]);
                     r->push_back(_ft->pipes_nup_nc[_id][k]);
-                    r->push_back(
-                            _ft->queues_nup_nc[_id][k]->getRemoteEndpoint());
+                    r->push_back(_ft->queues_nup_nc[_id][k]->getRemoteEndpoint());
 
                     /*
                       FatTreeSwitch* next =
@@ -494,8 +461,7 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
             }
         }
     } else if (_type == CORE) {
-        uint32_t nup = _ft->MIN_POD_ID(_ft->HOST_POD(pkt.dst())) +
-                       2 * _id / (_ft->getK());
+        uint32_t nup = _ft->MIN_POD_ID(_ft->HOST_POD(pkt.dst())) + 2 * _id / (_ft->getK());
         Route *r = new Route();
         // cout << "CORE switch " << _id << " adding route to " << pkt.dst() <<
         // " via AGG " << nup << endl;

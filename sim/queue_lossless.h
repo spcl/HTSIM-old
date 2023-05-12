@@ -17,8 +17,7 @@ class Switch;
 
 class LosslessQueue : public Queue {
   public:
-    LosslessQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist,
-                  QueueLogger *logger, Switch *sw);
+    LosslessQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger, Switch *sw);
 
     void receivePacket(Packet &pkt);
     void beginService();

@@ -21,9 +21,8 @@ void push_front(Route* rt, Queue* q){
 }
 */
 
-BCubeTopology::BCubeTopology(uint32_t no_of_nodes, uint32_t ports_per_switch,
-                             uint32_t no_of_levels, Logfile *lg, EventList *ev,
-                             FirstFit *fit, queue_type qt) {
+BCubeTopology::BCubeTopology(uint32_t no_of_nodes, uint32_t ports_per_switch, uint32_t no_of_levels, Logfile *lg,
+                             EventList *ev, FirstFit *fit, queue_type qt) {
     set_params(no_of_nodes, ports_per_switch, no_of_levels);
     logfile = lg;
     eventlist = ev;
@@ -32,8 +31,7 @@ BCubeTopology::BCubeTopology(uint32_t no_of_nodes, uint32_t ports_per_switch,
     init_network();
 }
 
-void BCubeTopology::set_params(uint32_t no_of_nodes, uint32_t ports_per_switch,
-                               uint32_t no_of_levels) {
+void BCubeTopology::set_params(uint32_t no_of_nodes, uint32_t ports_per_switch, uint32_t no_of_levels) {
     if (no_of_nodes % ports_per_switch != 0) {
         cerr << "Incorrect Bcube parameters\n";
         exit(1);
@@ -59,30 +57,22 @@ void BCubeTopology::set_params(uint32_t no_of_nodes, uint32_t ports_per_switch,
 
 #define SWITCH_ID(srv, level) switch_from_srv(srv, level)
 //(level==0?srv/_NUM_PORTS:srv%(int)pow(_NUM_PORTS,level+1))
-#define ADDRESS(srv, level)                                                    \
-    (level == 0 ? srv % _NUM_PORTS : srv / (int)pow(_NUM_PORTS, level))
+#define ADDRESS(srv, level) (level == 0 ? srv % _NUM_PORTS : srv / (int)pow(_NUM_PORTS, level))
 
 Queue *BCubeTopology::alloc_src_queue(QueueLogger *queueLogger) {
-    return new PriorityQueue(speedFromMbps((uint64_t)HOST_NIC),
-                             memFromPkt(FEEDER_BUFFER), *eventlist,
-                             queueLogger);
+    return new PriorityQueue(speedFromMbps((uint64_t)HOST_NIC), memFromPkt(FEEDER_BUFFER), *eventlist, queueLogger);
 }
 
-Queue *BCubeTopology::alloc_queue(QueueLogger *queueLogger) {
-    return alloc_queue(queueLogger, HOST_NIC);
-}
+Queue *BCubeTopology::alloc_queue(QueueLogger *queueLogger) { return alloc_queue(queueLogger, HOST_NIC); }
 
 Queue *BCubeTopology::alloc_queue(QueueLogger *queueLogger, uint64_t speed) {
     if (qt == RANDOM) {
-        return new RandomQueue(
-                speedFromMbps(speed), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
-                *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+        return new RandomQueue(speedFromMbps(speed), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist, queueLogger,
+                               memFromPkt(RANDOM_BUFFER));
     } else if (qt == COMPOSITE) {
-        return new CompositeQueue(speedFromMbps(speed), memFromPkt(8),
-                                  *eventlist, queueLogger);
+        return new CompositeQueue(speedFromMbps(speed), memFromPkt(8), *eventlist, queueLogger);
     } else if (qt == COMPOSITE_PRIO) {
-        return new CompositePrioQueue(speedFromMbps(speed), memFromPkt(8),
-                                      *eventlist, queueLogger);
+        return new CompositePrioQueue(speedFromMbps(speed), memFromPkt(8), *eventlist, queueLogger);
     }
 
     assert(0);
@@ -185,8 +175,7 @@ void BCubeTopology::init_network() {
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
             prio_queues_srv(i, k) = alloc_src_queue(queueLogger);
-            prio_queues_srv(i, k)->setName("PRIO_SRV_" + ntoa(i) + "(" +
-                                           ntoa(k) + ")");
+            prio_queues_srv(i, k)->setName("PRIO_SRV_" + ntoa(i) + "(" + ntoa(k) + ")");
         }
     }
 
@@ -208,14 +197,11 @@ void BCubeTopology::init_network() {
             logfile->addLogger(*queueLogger);
 
             queues_srv_switch(i, j, k) = alloc_queue(queueLogger);
-            queues_srv_switch(i, j, k)->setName("SRV_" + ntoa(i) + "(level_" +
-                                                ntoa(k) + "))_SW_" + ntoa(j));
+            queues_srv_switch(i, j, k)->setName("SRV_" + ntoa(i) + "(level_" + ntoa(k) + "))_SW_" + ntoa(j));
             logfile->writeName(*(queues_srv_switch(i, j, k)));
 
             pipes_srv_switch(i, j, k) = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_srv_switch(i, j, k)->setName("Pipe-SRV_" + ntoa(i) +
-                                               "(level_" + ntoa(k) + ")-SW_" +
-                                               ntoa(j));
+            pipes_srv_switch(i, j, k)->setName("Pipe-SRV_" + ntoa(i) + "(level_" + ntoa(k) + ")-SW_" + ntoa(j));
             logfile->writeName(*(pipes_srv_switch(i, j, k)));
 
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
@@ -223,14 +209,11 @@ void BCubeTopology::init_network() {
             logfile->addLogger(*queueLogger);
 
             queues_switch_srv(j, i, k) = alloc_queue(queueLogger);
-            queues_switch_srv(j, i, k)->setName("SW_" + ntoa(j) + "(level_" +
-                                                ntoa(k) + ")-SRV_" + ntoa(i));
+            queues_switch_srv(j, i, k)->setName("SW_" + ntoa(j) + "(level_" + ntoa(k) + ")-SRV_" + ntoa(i));
             logfile->writeName(*(queues_switch_srv(j, i, k)));
 
             pipes_switch_srv(j, i, k) = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_switch_srv(j, i, k)->setName("Pipe-SW_" + ntoa(j) +
-                                               "(level_" + ntoa(k) + ")-SRV_" +
-                                               ntoa(i));
+            pipes_switch_srv(j, i, k)->setName("Pipe-SW_" + ntoa(j) + "(level_" + ntoa(k) + ")-SRV_" + ntoa(i));
             logfile->writeName(*(pipes_switch_srv(j, i, k)));
         }
     }
@@ -253,9 +236,7 @@ void BCubeTopology::init_network() {
   }
   }*/
 
-Route *BCubeTopology::bcube_routing(uint32_t src, uint32_t dest,
-                                    uint32_t *permutation,
-                                    uint32_t *nic = NULL) {
+Route *BCubeTopology::bcube_routing(uint32_t src, uint32_t dest, uint32_t *permutation, uint32_t *nic = NULL) {
     Route *routeout = new Route();
 
     uint32_t crt_addr[_K + 1], crt, level;
@@ -287,10 +268,8 @@ Route *BCubeTopology::bcube_routing(uint32_t src, uint32_t dest,
                     *nic = level;
             }
 
-            routeout->push_back(
-                    queues_srv_switch(crt, SWITCH_ID(crt, level), level));
-            routeout->push_back(
-                    pipes_srv_switch(crt, SWITCH_ID(crt, level), level));
+            routeout->push_back(queues_srv_switch(crt, SWITCH_ID(crt, level), level));
+            routeout->push_back(pipes_srv_switch(crt, SWITCH_ID(crt, level), level));
 
             // now correct digit
             crt_addr[level] = addresses(dest, level);
@@ -298,10 +277,8 @@ Route *BCubeTopology::bcube_routing(uint32_t src, uint32_t dest,
 
             assert(srv_from_address(crt_addr) == crt);
 
-            routeout->push_back(
-                    queues_switch_srv(SWITCH_ID(crt, level), crt, level));
-            routeout->push_back(
-                    pipes_switch_srv(SWITCH_ID(crt, level), crt, level));
+            routeout->push_back(queues_switch_srv(SWITCH_ID(crt, level), crt, level));
+            routeout->push_back(pipes_switch_srv(SWITCH_ID(crt, level), crt, level));
         }
     }
 
@@ -329,8 +306,7 @@ Route *BCubeTopology::dc_routing(uint32_t src, uint32_t dest, uint32_t i) {
     return routeout;
 }
 
-Route *BCubeTopology::alt_dc_routing(uint32_t src, uint32_t dest, uint32_t i,
-                                     uint32_t c) {
+Route *BCubeTopology::alt_dc_routing(uint32_t src, uint32_t dest, uint32_t i, uint32_t c) {
     uint32_t permutation[_K + 1];
     uint32_t m = _K;
 
@@ -370,20 +346,17 @@ vector<const Route *> *BCubeTopology::get_paths(uint32_t src, uint32_t dest) {
         if (addresses(src, level) != addresses(dest, level))
             paths->push_back(dc_routing(src, dest, level));
         else
-            paths->push_back(alt_dc_routing(src, dest, level,
-                                            get_neighbour(src, level)));
+            paths->push_back(alt_dc_routing(src, dest, level, get_neighbour(src, level)));
     }
     return paths;
 }
 
-void BCubeTopology::print_paths(std::ofstream &p, uint32_t src,
-                                vector<const Route *> *paths) {
+void BCubeTopology::print_paths(std::ofstream &p, uint32_t src, vector<const Route *> *paths) {
     for (uint32_t i = 0; i < paths->size(); i++)
         print_path(p, src, paths->at(i));
 }
 
-void BCubeTopology::print_path(std::ofstream &paths, uint32_t src,
-                               const Route *route) {
+void BCubeTopology::print_path(std::ofstream &paths, uint32_t src, const Route *route) {
     paths << "SRC_" << src << " ";
 
     for (uint32_t i = 1; i < route->size() - 1; i += 2) {

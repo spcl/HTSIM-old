@@ -25,26 +25,19 @@ CamCubeTopology::CamCubeTopology(Logfile *lg, EventList *ev, queue_type qt) {
 #define ADDRESS(srv, level) (level == 0 ? srv % K : srv / (int)pow(K, level))
 
 Queue *CamCubeTopology::alloc_src_queue(QueueLogger *queueLogger) {
-    return new PriorityQueue(speedFromMbps((uint64_t)HOST_NIC),
-                             memFromPkt(FEEDER_BUFFER), *eventlist,
-                             queueLogger);
+    return new PriorityQueue(speedFromMbps((uint64_t)HOST_NIC), memFromPkt(FEEDER_BUFFER), *eventlist, queueLogger);
 }
 
-Queue *CamCubeTopology::alloc_queue(QueueLogger *queueLogger) {
-    return alloc_queue(queueLogger, HOST_NIC);
-}
+Queue *CamCubeTopology::alloc_queue(QueueLogger *queueLogger) { return alloc_queue(queueLogger, HOST_NIC); }
 
 Queue *CamCubeTopology::alloc_queue(QueueLogger *queueLogger, uint64_t speed) {
     if (qt == RANDOM) {
-        return new RandomQueue(
-                speedFromMbps(speed), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
-                *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+        return new RandomQueue(speedFromMbps(speed), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist, queueLogger,
+                               memFromPkt(RANDOM_BUFFER));
     } else if (qt == COMPOSITE) {
-        return new CompositeQueue(speedFromMbps(speed), memFromPkt(8),
-                                  *eventlist, queueLogger);
+        return new CompositeQueue(speedFromMbps(speed), memFromPkt(8), *eventlist, queueLogger);
     } else if (qt == COMPOSITE_PRIO) {
-        return new CompositePrioQueue(speedFromMbps(speed), memFromPkt(8),
-                                      *eventlist, queueLogger);
+        return new CompositePrioQueue(speedFromMbps(speed), memFromPkt(8), *eventlist, queueLogger);
     }
 
     assert(0);
@@ -77,8 +70,7 @@ void CamCubeTopology::init_network() {
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
             prio_queues[i][k] = alloc_src_queue(queueLogger);
-            prio_queues[i][k]->setName("PRIO_SRV_" + ntoa(i) + "(" + ntoa(k) +
-                                       ")");
+            prio_queues[i][k]->setName("PRIO_SRV_" + ntoa(i) + "(" + ntoa(k) + ")");
         }
     }
 
@@ -88,36 +80,31 @@ void CamCubeTopology::init_network() {
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
 
-            string name = ntoa(addresses[i][0]) + ntoa(addresses[i][1]) +
-                          ntoa(addresses[i][2]);
+            string name = ntoa(addresses[i][0]) + ntoa(addresses[i][1]) + ntoa(addresses[i][2]);
 
             queues[i][l] = alloc_queue(queueLogger);
             queues[i][l]->setName("SRV_" + name + "(axis_" + ntoa(l) + ")_pos");
             logfile->writeName(*(queues[i][l]));
 
             pipes[i][l] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes[i][l]->setName("Pipe-SRV_" + name + "(axis_" + ntoa(l) +
-                                 ")_pos");
+            pipes[i][l]->setName("Pipe-SRV_" + name + "(axis_" + ntoa(l) + ")_pos");
             logfile->writeName(*(pipes[i][l]));
 
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
 
             queues[i][l + 3] = alloc_queue(queueLogger);
-            queues[i][l + 3]->setName("SRV_" + name + "(axis_" + ntoa(l) +
-                                      ")_neg");
+            queues[i][l + 3]->setName("SRV_" + name + "(axis_" + ntoa(l) + ")_neg");
             logfile->writeName(*(queues[i][l + 3]));
 
             pipes[i][l + 3] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes[i][l + 3]->setName("Pipe-SRV_" + name + "(axis_" + ntoa(l) +
-                                     ")_neg");
+            pipes[i][l + 3]->setName("Pipe-SRV_" + name + "(axis_" + ntoa(l) + ")_neg");
             logfile->writeName(*(pipes[i][l + 3]));
         }
     }
 }
 
-int CamCubeTopology::get_distance(int src, int dest, int dimension,
-                                  int *iface) {
+int CamCubeTopology::get_distance(int src, int dest, int dimension, int *iface) {
     int a, b;
 
     a = (addresses[src][dimension] + K - addresses[dest][dimension]) % K;
@@ -145,8 +132,7 @@ vector<const Route *> *CamCubeTopology::get_paths(int src, int dest) {
     return paths;
 }
 
-vector<Route *> *CamCubeTopology::get_paths_camcube(int src, int dest,
-                                                    int first) {
+vector<Route *> *CamCubeTopology::get_paths_camcube(int src, int dest, int first) {
     vector<Route *> *paths = new vector<Route *>(), *ret_paths;
     unsigned int crt[3], n;
 
@@ -266,14 +252,12 @@ vector<Route *> *CamCubeTopology::get_paths_camcube(int src, int dest,
     return paths;
 }
 
-void CamCubeTopology::print_paths(std::ofstream &p, int src,
-                                  vector<const Route *> *paths) {
+void CamCubeTopology::print_paths(std::ofstream &p, int src, vector<const Route *> *paths) {
     for (unsigned int i = 0; i < paths->size(); i++)
         print_path(p, src, paths->at(i));
 }
 
-void CamCubeTopology::print_path(std::ofstream &paths, int src,
-                                 const Route *route) {
+void CamCubeTopology::print_path(std::ofstream &paths, int src, const Route *route) {
     paths << "SRC_" << src << " ";
 
     for (unsigned int i = 0; i < route->size() - 1; i++) {

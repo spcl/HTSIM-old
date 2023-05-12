@@ -7,23 +7,20 @@
 #include <iostream>
 #include <sstream>
 
-RawLogEvent::RawLogEvent(double time, uint32_t type, uint32_t id, uint32_t ev,
-                         double val1, double val2, double val3,
+RawLogEvent::RawLogEvent(double time, uint32_t type, uint32_t id, uint32_t ev, double val1, double val2, double val3,
                          string name = "")
-        : _time(time), _type(type), _id(id), _ev(ev - 100 * type), _val1(val1),
-          _val2(val2), _val3(val3), _name(name) {}
+        : _time(time), _type(type), _id(id), _ev(ev - 100 * type), _val1(val1), _val2(val2), _val3(val3), _name(name) {}
 
 string RawLogEvent::str() {
     stringstream ss;
     ss << fixed << setprecision(6) << _time;
-    ss << " Type=" << _type << " ID=" << _id << " EV=" << _ev
-       << " VAL1=" << _val1 << " VAL2=" << _val2 << " VAL3=" << _val3;
+    ss << " Type=" << _type << " ID=" << _id << " EV=" << _ev << " VAL1=" << _val1 << " VAL2=" << _val2
+       << " VAL3=" << _val3;
     return ss.str();
 }
 
 Logfile::Logfile(const string &filename, EventList &eventlist)
-        : _starttime(0), _eventlist(eventlist),
-          _preamble(ios_base::out | ios_base::in), _logfilename(filename),
+        : _starttime(0), _eventlist(eventlist), _preamble(ios_base::out | ios_base::in), _logfilename(filename),
           _numRecords(0) {
     _logfile = fopen(_logfilename.c_str(), "wbS");
     if (_logfile == NULL) {
@@ -46,16 +43,11 @@ void Logfile::addLogger(Logger &logger) {
 
 void Logfile::write(const string &msg) { _preamble << msg << endl; }
 
-void Logfile::writeName(Logged &logged) {
-    _preamble << ": " << logged.str() << "=" << logged.get_id() << endl;
-}
+void Logfile::writeName(Logged &logged) { _preamble << ": " << logged.str() << "=" << logged.get_id() << endl; }
 
-void Logfile::setStartTime(simtime_picosec starttime) {
-    _starttime = starttime;
-}
+void Logfile::setStartTime(simtime_picosec starttime) { _starttime = starttime; }
 
-void Logfile::writeRecord(uint32_t type, uint32_t id, uint32_t ev, double val1,
-                          double val2, double val3) {
+void Logfile::writeRecord(uint32_t type, uint32_t id, uint32_t ev, double val1, double val2, double val3) {
     uint64_t time = _eventlist.now();
     if (time < _starttime)
         return;

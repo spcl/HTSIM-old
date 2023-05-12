@@ -10,8 +10,7 @@ string ntoa(double n);
 //  DCTCP SOURCE
 ////////////////////////////////////////////////////////////////
 
-DCTCPSrc::DCTCPSrc(TcpLogger *logger, TrafficLogger *pktlogger,
-                   EventList &eventlist)
+DCTCPSrc::DCTCPSrc(TcpLogger *logger, TrafficLogger *pktlogger, EventList &eventlist)
         : TcpSrc(logger, pktlogger, eventlist) {
     _pkts_seen = 0;
     _pkts_marked = 0;
@@ -74,6 +73,4 @@ void DCTCPSrc::receivePacket(Packet &pkt) {
     // CWND " << _cwnd << " alfa " << ntoa(_alfa)<< endl;
 }
 
-void DCTCPSrc::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
-    TcpSrc::rtx_timer_hook(now, period);
-};
+void DCTCPSrc::rtx_timer_hook(simtime_picosec now, simtime_picosec period) { TcpSrc::rtx_timer_hook(now, period); };

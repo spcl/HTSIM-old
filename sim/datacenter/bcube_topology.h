@@ -42,8 +42,7 @@ class BCubeTopology : public Topology {
     Logfile *logfile;
     EventList *eventlist;
 
-    BCubeTopology(uint32_t no_of_nodes, uint32_t ports_per_switch,
-                  uint32_t no_of_levels, Logfile *log, EventList *ev,
+    BCubeTopology(uint32_t no_of_nodes, uint32_t ports_per_switch, uint32_t no_of_levels, Logfile *log, EventList *ev,
                   FirstFit *f, queue_type q);
 
     void init_network();
@@ -51,8 +50,7 @@ class BCubeTopology : public Topology {
 
     void count_queue(Queue *);
     void print_path(std::ofstream &paths, uint32_t src, const Route *route);
-    void print_paths(std::ofstream &p, uint32_t src,
-                     vector<const Route *> *paths);
+    void print_paths(std::ofstream &p, uint32_t src, vector<const Route *> *paths);
     vector<uint32_t> *get_neighbours(uint32_t src);
     uint32_t no_of_nodes() const {
         cout << "NoN: " << _NUM_SRV << "\n";
@@ -63,16 +61,14 @@ class BCubeTopology : public Topology {
     queue_type qt;
     map<Queue *, int> _link_usage;
     uint32_t _K, _NUM_PORTS, _NUM_SRV, _NUM_SW;
-    void set_params(uint32_t no_of_nodes, uint32_t ports_per_switch,
-                    uint32_t no_of_levels);
+    void set_params(uint32_t no_of_nodes, uint32_t ports_per_switch, uint32_t no_of_levels);
 
     uint32_t srv_from_address(unsigned int *address);
     void address_from_srv(uint32_t srv);
     uint32_t get_neighbour(uint32_t src, uint32_t level);
     uint32_t switch_from_srv(uint32_t srv, uint32_t level);
 
-    Route *bcube_routing(uint32_t src, uint32_t dest, uint32_t *permutation,
-                         uint32_t *nic);
+    Route *bcube_routing(uint32_t src, uint32_t dest, uint32_t *permutation, uint32_t *nic);
     Route *dc_routing(uint32_t src, uint32_t dest, uint32_t i);
     Route *alt_dc_routing(uint32_t src, uint32_t dest, uint32_t i, uint32_t c);
 

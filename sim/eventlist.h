@@ -12,8 +12,7 @@ class TriggerTarget;
 
 class EventSource : public Logged {
   public:
-    EventSource(EventList &eventlist, const string &name)
-            : Logged(name), _eventlist(eventlist){};
+    EventSource(EventList &eventlist, const string &name) : Logged(name), _eventlist(eventlist){};
     virtual ~EventSource(){};
     virtual void doNextEvent() = 0;
     inline EventList &eventlist() const { return _eventlist; }
@@ -27,8 +26,8 @@ class EventList {
     EventList();
     void setEndtime(simtime_picosec endtime); // end simulation at endtime
                                               // (rather than forever)
-    bool doNextEvent(); // returns true if it did anything, false if there's
-                        // nothing to do
+    bool doNextEvent();                       // returns true if it did anything, false if there's
+                                              // nothing to do
     void sourceIsPending(EventSource &src, simtime_picosec when);
     void sourceIsPendingRel(EventSource &src, simtime_picosec timefromnow) {
         sourceIsPending(src, now() + timefromnow);

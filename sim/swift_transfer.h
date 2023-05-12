@@ -20,11 +20,9 @@ uint64_t generateFlowSize();
 
 class SwiftSrcTransfer : public SwiftSrc {
   public:
-    SwiftSrcTransfer(SwiftLogger *logger, TrafficLogger *pktLogger,
-                     EventList &eventlist, uint64_t b, vector<const Route *> *p,
-                     EventSource *stopped = NULL);
-    void connect(const Route &routeout, const Route &routeback, SwiftSink &sink,
-                 simtime_picosec starttime);
+    SwiftSrcTransfer(SwiftLogger *logger, TrafficLogger *pktLogger, EventList &eventlist, uint64_t b,
+                     vector<const Route *> *p, EventSource *stopped = NULL);
+    void connect(const Route &routeout, const Route &routeback, SwiftSink &sink, simtime_picosec starttime);
 
     virtual void rtx_timer_hook(simtime_picosec now, simtime_picosec period);
     virtual void receivePacket(Packet &pkt);

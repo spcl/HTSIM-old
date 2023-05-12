@@ -46,39 +46,38 @@ class FatTreeTopology;
  * http://www.burtleburtle.net/bob/hash/spooky.html
  */
 
-#define MIX(a, b, c)                                                           \
-    do {                                                                       \
-        a -= b;                                                                \
-        a -= c;                                                                \
-        a ^= (c >> 13);                                                        \
-        b -= c;                                                                \
-        b -= a;                                                                \
-        b ^= (a << 8);                                                         \
-        c -= a;                                                                \
-        c -= b;                                                                \
-        c ^= (b >> 13);                                                        \
-        a -= b;                                                                \
-        a -= c;                                                                \
-        a ^= (c >> 12);                                                        \
-        b -= c;                                                                \
-        b -= a;                                                                \
-        b ^= (a << 16);                                                        \
-        c -= a;                                                                \
-        c -= b;                                                                \
-        c ^= (b >> 5);                                                         \
-        a -= b;                                                                \
-        a -= c;                                                                \
-        a ^= (c >> 3);                                                         \
-        b -= c;                                                                \
-        b -= a;                                                                \
-        b ^= (a << 10);                                                        \
-        c -= a;                                                                \
-        c -= b;                                                                \
-        c ^= (b >> 15);                                                        \
+#define MIX(a, b, c)                                                                                                   \
+    do {                                                                                                               \
+        a -= b;                                                                                                        \
+        a -= c;                                                                                                        \
+        a ^= (c >> 13);                                                                                                \
+        b -= c;                                                                                                        \
+        b -= a;                                                                                                        \
+        b ^= (a << 8);                                                                                                 \
+        c -= a;                                                                                                        \
+        c -= b;                                                                                                        \
+        c ^= (b >> 13);                                                                                                \
+        a -= b;                                                                                                        \
+        a -= c;                                                                                                        \
+        a ^= (c >> 12);                                                                                                \
+        b -= c;                                                                                                        \
+        b -= a;                                                                                                        \
+        b ^= (a << 16);                                                                                                \
+        c -= a;                                                                                                        \
+        c -= b;                                                                                                        \
+        c ^= (b >> 5);                                                                                                 \
+        a -= b;                                                                                                        \
+        a -= c;                                                                                                        \
+        a ^= (c >> 3);                                                                                                 \
+        b -= c;                                                                                                        \
+        b -= a;                                                                                                        \
+        b ^= (a << 10);                                                                                                \
+        c -= a;                                                                                                        \
+        c -= b;                                                                                                        \
+        c ^= (b >> 15);                                                                                                \
     } while (/*CONSTCOND*/ 0)
 
-static inline uint32_t freeBSDHash(uint32_t target1, uint32_t target2 = 0,
-                                   uint32_t target3 = 0) {
+static inline uint32_t freeBSDHash(uint32_t target1, uint32_t target2 = 0, uint32_t target3 = 0) {
     uint32_t a = 0x9e3779b9, b = 0x9e3779b9, c = 0; // hask key
 
     b += target3;
@@ -105,37 +104,27 @@ class FatTreeSwitch : public Switch {
   public:
     enum switch_type { NONE = 0, TOR = 1, AGG = 2, CORE = 3 };
 
-    enum routing_strategy {
-        NIX = 0,
-        ECMP = 1,
-        ADAPTIVE_ROUTING = 2,
-        ECMP_ADAPTIVE = 3,
-        RR = 4,
-        RR_ECMP = 5
-    };
+    enum routing_strategy { NIX = 0, ECMP = 1, ADAPTIVE_ROUTING = 2, ECMP_ADAPTIVE = 3, RR = 4, RR_ECMP = 5 };
 
     enum sticky_choices { PER_PACKET = 0, PER_FLOWLET = 1 };
 
-    FatTreeSwitch(EventList &eventlist, string s, switch_type t, uint32_t id,
-                  simtime_picosec switch_delay, FatTreeTopology *ft);
+    FatTreeSwitch(EventList &eventlist, string s, switch_type t, uint32_t id, simtime_picosec switch_delay,
+                  FatTreeTopology *ft);
 
     virtual void receivePacket(Packet &pkt);
     virtual Route *getNextHop(Packet &pkt, BaseQueue *ingress_port);
     virtual uint32_t getType() { return _type; }
 
-    uint32_t adaptive_route(vector<FibEntry *> *ecmp_set,
-                            int8_t (*cmp)(FibEntry *, FibEntry *));
-    uint32_t replace_worst_choice(vector<FibEntry *> *ecmp_set,
-                                  int8_t (*cmp)(FibEntry *, FibEntry *),
+    uint32_t adaptive_route(vector<FibEntry *> *ecmp_set, int8_t (*cmp)(FibEntry *, FibEntry *));
+    uint32_t replace_worst_choice(vector<FibEntry *> *ecmp_set, int8_t (*cmp)(FibEntry *, FibEntry *),
                                   uint32_t my_choice);
-    uint32_t adaptive_route_p2c(vector<FibEntry *> *ecmp_set,
-                                int8_t (*cmp)(FibEntry *, FibEntry *));
+    uint32_t adaptive_route_p2c(vector<FibEntry *> *ecmp_set, int8_t (*cmp)(FibEntry *, FibEntry *));
 
     static int8_t compare_pause(FibEntry *l, FibEntry *r);
     static int8_t compare_bandwidth(FibEntry *l, FibEntry *r);
     static int8_t compare_queuesize(FibEntry *l, FibEntry *r);
     static int8_t compare_pqb(FibEntry *l,
-                              FibEntry *r); // compare pause,queue, bw.
+                              FibEntry *r);             // compare pause,queue, bw.
     static int8_t compare_pq(FibEntry *l, FibEntry *r); // compare pause, queue
     static int8_t compare_pb(FibEntry *l,
                              FibEntry *r); // compare pause, bandwidth

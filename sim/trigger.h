@@ -71,8 +71,7 @@ class MultiShotTrigger : public Trigger {
 // this many activations before it will fire.
 class BarrierTrigger : public Trigger {
   public:
-    BarrierTrigger(EventList &eventlist, triggerid_t id,
-                   size_t activations_needed);
+    BarrierTrigger(EventList &eventlist, triggerid_t id, size_t activations_needed);
     virtual void activate();
 
   private:

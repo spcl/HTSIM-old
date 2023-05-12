@@ -32,14 +32,12 @@ class MsgInfo {
 class LogSimInterface {
   public:
     LogSimInterface();
-    LogSimInterface(UecLogger *logger, TrafficLogger *pktLogger,
-                    EventList &eventList, Topology *,
+    LogSimInterface(UecLogger *logger, TrafficLogger *pktLogger, EventList &eventList, Topology *,
                     std::vector<const Route *> ***);
     std::unordered_map<std::string, MsgInfo> active_sends;
     std::unordered_map<std::string, UecSrc *> connection_log;
     void htsim_schedule(u_int32_t, int, int, int, u_int64_t, int);
-    void send_event(int from, int to, int size, int tag,
-                    u_int64_t start_time_event);
+    void send_event(int from, int to, int size, int tag, u_int64_t start_time_event);
     void set_protocol(ProtocolName name) { _protocolName = name; };
     void set_cwd(int cwd);
     void set_queue_size(int queue_size) { _queuesize = queue_size; };

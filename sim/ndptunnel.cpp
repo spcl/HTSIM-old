@@ -38,8 +38,7 @@ simtime_picosec NdpTunnelSrc::_min_rto = timeFromUs((uint32_t)DEFAULT_RTO_MIN);
 RouteStrategy NdpTunnelSrc::_route_strategy = NOT_SET;
 RouteStrategy NdpTunnelSink::_route_strategy = NOT_SET;
 
-NdpTunnelSrc::NdpTunnelSrc(NdpTunnelLogger *logger, TrafficLogger *pktlogger,
-                           EventList &eventlist)
+NdpTunnelSrc::NdpTunnelSrc(NdpTunnelLogger *logger, TrafficLogger *pktlogger, EventList &eventlist)
         : EventSource(eventlist, "ndp"), _logger(logger), _flow(pktlogger) {
     _mss = Packet::data_packet_size();
 
@@ -84,9 +83,7 @@ NdpTunnelSrc::NdpTunnelSrc(NdpTunnelLogger *logger, TrafficLogger *pktlogger,
     _log_me = false;
 }
 
-void NdpTunnelSrc::set_traffic_logger(TrafficLogger *pktlogger) {
-    _flow.set_logger(pktlogger);
-}
+void NdpTunnelSrc::set_traffic_logger(TrafficLogger *pktlogger) { _flow.set_logger(pktlogger); }
 
 void NdpTunnelSrc::log_me() {
     // avoid looping
@@ -144,8 +141,7 @@ void NdpTunnelSrc::startflow() {
     //}
 }
 
-void NdpTunnelSrc::connect(Route &routeout, Route &routeback,
-                           NdpTunnelSink &sink, simtime_picosec starttime) {
+void NdpTunnelSrc::connect(Route &routeout, Route &routeback, NdpTunnelSink &sink, simtime_picosec starttime) {
     _route = &routeout;
     assert(_route);
 
@@ -301,8 +297,7 @@ void NdpTunnelSrc::processAck(const NdpAck &ack) {
     assert(_flight_size >= 0);
 
     if (cum_ackno >= _flow_size) {
-        cout << "Flow " << nodename() << " finished at "
-             << timeAsMs(eventlist().now()) << endl;
+        cout << "Flow " << nodename() << " finished at " << timeAsMs(eventlist().now()) << endl;
     }
 
     update_rtx_time();
@@ -430,8 +425,7 @@ const Route *NdpTunnelSrc::choose_route() {
     return rt;
 }
 
-void NdpTunnelSrc::pull_packets(NdpPull::seq_t pull_no,
-                                NdpPull::seq_t pacer_no) {
+void NdpTunnelSrc::pull_packets(NdpPull::seq_t pull_no, NdpPull::seq_t pacer_no) {
     // Pull number is cumulative both to allow for lost pulls and to
     // reduce reverse-path RTT - if one pull is delayed on one path, a
     // pull that gets there faster on another path can supercede it
@@ -491,14 +485,12 @@ int NdpTunnelSrc::send_packet(NdpPull::seq_t pacer_no) {
         case PULL_BASED: {
             assert(_paths.size() > 0);
             const Route *rt = choose_route();
-            p = NdpTunnelPacket::newpkt(
-                    _flow, *rt, _highest_sent + 1, pacer_no, _mss, false,
-                    _paths.size() > 0 ? _paths.size() : 1, false, pkt);
+            p = NdpTunnelPacket::newpkt(_flow, *rt, _highest_sent + 1, pacer_no, _mss, false,
+                                        _paths.size() > 0 ? _paths.size() : 1, false, pkt);
             break;
         }
         case SINGLE_PATH:
-            p = NdpTunnelPacket::newpkt(_flow, *_route, _highest_sent + 1,
-                                        pacer_no, _mss, false, 1, false, pkt);
+            p = NdpTunnelPacket::newpkt(_flow, *_route, _highest_sent + 1, pacer_no, _mss, false, 1, false, pkt);
             break;
         case NOT_SET:
             abort();
@@ -658,10 +650,9 @@ void NdpTunnelSrc::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
     if (_rtx_timeout == timeInf || now + period < _rtx_timeout)
         return;
 
-    cout << "At " << timeAsUs(now) << "us RTO " << timeAsUs(_rto) << "us MDEV "
-         << timeAsUs(_mdev) << "us RTT " << timeAsUs(_rtt) << "us SEQ "
-         << _last_acked / _mss << " CWND " << _cwnd / _mss << " Flow ID "
-         << str() << endl;
+    cout << "At " << timeAsUs(now) << "us RTO " << timeAsUs(_rto) << "us MDEV " << timeAsUs(_mdev) << "us RTT "
+         << timeAsUs(_rtt) << "us SEQ " << _last_acked / _mss << " CWND " << _cwnd / _mss << " Flow ID " << str()
+         << endl;
     /*
     if (_log_me) {
         cout << "Flow " << LOGSINK << "scheduled for RTX\n";
@@ -679,8 +670,8 @@ void NdpTunnelSrc::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
         simtime_picosec too_early = _rtx_timeout - now;
         if (now > _rtx_timeout) {
             // this shouldn't happen
-            cout << "late_rtx_timeout: " << _rtx_timeout << " now: " << now
-                 << " now+rto: " << now + _rto << " rto: " << _rto << endl;
+            cout << "late_rtx_timeout: " << _rtx_timeout << " now: " << now << " now+rto: " << now + _rto
+                 << " rto: " << _rto << endl;
             too_early = 0;
         }
         eventlist().sourceIsPendingRel(*this, too_early);
@@ -708,8 +699,7 @@ void NdpTunnelSrc::doNextEvent() {
 ////////////////////////////////////////////////////////////////
 
 /* Only use this constructor when there is only one for to this receiver */
-NdpTunnelSink::NdpTunnelSink(EventList &event, linkspeed_bps linkspeed,
-                             double pull_rate_modifier)
+NdpTunnelSink::NdpTunnelSink(EventList &event, linkspeed_bps linkspeed, double pull_rate_modifier)
         : DataReceiver("ndp_sink"), _cumulative_ack(0), _total_received(0) {
     _src = 0;
     _pacer = new NdpTunnelPullPacer(event, linkspeed, pull_rate_modifier);
@@ -867,8 +857,7 @@ void NdpTunnelSink::receivePacket(Packet &pkt) {
         // once succesfully rexmitted. p->free();
 
         // are there any additional received packets we can now ack?
-        while (!_received.empty() &&
-               (_received.front()->seqno() == _cumulative_ack + 1)) {
+        while (!_received.empty() && (_received.front()->seqno() == _cumulative_ack + 1)) {
             NdpTunnelPacket *f = _received.front();
 
             // cout << "Out of order delivery new PKT " << seqno << " ACK " <<
@@ -913,8 +902,7 @@ void NdpTunnelSink::receivePacket(Packet &pkt) {
     }
 }
 
-void NdpTunnelSink::send_ack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno,
-                             NdpTunnelPacket::seq_t pacer_no) {
+void NdpTunnelSink::send_ack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno, NdpTunnelPacket::seq_t pacer_no) {
     NdpAck *ack = NULL;
     _pull_no++;
 
@@ -923,8 +911,7 @@ void NdpTunnelSink::send_ack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno,
     case SCATTER_RANDOM:
     case PULL_BASED:
         assert(_paths.size() > 0);
-        ack = NdpAck::newpkt(_src->_flow, *(_paths.at(_crt_path)), 0, ackno,
-                             _cumulative_ack, _pull_no, 0);
+        ack = NdpAck::newpkt(_src->_flow, *(_paths.at(_crt_path)), 0, ackno, _cumulative_ack, _pull_no, 0);
         if (_route_strategy == SCATTER_RANDOM) {
             _crt_path = random() % _paths.size();
         } else {
@@ -936,8 +923,7 @@ void NdpTunnelSink::send_ack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno,
         }
         break;
     case SINGLE_PATH:
-        ack = NdpAck::newpkt(_src->_flow, *_route, 0, ackno, _cumulative_ack,
-                             _pull_no, 0);
+        ack = NdpAck::newpkt(_src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no, 0);
         break;
     case NOT_SET:
         abort();
@@ -949,8 +935,7 @@ void NdpTunnelSink::send_ack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno,
     _pacer->sendPacket(ack, pacer_no, this);
 }
 
-void NdpTunnelSink::send_nack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno,
-                              NdpTunnelPacket::seq_t pacer_no) {
+void NdpTunnelSink::send_nack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno, NdpTunnelPacket::seq_t pacer_no) {
     NdpNack *nack = NULL;
     _pull_no++;
     switch (_route_strategy) {
@@ -958,8 +943,7 @@ void NdpTunnelSink::send_nack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno,
     case SCATTER_RANDOM:
     case PULL_BASED:
         assert(_paths.size() > 0);
-        nack = NdpNack::newpkt(_src->_flow, *(_paths.at(_crt_path)), 0, ackno,
-                               _cumulative_ack, _pull_no, 0);
+        nack = NdpNack::newpkt(_src->_flow, *(_paths.at(_crt_path)), 0, ackno, _cumulative_ack, _pull_no, 0);
         if (_route_strategy == SCATTER_RANDOM) {
             _crt_path = random() % _paths.size();
         } else {
@@ -971,8 +955,7 @@ void NdpTunnelSink::send_nack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno,
         }
         break;
     case SINGLE_PATH:
-        nack = NdpNack::newpkt(_src->_flow, *_route, 0, ackno, _cumulative_ack,
-                               _pull_no, 0);
+        nack = NdpNack::newpkt(_src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no, 0);
         break;
     case NOT_SET:
         abort();
@@ -998,14 +981,10 @@ int NdpTunnelPullPacer::_pull_spacing_cdf_count = 0;
 /* Every NdpTunnelSink needs an NdpTunnelPullPacer to pace out it's PULL
    packets. Multiple incoming flows at the same receiving node much share a
    single pacer */
-NdpTunnelPullPacer::NdpTunnelPullPacer(EventList &event,
-                                       linkspeed_bps linkspeed,
-                                       double pull_rate_modifier)
+NdpTunnelPullPacer::NdpTunnelPullPacer(EventList &event, linkspeed_bps linkspeed, double pull_rate_modifier)
         : EventSource(event, "ndp_pacer"), _last_pull(0) {
-    _packet_drain_time =
-            (simtime_picosec)((Packet::data_packet_size() + ACKSIZE) *
-                              (pow(10.0, 12.0) * 8) / linkspeed) /
-            pull_rate_modifier;
+    _packet_drain_time = (simtime_picosec)((Packet::data_packet_size() + ACKSIZE) * (pow(10.0, 12.0) * 8) / linkspeed) /
+                         pull_rate_modifier;
     cout << "Packet drain time " << timeAsUs(_packet_drain_time) << endl;
     _log_me = false;
     _pacer_no = 0;
@@ -1022,9 +1001,8 @@ NdpTunnelPullPacer::NdpTunnelPullPacer(EventList &event, char *filename)
             cerr << "Parse error, failed to read CDF count\n";
             exit(1);
         }
-        cout << "Generating pull spacing from CDF; reading "
-             << _pull_spacing_cdf_count << " entries from CDF file " << filename
-             << endl;
+        cout << "Generating pull spacing from CDF; reading " << _pull_spacing_cdf_count << " entries from CDF file "
+             << filename << endl;
         _pull_spacing_cdf = new double[_pull_spacing_cdf_count];
 
         for (int i = 0; i < _pull_spacing_cdf_count; i++) {
@@ -1063,9 +1041,7 @@ void NdpTunnelPullPacer::set_pacerno(Packet *pkt, NdpPull::seq_t pacer_no) {
     }
 }
 
-void NdpTunnelPullPacer::sendPacket(Packet *ack,
-                                    NdpTunnelPacket::seq_t rcvd_pacer_no,
-                                    NdpTunnelSink *receiver) {
+void NdpTunnelPullPacer::sendPacket(Packet *ack, NdpTunnelPacket::seq_t rcvd_pacer_no, NdpTunnelSink *receiver) {
     /*
       if (_log_me) {
       cout << "pacerno diff: " << _pacer_no - rcvd_pacer_no << endl;
@@ -1109,11 +1085,9 @@ void NdpTunnelPullPacer::sendPacket(Packet *ack,
         _excess_count++;
         cout << "Mean excess: " << _total_excess / _excess_count << endl;
         if (ack->type() == NDPACK) {
-            cout << "Ack " << (((NdpAck *)ack)->ackno() - 1) / 9000
-                 << " (queue)\n";
+            cout << "Ack " << (((NdpAck *)ack)->ackno() - 1) / 9000 << " (queue)\n";
         } else if (ack->type() == NDPNACK) {
-            cout << "Nack " << (((NdpNack *)ack)->ackno() - 1) / 9000
-                 << " (queue)\n";
+            cout << "Nack " << (((NdpNack *)ack)->ackno() - 1) / 9000 << " (queue)\n";
         } else {
             cout << "WTF\n";
         }
@@ -1158,9 +1132,7 @@ void NdpTunnelPullPacer::sendPacket(Packet *ack,
 // generate any more data packets.  This will move the nacks up the
 // queue too, causing any retransmitted packets from the tail of the
 // file to be received earlier
-void NdpTunnelPullPacer::release_pulls(uint32_t flow_id) {
-    _pull_queue.flush_flow(flow_id);
-}
+void NdpTunnelPullPacer::release_pulls(uint32_t flow_id) { _pull_queue.flush_flow(flow_id); }
 
 void NdpTunnelPullPacer::doNextEvent() {
     if (_pull_queue.empty()) {
@@ -1213,15 +1185,12 @@ void NdpTunnelPullPacer::doNextEvent() {
 //  NDP TUNNEL RETRANSMISSION TIMER
 ////////////////////////////////////////////////////////////////
 
-NdpTunnelRtxTimerScanner::NdpTunnelRtxTimerScanner(simtime_picosec scanPeriod,
-                                                   EventList &eventlist)
+NdpTunnelRtxTimerScanner::NdpTunnelRtxTimerScanner(simtime_picosec scanPeriod, EventList &eventlist)
         : EventSource(eventlist, "RtxScanner"), _scanPeriod(scanPeriod) {
     eventlist.sourceIsPendingRel(*this, 0);
 }
 
-void NdpTunnelRtxTimerScanner::registerNdp(NdpTunnelSrc &tcpsrc) {
-    _tcps.push_back(&tcpsrc);
-}
+void NdpTunnelRtxTimerScanner::registerNdp(NdpTunnelSrc &tcpsrc) { _tcps.push_back(&tcpsrc); }
 
 void NdpTunnelRtxTimerScanner::doNextEvent() {
     simtime_picosec now = eventlist().now();

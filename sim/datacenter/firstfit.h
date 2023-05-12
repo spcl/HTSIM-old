@@ -27,8 +27,7 @@ struct flow_entry {
 
 class FirstFit : public EventSource {
   public:
-    FirstFit(simtime_picosec scanPeriod, EventList &eventlist,
-             vector<const Route *> ***np = NULL);
+    FirstFit(simtime_picosec scanPeriod, EventList &eventlist, vector<const Route *> ***np = NULL);
     void doNextEvent();
 
     void run();

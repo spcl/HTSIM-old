@@ -2,8 +2,7 @@
 #include "fairpullqueue.h"
 #include "ndppacket.h"
 
-template <class PullPkt>
-BasePullQueue<PullPkt>::BasePullQueue() : _pull_count(0), _preferred_flow(-1) {}
+template <class PullPkt> BasePullQueue<PullPkt>::BasePullQueue() : _pull_count(0), _preferred_flow(-1) {}
 
 // template<class PullPkt>
 // BasePullQueue<PullPkt>::~BasePullQueue() {
@@ -11,17 +10,13 @@ BasePullQueue<PullPkt>::BasePullQueue() : _pull_count(0), _preferred_flow(-1) {}
 
 template <class PullPkt> FifoPullQueue<PullPkt>::FifoPullQueue() {}
 
-template <class PullPkt>
-void FifoPullQueue<PullPkt>::enqueue(PullPkt &pkt, int /*priority*/) {
-    if (this->_preferred_flow >= 0 &&
-        pkt.flow_id() == (packetid_t)this->_preferred_flow) {
+template <class PullPkt> void FifoPullQueue<PullPkt>::enqueue(PullPkt &pkt, int /*priority*/) {
+    if (this->_preferred_flow >= 0 && pkt.flow_id() == (packetid_t)this->_preferred_flow) {
         // cout << "Got a pkt from the preffered flow " <<
         // pull_pkt->flow_id()<<endl;
         typename list<PullPkt *>::iterator it = _pull_queue.begin();
 
-        while (it != _pull_queue.end() &&
-               ((PullPkt *)(*it))->flow_id() ==
-                       (packetid_t)this->_preferred_flow)
+        while (it != _pull_queue.end() && ((PullPkt *)(*it))->flow_id() == (packetid_t)this->_preferred_flow)
             it++;
 
         _pull_queue.insert(it, &pkt);
@@ -42,13 +37,11 @@ template <class PullPkt> PullPkt *FifoPullQueue<PullPkt>::dequeue() {
     PullPkt *packet = _pull_queue.back();
     _pull_queue.pop_back();
     this->_pull_count--;
-    assert(this->_pull_count >= 0 &&
-           (size_t)this->_pull_count == _pull_queue.size());
+    assert(this->_pull_count >= 0 && (size_t)this->_pull_count == _pull_queue.size());
     return packet;
 }
 
-template <class PullPkt>
-void FifoPullQueue<PullPkt>::flush_flow(flowid_t flow_id, int /*priority*/) {
+template <class PullPkt> void FifoPullQueue<PullPkt>::flush_flow(flowid_t flow_id, int /*priority*/) {
     typename list<PullPkt *>::iterator it = _pull_queue.begin();
     while (it != _pull_queue.end()) {
         PullPkt *pull = *it;
@@ -63,12 +56,9 @@ void FifoPullQueue<PullPkt>::flush_flow(flowid_t flow_id, int /*priority*/) {
     assert((size_t)this->_pull_count == _pull_queue.size());
 }
 
-template <class PullPkt> FairPullQueue<PullPkt>::FairPullQueue() {
-    _current_queue = _queue_map.begin();
-}
+template <class PullPkt> FairPullQueue<PullPkt>::FairPullQueue() { _current_queue = _queue_map.begin(); }
 
-template <class PullPkt>
-void FairPullQueue<PullPkt>::enqueue(PullPkt &pkt, int /*priority*/) {
+template <class PullPkt> void FairPullQueue<PullPkt>::enqueue(PullPkt &pkt, int /*priority*/) {
     CircularBuffer<PullPkt *> *pull_queue;
     if (queue_exists(pkt)) {
         pull_queue = find_queue(pkt);
@@ -100,8 +90,7 @@ template <class PullPkt> PullPkt *FairPullQueue<PullPkt>::dequeue() {
     }
 }
 
-template <class PullPkt>
-void FairPullQueue<PullPkt>::flush_flow(flowid_t flow_id, int /*priority*/) {
+template <class PullPkt> void FairPullQueue<PullPkt>::flush_flow(flowid_t flow_id, int /*priority*/) {
     typename map<flowid_t, CircularBuffer<PullPkt *> *>::iterator i;
     i = _queue_map.find(flow_id);
     if (i == _queue_map.end())
@@ -117,8 +106,7 @@ void FairPullQueue<PullPkt>::flush_flow(flowid_t flow_id, int /*priority*/) {
     _queue_map.erase(i);
 }
 
-template <class PullPkt>
-bool FairPullQueue<PullPkt>::queue_exists(const PullPkt &pkt) {
+template <class PullPkt> bool FairPullQueue<PullPkt>::queue_exists(const PullPkt &pkt) {
     typename map<flowid_t, CircularBuffer<PullPkt *> *>::iterator i;
     i = _queue_map.find(pkt.flow_id());
     if (i == _queue_map.end())
@@ -126,9 +114,7 @@ bool FairPullQueue<PullPkt>::queue_exists(const PullPkt &pkt) {
     return true;
 }
 
-template <class PullPkt>
-CircularBuffer<PullPkt *> *
-FairPullQueue<PullPkt>::find_queue(const PullPkt &pkt) {
+template <class PullPkt> CircularBuffer<PullPkt *> *FairPullQueue<PullPkt>::find_queue(const PullPkt &pkt) {
     typename map<flowid_t, CircularBuffer<PullPkt *> *>::iterator i;
     i = _queue_map.find(pkt.flow_id());
     if (i == _queue_map.end())
@@ -136,12 +122,9 @@ FairPullQueue<PullPkt>::find_queue(const PullPkt &pkt) {
     return i->second;
 }
 
-template <class PullPkt>
-CircularBuffer<PullPkt *> *
-FairPullQueue<PullPkt>::create_queue(const PullPkt &pkt) {
+template <class PullPkt> CircularBuffer<PullPkt *> *FairPullQueue<PullPkt>::create_queue(const PullPkt &pkt) {
     CircularBuffer<PullPkt *> *new_queue = new CircularBuffer<PullPkt *>;
-    _queue_map.insert(pair<flowid_t, CircularBuffer<PullPkt *> *>(pkt.flow_id(),
-                                                                  new_queue));
+    _queue_map.insert(pair<flowid_t, CircularBuffer<PullPkt *> *>(pkt.flow_id(), new_queue));
     return new_queue;
 }
 

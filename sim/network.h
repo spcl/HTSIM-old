@@ -31,8 +31,7 @@ class PacketFlow : public Logged {
     PacketFlow(TrafficLogger *logger);
     virtual ~PacketFlow(){};
     void set_logger(TrafficLogger *logger);
-    void logTraffic(Packet &pkt, Logged &location,
-                    TrafficLogger::TrafficEvent ev);
+    void logTraffic(Packet &pkt, Logged &location, TrafficLogger::TrafficEvent ev);
     void set_flowid(flowid_t id);
     inline flowid_t flow_id() const { return _flow_id; }
     bool log_me() const { return _logger != NULL; }
@@ -187,8 +186,7 @@ class Packet {
         if ((_direction == NONE) || (_direction == UP && d == DOWN))
             _direction = d;
         else {
-            cout << "Current direction is " << _direction
-                 << " trying to change it to " << d << endl;
+            cout << "Current direction is " << _direction << " trying to change it to " << d << endl;
             abort();
         }
     }
@@ -202,9 +200,7 @@ class Packet {
     inline uint32_t flags() const { return _flags; }
     inline void set_flags(uint32_t f) { _flags = f; }
 
-    uint32_t nexthop() const {
-        return _nexthop;
-    } // only intended to be used for debugging
+    uint32_t nexthop() const { return _nexthop; } // only intended to be used for debugging
     virtual void set_route(const Route &route);
 
     void set_ingress_queue(LosslessInputQueue *t) {
@@ -229,12 +225,10 @@ class Packet {
     bool is_ack = false;
 
     uint32_t from, to, tag;
-    const Route* get_route() {return _route;};
-
+    const Route *get_route() { return _route; };
 
   protected:
-    virtual void set_route(PacketFlow &flow, const Route &route, int pkt_size,
-                           packetid_t id);
+    virtual void set_route(PacketFlow &flow, const Route &route, int pkt_size, packetid_t id);
     void set_attrs(PacketFlow &flow, int pkt_size, packetid_t id);
 
     static int _data_packet_size;   // default size of a TCP or NDP data packet,
@@ -246,12 +240,12 @@ class Packet {
     uint16_t _size, _oldsize;
 
     bool _is_header;
-    bool _bounced; // packet has hit a full queue, and is being bounced back to
-                   // the sender
+    bool _bounced;   // packet has hit a full queue, and is being bounced back to
+                     // the sender
     uint32_t _flags; // used for ECN & friends
 
-    uint32_t _dst; // used for packets that do not have a route in switched
-                   // networks.
+    uint32_t _dst;               // used for packets that do not have a route in switched
+                                 // networks.
     uint32_t _pathid;            // used for ECMP hashing.
     packet_direction _direction; // used to avoid loop in FatTrees.
 
@@ -281,9 +275,7 @@ class PacketSink {
     PacketSink() { _remoteEndpoint = NULL; }
     virtual ~PacketSink() {}
     virtual void receivePacket(Packet &pkt) = 0;
-    virtual void receivePacket(Packet &pkt, VirtualQueue *previousHop) {
-        receivePacket(pkt);
-    };
+    virtual void receivePacket(Packet &pkt, VirtualQueue *previousHop) { receivePacket(pkt); };
 
     virtual void setRemoteEndpoint(PacketSink *q) { _remoteEndpoint = q; };
     virtual void setRemoteEndpoint2(PacketSink *q) {

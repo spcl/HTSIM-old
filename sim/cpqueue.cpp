@@ -5,8 +5,7 @@
 #include <iostream>
 #include <sstream>
 
-CutPayloadQueue::CutPayloadQueue(linkspeed_bps bitrate, mem_b maxsize,
-                                 EventList &eventlist, QueueLogger *logger)
+CutPayloadQueue::CutPayloadQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger)
         : Queue(bitrate, maxsize, eventlist, logger) {
     _num_headers = 0;
     _num_packets = 0;

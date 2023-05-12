@@ -7,10 +7,8 @@
 //  CBR SOURCE
 ////////////////////////////////////////////////////////////////
 
-CbrSrc::CbrSrc(EventList &eventlist, linkspeed_bps rate, simtime_picosec active,
-               simtime_picosec idle)
-        : EventSource(eventlist, "cbr"), _bitrate(rate), _crt_id(1), _mss(1500),
-          _flow(NULL) {
+CbrSrc::CbrSrc(EventList &eventlist, linkspeed_bps rate, simtime_picosec active, simtime_picosec idle)
+        : EventSource(eventlist, "cbr"), _bitrate(rate), _crt_id(1), _mss(1500), _flow(NULL) {
     _period = (simtime_picosec)((pow(10.0, 12.0) * 8 * _mss) / _bitrate);
     _sink = NULL;
     _route = NULL;
@@ -21,16 +19,14 @@ CbrSrc::CbrSrc(EventList &eventlist, linkspeed_bps rate, simtime_picosec active,
     _is_active = false;
 }
 
-void CbrSrc::connect(route_t &routeout, CbrSink &sink,
-                     simtime_picosec starttime) {
+void CbrSrc::connect(route_t &routeout, CbrSink &sink, simtime_picosec starttime) {
     _route = &routeout;
     _sink = &sink;
     _flow.set_id(get_id()); // identify the packet flow with the CBR source that
                             // generated it
     _is_active = true;
     _start_active = starttime;
-    _end_active =
-            _start_active + (simtime_picosec)(2.0 * drand() * _active_time);
+    _end_active = _start_active + (simtime_picosec)(2.0 * drand() * _active_time);
     eventlist().sourceIsPending(*this, starttime);
 }
 
@@ -43,15 +39,13 @@ void CbrSrc::doNextEvent() {
     if (_is_active) {
         if (eventlist().now() >= _end_active) {
             _is_active = false;
-            eventlist().sourceIsPendingRel(
-                    *this, (simtime_picosec)(2 * drand() * _idle_time));
+            eventlist().sourceIsPendingRel(*this, (simtime_picosec)(2 * drand() * _idle_time));
         } else
             send_packet();
     } else {
         _is_active = true;
         _start_active = eventlist().now();
-        _end_active =
-                _start_active + (simtime_picosec)(2.0 * drand() * _active_time);
+        _end_active = _start_active + (simtime_picosec)(2.0 * drand() * _active_time);
         send_packet();
     }
 }

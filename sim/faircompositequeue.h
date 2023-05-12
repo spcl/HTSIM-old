@@ -23,8 +23,7 @@
 
 class FairCompositeQueue : public Queue {
   public:
-    FairCompositeQueue(linkspeed_bps bitrate, mem_b maxsize, mem_b maxsize2,
-                       EventList &eventlist, QueueLogger *logger);
+    FairCompositeQueue(linkspeed_bps bitrate, mem_b maxsize, mem_b maxsize2, EventList &eventlist, QueueLogger *logger);
 
     virtual void receivePacket(Packet &pkt);
     virtual void doNextEvent();

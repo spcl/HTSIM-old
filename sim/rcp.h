@@ -19,8 +19,7 @@ class RcpSrc : public PacketSink, public EventSource {
 
   public:
     RcpSrc(RcpLogger *logger, TrafficLogger *pktlogger, EventList &eventlist);
-    void connect(route_t &routeout, route_t &routeback, RcpSink &sink,
-                 simtime_picosec startTime);
+    void connect(route_t &routeout, route_t &routeback, RcpSink &sink, simtime_picosec startTime);
     void startflow();
     void doNextEvent() { startflow(); }
     void receivePacket(Packet &pkt);
@@ -71,14 +70,12 @@ class RcpSink : public PacketSink, public Logged {
     // Mechanism
     void send_ack();
     RcpAck::seq_t _cumulative_ack; // the packet we have cumulatively acked
-    list<RcpAck::seq_t>
-            _received; // list of packets above a hole, that we've received
+    list<RcpAck::seq_t> _received; // list of packets above a hole, that we've received
 };
 
 class RcpRtxTimerScanner : public EventSource {
   public:
-    RcpRtxTimerScanner::RcpRtxTimerScanner(simtime_picosec scanPeriod,
-                                           EventList &eventlist);
+    RcpRtxTimerScanner::RcpRtxTimerScanner(simtime_picosec scanPeriod, EventList &eventlist);
     void doNextEvent();
     void registerRcp(RcpSrc &rcpsrc);
 

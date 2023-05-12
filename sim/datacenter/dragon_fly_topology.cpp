@@ -21,9 +21,8 @@ string itoa(uint64_t n);
 
 // extern uint32_t N;
 
-DragonFlyTopology::DragonFlyTopology(uint32_t p, uint32_t a, uint32_t h,
-                                     mem_b queuesize, Logfile *lg,
-                                     EventList *ev, queue_type q) {
+DragonFlyTopology::DragonFlyTopology(uint32_t p, uint32_t a, uint32_t h, mem_b queuesize, Logfile *lg, EventList *ev,
+                                     queue_type q) {
     _queuesize = queuesize;
     logfile = lg;
     _eventlist = ev;
@@ -35,17 +34,15 @@ DragonFlyTopology::DragonFlyTopology(uint32_t p, uint32_t a, uint32_t h,
 
     _no_of_nodes = _a * _p * (_a * _h + 1);
 
-    cout << "DragonFly topology with " << _p << " hosts per router, " << _a
-         << " routers per group and " << (_a * _h + 1)
-         << " groups, total nodes " << _no_of_nodes << endl;
+    cout << "DragonFly topology with " << _p << " hosts per router, " << _a << " routers per group and "
+         << (_a * _h + 1) << " groups, total nodes " << _no_of_nodes << endl;
     cout << "Queue type " << qt << endl;
 
     set_params();
     init_network();
 }
 
-DragonFlyTopology::DragonFlyTopology(uint32_t no_of_nodes, mem_b queuesize,
-                                     Logfile *lg, EventList *ev, queue_type q) {
+DragonFlyTopology::DragonFlyTopology(uint32_t no_of_nodes, mem_b queuesize, Logfile *lg, EventList *ev, queue_type q) {
     _queuesize = queuesize;
     logfile = lg;
     _eventlist = ev;
@@ -70,8 +67,7 @@ void DragonFlyTopology::set_params(uint32_t no_of_nodes) {
     }
 
     if (_no_of_nodes > no_of_nodes) {
-        cerr << "Topology Error: can't have a DragonFly with " << no_of_nodes
-             << " nodes\n";
+        cerr << "Topology Error: can't have a DragonFly with " << no_of_nodes << " nodes\n";
         exit(1);
     }
 
@@ -83,9 +79,8 @@ void DragonFlyTopology::set_params() {
     _no_of_groups = _a * _h + 1;
     _no_of_switches = _no_of_groups * _a;
 
-    cout << "DragonFly topology with " << _p << " hosts per router, " << _a
-         << " routers per group and " << (_a * _h + 1)
-         << " groups, total nodes " << _no_of_nodes << endl;
+    cout << "DragonFly topology with " << _p << " hosts per router, " << _a << " routers per group and "
+         << (_a * _h + 1) << " groups, total nodes " << _no_of_nodes << endl;
     cout << "Queue type " << qt << endl;
 
     switches.resize(_no_of_switches, NULL);
@@ -96,57 +91,43 @@ void DragonFlyTopology::set_params() {
     pipes_switch_host.resize(_no_of_switches, vector<Pipe *>(_no_of_nodes));
     queues_switch_host.resize(_no_of_switches, vector<Queue *>(_no_of_nodes));
 
-    pipes_switch_switch.resize(_no_of_switches,
-                               vector<Pipe *>(_no_of_switches));
-    queues_switch_switch.resize(_no_of_switches,
-                                vector<Queue *>(_no_of_switches));
+    pipes_switch_switch.resize(_no_of_switches, vector<Pipe *>(_no_of_switches));
+    queues_switch_switch.resize(_no_of_switches, vector<Queue *>(_no_of_switches));
 }
 
 Queue *DragonFlyTopology::alloc_src_queue(QueueLogger *queueLogger) {
-    return new FairPriorityQueue(speedFromMbps((uint64_t)HOST_NIC),
-                                 memFromPkt(FEEDER_BUFFER), *_eventlist,
+    return new FairPriorityQueue(speedFromMbps((uint64_t)HOST_NIC), memFromPkt(FEEDER_BUFFER), *_eventlist,
                                  queueLogger);
     // return new PriorityQueue(speedFromMbps((uint64_t)HOST_NIC),
     // memFromPkt(FEEDER_BUFFER), *_eventlist, queueLogger);
 }
 
-Queue *DragonFlyTopology::alloc_queue(QueueLogger *queueLogger, mem_b queuesize,
-                                      bool tor = false) {
+Queue *DragonFlyTopology::alloc_queue(QueueLogger *queueLogger, mem_b queuesize, bool tor = false) {
     return alloc_queue(queueLogger, HOST_NIC, queuesize, tor);
 }
 
-Queue *DragonFlyTopology::alloc_queue(QueueLogger *queueLogger, uint64_t speed,
-                                      mem_b queuesize, bool tor) {
+Queue *DragonFlyTopology::alloc_queue(QueueLogger *queueLogger, uint64_t speed, mem_b queuesize, bool tor) {
     if (qt == RANDOM)
-        return new RandomQueue(speedFromMbps(speed), queuesize, *_eventlist,
-                               queueLogger, memFromPkt(RANDOM_BUFFER));
+        return new RandomQueue(speedFromMbps(speed), queuesize, *_eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
     else if (qt == COMPOSITE)
-        return new CompositeQueue(speedFromMbps(speed), queuesize, *_eventlist,
-                                  queueLogger);
+        return new CompositeQueue(speedFromMbps(speed), queuesize, *_eventlist, queueLogger);
     else if (qt == CTRL_PRIO)
-        return new CtrlPrioQueue(speedFromMbps(speed), queuesize, *_eventlist,
-                                 queueLogger);
+        return new CtrlPrioQueue(speedFromMbps(speed), queuesize, *_eventlist, queueLogger);
     else if (qt == ECN)
-        return new ECNQueue(speedFromMbps(speed), memFromPkt(queuesize),
-                            *_eventlist, queueLogger, memFromPkt(15));
+        return new ECNQueue(speedFromMbps(speed), memFromPkt(queuesize), *_eventlist, queueLogger, memFromPkt(15));
     else if (qt == LOSSLESS)
-        return new LosslessQueue(speedFromMbps(speed), memFromPkt(50),
-                                 *_eventlist, queueLogger, NULL);
+        return new LosslessQueue(speedFromMbps(speed), memFromPkt(50), *_eventlist, queueLogger, NULL);
     else if (qt == LOSSLESS_INPUT)
-        return new LosslessOutputQueue(speedFromMbps(speed), memFromPkt(200),
-                                       *_eventlist, queueLogger);
+        return new LosslessOutputQueue(speedFromMbps(speed), memFromPkt(200), *_eventlist, queueLogger);
     else if (qt == LOSSLESS_INPUT_ECN)
-        return new LosslessOutputQueue(speedFromMbps(speed), memFromPkt(10000),
-                                       *_eventlist, queueLogger, 1,
+        return new LosslessOutputQueue(speedFromMbps(speed), memFromPkt(10000), *_eventlist, queueLogger, 1,
                                        memFromPkt(16));
     else if (qt == COMPOSITE_ECN) {
         if (tor)
-            return new CompositeQueue(speedFromMbps(speed), queuesize,
-                                      *_eventlist, queueLogger);
+            return new CompositeQueue(speedFromMbps(speed), queuesize, *_eventlist, queueLogger);
         else
-            return new ECNQueue(speedFromMbps(speed),
-                                memFromPkt(2 * SWITCH_BUFFER), *_eventlist,
-                                queueLogger, memFromPkt(15));
+            return new ECNQueue(speedFromMbps(speed), memFromPkt(2 * SWITCH_BUFFER), *_eventlist, queueLogger,
+                                memFromPkt(15));
     }
     assert(0);
 }
@@ -179,43 +160,35 @@ void DragonFlyTopology::init_network() {
         for (uint32_t l = 0; l < _p; l++) {
             uint32_t k = j * _p + l;
             // Downlink
-            queueLogger = new QueueLoggerSampling(timeFromUs((uint32_t)10),
-                                                  *_eventlist);
+            queueLogger = new QueueLoggerSampling(timeFromUs((uint32_t)10), *_eventlist);
             // queueLogger = NULL;
             logfile->addLogger(*queueLogger);
 
-            queues_switch_host[j][k] =
-                    alloc_queue(queueLogger, _queuesize, true);
-            queues_switch_host[j][k]->setName("SW" + ntoa(j) + "->DST" +
-                                              ntoa(k));
+            queues_switch_host[j][k] = alloc_queue(queueLogger, _queuesize, true);
+            queues_switch_host[j][k]->setName("SW" + ntoa(j) + "->DST" + ntoa(k));
             logfile->writeName(*(queues_switch_host[j][k]));
 
             pipes_switch_host[j][k] = new Pipe(timeFromUs(RTT), *_eventlist);
-            pipes_switch_host[j][k]->setName("Pipe-SW" + ntoa(j) + "->DST" +
-                                             ntoa(k));
+            pipes_switch_host[j][k]->setName("Pipe-SW" + ntoa(j) + "->DST" + ntoa(k));
             logfile->writeName(*(pipes_switch_host[j][k]));
 
             // Uplink
-            queueLogger =
-                    new QueueLoggerSampling(timeFromMs(1000), *_eventlist);
+            queueLogger = new QueueLoggerSampling(timeFromMs(1000), *_eventlist);
             logfile->addLogger(*queueLogger);
             queues_host_switch[k][j] = alloc_src_queue(queueLogger);
-            queues_host_switch[k][j]->setName("SRC" + ntoa(k) + "->SW" +
-                                              ntoa(j));
+            queues_host_switch[k][j]->setName("SRC" + ntoa(k) + "->SW" + ntoa(j));
             logfile->writeName(*(queues_host_switch[k][j]));
 
             if (qt == LOSSLESS) {
                 switches[j]->addPort(queues_switch_host[j][k]);
-                ((LosslessQueue *)queues_switch_host[j][k])
-                        ->setRemoteEndpoint(queues_host_switch[k][j]);
+                ((LosslessQueue *)queues_switch_host[j][k])->setRemoteEndpoint(queues_host_switch[k][j]);
             } else if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN) {
                 // no virtual queue needed at server
                 new LosslessInputQueue(*_eventlist, queues_host_switch[k][j]);
             }
 
             pipes_host_switch[k][j] = new Pipe(timeFromUs(RTT), *_eventlist);
-            pipes_host_switch[k][j]->setName("Pipe-SRC" + ntoa(k) + "->SW" +
-                                             ntoa(j));
+            pipes_host_switch[k][j]->setName("Pipe-SRC" + ntoa(k) + "->SW" + ntoa(j));
             logfile->writeName(*(pipes_host_switch[k][j]));
         }
     }
@@ -228,44 +201,35 @@ void DragonFlyTopology::init_network() {
         // IDs (full mesh within group).
         for (uint32_t k = j + 1; k < (groupid + 1) * _a; k++) {
             // Downlink
-            queueLogger =
-                    new QueueLoggerSampling(timeFromMs(1000), *_eventlist);
+            queueLogger = new QueueLoggerSampling(timeFromMs(1000), *_eventlist);
             logfile->addLogger(*queueLogger);
             queues_switch_switch[k][j] = alloc_queue(queueLogger, _queuesize);
-            queues_switch_switch[k][j]->setName("SW" + ntoa(k) + "-I->SW" +
-                                                ntoa(j));
+            queues_switch_switch[k][j]->setName("SW" + ntoa(k) + "-I->SW" + ntoa(j));
             logfile->writeName(*(queues_switch_switch[k][j]));
 
             pipes_switch_switch[k][j] = new Pipe(timeFromUs(RTT), *_eventlist);
-            pipes_switch_switch[k][j]->setName("Pipe-SW" + ntoa(k) + "-I->SW" +
-                                               ntoa(j));
+            pipes_switch_switch[k][j]->setName("Pipe-SW" + ntoa(k) + "-I->SW" + ntoa(j));
             logfile->writeName(*(pipes_switch_switch[k][j]));
 
             // Uplink
-            queueLogger =
-                    new QueueLoggerSampling(timeFromMs(1000), *_eventlist);
+            queueLogger = new QueueLoggerSampling(timeFromMs(1000), *_eventlist);
             logfile->addLogger(*queueLogger);
-            queues_switch_switch[j][k] =
-                    alloc_queue(queueLogger, _queuesize, true);
-            queues_switch_switch[j][k]->setName("SW" + ntoa(j) + "-I->SW" +
-                                                ntoa(k));
+            queues_switch_switch[j][k] = alloc_queue(queueLogger, _queuesize, true);
+            queues_switch_switch[j][k]->setName("SW" + ntoa(j) + "-I->SW" + ntoa(k));
             logfile->writeName(*(queues_switch_switch[j][k]));
 
             if (qt == LOSSLESS) {
                 switches[j]->addPort(queues_switch_switch[j][k]);
-                ((LosslessQueue *)queues_switch_switch[j][k])
-                        ->setRemoteEndpoint(queues_switch_switch[k][j]);
+                ((LosslessQueue *)queues_switch_switch[j][k])->setRemoteEndpoint(queues_switch_switch[k][j]);
                 switches[k]->addPort(queues_switch_switch[k][j]);
-                ((LosslessQueue *)queues_switch_switch[k][j])
-                        ->setRemoteEndpoint(queues_switch_switch[j][k]);
+                ((LosslessQueue *)queues_switch_switch[k][j])->setRemoteEndpoint(queues_switch_switch[j][k]);
             } else if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN) {
                 new LosslessInputQueue(*_eventlist, queues_switch_switch[j][k]);
                 new LosslessInputQueue(*_eventlist, queues_switch_switch[k][j]);
             }
 
             pipes_switch_switch[j][k] = new Pipe(timeFromUs(RTT), *_eventlist);
-            pipes_switch_switch[j][k]->setName("Pipe-SW" + ntoa(j) + "-I->SW" +
-                                               ntoa(k));
+            pipes_switch_switch[j][k]->setName("Pipe-SW" + ntoa(j) + "-I->SW" + ntoa(k));
             logfile->writeName(*(pipes_switch_switch[j][k]));
         }
 
@@ -285,44 +249,35 @@ void DragonFlyTopology::init_network() {
             uint32_t k = targetgroupid * _a + groupid / _h;
 
             // Downlink
-            queueLogger =
-                    new QueueLoggerSampling(timeFromMs(1000), *_eventlist);
+            queueLogger = new QueueLoggerSampling(timeFromMs(1000), *_eventlist);
             logfile->addLogger(*queueLogger);
             queues_switch_switch[k][j] = alloc_queue(queueLogger, _queuesize);
-            queues_switch_switch[k][j]->setName("SW" + ntoa(k) + "-G->SW" +
-                                                ntoa(j));
+            queues_switch_switch[k][j]->setName("SW" + ntoa(k) + "-G->SW" + ntoa(j));
             logfile->writeName(*(queues_switch_switch[k][j]));
 
             pipes_switch_switch[k][j] = new Pipe(timeFromUs(RTT), *_eventlist);
-            pipes_switch_switch[k][j]->setName("Pipe-SW" + ntoa(k) + "-G->SW" +
-                                               ntoa(j));
+            pipes_switch_switch[k][j]->setName("Pipe-SW" + ntoa(k) + "-G->SW" + ntoa(j));
             logfile->writeName(*(pipes_switch_switch[k][j]));
 
             // Uplink
-            queueLogger =
-                    new QueueLoggerSampling(timeFromMs(1000), *_eventlist);
+            queueLogger = new QueueLoggerSampling(timeFromMs(1000), *_eventlist);
             logfile->addLogger(*queueLogger);
-            queues_switch_switch[j][k] =
-                    alloc_queue(queueLogger, _queuesize, true);
-            queues_switch_switch[j][k]->setName("SW" + ntoa(j) + "-G->SW" +
-                                                ntoa(k));
+            queues_switch_switch[j][k] = alloc_queue(queueLogger, _queuesize, true);
+            queues_switch_switch[j][k]->setName("SW" + ntoa(j) + "-G->SW" + ntoa(k));
             logfile->writeName(*(queues_switch_switch[j][k]));
 
             if (qt == LOSSLESS) {
                 switches[j]->addPort(queues_switch_switch[j][k]);
-                ((LosslessQueue *)queues_switch_switch[j][k])
-                        ->setRemoteEndpoint(queues_switch_switch[k][j]);
+                ((LosslessQueue *)queues_switch_switch[j][k])->setRemoteEndpoint(queues_switch_switch[k][j]);
                 switches[k]->addPort(queues_switch_switch[k][j]);
-                ((LosslessQueue *)queues_switch_switch[k][j])
-                        ->setRemoteEndpoint(queues_switch_switch[j][k]);
+                ((LosslessQueue *)queues_switch_switch[k][j])->setRemoteEndpoint(queues_switch_switch[j][k]);
             } else if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN) {
                 new LosslessInputQueue(*_eventlist, queues_switch_switch[j][k]);
                 new LosslessInputQueue(*_eventlist, queues_switch_switch[k][j]);
             }
 
             pipes_switch_switch[j][k] = new Pipe(timeFromUs(RTT), *_eventlist);
-            pipes_switch_switch[j][k]->setName("Pipe-SW" + ntoa(j) + "-G->SW" +
-                                               ntoa(k));
+            pipes_switch_switch[j][k]->setName("Pipe-SW" + ntoa(j) + "-G->SW" + ntoa(k));
             logfile->writeName(*(pipes_switch_switch[j][k]));
         }
     }
@@ -334,8 +289,7 @@ void DragonFlyTopology::init_network() {
         }
 }
 
-vector<const Route *> *
-DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
+vector<const Route *> *DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
     vector<const Route *> *paths = new vector<const Route *>();
 
     route_t *routeout, *routeback;
@@ -347,8 +301,7 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
         routeout->push_back(pipes_host_switch[src][HOST_TOR(src)]);
 
         if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-            routeout->push_back(queues_host_switch[src][HOST_TOR(src)]
-                                        ->getRemoteEndpoint());
+            routeout->push_back(queues_host_switch[src][HOST_TOR(src)]->getRemoteEndpoint());
 
         routeout->push_back(queues_switch_host[HOST_TOR(dest)][dest]);
         routeout->push_back(pipes_switch_host[HOST_TOR(dest)][dest]);
@@ -359,8 +312,7 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
         routeback->push_back(pipes_host_switch[dest][HOST_TOR(dest)]);
 
         if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-            routeback->push_back(queues_host_switch[dest][HOST_TOR(dest)]
-                                         ->getRemoteEndpoint());
+            routeback->push_back(queues_host_switch[dest][HOST_TOR(dest)]->getRemoteEndpoint());
 
         routeback->push_back(queues_switch_host[HOST_TOR(src)][src]);
         routeback->push_back(pipes_switch_host[HOST_TOR(src)][src]);
@@ -385,17 +337,13 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
         routeout->push_back(pipes_host_switch[src][HOST_TOR(src)]);
 
         if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-            routeout->push_back(queues_host_switch[src][HOST_TOR(src)]
-                                        ->getRemoteEndpoint());
+            routeout->push_back(queues_host_switch[src][HOST_TOR(src)]->getRemoteEndpoint());
 
-        routeout->push_back(
-                queues_switch_switch[HOST_TOR(src)][HOST_TOR(dest)]);
+        routeout->push_back(queues_switch_switch[HOST_TOR(src)][HOST_TOR(dest)]);
         routeout->push_back(pipes_switch_switch[HOST_TOR(src)][HOST_TOR(dest)]);
 
         if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-            routeout->push_back(
-                    queues_switch_switch[HOST_TOR(src)][HOST_TOR(dest)]
-                            ->getRemoteEndpoint());
+            routeout->push_back(queues_switch_switch[HOST_TOR(src)][HOST_TOR(dest)]->getRemoteEndpoint());
 
         routeout->push_back(queues_switch_host[HOST_TOR(dest)][dest]);
         routeout->push_back(pipes_switch_host[HOST_TOR(dest)][dest]);
@@ -407,18 +355,13 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
         routeback->push_back(pipes_host_switch[dest][HOST_TOR(dest)]);
 
         if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-            routeback->push_back(queues_host_switch[dest][HOST_TOR(dest)]
-                                         ->getRemoteEndpoint());
+            routeback->push_back(queues_host_switch[dest][HOST_TOR(dest)]->getRemoteEndpoint());
 
-        routeback->push_back(
-                queues_switch_switch[HOST_TOR(dest)][HOST_TOR(src)]);
-        routeback->push_back(
-                pipes_switch_switch[HOST_TOR(dest)][HOST_TOR(src)]);
+        routeback->push_back(queues_switch_switch[HOST_TOR(dest)][HOST_TOR(src)]);
+        routeback->push_back(pipes_switch_switch[HOST_TOR(dest)][HOST_TOR(src)]);
 
         if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-            routeback->push_back(
-                    queues_switch_switch[HOST_TOR(dest)][HOST_TOR(src)]
-                            ->getRemoteEndpoint());
+            routeback->push_back(queues_switch_switch[HOST_TOR(dest)][HOST_TOR(src)]->getRemoteEndpoint());
 
         routeback->push_back(queues_switch_host[HOST_TOR(src)][src]);
         routeback->push_back(pipes_switch_host[HOST_TOR(src)][src]);
@@ -446,8 +389,7 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
         // cout << "SRC " << src << " SW " << HOST_TOR(src) << " ";
 
         if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-            routeout->push_back(queues_host_switch[src][HOST_TOR(src)]
-                                        ->getRemoteEndpoint());
+            routeout->push_back(queues_host_switch[src][HOST_TOR(src)]->getRemoteEndpoint());
 
         uint32_t srcswitch, dstswitch;
         // find srcswitch from srcgroup which has a path to dstgroup and
@@ -472,9 +414,7 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
             // cout << "SW " << srcswitch <<        " " ;
 
             if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-                routeout->push_back(
-                        queues_switch_switch[HOST_TOR(src)][srcswitch]
-                                ->getRemoteEndpoint());
+                routeout->push_back(queues_switch_switch[HOST_TOR(src)][srcswitch]->getRemoteEndpoint());
         }
 
         /* path from source group to destination group*/
@@ -485,8 +425,7 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
         // cout << "SW " << dstswitch <<        " ";
 
         if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-            routeout->push_back(queues_host_switch[srcswitch][dstswitch]
-                                        ->getRemoteEndpoint());
+            routeout->push_back(queues_host_switch[srcswitch][dstswitch]->getRemoteEndpoint());
 
         if (dstswitch != HOST_TOR(dest)) {
             /*When dstswitch does not have a direct path to dest, take local
@@ -494,14 +433,11 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
             // cout << "SW " << HOST_TOR(dest) <<        " ";
             assert(queues_switch_switch[dstswitch][HOST_TOR(dest)]);
 
-            routeout->push_back(
-                    queues_switch_switch[dstswitch][HOST_TOR(dest)]);
+            routeout->push_back(queues_switch_switch[dstswitch][HOST_TOR(dest)]);
             routeout->push_back(pipes_switch_switch[dstswitch][HOST_TOR(dest)]);
 
             if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-                routeout->push_back(
-                        queues_switch_switch[dstswitch][HOST_TOR(dest)]
-                                ->getRemoteEndpoint());
+                routeout->push_back(queues_switch_switch[dstswitch][HOST_TOR(dest)]->getRemoteEndpoint());
         }
         // cout << "DEST " << dest <<        " " << endl;
         assert(queues_switch_host[HOST_TOR(dest)][dest]);
@@ -571,8 +507,7 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
             // queues_host_switch[src][HOST_TOR(src)]  << " ";
 
             if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-                routeout->push_back(queues_host_switch[src][HOST_TOR(src)]
-                                            ->getRemoteEndpoint());
+                routeout->push_back(queues_host_switch[src][HOST_TOR(src)]->getRemoteEndpoint());
 
             uint32_t intergroup = p;
 
@@ -600,18 +535,14 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
                  * group, take local path to the appropriate switch*/
 
                 assert(queues_switch_switch[HOST_TOR(src)][srcswitch]);
-                routeout->push_back(
-                        queues_switch_switch[HOST_TOR(src)][srcswitch]);
-                routeout->push_back(
-                        pipes_switch_switch[HOST_TOR(src)][srcswitch]);
+                routeout->push_back(queues_switch_switch[HOST_TOR(src)][srcswitch]);
+                routeout->push_back(pipes_switch_switch[HOST_TOR(src)][srcswitch]);
 
                 // cout << "SW " << srcswitch <<        " " <<
                 // queues_switch_switch[HOST_TOR(src)][srcswitch] << " ";
 
                 if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-                    routeout->push_back(
-                            queues_switch_switch[HOST_TOR(src)][srcswitch]
-                                    ->getRemoteEndpoint());
+                    routeout->push_back(queues_switch_switch[HOST_TOR(src)][srcswitch]->getRemoteEndpoint());
             }
 
             /* path from source group to inter group*/
@@ -622,8 +553,7 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
             // cout << "SW " << interswitch1 <<        " ";
 
             if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-                routeout->push_back(queues_host_switch[srcswitch][interswitch1]
-                                            ->getRemoteEndpoint());
+                routeout->push_back(queues_host_switch[srcswitch][interswitch1]->getRemoteEndpoint());
 
             // route from inter group to destination group.
             if (intergroup < dstgroup) {
@@ -640,15 +570,11 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
                 // cout << "SW " << interswitch2 <<      " ";
                 assert(queues_switch_switch[interswitch1][interswitch2]);
 
-                routeout->push_back(
-                        queues_switch_switch[interswitch1][interswitch2]);
-                routeout->push_back(
-                        pipes_switch_switch[interswitch1][interswitch2]);
+                routeout->push_back(queues_switch_switch[interswitch1][interswitch2]);
+                routeout->push_back(pipes_switch_switch[interswitch1][interswitch2]);
 
                 if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-                    routeout->push_back(
-                            queues_switch_switch[interswitch1][interswitch2]
-                                    ->getRemoteEndpoint());
+                    routeout->push_back(queues_switch_switch[interswitch1][interswitch2]->getRemoteEndpoint());
             }
 
             /* path from inter group to destgroup*/
@@ -659,8 +585,7 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
             // cout << "SW " << dstswitch <<        " ";
 
             if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-                routeout->push_back(queues_host_switch[interswitch2][dstswitch]
-                                            ->getRemoteEndpoint());
+                routeout->push_back(queues_host_switch[interswitch2][dstswitch]->getRemoteEndpoint());
 
             if (dstswitch != HOST_TOR(dest)) {
                 /*When dstswitch does not have a direct path to dest, take local
@@ -668,15 +593,11 @@ DragonFlyTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
                 // cout << "SW " << HOST_TOR(dest) <<        " ";
                 assert(queues_switch_switch[dstswitch][HOST_TOR(dest)]);
 
-                routeout->push_back(
-                        queues_switch_switch[dstswitch][HOST_TOR(dest)]);
-                routeout->push_back(
-                        pipes_switch_switch[dstswitch][HOST_TOR(dest)]);
+                routeout->push_back(queues_switch_switch[dstswitch][HOST_TOR(dest)]);
+                routeout->push_back(pipes_switch_switch[dstswitch][HOST_TOR(dest)]);
 
                 if (qt == LOSSLESS_INPUT || qt == LOSSLESS_INPUT_ECN)
-                    routeout->push_back(
-                            queues_switch_switch[dstswitch][HOST_TOR(dest)]
-                                    ->getRemoteEndpoint());
+                    routeout->push_back(queues_switch_switch[dstswitch][HOST_TOR(dest)]->getRemoteEndpoint());
             }
 
             // cout << "DEST " << dest <<        " " << endl;
@@ -724,8 +645,7 @@ int64_t DragonFlyTopology::find_destination(Queue *queue) {
     return -1;
 }
 
-void DragonFlyTopology::print_path(std::ofstream &paths, uint32_t src,
-                                   const Route *route) {
+void DragonFlyTopology::print_path(std::ofstream &paths, uint32_t src, const Route *route) {
     paths << "SRC_" << src << " ";
 
     if (route->size() / 2 == 2) {

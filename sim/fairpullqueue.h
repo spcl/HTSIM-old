@@ -19,9 +19,7 @@ template <class PullPkt> class BasePullQueue {
     virtual void enqueue(PullPkt &pkt, int priority = 0) = 0;
     virtual PullPkt *dequeue() = 0;
     virtual void flush_flow(flowid_t flow_id, int priority = 0) = 0;
-    virtual void set_preferred_flow(flowid_t preferred_flow) {
-        _preferred_flow = preferred_flow;
-    }
+    virtual void set_preferred_flow(flowid_t preferred_flow) { _preferred_flow = preferred_flow; }
     inline int32_t pull_count() const { return _pull_count; }
     inline bool empty() const { return _pull_count == 0; }
     int32_t _pull_count;
@@ -39,8 +37,7 @@ template <class PullPkt> class FifoPullQueue : public BasePullQueue<PullPkt> {
     virtual void flush_flow(flowid_t flow_id, int priority = 0);
 
   protected:
-    list<PullPkt *>
-            _pull_queue; // needs insert middle, so can't use circular buffer
+    list<PullPkt *> _pull_queue; // needs insert middle, so can't use circular buffer
 };
 
 template <class PullPkt> class FairPullQueue : public BasePullQueue<PullPkt> {
@@ -51,13 +48,11 @@ template <class PullPkt> class FairPullQueue : public BasePullQueue<PullPkt> {
     virtual void flush_flow(flowid_t flow_id, int priority = 0);
 
   protected:
-    map<flowid_t, CircularBuffer<PullPkt *> *>
-            _queue_map; // map flow id to pull queue
+    map<flowid_t, CircularBuffer<PullPkt *> *> _queue_map; // map flow id to pull queue
     bool queue_exists(const PullPkt &pkt);
     CircularBuffer<PullPkt *> *find_queue(const PullPkt &pkt);
     CircularBuffer<PullPkt *> *create_queue(const PullPkt &pkt);
-    typename map<flowid_t, CircularBuffer<PullPkt *> *>::iterator
-            _current_queue;
+    typename map<flowid_t, CircularBuffer<PullPkt *> *>::iterator _current_queue;
 };
 
 #endif

@@ -4,8 +4,7 @@
 string ntoa(double n);
 string itoa(uint64_t n);
 
-ShortFlows::ShortFlows(double lambda, EventList &eventlist,
-                       vector<const Route *> ***n, ConnectionMatrix *conns,
+ShortFlows::ShortFlows(double lambda, EventList &eventlist, vector<const Route *> ***n, ConnectionMatrix *conns,
                        Logfile *logfile, TcpRtxTimerScanner *rtx)
         : EventSource(eventlist, "ShortFlows") {
     eventlist.sourceIsPendingRel(*this, timeFromMs(1000));
@@ -17,21 +16,17 @@ ShortFlows::ShortFlows(double lambda, EventList &eventlist,
     tcpRtxScanner = rtx;
 }
 
-ShortFlow *ShortFlows::createConnection(int src, int dst,
-                                        simtime_picosec starttime) {
+ShortFlow *ShortFlows::createConnection(int src, int dst, simtime_picosec starttime) {
     ShortFlow *f = new ShortFlow();
-    f->src = new TcpSrcTransfer(NULL, NULL, eventlist(), 70000,
-                                net_paths[src][dst]);
+    f->src = new TcpSrcTransfer(NULL, NULL, eventlist(), 70000, net_paths[src][dst]);
     f->snk = new TcpSinkTransfer();
 
     int pos = connections[src][dst].size();
 
-    f->src->setName("sf_" + ntoa(src) + "_" + ntoa(dst) + "(" + ntoa(pos) +
-                    ")");
+    f->src->setName("sf_" + ntoa(src) + "_" + ntoa(dst) + "(" + ntoa(pos) + ")");
     logfile->writeName(*(f->src));
 
-    f->snk->setName("sf_sink_" + ntoa(src) + "_" + ntoa(dst) + "(" + ntoa(pos) +
-                    ")");
+    f->snk->setName("sf_sink_" + ntoa(src) + "_" + ntoa(dst) + "(" + ntoa(pos) + ")");
     logfile->writeName(*(f->snk));
 
     tcpRtxScanner->registerTcp(*(f->src));
@@ -51,8 +46,7 @@ ShortFlow *ShortFlows::createConnection(int src, int dst,
 void ShortFlows::doNextEvent() {
     run();
 
-    simtime_picosec nextArrival =
-            (simtime_picosec)(exponential(_lambda) * timeFromSec(1));
+    simtime_picosec nextArrival = (simtime_picosec)(exponential(_lambda) * timeFromSec(1));
     eventlist().sourceIsPendingRel(*this, nextArrival);
 }
 

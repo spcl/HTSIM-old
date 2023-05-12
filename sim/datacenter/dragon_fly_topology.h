@@ -65,19 +65,15 @@ class DragonFlyTopology : public Topology {
     uint32_t failed_links;
     queue_type qt;
 
-    DragonFlyTopology(uint32_t p, uint32_t h, uint32_t a, mem_b queuesize,
-                      Logfile *log, EventList *ev, queue_type q);
-    DragonFlyTopology(uint32_t no_of_nodes, mem_b queuesize, Logfile *log,
-                      EventList *ev, queue_type q);
+    DragonFlyTopology(uint32_t p, uint32_t h, uint32_t a, mem_b queuesize, Logfile *log, EventList *ev, queue_type q);
+    DragonFlyTopology(uint32_t no_of_nodes, mem_b queuesize, Logfile *log, EventList *ev, queue_type q);
 
     void init_network();
-    virtual vector<const Route *> *get_bidir_paths(uint32_t src, uint32_t dest,
-                                                   bool reverse);
+    virtual vector<const Route *> *get_bidir_paths(uint32_t src, uint32_t dest, bool reverse);
 
     Queue *alloc_src_queue(QueueLogger *q);
     Queue *alloc_queue(QueueLogger *q, mem_b queuesize, bool tor);
-    Queue *alloc_queue(QueueLogger *q, uint64_t speed, mem_b queuesize,
-                       bool tor);
+    Queue *alloc_queue(QueueLogger *q, uint64_t speed, mem_b queuesize, bool tor);
 
     void count_queue(Queue *);
     void print_path(std::ofstream &paths, uint32_t src, const Route *route);

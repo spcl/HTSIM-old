@@ -15,14 +15,11 @@ class TcpPacket : public Packet {
   public:
     typedef uint64_t seq_t;
 
-    inline static TcpPacket *newpkt(PacketFlow &flow, const Route &route,
-                                    seq_t seqno, seq_t dataseqno, int size) {
+    inline static TcpPacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t dataseqno, int size) {
         TcpPacket *p = _packetdb.allocPacket();
-        p->set_route(
-                flow, route, size,
-                seqno + size -
-                        1); // The TCP sequence number is the first byte of the
-                            // packet; I will ID the packet by its last byte.
+        p->set_route(flow, route, size,
+                     seqno + size - 1); // The TCP sequence number is the first byte of the
+                                        // packet; I will ID the packet by its last byte.
         p->_type = TCP;
         p->_seqno = seqno;
         p->_data_seqno = dataseqno;
@@ -30,13 +27,11 @@ class TcpPacket : public Packet {
         return p;
     }
 
-    inline static TcpPacket *newpkt(PacketFlow &flow, const Route &route,
-                                    seq_t seqno, int size) {
+    inline static TcpPacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, int size) {
         return newpkt(flow, route, seqno, 0, size);
     }
 
-    inline static TcpPacket *new_syn_pkt(PacketFlow &flow, const Route &route,
-                                         seq_t seqno, int size) {
+    inline static TcpPacket *new_syn_pkt(PacketFlow &flow, const Route &route, seq_t seqno, int size) {
         TcpPacket *p = newpkt(flow, route, seqno, 0, size);
         p->_syn = true;
         return p;
@@ -60,8 +55,7 @@ class TcpAck : public Packet {
   public:
     typedef TcpPacket::seq_t seq_t;
 
-    inline static TcpAck *newpkt(PacketFlow &flow, const Route &route,
-                                 seq_t seqno, seq_t ackno, seq_t dackno) {
+    inline static TcpAck *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t ackno, seq_t dackno) {
         TcpAck *p = _packetdb.allocPacket();
         p->set_route(flow, route, ACKSIZE, ackno);
         p->_type = TCPACK;
@@ -72,8 +66,7 @@ class TcpAck : public Packet {
         return p;
     }
 
-    inline static TcpAck *newpkt(PacketFlow &flow, const Route &route,
-                                 seq_t seqno, seq_t ackno) {
+    inline static TcpAck *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t ackno) {
         return newpkt(flow, route, seqno, ackno, 0);
     }
 

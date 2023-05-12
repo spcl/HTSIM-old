@@ -2,12 +2,9 @@
 #include "priopullqueue.h"
 #include "ndppacket.h"
 
-template <class PullPkt> PrioPullQueue<PullPkt>::PrioPullQueue() {
-    this->_pull_count = 0;
-}
+template <class PullPkt> PrioPullQueue<PullPkt>::PrioPullQueue() { this->_pull_count = 0; }
 
-template <class PullPkt>
-void PrioPullQueue<PullPkt>::enqueue(PullPkt &pkt, int priority) {
+template <class PullPkt> void PrioPullQueue<PullPkt>::enqueue(PullPkt &pkt, int priority) {
     CircularBuffer<PullPkt *> *pull_queue;
     if (queue_exists(pkt, priority)) {
         pull_queue = find_queue(pkt, priority);
@@ -44,8 +41,7 @@ template <class PullPkt> PullPkt *PrioPullQueue<PullPkt>::dequeue() {
         int priority = pmi->first;
         if (!queue_map->empty() && _prio_counts[priority] > 0) {
             // we keep one fair queue iterator for each priority level
-            typename CurrentQueueMap::iterator cqmi =
-                    _current_queue_map.find(priority);
+            typename CurrentQueueMap::iterator cqmi = _current_queue_map.find(priority);
             typename QueueMap::iterator current_queue = cqmi->second;
             // cout << "queue_map size: " << queue_map->size() << endl;
             while (1) {
@@ -74,14 +70,12 @@ template <class PullPkt> PullPkt *PrioPullQueue<PullPkt>::dequeue() {
     cout << "pull count: " << this->_pull_count << endl;
     for (pmi = _prio_queue_map.begin(); pmi != _prio_queue_map.end(); pmi++) {
         int priority = pmi->first;
-        cout << "Prio: " << priority << " count " << _prio_counts[priority]
-             << endl;
+        cout << "Prio: " << priority << " count " << _prio_counts[priority] << endl;
     }
     abort();
 }
 
-template <class PullPkt>
-void PrioPullQueue<PullPkt>::flush_flow(flowid_t flow_id, int priority) {
+template <class PullPkt> void PrioPullQueue<PullPkt>::flush_flow(flowid_t flow_id, int priority) {
     typename PrioMap::iterator pmi = _prio_queue_map.find(priority);
     if (pmi == _prio_queue_map.end()) {
         return;
@@ -111,8 +105,7 @@ void PrioPullQueue<PullPkt>::flush_flow(flowid_t flow_id, int priority) {
     self_check();
 }
 
-template <class PullPkt>
-bool PrioPullQueue<PullPkt>::queue_exists(const PullPkt &pkt, int priority) {
+template <class PullPkt> bool PrioPullQueue<PullPkt>::queue_exists(const PullPkt &pkt, int priority) {
     typename PrioMap::iterator pmi = _prio_queue_map.find(priority);
     if (pmi == _prio_queue_map.end()) {
         return false;
@@ -126,8 +119,7 @@ bool PrioPullQueue<PullPkt>::queue_exists(const PullPkt &pkt, int priority) {
 }
 
 template <class PullPkt>
-CircularBuffer<PullPkt *> *
-PrioPullQueue<PullPkt>::find_queue(const PullPkt &pkt, int priority) {
+CircularBuffer<PullPkt *> *PrioPullQueue<PullPkt>::find_queue(const PullPkt &pkt, int priority) {
     typename PrioMap::iterator pmi = _prio_queue_map.find(priority);
     if (pmi == _prio_queue_map.end()) {
         return 0;
@@ -141,8 +133,7 @@ PrioPullQueue<PullPkt>::find_queue(const PullPkt &pkt, int priority) {
 }
 
 template <class PullPkt>
-CircularBuffer<PullPkt *> *
-PrioPullQueue<PullPkt>::create_queue(const PullPkt &pkt, int priority) {
+CircularBuffer<PullPkt *> *PrioPullQueue<PullPkt>::create_queue(const PullPkt &pkt, int priority) {
     // cout << "create_queue, prio " << priority << endl;
     typename PrioMap::iterator pmi;
     /*
@@ -162,8 +153,7 @@ PrioPullQueue<PullPkt>::create_queue(const PullPkt &pkt, int priority) {
     }
 
     CircularBuffer<PullPkt *> *new_queue = new CircularBuffer<PullPkt *>;
-    queue_map->insert(pair<flowid_t, CircularBuffer<PullPkt *> *>(pkt.flow_id(),
-                                                                  new_queue));
+    queue_map->insert(pair<flowid_t, CircularBuffer<PullPkt *> *>(pkt.flow_id(), new_queue));
 
     self_check();
     return new_queue;

@@ -10,10 +10,9 @@ uint32_t STrackSrc::_default_cwnd = 12;
 //  STRACK SOURCE
 ////////////////////////////////////////////////////////////////
 
-STrackSrc::STrackSrc(STrackRtxTimerScanner &rtx_scanner, STrackLogger *logger,
-                     TrafficLogger *pktlogger, EventList &eventlst)
-        : EventSource(eventlst, "strack"), _flow(pktlogger),
-          _pacer(*this, eventlist()), _logger(logger),
+STrackSrc::STrackSrc(STrackRtxTimerScanner &rtx_scanner, STrackLogger *logger, TrafficLogger *pktlogger,
+                     EventList &eventlst)
+        : EventSource(eventlst, "strack"), _flow(pktlogger), _pacer(*this, eventlist()), _logger(logger),
           _traffic_logger(pktlogger), _rtx_timer_scanner(&rtx_scanner) {
     _mss = Packet::data_packet_size();
     _scheduler = NULL;
@@ -28,33 +27,29 @@ STrackSrc::STrackSrc(STrackRtxTimerScanner &rtx_scanner, STrackLogger *logger,
 
     // strack cc init
 
-    _base_rtt = 0;        // base RTT over which to measure achieved BDP
-    _rx_count = 0;        // accumulates achieved_BDP
-    _achieved_BDP = 0;    // amount received in a base_rtt, or zero if invalid
-    _last_BDP_update = 0; // the last time to updated achieved_BDP
-    _last_active = 0;     // the last time we got an ack
-    _alpha = 0.25;        // increase constant.  Value from Rong
-    _beta = 0.8;          // decrease constant.  Value is a guess
-    _max_mdf = 0.5;       // max multiplicate decrease factor.  Value is a guess
-    _base_delay = timeFromUs(
-            (uint32_t)20); // configured base target delay.  To be confirmed by
-                           // experiment - reproduce fig 17
-    _h = _base_delay / 6.55; // path length scaling constant.  Value is a guess,
-                             // will be clarified by experiment
-    _rtx_reset_threshold = 5; // value is a guess
-    _min_cwnd = 10; // guess - if we go less than 10 bytes, we probably get into
-                    // rounding
-    _max_cwnd =
-            1000 *
-            _mss; // maximum cwnd we can use.  Guess - how high should we allow
-                  // cwnd to go?  Presumably something like B*target_delay?
+    _base_rtt = 0;                          // base RTT over which to measure achieved BDP
+    _rx_count = 0;                          // accumulates achieved_BDP
+    _achieved_BDP = 0;                      // amount received in a base_rtt, or zero if invalid
+    _last_BDP_update = 0;                   // the last time to updated achieved_BDP
+    _last_active = 0;                       // the last time we got an ack
+    _alpha = 0.25;                          // increase constant.  Value from Rong
+    _beta = 0.8;                            // decrease constant.  Value is a guess
+    _max_mdf = 0.5;                         // max multiplicate decrease factor.  Value is a guess
+    _base_delay = timeFromUs((uint32_t)20); // configured base target delay.  To be confirmed by
+                                            // experiment - reproduce fig 17
+    _h = _base_delay / 6.55;                // path length scaling constant.  Value is a guess,
+                                            // will be clarified by experiment
+    _rtx_reset_threshold = 5;               // value is a guess
+    _min_cwnd = 10;                         // guess - if we go less than 10 bytes, we probably get into
+                                            // rounding
+    _max_cwnd = 1000 * _mss;                // maximum cwnd we can use.  Guess - how high should we allow
+                                            // cwnd to go?  Presumably something like B*target_delay?
 
     // flow scaling
     _fs_range = 5 * _base_delay;
     _fs_min_cwnd = 0.1; // note: in packets
     _fs_max_cwnd = 100; // note: in packets
-    _fs_alpha = _fs_range /
-                ((1.0 / sqrt(_fs_min_cwnd)) - (1.0 / sqrt(_fs_max_cwnd)));
+    _fs_alpha = _fs_range / ((1.0 / sqrt(_fs_min_cwnd)) - (1.0 / sqrt(_fs_max_cwnd)));
     _fs_beta = -_fs_alpha / sqrt(_fs_max_cwnd);
 
     _last_acked = 0;
@@ -69,16 +64,13 @@ STrackSrc::STrackSrc(STrackRtxTimerScanner &rtx_scanner, STrackLogger *logger,
     _drops = 0;
 
     // strack cc init
-    _strack_cwnd =
-            _default_cwnd; // initial window, in bytes  Note: values in paper
-                           // are in packets; we're maintaining in bytes.
+    _strack_cwnd = _default_cwnd; // initial window, in bytes  Note: values in paper
+                                  // are in packets; we're maintaining in bytes.
     _retransmit_cnt = 0;
     _can_decrease = true;
-    _last_decrease =
-            0; // initial value shouldn't matter if _can_decrease is true
-    _pacing_delay = 0; // start off not pacing as cwnd > 1 pkt
-    _deferred_send =
-            false; // true if we wanted to send, but no scheduler said no.
+    _last_decrease = 0;     // initial value shouldn't matter if _can_decrease is true
+    _pacing_delay = 0;      // start off not pacing as cwnd > 1 pkt
+    _deferred_send = false; // true if we wanted to send, but no scheduler said no.
 
     _rtx_timeout_pending = false;
     _RFC2988_RTO_timeout = timeInf;
@@ -117,8 +109,7 @@ void STrackSrc::adjust_cwnd(simtime_picosec delay, STrackAck::seq_t ackno) {
     //  strack init
     _prev_cwnd = _strack_cwnd;
     simtime_picosec now = eventlist().now();
-    _can_decrease = (now - _last_decrease) >=
-                    _rtt; // not clear if we should use smoothed RTT here.
+    _can_decrease = (now - _last_decrease) >= _rtt; // not clear if we should use smoothed RTT here.
 
     // compute rtt
     update_rtt(delay);
@@ -134,9 +125,7 @@ void STrackSrc::adjust_cwnd(simtime_picosec delay, STrackAck::seq_t ackno) {
             _strack_cwnd = _achieved_BDP;
         } else {
             // multiplicative decrease, as in Swift
-            _strack_cwnd = _strack_cwnd *
-                           max(1 - beta() * (delay - target_delay) / delay,
-                               1 - max_mdf());
+            _strack_cwnd = _strack_cwnd * max(1 - beta() * (delay - target_delay) / delay, 1 - max_mdf());
         }
         _last_decrease = now;
     }
@@ -146,8 +135,7 @@ void STrackSrc::applySTrackLimits() {
     // we call this whenever we've changed cwnd to enforce bounds, just before
     // we actually use the cwnd
     if (_strack_cwnd < _min_cwnd) {
-        cout << "hit min cwnd, was" << _strack_cwnd << " now " << _min_cwnd
-             << endl;
+        cout << "hit min cwnd, was" << _strack_cwnd << " now " << _min_cwnd << endl;
         _strack_cwnd = _min_cwnd;
     } else if (_strack_cwnd > _max_cwnd) {
         cout << "hit max cwnd " << _strack_cwnd << " > " << _max_cwnd << endl;
@@ -332,8 +320,7 @@ int STrackSrc::send_packets() {
         }
     }
 
-    while ((_last_acked + c >= _highest_sent + mss()) &&
-           more_data_available()) {
+    while ((_last_acked + c >= _highest_sent + mss()) && more_data_available()) {
 
         if (_pacer.is_pending()) {
             // Our cwnd is now greater than one packet and we've passed
@@ -367,8 +354,7 @@ bool STrackSrc::send_next_packet() {
     _deferred_send = false;
     // cout << "src " << get_id() << " sending " << _flow.flow_id() << " route "
     // << _route << endl;
-    STrackPacket *p =
-            STrackPacket::newpkt(_flow, *_route, _highest_sent + 1, mss());
+    STrackPacket *p = STrackPacket::newpkt(_flow, *_route, _highest_sent + 1, mss());
     // cout << timeAsUs(eventlist().now()) << " " << nodename() << " sent " <<
     // _highest_sent+1 << "-" << _highest_sent+mss() << " dsn " << dsn << endl;
     _highest_sent += mss();
@@ -393,8 +379,7 @@ void STrackSrc::send_callback() {
 }
 
 void STrackSrc::retransmit_packet() {
-    cout << timeAsUs(eventlist().now()) << " " << nodename()
-         << " retransmit_packet " << endl;
+    cout << timeAsUs(eventlist().now()) << " " << nodename() << " retransmit_packet " << endl;
     if (!_established) {
         assert(_highest_sent == 1);
 
@@ -406,8 +391,7 @@ void STrackSrc::retransmit_packet() {
     }
     // cout << timeAsUs(eventlist().now()) << " sending seqno " << _last_acked+1
     // << endl;
-    STrackPacket *p =
-            STrackPacket::newpkt(_flow, *_route, _last_acked + 1, mss());
+    STrackPacket *p = STrackPacket::newpkt(_flow, *_route, _last_acked + 1, mss());
 
     p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATESEND);
     p->set_ts(eventlist().now());
@@ -478,12 +462,10 @@ void STrackSrc::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
     if (_highest_sent == 0)
         return;
 
-    cout << timeAsUs(eventlist().now()) << " " << nodename() << " At "
-         << now / (double)1000000000 << " RTO " << _rto / 1000000000 << " MDEV "
-         << _mdev / 1000000000 << " RTT " << _rtt / 1000000000 << " SEQ "
-         << _last_acked / mss() << " HSENT " << _highest_sent << " CWND "
-         << _strack_cwnd / mss() << " FAST RECOVERY? " << _in_fast_recovery
-         << " Flow ID " << str() << endl;
+    cout << timeAsUs(eventlist().now()) << " " << nodename() << " At " << now / (double)1000000000 << " RTO "
+         << _rto / 1000000000 << " MDEV " << _mdev / 1000000000 << " RTT " << _rtt / 1000000000 << " SEQ "
+         << _last_acked / mss() << " HSENT " << _highest_sent << " CWND " << _strack_cwnd / mss() << " FAST RECOVERY? "
+         << _in_fast_recovery << " Flow ID " << str() << endl;
 
     // here we can run into phase effects because the timer is checked
     // only periodically for ALL flows but if we keep the difference
@@ -557,9 +539,7 @@ void STrackSrc::log(STrackLogger::STrackEvent event) {
         _logger->logSTrack(*this, event);
 }
 
-int STrackSrc::queuesize(int flow_id) {
-    return _scheduler->src_queuesize(flow_id);
-}
+int STrackSrc::queuesize(int flow_id) { return _scheduler->src_queuesize(flow_id); }
 
 bool STrackSrc::check_stoptime() {
     if (_stop_time && eventlist().now() >= _stop_time) {
@@ -636,8 +616,7 @@ bool STrackSrc::more_data_available() const {
     return _highest_sent + mss() <= _flow_size;
 }
 
-void STrackSrc::connect(const Route &routeout, const Route &routeback,
-                        STrackSink &sink, simtime_picosec starttime) {
+void STrackSrc::connect(const Route &routeout, const Route &routeback, STrackSink &sink, simtime_picosec starttime) {
 
     _scheduler = dynamic_cast<BaseScheduler *>(routeout.at(0));
     assert(_scheduler); // first element of the route must be a Src Scheduler
@@ -653,8 +632,7 @@ void STrackSrc::connect(const Route &routeout, const Route &routeback,
     _route = cloned_rt;
     _flow.set_id(get_id()); // identify the packet flow with the source that
                             // generated it
-    cout << "connect, src " << get_id() << " flow id is now " << _flow.get_id()
-         << endl;
+    cout << "connect, src " << get_id() << " flow id is now " << _flow.get_id() << endl;
     _scheduler->add_src(_flow.flow_id(), this);
     _rtx_timer_scanner->registerSrc(*this);
     _sink = &sink;
@@ -696,8 +674,7 @@ simtime_picosec STrackSrc::targetDelay(const Route &route) {
 
 /* XXX currently it's one src per pacer - maybe should be shared via carousel */
 STrackPacer::STrackPacer(STrackSrc &src, EventList &event_list)
-        : EventSource(event_list, "strack_pacer"), _src(&src),
-          _interpacket_delay(0) {
+        : EventSource(event_list, "strack_pacer"), _src(&src), _interpacket_delay(0) {
     _last_send = eventlist().now();
 }
 
@@ -750,8 +727,7 @@ void STrackPacer::doNextEvent() {
 //  STRACK SINK
 ////////////////////////////////////////////////////////////////
 
-STrackSink::STrackSink()
-        : DataReceiver("STrackSink"), _cumulative_ack(0), _buffer_logger(NULL) {
+STrackSink::STrackSink() : DataReceiver("STrackSink"), _cumulative_ack(0), _buffer_logger(NULL) {
     _src = 0;
     _ooo = 0;
     _nodename = "stracksink";
@@ -781,8 +757,7 @@ void STrackSink::receivePacket(Packet &pkt) {
         _cumulative_ack = seqno + size - 1;
         _total_received += size;
         // are there any additional received packets we can now ack?
-        while (!_received.empty() &&
-               (_received.front() == _cumulative_ack + 1)) {
+        while (!_received.empty() && (_received.front() == _cumulative_ack + 1)) {
             _received.pop_front();
             _cumulative_ack += size;
             _total_received += size;
@@ -809,8 +784,7 @@ void STrackSink::receivePacket(Packet &pkt) {
                 if (seqno < (*i)) {
                     _received.insert(i, seqno);
                     if (_buffer_logger)
-                        _buffer_logger->logBuffer(
-                                ReorderBufferLogger::BUF_ENQUEUE);
+                        _buffer_logger->logBuffer(ReorderBufferLogger::BUF_ENQUEUE);
                     break;
                 }
             }
@@ -827,8 +801,7 @@ void STrackSink::receivePacket(Packet &pkt) {
 }
 
 void STrackSink::send_ack(simtime_picosec ts) {
-    STrackAck *ack =
-            STrackAck::newpkt(_src->flow(), *_route, 0, _cumulative_ack, ts);
+    STrackAck *ack = STrackAck::newpkt(_src->flow(), *_route, 0, _cumulative_ack, ts);
     ack->flow().logTraffic(*ack, *this, TrafficLogger::PKT_CREATESEND);
     ack->sendOn();
 }
@@ -845,15 +818,12 @@ uint32_t STrackSink::drops() { return _src ? _src->drops() : 0; }
 //  STRACK RETRANSMISSION TIMER
 ////////////////////////////////////////////////////////////////
 
-STrackRtxTimerScanner::STrackRtxTimerScanner(simtime_picosec scanPeriod,
-                                             EventList &eventlist)
+STrackRtxTimerScanner::STrackRtxTimerScanner(simtime_picosec scanPeriod, EventList &eventlist)
         : EventSource(eventlist, "RtxScanner"), _scanPeriod(scanPeriod) {
     eventlist.sourceIsPendingRel(*this, _scanPeriod);
 }
 
-void STrackRtxTimerScanner::registerSrc(STrackSrc &src) {
-    _srcs.push_back(&src);
-}
+void STrackRtxTimerScanner::registerSrc(STrackSrc &src) { _srcs.push_back(&src); }
 
 void STrackRtxTimerScanner::doNextEvent() {
     simtime_picosec now = eventlist().now();

@@ -5,9 +5,7 @@
 #include <iostream>
 #include <sstream>
 
-FairCompositeQueue::FairCompositeQueue(linkspeed_bps bitrate, mem_b maxsize,
-                                       EventList &eventlist,
-                                       QueueLogger *logger)
+FairCompositeQueue::FairCompositeQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger)
         : Queue(bitrate, maxsize, eventlist, logger) {
     _ratio_high = 10;
     _ratio_low = 1;
@@ -37,13 +35,11 @@ void FairCompositeQueue::beginService() {
 
         if (_crt < _ratio_high) {
             _serv = QUEUE_HIGH;
-            eventlist().sourceIsPendingRel(*this,
-                                           drainTime(_enqueued_high.back()));
+            eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_high.back()));
         } else {
             assert(_crt < _ratio_high + _ratio_low);
             _serv = QUEUE_LOW;
-            eventlist().sourceIsPendingRel(*this,
-                                           drainTime(_enqueued_low.back()));
+            eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_low.back()));
         }
         return;
     }
@@ -133,20 +129,16 @@ void FairCompositeQueue::receivePacket(Packet &pkt) {
                 // "booted_pkt->size(): " << booted_pkt->size();
                 booted_pkt->strip_payload();
                 _num_stripped++;
-                booted_pkt->flow().logTraffic(*booted_pkt, *this,
-                                              TrafficLogger::PKT_TRIM);
+                booted_pkt->flow().logTraffic(*booted_pkt, *this, TrafficLogger::PKT_TRIM);
                 if (_logger)
                     _logger->logQueue(*this, QueueLogger::PKT_TRIM, pkt);
 
                 if (_queuesize_high + booted_pkt->size() > _maxsize) {
-                    if (booted_pkt->reverse_route() &&
-                        booted_pkt->bounced() == false) {
+                    if (booted_pkt->reverse_route() && booted_pkt->bounced() == false) {
                         // return the packet to the sender
                         if (_logger)
-                            _logger->logQueue(*this, QueueLogger::PKT_BOUNCE,
-                                              *booted_pkt);
-                        booted_pkt->flow().logTraffic(
-                                pkt, *this, TrafficLogger::PKT_BOUNCE);
+                            _logger->logQueue(*this, QueueLogger::PKT_BOUNCE, *booted_pkt);
+                        booted_pkt->flow().logTraffic(pkt, *this, TrafficLogger::PKT_BOUNCE);
                         // XXX what to do with it now?
 #if 0
                         printf("Bounce2 at %s\n", _nodename.c_str());
@@ -164,12 +156,10 @@ void FairCompositeQueue::receivePacket(Packet &pkt) {
                         booted_pkt->sendOn();
                     } else {
                         cout << "Dropped\n";
-                        booted_pkt->flow().logTraffic(*booted_pkt, *this,
-                                                      TrafficLogger::PKT_DROP);
+                        booted_pkt->flow().logTraffic(*booted_pkt, *this, TrafficLogger::PKT_DROP);
                         booted_pkt->free();
                         if (_logger)
-                            _logger->logQueue(*this, QueueLogger::PKT_DROP,
-                                              pkt);
+                            _logger->logQueue(*this, QueueLogger::PKT_DROP, pkt);
                     }
                 } else {
                     _enqueued_high.push_front(booted_pkt);
@@ -233,8 +223,7 @@ void FairCompositeQueue::receivePacket(Packet &pkt) {
             if (_logger)
                 _logger->logQueue(*this, QueueLogger::PKT_DROP, pkt);
             pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_DROP);
-            cout << "B[ " << _enqueued_low.size() << " "
-                 << _enqueued_high.size() << " ] DROP " << pkt.flow().id
+            cout << "B[ " << _enqueued_low.size() << " " << _enqueued_high.size() << " ] DROP " << pkt.flow().id
                  << endl;
             pkt.free();
             _num_drops++;
@@ -256,6 +245,4 @@ void FairCompositeQueue::receivePacket(Packet &pkt) {
     }
 }
 
-mem_b FairCompositeQueue::queuesize() {
-    return _queuesize_low + _queuesize_high;
-}
+mem_b FairCompositeQueue::queuesize() { return _queuesize_low + _queuesize_high; }

@@ -5,8 +5,7 @@
 #include "queue.h"
 #include <climits>
 
-void RouteTable::addRoute(int destination, Route *port, int cost,
-                          packet_direction direction) {
+void RouteTable::addRoute(int destination, Route *port, int cost, packet_direction direction) {
     if (_fib.find(destination) == _fib.end())
         _fib[destination] = new vector<FibEntry *>();
 
@@ -40,6 +39,4 @@ HostFibEntry *RouteTable::getHostRoute(int destination, int flowid) {
     }
 }
 
-void RouteTable::setRoutes(int destination, vector<FibEntry *> *routes) {
-    _fib[destination] = routes;
-}
+void RouteTable::setRoutes(int destination, vector<FibEntry *> *routes) { _fib[destination] = routes; }

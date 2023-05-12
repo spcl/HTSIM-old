@@ -1,10 +1,8 @@
 #include "firstfit.h"
 #include <iostream>
 
-FirstFit::FirstFit(simtime_picosec scanPeriod, EventList &eventlist,
-                   vector<const Route *> ***n)
-        : EventSource(eventlist, "FirstFit"),
-          _scanPeriod(scanPeriod) /*, _init(0)*/
+FirstFit::FirstFit(simtime_picosec scanPeriod, EventList &eventlist, vector<const Route *> ***n)
+        : EventSource(eventlist, "FirstFit"), _scanPeriod(scanPeriod) /*, _init(0)*/
 {
     eventlist.sourceIsPendingRel(*this, _scanPeriod);
     net_paths = n;
@@ -80,16 +78,13 @@ void FirstFit::run() {
             int best_route = -1, best_cost = 10000000;
             int crt_cost;
 
-            for (unsigned int p = 0; p < net_paths[f->src][f->dest]->size();
-                 p++) {
+            for (unsigned int p = 0; p < net_paths[f->src][f->dest]->size(); p++) {
                 const Route *crt_route = net_paths[f->src][f->dest]->at(p);
                 crt_cost = 0;
 
                 for (unsigned int i = 1; i < crt_route->size() - 1; i += 2)
-                    if (path_allocations[(BaseQueue *)crt_route->at(i)] >
-                        crt_cost)
-                        crt_cost =
-                                path_allocations[(BaseQueue *)crt_route->at(i)];
+                    if (path_allocations[(BaseQueue *)crt_route->at(i)] > crt_cost)
+                        crt_cost = path_allocations[(BaseQueue *)crt_route->at(i)];
 
                 if (crt_cost < best_cost) {
                     best_cost = crt_cost;
@@ -103,8 +98,7 @@ void FirstFit::run() {
             // %d\n",f->src,f->dest,best_route);
             cout << "S";
 
-            Route *new_route =
-                    new Route(*(net_paths[f->src][f->dest]->at(best_route)));
+            Route *new_route = new Route(*(net_paths[f->src][f->dest]->at(best_route)));
             new_route->push_back(tcp->_sink);
 
             tcp->replace_route(new_route);

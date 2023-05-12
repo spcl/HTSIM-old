@@ -106,8 +106,7 @@ int main(int argc, char **argv) {
         if (strstr(line, "# TRACE")) {
             // we have finished the preamble;
             if (numRecords <= 0) {
-                printf("Numrecords is %d after preamble, bailing\n",
-                       numRecords);
+                printf("Numrecords is %d after preamble, bailing\n", numRecords);
                 exit(1);
             }
             break;
@@ -262,8 +261,7 @@ int main(int argc, char **argv) {
         }
 
         if (ascii) {
-            RawLogEvent event(timeRec[i], typeRec[i], idRec[i], evRec[i],
-                              val1Rec[i], val2Rec[i], val3Rec[i],
+            RawLogEvent event(timeRec[i], typeRec[i], idRec[i], evRec[i], val1Rec[i], val2Rec[i], val3Rec[i],
                               object_names[idRec[i]]);
             // cout << Logger::event_to_str(event) << endl;
             string out;
@@ -394,8 +392,7 @@ int main(int argc, char **argv) {
                     string item;
                     int inum = 0;
                     while (std::getline(iss, item, ' ')) {
-                        for (vector<int>::const_iterator fi = fields.begin();
-                             fi != fields.end(); fi++) {
+                        for (vector<int>::const_iterator fi = fields.begin(); fi != fields.end(); fi++) {
                             if (inum == *fi) {
                                 out2 << item << " ";
                             }
@@ -408,13 +405,10 @@ int main(int argc, char **argv) {
                 }
             }
         } else {
-            if ((typeRec[i] == (uint32_t)TYPE || TYPE == -1) &&
-                (evRec[i] == (uint32_t)EV || EV == -1)) {
+            if ((typeRec[i] == (uint32_t)TYPE || TYPE == -1) && (evRec[i] == (uint32_t)EV || EV == -1)) {
                 if (verbose)
-                    cout << timeRec[i] << " Type=" << typeRec[i]
-                         << " EV=" << evRec[i] << " ID=" << idRec[i]
-                         << " VAL1=" << val1Rec[i] << " VAL2=" << val2Rec[i]
-                         << " VAL3=" << val3Rec[i] << endl;
+                    cout << timeRec[i] << " Type=" << typeRec[i] << " EV=" << evRec[i] << " ID=" << idRec[i]
+                         << " VAL1=" << val1Rec[i] << " VAL2=" << val2Rec[i] << " VAL3=" << val3Rec[i] << endl;
 
                 if (!isnan(val3Rec[i])) {
                     if (flow_rates.find(idRec[i]) == flow_rates.end()) {
@@ -468,8 +462,7 @@ int main(int argc, char **argv) {
         rates.push_back(r);
 
         if (show)
-            printf("%.2f Mbps val %d name %s\n", r * 8 / 1000000, id,
-                   object_names[id].c_str());
+            printf("%.2f Mbps val %d name %s\n", r * 8 / 1000000, id, object_names[id].c_str());
 
         it++;
     }
@@ -491,8 +484,7 @@ int main(int argc, char **argv) {
     }
     printf("Mean of lower 10pc (%d entries) is %f Mbps total mean %f Mbps "
            "mean2 %f Mbps\n",
-           cnt, (total / cnt) * 8 / 1000000,
-           mean_rate / rates.size() * 8 / 1000000,
+           cnt, (total / cnt) * 8 / 1000000, mean_rate / rates.size() * 8 / 1000000,
            mean_rate2 / flow_rates2.size() * 8 / 1000000);
 
     delete[] timeRec;

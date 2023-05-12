@@ -24,8 +24,7 @@ class SentPacket {
     SentPacket(simtime_picosec t, uint64_t s, bool a, bool n, bool to)
             : timer{t}, seqno{s}, acked{a}, nacked{n}, timedOut{to} {}
     SentPacket(const SentPacket &sp)
-            : timer{sp.timer}, seqno{sp.seqno}, acked{sp.acked},
-              nacked{sp.nacked}, timedOut{sp.timedOut} {}
+            : timer{sp.timer}, seqno{sp.seqno}, acked{sp.acked}, nacked{sp.nacked}, timedOut{sp.timedOut} {}
     simtime_picosec timer;
     uint64_t seqno;
     bool acked;
@@ -37,8 +36,8 @@ class UecSrc : public PacketSink, public EventSource {
     friend class UecSink;
 
   public:
-    UecSrc(UecLogger *logger, TrafficLogger *pktLogger, EventList &eventList,
-           uint64_t rtt, uint64_t bdp, uint64_t queueDrainTime);
+    UecSrc(UecLogger *logger, TrafficLogger *pktLogger, EventList &eventList, uint64_t rtt, uint64_t bdp,
+           uint64_t queueDrainTime);
     // UecSrc(UecLogger *logger, TrafficLogger* pktLogger, EventList& eventList,
     // uint64_t rtt=timeFromUs(5.25), uint64_t bdp=63000);
     ~UecSrc();
@@ -48,8 +47,7 @@ class UecSrc : public PacketSink, public EventSource {
     void receivePacket(Packet &pkt) override;
     const string &nodename() override;
 
-    virtual void connect(const Route &routeout, const Route &routeback,
-                         UecSink &sink, simtime_picosec startTime);
+    virtual void connect(const Route &routeout, const Route &routeback, UecSink &sink, simtime_picosec startTime);
     void startflow();
     void set_paths(vector<const Route *> *rt);
 
@@ -71,9 +69,7 @@ class UecSrc : public PacketSink, public EventSource {
     std::size_t getEcnInTargetRtt();
 
     void set_traffic_logger(TrafficLogger *pktlogger);
-    void set_flow_over_hook(std::function<void(const Packet &)> hook) {
-        f_flow_over_hook = hook;
-    }
+    void set_flow_over_hook(std::function<void(const Packet &)> hook) { f_flow_over_hook = hook; }
 
     virtual void rtx_timer_hook(simtime_picosec now, simtime_picosec period);
 
@@ -133,8 +129,7 @@ class UecSrc : public PacketSink, public EventSource {
     string _nodename;
     std::function<void(const Packet &p)> f_flow_over_hook;
 
-    list<std::tuple<simtime_picosec, bool, uint64_t>>
-            _received_ecn; // list of packets received
+    list<std::tuple<simtime_picosec, bool, uint64_t>> _received_ecn; // list of packets received
     vector<SentPacket> _sent_packets;
     unsigned _nack_rtx_pending;
     vector<tuple<simtime_picosec, uint64_t, uint64_t, uint64_t>> _list_rtt;
@@ -196,10 +191,9 @@ class UecSink : public PacketSink, public DataReceiver {
     vector<const Route *> _paths;
     UecSrc *_src;
 
-    void send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
-                  UecAck::seq_t ackno, const Route *rt, const Route *inRoute);
-    void send_nack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
-                   UecAck::seq_t ackno, const Route *rt);
+    void send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno, UecAck::seq_t ackno, const Route *rt,
+                  const Route *inRoute);
+    void send_nack(simtime_picosec ts, bool marked, UecAck::seq_t seqno, UecAck::seq_t ackno, const Route *rt);
     bool already_received(UecPacket &pkt);
 };
 

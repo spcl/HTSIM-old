@@ -23,8 +23,7 @@ LoggedManager Logged::_logged_manager;
 
 string Logger::event_to_str(RawLogEvent &event) { return event.str(); }
 
-QueueLoggerFactory::QueueLoggerFactory(Logfile *lg, QueueLoggerType logtype,
-                                       EventList &eventlist)
+QueueLoggerFactory::QueueLoggerFactory(Logfile *lg, QueueLoggerType logtype, EventList &eventlist)
         : _logfile(lg), _logger_type(logtype), _eventlist(eventlist){};
 
 QueueLogger *QueueLoggerFactory::createQueueLogger() {
@@ -51,10 +50,8 @@ QueueLogger *QueueLoggerFactory::createQueueLogger() {
     return queue_logger;
 }
 
-void QueueLoggerSimple::logQueue(BaseQueue &queue, QueueLogger::QueueEvent ev,
-                                 Packet &pkt) {
-    _logfile->writeRecord(Logger::QUEUE_EVENT, queue.get_id(), ev,
-                          (double)queue.queuesize(), pkt.flow().get_id(),
+void QueueLoggerSimple::logQueue(BaseQueue &queue, QueueLogger::QueueEvent ev, Packet &pkt) {
+    _logfile->writeRecord(Logger::QUEUE_EVENT, queue.get_id(), ev, (double)queue.queuesize(), pkt.flow().get_id(),
                           pkt.id());
 }
 
@@ -80,21 +77,19 @@ string QueueLoggerSimple::event_to_str(RawLogEvent &event) {
         ss << " Ev BOUNCE";
         break;
     }
-    ss << " Qsize " << (uint64_t)event._val1 << " FlowID "
-       << (uint64_t)event._val2 << " PktID " << (uint64_t)event._val3;
+    ss << " Qsize " << (uint64_t)event._val1 << " FlowID " << (uint64_t)event._val2 << " PktID "
+       << (uint64_t)event._val3;
     return ss.str();
 }
 
 QueueLoggerEmpty::QueueLoggerEmpty(simtime_picosec period, EventList &eventlist)
-        : EventSource(eventlist, "QueuelogEmpty"), _last_transition(0),
-          _total_busy(0), _period(period), _last_dump(0), _busy(false),
-          _queue(0), _pkt_arrivals(0), _pkt_trims(0) {
+        : EventSource(eventlist, "QueuelogEmpty"), _last_transition(0), _total_busy(0), _period(period), _last_dump(0),
+          _busy(false), _queue(0), _pkt_arrivals(0), _pkt_trims(0) {
     eventlist.sourceIsPendingRel(*this, 0);
 };
 
 // log the fraction of time the link is busy/empty
-void QueueLoggerEmpty::logQueue(BaseQueue &queue, QueueLogger::QueueEvent ev,
-                                Packet &pkt) {
+void QueueLoggerEmpty::logQueue(BaseQueue &queue, QueueLogger::QueueEvent ev, Packet &pkt) {
     if (!_queue) {
         _queue = &queue;
     }
@@ -140,9 +135,8 @@ void QueueLoggerEmpty::doNextEvent() {
         if (_pkt_arrivals > 0) {
             trim_frac = ((double)_pkt_trims) / _pkt_arrivals;
         }
-        cout << eventlist().now() << " " << _queue->nodename() << " "
-             << _total_busy << " " << eventlist().now() - _last_dump << " "
-             << ((double)_total_busy) / (eventlist().now() - _last_dump) << " "
+        cout << eventlist().now() << " " << _queue->nodename() << " " << _total_busy << " "
+             << eventlist().now() - _last_dump << " " << ((double)_total_busy) / (eventlist().now() - _last_dump) << " "
              << trim_frac << endl;
     }
     reset_count();
@@ -169,11 +163,9 @@ string QueueLoggerEmpty::event_to_str(RawLogEvent &event) {
     return ss.str();
 }
 
-QueueLoggerSampling::QueueLoggerSampling(simtime_picosec period,
-                                         EventList &eventlist)
-        : EventSource(eventlist, "QueuelogSampling"), _queue(NULL),
-          _lastlook(0), _period(period), _lastq(0), _seenQueueInD(false),
-          _cumidle(0), _cumarr(0), _cumdrop(0) {
+QueueLoggerSampling::QueueLoggerSampling(simtime_picosec period, EventList &eventlist)
+        : EventSource(eventlist, "QueuelogSampling"), _queue(NULL), _lastlook(0), _period(period), _lastq(0),
+          _seenQueueInD(false), _cumidle(0), _cumarr(0), _cumdrop(0) {
     eventlist.sourceIsPendingRel(*this, 0);
 }
 
@@ -183,17 +175,14 @@ void QueueLoggerSampling::doNextEvent() {
         return;
     mem_b queuebuff = _queue->maxsize();
     if (!_seenQueueInD) { // queue size hasn't changed in the past D time units
-        _logfile->writeRecord(QUEUE_APPROX, _queue->get_id(), QUEUE_RANGE,
-                              (double)_lastq, (double)_lastq, (double)_lastq);
-        _logfile->writeRecord(QUEUE_APPROX, _queue->get_id(), QUEUE_OVERFLOW, 0,
-                              0, (double)queuebuff);
+        _logfile->writeRecord(QUEUE_APPROX, _queue->get_id(), QUEUE_RANGE, (double)_lastq, (double)_lastq,
+                              (double)_lastq);
+        _logfile->writeRecord(QUEUE_APPROX, _queue->get_id(), QUEUE_OVERFLOW, 0, 0, (double)queuebuff);
     } else { // queue size has changed
-        _logfile->writeRecord(QUEUE_APPROX, _queue->get_id(), QUEUE_RANGE,
-                              (double)_lastq, (double)_minQueueInD,
+        _logfile->writeRecord(QUEUE_APPROX, _queue->get_id(), QUEUE_RANGE, (double)_lastq, (double)_minQueueInD,
                               (double)_maxQueueInD);
-        _logfile->writeRecord(QUEUE_APPROX, _queue->get_id(), QUEUE_OVERFLOW,
-                              -(double)_lastIdledInD, (double)_lastDroppedInD,
-                              (double)queuebuff);
+        _logfile->writeRecord(QUEUE_APPROX, _queue->get_id(), QUEUE_OVERFLOW, -(double)_lastIdledInD,
+                              (double)_lastDroppedInD, (double)queuebuff);
     }
     _seenQueueInD = false;
     simtime_picosec now = eventlist().now();
@@ -202,12 +191,10 @@ void QueueLoggerSampling::doNextEvent() {
     // if the queue is empty, we've just been idling
     if ((_queue != NULL) && (_queue->queuesize() == 0))
         _cumidle += timeAsSec(dt_ps);
-    _logfile->writeRecord(QUEUE_RECORD, _queue->get_id(), CUM_TRAFFIC, _cumarr,
-                          _cumidle, _cumdrop);
+    _logfile->writeRecord(QUEUE_RECORD, _queue->get_id(), CUM_TRAFFIC, _cumarr, _cumidle, _cumdrop);
 }
 
-void QueueLoggerSampling::logQueue(BaseQueue &queue, QueueEvent ev,
-                                   Packet &pkt) {
+void QueueLoggerSampling::logQueue(BaseQueue &queue, QueueEvent ev, Packet &pkt) {
     // cout << "logQueue\n";
     if (_queue == NULL)
         _queue = &queue;
@@ -276,14 +263,13 @@ string QueueLoggerSampling::event_to_str(RawLogEvent &event) {
         ss << " ID " << event._id;
         switch (event._ev) {
         case QUEUE_RANGE:
-            ss << " Ev RANGE LastQ " << (int)event._val1 << " MinQ "
-               << (int)event._val2 << " MaxQ " << (int)event._val3;
+            ss << " Ev RANGE LastQ " << (int)event._val1 << " MinQ " << (int)event._val2 << " MaxQ "
+               << (int)event._val3;
             if (event._name != "")
                 ss << " Name " << event._name;
             break;
         case QUEUE_OVERFLOW:
-            ss << " Ev OVERLOW LastIdled " << (int)event._val1
-               << " LastDropped " << (int)event._val2 << " QueueBuf "
+            ss << " Ev OVERLOW LastIdled " << (int)event._val1 << " LastDropped " << (int)event._val2 << " QueueBuf "
                << (int)event._val3;
             if (event._name != "")
                 ss << " Name " << event._name;
@@ -296,8 +282,8 @@ string QueueLoggerSampling::event_to_str(RawLogEvent &event) {
         ss << " Type QUEUE_APPROX";
         ss << " ID " << event._id;
         assert(event._ev == QueueLogger::CUM_TRAFFIC);
-        ss << " Ev CUM_TRAFFIC CumArr " << (int)event._val1 << " CumIdle "
-           << (int)event._val2 << " CumDrop " << (int)event._val3;
+        ss << " Ev CUM_TRAFFIC CumArr " << (int)event._val1 << " CumIdle " << (int)event._val2 << " CumDrop "
+           << (int)event._val3;
         if (event._name != "")
             ss << " Name " << event._name;
         break;
@@ -307,31 +293,25 @@ string QueueLoggerSampling::event_to_str(RawLogEvent &event) {
     return ss.str();
 }
 
-MultiQueueLoggerSampling::MultiQueueLoggerSampling(id_t id,
-                                                   simtime_picosec period,
-                                                   EventList &eventlist)
-        : EventSource(eventlist, "MultiQueuelogSampling"), _id(id),
-          _period(period), _seenQueueInD(false), _currentQueueSizeBytes(0),
-          _currentQueueSizePkts(0) {
+MultiQueueLoggerSampling::MultiQueueLoggerSampling(id_t id, simtime_picosec period, EventList &eventlist)
+        : EventSource(eventlist, "MultiQueuelogSampling"), _id(id), _period(period), _seenQueueInD(false),
+          _currentQueueSizeBytes(0), _currentQueueSizePkts(0) {
     eventlist.sourceIsPendingRel(*this, 0);
 }
 
 void MultiQueueLoggerSampling::doNextEvent() {
     eventlist().sourceIsPendingRel(*this, _period);
     if (!_seenQueueInD) { // queue size hasn't changed in the past D time units
-        _logfile->writeRecord(
-                QUEUE_APPROX, _id, QUEUE_RANGE, (double)_currentQueueSizeBytes,
-                (double)_currentQueueSizeBytes, (double)_currentQueueSizeBytes);
+        _logfile->writeRecord(QUEUE_APPROX, _id, QUEUE_RANGE, (double)_currentQueueSizeBytes,
+                              (double)_currentQueueSizeBytes, (double)_currentQueueSizeBytes);
     } else { // queue size has changed
-        _logfile->writeRecord(QUEUE_APPROX, _id, QUEUE_RANGE,
-                              (double)_currentQueueSizeBytes,
-                              (double)_minQueueInD, (double)_maxQueueInD);
+        _logfile->writeRecord(QUEUE_APPROX, _id, QUEUE_RANGE, (double)_currentQueueSizeBytes, (double)_minQueueInD,
+                              (double)_maxQueueInD);
     }
     _seenQueueInD = false;
 }
 
-void MultiQueueLoggerSampling::logQueue(BaseQueue &queue, QueueEvent ev,
-                                        Packet &pkt) {
+void MultiQueueLoggerSampling::logQueue(BaseQueue &queue, QueueEvent ev, Packet &pkt) {
     switch (ev) {
     case PKT_ENQUEUE:
         _currentQueueSizeBytes += pkt.size();
@@ -388,8 +368,8 @@ string MultiQueueLoggerSampling::event_to_str(RawLogEvent &event) {
         ss << " ID " << event._id;
         switch (event._ev) {
         case QUEUE_RANGE:
-            ss << " Ev RANGE LastQ " << (int)event._val1 << " MinQ "
-               << (int)event._val2 << " MaxQ " << (int)event._val3;
+            ss << " Ev RANGE LastQ " << (int)event._val1 << " MinQ " << (int)event._val2 << " MaxQ "
+               << (int)event._val3;
 
             if (event._name != "")
                 ss << " Name " << event._name;
@@ -404,10 +384,8 @@ string MultiQueueLoggerSampling::event_to_str(RawLogEvent &event) {
     return ss.str();
 }
 
-void TrafficLoggerSimple::logTraffic(Packet &pkt, Logged &location,
-                                     TrafficEvent ev) {
-    _logfile->writeRecord(Logger::TRAFFIC_EVENT, location.get_id(), ev,
-                          pkt.flow().get_id(), pkt.id(), 0);
+void TrafficLoggerSimple::logTraffic(Packet &pkt, Logged &location, TrafficEvent ev) {
+    _logfile->writeRecord(Logger::TRAFFIC_EVENT, location.get_id(), ev, pkt.flow().get_id(), pkt.id(), 0);
 }
 
 string TrafficLoggerSimple::event_to_str(RawLogEvent &event) {
@@ -444,15 +422,12 @@ string TrafficLoggerSimple::event_to_str(RawLogEvent &event) {
         ss << " Ev BOUNCE ";
         break;
     }
-    ss << " FlowID " << (uint64_t)event._val1 << " PktID "
-       << (uint64_t)event._val2;
+    ss << " FlowID " << (uint64_t)event._val1 << " PktID " << (uint64_t)event._val2;
     return ss.str();
 }
 
-void TcpTrafficLogger::logTraffic(Packet &pkt, Logged &location,
-                                  TrafficEvent ev) {
-    _logfile->writeRecord(Logger::TCP_TRAFFIC, location.get_id(), ev,
-                          pkt.flow().get_id(), pkt.id(), 0);
+void TcpTrafficLogger::logTraffic(Packet &pkt, Logged &location, TrafficEvent ev) {
+    _logfile->writeRecord(Logger::TCP_TRAFFIC, location.get_id(), ev, pkt.flow().get_id(), pkt.id(), 0);
 }
 
 string TcpTrafficLogger::event_to_str(RawLogEvent &event) {
@@ -489,15 +464,12 @@ string TcpTrafficLogger::event_to_str(RawLogEvent &event) {
         ss << " Ev BOUNCE ";
         break;
     }
-    ss << " FlowID " << (uint64_t)event._val1 << " PktID "
-       << (uint64_t)event._val2;
+    ss << " FlowID " << (uint64_t)event._val1 << " PktID " << (uint64_t)event._val2;
     return ss.str();
 }
 
-void SwiftTrafficLogger::logTraffic(Packet &pkt, Logged &location,
-                                    TrafficEvent ev) {
-    _logfile->writeRecord(Logger::SWIFT_TRAFFIC, location.get_id(), ev,
-                          pkt.flow().get_id(), pkt.id(), 0);
+void SwiftTrafficLogger::logTraffic(Packet &pkt, Logged &location, TrafficEvent ev) {
+    _logfile->writeRecord(Logger::SWIFT_TRAFFIC, location.get_id(), ev, pkt.flow().get_id(), pkt.id(), 0);
 }
 
 string SwiftTrafficLogger::event_to_str(RawLogEvent &event) {
@@ -534,15 +506,12 @@ string SwiftTrafficLogger::event_to_str(RawLogEvent &event) {
         ss << " Ev BOUNCE ";
         break;
     }
-    ss << " FlowID " << (uint64_t)event._val1 << " PktID "
-       << (uint64_t)event._val2;
+    ss << " FlowID " << (uint64_t)event._val1 << " PktID " << (uint64_t)event._val2;
     return ss.str();
 }
 
-void STrackTrafficLogger::logTraffic(Packet &pkt, Logged &location,
-                                     TrafficEvent ev) {
-    _logfile->writeRecord(Logger::STRACK_TRAFFIC, location.get_id(), ev,
-                          pkt.flow().get_id(), pkt.id(), 0);
+void STrackTrafficLogger::logTraffic(Packet &pkt, Logged &location, TrafficEvent ev) {
+    _logfile->writeRecord(Logger::STRACK_TRAFFIC, location.get_id(), ev, pkt.flow().get_id(), pkt.id(), 0);
 }
 
 string STrackTrafficLogger::event_to_str(RawLogEvent &event) {
@@ -579,8 +548,7 @@ string STrackTrafficLogger::event_to_str(RawLogEvent &event) {
         ss << " Ev BOUNCE ";
         break;
     }
-    ss << " FlowID " << (uint64_t)event._val1 << " PktID "
-       << (uint64_t)event._val2;
+    ss << " FlowID " << (uint64_t)event._val1 << " PktID " << (uint64_t)event._val2;
     return ss.str();
 }
 
@@ -589,8 +557,7 @@ string STrackTrafficLogger::event_to_str(RawLogEvent &event) {
 #define NDP_IS_PULL 1 << 29
 #define NDP_IS_HEADER 1 << 28
 #define NDP_IS_LASTDATA 1 << 27
-void NdpTrafficLogger::logTraffic(Packet &pkt, Logged &location,
-                                  TrafficEvent ev) {
+void NdpTrafficLogger::logTraffic(Packet &pkt, Logged &location, TrafficEvent ev) {
     Packet &p = static_cast<Packet &>(pkt);
     uint32_t val3 = 0; // ugly hack to store NDP-specific data in a double
 
@@ -610,8 +577,7 @@ void NdpTrafficLogger::logTraffic(Packet &pkt, Logged &location,
         }
     }
 
-    _logfile->writeRecord(Logger::NDP_TRAFFIC, location.get_id(), ev,
-                          p.flow().get_id(), p.id(), val3);
+    _logfile->writeRecord(Logger::NDP_TRAFFIC, location.get_id(), ev, p.flow().get_id(), p.id(), val3);
 }
 
 string NdpTrafficLogger::event_to_str(RawLogEvent &event) {
@@ -678,8 +644,7 @@ string NdpTrafficLogger::event_to_str(RawLogEvent &event) {
 #define ROCE_IS_HEADER 1 << 28
 #define ROCE_IS_LASTDATA 1 << 27
 
-void RoceTrafficLogger::logTraffic(Packet &pkt, Logged &location,
-                                   TrafficEvent ev) {
+void RoceTrafficLogger::logTraffic(Packet &pkt, Logged &location, TrafficEvent ev) {
     RocePacket &p = static_cast<RocePacket &>(pkt);
     uint32_t val3 = 0; // ugly hack to store data in a double
 
@@ -694,8 +659,7 @@ void RoceTrafficLogger::logTraffic(Packet &pkt, Logged &location,
     if (p.header_only())
         val3 |= ROCE_IS_HEADER;
 
-    _logfile->writeRecord(Logger::ROCE_TRAFFIC, location.get_id(), ev,
-                          p.flow().get_id(), p.id(), val3);
+    _logfile->writeRecord(Logger::ROCE_TRAFFIC, location.get_id(), ev, p.flow().get_id(), p.id(), val3);
 }
 
 string RoceTrafficLogger::event_to_str(RawLogEvent &event) {
@@ -756,8 +720,7 @@ string RoceTrafficLogger::event_to_str(RawLogEvent &event) {
 #define HPCC_IS_HEADER 1 << 28
 #define HPCC_IS_LASTDATA 1 << 27
 
-void HPCCTrafficLogger::logTraffic(Packet &pkt, Logged &location,
-                                   TrafficEvent ev) {
+void HPCCTrafficLogger::logTraffic(Packet &pkt, Logged &location, TrafficEvent ev) {
     HPCCPacket &p = static_cast<HPCCPacket &>(pkt);
     uint32_t val3 = 0; // ugly hack to store data in a double
 
@@ -772,8 +735,7 @@ void HPCCTrafficLogger::logTraffic(Packet &pkt, Logged &location,
     if (p.header_only())
         val3 |= HPCC_IS_HEADER;
 
-    _logfile->writeRecord(Logger::HPCC_TRAFFIC, location.get_id(), ev,
-                          p.flow().get_id(), p.id(), val3);
+    _logfile->writeRecord(Logger::HPCC_TRAFFIC, location.get_id(), ev, p.flow().get_id(), p.id(), val3);
 }
 
 string HPCCTrafficLogger::event_to_str(RawLogEvent &event) {
@@ -830,17 +792,14 @@ string HPCCTrafficLogger::event_to_str(RawLogEvent &event) {
 }
 
 void TcpLoggerSimple::logTcp(TcpSrc &tcp, TcpEvent ev) {
-    _logfile->writeRecord(Logger::TCP_EVENT, tcp.get_id(), ev, tcp._cwnd,
-                          tcp._unacked,
+    _logfile->writeRecord(Logger::TCP_EVENT, tcp.get_id(), ev, tcp._cwnd, tcp._unacked,
                           tcp._in_fast_recovery ? tcp._ssthresh : tcp._cwnd);
 
-    _logfile->writeRecord(Logger::TCP_STATE, tcp.get_id(),
-                          TcpLogger::TCPSTATE_CNTRL, tcp._cwnd, tcp._ssthresh,
+    _logfile->writeRecord(Logger::TCP_STATE, tcp.get_id(), TcpLogger::TCPSTATE_CNTRL, tcp._cwnd, tcp._ssthresh,
                           tcp._recoverq);
 
-    _logfile->writeRecord(Logger::TCP_STATE, tcp.get_id(),
-                          TcpLogger::TCPSTATE_SEQ, tcp._last_acked,
-                          tcp._highest_sent, tcp._RFC2988_RTO_timeout);
+    _logfile->writeRecord(Logger::TCP_STATE, tcp.get_id(), TcpLogger::TCPSTATE_SEQ, tcp._last_acked, tcp._highest_sent,
+                          tcp._RFC2988_RTO_timeout);
 }
 
 string TcpLoggerSimple::event_to_str(RawLogEvent &event) {
@@ -848,29 +807,24 @@ string TcpLoggerSimple::event_to_str(RawLogEvent &event) {
     ss << fixed << setprecision(9) << event._time;
     switch (event._type) {
     case TcpLogger::TCP_EVENT:
-        ss << " Type TCP  ID " << event._id << " Ev " << event._ev << "Cwnd "
-           << (int)event._val1 << "Unacked " << (int)event._val2 << "SSthresh "
-           << (int)event._val3;
+        ss << " Type TCP  ID " << event._id << " Ev " << event._ev << "Cwnd " << (int)event._val1 << "Unacked "
+           << (int)event._val2 << "SSthresh " << (int)event._val3;
         break;
     case TcpLogger::TCP_STATE:
         ss << "Ambiguous data - fix me!";
     default:
-        ss << " Type " << event._type << " ID " << event._id << " Ev "
-           << event._ev << " VAL1 " << event._val1 << " VAL2 " << event._val2
-           << " VAL3 " << event._val3 << endl;
+        ss << " Type " << event._type << " ID " << event._id << " Ev " << event._ev << " VAL1 " << event._val1
+           << " VAL2 " << event._val2 << " VAL3 " << event._val3 << endl;
     }
     return ss.str();
 }
 void SwiftLoggerSimple::logSwift(SwiftSubflowSrc &swift, SwiftEvent ev) {
-    _logfile->writeRecord(Logger::SWIFT_EVENT, swift.get_id(), ev,
-                          swift._swift_cwnd, swift._inflate, 0);
+    _logfile->writeRecord(Logger::SWIFT_EVENT, swift.get_id(), ev, swift._swift_cwnd, swift._inflate, 0);
 
-    _logfile->writeRecord(Logger::SWIFT_STATE, swift.get_id(),
-                          SwiftLogger::SWIFTSTATE_CNTRL, swift._swift_cwnd, 0,
+    _logfile->writeRecord(Logger::SWIFT_STATE, swift.get_id(), SwiftLogger::SWIFTSTATE_CNTRL, swift._swift_cwnd, 0,
                           swift._recoverq);
 
-    _logfile->writeRecord(Logger::SWIFT_STATE, swift.get_id(),
-                          SwiftLogger::SWIFTSTATE_SEQ, swift._last_acked,
+    _logfile->writeRecord(Logger::SWIFT_STATE, swift.get_id(), SwiftLogger::SWIFTSTATE_SEQ, swift._last_acked,
                           swift._highest_sent, swift._RFC2988_RTO_timeout);
 }
 
@@ -879,30 +833,25 @@ string SwiftLoggerSimple::event_to_str(RawLogEvent &event) {
     ss << fixed << setprecision(9) << event._time;
     switch (event._type) {
     case SwiftLogger::SWIFT_EVENT:
-        ss << " Type SWIFT  ID " << event._id << " Ev " << event._ev << "Cwnd "
-           << (int)event._val1 << "Inflate " << (int)event._val2 << "SSthresh "
-           << (int)event._val3;
+        ss << " Type SWIFT  ID " << event._id << " Ev " << event._ev << "Cwnd " << (int)event._val1 << "Inflate "
+           << (int)event._val2 << "SSthresh " << (int)event._val3;
         break;
     case SwiftLogger::SWIFT_STATE:
         ss << "Ambiguous data - fix me!";
     default:
-        ss << " Type " << event._type << " ID " << event._id << " Ev "
-           << event._ev << " VAL1 " << event._val1 << " VAL2 " << event._val2
-           << " VAL3 " << event._val3 << endl;
+        ss << " Type " << event._type << " ID " << event._id << " Ev " << event._ev << " VAL1 " << event._val1
+           << " VAL2 " << event._val2 << " VAL3 " << event._val3 << endl;
     }
     return ss.str();
 }
 
 void STrackLoggerSimple::logSTrack(STrackSrc &strack, STrackEvent ev) {
-    _logfile->writeRecord(Logger::STRACK_EVENT, strack.get_id(), ev,
-                          strack._strack_cwnd, strack._inflate, 0);
+    _logfile->writeRecord(Logger::STRACK_EVENT, strack.get_id(), ev, strack._strack_cwnd, strack._inflate, 0);
 
-    _logfile->writeRecord(Logger::STRACK_STATE, strack.get_id(),
-                          STrackLogger::STRACKSTATE_CNTRL, strack._strack_cwnd,
+    _logfile->writeRecord(Logger::STRACK_STATE, strack.get_id(), STrackLogger::STRACKSTATE_CNTRL, strack._strack_cwnd,
                           0, strack._recoverq);
 
-    _logfile->writeRecord(Logger::STRACK_STATE, strack.get_id(),
-                          STrackLogger::STRACKSTATE_SEQ, strack._last_acked,
+    _logfile->writeRecord(Logger::STRACK_STATE, strack.get_id(), STrackLogger::STRACKSTATE_SEQ, strack._last_acked,
                           strack._highest_sent, strack._RFC2988_RTO_timeout);
 }
 
@@ -911,33 +860,27 @@ string STrackLoggerSimple::event_to_str(RawLogEvent &event) {
     ss << fixed << setprecision(9) << event._time;
     switch (event._type) {
     case STrackLogger::STRACK_EVENT:
-        ss << " Type STRACK  ID " << event._id << " Ev " << event._ev << "Cwnd "
-           << (int)event._val1 << "Inflate " << (int)event._val2 << "SSthresh "
-           << (int)event._val3;
+        ss << " Type STRACK  ID " << event._id << " Ev " << event._ev << "Cwnd " << (int)event._val1 << "Inflate "
+           << (int)event._val2 << "SSthresh " << (int)event._val3;
         break;
     case STrackLogger::STRACK_STATE:
         ss << "Ambiguous data - fix me!";
     default:
-        ss << " Type " << event._type << " ID " << event._id << " Ev "
-           << event._ev << " VAL1 " << event._val1 << " VAL2 " << event._val2
-           << " VAL3 " << event._val3 << endl;
+        ss << " Type " << event._type << " ID " << event._id << " Ev " << event._ev << " VAL1 " << event._val1
+           << " VAL2 " << event._val2 << " VAL3 " << event._val3 << endl;
     }
     return ss.str();
 }
 
-AggregateTcpLogger::AggregateTcpLogger(simtime_picosec period,
-                                       EventList &eventlist)
+AggregateTcpLogger::AggregateTcpLogger(simtime_picosec period, EventList &eventlist)
         : EventSource(eventlist, "bunchofflows"), _period(period) {
     eventlist.sourceIsPending(*this, period);
 }
 
-void AggregateTcpLogger::monitorTcp(TcpSrc &tcp) {
-    _monitoredTcps.push_back(&tcp);
-}
+void AggregateTcpLogger::monitorTcp(TcpSrc &tcp) { _monitoredTcps.push_back(&tcp); }
 
 void AggregateTcpLogger::doNextEvent() {
-    eventlist().sourceIsPending(
-            *this, max(eventlist().now() + _period, _logfile->_starttime));
+    eventlist().sourceIsPending(*this, max(eventlist().now() + _period, _logfile->_starttime));
     double totunacked = 0;
     double toteffcwnd = 0;
     double totcwnd = 0;
@@ -953,8 +896,7 @@ void AggregateTcpLogger::doNextEvent() {
         totunacked += unacked;
         numflows++;
     }
-    _logfile->writeRecord(Logger::TCP_RECORD, get_id(), TcpLogger::AVE_CWND,
-                          totcwnd / numflows, totunacked / numflows,
+    _logfile->writeRecord(Logger::TCP_RECORD, get_id(), TcpLogger::AVE_CWND, totcwnd / numflows, totunacked / numflows,
                           toteffcwnd / numflows);
 }
 
@@ -964,24 +906,19 @@ string AggregateTcpLogger::event_to_str(RawLogEvent &event) {
     assert(event._type == TCP_RECORD);
     ss << " Type=TCP_RECORD ID=" << event._id;
     assert(event._ev == TcpLogger::AVE_CWND);
-    ss << " Ev AVE_CWND Cwnd " << setprecision(2) << event._val1 << " Unacked "
-       << event._val2 << " EffCwnd " << event._val3;
+    ss << " Ev AVE_CWND Cwnd " << setprecision(2) << event._val1 << " Unacked " << event._val2 << " EffCwnd "
+       << event._val3;
     return ss.str();
 }
 
-void MultipathTcpLoggerSimple::logMultipathTcp(MultipathTcpSrc &mtcp,
-                                               MultipathTcpEvent ev) {
+void MultipathTcpLoggerSimple::logMultipathTcp(MultipathTcpSrc &mtcp, MultipathTcpEvent ev) {
     if (ev == MultipathTcpLogger::CHANGE_A) {
-        _logfile->writeRecord(MultipathTcpLogger::MTCP, mtcp.get_id(), ev,
-                              mtcp.a, mtcp._alfa, 0);
+        _logfile->writeRecord(MultipathTcpLogger::MTCP, mtcp.get_id(), ev, mtcp.a, mtcp._alfa, 0);
     } else if (ev == MultipathTcpLogger::RTT_UPDATE) {
-        _logfile->writeRecord(MultipathTcpLogger::MTCP, mtcp.get_id(), ev,
-                              mtcp._subflows.front()->_rtt / 1000000000,
-                              mtcp._subflows.back()->_rtt / 1000000000,
-                              mtcp._subflows.front()->_mdev / 1000000000);
+        _logfile->writeRecord(MultipathTcpLogger::MTCP, mtcp.get_id(), ev, mtcp._subflows.front()->_rtt / 1000000000,
+                              mtcp._subflows.back()->_rtt / 1000000000, mtcp._subflows.front()->_mdev / 1000000000);
     } else if (ev == MultipathTcpLogger::WINDOW_UPDATE) {
-        _logfile->writeRecord(MultipathTcpLogger::MTCP, mtcp.get_id(), ev,
-                              mtcp._subflows.front()->effective_window(),
+        _logfile->writeRecord(MultipathTcpLogger::MTCP, mtcp.get_id(), ev, mtcp._subflows.front()->effective_window(),
                               mtcp._subflows.back()->effective_window(), 0);
     }
 }
@@ -993,26 +930,23 @@ string MultipathTcpLoggerSimple::event_to_str(RawLogEvent &event) {
     switch (event._ev) {
     case MultipathTcpLogger::CHANGE_A:
         ss << " Ev CHANGE_A"
-           << " ID " << event._id << "A " << event._val1 << "Alfa "
-           << event._val2;
+           << " ID " << event._id << "A " << event._val1 << "Alfa " << event._val2;
         break;
     case MultipathTcpLogger::RTT_UPDATE:
         ss << " Ev RTT_UPD"
-           << "ID " << event._id << " RTT1 " << (uint64_t)event._val1
-           << " RTT2 " << (uint64_t)event._val2 << " Mdev " << event._val3;
+           << "ID " << event._id << " RTT1 " << (uint64_t)event._val1 << " RTT2 " << (uint64_t)event._val2 << " Mdev "
+           << event._val3;
         break;
     case MultipathTcpLogger::WINDOW_UPDATE:
         ss << " Ev WIN_UPD"
-           << "ID " << event._id << " Win1 " << (uint64_t)event._val1
-           << " Win2 " << (uint64_t)event._val2;
+           << "ID " << event._id << " Win1 " << (uint64_t)event._val1 << " Win2 " << (uint64_t)event._val2;
         break;
     case MultipathTcpLogger::RATE:
         // This is ugly - this is logged by
         // MultipathTcpLoggerSampling, but under the same type as
         // MultipathTcpLoggerSimple is using.  Should probably use a
         // different Type for this event.
-        ss << " Ev RATE A " << event._val1 << " Gput " << (uint64_t)event._val2
-           << " Tput " << (uint64_t)event._val3;
+        ss << " Ev RATE A " << event._val1 << " Gput " << (uint64_t)event._val2 << " Tput " << (uint64_t)event._val3;
         break;
     default:
         ss << " Unknown event: " << event._ev;
@@ -1025,27 +959,18 @@ vector<MultipathTcpSink *> _mtcp_sinks;
 vector<TcpSrc *> _tcp_sources;
 vector<TcpSink *> _mtcp_sources;
 
-MemoryLoggerSampling::MemoryLoggerSampling(simtime_picosec period,
-                                           EventList &eventlist)
+MemoryLoggerSampling::MemoryLoggerSampling(simtime_picosec period, EventList &eventlist)
         : EventSource(eventlist, "MemorySampling"), _period(period) {
     eventlist.sourceIsPendingRel(*this, 0);
 }
 
-void MemoryLoggerSampling::monitorTcpSink(TcpSink *sink) {
-    _tcp_sinks.push_back(sink);
-}
+void MemoryLoggerSampling::monitorTcpSink(TcpSink *sink) { _tcp_sinks.push_back(sink); }
 
-void MemoryLoggerSampling::monitorMultipathTcpSink(MultipathTcpSink *sink) {
-    _mtcp_sinks.push_back(sink);
-}
+void MemoryLoggerSampling::monitorMultipathTcpSink(MultipathTcpSink *sink) { _mtcp_sinks.push_back(sink); }
 
-void MemoryLoggerSampling::monitorTcpSource(TcpSrc *src) {
-    _tcp_sources.push_back(src);
-}
+void MemoryLoggerSampling::monitorTcpSource(TcpSrc *src) { _tcp_sources.push_back(src); }
 
-void MemoryLoggerSampling::monitorMultipathTcpSource(MultipathTcpSrc *src) {
-    _mtcp_sources.push_back(src);
-}
+void MemoryLoggerSampling::monitorMultipathTcpSource(MultipathTcpSrc *src) { _mtcp_sources.push_back(src); }
 
 void MemoryLoggerSampling::doNextEvent() {
     uint64_t i;
@@ -1054,30 +979,24 @@ void MemoryLoggerSampling::doNextEvent() {
     // simtime_picosec now = eventlist().now();
 
     for (i = 0; i < _tcp_sinks.size(); i++) {
-        _logfile->writeRecord(Logger::TCP_MEMORY, _tcp_sinks[i]->get_id(),
-                              TcpLogger::MEMORY, 0, 0,
+        _logfile->writeRecord(Logger::TCP_MEMORY, _tcp_sinks[i]->get_id(), TcpLogger::MEMORY, 0, 0,
                               _tcp_sinks[i]->_received.size() * 1000);
     }
 
     for (i = 0; i < _tcp_sources.size(); i++) {
-        _logfile->writeRecord(Logger::TCP_MEMORY, _tcp_sources[i]->get_id(),
-                              TcpLogger::MEMORY, 0, 0,
-                              _tcp_sources[i]->_highest_sent -
-                                      _tcp_sources[i]->_last_acked);
+        _logfile->writeRecord(Logger::TCP_MEMORY, _tcp_sources[i]->get_id(), TcpLogger::MEMORY, 0, 0,
+                              _tcp_sources[i]->_highest_sent - _tcp_sources[i]->_last_acked);
     }
 
 #ifdef MODEL_RECEIVE_WINDOW
     for (i = 0; i < _mtcp_sinks.size(); i++) {
-        _logfile->writeRecord(Logger::MTCP, _mtcp_sinks[i]->get_id(),
-                              MultipathTcpLogger::MEMORY, 0, 0,
+        _logfile->writeRecord(Logger::MTCP, _mtcp_sinks[i]->get_id(), MultipathTcpLogger::MEMORY, 0, 0,
                               _mtcp_sinks[i]->_received.size() * 1000);
     }
 
     for (i = 0; i < _mtcp_sources.size(); i++) {
-        _logfile->writeRecord(Logger::MTCP, _mtcp_sources[i]->get_id(),
-                              MultipathTcpLogger::MEMORY, 0, 0,
-                              _mtcp_sources[i]->_highest_sent -
-                                      _mtcp_sources[i]->_last_acked);
+        _logfile->writeRecord(Logger::MTCP, _mtcp_sources[i]->get_id(), MultipathTcpLogger::MEMORY, 0, 0,
+                              _mtcp_sources[i]->_highest_sent - _mtcp_sources[i]->_last_acked);
     }
 #endif
 }
@@ -1105,12 +1024,10 @@ string MemoryLoggerSampling::event_to_str(RawLogEvent &event) {
     return ss.str();
 }
 
-SinkLoggerSampling::SinkLoggerSampling(simtime_picosec period,
-                                       EventList &eventlist,
-                                       Logger::EventType sink_type,
+SinkLoggerSampling::SinkLoggerSampling(simtime_picosec period, EventList &eventlist, Logger::EventType sink_type,
                                        int event_type)
-        : EventSource(eventlist, "SinkSampling"), _last_time(0),
-          _period(period), _sink_type(sink_type), _event_type(event_type) {
+        : EventSource(eventlist, "SinkSampling"), _last_time(0), _period(period), _sink_type(sink_type),
+          _event_type(event_type) {
     eventlist.sourceIsPendingRel(*this, 0);
 }
 
@@ -1157,10 +1074,8 @@ void SinkLoggerSampling::doNextEvent() {
                 rate = deltaB * 1000000000000.0 / delta; // Bps
             else
                 rate = 0;
-            _logfile->writeRecord(_sink_type, _sinks[i]->get_id(), _event_type,
-                                  _sinks[i]->cumulative_ack(),
-                                  deltaB > 0 ? (deltaSnd * 100000 / deltaB) : 0,
-                                  rate);
+            _logfile->writeRecord(_sink_type, _sinks[i]->get_id(), _event_type, _sinks[i]->cumulative_ack(),
+                                  deltaB > 0 ? (deltaSnd * 100000 / deltaB) : 0, rate);
 
             _last_rate[i] = rate;
 
@@ -1184,8 +1099,7 @@ void SinkLoggerSampling::doNextEvent() {
         double goodput = 0;
 
         if (mtcp->_sink) {
-            deltaB = mtcp->_sink->cumulative_ack() -
-                     (uint64_t)_multipath_seq[mtcp];
+            deltaB = mtcp->_sink->cumulative_ack() - (uint64_t)_multipath_seq[mtcp];
             goodput = deltaB * 1000000000000.0 / delta; // Bps
             _multipath_seq[mtcp] = mtcp->_sink->cumulative_ack();
         } else {
@@ -1193,18 +1107,14 @@ void SinkLoggerSampling::doNextEvent() {
             throughput = _multipath_src[mtcp];
         }
 
-        _logfile->writeRecord(Logger::MTCP, mtcp->get_id(),
-                              MultipathTcpLogger::RATE, mtcp->a, goodput,
-                              throughput);
+        _logfile->writeRecord(Logger::MTCP, mtcp->get_id(), MultipathTcpLogger::RATE, mtcp->a, goodput, throughput);
 
         _multipath_src[mtcp] = 0;
     }
 }
 
-TcpSinkLoggerSampling::TcpSinkLoggerSampling(simtime_picosec period,
-                                             EventList &eventlist)
-        : SinkLoggerSampling(period, eventlist, Logger::TCP_SINK,
-                             TcpLogger::RATE) {}
+TcpSinkLoggerSampling::TcpSinkLoggerSampling(simtime_picosec period, EventList &eventlist)
+        : SinkLoggerSampling(period, eventlist, Logger::TCP_SINK, TcpLogger::RATE) {}
 
 string TcpSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     stringstream ss;
@@ -1213,8 +1123,7 @@ string TcpSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     case Logger::TCP_SINK:
         assert(event._ev == TcpLogger::RATE);
         ss << " Type TCP_SINK ID " << event._id << " Ev RATE"
-           << " CAck " << (uint64_t)event._val1 << " Rate "
-           << (uint64_t)event._val3;
+           << " CAck " << (uint64_t)event._val1 << " Rate " << (uint64_t)event._val3;
         // val2 seems to always be zero - maybe a bug
         break;
     case Logger::MTCP:
@@ -1224,8 +1133,8 @@ string TcpSinkLoggerSampling::event_to_str(RawLogEvent &event) {
         ss << " Type MTCP ID " << event._id;
         switch (event._ev) {
         case MultipathTcpLogger::RATE:
-            ss << " Ev RATE A " << event._val1 << " Gput "
-               << (uint64_t)event._val2 << " Tput " << (uint64_t)event._val3;
+            ss << " Ev RATE A " << event._val1 << " Gput " << (uint64_t)event._val2 << " Tput "
+               << (uint64_t)event._val3;
             break;
         default:
             ss << " Unknown event " << event._ev;
@@ -1237,10 +1146,8 @@ string TcpSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     return ss.str();
 }
 
-SwiftSinkLoggerSampling::SwiftSinkLoggerSampling(simtime_picosec period,
-                                                 EventList &eventlist)
-        : SinkLoggerSampling(period, eventlist, Logger::SWIFT_SINK,
-                             SwiftLogger::RATE) {}
+SwiftSinkLoggerSampling::SwiftSinkLoggerSampling(simtime_picosec period, EventList &eventlist)
+        : SinkLoggerSampling(period, eventlist, Logger::SWIFT_SINK, SwiftLogger::RATE) {}
 
 void SwiftSinkLoggerSampling::doNextEvent() {
     eventlist().sourceIsPendingRel(*this, _period);
@@ -1271,10 +1178,8 @@ void SwiftSinkLoggerSampling::doNextEvent() {
                 rate = deltaB * 1000000000000.0 / delta; // Bps
             else
                 rate = 0;
-            _logfile->writeRecord(_sink_type, _sinks[i]->get_id(), _event_type,
-                                  _sinks[i]->cumulative_ack(),
-                                  deltaB > 0 ? (deltaSnd * 100000 / deltaB) : 0,
-                                  rate);
+            _logfile->writeRecord(_sink_type, _sinks[i]->get_id(), _event_type, _sinks[i]->cumulative_ack(),
+                                  deltaB > 0 ? (deltaSnd * 100000 / deltaB) : 0, rate);
 
             _last_rate[i] = rate;
         }
@@ -1291,10 +1196,8 @@ void SwiftSinkLoggerSampling::doNextEvent() {
                     rate = deltaB * 1000000000000.0 / delta; // Bps
                 else
                     rate = 0;
-                _logfile->writeRecord(
-                        _sink_type, sub->get_id(), _event_type,
-                        sub->cumulative_ack(),
-                        deltaB > 0 ? (deltaSnd * 100000 / deltaB) : 0, rate);
+                _logfile->writeRecord(_sink_type, sub->get_id(), _event_type, sub->cumulative_ack(),
+                                      deltaB > 0 ? (deltaSnd * 100000 / deltaB) : 0, rate);
                 _last_sub_seq[i][si] = cum_ack;
             }
         }
@@ -1309,8 +1212,7 @@ string SwiftSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     case Logger::SWIFT_SINK:
         assert(event._ev == SwiftLogger::RATE);
         ss << " Type SWIFT_SINK ID " << event._id << " Ev RATE"
-           << " CAck " << (uint64_t)event._val1 << " Rate "
-           << (uint64_t)event._val3;
+           << " CAck " << (uint64_t)event._val1 << " Rate " << (uint64_t)event._val3;
         // val2 seems to always be zero - maybe a bug
         break;
     default:
@@ -1319,10 +1221,8 @@ string SwiftSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     return ss.str();
 }
 
-STrackSinkLoggerSampling::STrackSinkLoggerSampling(simtime_picosec period,
-                                                   EventList &eventlist)
-        : SinkLoggerSampling(period, eventlist, Logger::STRACK_SINK,
-                             STrackLogger::RATE) {
+STrackSinkLoggerSampling::STrackSinkLoggerSampling(simtime_picosec period, EventList &eventlist)
+        : SinkLoggerSampling(period, eventlist, Logger::STRACK_SINK, STrackLogger::RATE) {
     cout << "STrackSinkLoggerSampling(p=" << timeAsSec(period) << " init \n";
 }
 
@@ -1334,8 +1234,7 @@ void STrackSinkLoggerSampling::doNextEvent() {
     TcpAck::seq_t deltaB;
     // uint32_t deltaSnd = 0;
     double rate;
-    cout << "STrackSinkLoggerSampling(p=" << timeAsSec(_period)
-         << "), t=" << timeAsSec(now) << "\n";
+    cout << "STrackSinkLoggerSampling(p=" << timeAsSec(_period) << "), t=" << timeAsSec(now) << "\n";
     cout << "size: " << _sinks.size() << endl;
     for (uint64_t i = 0; i < _sinks.size(); i++) {
         STrackSink *sink = (STrackSink *)_sinks[i];
@@ -1347,8 +1246,7 @@ void STrackSinkLoggerSampling::doNextEvent() {
             else
                 rate = 0;
 
-            _logfile->writeRecord(_sink_type, sink->get_id(), _event_type,
-                                  sink->cumulative_ack(),
+            _logfile->writeRecord(_sink_type, sink->get_id(), _event_type, sink->cumulative_ack(),
                                   // deltaB>0?(deltaSnd * 100000 / deltaB):0
                                   sink->reorder_buffer_max(), rate);
 
@@ -1365,8 +1263,8 @@ string STrackSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     case Logger::STRACK_SINK:
         assert(event._ev == STrackLogger::RATE);
         ss << " Type STRACK_SINK ID " << event._id << " Ev RATE"
-           << " CAck " << (uint64_t)event._val1 << " ReorderBuffer "
-           << (uint64_t)event._val2 << " Rate " << (uint64_t)event._val3;
+           << " CAck " << (uint64_t)event._val1 << " ReorderBuffer " << (uint64_t)event._val2 << " Rate "
+           << (uint64_t)event._val3;
         // val2 seems to always be zero - maybe a bug
         break;
     default:
@@ -1375,10 +1273,8 @@ string STrackSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     return ss.str();
 }
 
-NdpSinkLoggerSampling::NdpSinkLoggerSampling(simtime_picosec period,
-                                             EventList &eventlist)
-        : SinkLoggerSampling(period, eventlist, Logger::NDP_SINK,
-                             NdpLogger::RATE) {
+NdpSinkLoggerSampling::NdpSinkLoggerSampling(simtime_picosec period, EventList &eventlist)
+        : SinkLoggerSampling(period, eventlist, Logger::NDP_SINK, NdpLogger::RATE) {
     cout << "NdpSinkLoggerSampling(p=" << timeAsSec(period) << " init \n";
 }
 
@@ -1401,8 +1297,7 @@ void NdpSinkLoggerSampling::doNextEvent() {
             else
                 rate = 0;
 
-            _logfile->writeRecord(_sink_type, sink->get_id(), _event_type,
-                                  sink->cumulative_ack(),
+            _logfile->writeRecord(_sink_type, sink->get_id(), _event_type, sink->cumulative_ack(),
                                   /*deltaB>0?(deltaSnd * 100000 / deltaB):0*/
                                   sink->reorder_buffer_size(), rate);
 
@@ -1419,8 +1314,8 @@ string NdpSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     case Logger::NDP_SINK:
         assert(event._ev == NdpLogger::RATE);
         ss << " Type NDP_SINK ID " << event._id << " Ev RATE"
-           << " CAck " << (uint64_t)event._val1 << " ReorderBuffer "
-           << (uint64_t)event._val2 << " Rate " << (uint64_t)event._val3;
+           << " CAck " << (uint64_t)event._val1 << " ReorderBuffer " << (uint64_t)event._val2 << " Rate "
+           << (uint64_t)event._val3;
         // val2 seems to always be zero - maybe a bug
         break;
     default:
@@ -1429,10 +1324,8 @@ string NdpSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     return ss.str();
 }
 
-RoceSinkLoggerSampling::RoceSinkLoggerSampling(simtime_picosec period,
-                                               EventList &eventlist)
-        : SinkLoggerSampling(period, eventlist, Logger::ROCE_SINK,
-                             RoceLogger::RATE) {
+RoceSinkLoggerSampling::RoceSinkLoggerSampling(simtime_picosec period, EventList &eventlist)
+        : SinkLoggerSampling(period, eventlist, Logger::ROCE_SINK, RoceLogger::RATE) {
     cout << "RoceSinkLoggerSampling(p=" << timeAsSec(period) << " init \n";
 }
 
@@ -1453,10 +1346,8 @@ void RoceSinkLoggerSampling::doNextEvent() {
                 rate = deltaB * 1000000000000.0 / delta; // Bps
             else
                 rate = 0;
-            _logfile->writeRecord(_sink_type, sink->get_id(), _event_type,
-                                  sink->cumulative_ack(),
-                                  deltaB > 0 ? (deltaSnd * 100000 / deltaB) : 0,
-                                  rate);
+            _logfile->writeRecord(_sink_type, sink->get_id(), _event_type, sink->cumulative_ack(),
+                                  deltaB > 0 ? (deltaSnd * 100000 / deltaB) : 0, rate);
 
             _last_rate[i] = rate;
         }
@@ -1471,8 +1362,7 @@ string RoceSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     case Logger::ROCE_SINK:
         assert(event._ev == RoceLogger::RATE);
         ss << " Type ROCE_SINK ID " << event._id << " Ev RATE"
-           << " CAck " << (uint64_t)event._val1 << " Rate "
-           << (uint64_t)event._val3;
+           << " CAck " << (uint64_t)event._val1 << " Rate " << (uint64_t)event._val3;
         // val2 seems to always be zero - maybe a bug
         break;
     default:
@@ -1481,10 +1371,8 @@ string RoceSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     return ss.str();
 }
 
-HPCCSinkLoggerSampling::HPCCSinkLoggerSampling(simtime_picosec period,
-                                               EventList &eventlist)
-        : SinkLoggerSampling(period, eventlist, Logger::HPCC_SINK,
-                             HPCCLogger::RATE) {
+HPCCSinkLoggerSampling::HPCCSinkLoggerSampling(simtime_picosec period, EventList &eventlist)
+        : SinkLoggerSampling(period, eventlist, Logger::HPCC_SINK, HPCCLogger::RATE) {
     cout << "HPCCSinkLoggerSampling(p=" << timeAsSec(period) << " init \n";
 }
 
@@ -1505,10 +1393,8 @@ void HPCCSinkLoggerSampling::doNextEvent() {
                 rate = deltaB * 1000000000000.0 / delta; // Bps
             else
                 rate = 0;
-            _logfile->writeRecord(_sink_type, sink->get_id(), _event_type,
-                                  sink->cumulative_ack(),
-                                  deltaB > 0 ? (deltaSnd * 100000 / deltaB) : 0,
-                                  rate);
+            _logfile->writeRecord(_sink_type, sink->get_id(), _event_type, sink->cumulative_ack(),
+                                  deltaB > 0 ? (deltaSnd * 100000 / deltaB) : 0, rate);
 
             _last_rate[i] = rate;
         }
@@ -1523,8 +1409,7 @@ string HPCCSinkLoggerSampling::event_to_str(RawLogEvent &event) {
     case Logger::HPCC_SINK:
         assert(event._ev == RoceLogger::RATE);
         ss << " Type HPCC_SINK ID " << event._id << " Ev RATE"
-           << " CAck " << (uint64_t)event._val1 << " Rate "
-           << (uint64_t)event._val3;
+           << " CAck " << (uint64_t)event._val1 << " Rate " << (uint64_t)event._val3;
         // val2 seems to always be zero - maybe a bug
         break;
     default:
@@ -1535,14 +1420,11 @@ string HPCCSinkLoggerSampling::event_to_str(RawLogEvent &event) {
 
 void QcnLoggerSimple::logQcn(QcnReactor &src, QcnEvent ev, double var3) {
     if (ev != QcnLogger::QCN_SEND)
-        _logfile->writeRecord(Logger::QCN_EVENT, src.get_id(), ev,
-                              src._currentRate, src._packetCycles, var3);
+        _logfile->writeRecord(Logger::QCN_EVENT, src.get_id(), ev, src._currentRate, src._packetCycles, var3);
 }
 
-void QcnLoggerSimple::logQcnQueue(QcnQueue &src, QcnQueueEvent ev, double var1,
-                                  double var2, double var3) {
-    _logfile->writeRecord(Logger::QCNQUEUE_EVENT, src.get_id(), ev, var1, var2,
-                          var3);
+void QcnLoggerSimple::logQcnQueue(QcnQueue &src, QcnQueueEvent ev, double var1, double var2, double var3) {
+    _logfile->writeRecord(Logger::QCNQUEUE_EVENT, src.get_id(), ev, var1, var2, var3);
 };
 
 string QcnLoggerSimple::event_to_str(RawLogEvent &event) {
@@ -1571,8 +1453,7 @@ string QcnLoggerSimple::event_to_str(RawLogEvent &event) {
             ss << " Ev Unknown(" << event._ev << ")";
             break;
         }
-        ss << " Rate " << (int)event._val1 << " PktCycles " << (int)event._val2
-           << " Val3 " << event._val3;
+        ss << " Rate " << (int)event._val1 << " PktCycles " << (int)event._val2 << " Val3 " << event._val3;
         break;
     case Logger::QCNQUEUE_EVENT:
         ss << "Type QCNQUEUE Id " << event._id;
@@ -1587,8 +1468,7 @@ string QcnLoggerSimple::event_to_str(RawLogEvent &event) {
             ss << " Ev Unknown(" << event._ev << ")";
             break;
         }
-        ss << " Val1 " << event._val1 << " Val2 " << event._val2 << " Val3 "
-           << event._val3;
+        ss << " Val1 " << event._val1 << " Val2 " << event._val2 << " Val3 " << event._val3;
     }
     return ss.str();
 }
@@ -1597,18 +1477,16 @@ string QcnLoggerSimple::event_to_str(RawLogEvent &event) {
 /* Reorder Buffer Logger */
 /****************************************************************************/
 
-ReorderBufferLoggerSampling::ReorderBufferLoggerSampling(simtime_picosec period,
-                                                         EventList &eventlist)
-        : EventSource(eventlist, "ReorderBufferLoggerSampling"),
-          _period(period), _queue_len(0), _min_queue(0), _max_queue(0) {
+ReorderBufferLoggerSampling::ReorderBufferLoggerSampling(simtime_picosec period, EventList &eventlist)
+        : EventSource(eventlist, "ReorderBufferLoggerSampling"), _period(period), _queue_len(0), _min_queue(0),
+          _max_queue(0) {
     eventlist.sourceIsPendingRel(*this, 0);
 }
 
 void ReorderBufferLoggerSampling::doNextEvent() {
     cout << "ReorderBufferLoggerSampling " << eventlist().now() << endl;
     eventlist().sourceIsPendingRel(*this, _period);
-    _logfile->writeRecord(QUEUE_APPROX, get_id(), QueueLogger::QUEUE_RANGE,
-                          (double)_queue_len, (double)_min_queue,
+    _logfile->writeRecord(QUEUE_APPROX, get_id(), QueueLogger::QUEUE_RANGE, (double)_queue_len, (double)_min_queue,
                           (double)_max_queue);
     _min_queue = _queue_len;
     _max_queue = _queue_len;
@@ -1634,8 +1512,7 @@ void ReorderBufferLoggerSampling::logBuffer(BufferEvent ev) {
 #define UEC_IS_ACK 1 << 31
 #define UEC_IS_NACK 1 << 30
 #define UEC_IS_HEADER 1 << 28
-void UecTrafficLogger::logTraffic(Packet &pkt, Logged &location,
-                                  TrafficEvent ev) {
+void UecTrafficLogger::logTraffic(Packet &pkt, Logged &location, TrafficEvent ev) {
     Packet &p = static_cast<Packet &>(pkt);
     uint32_t val3 = 0; // ugly hack to store UEC-specific data in a double
 
@@ -1650,8 +1527,7 @@ void UecTrafficLogger::logTraffic(Packet &pkt, Logged &location,
         }
     }
 
-    _logfile->writeRecord(Logger::UEC_TRAFFIC, location.get_id(), ev,
-                          p.flow().get_id(), p.id(), val3);
+    _logfile->writeRecord(Logger::UEC_TRAFFIC, location.get_id(), ev, p.flow().get_id(), p.id(), val3);
 }
 
 string UecTrafficLogger::event_to_str(RawLogEvent &event) {

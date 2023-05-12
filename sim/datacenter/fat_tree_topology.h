@@ -63,31 +63,22 @@ class FatTreeTopology : public Topology {
     queue_type _qt;
     queue_type _sender_qt;
 
-    FatTreeTopology(uint32_t no_of_nodes, linkspeed_bps linkspeed,
-                    mem_b queuesize, QueueLoggerFactory *logger_factory,
-                    EventList *ev, FirstFit *f, queue_type qt,
-                    simtime_picosec latency, simtime_picosec switch_latency,
+    FatTreeTopology(uint32_t no_of_nodes, linkspeed_bps linkspeed, mem_b queuesize, QueueLoggerFactory *logger_factory,
+                    EventList *ev, FirstFit *f, queue_type qt, simtime_picosec latency, simtime_picosec switch_latency,
                     queue_type snd = FAIR_PRIO);
-    FatTreeTopology(uint32_t no_of_nodes, linkspeed_bps linkspeed,
-                    mem_b queuesize, QueueLoggerFactory *logger_factory,
+    FatTreeTopology(uint32_t no_of_nodes, linkspeed_bps linkspeed, mem_b queuesize, QueueLoggerFactory *logger_factory,
                     EventList *ev, FirstFit *f, queue_type qt);
-    FatTreeTopology(uint32_t no_of_nodes, linkspeed_bps linkspeed,
-                    mem_b queuesize, QueueLoggerFactory *logger_factory,
+    FatTreeTopology(uint32_t no_of_nodes, linkspeed_bps linkspeed, mem_b queuesize, QueueLoggerFactory *logger_factory,
                     EventList *ev, FirstFit *f, queue_type qt, uint32_t fail);
-    FatTreeTopology(uint32_t no_of_nodes, linkspeed_bps linkspeed,
-                    mem_b queuesize, QueueLoggerFactory *logger_factory,
-                    EventList *ev, FirstFit *f, queue_type qt,
-                    queue_type sender_qt, uint32_t fail);
+    FatTreeTopology(uint32_t no_of_nodes, linkspeed_bps linkspeed, mem_b queuesize, QueueLoggerFactory *logger_factory,
+                    EventList *ev, FirstFit *f, queue_type qt, queue_type sender_qt, uint32_t fail);
 
     void init_network();
-    virtual vector<const Route *> *get_bidir_paths(uint32_t src, uint32_t dest,
-                                                   bool reverse);
+    virtual vector<const Route *> *get_bidir_paths(uint32_t src, uint32_t dest, bool reverse);
 
     BaseQueue *alloc_src_queue(QueueLogger *q);
-    BaseQueue *alloc_queue(QueueLogger *q, mem_b queuesize, link_direction dir,
-                           bool tor);
-    BaseQueue *alloc_queue(QueueLogger *q, uint64_t speed, mem_b queuesize,
-                           link_direction dir, bool tor);
+    BaseQueue *alloc_queue(QueueLogger *q, mem_b queuesize, link_direction dir, bool tor);
+    BaseQueue *alloc_queue(QueueLogger *q, uint64_t speed, mem_b queuesize, link_direction dir, bool tor);
     static void set_tiers(uint32_t tiers) { _tiers = tiers; }
     static uint32_t get_tiers() { return _tiers; }
 
@@ -103,8 +94,7 @@ class FatTreeTopology : public Topology {
     void add_failed_link(uint32_t type, uint32_t switch_id, uint32_t link_id);
 
     // add loggers to record total queue size at switches
-    virtual void add_switch_loggers(Logfile &log,
-                                    simtime_picosec sample_period);
+    virtual void add_switch_loggers(Logfile &log, simtime_picosec sample_period);
 
     uint32_t HOST_POD_SWITCH(uint32_t src) { return 2 * src / K; }
     uint32_t HOST_POD_ID(uint32_t src) {

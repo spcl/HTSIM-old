@@ -39,15 +39,12 @@ class HPCCPacket : public Packet {
 
     // pseudo-constructor for a routeless packet - routing information
     // must be filled in later
-    inline static HPCCPacket *newpkt(PacketFlow &flow, seq_t seqno, int size,
-                                     bool retransmitted, bool last_packet,
+    inline static HPCCPacket *newpkt(PacketFlow &flow, seq_t seqno, int size, bool retransmitted, bool last_packet,
                                      uint32_t destination = UINT32_MAX) {
         HPCCPacket *p = _packetdb.allocPacket();
-        p->set_attrs(
-                flow, size + hpcc_acksize,
-                seqno + size -
-                        1); // The NDP sequence number is the first byte of the
-                            // packet; I will ID the packet by its last byte.
+        p->set_attrs(flow, size + hpcc_acksize,
+                     seqno + size - 1); // The NDP sequence number is the first byte of the
+                                        // packet; I will ID the packet by its last byte.
         p->_type = HPCC;
         p->_is_header = false;
         p->_seqno = seqno;
@@ -60,16 +57,12 @@ class HPCCPacket : public Packet {
         return p;
     }
 
-    inline static HPCCPacket *newpkt(PacketFlow &flow, const Route &route,
-                                     seq_t seqno, int size, bool retransmitted,
-                                     bool last_packet,
-                                     uint32_t destination = UINT32_MAX) {
+    inline static HPCCPacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, int size, bool retransmitted,
+                                     bool last_packet, uint32_t destination = UINT32_MAX) {
         HPCCPacket *p = _packetdb.allocPacket();
-        p->set_route(
-                flow, route, size + hpcc_acksize,
-                seqno + size -
-                        1); // The NDP sequence number is the first byte of the
-                            // packet; I will ID the packet by its last byte.
+        p->set_route(flow, route, size + hpcc_acksize,
+                     seqno + size - 1); // The NDP sequence number is the first byte of the
+                                        // packet; I will ID the packet by its last byte.
         p->_type = HPCC;
         p->_seqno = seqno;
         p->_is_header = false;
@@ -114,8 +107,7 @@ class HPCCAck : public Packet {
   public:
     typedef HPCCPacket::seq_t seq_t;
 
-    inline static HPCCAck *newpkt(PacketFlow &flow, const Route &route,
-                                  seq_t ackno,
+    inline static HPCCAck *newpkt(PacketFlow &flow, const Route &route, seq_t ackno,
                                   uint32_t destination = UINT32_MAX) {
         HPCCAck *p = _packetdb.allocPacket();
         p->set_route(flow, route, hpcc_acksize, ackno);
@@ -151,8 +143,7 @@ class HPCCNack : public Packet {
   public:
     typedef HPCCPacket::seq_t seq_t;
 
-    inline static HPCCNack *newpkt(PacketFlow &flow, const Route &route,
-                                   seq_t ackno,
+    inline static HPCCNack *newpkt(PacketFlow &flow, const Route &route, seq_t ackno,
                                    uint32_t destination = UINT32_MAX) {
         HPCCNack *p = _packetdb.allocPacket();
         p->set_route(flow, route, hpcc_acksize, ackno);

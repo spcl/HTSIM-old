@@ -15,8 +15,7 @@ class SwiftPacket : public Packet {
   public:
     typedef uint64_t seq_t;
 
-    inline static SwiftPacket *newpkt(PacketFlow &flow, const Route &route,
-                                      seq_t seqno, seq_t dsn, int size) {
+    inline static SwiftPacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t dsn, int size) {
         SwiftPacket *p = _packetdb.allocPacket();
         p->set_route(flow, route, size,
                      seqno + size - 1); // The Swift sequence number is the
@@ -29,8 +28,7 @@ class SwiftPacket : public Packet {
         return p;
     }
 
-    inline static SwiftPacket *new_syn_pkt(PacketFlow &flow, const Route &route,
-                                           seq_t seqno, int size) {
+    inline static SwiftPacket *new_syn_pkt(PacketFlow &flow, const Route &route, seq_t seqno, int size) {
         SwiftPacket *p = newpkt(flow, route, seqno, 0, size);
         p->_syn = true;
         return p;
@@ -55,8 +53,7 @@ class SwiftAck : public Packet {
   public:
     typedef SwiftPacket::seq_t seq_t;
 
-    inline static SwiftAck *newpkt(PacketFlow &flow, const Route &route,
-                                   seq_t seqno, seq_t ackno, seq_t ds_ackno,
+    inline static SwiftAck *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t ackno, seq_t ds_ackno,
                                    simtime_picosec ts_echo) {
         SwiftAck *p = _packetdb.allocPacket();
         p->set_route(flow, route, ACKSIZE, ackno);

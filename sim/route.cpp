@@ -9,9 +9,7 @@
 
 Route::Route() : _hop_count(0), _reverse(NULL){};
 
-Route::Route(int size) : _hop_count(0), _reverse(NULL) {
-    _sinklist.reserve(size);
-};
+Route::Route(int size) : _hop_count(0), _reverse(NULL) { _sinklist.reserve(size); };
 
 Route::Route(const Route &orig, PacketSink &dst) : _sinklist(orig.size() + 1) {
     //_sinklist.resize(orig.size()+1);

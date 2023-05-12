@@ -10,9 +10,7 @@ ConnectionMatrix::ConnectionMatrix(uint32_t n) {
     conns = NULL;
 }
 
-void ConnectionMatrix::setPermutation(uint32_t conn) {
-    setPermutation(conn, 1);
-}
+void ConnectionMatrix::setPermutation(uint32_t conn) { setPermutation(conn, 1); }
 
 void ConnectionMatrix::addConnection(uint32_t src, uint32_t dest) {
     if (connections.find(src) == connections.end())
@@ -107,8 +105,7 @@ void ConnectionMatrix::setPermutation() {
         }
 
         if (r != 0 || is_dest[dest]) {
-            cout << "Wrong connections r " << r << "is_dest " << is_dest[dest]
-                 << endl;
+            cout << "Wrong connections r " << r << "is_dest " << is_dest[dest] << endl;
             exit(1);
         }
 
@@ -144,10 +141,8 @@ void ConnectionMatrix::setPermutationShuffle(uint32_t conns) {
     // we'll shuffle all the destinations for all possible sources, then pick
     // the right number of connection afterwards
 
-    vector<uint32_t> srcs(
-            N, 0); // list of srcs (used to choose which sources actually send)
-    vector<uint32_t> dsts(
-            N, 0); // list of dests (used to choose which dst each src sends to)
+    vector<uint32_t> srcs(N, 0); // list of srcs (used to choose which sources actually send)
+    vector<uint32_t> dsts(N, 0); // list of dests (used to choose which dst each src sends to)
     // initialize everyone sending to themselves
     for (uint32_t src = 0; src < N; src++) {
         srcs[src] = src;
@@ -195,10 +190,8 @@ void ConnectionMatrix::setPermutationShuffleIncast(uint32_t conns) {
     // we'll shuffle all the destinations for all possible sources, then pick
     // the right number of connection afterwards
 
-    vector<uint32_t> srcs(
-            N, 0); // list of srcs (used to choose which sources actually send)
-    vector<uint32_t> dsts(
-            N, 0); // list of dests (used to choose which dst each src sends to)
+    vector<uint32_t> srcs(N, 0); // list of srcs (used to choose which sources actually send)
+    vector<uint32_t> dsts(N, 0); // list of dests (used to choose which dst each src sends to)
     // initialize everyone sending to themselves
     for (uint32_t src = 0; src < N; src++) {
         srcs[src] = src;
@@ -248,8 +241,7 @@ void ConnectionMatrix::setPermutationShuffleIncast(uint32_t conns) {
             continue;
 
         connections[srcs[i]]->push_back(dsts[srcs[conns]]);
-        cout << "Incast: Src " << srcs[i] << " Dst " << dsts[srcs[conns]]
-             << endl;
+        cout << "Incast: Src " << srcs[i] << " Dst " << dsts[srcs[conns]] << endl;
     }
 }
 
@@ -339,8 +331,7 @@ vector<connection *> *ConnectionMatrix::getAllConnections() {
     return conns;
 }
 
-void ConnectionMatrix::setStaggeredRandom(Topology *top, uint32_t conns,
-                                          double local) {
+void ConnectionMatrix::setStaggeredRandom(Topology *top, uint32_t conns, double local) {
     for (uint32_t conn = 0; conn < conns; conn++) {
         uint32_t src = rand() % N;
 
@@ -506,8 +497,7 @@ void ConnectionMatrix::setIncastLocalPerm(uint32_t hosts_per_hotspot) {
     printf("K is %d\n", K);
     uint32_t per_rack = K / 2;
 
-    for (uint32_t dst = (first / per_rack) * per_rack;
-         dst < ((first / per_rack) + 1) * per_rack; dst++) {
+    for (uint32_t dst = (first / per_rack) * per_rack; dst < ((first / per_rack) + 1) * per_rack; dst++) {
         if (dst == first)
             continue;
 
@@ -523,8 +513,7 @@ void ConnectionMatrix::setIncastLocalPerm(uint32_t hosts_per_hotspot) {
     }
 }
 
-void ConnectionMatrix::setHotspotOutcast(uint32_t hosts_per_hotspot,
-                                         uint32_t count) {
+void ConnectionMatrix::setHotspotOutcast(uint32_t hosts_per_hotspot, uint32_t count) {
     int is_dest[N], is_done[N];
     for (uint32_t i = 0; i < N; i++) {
         is_dest[i] = 0;
@@ -602,8 +591,7 @@ void ConnectionMatrix::setIncast(uint32_t hosts_per_hotspot, uint32_t center) {
     }
 }
 
-void ConnectionMatrix::setOutcast(uint32_t src, uint32_t hosts_per_hotspot,
-                                  uint32_t center) {
+void ConnectionMatrix::setOutcast(uint32_t src, uint32_t hosts_per_hotspot, uint32_t center) {
     // creates an outcast from source 0 to destinations center to
     // centre+hosts_per_hotspot
     connections[src] = new vector<uint32_t>();
@@ -634,8 +622,7 @@ bool ConnectionMatrix::save(FILE *f) {
         return false;
 
     for (uint32_t i = 0; i < conns->size(); i++) {
-        if (fprintf(f, "%u->%u start %f size %u\n", conns->at(i)->src,
-                    conns->at(i)->dst, timeAsUs(conns->at(i)->start),
+        if (fprintf(f, "%u->%u start %f size %u\n", conns->at(i)->src, conns->at(i)->dst, timeAsUs(conns->at(i)->start),
                     conns->at(i)->size) < 0)
             return false;
     }
@@ -721,16 +708,14 @@ bool ConnectionMatrix::load(istream &file) {
             triggers_size = stoi(tokens[1]);
         } else if (tokens[0] == "Failures") {
             failures_size = stoi(tokens[1]);
-        } else if (tokens[0].find("->") != string::npos ||
-                   tokens[0] == "trigger" || tokens[0] == "failure") {
+        } else if (tokens[0].find("->") != string::npos || tokens[0] == "trigger" || tokens[0] == "failure") {
             // we're done with the header
             break;
         }
     }
     linecount--;
-    cout << "Nodes: " << N << " Connections: " << conns_size
-         << " Triggers: " << triggers_size << " Failures: " << failures_size
-         << endl;
+    cout << "Nodes: " << N << " Connections: " << conns_size << " Triggers: " << triggers_size
+         << " Failures: " << failures_size << endl;
     // parse rest of file
     do {
         linecount++;
@@ -772,8 +757,7 @@ bool ConnectionMatrix::load(istream &file) {
                     i++;
                     c->trigger = stoi(tokens[i]);
                     c->start = TRIGGER_START;
-                    map<uint32_t, trigger *>::iterator it =
-                            triggers.find(c->trigger);
+                    map<uint32_t, trigger *>::iterator it = triggers.find(c->trigger);
                     if (it == triggers.end()) {
                         trigger *t = new trigger;
                         t->id = c->trigger;
@@ -798,14 +782,12 @@ bool ConnectionMatrix::load(istream &file) {
                     i++;
                     c->priority = stoi(tokens[i]);
                 } else {
-                    cerr << "Error: unknown token: " << tokens[i] << " at line "
-                         << linecount << endl;
+                    cerr << "Error: unknown token: " << tokens[i] << " at line " << linecount << endl;
                     exit(1);
                 }
             }
             if (c->start == NO_START && !c->trigger) {
-                cerr << "Error: no start method specified for flow at line "
-                     << linecount << endl;
+                cerr << "Error: no start method specified for flow at line " << linecount << endl;
                 exit(1);
             }
             if (c->start != TRIGGER_START && c->trigger) {
@@ -844,8 +826,7 @@ bool ConnectionMatrix::load(istream &file) {
                     assert(t->type == UNSPECIFIED);
                     t->type = BARRIER;
                 } else {
-                    cerr << "Error: unknown id: " << tokens[i] << " at line "
-                         << linecount << endl;
+                    cerr << "Error: unknown id: " << tokens[i] << " at line " << linecount << endl;
                     exit(1);
                 }
             }
@@ -886,8 +867,7 @@ bool ConnectionMatrix::load(istream &file) {
                     else if (tokens[i] == "CORE")
                         f->switch_type = FatTreeSwitch::CORE;
                     else {
-                        cout << "Unknown switch type " << tokens[i]
-                             << ", expecting one of TOR, AGG or CORE " << endl;
+                        cout << "Unknown switch type " << tokens[i] << ", expecting one of TOR, AGG or CORE " << endl;
                         exit(1);
                     }
                 } else if (tokens[i] == "switch_id") {
@@ -897,41 +877,35 @@ bool ConnectionMatrix::load(istream &file) {
                     i++;
                     f->link_id = stoi(tokens[i]);
                 } else {
-                    cerr << "Error: unknown failure attricute " << tokens[i]
-                         << " at line " << linecount << endl;
+                    cerr << "Error: unknown failure attricute " << tokens[i] << " at line " << linecount << endl;
                     exit(1);
                 }
             }
             failures.push_back(f);
         } else {
-            cerr << "Error: unknown id: " << tokens[0] << " at line "
-                 << linecount << endl;
+            cerr << "Error: unknown id: " << tokens[0] << " at line " << linecount << endl;
             exit(1);
         }
     } while (std::getline(file, line));
 
     // some sanity checks now we've loaded all the data
     if (conn_count != conns_size) {
-        cerr << "Mismatch in connection count, specified: " << conns_size
-             << " actual " << conn_count << endl;
+        cerr << "Mismatch in connection count, specified: " << conns_size << " actual " << conn_count << endl;
         exit(1);
     }
     if (trig_count != triggers_size) {
-        cerr << "Mismatch in trigger count, specified: " << triggers_size
-             << " actual " << trig_count << endl;
+        cerr << "Mismatch in trigger count, specified: " << triggers_size << " actual " << trig_count << endl;
         exit(1);
     }
     if (failures.size() != failures_size) {
-        cerr << "Mismatch in failure count, specified: " << failures_size
-             << " actual " << failures.size() << endl;
+        cerr << "Mismatch in failure count, specified: " << failures_size << " actual " << failures.size() << endl;
         exit(1);
     }
 
     map<triggerid_t, trigger *>::iterator it;
     for (it = triggers.begin(); it != triggers.end(); it++) {
         if (it->second->type == UNSPECIFIED) {
-            cerr << "Trigger " << it->second->id
-                 << " referenced but not specified\n";
+            cerr << "Trigger " << it->second->id << " referenced but not specified\n";
             exit(1);
         }
     }

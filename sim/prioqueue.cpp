@@ -5,8 +5,7 @@
 #include <iostream>
 #include <sstream>
 
-CtrlPrioQueue::CtrlPrioQueue(linkspeed_bps bitrate, mem_b maxsize,
-                             EventList &eventlist, QueueLogger *logger)
+CtrlPrioQueue::CtrlPrioQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger)
         : Queue(bitrate, maxsize, eventlist, logger) {
     _num_packets = 0;
     _num_acks = 0;
@@ -162,10 +161,9 @@ void CtrlPrioQueue::receivePacket(Packet &pkt) {
         default:
             abort();
         }
-        dropped_pkt->flow().logTraffic(*dropped_pkt, *this,
-                                       TrafficLogger::PKT_DROP);
-        cout << "B[ " << _enqueued_low.size() << " " << enqueued->size()
-             << " ] DROP " << dropped_pkt->flow().get_id() << endl;
+        dropped_pkt->flow().logTraffic(*dropped_pkt, *this, TrafficLogger::PKT_DROP);
+        cout << "B[ " << _enqueued_low.size() << " " << enqueued->size() << " ] DROP " << dropped_pkt->flow().get_id()
+             << endl;
         dropped_pkt->free();
         _num_drops++;
     } else {
@@ -178,6 +176,4 @@ void CtrlPrioQueue::receivePacket(Packet &pkt) {
     }
 }
 
-mem_b CtrlPrioQueue::queuesize() const {
-    return _queuesize_low + _queuesize_high;
-}
+mem_b CtrlPrioQueue::queuesize() const { return _queuesize_low + _queuesize_high; }

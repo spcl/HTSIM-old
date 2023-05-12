@@ -7,8 +7,8 @@
  * structure where we don't care about reclaiming space afterwards
  */
 
-#include <vector>
 #include <cassert>
+#include <vector>
 
 using std::size_t;
 

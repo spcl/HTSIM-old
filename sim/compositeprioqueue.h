@@ -21,8 +21,7 @@
 #define MAX_PATH_LEN 20u
 class CompositePrioQueue : public Queue {
   public:
-    CompositePrioQueue(linkspeed_bps bitrate, mem_b maxsize,
-                       EventList &eventlist, QueueLogger *logger);
+    CompositePrioQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger);
     virtual void receivePacket(Packet &pkt);
     virtual void doNextEvent();
     // should really be private, but loggers want to see

@@ -33,8 +33,7 @@
 #define PERIODIC 0
 #include "main.h"
 
-uint32_t RTT =
-        1; // this is per link delay in us; identical RTT microseconds = 0.02 ms
+uint32_t RTT = 1; // this is per link delay in us; identical RTT microseconds = 0.02 ms
 int DEFAULT_NODES = 432;
 #define DEFAULT_QUEUE_SIZE 15
 
@@ -147,8 +146,7 @@ int main(int argc, char **argv) {
             } else if (!strcmp(argv[i + 1], "fair_prio")) {
                 snd_type = FAIR_PRIO;
             } else {
-                cout << "Unknown host queue type " << argv[i + 1]
-                     << " expecting one of swift|prio|fair_prio" << endl;
+                cout << "Unknown host queue type " << argv[i + 1] << " expecting one of swift|prio|fair_prio" << endl;
                 exit_error(argv[0]);
             }
             cout << "host queue_type " << snd_type << endl;
@@ -214,19 +212,16 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-start_delta")) {
             start_delta = atof(argv[i + 1]);
-            cout << "Start connectios with a random delay of upto "
-                 << start_delta << "us" << endl;
+            cout << "Start connectios with a random delay of upto " << start_delta << "us" << endl;
             i++;
         } else if (!strcmp(argv[i], "-ar_sticky_delta")) {
             ar_sticky_delta = atof(argv[i + 1]);
-            cout << "Adaptive routing sticky delta " << ar_sticky_delta << "us"
-                 << endl;
+            cout << "Adaptive routing sticky delta " << ar_sticky_delta << "us" << endl;
             i++;
         } else if (!strcmp(argv[i], "-pfc_thresholds")) {
             low_pfc = atoi(argv[i + 1]);
             high_pfc = atoi(argv[i + 2]);
-            cout << "PFC thresholds high " << high_pfc << " low " << low_pfc
-                 << endl;
+            cout << "PFC thresholds high " << high_pfc << " low " << low_pfc << endl;
             i += 2;
         } else if (!strcmp(argv[i], "-ar_method")) {
             if (!strcmp(argv[i + 1], "pause")) {
@@ -236,8 +231,7 @@ int main(int argc, char **argv) {
                 cout << "Adaptive routing based on queue size " << endl;
                 FatTreeSwitch::fn = &FatTreeSwitch::compare_queuesize;
             } else if (!strcmp(argv[i + 1], "bandwidth")) {
-                cout << "Adaptive routing based on bandwidth utilization "
-                     << endl;
+                cout << "Adaptive routing based on bandwidth utilization " << endl;
                 FatTreeSwitch::fn = &FatTreeSwitch::compare_bandwidth;
             } else if (!strcmp(argv[i + 1], "pqb")) {
                 cout << "Adaptive routing based on pause, queuesize and "
@@ -248,8 +242,7 @@ int main(int argc, char **argv) {
                 cout << "Adaptive routing based on pause, queuesize" << endl;
                 FatTreeSwitch::fn = &FatTreeSwitch::compare_pq;
             } else if (!strcmp(argv[i + 1], "pb")) {
-                cout << "Adaptive routing based on pause, bandwidth utilization"
-                     << endl;
+                cout << "Adaptive routing based on pause, bandwidth utilization" << endl;
                 FatTreeSwitch::fn = &FatTreeSwitch::compare_pb;
             } else if (!strcmp(argv[i + 1], "qb")) {
                 cout << "Adaptive routing based on queuesize, bandwidth "
@@ -347,8 +340,7 @@ int main(int argc, char **argv) {
 
     logfile.setStartTime(timeFromSec(0));
 
-    HPCCSinkLoggerSampling sinkLogger =
-            HPCCSinkLoggerSampling(timeFromMs(logtime), eventlist);
+    HPCCSinkLoggerSampling sinkLogger = HPCCSinkLoggerSampling(timeFromMs(logtime), eventlist);
     if (log_sink) {
         logfile.addLogger(sinkLogger);
     }
@@ -364,28 +356,23 @@ int main(int argc, char **argv) {
 
     QueueLoggerFactory *qlf = 0;
     if (log_tor_downqueue || log_tor_upqueue) {
-        qlf = new QueueLoggerFactory(
-                &logfile, QueueLoggerFactory::LOGGER_SAMPLING, eventlist);
+        qlf = new QueueLoggerFactory(&logfile, QueueLoggerFactory::LOGGER_SAMPLING, eventlist);
         qlf->set_sample_period(timeFromUs(10.0));
     } else if (log_queue_usage) {
-        qlf = new QueueLoggerFactory(&logfile, QueueLoggerFactory::LOGGER_EMPTY,
-                                     eventlist);
+        qlf = new QueueLoggerFactory(&logfile, QueueLoggerFactory::LOGGER_EMPTY, eventlist);
         qlf->set_sample_period(timeFromUs(10.0));
     }
 #ifdef FAT_TREE
-    FatTreeTopology *top = new FatTreeTopology(
-            no_of_nodes, linkspeed, queuesize, qlf, &eventlist, NULL, qt,
-            hop_latency, switch_latency, snd_type);
+    FatTreeTopology *top = new FatTreeTopology(no_of_nodes, linkspeed, queuesize, qlf, &eventlist, NULL, qt,
+                                               hop_latency, switch_latency, snd_type);
 #endif
 
 #ifdef OV_FAT_TREE
-    OversubscribedFatTreeTopology *top =
-            new OversubscribedFatTreeTopology(lf, &eventlist, ff);
+    OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(lf, &eventlist, ff);
 #endif
 
 #ifdef MH_FAT_TREE
-    MultihomedFatTreeTopology *top =
-            new MultihomedFatTreeTopology(lf, &eventlist, ff);
+    MultihomedFatTreeTopology *top = new MultihomedFatTreeTopology(lf, &eventlist, ff);
 #endif
 
 #ifdef STAR
@@ -436,8 +423,7 @@ int main(int argc, char **argv) {
     }
 
     if (conns->N != no_of_nodes) {
-        cout << "Connection matrix number of nodes is " << conns->N
-             << " while I am using " << no_of_nodes << endl;
+        cout << "Connection matrix number of nodes is " << conns->N << " while I am using " << no_of_nodes << endl;
         exit(-1);
     }
 
@@ -457,8 +443,7 @@ int main(int argc, char **argv) {
         path_refcounts[dest][src]++;
 
         if (!net_paths[src][dest] && route_strategy != ECMP_FIB) {
-            vector<const Route *> *paths =
-                    top->get_bidir_paths(src, dest, false);
+            vector<const Route *> *paths = top->get_bidir_paths(src, dest, false);
             net_paths[src][dest] = paths;
             /*
               for (unsigned int i = 0; i < paths->size(); i++) {
@@ -467,8 +452,7 @@ int main(int argc, char **argv) {
             */
         }
         if (!net_paths[dest][src] && route_strategy != ECMP_FIB) {
-            vector<const Route *> *paths =
-                    top->get_bidir_paths(dest, src, false);
+            vector<const Route *> *paths = top->get_bidir_paths(dest, src, false);
             net_paths[dest][src] = paths;
         }
     }
@@ -493,8 +477,7 @@ int main(int argc, char **argv) {
 
         if (crt->flowid) {
             hpccSrc->set_flowid(crt->flowid);
-            assert(flowmap.find(crt->flowid) ==
-                   flowmap.end()); // don't have dups
+            assert(flowmap.find(crt->flowid) == flowmap.end()); // don't have dups
             flowmap[crt->flowid] = hpccSrc;
         }
 
@@ -503,8 +486,7 @@ int main(int argc, char **argv) {
             trig->add_target(*hpccSrc);
         }
         if (crt->send_done_trigger) {
-            Trigger *trig =
-                    conns->getTrigger(crt->send_done_trigger, eventlist);
+            Trigger *trig = conns->getTrigger(crt->send_done_trigger, eventlist);
             hpccSrc->set_end_trigger(*trig);
         }
 
@@ -519,30 +501,21 @@ int main(int argc, char **argv) {
         hpccSnk->setName("HPCC_sink_" + ntoa(src) + "_" + ntoa(dest));
         logfile.writeName(*hpccSnk);
 
-        ((HostQueue *)top->queues_ns_nlp[src][top->HOST_POD_SWITCH(src)])
-                ->addHostSender(hpccSrc);
+        ((HostQueue *)top->queues_ns_nlp[src][top->HOST_POD_SWITCH(src)])->addHostSender(hpccSrc);
 
         if (route_strategy != SINGLE_PATH && route_strategy != ECMP_FIB) {
             abort();
         } else if (route_strategy == ECMP_FIB) {
             Route *srctotor = new Route();
 
-            srctotor->push_back(
-                    top->queues_ns_nlp[src][top->HOST_POD_SWITCH(src)]);
-            srctotor->push_back(
-                    top->pipes_ns_nlp[src][top->HOST_POD_SWITCH(src)]);
-            srctotor->push_back(
-                    top->queues_ns_nlp[src][top->HOST_POD_SWITCH(src)]
-                            ->getRemoteEndpoint());
+            srctotor->push_back(top->queues_ns_nlp[src][top->HOST_POD_SWITCH(src)]);
+            srctotor->push_back(top->pipes_ns_nlp[src][top->HOST_POD_SWITCH(src)]);
+            srctotor->push_back(top->queues_ns_nlp[src][top->HOST_POD_SWITCH(src)]->getRemoteEndpoint());
 
             Route *dsttotor = new Route();
-            dsttotor->push_back(
-                    top->queues_ns_nlp[dest][top->HOST_POD_SWITCH(dest)]);
-            dsttotor->push_back(
-                    top->pipes_ns_nlp[dest][top->HOST_POD_SWITCH(dest)]);
-            dsttotor->push_back(
-                    top->queues_ns_nlp[dest][top->HOST_POD_SWITCH(dest)]
-                            ->getRemoteEndpoint());
+            dsttotor->push_back(top->queues_ns_nlp[dest][top->HOST_POD_SWITCH(dest)]);
+            dsttotor->push_back(top->pipes_ns_nlp[dest][top->HOST_POD_SWITCH(dest)]);
+            dsttotor->push_back(top->queues_ns_nlp[dest][top->HOST_POD_SWITCH(dest)]->getRemoteEndpoint());
 
             if (crt->start != TRIGGER_START && start_delta > 0) {
                 crt->start += timeFromUs(drand() * start_delta);
@@ -553,20 +526,16 @@ int main(int argc, char **argv) {
             // TORs.
             assert(top->switches_lp[top->HOST_POD_SWITCH(src)]);
             assert(top->switches_lp[top->HOST_POD_SWITCH(src)]);
-            top->switches_lp[top->HOST_POD_SWITCH(src)]->addHostPort(
-                    src, hpccSrc->flow_id(), hpccSrc);
-            top->switches_lp[top->HOST_POD_SWITCH(dest)]->addHostPort(
-                    dest, hpccSrc->flow_id(), hpccSnk);
+            top->switches_lp[top->HOST_POD_SWITCH(src)]->addHostPort(src, hpccSrc->flow_id(), hpccSrc);
+            top->switches_lp[top->HOST_POD_SWITCH(dest)]->addHostPort(dest, hpccSrc->flow_id(), hpccSnk);
         } else {
             int choice = rand() % net_paths[src][dest]->size();
             routeout = new Route(*(net_paths[src][dest]->at(choice)));
             routeout->add_endpoints(hpccSrc, hpccSnk);
 
-            routein = new Route(
-                    *top->get_bidir_paths(dest, src, false)->at(choice));
+            routein = new Route(*top->get_bidir_paths(dest, src, false)->at(choice));
             routein->add_endpoints(hpccSnk, hpccSrc);
-            hpccSrc->connect(routeout, routein, *hpccSnk,
-                             timeFromUs((uint32_t)rand() % 20));
+            hpccSrc->connect(routeout, routein, *hpccSnk, timeFromUs((uint32_t)rand() % 20));
         }
 
         path_refcounts[src][dest]--;
@@ -575,8 +544,7 @@ int main(int argc, char **argv) {
         // free up the routes if no other connection needs them
         if (path_refcounts[src][dest] == 0 && net_paths[src][dest]) {
             vector<const Route *>::iterator i;
-            for (i = net_paths[src][dest]->begin();
-                 i != net_paths[src][dest]->end(); i++) {
+            for (i = net_paths[src][dest]->begin(); i != net_paths[src][dest]->end(); i++) {
                 if ((*i)->reverse())
                     delete (*i)->reverse();
                 delete *i;
@@ -585,8 +553,7 @@ int main(int argc, char **argv) {
         }
         if (path_refcounts[dest][src] == 0 && net_paths[dest][src]) {
             vector<const Route *>::iterator i;
-            for (i = net_paths[dest][src]->begin();
-                 i != net_paths[dest][src]->end(); i++) {
+            for (i = net_paths[dest][src]->begin(); i != net_paths[dest][src]->end(); i++) {
                 if ((*i)->reverse())
                     delete (*i)->reverse();
                 delete *i;

@@ -38,9 +38,7 @@ class Switch : public EventSource, public Drawable, public PacketSink {
     }
 
     virtual int addPort(BaseQueue *q);
-    virtual void addHostPort(int addr, int flowid, PacketSink *transport) {
-        abort();
-    };
+    virtual void addHostPort(int addr, int flowid, PacketSink *transport) { abort(); };
 
     uint32_t getID() { return _id; };
     virtual uint32_t getType() { return 0; }
@@ -53,9 +51,7 @@ class Switch : public EventSource, public Drawable, public PacketSink {
 
     // used when route strategy is ECMP_FIB and variants.
     virtual Route *getNextHop(Packet &pkt) { return getNextHop(pkt, NULL); }
-    virtual Route *getNextHop(Packet &pkt, BaseQueue *ingress_port) {
-        abort();
-    };
+    virtual Route *getNextHop(Packet &pkt, BaseQueue *ingress_port) { abort(); };
 
     BaseQueue *getPort(int id) {
         assert(id >= 0);

@@ -35,16 +35,11 @@ class RtxTimer {
     };
 
     struct lttime {
-        bool operator()(const simtime_picosec i1,
-                        const simtime_picosec i2) const {
-            return i1 < i2;
-        }
+        bool operator()(const simtime_picosec i1, const simtime_picosec i2) const { return i1 < i2; }
     };
 
     struct eqtcp {
-        bool operator()(const TcpSrc *src1, const TcpSrc *src2) const {
-            return src1 == src2;
-        }
+        bool operator()(const TcpSrc *src1, const TcpSrc *src2) const { return src1 == src2; }
     };
 
     typedef hash_map<const TcpSrc *, timer_entry *, hash<int>, eqtcp> Timers;

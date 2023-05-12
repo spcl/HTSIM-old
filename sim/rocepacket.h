@@ -21,15 +21,12 @@ class RocePacket : public Packet {
 
     // pseudo-constructor for a routeless packet - routing information
     // must be filled in later
-    inline static RocePacket *newpkt(PacketFlow &flow, seq_t seqno, int size,
-                                     bool retransmitted, bool last_packet,
+    inline static RocePacket *newpkt(PacketFlow &flow, seq_t seqno, int size, bool retransmitted, bool last_packet,
                                      uint32_t destination = UINT32_MAX) {
         RocePacket *p = _packetdb.allocPacket();
-        p->set_attrs(
-                flow, size + roce_acksize,
-                seqno + size -
-                        1); // The NDP sequence number is the first byte of the
-                            // packet; I will ID the packet by its last byte.
+        p->set_attrs(flow, size + roce_acksize,
+                     seqno + size - 1); // The NDP sequence number is the first byte of the
+                                        // packet; I will ID the packet by its last byte.
         p->_type = ROCE;
         p->_is_header = false;
         p->_seqno = seqno;
@@ -41,16 +38,12 @@ class RocePacket : public Packet {
         return p;
     }
 
-    inline static RocePacket *newpkt(PacketFlow &flow, const Route &route,
-                                     seq_t seqno, int size, bool retransmitted,
-                                     bool last_packet,
-                                     uint32_t destination = UINT32_MAX) {
+    inline static RocePacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, int size, bool retransmitted,
+                                     bool last_packet, uint32_t destination = UINT32_MAX) {
         RocePacket *p = _packetdb.allocPacket();
-        p->set_route(
-                flow, route, size + roce_acksize,
-                seqno + size -
-                        1); // The NDP sequence number is the first byte of the
-                            // packet; I will ID the packet by its last byte.
+        p->set_route(flow, route, size + roce_acksize,
+                     seqno + size - 1); // The NDP sequence number is the first byte of the
+                                        // packet; I will ID the packet by its last byte.
         p->_type = ROCE;
         p->_seqno = seqno;
         p->_is_header = false;
@@ -89,8 +82,7 @@ class RoceAck : public Packet {
   public:
     typedef RocePacket::seq_t seq_t;
 
-    inline static RoceAck *newpkt(PacketFlow &flow, const Route &route,
-                                  seq_t ackno,
+    inline static RoceAck *newpkt(PacketFlow &flow, const Route &route, seq_t ackno,
                                   uint32_t destination = UINT32_MAX) {
         RoceAck *p = _packetdb.allocPacket();
         p->set_route(flow, route, roce_acksize, ackno);
@@ -120,8 +112,7 @@ class RoceNack : public Packet {
   public:
     typedef RocePacket::seq_t seq_t;
 
-    inline static RoceNack *newpkt(PacketFlow &flow, const Route &route,
-                                   seq_t ackno,
+    inline static RoceNack *newpkt(PacketFlow &flow, const Route &route, seq_t ackno,
                                    uint32_t destination = UINT32_MAX) {
         RoceNack *p = _packetdb.allocPacket();
         p->set_route(flow, route, roce_acksize, ackno);

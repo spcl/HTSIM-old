@@ -14,8 +14,7 @@
 // queue, but only generates the data to send using DMA when the
 // network can send.
 
-BaseScheduler::BaseScheduler(linkspeed_bps bitrate, EventList &eventlist,
-                             QueueLogger *logger)
+BaseScheduler::BaseScheduler(linkspeed_bps bitrate, EventList &eventlist, QueueLogger *logger)
         : BaseQueue(bitrate, eventlist, logger), _pkt_count(0) {}
 
 void BaseScheduler::add_src(int32_t flow_id, ScheduledSrc *src) {
@@ -87,8 +86,7 @@ void BaseScheduler::completeService() {
 /* FiFo Scheduler                                                       */
 /************************************************************************/
 
-FifoScheduler::FifoScheduler(linkspeed_bps bitrate, EventList &eventlist,
-                             QueueLogger *logger)
+FifoScheduler::FifoScheduler(linkspeed_bps bitrate, EventList &eventlist, QueueLogger *logger)
         : BaseScheduler(bitrate, eventlist, logger) {}
 
 void FifoScheduler::enqueue(Packet &pkt) {
@@ -108,8 +106,7 @@ Packet *FifoScheduler::dequeue() {
     return packet;
 }
 
-FairScheduler::FairScheduler(linkspeed_bps bitrate, EventList &eventlist,
-                             QueueLogger *logger)
+FairScheduler::FairScheduler(linkspeed_bps bitrate, EventList &eventlist, QueueLogger *logger)
         : BaseScheduler(bitrate, eventlist, logger) {
     _current_queue = _queue_map.begin();
     _next_packet = NULL;
@@ -177,7 +174,6 @@ list<Packet *> *FairScheduler::find_queue(const Packet &pkt) {
 
 list<Packet *> *FairScheduler::create_queue(const Packet &pkt) {
     list<Packet *> *new_queue = new (list<Packet *>);
-    _queue_map.insert(
-            pair<int32_t, list<Packet *> *>(pkt.flow_id(), new_queue));
+    _queue_map.insert(pair<int32_t, list<Packet *> *>(pkt.flow_id(), new_queue));
     return new_queue;
 }

@@ -28,10 +28,10 @@ class STrackPacer : public EventSource {
   public:
     STrackPacer(STrackSrc &sub, EventList &eventlist);
     bool is_pending() const { return _interpacket_delay > 0; } // are we pacing?
-    void schedule_send(simtime_picosec delay); // schedule a paced packet
-                                               // "delay" picoseconds after the
-                                               // last packet was sent
-    void cancel();                             // cancel pacing
+    void schedule_send(simtime_picosec delay);                 // schedule a paced packet
+                                                               // "delay" picoseconds after the
+                                                               // last packet was sent
+    void cancel();                                             // cancel pacing
     void just_sent(); // called when we've just sent a packet, even if it wasn't
                       // paced
     void doNextEvent();
@@ -40,9 +40,9 @@ class STrackPacer : public EventSource {
     STrackSrc *_src;
     simtime_picosec _interpacket_delay; // the interpacket delay, or zero if
                                         // we're not pacing
-    simtime_picosec _last_send; // when the last packet was sent (always set,
-                                // even when we're not pacing)
-    simtime_picosec _next_send; // when the next scheduled packet should be sent
+    simtime_picosec _last_send;         // when the last packet was sent (always set,
+                                        // even when we're not pacing)
+    simtime_picosec _next_send;         // when the next scheduled packet should be sent
 };
 
 class STrackSrc : public EventSource, public PacketSink, public ScheduledSrc {
@@ -50,11 +50,9 @@ class STrackSrc : public EventSource, public PacketSink, public ScheduledSrc {
     friend class STrackRtxTimerScanner;
     // friend class STrackSubflowSrc;
   public:
-    STrackSrc(STrackRtxTimerScanner &rtx_scanner, STrackLogger *logger,
-              TrafficLogger *pktlogger, EventList &eventlist);
+    STrackSrc(STrackRtxTimerScanner &rtx_scanner, STrackLogger *logger, TrafficLogger *pktlogger, EventList &eventlist);
     void log(STrackLogger::STrackEvent event);
-    virtual void connect(const Route &routeout, const Route &routeback,
-                         STrackSink &sink, simtime_picosec startTime);
+    virtual void connect(const Route &routeout, const Route &routeback, STrackSink &sink, simtime_picosec startTime);
     void startflow();
     void doNextEvent();
     // void update_dsn_ack(STrackAck::seq_t ds_ackno);
@@ -99,9 +97,9 @@ class STrackSrc : public EventSource, public PacketSink, public ScheduledSrc {
     // state needed for strack congestion control
     simtime_picosec _base_rtt; // for measuring achieved BDP
     void set_base_rtt(simtime_picosec base_rtt) { _base_rtt = base_rtt; }
-    uint32_t _rx_count;     // amount received in a base_rtt
-    uint32_t _achieved_BDP; // how much we managed to get to the receiver last
-                            // RTT
+    uint32_t _rx_count;               // amount received in a base_rtt
+    uint32_t _achieved_BDP;           // how much we managed to get to the receiver last
+                                      // RTT
     simtime_picosec _last_BDP_update; // the last time we updated achieved_BDP
     simtime_picosec _last_active;     // the last time we received an ACK
 
@@ -133,8 +131,7 @@ class STrackSrc : public EventSource, public PacketSink, public ScheduledSrc {
     int queuesize(int flow_id);
 
     virtual const string &nodename() { return _nodename; }
-    void connect(STrackSink &sink, const Route &routeout,
-                 const Route &routeback, uint32_t flow_id,
+    void connect(STrackSink &sink, const Route &routeout, const Route &routeback, uint32_t flow_id,
                  BaseScheduler *scheduler);
     virtual void receivePacket(Packet &pkt);
     void update_rtt(simtime_picosec delay);
@@ -207,9 +204,7 @@ class STrackSink : public PacketSink, public DataReceiver {
   public:
     STrackSink();
 
-    void add_buffer_logger(ReorderBufferLogger *logger) {
-        _buffer_logger = logger;
-    }
+    void add_buffer_logger(ReorderBufferLogger *logger) { _buffer_logger = logger; }
 
     void receivePacket(Packet &pkt);
     virtual const string &nodename() { return _nodename; }

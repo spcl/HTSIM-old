@@ -38,14 +38,12 @@ template <typename T> class Matrix2d {
 };
 
 template <typename T>
-Matrix2d<T>::Matrix2d(size_t x, size_t y, bool auto_del)
-        : _xsize(x), _ysize(y), _auto_delete(auto_del) {
+Matrix2d<T>::Matrix2d(size_t x, size_t y, bool auto_del) : _xsize(x), _ysize(y), _auto_delete(auto_del) {
     _data = new T[x * y];
 }
 
 template <typename T>
-Matrix2d<T>::Matrix2d(bool auto_del)
-        : _xsize(0), _ysize(0), _data(new T[0]), _auto_delete(auto_del) {}
+Matrix2d<T>::Matrix2d(bool auto_del) : _xsize(0), _ysize(0), _data(new T[0]), _auto_delete(auto_del) {}
 
 template <typename T> void Matrix2d<T>::set_size(size_t x, size_t y) {
     _xsize = x;
@@ -66,8 +64,7 @@ template <typename T> inline T &Matrix2d<T>::at(size_t x, size_t y) {
     return _data[(x * _ysize) + y];
 }
 
-template <typename T>
-inline T Matrix2d<T>::operator()(size_t x, size_t y) const {
+template <typename T> inline T Matrix2d<T>::operator()(size_t x, size_t y) const {
     // do bounds checking
     assert(x < _xsize && y < _ysize);
     return _data[(x * _ysize) + y];
@@ -115,9 +112,7 @@ Matrix3d<T>::Matrix3d(size_t x, size_t y, size_t z, bool auto_del)
 }
 
 template <typename T>
-Matrix3d<T>::Matrix3d(bool auto_del)
-        : _xsize(0), _ysize(0), _zsize(0), _data(new T[0]),
-          _auto_delete(auto_del) {}
+Matrix3d<T>::Matrix3d(bool auto_del) : _xsize(0), _ysize(0), _zsize(0), _data(new T[0]), _auto_delete(auto_del) {}
 
 template <typename T> void Matrix3d<T>::set_size(size_t x, size_t y, size_t z) {
     _xsize = x;
@@ -127,8 +122,7 @@ template <typename T> void Matrix3d<T>::set_size(size_t x, size_t y, size_t z) {
     _data = new T[x * y * z];
 }
 
-template <typename T>
-inline T &Matrix3d<T>::operator()(size_t x, size_t y, size_t z) {
+template <typename T> inline T &Matrix3d<T>::operator()(size_t x, size_t y, size_t z) {
     // do bounds checking
     assert(x < _xsize && y < _ysize && z < _zsize);
     return _data[((x * _ysize) + y) * _zsize + z];
@@ -140,8 +134,7 @@ template <typename T> inline T &Matrix3d<T>::at(size_t x, size_t y, size_t z) {
     return _data[((x * _ysize) + y) * _zsize + z];
 }
 
-template <typename T>
-inline T Matrix3d<T>::operator()(size_t x, size_t y, size_t z) const {
+template <typename T> inline T Matrix3d<T>::operator()(size_t x, size_t y, size_t z) const {
     // do bounds checking
     assert(x < _xsize && y < _ysize && z < _zsize);
     return _data[((x * _ysize) + y) * _zsize + z];

@@ -92,18 +92,10 @@ class MultipathTcpLoggerSimple : public MultipathTcpLogger {
 // according to its config.
 class QueueLoggerFactory {
   public:
-    enum QueueLoggerType {
-        LOGGER_SIMPLE,
-        LOGGER_SAMPLING,
-        MULTIQUEUE_SAMPLING,
-        LOGGER_EMPTY
-    };
-    QueueLoggerFactory(Logfile *lg, QueueLoggerType logtype,
-                       EventList &eventlist);
+    enum QueueLoggerType { LOGGER_SIMPLE, LOGGER_SAMPLING, MULTIQUEUE_SAMPLING, LOGGER_EMPTY };
+    QueueLoggerFactory(Logfile *lg, QueueLoggerType logtype, EventList &eventlist);
     QueueLogger *createQueueLogger();
-    void set_sample_period(simtime_picosec sample_period) {
-        _sample_period = sample_period;
-    }
+    void set_sample_period(simtime_picosec sample_period) { _sample_period = sample_period; }
 
   private:
     Logfile *_logfile;
@@ -165,8 +157,7 @@ class QueueLoggerSampling : public QueueLogger, public EventSource {
 
 class MultiQueueLoggerSampling : public QueueLogger, public EventSource {
   public:
-    MultiQueueLoggerSampling(id_t id, simtime_picosec period,
-                             EventList &eventlist);
+    MultiQueueLoggerSampling(id_t id, simtime_picosec period, EventList &eventlist);
     void logQueue(BaseQueue &queue, QueueEvent ev, Packet &pkt);
     void doNextEvent();
     static string event_to_str(RawLogEvent &event);
@@ -183,8 +174,7 @@ class MultiQueueLoggerSampling : public QueueLogger, public EventSource {
 
 class SinkLoggerSampling : public Logger, public EventSource {
   public:
-    SinkLoggerSampling(simtime_picosec period, EventList &eventlist,
-                       Logger::EventType sink_type, int _event_type);
+    SinkLoggerSampling(simtime_picosec period, EventList &eventlist, Logger::EventType sink_type, int _event_type);
     virtual void doNextEvent();
     void monitorSink(DataReceiver *sink);
     void monitorMultipathSink(DataReceiver *sink);
@@ -198,8 +188,7 @@ class SinkLoggerSampling : public Logger, public EventSource {
     vector<double> _last_rate;
 
     struct lttime {
-        bool operator()(const MultipathTcpSrc *i1,
-                        const MultipathTcpSrc *i2) const {
+        bool operator()(const MultipathTcpSrc *i1, const MultipathTcpSrc *i2) const {
             return i1->get_id() < i2->get_id();
         }
     };
@@ -299,15 +288,13 @@ class QcnLoggerSimple : public QcnLogger {
   public:
     void logQcn(QcnReactor &src, QcnEvent ev, double var3);
 
-    void logQcnQueue(QcnQueue &src, QcnQueueEvent ev, double var1, double var2,
-                     double var3);
+    void logQcnQueue(QcnQueue &src, QcnQueueEvent ev, double var1, double var2, double var3);
     static string event_to_str(RawLogEvent &event);
 };
 
 // Odd to have a logger be logged, but we otherwise don't have an ID for a group
 // of sinks
-class ReorderBufferLoggerSampling : public ReorderBufferLogger,
-                                    public EventSource {
+class ReorderBufferLoggerSampling : public ReorderBufferLogger, public EventSource {
   public:
     ReorderBufferLoggerSampling(simtime_picosec period, EventList &eventlist);
     void doNextEvent();

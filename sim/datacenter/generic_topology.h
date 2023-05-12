@@ -35,8 +35,7 @@ class GenericTopology : public Topology {
     GenericTopology(Logfile *lg, EventList *ev);
     bool load(const char *filename);
     void draw();
-    virtual vector<const Route *> *get_bidir_paths(uint32_t src, uint32_t dest,
-                                                   bool reverse);
+    virtual vector<const Route *> *get_bidir_paths(uint32_t src, uint32_t dest, bool reverse);
 
     // void count_queue(RandomQueue*);
     // void print_path(std::ofstream& paths, uint32_t src, const Route* route);
@@ -44,14 +43,10 @@ class GenericTopology : public Topology {
     uint32_t no_of_nodes() const { return _no_of_hosts; }
 
   private:
-    void parse_host(std::vector<std::string> &tokens, int pass,
-                    std::fstream &gv);
-    void parse_switch(std::vector<std::string> &tokens, int pass,
-                      std::fstream &gv);
-    void parse_queue(std::vector<std::string> &tokens, int pass,
-                     std::fstream &gv);
-    void parse_pipe(std::vector<std::string> &tokens, int pass,
-                    std::fstream &gv);
+    void parse_host(std::vector<std::string> &tokens, int pass, std::fstream &gv);
+    void parse_switch(std::vector<std::string> &tokens, int pass, std::fstream &gv);
+    void parse_queue(std::vector<std::string> &tokens, int pass, std::fstream &gv);
+    void parse_pipe(std::vector<std::string> &tokens, int pass, std::fstream &gv);
     Host *find_host(const string &id);
     Switch *find_switch(const string &id);
     BaseQueue *find_queue(const string &id);

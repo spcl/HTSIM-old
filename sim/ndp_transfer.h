@@ -19,10 +19,8 @@ class NdpSinkTransfer;
 
 class NdpSrcTransfer : public NdpSrc {
   public:
-    NdpSrcTransfer(NdpLogger *logger, TrafficLogger *pktLogger,
-                   EventList &eventlist);
-    void connect(route_t *routeout, route_t *routeback, NdpSink &sink,
-                 simtime_picosec starttime);
+    NdpSrcTransfer(NdpLogger *logger, TrafficLogger *pktLogger, EventList &eventlist);
+    void connect(route_t *routeout, route_t *routeback, NdpSink &sink, simtime_picosec starttime);
 
     virtual void rtx_timer_hook(simtime_picosec now, simtime_picosec period);
     virtual void receivePacket(Packet &pkt);
@@ -44,8 +42,7 @@ class NdpSinkTransfer : public NdpSink {
     friend class NdpSrcTransfer;
 
   public:
-    NdpSinkTransfer(EventList &ev, linkspeed_bps linkspeed,
-                    double pull_rate_modifier);
+    NdpSinkTransfer(EventList &ev, linkspeed_bps linkspeed, double pull_rate_modifier);
     NdpSinkTransfer(NdpPullPacer *p);
     void reset();
 };

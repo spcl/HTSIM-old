@@ -9,17 +9,14 @@ for sched in schedules:
 while(!aq.empty())
     elem = aq.pop()
     elem.time = ns3_time;
- 
-    if elem.op == comp:
-      if nexto[host][proc] <= elem.time
-        mark_started(elem)
-        mexto[host][proc] = ns3_time + elem.size
-        in_progress.push(elem)
-      else:
-        elem.time = nexto[host][proc]
-        aq.push(elem); //reinsert
- 
-   if elem.op == send:
+
+if elem
+    .op == comp
+            : if nexto[host][proc] <=
+              elem.time mark_started(elem) mexto[host][proc] = ns3_time + elem.size in_progress.push(elem) else
+            : elem.time = nexto[host][proc] aq.push(elem); // reinsert
+
+if elem.op == send:
      if local o,g avail:
        mark_started(elem)
        ns3_schedule(elem)

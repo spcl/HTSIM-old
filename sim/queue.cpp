@@ -9,10 +9,8 @@ simtime_picosec BaseQueue::_update_period = timeFromUs(0.1);
 
 // base queue is a generic queue that we can log, but doesn't actually store
 // anything
-BaseQueue::BaseQueue(linkspeed_bps bitrate, EventList &eventlist,
-                     QueueLogger *logger)
-        : EventSource(eventlist, "Queue"), _logger(logger), _bitrate(bitrate),
-          _switch(NULL) {
+BaseQueue::BaseQueue(linkspeed_bps bitrate, EventList &eventlist, QueueLogger *logger)
+        : EventSource(eventlist, "Queue"), _logger(logger), _bitrate(bitrate), _switch(NULL) {
     _ps_per_byte = (simtime_picosec)((pow(10.0, 12.0) * 8) / _bitrate);
     _window = timeFromUs(5.0);
     _busy = 0;
@@ -113,10 +111,8 @@ uint64_t BaseQueue::quantized_queuesize() {
     return _last_qs;
 }
 
-Queue::Queue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist,
-             QueueLogger *logger)
-        : BaseQueue(bitrate, eventlist, logger), _maxsize(maxsize),
-          _num_drops(0) {
+Queue::Queue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger)
+        : BaseQueue(bitrate, eventlist, logger), _maxsize(maxsize), _num_drops(0) {
     _queuesize = 0;
     stringstream ss;
     ss << "queue(" << bitrate / 1000000 << "Mb/s," << maxsize << "bytes)";
@@ -188,8 +184,7 @@ mem_b Queue::queuesize() const { return _queuesize; }
 
 simtime_picosec Queue::serviceTime() { return _queuesize * _ps_per_byte; }
 
-PriorityQueue::PriorityQueue(linkspeed_bps bitrate, mem_b maxsize,
-                             EventList &eventlist, QueueLogger *logger)
+PriorityQueue::PriorityQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger)
         : HostQueue(bitrate, maxsize, eventlist, logger) {
     _queuesize[Q_LO] = 0;
     _queuesize[Q_MID] = 0;
@@ -243,8 +238,7 @@ simtime_picosec PriorityQueue::serviceTime(Packet &pkt) {
     case Q_LO:
         // cout << "q_lo: " << _queuesize[Q_HI] + _queuesize[Q_MID] +
         // _queuesize[Q_LO] << " ";
-        return (_queuesize[Q_HI] + _queuesize[Q_MID] + _queuesize[Q_LO]) *
-               _ps_per_byte;
+        return (_queuesize[Q_HI] + _queuesize[Q_MID] + _queuesize[Q_LO]) * _ps_per_byte;
     case Q_MID:
         // cout << "q_mid: " << _queuesize[Q_MID] + _queuesize[Q_LO] << " ";
         return (_queuesize[Q_HI] + _queuesize[Q_MID]) * _ps_per_byte;
@@ -285,8 +279,7 @@ void PriorityQueue::receivePacket(Packet &pkt) {
 
         // must send the packets to all sources on the same host!
         for (uint32_t i = 0; i < _senders.size(); i++) {
-            EthPausePacket *e =
-                    EthPausePacket::newpkt(p->sleepTime(), p->senderID());
+            EthPausePacket *e = EthPausePacket::newpkt(p->sleepTime(), p->senderID());
             _senders[i]->receivePacket(*e);
         }
 
@@ -310,9 +303,7 @@ void PriorityQueue::receivePacket(Packet &pkt) {
 
     if (queueWasEmpty && _state_send == LosslessQueue::READY) {
         /* schedule the dequeue event */
-        assert(_queue[Q_LO].size() + _queue[Q_MID].size() +
-                       _queue[Q_HI].size() ==
-               1);
+        assert(_queue[Q_LO].size() + _queue[Q_MID].size() + _queue[Q_HI].size() == 1);
         beginService();
     }
 }
@@ -323,8 +314,7 @@ void PriorityQueue::beginService() {
     /* schedule the next dequeue event */
     for (int prio = Q_HI; prio >= Q_LO; --prio) {
         if (_queuesize[prio] > 0) {
-            eventlist().sourceIsPendingRel(*this,
-                                           drainTime(_queue[prio].back()));
+            eventlist().sourceIsPendingRel(*this, drainTime(_queue[prio].back()));
             _servicing = (queue_priority_t)prio;
             return;
         }
@@ -337,8 +327,7 @@ void PriorityQueue::completeService() {
     // assert(!_queue[_servicing].empty());
 
     if (_servicing == Q_NONE || _queue[_servicing].empty()) {
-        cout << _name << " trying to deque " << _servicing << ", qsize "
-             << queuesize() << endl;
+        cout << _name << " trying to deque " << _servicing << ", qsize " << queuesize() << endl;
     } else {
         Packet *pkt = _queue[_servicing].back();
         _queue[_servicing].pop_back();
@@ -372,17 +361,13 @@ void PriorityQueue::completeService() {
     }
 }
 
-mem_b PriorityQueue::queuesize() const {
-    return _queuesize[Q_LO] + _queuesize[Q_MID] + _queuesize[Q_HI];
-}
+mem_b PriorityQueue::queuesize() const { return _queuesize[Q_LO] + _queuesize[Q_MID] + _queuesize[Q_HI]; }
 
-HostQueue::HostQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist,
-                     QueueLogger *l)
+HostQueue::HostQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *l)
         : Queue(bitrate, maxsize, eventlist, l){};
 
 ////////FairPriorityQueue to help with RR at senders with many flows.
-FairPriorityQueue::FairPriorityQueue(linkspeed_bps bitrate, mem_b maxsize,
-                                     EventList &eventlist, QueueLogger *logger)
+FairPriorityQueue::FairPriorityQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger)
         : HostQueue(bitrate, maxsize, eventlist, logger) {
     _queuesize[Q_LO] = 0;
     _queuesize[Q_MID] = 0;
@@ -392,8 +377,7 @@ FairPriorityQueue::FairPriorityQueue(linkspeed_bps bitrate, mem_b maxsize,
     _state_send = LosslessQueue::READY;
 }
 
-FairPriorityQueue::queue_priority_t
-FairPriorityQueue::getPriority(Packet &pkt) {
+FairPriorityQueue::queue_priority_t FairPriorityQueue::getPriority(Packet &pkt) {
     queue_priority_t prio = Q_LO;
     switch (pkt.type()) {
     case TCPACK:
@@ -444,8 +428,7 @@ simtime_picosec FairPriorityQueue::serviceTime(Packet &pkt) {
     case Q_LO:
         // cout << "q_lo: " << _queuesize[Q_HI] + _queuesize[Q_MID] +
         // _queuesize[Q_LO] << " ";
-        return (_queuesize[Q_HI] + _queuesize[Q_MID] + _queuesize[Q_LO]) *
-               _ps_per_byte;
+        return (_queuesize[Q_HI] + _queuesize[Q_MID] + _queuesize[Q_LO]) * _ps_per_byte;
     case Q_MID:
         // cout << "q_mid: " << _queuesize[Q_MID] + _queuesize[Q_LO] << " ";
         return (_queuesize[Q_HI] + _queuesize[Q_MID]) * _ps_per_byte;
@@ -487,8 +470,7 @@ void FairPriorityQueue::receivePacket(Packet &pkt) {
         // must send the packets to all sources on the same host!
         for (uint32_t i = 0; i < _senders.size(); i++) {
             // cout << "Sending pause" << endl;
-            EthPausePacket *e =
-                    EthPausePacket::newpkt(p->sleepTime(), p->senderID());
+            EthPausePacket *e = EthPausePacket::newpkt(p->sleepTime(), p->senderID());
             _senders[i]->receivePacket(*e);
         }
 
@@ -504,8 +486,7 @@ void FairPriorityQueue::receivePacket(Packet &pkt) {
     if (queuesize() == 0)
         queueWasEmpty = true;
 
-    if (queuesize() > _maxsize &&
-        queuesize() / 1000000 != (queuesize() + pkt.size()) / 1000000) {
+    if (queuesize() > _maxsize && queuesize() / 1000000 != (queuesize() + pkt.size()) / 1000000) {
         // pkt.free();
         cout << "Host Queue size " << queuesize() << endl;
         // return;
@@ -544,8 +525,7 @@ void FairPriorityQueue::completeService() {
         return;
 
     if (_servicing == Q_NONE || _sending == NULL) {
-        cout << _name << " trying to deque " << _servicing << ", qsize "
-             << queuesize() << endl;
+        cout << _name << " trying to deque " << _servicing << ", qsize " << queuesize() << endl;
     } else {
         /* dequeue the packet */
         Packet *pkt = _sending;
@@ -577,8 +557,6 @@ void FairPriorityQueue::completeService() {
     }
 }
 
-mem_b FairPriorityQueue::queuesize() const {
-    return _queuesize[Q_LO] + _queuesize[Q_MID] + _queuesize[Q_HI];
-}
+mem_b FairPriorityQueue::queuesize() const { return _queuesize[Q_LO] + _queuesize[Q_MID] + _queuesize[Q_HI]; }
 
 template class CircularBuffer<Packet *>;

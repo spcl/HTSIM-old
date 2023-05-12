@@ -12,8 +12,7 @@ extern uint32_t RTT;
 string ntoa(double n);
 string itoa(uint64_t n);
 
-MultihomedFatTreeTopology::MultihomedFatTreeTopology(Logfile *lg, EventList *ev,
-                                                     FirstFit *fit) {
+MultihomedFatTreeTopology::MultihomedFatTreeTopology(Logfile *lg, EventList *ev, FirstFit *fit) {
     logfile = lg;
     eventlist = ev;
     ff = fit;
@@ -59,33 +58,25 @@ void MultihomedFatTreeTopology::init_network() {
             // queueLogger = NULL;
             logfile->addLogger(*queueLogger);
 
-            queues_nlp_ns[j][k] = new RandomQueue(
-                    speedFromPktps(HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_nlp_ns[j][k]->setName("LS_" + ntoa(j) + "-" + "DST_" +
-                                         ntoa(k));
+            queues_nlp_ns[j][k] = new RandomQueue(speedFromPktps(HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                                  *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_nlp_ns[j][k]->setName("LS_" + ntoa(j) + "-" + "DST_" + ntoa(k));
             logfile->writeName(*(queues_nlp_ns[j][k]));
 
             pipes_nlp_ns[j][k] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_nlp_ns[j][k]->setName("Pipe-nt-ns-" + ntoa(j) + "-" +
-                                        ntoa(k));
+            pipes_nlp_ns[j][k]->setName("Pipe-nt-ns-" + ntoa(j) + "-" + ntoa(k));
             logfile->writeName(*(pipes_nlp_ns[j][k]));
 
             // Uplink
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
-            queues_ns_nlp[k][j] = new RandomQueue(
-                    speedFromPktps(HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_ns_nlp[k][j]->setName("SRC_" + ntoa(k) + "-" + "LS_" +
-                                         ntoa(j));
+            queues_ns_nlp[k][j] = new RandomQueue(speedFromPktps(HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                                  *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_ns_nlp[k][j]->setName("SRC_" + ntoa(k) + "-" + "LS_" + ntoa(j));
             logfile->writeName(*(queues_ns_nlp[k][j]));
 
             pipes_ns_nlp[k][j] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_ns_nlp[k][j]->setName("Pipe-ns-nt-" + ntoa(k) + "-" +
-                                        ntoa(j));
+            pipes_ns_nlp[k][j]->setName("Pipe-ns-nt-" + ntoa(k) + "-" + ntoa(j));
             logfile->writeName(*(pipes_ns_nlp[k][j]));
 
             if (ff) {
@@ -115,33 +106,25 @@ void MultihomedFatTreeTopology::init_network() {
             // cout << "NLP " << j << " NUP " << k << endl;
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
-            queues_nup_nlp[k][j] = new RandomQueue(
-                    speedFromPktps(HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_nup_nlp[k][j]->setName("US_" + ntoa(k) + "-" + "LS_" +
-                                          ntoa(j));
+            queues_nup_nlp[k][j] = new RandomQueue(speedFromPktps(HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                                   *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_nup_nlp[k][j]->setName("US_" + ntoa(k) + "-" + "LS_" + ntoa(j));
             logfile->writeName(*(queues_nup_nlp[k][j]));
 
             pipes_nup_nlp[k][j] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_nup_nlp[k][j]->setName("Pipe-na-nt-" + ntoa(k) + "-" +
-                                         ntoa(j));
+            pipes_nup_nlp[k][j]->setName("Pipe-na-nt-" + ntoa(k) + "-" + ntoa(j));
             logfile->writeName(*(pipes_nup_nlp[k][j]));
 
             // Uplink
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
-            queues_nlp_nup[j][k] = new RandomQueue(
-                    speedFromPktps(HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_nlp_nup[j][k]->setName("LS_" + ntoa(j) + "-" + "US_" +
-                                          ntoa(k));
+            queues_nlp_nup[j][k] = new RandomQueue(speedFromPktps(HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                                   *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_nlp_nup[j][k]->setName("LS_" + ntoa(j) + "-" + "US_" + ntoa(k));
             logfile->writeName(*(queues_nlp_nup[j][k]));
 
             pipes_nlp_nup[j][k] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_nlp_nup[j][k]->setName("Pipe-nt-na-" + ntoa(j) + "-" +
-                                         ntoa(k));
+            pipes_nlp_nup[j][k]->setName("Pipe-nt-na-" + ntoa(j) + "-" + ntoa(k));
             logfile->writeName(*(pipes_nlp_nup[j][k]));
 
             if (ff) {
@@ -167,17 +150,13 @@ void MultihomedFatTreeTopology::init_network() {
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
 
-            queues_nup_nc[j][k] = new RandomQueue(
-                    speedFromPktps(HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_nup_nc[j][k]->setName("US_" + ntoa(j) + "-" + "CS_" +
-                                         ntoa(k));
+            queues_nup_nc[j][k] = new RandomQueue(speedFromPktps(HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                                  *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_nup_nc[j][k]->setName("US_" + ntoa(j) + "-" + "CS_" + ntoa(k));
             logfile->writeName(*(queues_nup_nc[j][k]));
 
             pipes_nup_nc[j][k] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_nup_nc[j][k]->setName("Pipe-nup-nc-" + ntoa(j) + "-" +
-                                        ntoa(k));
+            pipes_nup_nc[j][k]->setName("Pipe-nup-nc-" + ntoa(j) + "-" + ntoa(k));
             logfile->writeName(*(pipes_nup_nc[j][k]));
 
             // Uplink
@@ -190,18 +169,14 @@ void MultihomedFatTreeTopology::init_network() {
             // RandomQueue(speedFromPktps(HOST_NIC/10), memFromPkt(SWITCH_BUFFER
             // + RANDOM_BUFFER), *eventlist, queueLogger,
             // memFromPkt(RANDOM_BUFFER)); else
-            queues_nc_nup[k][j] = new RandomQueue(
-                    speedFromPktps(HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_nc_nup[k][j]->setName("CS_" + ntoa(k) + "-" + "US_" +
-                                         ntoa(j));
+            queues_nc_nup[k][j] = new RandomQueue(speedFromPktps(HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                                  *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_nc_nup[k][j]->setName("CS_" + ntoa(k) + "-" + "US_" + ntoa(j));
 
             logfile->writeName(*(queues_nc_nup[k][j]));
 
             pipes_nc_nup[k][j] = new Pipe(timeFromUs(RTT), *eventlist);
-            pipes_nc_nup[k][j]->setName("Pipe-nc-nup-" + ntoa(k) + "-" +
-                                        ntoa(j));
+            pipes_nc_nup[k][j]->setName("Pipe-nc-nup-" + ntoa(k) + "-" + ntoa(j));
             logfile->writeName(*(pipes_nc_nup[k][j]));
 
             if (ff) {
@@ -221,15 +196,13 @@ void MultihomedFatTreeTopology::init_network() {
 
 void check_non_null(Route *rt);
 
-vector<const Route *> *MultihomedFatTreeTopology::get_paths(uint32_t src,
-                                                            uint32_t dest) {
+vector<const Route *> *MultihomedFatTreeTopology::get_paths(uint32_t src, uint32_t dest) {
     vector<const Route *> *paths = new vector<const Route *>();
 
     Route *routeout;
 
     if (HOST_POD_SWITCH1(src) == HOST_POD_SWITCH1(dest)) {
-        Queue *pqueue = new Queue(speedFromPktps(2 * HOST_NIC),
-                                  memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
+        Queue *pqueue = new Queue(speedFromPktps(2 * HOST_NIC), memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
         pqueue->setName("PQueue_" + ntoa(src) + "_" + ntoa(dest));
         // logfile->writeName(*pqueue);
 
@@ -249,8 +222,7 @@ vector<const Route *> *MultihomedFatTreeTopology::get_paths(uint32_t src,
         check_non_null(routeout);
 
         routeout = new Route();
-        pqueue = new Queue(speedFromPktps(2 * HOST_NIC),
-                           memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
+        pqueue = new Queue(speedFromPktps(2 * HOST_NIC), memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
         pqueue->setName("PQueue_" + ntoa(src) + "_2_" + ntoa(dest));
         routeout->push_back(pqueue);
 
@@ -269,12 +241,9 @@ vector<const Route *> *MultihomedFatTreeTopology::get_paths(uint32_t src,
 
         uint32_t pod = HOST_POD(src);
         // there are K/2 paths between the source and the destination
-        for (uint32_t upper = MIN_POD_ID(pod); upper <= MAX_POD_ID(pod);
-             upper++) {
+        for (uint32_t upper = MIN_POD_ID(pod); upper <= MAX_POD_ID(pod); upper++) {
             // upper is nup
-            Queue *pqueue =
-                    new Queue(speedFromPktps(HOST_NIC),
-                              memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
+            Queue *pqueue = new Queue(speedFromPktps(HOST_NIC), memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
             pqueue->setName("PQueue_" + ntoa(src) + "_" + ntoa(dest));
             // logfile->writeName(*pqueue);
 
@@ -311,14 +280,10 @@ vector<const Route *> *MultihomedFatTreeTopology::get_paths(uint32_t src,
         uint32_t pod_dest = HOST_POD(dest);
         uint32_t sws, swd;
 
-        for (uint32_t upper = MIN_POD_ID(pod); upper <= MAX_POD_ID(pod);
-             upper++)
-            for (uint32_t core = (upper % (K / 2)) * K / 2;
-                 core < ((upper % (K / 2)) + 1) * K / 2; core++) {
+        for (uint32_t upper = MIN_POD_ID(pod); upper <= MAX_POD_ID(pod); upper++)
+            for (uint32_t core = (upper % (K / 2)) * K / 2; core < ((upper % (K / 2)) + 1) * K / 2; core++) {
                 // upper is nup
-                Queue *pqueue =
-                        new Queue(speedFromPktps(HOST_NIC),
-                                  memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
+                Queue *pqueue = new Queue(speedFromPktps(HOST_NIC), memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
                 pqueue->setName("PQueue_" + ntoa(src) + "_" + ntoa(dest));
                 // logfile->writeName(*pqueue);
 
@@ -344,8 +309,7 @@ vector<const Route *> *MultihomedFatTreeTopology::get_paths(uint32_t src,
 
                 uint32_t upper2 = HOST_POD(dest) * K / 2 + 2 * core / K;
 
-                if (upper2 <=
-                    (MIN_POD_ID(pod_dest) + MAX_POD_ID(pod_dest)) / 2) {
+                if (upper2 <= (MIN_POD_ID(pod_dest) + MAX_POD_ID(pod_dest)) / 2) {
                     //          cout << "Upper 2S "<<upper2 << " MIN_POD " <<
                     //          MIN_POD_ID(pod_dest)<< " MAX_POD " <<
                     //          MAX_POD_ID(pod_dest)<<endl;
@@ -442,8 +406,7 @@ int64_t MultihomedFatTreeTopology::find_destination(RandomQueue *queue) {
     return -1;
 }
 
-void MultihomedFatTreeTopology::print_path(std::ofstream &paths, uint32_t src,
-                                           const Route *route) {
+void MultihomedFatTreeTopology::print_path(std::ofstream &paths, uint32_t src, const Route *route) {
     paths << "SRC_" << src << " ";
 
     if (route->size() / 2 == 2) {
@@ -460,8 +423,7 @@ void MultihomedFatTreeTopology::print_path(std::ofstream &paths, uint32_t src,
         paths << "CS_" << find_core_switch((RandomQueue *)route->at(5)) << " ";
         paths << "US_" << find_up_switch((RandomQueue *)route->at(7)) << " ";
         paths << "LS_" << find_lp_switch((RandomQueue *)route->at(9)) << " ";
-        paths << "DST_" << find_destination((RandomQueue *)route->at(11))
-              << " ";
+        paths << "DST_" << find_destination((RandomQueue *)route->at(11)) << " ";
     } else {
         paths << "Wrong hop count " << ntoa(route->size() / 2);
     }

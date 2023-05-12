@@ -9,10 +9,9 @@
 ////////////////////////////////////////////////////////////////
 uint32_t SwiftSubflowSrc::_default_cwnd = 12;
 
-SwiftSubflowSrc::SwiftSubflowSrc(SwiftSrc &src, TrafficLogger *pktlogger,
-                                 int sub_id)
-        : EventSource(src.eventlist(), "swift_subflow_src"), _flow(pktlogger),
-          _src(src), _pacer(*this, src.eventlist()) {
+SwiftSubflowSrc::SwiftSubflowSrc(SwiftSrc &src, TrafficLogger *pktlogger, int sub_id)
+        : EventSource(src.eventlist(), "swift_subflow_src"), _flow(pktlogger), _src(src),
+          _pacer(*this, src.eventlist()) {
     cout << "subflow src constructor\n";
     _subflow_sink = NULL;
     _highest_sent = 0;
@@ -31,16 +30,13 @@ SwiftSubflowSrc::SwiftSubflowSrc(SwiftSrc &src, TrafficLogger *pktlogger,
     _drops = 0;
 
     // swift cc init
-    _swift_cwnd =
-            _default_cwnd; // initial window, in bytes  Note: values in paper
-                           // are in packets; we're maintaining in bytes.
+    _swift_cwnd = _default_cwnd; // initial window, in bytes  Note: values in paper
+                                 // are in packets; we're maintaining in bytes.
     _retransmit_cnt = 0;
     _can_decrease = true;
-    _last_decrease =
-            0; // initial value shouldn't matter if _can_decrease is true
-    _pacing_delay = 0; // start off not pacing as cwnd > 1 pkt
-    _deferred_send =
-            false; // true if we wanted to send, but no scheduler said no.
+    _last_decrease = 0;     // initial value shouldn't matter if _can_decrease is true
+    _pacing_delay = 0;      // start off not pacing as cwnd > 1 pkt
+    _deferred_send = false; // true if we wanted to send, but no scheduler said no.
 
     // PLB init
     _plb_interval = timeFromSec(1); // disable PLB til we've seen some traffic
@@ -50,8 +46,7 @@ SwiftSubflowSrc::SwiftSubflowSrc(SwiftSrc &src, TrafficLogger *pktlogger,
     _rtx_timeout_pending = false;
     _RFC2988_RTO_timeout = timeInf;
 
-    _nodename = "swift_subsrc" + std::to_string(_src.get_id()) + "_" +
-                std::to_string(sub_id);
+    _nodename = "swift_subsrc" + std::to_string(_src.get_id()) + "_" + std::to_string(sub_id);
 }
 
 void SwiftSubflowSrc::update_rtt(simtime_picosec delay) {
@@ -78,14 +73,12 @@ void SwiftSubflowSrc::update_rtt(simtime_picosec delay) {
         _rto = _min_rto;
 }
 
-void SwiftSubflowSrc::adjust_cwnd(simtime_picosec delay,
-                                  SwiftAck::seq_t ackno) {
+void SwiftSubflowSrc::adjust_cwnd(simtime_picosec delay, SwiftAck::seq_t ackno) {
     // cout << "adjust_cwnd delay " << timeAsUs(delay) << endl;
     //  swift init
     _prev_cwnd = _swift_cwnd;
     simtime_picosec now = eventlist().now();
-    _can_decrease = (now - _last_decrease) >=
-                    _rtt; // not clear if we should use smoothed RTT here.
+    _can_decrease = (now - _last_decrease) >= _rtt; // not clear if we should use smoothed RTT here.
     // can_decrease = true;
 
     // compute rtt
@@ -106,21 +99,17 @@ void SwiftSubflowSrc::adjust_cwnd(simtime_picosec delay,
             num_acked = 0; // doesn't make sense to do additive increase with
                            // negative num_acked.
         if (_swift_cwnd >= mss()) {
-            _swift_cwnd =
-                    _swift_cwnd + (mss() * ai() * num_acked) / _swift_cwnd;
+            _swift_cwnd = _swift_cwnd + (mss() * ai() * num_acked) / _swift_cwnd;
         } else {
             _swift_cwnd = _swift_cwnd + ai() * num_acked;
         }
     } else if (_can_decrease) {
         // multiplicative decrease
-        _swift_cwnd =
-                _swift_cwnd *
-                max(1 - beta() * (delay - target_delay) / delay, 1 - max_mdf());
+        _swift_cwnd = _swift_cwnd * max(1 - beta() * (delay - target_delay) / delay, 1 - max_mdf());
     }
 
     if (_src.plb()) {
-        simtime_picosec td = _src.targetDelay(
-                0, *_route); // target delay ignoring cwnd component
+        simtime_picosec td = _src.targetDelay(0, *_route); // target delay ignoring cwnd component
         // cout << nodename() << " delay " << delay << "rep td " << td << endl;
         if (delay <= td) {
             // good delay!
@@ -130,9 +119,8 @@ void SwiftSubflowSrc::adjust_cwnd(simtime_picosec delay,
 
         // PLB (simple version)
         if (now - _last_good_path > _plb_interval) {
-            cout << "moving " << timeAsUs(now) << " last_good "
-                 << timeAsUs(_last_good_path) << " RTT " << timeAsUs(_rtt)
-                 << endl;
+            cout << "moving " << timeAsUs(now) << " last_good " << timeAsUs(_last_good_path) << " RTT "
+                 << timeAsUs(_rtt) << endl;
             _last_good_path = now;
             move_path();
         }
@@ -168,12 +156,10 @@ void SwiftSubflowSrc::applySwiftLimits() {
     // we call this whenever we've changed cwnd to enforce bounds, just before
     // we actually use the cwnd
     if (_swift_cwnd < _src._min_cwnd) {
-        cout << "hit min cwnd, was" << _swift_cwnd << " now " << _src._min_cwnd
-             << endl;
+        cout << "hit min cwnd, was" << _swift_cwnd << " now " << _src._min_cwnd << endl;
         _swift_cwnd = _src._min_cwnd;
     } else if (_swift_cwnd > _src._max_cwnd) {
-        cout << "hit max cwnd " << _swift_cwnd << " > " << _src._max_cwnd
-             << endl;
+        cout << "hit max cwnd " << _swift_cwnd << " > " << _src._max_cwnd << endl;
         _swift_cwnd = _src._max_cwnd;
     }
     if (_swift_cwnd < _prev_cwnd) {
@@ -358,8 +344,7 @@ int SwiftSubflowSrc::send_packets() {
         }
     }
 
-    while ((_last_acked + c >= _highest_sent + mss()) &&
-           _src.more_data_available()) {
+    while ((_last_acked + c >= _highest_sent + mss()) && _src.more_data_available()) {
 
         if (_pacer.is_pending()) {
             // Our cwnd is now greater than one packet and we've passed
@@ -404,8 +389,7 @@ bool SwiftSubflowSrc::send_next_packet() {
 
     _dsn_map[_highest_sent + 1] = dsn;
 
-    SwiftPacket *p =
-            SwiftPacket::newpkt(_flow, *_route, _highest_sent + 1, dsn, mss());
+    SwiftPacket *p = SwiftPacket::newpkt(_flow, *_route, _highest_sent + 1, dsn, mss());
     // cout << timeAsUs(eventlist().now()) << " " << nodename() << " sent " <<
     // _highest_sent+1 << "-" << _highest_sent+mss() << " dsn " << dsn << endl;
     _highest_sent += mss();
@@ -430,8 +414,7 @@ void SwiftSubflowSrc::send_callback() {
 }
 
 void SwiftSubflowSrc::retransmit_packet() {
-    cout << timeAsUs(eventlist().now()) << " " << nodename()
-         << " retransmit_packet " << endl;
+    cout << timeAsUs(eventlist().now()) << " " << nodename() << " retransmit_packet " << endl;
     if (!_established) {
         assert(_highest_sent == 1);
 
@@ -444,8 +427,7 @@ void SwiftSubflowSrc::retransmit_packet() {
     SwiftPacket::seq_t dsn = _dsn_map[_last_acked + 1];
     // cout << timeAsUs(eventlist().now()) << " sending seqno " << _last_acked+1
     // << endl;
-    SwiftPacket *p =
-            SwiftPacket::newpkt(_flow, *_route, _last_acked + 1, dsn, mss());
+    SwiftPacket *p = SwiftPacket::newpkt(_flow, *_route, _last_acked + 1, dsn, mss());
 
     p->flow().logTraffic(*p, _src, TrafficLogger::PKT_CREATESEND);
     p->set_ts(eventlist().now());
@@ -496,8 +478,7 @@ void SwiftSubflowSrc::receivePacket(Packet &pkt) {
     handle_ack(ackno);
 }
 
-void SwiftSubflowSrc::rtx_timer_hook(simtime_picosec now,
-                                     simtime_picosec period) {
+void SwiftSubflowSrc::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
     // cout << timeAsUs(eventlist().now()) << " " << nodename() << "
     // rtx_timer_hook" << endl;
     if (now <= _RFC2988_RTO_timeout || _RFC2988_RTO_timeout == timeInf)
@@ -506,12 +487,10 @@ void SwiftSubflowSrc::rtx_timer_hook(simtime_picosec now,
     if (_highest_sent == 0)
         return;
 
-    cout << timeAsUs(eventlist().now()) << " " << nodename() << " At "
-         << now / (double)1000000000 << " RTO " << _rto / 1000000000 << " MDEV "
-         << _mdev / 1000000000 << " RTT " << _rtt / 1000000000 << " SEQ "
-         << _last_acked / mss() << " HSENT " << _highest_sent << " CWND "
-         << _swift_cwnd / mss() << " FAST RECOVERY? " << _in_fast_recovery
-         << " Flow ID " << str() << endl;
+    cout << timeAsUs(eventlist().now()) << " " << nodename() << " At " << now / (double)1000000000 << " RTO "
+         << _rto / 1000000000 << " MDEV " << _mdev / 1000000000 << " RTT " << _rtt / 1000000000 << " SEQ "
+         << _last_acked / mss() << " HSENT " << _highest_sent << " CWND " << _swift_cwnd / mss() << " FAST RECOVERY? "
+         << _in_fast_recovery << " Flow ID " << str() << endl;
 
     // here we can run into phase effects because the timer is checked
     // only periodically for ALL flows but if we keep the difference
@@ -577,13 +556,11 @@ void SwiftSubflowSrc::doNextEvent() {
     }
 }
 
-void SwiftSubflowSrc::connect(SwiftSink &sink, const Route &routeout,
-                              const Route &routeback, uint32_t flow_id,
+void SwiftSubflowSrc::connect(SwiftSink &sink, const Route &routeout, const Route &routeback, uint32_t flow_id,
                               BaseScheduler *scheduler) {
     _subflow_sink = sink.connect(_src, *this, routeback);
-    Route *new_route =
-            routeout.clone(); // make a copy, as we may be switching routes and
-                              // don't want to append the sink more than once
+    Route *new_route = routeout.clone(); // make a copy, as we may be switching routes and
+                                         // don't want to append the sink more than once
     new_route->push_back(_subflow_sink);
     _route = new_route;
     _flow.set_id(get_id()); // identify the packet flow with the source that
@@ -594,8 +571,7 @@ void SwiftSubflowSrc::connect(SwiftSink &sink, const Route &routeout,
 }
 
 void SwiftSubflowSrc::move_path() {
-    cout << timeAsUs(eventlist().now()) << " " << nodename()
-         << " td move_path\n";
+    cout << timeAsUs(eventlist().now()) << " " << nodename() << " td move_path\n";
     if (_src._paths.size() == 0) {
         cout << nodename() << " cant move_path\n";
         return;
@@ -625,10 +601,10 @@ double SwiftSubflowSrc::max_mdf() const { return _src.max_mdf(); }
 //  SWIFT SOURCE
 ////////////////////////////////////////////////////////////////
 
-SwiftSrc::SwiftSrc(SwiftRtxTimerScanner &rtx_scanner, SwiftLogger *logger,
-                   TrafficLogger *pktlogger, EventList &eventlst)
-        : EventSource(eventlst, "swift"), _logger(logger),
-          _traffic_logger(pktlogger), _rtx_timer_scanner(&rtx_scanner) {
+SwiftSrc::SwiftSrc(SwiftRtxTimerScanner &rtx_scanner, SwiftLogger *logger, TrafficLogger *pktlogger,
+                   EventList &eventlst)
+        : EventSource(eventlst, "swift"), _logger(logger), _traffic_logger(pktlogger),
+          _rtx_timer_scanner(&rtx_scanner) {
     _mss = Packet::data_packet_size();
     _scheduler = NULL;
     _maxcwnd = 0xffffffff; // 200*_mss;
@@ -639,21 +615,18 @@ SwiftSrc::SwiftSrc(SwiftRtxTimerScanner &rtx_scanner, SwiftLogger *logger,
     _highest_dsn_sent = 0;
 
     // swift cc init
-    _ai = 1.0;      // increase constant.  Value is a guess
-    _beta = 0.8;    // decrease constant.  Value is a guess
-    _max_mdf = 0.5; // max multiplicate decrease factor.  Value is a guess
-    _base_delay = timeFromUs(
-            (uint32_t)20); // configured base target delay.  To be confirmed by
-                           // experiment - reproduce fig 17
-    _h = _base_delay / 6.55; // path length scaling constant.  Value is a guess,
-                             // will be clarified by experiment
-    _rtx_reset_threshold = 5; // value is a guess
-    _min_cwnd = 10; // guess - if we go less than 10 bytes, we probably get into
-                    // rounding
-    _max_cwnd =
-            1000 *
-            _mss; // maximum cwnd we can use.  Guess - how high should we allow
-                  // cwnd to go?  Presumably something like B*target_delay?
+    _ai = 1.0;                              // increase constant.  Value is a guess
+    _beta = 0.8;                            // decrease constant.  Value is a guess
+    _max_mdf = 0.5;                         // max multiplicate decrease factor.  Value is a guess
+    _base_delay = timeFromUs((uint32_t)20); // configured base target delay.  To be confirmed by
+                                            // experiment - reproduce fig 17
+    _h = _base_delay / 6.55;                // path length scaling constant.  Value is a guess,
+                                            // will be clarified by experiment
+    _rtx_reset_threshold = 5;               // value is a guess
+    _min_cwnd = 10;                         // guess - if we go less than 10 bytes, we probably get into
+                                            // rounding
+    _max_cwnd = 1000 * _mss;                // maximum cwnd we can use.  Guess - how high should we allow
+                                            // cwnd to go?  Presumably something like B*target_delay?
 
     // PLB init
     _plb = false; // enable using enable_plb()
@@ -662,8 +635,7 @@ SwiftSrc::SwiftSrc(SwiftRtxTimerScanner &rtx_scanner, SwiftLogger *logger,
     _fs_range = 5 * _base_delay;
     _fs_min_cwnd = 0.1; // note: in packets
     _fs_max_cwnd = 100; // note: in packets
-    _fs_alpha = _fs_range /
-                ((1.0 / sqrt(_fs_min_cwnd)) - (1.0 / sqrt(_fs_max_cwnd)));
+    _fs_alpha = _fs_range / ((1.0 / sqrt(_fs_min_cwnd)) - (1.0 / sqrt(_fs_max_cwnd)));
     // double a = 1.0 / sqrt(_fs_min_cwnd);
     // double b = 1.0 / sqrt(_fs_max_cwnd);
     // cout << "a " << a << " b " << b << " range " << _fs_range << endl;
@@ -679,9 +651,7 @@ void SwiftSrc::log(SwiftSubflowSrc *sub, SwiftLogger::SwiftEvent event) {
         _logger->logSwift(*sub, event);
 }
 
-int SwiftSrc::queuesize(int flow_id) {
-    return _scheduler->src_queuesize(flow_id);
-}
+int SwiftSrc::queuesize(int flow_id) { return _scheduler->src_queuesize(flow_id); }
 
 bool SwiftSrc::check_stoptime() {
     if (_stop_time && eventlist().now() >= _stop_time) {
@@ -773,14 +743,12 @@ bool SwiftSrc::more_data_available() const {
     return _highest_dsn_sent + mss() <= _flow_size;
 }
 
-void SwiftSrc::connect(const Route &routeout, const Route &routeback,
-                       SwiftSink &sink, simtime_picosec starttime) {
+void SwiftSrc::connect(const Route &routeout, const Route &routeback, SwiftSink &sink, simtime_picosec starttime) {
 
     _scheduler = dynamic_cast<BaseScheduler *>(routeout.at(0));
     assert(_scheduler); // first element of the route must be a SwiftScheduler
 
-    SwiftSubflowSrc *sub =
-            new SwiftSubflowSrc(*this, _traffic_logger, _subs.size());
+    SwiftSubflowSrc *sub = new SwiftSubflowSrc(*this, _traffic_logger, _subs.size());
     _subs.push_back(sub);
     // Note: if we call set_paths after connect, this route will not
     // (immediately) be used
@@ -792,12 +760,10 @@ void SwiftSrc::connect(const Route &routeout, const Route &routeback,
     // cout << "starttime " << timeAsUs(starttime) << endl;
 }
 
-void SwiftSrc::multipath_connect(SwiftSink &sink, simtime_picosec starttime,
-                                 uint32_t no_of_subflows) {
+void SwiftSrc::multipath_connect(SwiftSink &sink, simtime_picosec starttime, uint32_t no_of_subflows) {
     _sink = &sink;
     for (uint32_t i = 0; i < no_of_subflows; i++) {
-        SwiftSubflowSrc *subflow =
-                new SwiftSubflowSrc(*this, _traffic_logger, _subs.size());
+        SwiftSubflowSrc *subflow = new SwiftSubflowSrc(*this, _traffic_logger, _subs.size());
         _subs.push_back(subflow);
         assert(_paths.size() > 0);
         if (_paths.size() < no_of_subflows) {
@@ -818,8 +784,7 @@ void SwiftSrc::multipath_connect(SwiftSink &sink, simtime_picosec starttime,
 
 simtime_picosec SwiftSrc::targetDelay(uint32_t cwnd, const Route &route) {
     // note fs_delay can be negative, so don't use simtime_picosec here!
-    double fs_delay = _fs_alpha / sqrt(cwnd / _mss) +
-                      _fs_beta; // _sub->_swift_cwnd is in bytes
+    double fs_delay = _fs_alpha / sqrt(cwnd / _mss) + _fs_beta; // _sub->_swift_cwnd is in bytes
     // cout << "fs_delay " << fs_delay << " range " << _fs_range << "
     // _sub->_swift_cwnd/_mss " << _sub->_swift_cwnd/_mss << " sqrt " <<
     // sqrt(_sub->_swift_cwnd/_mss) << " beta " << _fs_beta << endl; cout <<
@@ -843,8 +808,7 @@ simtime_picosec SwiftSrc::targetDelay(uint32_t cwnd, const Route &route) {
 void SwiftSrc::update_dsn_ack(SwiftAck::seq_t ds_ackno) {
     // cout << "Flow " << _name << " dsn ack " << ds_ackno << endl;
     if (ds_ackno >= _flow_size) {
-        cout << "Flow " << _name << " finished at "
-             << timeAsUs(eventlist().now()) << " total bytes " << ds_ackno
+        cout << "Flow " << _name << " finished at " << timeAsUs(eventlist().now()) << " total bytes " << ds_ackno
              << endl;
     }
 }
@@ -869,8 +833,7 @@ void SwiftSrc::doNextEvent() {
 /* XXX currently it's one subflow per pacer - maybe should be shared via
  * carousel */
 SwiftPacer::SwiftPacer(SwiftSubflowSrc &sub, EventList &event_list)
-        : EventSource(event_list, "swift_pacer"), _sub(&sub),
-          _interpacket_delay(0) {
+        : EventSource(event_list, "swift_pacer"), _sub(&sub), _interpacket_delay(0) {
     _last_send = eventlist().now();
 }
 
@@ -924,8 +887,7 @@ void SwiftPacer::doNextEvent() {
 ////////////////////////////////////////////////////////////////
 
 SwiftSubflowSink::SwiftSubflowSink(SwiftSink &sink)
-        : DataReceiver("subflow_sink"), _cumulative_ack(0), _packets(0),
-          _sink(sink) {}
+        : DataReceiver("subflow_sink"), _cumulative_ack(0), _packets(0), _sink(sink) {}
 
 void SwiftSubflowSink::connect(SwiftSubflowSrc &src, const Route &route_back) {
     _subflow_src = &src;
@@ -952,8 +914,7 @@ void SwiftSubflowSink::receivePacket(Packet &pkt) {
     if (seqno == _cumulative_ack + 1) { // it's the next expected seq no
         _cumulative_ack = seqno + size - 1;
         // are there any additional received packets we can now ack?
-        while (!_received.empty() &&
-               (_received.front() == _cumulative_ack + 1)) {
+        while (!_received.empty() && (_received.front() == _cumulative_ack + 1)) {
             _received.pop_front();
             _cumulative_ack += size;
         }
@@ -996,9 +957,7 @@ void SwiftSubflowSink::receivePacket(Packet &pkt) {
 void SwiftSubflowSink::send_ack(simtime_picosec ts) {
     const Route *rt = _route;
 
-    SwiftAck *ack =
-            SwiftAck::newpkt(_subflow_src->flow(), *rt, 0, _cumulative_ack,
-                             _sink._cumulative_data_ack, ts);
+    SwiftAck *ack = SwiftAck::newpkt(_subflow_src->flow(), *rt, 0, _cumulative_ack, _sink._cumulative_data_ack, ts);
 
     ack->flow().logTraffic(*ack, *this, TrafficLogger::PKT_CREATESEND);
     ack->sendOn();
@@ -1028,16 +987,12 @@ uint32_t SwiftSubflowSink::drops() {
 //  SWIFT SINK
 ////////////////////////////////////////////////////////////////
 
-SwiftSink::SwiftSink()
-        : DataReceiver("SwiftSink"), _cumulative_data_ack(0),
-          _buffer_logger(NULL) {
+SwiftSink::SwiftSink() : DataReceiver("SwiftSink"), _cumulative_data_ack(0), _buffer_logger(NULL) {
     _src = 0;
     _nodename = "swiftsink";
 }
 
-SwiftSubflowSink *SwiftSink::connect(SwiftSrc &src,
-                                     SwiftSubflowSrc &subflow_src,
-                                     const Route &route_back) {
+SwiftSubflowSink *SwiftSink::connect(SwiftSrc &src, SwiftSubflowSrc &subflow_src, const Route &route_back) {
     _src = &src;
     SwiftSubflowSink *subflow_sink = new SwiftSubflowSink(*this);
     _subs.push_back(subflow_sink);
@@ -1053,8 +1008,7 @@ void SwiftSink::receivePacket(Packet &pkt) {
     // cout << "SwiftSink received dsn " << dsn << endl;
     if (dsn == _cumulative_data_ack + 1) {
         _cumulative_data_ack = dsn + size - 1;
-        while (!_dsn_received.empty() &&
-               (*(_dsn_received.begin()) == _cumulative_data_ack + 1)) {
+        while (!_dsn_received.empty() && (*(_dsn_received.begin()) == _cumulative_data_ack + 1)) {
             _dsn_received.erase(_dsn_received.begin());
             _cumulative_data_ack += size;
             if (_buffer_logger)
@@ -1084,15 +1038,12 @@ uint32_t SwiftSink::drops() { return _src ? _src->drops() : 0; }
 //  SWIFT RETRANSMISSION TIMER
 ////////////////////////////////////////////////////////////////
 
-SwiftRtxTimerScanner::SwiftRtxTimerScanner(simtime_picosec scanPeriod,
-                                           EventList &eventlist)
+SwiftRtxTimerScanner::SwiftRtxTimerScanner(simtime_picosec scanPeriod, EventList &eventlist)
         : EventSource(eventlist, "RtxScanner"), _scanPeriod(scanPeriod) {
     eventlist.sourceIsPendingRel(*this, _scanPeriod);
 }
 
-void SwiftRtxTimerScanner::registerSubflow(SwiftSubflowSrc &subflow_src) {
-    _subflows.push_back(&subflow_src);
-}
+void SwiftRtxTimerScanner::registerSubflow(SwiftSubflowSrc &subflow_src) { _subflows.push_back(&subflow_src); }
 
 void SwiftRtxTimerScanner::doNextEvent() {
     simtime_picosec now = eventlist().now();

@@ -16,14 +16,11 @@ class UecPacket : public Packet {
 
     UecPacket() : Packet(){};
 
-    inline static UecPacket *newpkt(PacketFlow &flow, const Route &route,
-                                    seq_t seqno, seq_t dataseqno, int size) {
+    inline static UecPacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t dataseqno, int size) {
         UecPacket *p = _packetdb.allocPacket();
-        p->set_route(
-                flow, route, size + acksize,
-                seqno + size -
-                        1); // The UEC sequence number is the first byte of the
-                            // packet; I will ID the packet by its last byte.
+        p->set_route(flow, route, size + acksize,
+                     seqno + size - 1); // The UEC sequence number is the first byte of the
+                                        // packet; I will ID the packet by its last byte.
         p->_type = UEC;
         p->_is_header = false;
         p->_bounced = false;
@@ -35,8 +32,7 @@ class UecPacket : public Packet {
         return p;
     }
 
-    inline static UecPacket *newpkt(PacketFlow &flow, const Route &route,
-                                    seq_t seqno, int size) {
+    inline static UecPacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, int size) {
         return newpkt(flow, route, seqno, 0, size);
     }
 
@@ -69,8 +65,7 @@ class UecAck : public Packet {
 
     UecAck() : Packet(){};
 
-    inline static UecAck *newpkt(PacketFlow &flow, const Route &route,
-                                 seq_t seqno, seq_t ackno, seq_t dackno) {
+    inline static UecAck *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t ackno, seq_t dackno) {
         UecAck *p = _packetdb.allocPacket();
         p->set_route(flow, route, acksize, ackno);
         p->_bounced = false;
@@ -84,8 +79,7 @@ class UecAck : public Packet {
         return p;
     }
 
-    inline static UecAck *newpkt(PacketFlow &flow, const Route &route,
-                                 seq_t seqno, seq_t ackno) {
+    inline static UecAck *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t ackno) {
         return newpkt(flow, route, seqno, ackno, 0);
     }
 
@@ -115,8 +109,7 @@ class UecNack : public Packet {
 
     UecNack() : Packet(){};
 
-    inline static UecNack *newpkt(PacketFlow &flow, const Route &route,
-                                  seq_t seqno, seq_t ackno, seq_t dackno) {
+    inline static UecNack *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t ackno, seq_t dackno) {
         UecNack *p = _packetdb.allocPacket();
         p->set_route(flow, route, acksize, ackno);
         p->_bounced = false;
@@ -130,8 +123,7 @@ class UecNack : public Packet {
         return p;
     }
 
-    inline static UecNack *newpkt(PacketFlow &flow, const Route &route,
-                                  seq_t seqno, seq_t ackno) {
+    inline static UecNack *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t ackno) {
         return newpkt(flow, route, seqno, ackno, 0);
     }
 

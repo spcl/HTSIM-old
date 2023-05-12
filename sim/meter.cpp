@@ -4,8 +4,7 @@
 #include <sstream>
 
 Meter::Meter(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist)
-        : EventSource(eventlist, "meter"), _maxsize(maxsize),
-          _bitrate(bitrate) {
+        : EventSource(eventlist, "meter"), _maxsize(maxsize), _bitrate(bitrate) {
     _queuesize = 0;
 
     _endpesitrim = 0;
@@ -18,8 +17,7 @@ Meter::Meter(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist)
     _rr = 0;
     _ps_per_byte = (simtime_picosec)((pow(10.0, 12.0) * 8) / _bitrate);
     stringstream ss;
-    ss << "meter(" << bitrate / 1000000 << "Mb/s," << maxsize
-       << "bytes), psperbyte " << _ps_per_byte;
+    ss << "meter(" << bitrate / 1000000 << "Mb/s," << maxsize << "bytes), psperbyte " << _ps_per_byte;
 
     _nodename = ss.str();
 }

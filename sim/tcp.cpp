@@ -9,8 +9,7 @@
 //  TCP SOURCE
 ////////////////////////////////////////////////////////////////
 
-TcpSrc::TcpSrc(TcpLogger *logger, TrafficLogger *pktlogger,
-               EventList &eventlist)
+TcpSrc::TcpSrc(TcpLogger *logger, TrafficLogger *pktlogger, EventList &eventlist)
         : EventSource(eventlist, "tcp"), _logger(logger), _flow(pktlogger) {
     _mss = Packet::data_packet_size();
     _maxcwnd = 0xffffffff; // 200*_mss;
@@ -92,9 +91,7 @@ void TcpSrc::startflow() {
     send_packets();
 }
 
-uint32_t TcpSrc::effective_window() {
-    return _in_fast_recovery ? _ssthresh : _cwnd;
-}
+uint32_t TcpSrc::effective_window() { return _in_fast_recovery ? _ssthresh : _cwnd; }
 
 void TcpSrc::replace_route(const Route *newroute) {
     _old_route = _route;
@@ -105,8 +102,7 @@ void TcpSrc::replace_route(const Route *newroute) {
     //  Printf("Wiating for ack %d to delete\n",_last_packet_with_old_route);
 }
 
-void TcpSrc::connect(const Route &routeout, const Route &routeback,
-                     TcpSink &sink, simtime_picosec starttime) {
+void TcpSrc::connect(const Route &routeout, const Route &routeback, TcpSink &sink, simtime_picosec starttime) {
     _route = &routeout;
 
     assert(_route);
@@ -180,8 +176,7 @@ void TcpSrc::receivePacket(Packet &pkt) {
         _rto = timeFromSec(.25);
 
     if (seqno >= _flow_size) {
-        cout << "Flow " << nodename() << " finished at "
-             << timeAsMs(eventlist().now()) << endl;
+        cout << "Flow " << nodename() << " finished at " << timeAsMs(eventlist().now()) << endl;
     }
 
     if (seqno > _last_acked) { // a brand new ack
@@ -366,9 +361,8 @@ void TcpSrc::inflate_window() {
 
         if (_mSrc == NULL) {
             // int tt = (newly_acked * _mss) % _cwnd;
-            _cwnd += (newly_acked * _mss) /
-                     _cwnd; // XXX beware large windows, when this increase gets
-                            // to be very small
+            _cwnd += (newly_acked * _mss) / _cwnd; // XXX beware large windows, when this increase gets
+                                                   // to be very small
 
             // if (rand()%_cwnd < tt)
             //_cwnd++;
@@ -418,17 +412,15 @@ void TcpSrc::send_packets() {
         // printf("%d\n",c);
     }
 
-    while ((_last_acked + c >= _highest_sent + _mss) &&
-           (_highest_sent + _mss <= _flow_size + 1)) {
+    while ((_last_acked + c >= _highest_sent + _mss) && (_highest_sent + _mss <= _flow_size + 1)) {
         uint64_t data_seq = 0;
 
 #ifdef MODEL_RECEIVE_WINDOW
         int existing_mapping = 0;
         if (_sent_packets.have_mapping(_highest_sent + 1)) {
             if (!_sent_packets.get_data_seq(_highest_sent + 1, &data_seq)) {
-                cout << "Failed to find TRANSMIT packet on " << _flow.get_id()
-                     << " last_acked " << _last_acked + 1 << " highest_sent "
-                     << _highest_sent << endl;
+                cout << "Failed to find TRANSMIT packet on " << _flow.get_id() << " last_acked " << _last_acked + 1
+                     << " highest_sent " << _highest_sent << endl;
                 assert(0);
             } else {
                 existing_mapping = 1;
@@ -461,16 +453,13 @@ void TcpSrc::send_packets() {
             _crt_path = random() % _paths->size();
 #endif
 
-            p = TcpPacket::newpkt(_flow, *(_paths->at(_crt_path)),
-                                  _highest_sent + 1, data_seq, _mss);
+            p = TcpPacket::newpkt(_flow, *(_paths->at(_crt_path)), _highest_sent + 1, data_seq, _mss);
             _crt_path = (_crt_path + 1) % _paths->size();
         } else {
-            p = TcpPacket::newpkt(_flow, *_route, _highest_sent + 1, data_seq,
-                                  _mss);
+            p = TcpPacket::newpkt(_flow, *_route, _highest_sent + 1, data_seq, _mss);
         }
 #else
-        TcpPacket *p = TcpPacket::newpkt(_flow, *_route, _highest_sent + 1,
-                                         data_seq, _mss);
+        TcpPacket *p = TcpPacket::newpkt(_flow, *_route, _highest_sent + 1, data_seq, _mss);
 #endif
         p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATESEND);
         p->set_ts(eventlist().now());
@@ -501,8 +490,8 @@ void TcpSrc::retransmit_packet() {
 
 #ifdef MODEL_RECEIVE_WINDOW
     if (!_sent_packets.get_data_seq(_last_acked + 1, &data_seq)) {
-        cout << "Failed to find packet on " << _flow.id << " last_acked "
-             << _last_acked + 1 << " highest_sent " << _highest_sent << endl;
+        cout << "Failed to find packet on " << _flow.id << " last_acked " << _last_acked + 1 << " highest_sent "
+             << _highest_sent << endl;
         assert(NULL);
     }
     //  else
@@ -518,15 +507,13 @@ void TcpSrc::retransmit_packet() {
         _crt_path = random() % _paths->size();
 #endif
 
-        p = TcpPacket::newpkt(_flow, *(_paths->at(_crt_path)), _last_acked + 1,
-                              data_seq, _mss);
+        p = TcpPacket::newpkt(_flow, *(_paths->at(_crt_path)), _last_acked + 1, data_seq, _mss);
         _crt_path = (_crt_path + 1) % _paths->size();
     } else {
         p = TcpPacket::newpkt(_flow, *_route, _last_acked + 1, _mss);
     }
 #else
-    TcpPacket *p =
-            TcpPacket::newpkt(_flow, *_route, _last_acked + 1, data_seq, _mss);
+    TcpPacket *p = TcpPacket::newpkt(_flow, *_route, _last_acked + 1, data_seq, _mss);
 #endif
 
     p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATESEND);
@@ -547,11 +534,9 @@ void TcpSrc::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
     if (_highest_sent == 0)
         return;
 
-    cout << "At " << now / (double)1000000000 << " RTO " << _rto / 1000000000
-         << " MDEV " << _mdev / 1000000000 << " RTT " << _rtt / 1000000000
-         << " SEQ " << _last_acked / _mss << " HSENT " << _highest_sent
-         << " CWND " << _cwnd / _mss << " FAST RECOVERY? " << _in_fast_recovery
-         << " Flow ID " << str() << endl;
+    cout << "At " << now / (double)1000000000 << " RTO " << _rto / 1000000000 << " MDEV " << _mdev / 1000000000
+         << " RTT " << _rtt / 1000000000 << " SEQ " << _last_acked / _mss << " HSENT " << _highest_sent << " CWND "
+         << _cwnd / _mss << " FAST RECOVERY? " << _in_fast_recovery << " Flow ID " << str() << endl;
 
     // here we can run into phase effects because the timer is checked
     // only periodically for ALL flows but if we keep the difference
@@ -631,9 +616,7 @@ void TcpSrc::doNextEvent() {
 //  TCP SINK
 ////////////////////////////////////////////////////////////////
 
-TcpSink::TcpSink()
-        : DataReceiver("TCPsink"), _cumulative_ack(0), _packets(0), _mSink(0),
-          _crt_path(0) {
+TcpSink::TcpSink() : DataReceiver("TCPsink"), _cumulative_ack(0), _packets(0), _mSink(0), _crt_path(0) {
     _nodename = "tcpsink";
 }
 
@@ -670,8 +653,7 @@ void TcpSink::receivePacket(Packet &pkt) {
         _cumulative_ack = seqno + size - 1;
         // cout << "New cumulative ack is " << _cumulative_ack << endl;
         //  are there any additional received packets we can now ack?
-        while (!_received.empty() &&
-               (_received.front() == _cumulative_ack + 1)) {
+        while (!_received.empty() && (_received.front() == _cumulative_ack + 1)) {
             _received.pop_front();
             _cumulative_ack += size;
         }
@@ -712,8 +694,7 @@ void TcpSink::send_ack(simtime_picosec ts, bool marked) {
     }
 #endif
 
-    TcpAck *ack = TcpAck::newpkt(_src->_flow, *rt, 0, _cumulative_ack,
-                                 _mSink != NULL ? _mSink->data_ack() : 0);
+    TcpAck *ack = TcpAck::newpkt(_src->_flow, *rt, 0, _cumulative_ack, _mSink != NULL ? _mSink->data_ack() : 0);
 
     ack->flow().logTraffic(*ack, *this, TrafficLogger::PKT_CREATESEND);
     ack->set_ts(ts);
@@ -742,15 +723,12 @@ void TcpSink::set_paths(vector<const Route *> *rt) {
 //  TCP RETRANSMISSION TIMER
 ////////////////////////////////////////////////////////////////
 
-TcpRtxTimerScanner::TcpRtxTimerScanner(simtime_picosec scanPeriod,
-                                       EventList &eventlist)
+TcpRtxTimerScanner::TcpRtxTimerScanner(simtime_picosec scanPeriod, EventList &eventlist)
         : EventSource(eventlist, "RtxScanner"), _scanPeriod(scanPeriod) {
     eventlist.sourceIsPendingRel(*this, _scanPeriod);
 }
 
-void TcpRtxTimerScanner::registerTcp(TcpSrc &tcpsrc) {
-    _tcps.push_back(&tcpsrc);
-}
+void TcpRtxTimerScanner::registerTcp(TcpSrc &tcpsrc) { _tcps.push_back(&tcpsrc); }
 
 void TcpRtxTimerScanner::doNextEvent() {
     simtime_picosec now = eventlist().now();

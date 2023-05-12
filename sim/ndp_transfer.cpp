@@ -7,11 +7,9 @@
 //  NDP PERIODIC SOURCE
 ////////////////////////////////////////////////////////////////
 
-int CDF_WEB[] = {250,  500,  1000,  1500,   2000,
-                 3000, 4000, 10000, 100000, 1000000};
+int CDF_WEB[] = {250, 500, 1000, 1500, 2000, 3000, 4000, 10000, 100000, 1000000};
 
-NdpSrcTransfer::NdpSrcTransfer(NdpLogger *logger, TrafficLogger *pktLogger,
-                               EventList &eventlist)
+NdpSrcTransfer::NdpSrcTransfer(NdpLogger *logger, TrafficLogger *pktLogger, EventList &eventlist)
         : NdpSrc(logger, pktLogger, eventlist) {
     _is_active = false;
 
@@ -30,12 +28,9 @@ void NdpSrcTransfer::reset(uint64_t bb, int shouldRestart) {
         eventlist().sourceIsPendingRel(*this, timeFromMs(1));
 }
 
-uint64_t NdpSrcTransfer::generateFlowSize() {
-    return CDF_WEB[(int)(drand() * 10)];
-}
+uint64_t NdpSrcTransfer::generateFlowSize() { return CDF_WEB[(int)(drand() * 10)]; }
 
-void NdpSrcTransfer::connect(route_t *routeout, route_t *routeback,
-                             NdpSink &sink, simtime_picosec starttime) {
+void NdpSrcTransfer::connect(route_t *routeout, route_t *routeback, NdpSink &sink, simtime_picosec starttime) {
     _is_active = false;
 
     NdpSrc::connect(routeout, routeback, sink, starttime);
@@ -62,8 +57,7 @@ void NdpSrcTransfer::receivePacket(Packet &pkt) {
                 _is_active = false;
 
                 cout << endl
-                     << "Flow " << str() << " " << _bytes_to_send
-                     << " finished after "
+                     << "Flow " << str() << " " << _bytes_to_send << " finished after "
                      << timeAsMs(eventlist().now() - _started) << endl;
 
                 reset(generateFlowSize(), 1);
@@ -75,8 +69,7 @@ void NdpSrcTransfer::receivePacket(Packet &pkt) {
     }
 }
 
-void NdpSrcTransfer::rtx_timer_hook(simtime_picosec now,
-                                    simtime_picosec period) {
+void NdpSrcTransfer::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
     if (!_is_active)
         return;
 
@@ -87,8 +80,8 @@ void NdpSrcTransfer::rtx_timer_hook(simtime_picosec now,
     if (_highest_sent == 0)
         return;
 
-    cout << "Transfer timeout: active " << _is_active << " bytes to send "
-         << _bytes_to_send << " sent " << _last_acked << endl;
+    cout << "Transfer timeout: active " << _is_active << " bytes to send " << _bytes_to_send << " sent " << _last_acked
+         << endl;
 
     NdpSrc::rtx_timer_hook(now, period);
 }
@@ -97,8 +90,7 @@ void NdpSrcTransfer::rtx_timer_hook(simtime_picosec now,
 //  Ndp Transfer SINK
 ////////////////////////////////////////////////////////////////
 
-NdpSinkTransfer::NdpSinkTransfer(EventList &ev, linkspeed_bps linkspeed,
-                                 double pull_rate_modifier)
+NdpSinkTransfer::NdpSinkTransfer(EventList &ev, linkspeed_bps linkspeed, double pull_rate_modifier)
         : NdpSink(ev, linkspeed, pull_rate_modifier) {}
 
 NdpSinkTransfer::NdpSinkTransfer(NdpPullPacer *pace) : NdpSink(pace) {}

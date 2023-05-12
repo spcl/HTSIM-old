@@ -12,8 +12,7 @@
 
 class MultipathTcpSubCtrl : public MultipathTcpSrc {
   public:
-    MultipathTcpSubCtrl(char cc_type, EventList &ev, MultipathTcpLogger *logger,
-                        double epsilon = 0.1);
+    MultipathTcpSubCtrl(char cc_type, EventList &ev, MultipathTcpLogger *logger, double epsilon = 0.1);
 
     // run as normal. Every timestep check to see if a subflow needs adding,
     // deleting, etc.

@@ -16,8 +16,7 @@
 
 class LosslessOutputQueue : public Queue {
   public:
-    LosslessOutputQueue(linkspeed_bps bitrate, mem_b maxsize,
-                        EventList &eventlist, QueueLogger *logger, int ECN = 0,
+    LosslessOutputQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger, int ECN = 0,
                         int K = 0);
 
     void receivePacket(Packet &pkt);
@@ -26,9 +25,7 @@ class LosslessOutputQueue : public Queue {
     void beginService();
     void completeService();
 
-    bool is_paused() {
-        return _state_send == PAUSED || _state_send == PAUSE_RECEIVED;
-    }
+    bool is_paused() { return _state_send == PAUSED || _state_send == PAUSE_RECEIVED; }
 
     enum queue_state { PAUSED, READY, PAUSE_RECEIVED };
 

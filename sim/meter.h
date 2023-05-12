@@ -25,21 +25,13 @@ class Meter : public EventSource {
 
     // should really be private, but loggers want to see
     mem_b _maxsize;
-    inline simtime_picosec drainTime(Packet *pkt) {
-        return (simtime_picosec)(pkt->size() * _ps_per_byte);
-    }
-    inline simtime_picosec drainTime(int size) {
-        return (simtime_picosec)(size * _ps_per_byte);
-    }
-    inline mem_b serviceCapacity(simtime_picosec t) {
-        return (mem_b)(timeAsSec(t) * (double)_bitrate);
-    }
+    inline simtime_picosec drainTime(Packet *pkt) { return (simtime_picosec)(pkt->size() * _ps_per_byte); }
+    inline simtime_picosec drainTime(int size) { return (simtime_picosec)(size * _ps_per_byte); }
+    inline mem_b serviceCapacity(simtime_picosec t) { return (mem_b)(timeAsSec(t) * (double)_bitrate); }
 
     inline void trimPesiTime(int N) {
-        _endpesitrim =
-                eventlist().now() + N * drainTime(Packet::data_packet_size());
-        _endsemipesitrim = eventlist().now() +
-                           4 * N * drainTime(Packet::data_packet_size());
+        _endpesitrim = eventlist().now() + N * drainTime(Packet::data_packet_size());
+        _endsemipesitrim = eventlist().now() + 4 * N * drainTime(Packet::data_packet_size());
         _last_update = eventlist().now();
         _credit = 0;
     }

@@ -21,16 +21,12 @@ class NdpTunnelPacket : public Packet {
 
     // pseudo-constructor for a routeless packet - routing information
     // must be filled in later
-    inline static NdpTunnelPacket *newpkt(PacketFlow &flow, seq_t seqno,
-                                          seq_t pacerno, int size,
-                                          bool retransmitted, bool last_packet,
-                                          Packet *encap) {
+    inline static NdpTunnelPacket *newpkt(PacketFlow &flow, seq_t seqno, seq_t pacerno, int size, bool retransmitted,
+                                          bool last_packet, Packet *encap) {
         NdpTunnelPacket *p = _packetdb.allocPacket();
-        p->set_attrs(
-                flow, size + ACKSIZE,
-                seqno + size -
-                        1); // The NDP sequence number is the first byte of the
-                            // packet; I will ID the packet by its last byte.
+        p->set_attrs(flow, size + ACKSIZE,
+                     seqno + size - 1); // The NDP sequence number is the first byte of the
+                                        // packet; I will ID the packet by its last byte.
         p->_type = NDP;
         p->_is_header = false;
         p->_bounced = false;
@@ -46,17 +42,12 @@ class NdpTunnelPacket : public Packet {
         return p;
     }
 
-    inline static NdpTunnelPacket *newpkt(PacketFlow &flow, const Route &route,
-                                          seq_t seqno, seq_t pacerno, int size,
-                                          bool retransmitted,
-                                          int32_t no_of_paths, bool last_packet,
-                                          Packet *encap) {
+    inline static NdpTunnelPacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t pacerno, int size,
+                                          bool retransmitted, int32_t no_of_paths, bool last_packet, Packet *encap) {
         NdpTunnelPacket *p = _packetdb.allocPacket();
-        p->set_route(
-                flow, route, size + ACKSIZE,
-                seqno + size -
-                        1); // The NDP sequence number is the first byte of the
-                            // packet; I will ID the packet by its last byte.
+        p->set_route(flow, route, size + ACKSIZE,
+                     seqno + size - 1); // The NDP sequence number is the first byte of the
+                                        // packet; I will ID the packet by its last byte.
         p->_type = NDP;
         p->_is_header = false;
         p->_bounced = false;

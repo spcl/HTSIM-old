@@ -20,8 +20,8 @@ struct ShortFlow {
 
 class ShortFlows : public EventSource {
   public:
-    ShortFlows(double l, EventList &eventlist, vector<const Route *> ***np,
-               ConnectionMatrix *c, Logfile *logfile, TcpRtxTimerScanner *r);
+    ShortFlows(double l, EventList &eventlist, vector<const Route *> ***np, ConnectionMatrix *c, Logfile *logfile,
+               TcpRtxTimerScanner *r);
     void doNextEvent();
 
     void run();

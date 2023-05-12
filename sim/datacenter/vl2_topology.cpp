@@ -56,12 +56,9 @@ void VL2Topology::init_network() {
             // Downlink
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
-            queues_nt_ns[j][k] = new RandomQueue(
-                    speedFromPktps(HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_nt_ns[j][k]->setName("Queue-nt-ns-" + ntoa(j) + "-" +
-                                        ntoa(k));
+            queues_nt_ns[j][k] = new RandomQueue(speedFromPktps(HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                                 *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_nt_ns[j][k]->setName("Queue-nt-ns-" + ntoa(j) + "-" + ntoa(k));
             logfile->writeName(*(queues_nt_ns[j][k]));
 
             pipes_nt_ns[j][k] = new Pipe(timeFromUs(RTT), *eventlist);
@@ -71,12 +68,9 @@ void VL2Topology::init_network() {
             // Uplink
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
-            queues_ns_nt[k][j] = new RandomQueue(
-                    speedFromPktps(HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_ns_nt[k][j]->setName("Queue-ns-nt-" + ntoa(k) + "-" +
-                                        ntoa(j));
+            queues_ns_nt[k][j] = new RandomQueue(speedFromPktps(HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                                 *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_ns_nt[k][j]->setName("Queue-ns-nt-" + ntoa(k) + "-" + ntoa(j));
             logfile->writeName(*(queues_ns_nt[k][j]));
 
             pipes_ns_nt[k][j] = new Pipe(timeFromUs(RTT), *eventlist);
@@ -108,12 +102,10 @@ void VL2Topology::init_network() {
             // Downlink
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
-            queues_na_nt[k][j] = new RandomQueue(
-                    speedFromPktps(CORE_TO_HOST * HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_na_nt[k][j]->setName("Queue-na-nt-" + ntoa(k) + "-" +
-                                        ntoa(j));
+            queues_na_nt[k][j] =
+                    new RandomQueue(speedFromPktps(CORE_TO_HOST * HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                    *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_na_nt[k][j]->setName("Queue-na-nt-" + ntoa(k) + "-" + ntoa(j));
             logfile->writeName(*(queues_na_nt[k][j]));
 
             pipes_na_nt[k][j] = new Pipe(timeFromUs(RTT), *eventlist);
@@ -123,12 +115,10 @@ void VL2Topology::init_network() {
             // Uplink
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
-            queues_nt_na[j][k] = new RandomQueue(
-                    speedFromPktps(CORE_TO_HOST * HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_nt_na[j][k]->setName("Queue-nt-na-" + ntoa(j) + "-" +
-                                        ntoa(k));
+            queues_nt_na[j][k] =
+                    new RandomQueue(speedFromPktps(CORE_TO_HOST * HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                    *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_nt_na[j][k]->setName("Queue-nt-na-" + ntoa(j) + "-" + ntoa(k));
             logfile->writeName(*(queues_nt_na[j][k]));
 
             pipes_nt_na[j][k] = new Pipe(timeFromUs(RTT), *eventlist);
@@ -154,12 +144,10 @@ void VL2Topology::init_network() {
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
 
-            queues_ni_na[j][k] = new RandomQueue(
-                    speedFromPktps(CORE_TO_HOST * HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_ni_na[j][k]->setName("Queue-ni-na-" + ntoa(j) + "-" +
-                                        ntoa(k));
+            queues_ni_na[j][k] =
+                    new RandomQueue(speedFromPktps(CORE_TO_HOST * HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                    *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_ni_na[j][k]->setName("Queue-ni-na-" + ntoa(j) + "-" + ntoa(k));
 
             //          if (j==0)
             // queues_ni_na[j][k]->set_packet_loss_rate(0);
@@ -175,12 +163,10 @@ void VL2Topology::init_network() {
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
 
-            queues_na_ni[k][j] = new RandomQueue(
-                    speedFromPktps(CORE_TO_HOST * HOST_NIC),
-                    memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                    queueLogger, memFromPkt(RANDOM_BUFFER));
-            queues_na_ni[k][j]->setName("Queue-na-ni-" + ntoa(k) + "-" +
-                                        ntoa(j));
+            queues_na_ni[k][j] =
+                    new RandomQueue(speedFromPktps(CORE_TO_HOST * HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                    *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
+            queues_na_ni[k][j]->setName("Queue-na-ni-" + ntoa(k) + "-" + ntoa(j));
             logfile->writeName(*(queues_na_ni[k][j]));
 
             pipes_na_ni[k][j] = new Pipe(timeFromUs(RTT), *eventlist);
@@ -205,8 +191,7 @@ vector<const Route *> *VL2Topology::get_paths(uint32_t src, uint32_t dest) {
     Route *routeout;
 
     if (HOST_TOR(src) == HOST_TOR(dest)) {
-        Queue *pqueue = new Queue(speedFromPktps(CORE_TO_HOST * HOST_NIC),
-                                  memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
+        Queue *pqueue = new Queue(speedFromPktps(CORE_TO_HOST * HOST_NIC), memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
         pqueue->setName("PQueue_" + ntoa(src) + "_" + ntoa(dest));
         logfile->writeName(*pqueue);
 
@@ -227,8 +212,7 @@ vector<const Route *> *VL2Topology::get_paths(uint32_t src, uint32_t dest) {
     for (uint32_t i = 0; i < 4 * NI; i++) {
         routeout = new Route();
 
-        Queue *pqueue = new Queue(speedFromPktps(CORE_TO_HOST * HOST_NIC),
-                                  memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
+        Queue *pqueue = new Queue(speedFromPktps(CORE_TO_HOST * HOST_NIC), memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
         pqueue->setName("PQueue_" + ntoa(src) + "_" + ntoa(dest));
         logfile->writeName(*pqueue);
 

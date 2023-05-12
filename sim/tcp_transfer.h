@@ -22,11 +22,9 @@ uint64_t generateFlowSize();
 
 class TcpSrcTransfer : public TcpSrc {
   public:
-    TcpSrcTransfer(TcpLogger *logger, TrafficLogger *pktLogger,
-                   EventList &eventlist, uint64_t b, vector<const Route *> *p,
-                   EventSource *stopped = NULL);
-    void connect(const Route &routeout, const Route &routeback, TcpSink &sink,
-                 simtime_picosec starttime);
+    TcpSrcTransfer(TcpLogger *logger, TrafficLogger *pktLogger, EventList &eventlist, uint64_t b,
+                   vector<const Route *> *p, EventSource *stopped = NULL);
+    void connect(const Route &routeout, const Route &routeback, TcpSink &sink, simtime_picosec starttime);
 
     virtual void rtx_timer_hook(simtime_picosec now, simtime_picosec period);
     virtual void receivePacket(Packet &pkt);

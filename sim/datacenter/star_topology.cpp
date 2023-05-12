@@ -37,10 +37,8 @@ void StarTopology::init_network() {
         // queueLogger = NULL;
         logfile->addLogger(*queueLogger);
 
-        queue_in_ns[j] = new RandomQueue(
-                speedFromPktps(HOST_NIC),
-                memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                queueLogger, memFromPkt(RANDOM_BUFFER));
+        queue_in_ns[j] = new RandomQueue(speedFromPktps(HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                         *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
         queue_in_ns[j]->setName("IN_" + ntoa(j));
         logfile->writeName(*(queue_in_ns[j]));
 
@@ -51,10 +49,8 @@ void StarTopology::init_network() {
         queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
         // queueLogger = NULL;
         logfile->addLogger(*queueLogger);
-        queue_out_ns[j] = new RandomQueue(
-                speedFromPktps(HOST_NIC),
-                memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER), *eventlist,
-                queueLogger, memFromPkt(RANDOM_BUFFER));
+        queue_out_ns[j] = new RandomQueue(speedFromPktps(HOST_NIC), memFromPkt(SWITCH_BUFFER + RANDOM_BUFFER),
+                                          *eventlist, queueLogger, memFromPkt(RANDOM_BUFFER));
         queue_out_ns[j]->setName("OUT_" + ntoa(j));
         logfile->writeName(*(queue_out_ns[j]));
 
@@ -76,8 +72,7 @@ vector<const Route *> *StarTopology::get_paths(uint32_t src, uint32_t dest) {
 
     Route *routeout;
 
-    Queue *pqueue = new Queue(speedFromPktps(HOST_NIC),
-                              memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
+    Queue *pqueue = new Queue(speedFromPktps(HOST_NIC), memFromPkt(FEEDER_BUFFER), *eventlist, NULL);
     pqueue->setName("PQueue_" + ntoa(src) + "_" + ntoa(dest));
     // logfile->writeName(*pqueue);
 
@@ -103,8 +98,7 @@ void StarTopology::count_queue(RandomQueue *queue) {
     _link_usage[queue] = _link_usage[queue] + 1;
 }
 
-void StarTopology::print_path(std::ofstream &paths, uint32_t src,
-                              const Route *route) {
+void StarTopology::print_path(std::ofstream &paths, uint32_t src, const Route *route) {
     paths << "SRC_" << src << " ";
     paths << endl;
 }

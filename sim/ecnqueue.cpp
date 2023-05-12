@@ -5,8 +5,7 @@
 #include <iostream>
 #include <math.h>
 
-ECNQueue::ECNQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist,
-                   QueueLogger *logger, mem_b K)
+ECNQueue::ECNQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger, mem_b K)
         : Queue(bitrate, maxsize, eventlist, logger), _K(K) {
     _state_send = LosslessQueue::READY;
 }
