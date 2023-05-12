@@ -25,12 +25,12 @@ class UecPacket : public Packet {
                         1); // The UEC sequence number is the first byte of the
                             // packet; I will ID the packet by its last byte.
         p->_type = UEC;
+        p->_is_header = false;
+        p->_bounced = false;
         p->_seqno = seqno;
         p->_data_seqno = dataseqno;
-        p->_bounced = false;
         p->_syn = false;
         p->retransmitted = false;
-        p->_is_header = false;
         p->_flags = 0;
         return p;
     }

@@ -15,6 +15,7 @@
 #include "trigger.h"
 #include <list>
 #include <map>
+#include <functional>
 
 #define timeInf 0
 #define NDP_PACKET_SCATTER
@@ -203,6 +204,8 @@ class NdpSrc : public PacketSink, public EventSource, public TriggerTarget {
     static int _rtt_hist[10000000];
     int _node_num;
 
+    void set_flow_over_hook(std::function<void(const Packet&)> hook) { f_flow_over_hook = hook; }
+
   private:
     // Housekeeping
     NdpLogger *_logger;
@@ -242,6 +245,9 @@ class NdpSrc : public PacketSink, public EventSource, public TriggerTarget {
     simtime_picosec _stop_time;
     map<NdpPacket::seq_t, NdpPacket *>
             _rtx_queue; // Packets queued for (hopefuly) imminent retransmission
+
+    // LGS
+    std::function<void(const Packet &p)> f_flow_over_hook;
 };
 
 class NdpPullPacer;

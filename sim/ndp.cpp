@@ -109,6 +109,7 @@ NdpSrc::NdpSrc(NdpLogger *logger, TrafficLogger *pktlogger,
 
     // debugging hack
     _log_me = false;
+    f_flow_over_hook = nullptr;
 }
 
 void NdpSrc::set_traffic_logger(TrafficLogger *pktlogger) {
@@ -659,6 +660,9 @@ void NdpSrc::processAck(const NdpAck &ack) {
     assert(_flight_size >= 0);
 
     if (cum_ackno >= _flow_size) {
+        if (f_flow_over_hook) {
+            f_flow_over_hook(ack);
+        }
         cout << "Flow " << _name << " flow_id " << flow_id() << " finished at "
              << timeAsUs(eventlist().now()) << " total bytes " << cum_ackno
              << endl;

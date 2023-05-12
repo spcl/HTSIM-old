@@ -1,12 +1,12 @@
 CC = g++
-CFLAGS = -Wall -std=c++11 -g -Wsign-compare
+CFLAGS = -Wall -std=c++17 -g -Wsign-compare
 #CFLAGS += -fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined
 CFLAGS += -O2  
 CRT=`pwd`
 INCLUDE= -I/$(CRT)/.. -I$(CRT) 
 LIB=-L.. 
 
-all:	htsim_tcp htsim_ndp htsim_roce htsim_swift htsim_hpcc
+all:	htsim_tcp htsim_ndp htsim_roce htsim_swift htsim_hpcc logsim-interface.o
 
 
 htsim_tcp: main_tcp.o firstfit.o ../libhtsim.a vl2_topology.o fat_tree_topology.o fat_tree_switch.o dragon_fly_topology.o bcube_topology.o connection_matrix.o oversubscribed_fat_tree_topology.o shortflows.o multihomed_fat_tree_topology.o star_topology.o
@@ -26,6 +26,8 @@ htsim_hpcc: main_hpcc.o firstfit.o ../libhtsim.a vl2_topology.o fat_tree_topolog
 htsim_swift: main_swift.o firstfit.o ../libhtsim.a vl2_topology.o fat_tree_topology.o fat_tree_switch.o bcube_topology.o connection_matrix.o oversubscribed_fat_tree_topology.o shortflows.o multihomed_fat_tree_topology.o star_topology.o generic_topology.o
 	$(CC) $(CFLAGS) firstfit.o main_swift.o vl2_topology.o fat_tree_topology.o fat_tree_switch.o bcube_topology.o connection_matrix.o oversubscribed_fat_tree_topology.o shortflows.o star_topology.o multihomed_fat_tree_topology.o generic_topology.o $(LIB) -lhtsim -o htsim_swift
 
+logsim-interface.o: logsim-interface.cpp
+	$(CC) $(INCLUDE) $(CFLAGS) -c $<
 
 main_tcp.o: main_tcp.cpp
 	$(CC) $(INCLUDE) $(CFLAGS) -c main_tcp.cpp

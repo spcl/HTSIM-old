@@ -9,11 +9,12 @@
 #include "config.h"
 #include "eventlist.h"
 #include "fairpullqueue.h"
-//#include "lgs/logsim-interface.h"
+//#include "datacenter/logsim-interface.h"
 #include "network.h"
 #include "uecpacket.h"
 #include <list>
 #include <map>
+#include <functional>
 
 class UecSink;
 // class LogSimInterface;
@@ -55,8 +56,8 @@ class UecSrc : public PacketSink, public EventSource {
     void setCwnd(uint64_t cwnd) { _cwnd = cwnd; };
     void setFlowSize(uint64_t flow_size) { _flow_size = flow_size; }
     void setKeepAcksInTargetRtt(bool keep) { _target_based_received = keep; }
-    // void setLgs(LogSimInterface *lgs) { _lgs = lgs; };
-    void setUsingLgs(bool val) { _using_lgs = val; };
+    //void setLgs(LogSimInterface *lgs) { _lgs = lgs; };
+    //void setUsingLgs(bool val) { _using_lgs = val; };
     void enableTrimming(bool enable) { _trimming_enabled = enable; };
 
     uint64_t getCwnd() { return _cwnd; };
@@ -70,6 +71,7 @@ class UecSrc : public PacketSink, public EventSource {
     std::size_t getEcnInTargetRtt();
 
     void set_traffic_logger(TrafficLogger *pktlogger);
+    void set_flow_over_hook(std::function<void(const Packet&)> hook) { f_flow_over_hook = hook; }
 
     virtual void rtx_timer_hook(simtime_picosec now, simtime_picosec period);
 
@@ -102,7 +104,7 @@ class UecSrc : public PacketSink, public EventSource {
     uint64_t _rtx_timeout;
     uint64_t _maxcwnd;
     uint16_t _crt_path;
-    // LogSimInterface *_lgs;
+    //LogSimInterface *_lgs;
     bool _flow_finished = false;
 
     bool _rtx_timeout_pending;
@@ -127,6 +129,7 @@ class UecSrc : public PacketSink, public EventSource {
     PacketFlow _flow;
 
     string _nodename;
+    std::function<void(const Packet &p)> f_flow_over_hook;
 
     list<std::tuple<simtime_picosec, bool, uint64_t>>
             _received_ecn; // list of packets received
