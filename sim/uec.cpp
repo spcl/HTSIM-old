@@ -284,8 +284,8 @@ void UecSrc::processAck(UecAck &pkt) {
     //        _last_acked);
     if (seqno >= _flow_size && _sent_packets.empty() && !_flow_finished) {
         _flow_finished = true;
-	if (f_flow_over_hook) {
-	    f_flow_over_hook(pkt);
+        if (f_flow_over_hook) {
+            f_flow_over_hook(pkt);
         }
 
         cout << "Flow " << nodename() << " finished at "

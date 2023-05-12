@@ -12,7 +12,6 @@
  *
  */
 
-
 #include "cmdline.h"
 #include <queue>
 

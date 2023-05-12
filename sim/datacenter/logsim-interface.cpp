@@ -1,25 +1,25 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
 
 #include "logsim-interface.h"
-#include "topology.h"
-#include "main.h"
-#include "ndp.h"
-#include "uec.h"
-#include "lgs/Parser.hpp"
+#include "lgs/LogGOPSim.hpp"
 #include "lgs/Network.hpp"
 #include "lgs/Noise.hpp"
+#include "lgs/Parser.hpp"
 #include "lgs/TimelineVisualization.hpp"
-#include "lgs/LogGOPSim.hpp"
 #include "lgs/cmdline.h"
-#include <filesystem>
+#include "main.h"
+#include "ndp.h"
+#include "topology.h"
+#include "uec.h"
 #include <chrono>
+#include <filesystem>
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <queue>
 #include <regex>
 #include <string>
 #include <utility>
-#include <functional>
 /*#define BOOST_NO_CXX11_SCOPED_ENUMS
 #include <boost/filesystem.hpp>
 #undef BOOST_NO_CXX11_SCOPED_ENUMS*/
@@ -88,7 +88,8 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         printf("CWD Start %d - From %d To %d\n", uecSrc->_cwnd, from, to);
         uecSrc->setName("uec_" + std::to_string(from) + "_" +
                         std::to_string(to));
-        uecSrc->set_flow_over_hook(std::bind(&LogSimInterface::flow_over, this, std::placeholders::_1));
+        uecSrc->set_flow_over_hook(std::bind(&LogSimInterface::flow_over, this,
+                                             std::placeholders::_1));
         uecSrc->from = from;
         uecSrc->to = to;
         uecSrc->tag = tag;
@@ -132,9 +133,12 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         _ndpSrcVector.push_back(ndpSrc);
         ndpSrc->setCwnd(MAX_CWD_MODERN_UEC);
         ndpSrc->set_flowsize(size);
-        ndpSrc->set_flow_over_hook(std::bind(&LogSimInterface::flow_over, this, std::placeholders::_1));
+        ndpSrc->set_flow_over_hook(std::bind(&LogSimInterface::flow_over, this,
+                                             std::placeholders::_1));
         if (_puller_map.count(to) == 0) {
-            _puller_map[to] = new NdpPullPacer(*_eventlist, speedFromMbps(static_cast<double>(HOST_NIC)), 1);
+            _puller_map[to] = new NdpPullPacer(
+                    *_eventlist, speedFromMbps(static_cast<double>(HOST_NIC)),
+                    1);
         }
         NdpSink *ndpSnk = new NdpSink(_puller_map[to]);
         ndpSrc->from = from;
@@ -193,8 +197,7 @@ void LogSimInterface::flow_over(const Packet &p) {
     std::string to_hash = std::to_string(p.from) + "@" + std::to_string(p.to) +
                           "@" + std::to_string(p.tag);
     // active_sends[to_hash].bytes_left_to_recv = 0;
-    printf("Flow Finished %d@%d@%d at %lu\n", p.from, p.to, p.tag,
-           GLOBAL_TIME);
+    printf("Flow Finished %d@%d@%d at %lu\n", p.from, p.to, p.tag, GLOBAL_TIME);
     fflush(stdout);
 
     // Here we have received a message fully, we need to give control back to
@@ -235,8 +238,7 @@ graph_node_properties LogSimInterface::htsim_simulate_until(u_int64_t until) {
     // GO!
     while (_eventlist->doNextEvent()) {
         if (_latest_recv->updated) {
-            printf("Running - %d - %lu\n", _latest_recv->updated,
-                   GLOBAL_TIME);
+            printf("Running - %d - %lu\n", _latest_recv->updated, GLOBAL_TIME);
             break;
         }
     }
@@ -254,7 +256,8 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
     if (true) {
         // Temp Only
         filename_goal = "../lgs/input/" + filename_goal;
-        std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl;
+        std::cout << "Current working directory: "
+                  << std::filesystem::current_path() << std::endl;
 
         // return 1;
     }
@@ -264,7 +267,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
     using std::chrono::duration_cast;
     using std::chrono::high_resolution_clock;
     using std::chrono::milliseconds;
-    //auto start = high_resolution_clock::now();
+    // auto start = high_resolution_clock::now();
     std::chrono::milliseconds global_time = std::chrono::milliseconds::zero();
 
     //  End Temp Only
@@ -466,7 +469,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                 if (nexto[elem.host][elem.proc] <= elem.time) {
                     // check if OS Noise occurred
                     osnoise.get_noise(elem.host, elem.time,
-                                                      elem.time + elem.size);
+                                      elem.time + elem.size);
                     nexto[elem.host][elem.proc] = elem.size + htsim_time;
                     // printf("====================== Updated time is %ld
                     // ===============================1\n",
