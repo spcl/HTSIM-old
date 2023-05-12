@@ -109,7 +109,6 @@ typedef unsigned int uint;
 typedef unsigned long int ulint;
 typedef unsigned long long int ullint;
 
-int size_queue(std::vector<ruq_t> my_queue, int num_proce);
 #ifdef LIST_MATCH
 // TODO this is really slow - reconsider design of rq and uq!
 // matches and removes element from list if found, otherwise returns
@@ -169,4 +168,14 @@ static inline int match(const graph_node_properties &elem, ruq_t *q, ruqelem_t *
     return 0;
 }
 #endif
+
+int size_queue(std::vector<ruq_t> my_queue, int num_proce) {
+    std::size_t max = 0;
+    for (int i = 0; i < num_proce; i++) {
+        if (my_queue[i].size() > max) {
+            max = my_queue[i].size();
+        }
+    }
+    return max;
+}
 #endif /* LOGSIM_H */
