@@ -185,11 +185,11 @@ int main(int argc, char **argv) {
     TrafficLoggerSimple traffic_logger = TrafficLoggerSimple();
     logfile.addLogger(traffic_logger);
 
-    UecSrc *uecSrc;
-    UecSink *uecSink;
+    // UecSrc *uecSrc;
+    // UecSink *uecSink;
 
-    Route *routeout, *routein;
-    double extrastarttime;
+    // Route *routeout, *routein;
+    // double extrastarttime;
 
     int dest;
 
@@ -245,7 +245,7 @@ int main(int argc, char **argv) {
         ff->net_paths = net_paths;
 #endif
 
-    vector<int> *destinations;
+    // vector<int> *destinations;
 
     // Permutation connections
     // ConnectionMatrix *conns = new ConnectionMatrix(no_of_conns);
@@ -272,7 +272,7 @@ int main(int argc, char **argv) {
 
     int connID = 0;
     dest = 1;
-    int receiving_node = 127;
+    // int receiving_node = 127;
     vector<int> subflows_chosen;
 
     vector<UecSrc *> uecSrcVector;
@@ -322,7 +322,7 @@ int main(int argc, char **argv) {
         // print_route(*r);
         cout << "Path:" << endl;
         hop = 0;
-        for (int i = 0; i < r->size(); i++) {
+        for (std::size_t i = 0; i < r->size(); i++) {
             PacketSink *ps = r->at(i);
             CompositeQueue *q = dynamic_cast<CompositeQueue *>(ps);
             if (q == 0) {
