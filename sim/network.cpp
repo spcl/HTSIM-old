@@ -1,5 +1,8 @@
 // -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
 #include "network.h"
+#include <filesystem>
+#include <fstream>
+#include <utility>
 
 #define DEFAULTDATASIZE 1500
 int Packet::_data_packet_size = DEFAULTDATASIZE;
@@ -21,7 +24,8 @@ void Packet::set_attrs(PacketFlow &flow, int pkt_size, packetid_t id) {
     _next_routed_hop = 0;
 }
 
-void Packet::set_route(PacketFlow &flow, const Route &route, int pkt_size, packetid_t id) {
+void Packet::set_route(PacketFlow &flow, const Route &route, int pkt_size,
+                       packetid_t id) {
     _flow = &flow;
     _size = pkt_size;
     _oldsize = pkt_size;
@@ -58,6 +62,28 @@ PacketSink *Packet::sendOn() {
             _nexthop++;
         } else {
             assert(_nexthop < _route->size());
+
+            if (_nexthop == 1 && type() == UEC) {
+                printf("Hop %d - Previous time %lu - New time %lu\n", _nexthop,
+                       ts(),
+                       GLOBAL_TIME - SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000);
+                set_ts(GLOBAL_TIME -
+                       (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000));
+
+                if (COLLECT_DATA) {
+                    _list_sent.push_back(std::make_pair(GLOBAL_TIME / 1000, 1));
+                    // Sent
+                    std::string file_name = "../output/sent/s" +
+                                            std::to_string(this->from) +
+                                            ".txt ";
+                    std::ofstream MyFile(file_name, std::ios_base::app);
+
+                    MyFile << GLOBAL_TIME / 1000 << "," << 1 << std::endl;
+
+                    MyFile.close();
+                }
+            }
+
             nextsink = _route->at(_nexthop);
             _nexthop++;
         }
@@ -221,7 +247,10 @@ string Packet::str() const {
 #define FLOW_ID_DYNAMIC_BASE 1000000000
 flowid_t PacketFlow::_max_flow_id = FLOW_ID_DYNAMIC_BASE;
 
-PacketFlow::PacketFlow(TrafficLogger *logger) : Logged("PacketFlow"), _logger(logger) { _flow_id = _max_flow_id++; }
+PacketFlow::PacketFlow(TrafficLogger *logger)
+        : Logged("PacketFlow"), _logger(logger) {
+    _flow_id = _max_flow_id++;
+}
 
 void PacketFlow::set_flowid(flowid_t id) {
     if (id >= FLOW_ID_DYNAMIC_BASE) {
@@ -234,7 +263,8 @@ void PacketFlow::set_flowid(flowid_t id) {
 
 void PacketFlow::set_logger(TrafficLogger *logger) { _logger = logger; }
 
-void PacketFlow::logTraffic(Packet &pkt, Logged &location, TrafficLogger::TrafficEvent ev) {
+void PacketFlow::logTraffic(Packet &pkt, Logged &location,
+                            TrafficLogger::TrafficEvent ev) {
     if (_logger)
         _logger->logTraffic(pkt, location, ev);
 }

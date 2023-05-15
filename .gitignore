@@ -9,3 +9,9 @@ htsim_*
 *.rates
 *.urates
 *.asc
+.vscode/
+*.tmp
+*.png
+*.html
+*.txt
+datacenter/uec_entry

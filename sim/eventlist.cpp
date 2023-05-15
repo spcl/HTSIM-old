@@ -24,6 +24,7 @@ bool EventList::doNextEvent() {
     EventSource *nextsource = _pendingsources.begin()->second;
     _pendingsources.erase(_pendingsources.begin());
     assert(nexteventtime >= _lasteventtime);
+    GLOBAL_TIME = nexteventtime;
     _lasteventtime = nexteventtime; // set this before calling doNextEvent, so
                                     // that this::now() is accurate
     nextsource->doNextEvent();
@@ -45,7 +46,9 @@ void EventList::sourceIsPending(EventSource &src, simtime_picosec when) {
         _pendingsources.insert(make_pair(when, &src));
 }
 
-void EventList::triggerIsPending(TriggerTarget &target) { _pending_triggers.push_back(&target); }
+void EventList::triggerIsPending(TriggerTarget &target) {
+    _pending_triggers.push_back(&target);
+}
 
 void EventList::cancelPendingSource(EventSource &src) {
     pendingsources_t::iterator i = _pendingsources.begin();
@@ -58,7 +61,8 @@ void EventList::cancelPendingSource(EventSource &src) {
     }
 }
 
-void EventList::reschedulePendingSource(EventSource &src, simtime_picosec when) {
+void EventList::reschedulePendingSource(EventSource &src,
+                                        simtime_picosec when) {
     cancelPendingSource(src);
     sourceIsPending(src, when);
 }

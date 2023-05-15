@@ -42,7 +42,8 @@
 uint32_t RTT = 400; // this is per link delay in ns; identical RTT microseconds
                     // = 0.02 ms
 int DEFAULT_NODES = 128;
-#define DEFAULT_QUEUE_SIZE 100000000 // ~100MB, just a large value so we can ignore queues
+#define DEFAULT_QUEUE_SIZE                                                     \
+    100000000 // ~100MB, just a large value so we can ignore queues
 // int N=128;
 
 FirstFit *ff = NULL;
@@ -103,7 +104,8 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-conns")) {
             no_of_conns = atoi(argv[i + 1]);
             cout << "no_of_conns " << no_of_conns << endl;
-            cout << "!!currently hardcoded to 8, value will be ignored!!" << endl;
+            cout << "!!currently hardcoded to 8, value will be ignored!!"
+                 << endl;
             i++;
         } else if (!strcmp(argv[i], "-nodes")) {
             no_of_nodes = atoi(argv[i + 1]);
@@ -202,17 +204,21 @@ int main(int argc, char **argv) {
 #ifdef FAT_TREE
     FatTreeTopology::set_tiers(3);
     FatTreeTopology *top = new FatTreeTopology(
-            no_of_nodes, speedFromMbps(static_cast<double>(HOST_NIC)), queuesize, NULL, &eventlist, ff, COMPOSITE,
-            timeFromUs(RTT), timeFromUs(0.0)); // TODO(tommaso): check parameters -- see main_ndp.cpp for how you can
-                                               // turn them into runtime options instead of compiled parameters
+            no_of_nodes, speedFromMbps(static_cast<double>(HOST_NIC)),
+            queuesize, NULL, &eventlist, ff, COMPOSITE, timeFromNs(RTT),
+            timeFromUs(0.0)); // TODO(tommaso): check parameters -- see
+                              // main_ndp.cpp for how you can turn them into
+                              // runtime options instead of compiled parameters
 #endif
 
 #ifdef OV_FAT_TREE
-    OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(&logfile, &eventlist, ff);
+    OversubscribedFatTreeTopology *top =
+            new OversubscribedFatTreeTopology(&logfile, &eventlist, ff);
 #endif
 
 #ifdef MH_FAT_TREE
-    MultihomedFatTreeTopology *top = new MultihomedFatTreeTopology(&logfile, &eventlist, ff);
+    MultihomedFatTreeTopology *top =
+            new MultihomedFatTreeTopology(&logfile, &eventlist, ff);
 #endif
 
 #ifdef STAR
@@ -277,7 +283,8 @@ int main(int argc, char **argv) {
 
     vector<UecSrc *> uecSrcVector;
     printf("Starting LGS Interface");
-    LogSimInterface *lgs = new LogSimInterface(NULL, &traffic_logger, eventlist, top, net_paths);
+    LogSimInterface *lgs = new LogSimInterface(NULL, &traffic_logger, eventlist,
+                                               top, net_paths);
     lgs->set_protocol(UEC_PROTOCOL);
     lgs->set_cwd(cwnd);
     lgs->set_queue_size(queuesize);
@@ -298,14 +305,16 @@ int main(int argc, char **argv) {
         }
     }
 
-    cout << "Mean number of subflows " << ntoa((double)tot_subs / cnt_con) << endl;
+    cout << "Mean number of subflows " << ntoa((double)tot_subs / cnt_con)
+         << endl;
 
     // Record the setup
     int pktsize = Packet::data_packet_size();
     logfile.write("# pktsize=" + ntoa(pktsize) + " bytes");
     logfile.write("# subflows=" + ntoa(subflow_count));
     logfile.write("# hostnicrate = " + ntoa(HOST_NIC) + " pkt/sec");
-    logfile.write("# corelinkrate = " + ntoa(HOST_NIC * CORE_TO_HOST) + " pkt/sec");
+    logfile.write("# corelinkrate = " + ntoa(HOST_NIC * CORE_TO_HOST) +
+                  " pkt/sec");
     // logfile.write("# buffer = " + ntoa((double)
     // (queues_na_ni[0][1]->_maxsize) / ((double) pktsize)) + " pkt");
     double rtt = timeAsSec(timeFromUs(RTT));
@@ -328,11 +337,14 @@ int main(int argc, char **argv) {
             if (q == 0) {
                 cout << ps->nodename() << endl;
             } else {
-                cout << q->nodename() << " id=" << 0 /*q->id*/ << " " << q->num_packets() << "pkts " << q->num_headers()
-                     << "hdrs " << q->num_acks() << "acks " << q->num_nacks() << "nacks " << q->num_stripped()
-                     << "stripped"
-                     << endl; // TODO(tommaso): compositequeues don't have id. Need to add that or find an alternative
-                              // way. Verify also that compositequeue is the right queue to use here.
+                cout << q->nodename() << " id=" << 0 /*q->id*/ << " "
+                     << q->num_packets() << "pkts " << q->num_headers()
+                     << "hdrs " << q->num_acks() << "acks " << q->num_nacks()
+                     << "nacks " << q->num_stripped() << "stripped"
+                     << endl; // TODO(tommaso): compositequeues don't have id.
+                              // Need to add that or find an alternative way.
+                              // Verify also that compositequeue is the right
+                              // queue to use here.
                 counts[hop] += q->num_stripped();
                 hop++;
             }
