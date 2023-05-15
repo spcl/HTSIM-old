@@ -488,7 +488,7 @@ void UecSrc::send_packets() {
 
         // Getting time until packet is really sent
         PacketSink *sink = p->sendOn();
-        PriorityQueue *q = dynamic_cast<PriorityQueue *>(sink);
+        HostQueue *q = dynamic_cast<HostQueue *>(sink);
         assert(q);
         uint32_t service_time = q->serviceTime(*p);
         _sent_packets.push_back(SentPacket(eventlist().now() + service_time + _rto, p->seqno(), false, false, false));
