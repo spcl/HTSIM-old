@@ -169,13 +169,5 @@ static inline int match(const graph_node_properties &elem, ruq_t *q, ruqelem_t *
 }
 #endif
 
-int size_queue(std::vector<ruq_t> my_queue, int num_proce) {
-    std::size_t max = 0;
-    for (int i = 0; i < num_proce; i++) {
-        if (my_queue[i].size() > max) {
-            max = my_queue[i].size();
-        }
-    }
-    return max;
-}
+int size_queue(std::vector<ruq_t> my_queue, int num_proce);
 #endif /* LOGSIM_H */
