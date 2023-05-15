@@ -16,7 +16,8 @@ class UecPacket : public Packet {
 
     UecPacket() : Packet(){};
 
-    inline static UecPacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t dataseqno, int size) {
+    inline static UecPacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t dataseqno, int size,
+                                    bool retransmitted = false) {
         UecPacket *p = _packetdb.allocPacket();
         p->set_route(flow, route, size + acksize,
                      seqno + size - 1); // The UEC sequence number is the first byte of the
@@ -27,7 +28,7 @@ class UecPacket : public Packet {
         p->_seqno = seqno;
         p->_data_seqno = dataseqno;
         p->_syn = false;
-        p->retransmitted = false;
+        p->_retransmitted = retransmitted;
         p->_flags = 0;
         return p;
     }
@@ -46,8 +47,8 @@ class UecPacket : public Packet {
         Packet::strip_payload();
         _size = acksize;
     };
+    inline bool retransmitted() { return _retransmitted; }
 
-    bool retransmitted;
     // inline simtime_picosec ts() const {return _ts;}
     // inline void set_ts(simtime_picosec ts) {_ts = ts;}
     const static int acksize = 64;
@@ -57,6 +58,7 @@ class UecPacket : public Packet {
     bool _syn;
     simtime_picosec _ts;
     static PacketDB<UecPacket> _packetdb;
+    bool _retransmitted;
 };
 
 class UecAck : public Packet {

@@ -1,6 +1,7 @@
 // -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
 #include "queue.h"
 #include "ndppacket.h"
+#include "uecpacket.h"
 #include "queue_lossless.h"
 #include <math.h>
 #include <sstream>
@@ -381,6 +382,8 @@ FairPriorityQueue::queue_priority_t FairPriorityQueue::getPriority(Packet &pkt) 
     queue_priority_t prio = Q_LO;
     switch (pkt.type()) {
     case TCPACK:
+    case UECACK:
+    case UECNACK:
     case NDPACK:
     case NDPNACK:
     case NDPPULL:
@@ -401,6 +404,18 @@ FairPriorityQueue::queue_priority_t FairPriorityQueue::getPriority(Packet &pkt) 
         } else {
             NdpPacket *np = (NdpPacket *)(&pkt);
             if (np->retransmitted()) {
+                prio = Q_MID;
+            } else {
+                prio = Q_LO;
+            }
+        }
+        break;
+    case UEC:
+        if (pkt.header_only()) {
+            prio = Q_HI;
+        } else {
+            UecPacket *uec = dynamic_cast<UecPacket*>(&pkt);
+            if (uec->retransmitted()) {
                 prio = Q_MID;
             } else {
                 prio = Q_LO;

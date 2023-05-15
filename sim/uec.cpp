@@ -576,8 +576,7 @@ bool UecSrc::resend_packet(std::size_t idx) {
     }
     // Getting time until packet is really sent
     _unacked += _mss;
-    UecPacket *p = UecPacket::newpkt(_flow, *rt, _sent_packets[idx].seqno, 0, _mss);
-    p->retransmitted = true;
+    UecPacket *p = UecPacket::newpkt(_flow, *rt, _sent_packets[idx].seqno, 0, _mss, true);
     p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATE);
     PacketSink *sink = p->sendOn();
     PriorityQueue *q = dynamic_cast<PriorityQueue *>(sink);
