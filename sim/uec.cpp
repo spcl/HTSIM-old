@@ -502,7 +502,7 @@ void UecSrc::set_paths(vector<const Route *> *rt) {
     _paths.clear();
 
     for (const Route *route : *rt) {
-        Route *t = new Route(*route);
+        Route *t = new Route(*route, *_sink);
         t->add_endpoints(this, _sink);
         _paths.push_back(t);
     }
@@ -774,7 +774,7 @@ void UecSink::set_paths(vector<const Route *> *rt) {
     _paths.clear();
 
     for (const Route *route : *rt) {
-        Route *t = new Route(*route);
+        Route *t = new Route(*route, *_src);
         t->add_endpoints(this, _src);
         _paths.push_back(t);
     }
