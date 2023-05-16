@@ -1,11 +1,14 @@
 // -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
 #include "compositequeue.h"
 #include "ecn.h"
+#include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <math.h>
 #include <sstream>
 
-CompositeQueue::CompositeQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger)
+CompositeQueue::CompositeQueue(linkspeed_bps bitrate, mem_b maxsize,
+                               EventList &eventlist, QueueLogger *logger)
         : Queue(bitrate, maxsize, eventlist, logger) {
     _ratio_high = 100000;
     _ratio_low = 1;
@@ -37,11 +40,13 @@ void CompositeQueue::beginService() {
 
         if (_crt < _ratio_high) {
             _serv = QUEUE_HIGH;
-            eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_high.back()));
+            eventlist().sourceIsPendingRel(*this,
+                                           drainTime(_enqueued_high.back()));
         } else {
             assert(_crt < _ratio_high + _ratio_low);
             _serv = QUEUE_LOW;
-            eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_low.back()));
+            eventlist().sourceIsPendingRel(*this,
+                                           drainTime(_enqueued_low.back()));
         }
         return;
     }
@@ -60,10 +65,15 @@ void CompositeQueue::beginService() {
 
 bool CompositeQueue::decide_ECN() {
     // ECN mark on deque
+    // TODO: Make this a parameter eventually
+    _ecn_maxthresh = _maxsize * 0.8;
+    _ecn_minthresh = _maxsize * 0.2;
+    printf("Queue size is %d\n", _queuesize_low);
     if (_queuesize_low > _ecn_maxthresh) {
         return true;
     } else if (_queuesize_low > _ecn_minthresh) {
-        uint64_t p = (0x7FFFFFFF * (_queuesize_low - _ecn_minthresh)) / (_ecn_maxthresh - _ecn_minthresh);
+        uint64_t p = (0x7FFFFFFF * (_queuesize_low - _ecn_minthresh)) /
+                     (_ecn_maxthresh - _ecn_minthresh);
         if ((uint64_t)random() < p) {
             return true;
         }
@@ -81,6 +91,16 @@ void CompositeQueue::completeService() {
         // ECN mark on deque
         if (decide_ECN()) {
             pkt->set_flags(pkt->flags() | ECN_CE);
+            if (COLLECT_DATA) {
+                std::string file_name = "../output/ecn/ecn" +
+                                        std::to_string(pkt->from) + "_" +
+                                        std::to_string(pkt->to) + ".txt";
+                std::ofstream MyFile(file_name, std::ios_base::app);
+
+                MyFile << eventlist().now() / 1000 << "," << 1 << std::endl;
+
+                MyFile.close();
+            }
         }
 
         if (_logger)
@@ -154,23 +174,28 @@ void CompositeQueue::receivePacket(Packet &pkt) {
                 Packet *booted_pkt = _enqueued_low.pop_front();
                 _queuesize_low -= booted_pkt->size();
                 if (_logger)
-                    _logger->logQueue(*this, QueueLogger::PKT_UNQUEUE, *booted_pkt);
+                    _logger->logQueue(*this, QueueLogger::PKT_UNQUEUE,
+                                      *booted_pkt);
 
                 // cout << "A [ " << _enqueued_low.size() << " " <<
                 // _enqueued_high.size() << " ] STRIP" << endl; cout <<
                 // "booted_pkt->size(): " << booted_pkt->size();
                 booted_pkt->strip_payload();
                 _num_stripped++;
-                booted_pkt->flow().logTraffic(*booted_pkt, *this, TrafficLogger::PKT_TRIM);
+                booted_pkt->flow().logTraffic(*booted_pkt, *this,
+                                              TrafficLogger::PKT_TRIM);
                 if (_logger)
                     _logger->logQueue(*this, QueueLogger::PKT_TRIM, pkt);
 
                 if (_queuesize_high + booted_pkt->size() > 2 * _maxsize) {
-                    if (booted_pkt->reverse_route() && booted_pkt->bounced() == false) {
+                    if (booted_pkt->reverse_route() &&
+                        booted_pkt->bounced() == false) {
                         // return the packet to the sender
                         if (_logger)
-                            _logger->logQueue(*this, QueueLogger::PKT_BOUNCE, *booted_pkt);
-                        booted_pkt->flow().logTraffic(pkt, *this, TrafficLogger::PKT_BOUNCE);
+                            _logger->logQueue(*this, QueueLogger::PKT_BOUNCE,
+                                              *booted_pkt);
+                        booted_pkt->flow().logTraffic(
+                                pkt, *this, TrafficLogger::PKT_BOUNCE);
                         // XXX what to do with it now?
 #if 0
                         printf("Bounce2 at %s\n", _nodename.c_str());
@@ -188,16 +213,19 @@ void CompositeQueue::receivePacket(Packet &pkt) {
                         booted_pkt->sendOn();
                     } else {
                         cout << "Dropped\n";
-                        booted_pkt->flow().logTraffic(*booted_pkt, *this, TrafficLogger::PKT_DROP);
+                        booted_pkt->flow().logTraffic(*booted_pkt, *this,
+                                                      TrafficLogger::PKT_DROP);
                         booted_pkt->free();
                         if (_logger)
-                            _logger->logQueue(*this, QueueLogger::PKT_DROP, pkt);
+                            _logger->logQueue(*this, QueueLogger::PKT_DROP,
+                                              pkt);
                     }
                 } else {
                     _enqueued_high.push(booted_pkt);
                     _queuesize_high += booted_pkt->size();
                     if (_logger)
-                        _logger->logQueue(*this, QueueLogger::PKT_ENQUEUE, *booted_pkt);
+                        _logger->logQueue(*this, QueueLogger::PKT_ENQUEUE,
+                                          *booted_pkt);
                 }
             }
 
@@ -257,7 +285,8 @@ void CompositeQueue::receivePacket(Packet &pkt) {
             if (_logger)
                 _logger->logQueue(*this, QueueLogger::PKT_DROP, pkt);
             pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_DROP);
-            cout << "B[ " << _enqueued_low.size() << " " << _enqueued_high.size() << " ] DROP " << pkt.flow().get_id()
+            cout << "B[ " << _enqueued_low.size() << " "
+                 << _enqueued_high.size() << " ] DROP " << pkt.flow().get_id()
                  << endl;
             pkt.free();
             _num_drops++;
@@ -281,4 +310,6 @@ void CompositeQueue::receivePacket(Packet &pkt) {
     }
 }
 
-mem_b CompositeQueue::queuesize() const { return _queuesize_low + _queuesize_high; }
+mem_b CompositeQueue::queuesize() const {
+    return _queuesize_low + _queuesize_high;
+}
