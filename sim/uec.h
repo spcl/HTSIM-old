@@ -141,7 +141,7 @@ class UecSrc : public PacketSink, public EventSource {
     vector<tuple<simtime_picosec, uint64_t, uint64_t, uint64_t>> _list_rtt;
     vector<pair<simtime_picosec, uint64_t>> _list_cwd;
     vector<pair<simtime_picosec, uint64_t>> _list_unacked;
-    // vector<pair<simtime_picosec, uint64_t>> _list_nack;
+    vector<pair<simtime_picosec, uint64_t>> _list_nack;
 
     vector<const Route *> _good_entropies;
     bool _use_good_entropies;
