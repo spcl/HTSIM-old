@@ -7,7 +7,6 @@
 #include <math.h>
 #include <sstream>
 #include <string.h>
-#include <strstream>
 //#include "subflow_control.h"
 #include "clock.h"
 #include "compositequeue.h"
@@ -82,7 +81,8 @@ int main(int argc, char **argv) {
     eventlist.setEndtime(timeFromSec(10));
     Clock c(timeFromSec(5 / 100.), eventlist);
     mem_b queuesize = memFromPkt(INFINITE_BUFFER_SIZE);
-    int no_of_conns = 0, cwnd = 40, no_of_nodes = DEFAULT_NODES, flowsize = Packet::data_packet_size() * 50;
+    int no_of_conns = 0, cwnd = 40, no_of_nodes = DEFAULT_NODES,
+        flowsize = Packet::data_packet_size() * 50;
     stringstream filename(ios_base::out);
     RouteStrategy route_strategy = NOT_SET;
     std::string goal_filename;
@@ -137,19 +137,7 @@ int main(int argc, char **argv) {
         i++;
     }
     srand(time(NULL));
-    srand(time(NULL));
-    system("mkdir -p ../output && mkdir -p ../output/rtt && mkdir -p "
-           "../output/cwd && mkdir -p ../output/queue && mkdir -p "
-           "../output/ecn && mkdir -p ../output/sent && mkdir -p "
-           "../output/acked  && mkdir -p "
-           "../output/nack");
-    system("rm -r ../output/rtt/*");
-    system("rm -r ../output/cwd/*");
-    system("rm -r ../output/queue/*");
-    system("rm -r ../output/ecn/*");
-    system("rm -r ../output/sent/*");
-    system("rm -r ../output/acked/*");
-    system("rm -r ../output/nack/*");
+    initializeLoggingFolders();
 
     if (route_strategy == NOT_SET) {
         fprintf(stderr, "Route Strategy not set.  Use the -strat param.  "
@@ -209,17 +197,21 @@ int main(int argc, char **argv) {
 #ifdef FAT_TREE
     FatTreeTopology::set_tiers(3);
     FatTreeTopology *top = new FatTreeTopology(
-            no_of_nodes, speedFromMbps(static_cast<double>(HOST_NIC)), queuesize, NULL, &eventlist, ff, COMPOSITE,
-            timeFromUs(RTT), timeFromUs(0.0)); // TODO(tommaso): check parameters -- see main_ndp.cpp for how you can
-                                               // turn them into runtime options instead of compiled parameters
+            no_of_nodes, speedFromMbps(static_cast<double>(HOST_NIC)),
+            queuesize, NULL, &eventlist, ff, COMPOSITE, timeFromNs(RTT),
+            timeFromUs(0.0)); // TODO(tommaso): check parameters -- see
+                              // main_ndp.cpp for how you can turn them into
+                              // runtime options instead of compiled parameters
 #endif
 
 #ifdef OV_FAT_TREE
-    OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(&logfile, &eventlist, ff);
+    OversubscribedFatTreeTopology *top =
+            new OversubscribedFatTreeTopology(&logfile, &eventlist, ff);
 #endif
 
 #ifdef MH_FAT_TREE
-    MultihomedFatTreeTopology *top = new MultihomedFatTreeTopology(&logfile, &eventlist, ff);
+    MultihomedFatTreeTopology *top =
+            new MultihomedFatTreeTopology(&logfile, &eventlist, ff);
 #endif
 
 #ifdef STAR
@@ -275,21 +267,25 @@ int main(int argc, char **argv) {
     // int connID = 0;
 
     printf("Starting LGS Interface");
-    LogSimInterface *lgs = new LogSimInterface(NULL, &traffic_logger, eventlist, top, net_paths);
+    LogSimInterface *lgs = new LogSimInterface(NULL, &traffic_logger, eventlist,
+                                               top, net_paths);
 
     lgs->set_protocol(NDP_PROTOCOL);
     lgs->set_cwd(cwnd);
     start_lgs(goal_filename, *lgs);
 
-    cout << "Mean number of subflows " << ntoa((double)tot_subs / cnt_con) << endl;
+    cout << "Mean number of subflows " << ntoa((double)tot_subs / cnt_con)
+         << endl;
 
     // Record the setup
     int pktsize = Packet::data_packet_size();
     logfile.write("# pktsize=" + ntoa(pktsize) + " bytes");
     logfile.write("# subflows=" + ntoa(subflow_count));
     logfile.write("# hostnicrate = " + ntoa(HOST_NIC) + " pkt/sec");
-    logfile.write("# corelinkrate = " + ntoa(HOST_NIC * CORE_TO_HOST) + " pkt/sec");
-    printf("Host Link Rate %d - Core Link Rate %d - Pkt Size %d", HOST_NIC, CORE_TO_HOST, pktsize);
+    logfile.write("# corelinkrate = " + ntoa(HOST_NIC * CORE_TO_HOST) +
+                  " pkt/sec");
+    printf("Host Link Rate %d - Core Link Rate %d - Pkt Size %d", HOST_NIC,
+           CORE_TO_HOST, pktsize);
     double rtt = timeAsSec(timeFromUs(RTT));
     logfile.write("# rtt =" + ntoa(rtt));
 
@@ -318,9 +314,10 @@ int main(int argc, char **argv) {
 #endif
             } else {
 #ifdef PRINTPATHS
-                cout << q->nodename() << " id=" << q->id << " " << q->num_packets() << "pkts " << q->num_headers()
-                     << "hdrs " << q->num_acks() << "acks " << q->num_nacks() << "nacks " << q->num_stripped()
-                     << "stripped" << endl;
+                cout << q->nodename() << " id=" << q->id << " "
+                     << q->num_packets() << "pkts " << q->num_headers()
+                     << "hdrs " << q->num_acks() << "acks " << q->num_nacks()
+                     << "nacks " << q->num_stripped() << "stripped" << endl;
 #endif
                 counts[hop] += q->num_stripped();
                 hop++;

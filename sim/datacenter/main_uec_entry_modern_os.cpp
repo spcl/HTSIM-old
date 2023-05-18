@@ -43,7 +43,8 @@
 uint32_t RTT = 400; // this is per link delay in ns; identical RTT microseconds
                     // = 0.02 ms
 int DEFAULT_NODES = 128;
-#define DEFAULT_QUEUE_SIZE 100000000 // ~100MB, just a large value so we can ignore queues
+#define DEFAULT_QUEUE_SIZE                                                     \
+    100000000 // ~100MB, just a large value so we can ignore queues
 // int N=128;
 
 FirstFit *ff = NULL;
@@ -104,7 +105,8 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-conns")) {
             no_of_conns = atoi(argv[i + 1]);
             cout << "no_of_conns " << no_of_conns << endl;
-            cout << "!!currently hardcoded to 8, value will be ignored!!" << endl;
+            cout << "!!currently hardcoded to 8, value will be ignored!!"
+                 << endl;
             i++;
         } else if (!strcmp(argv[i], "-nodes")) {
             no_of_nodes = atoi(argv[i + 1]);
@@ -137,18 +139,7 @@ int main(int argc, char **argv) {
         i++;
     }
     srand(time(NULL));
-    system("mkdir -p ../output && mkdir -p ../output/rtt && mkdir -p "
-           "../output/cwd && mkdir -p ../output/queue && mkdir -p "
-           "../output/ecn && mkdir -p ../output/sent && mkdir -p "
-           "../output/acked  && mkdir -p "
-           "../output/nack");
-    system("rm -r ../output/rtt/*");
-    system("rm -r ../output/cwd/*");
-    system("rm -r ../output/queue/*");
-    system("rm -r ../output/ecn/*");
-    system("rm -r ../output/sent/*");
-    system("rm -r ../output/acked/*");
-    system("rm -r ../output/nack/*");
+    initializeLoggingFolders();
 
     if (route_strategy == NOT_SET) {
         fprintf(stderr, "Route Strategy not set.  Use the -strat param.  "
@@ -203,12 +194,15 @@ int main(int argc, char **argv) {
 #ifdef OV_FAT_TREE
     OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(
             queuesize, &logfile, &eventlist, ff,
-            COMPOSITE); // TODO(tommaso): was UECQUEUE before -- I don't think we need it anymore now that they added
-                        // ECN everywhere, but confirm that -- also added queuesize parameter
+            COMPOSITE); // TODO(tommaso): was UECQUEUE before -- I don't think
+                        // we need it anymore now that they added ECN
+                        // everywhere, but confirm that -- also added queuesize
+                        // parameter
 #endif
 
 #ifdef MH_FAT_TREE
-    MultihomedFatTreeTopology *top = new MultihomedFatTreeTopology(&logfile, &eventlist, ff);
+    MultihomedFatTreeTopology *top =
+            new MultihomedFatTreeTopology(&logfile, &eventlist, ff);
 #endif
 
 #ifdef STAR
@@ -273,7 +267,8 @@ int main(int argc, char **argv) {
 
     vector<UecSrc *> uecSrcVector;
     printf("Starting LGS Interface");
-    LogSimInterface *lgs = new LogSimInterface(NULL, &traffic_logger, eventlist, top, net_paths);
+    LogSimInterface *lgs = new LogSimInterface(NULL, &traffic_logger, eventlist,
+                                               top, net_paths);
     lgs->set_protocol(UEC_PROTOCOL);
     lgs->set_cwd(cwnd);
     lgs->set_queue_size(queuesize);
@@ -294,14 +289,16 @@ int main(int argc, char **argv) {
         }
     }
 
-    cout << "Mean number of subflows " << ntoa((double)tot_subs / cnt_con) << endl;
+    cout << "Mean number of subflows " << ntoa((double)tot_subs / cnt_con)
+         << endl;
 
     // Record the setup
     int pktsize = Packet::data_packet_size();
     logfile.write("# pktsize=" + ntoa(pktsize) + " bytes");
     logfile.write("# subflows=" + ntoa(subflow_count));
     logfile.write("# hostnicrate = " + ntoa(HOST_NIC) + " pkt/sec");
-    logfile.write("# corelinkrate = " + ntoa(HOST_NIC * CORE_TO_HOST) + " pkt/sec");
+    logfile.write("# corelinkrate = " + ntoa(HOST_NIC * CORE_TO_HOST) +
+                  " pkt/sec");
     // logfile.write("# buffer = " + ntoa((double)
     // (queues_na_ni[0][1]->_maxsize) / ((double) pktsize)) + " pkt");
     double rtt = timeAsSec(timeFromUs(RTT));
@@ -324,9 +321,12 @@ int main(int argc, char **argv) {
             if (q == 0) {
                 cout << ps->nodename() << endl;
             } else {
-                cout << q->nodename() << " id=" << 0 /*q->id*/ << " " << q->num_packets() << "pkts " << q->num_headers()
-                     << "hdrs " << q->num_acks() << "acks " << q->num_nacks() << "nacks " << q->num_stripped()
-                     << "stripped" << endl; // TODO(tommaso): see similar change in main_uec_entry.cpp
+                cout << q->nodename() << " id=" << 0 /*q->id*/ << " "
+                     << q->num_packets() << "pkts " << q->num_headers()
+                     << "hdrs " << q->num_acks() << "acks " << q->num_nacks()
+                     << "nacks " << q->num_stripped() << "stripped"
+                     << endl; // TODO(tommaso): see similar change in
+                              // main_uec_entry.cpp
                 counts[hop] += q->num_stripped();
                 hop++;
             }

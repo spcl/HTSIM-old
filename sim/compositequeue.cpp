@@ -65,10 +65,6 @@ void CompositeQueue::beginService() {
 
 bool CompositeQueue::decide_ECN() {
     // ECN mark on deque
-    // TODO: Make this a parameter eventually
-    _ecn_maxthresh = _maxsize * 0.8;
-    _ecn_minthresh = _maxsize * 0.2;
-    printf("Queue size is %d\n", _queuesize_low);
     if (_queuesize_low > _ecn_maxthresh) {
         return true;
     } else if (_queuesize_low > _ecn_minthresh) {
@@ -154,6 +150,23 @@ void CompositeQueue::receivePacket(Packet &pkt) {
 
     // is this a Tofino packet from the egress pipeline?
     if (!pkt.header_only()) {
+
+        // Queue
+        if (COLLECT_DATA) {
+            if (_queuesize_low != 0) {
+                std::string file_name =
+                        "../output/queue/queue" +
+                        _nodename.substr(_nodename.find(")") + 1) + ".txt";
+                std::ofstream MyFile(file_name, std::ios_base::app);
+
+                MyFile << eventlist().now() / 1000 << ","
+                       << int(_queuesize_low * 8 / (_bitrate / 1e9))
+                       << std::endl;
+
+                MyFile.close();
+            }
+        }
+
         if (_queuesize_low + pkt.size() <= _maxsize || drand() < 0.5) {
             // regular packet; don't drop the arriving packet
 

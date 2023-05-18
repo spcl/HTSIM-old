@@ -23,7 +23,7 @@ uint64_t BASE_RTT_MODERN =
 // UEC Specific Values
 uint64_t TARGET_RTT_MODERN = BASE_RTT_MODERN * 1.15; // Target RTT in ns
 uint64_t BDP_MODERN_UEC = BASE_RTT_MODERN * LINK_SPEED_MODERN / 8; // BDP
-uint64_t MAX_CWD_MODERN_UEC = BDP_MODERN_UEC * 1.0;                // BDP * 1.2
+uint64_t MAX_CWD_MODERN_UEC = BDP_MODERN_UEC * 1.0;                // BDP * 1.0
 uint64_t MIN_K_ECN_MODERN =
         BDP_MODERN_UEC * 8 / LINK_SPEED_MODERN * 0.2; // 20% BDP
 uint64_t MAX_K_ECN_MODERN =

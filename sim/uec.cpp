@@ -13,22 +13,11 @@
 
 UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
                EventList &eventList, uint64_t rtt, uint64_t bdp,
-               uint64_t queueDrainTime)
+               uint64_t queueDrainTime, int hops)
         : EventSource(eventList, "uec"), _logger(logger), _flow(pktLogger) {
     _mss = Packet::data_packet_size();
     _unacked = 0;
     _nodename = "uecsrc";
-
-    _rtt = rtt;
-    _rto = rtt + HOPS * queueDrainTime + (rtt * 90000);
-    printf("RTO is %lu, %lu\n", _rto, queueDrainTime);
-    _rto_margin = _rtt / 2;
-    _rtx_timeout = timeInf;
-    _rtx_timeout_pending = false;
-    _rtx_pending = false;
-    _crt_path = 0;
-    _flow_size = _mss * 934;
-    _trimming_enabled = true;
 
     _last_acked = 0;
     _highest_sent = 0;
@@ -38,21 +27,40 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     _nack_rtx_pending = 0;
 
     // new CC variables
-    _target_rtt = TARGET_RTT_MODERN * 1000; // 6.250 us // TODO: this should be
-                                            // a more flexible function
-    _bdp = BDP_MODERN_UEC; // 63000; // 75KB // these are historical values we
-                           // tested
-    _maxcwnd = MAX_CWD_MODERN_UEC;
-    _cwnd = MAX_CWD_MODERN_UEC;
+    _hop_count = hops;
+    _base_rtt = ((_hop_count * LINK_DELAY_MODERN) +
+                 (PKT_SIZE_MODERN * 8 / LINK_SPEED_MODERN * _hop_count) +
+                 (_hop_count * LINK_DELAY_MODERN) +
+                 (64 * 8 / LINK_SPEED_MODERN * _hop_count)) *
+                1000;
+    _target_rtt = _base_rtt * 1.15;
+
+    printf("Link Delay %lu - Link Speed %lu - Pkt Size %d - Base RTT %lu - "
+           "Target RTT is %lu\n",
+           LINK_DELAY_MODERN, LINK_SPEED_MODERN, PKT_SIZE_MODERN, _base_rtt,
+           _target_rtt);
+
+    _rtt = _base_rtt;
+    _rto = rtt + _hop_count * queueDrainTime + (rtt * 90000);
+    _rto_margin = _rtt / 2;
+    _rtx_timeout = timeInf;
+    _rtx_timeout_pending = false;
+    _rtx_pending = false;
+    _crt_path = 0;
+    _flow_size = _mss * 934;
+    _trimming_enabled = true;
+
+    _bdp = (_base_rtt * LINK_SPEED_MODERN / 8) / 1000;
+    _maxcwnd = _bdp;
+    _cwnd = _bdp;
     _consecutive_low_rtt = 0;
+    //_consecutive_no_ecn = 0;
 
     _target_based_received = true;
 
     _max_good_entropies = 8; // TODO: experimental value
     _enableDistanceBasedRtx = false;
     f_flow_over_hook = nullptr;
-
-    // exit(0);
 }
 
 // Add deconstructor and save data once we are done.
@@ -228,7 +236,7 @@ void UecSrc::processNack(UecNack &pkt) {
     if (GLOBAL_TIME > _ignore_ecn_until)
         reduce_cwnd(_mss);
 
-    //_list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
+    _list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
     // mark corresponding packet for retransmission
     auto i = get_sent_packet_idx(pkt.seqno());
     assert(i < _sent_packets.size());
@@ -267,6 +275,9 @@ void UecSrc::processAck(UecAck &pkt) {
     }
     bool marked = pkt.flags() &
                   ECN_ECHO; // ECN was marked on data packet and echoed on ACK
+
+    printf("packet is ECN Marked %d - Time %lu\n", marked, GLOBAL_TIME / 1000);
+
     if (_start_timer_window) {
         _start_timer_window = false;
         _next_check_window = GLOBAL_TIME + TARGET_RTT_MODERN * 1000;
@@ -359,7 +370,7 @@ void UecSrc::receivePacket(Packet &pkt) {
         processAck(dynamic_cast<UecAck &>(pkt));
         break;
     case UECNACK:
-        // printf("NACK %d\n", from);
+        printf("NACK %d\n", from);
         if (_trimming_enabled) {
             processNack(dynamic_cast<UecNack &>(pkt));
         }
@@ -376,11 +387,12 @@ void UecSrc::receivePacket(Packet &pkt) {
 }
 
 void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
-    /*printf("From %d - Time %lu - Ecn %d - Consecutive Low %d - BDP %lu - CWD "
+    printf("From %d - Time %lu - Ecn %d - Consecutive Low %d - BDP %lu - CWD "
            "%d - Sizr "
            "%d - No ECN %d - MSS is %d\n",
-           from, _eventlist.now(), ecn, _consecutive_no_ecn, (long long)_bdp,
-           _cwnd, _received_ecn.size(), no_ecn_last_target_rtt(), _mss);*/
+           from, _eventlist.now() / 1000, ecn, _consecutive_no_ecn,
+           (long long)_bdp, _cwnd, _received_ecn.size(),
+           no_ecn_last_target_rtt(), _mss);
     if (ecn) {
         uint64_t total = 0;
         for (auto [ts, ecn, size, rtt] : _received_ecn) {
@@ -428,23 +440,29 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
 }
 
 void UecSrc::drop_old_received() {
-    if (_target_based_received) {
-        /*if (eventlist().now() > _target_rtt) {
-            uint64_t lower_thresh = eventlist().now() - _target_rtt;
+    if (true) {
+        if (eventlist().now() > _target_rtt) {
+            uint64_t lower_thresh = eventlist().now() - (_target_rtt * 1);
             while (!_received_ecn.empty() &&
                    std::get<0>(_received_ecn.front()) < lower_thresh) {
                 _received_ecn.pop_front();
             }
-        }
-        */
-        while (!_received_ecn.empty()) {
-            _received_ecn.pop_front();
         }
     } else {
         while (_received_ecn.size() > 10) {
             _received_ecn.pop_front();
         }
     }
+}
+
+bool UecSrc::no_ecn_last_target_rtt() {
+    drop_old_received();
+    for (const auto &[ts, ecn, size, rtt] : _received_ecn) {
+        if (ecn) {
+            return false;
+        }
+    }
+    return true;
 }
 
 bool UecSrc::no_rtt_over_target_last_target_rtt() {
@@ -457,18 +475,8 @@ bool UecSrc::no_rtt_over_target_last_target_rtt() {
     return true;
 }
 
-bool UecSrc::no_ecn_last_target_rtt() {
-    // drop_old_received();
-    for (const auto &[ts, ecn, size, rtt] : _received_ecn) {
-        if (ecn) {
-            return false;
-        }
-    }
-    return true;
-}
-
 std::size_t UecSrc::getEcnInTargetRtt() {
-    // drop_old_received();
+    drop_old_received();
     std::size_t ecn_count = 0;
     for (const auto &[ts, ecn, size, rtt] : _received_ecn) {
         if (ecn) {
@@ -624,8 +632,6 @@ bool UecSrc::resend_packet(std::size_t idx) {
 
     const Route *rt;
     if (_use_good_entropies && !_good_entropies.empty()) {
-        printf("accessing %d - Size %d\n", _next_good_entropy,
-               _good_entropies.size());
         rt = _good_entropies[_next_good_entropy];
         ++_next_good_entropy;
         _next_good_entropy %= _good_entropies.size();

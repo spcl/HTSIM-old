@@ -68,6 +68,7 @@ linkspeed_bps speedFromKbps(uint64_t Kbitps);
 linkspeed_bps speedFromPktps(double packetsPerSec);
 double speedAsPktps(linkspeed_bps bps);
 typedef int mem_pkts;
+void initializeLoggingFolders();
 
 typedef uint32_t addr_t;
 typedef uint16_t port_t;

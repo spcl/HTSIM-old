@@ -38,7 +38,7 @@ class UecSrc : public PacketSink, public EventSource {
 
   public:
     UecSrc(UecLogger *logger, TrafficLogger *pktLogger, EventList &eventList,
-           uint64_t rtt, uint64_t bdp, uint64_t queueDrainTime);
+           uint64_t rtt, uint64_t bdp, uint64_t queueDrainTime, int hops);
     // UecSrc(UecLogger *logger, TrafficLogger* pktLogger, EventList& eventList,
     // uint64_t rtt=timeFromUs(5.25), uint64_t bdp=63000);
     ~UecSrc();
@@ -54,6 +54,10 @@ class UecSrc : public PacketSink, public EventSource {
     void set_paths(vector<const Route *> *rt);
 
     void setCwnd(uint64_t cwnd) { _cwnd = cwnd; };
+    void setHopCount(int hops) {
+        _hop_count = hops;
+        printf("Hop Count is %d\n", hops);
+    };
     void setFlowSize(uint64_t flow_size) { _flow_size = flow_size; }
     void setKeepAcksInTargetRtt(bool keep) { _target_based_received = keep; }
     // void setLgs(LogSimInterface *lgs) { _lgs = lgs; };
@@ -114,6 +118,7 @@ class UecSrc : public PacketSink, public EventSource {
 
     // new CC variables
     uint64_t _target_rtt;
+    uint64_t _base_rtt;
     uint64_t _bdp;
     uint32_t _consecutive_low_rtt;
     uint32_t _consecutive_no_ecn;
@@ -149,6 +154,7 @@ class UecSrc : public PacketSink, public EventSource {
     std::size_t _next_good_entropy;
     bool _enableDistanceBasedRtx;
     bool _trimming_enabled;
+    int _hop_count;
 
     void send_packets();
     uint64_t get_unacked();

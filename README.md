@@ -9,3 +9,11 @@ There are some limited instructions in the [wiki](https://github.com/Broadcom/cs
 htsim is written in C++, and has no dependencies.  It should compile and run with g++ or clang on MacOS or Linux.  To compile htsim, cd into the sim directory and run make.
 
 To get started with running experiments, take a look in the experiments directory where there are some examples.  These examples generally require bash, python3 and gnuplot.
+
+## Basic Instructions
+
+Compile with 
+
+Run a simulation with 
+
+'./htsim_uec_entry_modern -o uec_entry -nodes 16 -q 72500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -hop_latency 400 -switch_latency 0 -mtu 2048 -goal test_cwd.bin > outUEC.tmp'

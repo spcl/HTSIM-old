@@ -1,6 +1,7 @@
 // -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
 #include "config.h"
 #include "tcppacket.h"
+#include <filesystem>
 #include <math.h>
 
 double drand() {
@@ -101,3 +102,23 @@ double speedAsPktps(linkspeed_bps bps) {
 }
 
 mem_pkts memFromPkts(double pkts) { return (int)(ceil(pkts)); }
+
+void initializeLoggingFolders() {
+    std::filesystem::remove_all("../output/");
+    std::filesystem::remove_all("../output/rtt/");
+    std::filesystem::remove_all("../output/ecn/");
+    std::filesystem::remove_all("../output/cwd/");
+    std::filesystem::remove_all("../output/queue/");
+    std::filesystem::remove_all("../output/acked/");
+    std::filesystem::remove_all("../output/sent/");
+    std::filesystem::remove_all("../output/nack/");
+
+    bool ret_val = std::filesystem::create_directory("../output");
+    ret_val &= std::filesystem::create_directory("../output/rtt");
+    ret_val &= std::filesystem::create_directory("../output/ecn");
+    ret_val &= std::filesystem::create_directory("../output/cwd");
+    ret_val &= std::filesystem::create_directory("../output/queue");
+    ret_val &= std::filesystem::create_directory("../output/acked");
+    ret_val &= std::filesystem::create_directory("../output/sent");
+    ret_val &= std::filesystem::create_directory("../output/nack");
+}

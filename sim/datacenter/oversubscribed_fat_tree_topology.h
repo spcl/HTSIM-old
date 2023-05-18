@@ -13,7 +13,7 @@
 #include "topology.h"
 #include <ostream>
 
-#define K 8
+#define K 4
 #define NK (K * K / 2)
 #define NC (K * K / 4)
 #define NSRV (K * K * K)
@@ -26,7 +26,15 @@
 
 #ifndef QT
 #define QT
-typedef enum { RANDOM, ECN, COMPOSITE, CTRL_PRIO, LOSSLESS, LOSSLESS_INPUT, LOSSLESS_INPUT_ECN } queue_type;
+typedef enum {
+    RANDOM,
+    ECN,
+    COMPOSITE,
+    CTRL_PRIO,
+    LOSSLESS,
+    LOSSLESS_INPUT,
+    LOSSLESS_INPUT_ECN
+} queue_type;
 #endif
 
 class OversubscribedFatTreeTopology : public Topology {
@@ -51,10 +59,12 @@ class OversubscribedFatTreeTopology : public Topology {
 
     queue_type qt;
 
-    OversubscribedFatTreeTopology(mem_b queuesize, Logfile *log, EventList *ev, FirstFit *f, queue_type q);
+    OversubscribedFatTreeTopology(mem_b queuesize, Logfile *log, EventList *ev,
+                                  FirstFit *f, queue_type q);
 
     void init_network();
-    virtual vector<const Route *> *get_bidir_paths(uint32_t src, uint32_t dest, bool reverse);
+    virtual vector<const Route *> *get_bidir_paths(uint32_t src, uint32_t dest,
+                                                   bool reverse);
 
     Queue *alloc_src_queue(QueueLogger *q);
     Queue *alloc_queue(QueueLogger *q);

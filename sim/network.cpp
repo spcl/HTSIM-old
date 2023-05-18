@@ -64,9 +64,9 @@ PacketSink *Packet::sendOn() {
             assert(_nexthop < _route->size());
 
             if (_nexthop == 1 && type() == UEC) {
-                printf("Hop %d - Previous time %lu - New time %lu\n", _nexthop,
-                       ts(),
-                       GLOBAL_TIME - SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000);
+                /*printf("Hop %d - Previous time %lu - New time %lu\n",
+                   _nexthop, ts(), GLOBAL_TIME -
+                   SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000);*/
                 set_ts(GLOBAL_TIME -
                        (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000));
 

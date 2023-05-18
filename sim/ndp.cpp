@@ -3,6 +3,8 @@
 #include "queue.h"
 #include "switch.h"
 #include <algorithm>
+#include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
@@ -55,7 +57,8 @@ double NdpSink::_g = 1.0 / 16.0;
 
 int ooo_distance = 0;
 
-NdpSrc::NdpSrc(NdpLogger *logger, TrafficLogger *pktlogger, EventList &eventlist, bool rts, NdpRTSPacer *rts_pacer)
+NdpSrc::NdpSrc(NdpLogger *logger, TrafficLogger *pktlogger,
+               EventList &eventlist, bool rts, NdpRTSPacer *rts_pacer)
         : EventSource(eventlist, "ndp"), _logger(logger), _flow(pktlogger) {
     _mss = Packet::data_packet_size();
 
@@ -111,7 +114,45 @@ NdpSrc::NdpSrc(NdpLogger *logger, TrafficLogger *pktlogger, EventList &eventlist
     f_flow_over_hook = nullptr;
 }
 
-void NdpSrc::set_traffic_logger(TrafficLogger *pktlogger) { _flow.set_logger(pktlogger); }
+// Add deconstructor and save data once we are done.
+NdpSrc::~NdpSrc() {
+    // If we are collecting specific logs
+    if (COLLECT_DATA) {
+        // RTT
+        std::string file_name = "../output/rtt/rtt" + _name + ".txt";
+        std::ofstream MyFile(file_name, std::ios_base::app);
+
+        for (const auto &p : _list_rtt) {
+            MyFile << p.first << "," << p.second << std::endl;
+        }
+
+        MyFile.close();
+
+        // CWD
+        file_name = "../output/cwd/cwd" + _name + ".txt";
+        std::ofstream MyFileCWD(file_name, std::ios_base::app);
+
+        for (const auto &p : _list_cwd) {
+            MyFileCWD << p.first << "," << p.second << std::endl;
+        }
+
+        MyFileCWD.close();
+
+        // NACK
+        file_name = "../output/nack/nack" + _name + ".txt";
+        std::ofstream MyFileNack(file_name, std::ios_base::app);
+
+        for (const auto &p : _list_nack) {
+            MyFileNack << p.first << "," << p.second << std::endl;
+        }
+
+        MyFileNack.close();
+    }
+}
+
+void NdpSrc::set_traffic_logger(TrafficLogger *pktlogger) {
+    _flow.set_logger(pktlogger);
+}
 
 void NdpSrc::log_me() {
     // avoid looping
@@ -123,7 +164,9 @@ void NdpSrc::log_me() {
         _sink->log_me();
 }
 
-void NdpSrc::set_end_trigger(Trigger &end_trigger) { _end_trigger = &end_trigger; }
+void NdpSrc::set_end_trigger(Trigger &end_trigger) {
+    _end_trigger = &end_trigger;
+}
 
 void NdpSrc::permute_paths() {
     int len = _paths.size();
@@ -162,8 +205,10 @@ void permute_sequence(vector<int> &seq) {
 }
 
 void NdpSrc::set_paths(uint32_t no_of_paths) {
-    if (_route_strategy != ECMP_FIB && _route_strategy != ECMP_FIB_ECN && _route_strategy != REACTIVE_ECN) {
-        cout << "Set paths (path_count) called with wrong route strategy" << endl;
+    if (_route_strategy != ECMP_FIB && _route_strategy != ECMP_FIB_ECN &&
+        _route_strategy != REACTIVE_ECN) {
+        cout << "Set paths (path_count) called with wrong route strategy"
+             << endl;
         abort();
     }
 
@@ -261,8 +306,8 @@ void NdpSrc::set_paths(vector<const Route *> *rt_list) {
 }
 
 void NdpSrc::startflow() {
-    cout << "startflow " << _flow._name << " CWND " << _cwnd << " rts " << _rts << " at " << timeAsUs(eventlist().now())
-         << endl;
+    cout << "startflow " << _flow._name << " CWND " << _cwnd << " rts " << _rts
+         << " at " << timeAsUs(eventlist().now()) << endl;
     _highest_sent = 0;
     _last_acked = 0;
 
@@ -284,14 +329,16 @@ void NdpSrc::startflow() {
             _first_window_count++;
         }
     } else {
-        grants = (_cwnd < _flow_size ? _cwnd : _flow_size) / Packet::data_packet_size();
+        grants = (_cwnd < _flow_size ? _cwnd : _flow_size) /
+                 Packet::data_packet_size();
         ;
 
         for (int i = 0; i < grants; i++) {
             p = NdpRTS::newpkt(_flow, 1, _dstaddr);
 
             p->set_ts(eventlist().now());
-            if (_route_strategy == SINGLE_PATH || _route_strategy == ECMP_FIB || _route_strategy == ECMP_FIB_ECN ||
+            if (_route_strategy == SINGLE_PATH || _route_strategy == ECMP_FIB ||
+                _route_strategy == ECMP_FIB_ECN ||
                 _route_strategy == REACTIVE_ECN) {
                 p->set_route(*_route);
                 p->set_pathid(0);
@@ -316,9 +363,10 @@ void NdpSrc::startflow() {
     }
 }
 
-void NdpSrc::connect(Route *routeout, Route *routeback, NdpSink &sink, simtime_picosec starttime) {
-    if (_route_strategy == SINGLE_PATH || _route_strategy == ECMP_FIB || _route_strategy == ECMP_FIB_ECN ||
-        _route_strategy == REACTIVE_ECN) {
+void NdpSrc::connect(Route *routeout, Route *routeback, NdpSink &sink,
+                     simtime_picosec starttime) {
+    if (_route_strategy == SINGLE_PATH || _route_strategy == ECMP_FIB ||
+        _route_strategy == ECMP_FIB_ECN || _route_strategy == REACTIVE_ECN) {
         assert(routeout);
         _route = routeout;
     }
@@ -362,7 +410,8 @@ void NdpSrc::count_feedback(int32_t path_id, FeedbackType fb) {
         _path_nacks[path_id]++;
         break;
     case BOUNCE:
-        _path_nacks[path_id] += 3; // a bounce is kind of a more severe Nack for this purpose
+        _path_nacks[path_id] +=
+                3; // a bounce is kind of a more severe Nack for this purpose
         break;
     case UNKNOWN:
     case ECN:
@@ -388,8 +437,8 @@ void NdpSrc::count_feedback(int32_t path_id, FeedbackType fb) {
     // 1.  nack count > 125% of the mean nack count
     // 2.  nack ratio > 30%
     // 3.  total acks+nacks > 100, so we don't react to noisy startup data
-    if ((_path_acks[path_id] + _path_nacks[path_id] > 100) && (nack_ratio > mean_nack_ratio * 1.25) &&
-        (nack_ratio > 30)) {
+    if ((_path_acks[path_id] + _path_nacks[path_id] > 100) &&
+        (nack_ratio > mean_nack_ratio * 1.25) && (nack_ratio > 30)) {
         _bad_path[path_id] = true;
         _avoid_ratio[path_id]++;
     } else {
@@ -431,7 +480,8 @@ bool NdpSrc::is_bad_path() {
     // really congested on aggregate, so this is likely just a bad
     // path.
     if (ack_count > 0 && total / ack_count <= 3) {
-        printf("total: %d ack: %d nack:%d rts: %d, BAD\n", total, ack_count, nack_count, bounce_count);
+        printf("total: %d ack: %d nack:%d rts: %d, BAD\n", total, ack_count,
+               nack_count, bounce_count);
         return true;
     }
     // printf("total: %d ack: %d nack:%d rts: %d, NOT BAD\n", total, ack_count,
@@ -498,6 +548,7 @@ void NdpSrc::processNack(const NdpNack &nack) {
         else
             printf("Receive NACK (----)\n");
     */
+    printf("NACK \n");
 
     bool last_packet = (nack.ackno() + _mss - 1) >= _flow_size;
     _sent_times.erase(nack.ackno());
@@ -519,12 +570,14 @@ void NdpSrc::processNack(const NdpNack &nack) {
 
     switch (_route_strategy) {
     case SINGLE_PATH:
-        p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true, _paths.size() > 0 ? _paths.size() : 1, last_packet,
-                              _dstaddr);
+        p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true,
+                              _paths.size() > 0 ? _paths.size() : 1,
+                              last_packet, _dstaddr);
         break;
     case ECMP_FIB:
     case ECMP_FIB_ECN:
-        p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true, _path_ids.size(), last_packet, _dstaddr);
+        p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true,
+                              _path_ids.size(), last_packet, _dstaddr);
         p->set_pathid(_path_ids[choose_route()]);
         break;
     case SCATTER_PERMUTE:
@@ -532,13 +585,15 @@ void NdpSrc::processNack(const NdpNack &nack) {
     case PULL_BASED:
     case SCATTER_ECMP: {
         const Route *rt = _paths.at(choose_route());
-        p = NdpPacket::newpkt(_flow, *rt, seqno, 0, _mss, true, _paths.size() > 0 ? _paths.size() : 1, last_packet,
-                              _dstaddr);
+        p = NdpPacket::newpkt(_flow, *rt, seqno, 0, _mss, true,
+                              _paths.size() > 0 ? _paths.size() : 1,
+                              last_packet, _dstaddr);
         break;
     }
     case REACTIVE_ECN: {
         // we got a NACK - assume path was bad and switch to next one
-        p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true, _path_ids.size(), last_packet, _dstaddr);
+        p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true,
+                              _path_ids.size(), last_packet, _dstaddr);
         p->set_pathid(_path_ids[next_route()]);
         break;
     }
@@ -647,8 +702,9 @@ void NdpSrc::processAck(const NdpAck &ack) {
         if (f_flow_over_hook) {
             f_flow_over_hook(ack);
         }
-        cout << "Flow " << _name << " flow_id " << flow_id() << " finished at " << timeAsUs(eventlist().now())
-             << " total bytes " << cum_ackno << endl;
+        cout << "Flow " << _name << " flow_id " << flow_id() << " finished at "
+             << timeAsUs(eventlist().now()) << " total bytes " << cum_ackno
+             << endl;
         if (_end_trigger) {
             _end_trigger->activate();
         }
@@ -871,6 +927,10 @@ void NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
         p->set_ts(eventlist().now());
         p->set_pacerno(pacer_no);
 
+        p->from = this->from;
+        p->to = this->to;
+        p->tag = this->tag;
+
         switch (_route_strategy) {
         case SINGLE_PATH:
             p->set_route(*_route);
@@ -934,8 +994,9 @@ void NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
         case SCATTER_ECMP: {
             assert(_paths.size() > 0);
             const Route *rt = _paths.at(choose_route());
-            p = NdpPacket::newpkt(_flow, *rt, _highest_sent + 1, pacer_no, _mss, false,
-                                  _paths.size() > 0 ? _paths.size() : 1, last_packet, _dstaddr);
+            p = NdpPacket::newpkt(_flow, *rt, _highest_sent + 1, pacer_no, _mss,
+                                  false, _paths.size() > 0 ? _paths.size() : 1,
+                                  last_packet, _dstaddr);
 
 #ifdef DEBUG_PATH_STATS
             _path_counts_new[p->path_id()]++;
@@ -945,8 +1006,9 @@ void NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
         case ECMP_FIB:
         case ECMP_FIB_ECN:
         case REACTIVE_ECN: {
-            p = NdpPacket::newpkt(_flow, *_route, _highest_sent + 1, pacer_no, _mss, false, _path_ids.size(),
-                                  last_packet, _dstaddr);
+            p = NdpPacket::newpkt(_flow, *_route, _highest_sent + 1, pacer_no,
+                                  _mss, false, _path_ids.size(), last_packet,
+                                  _dstaddr);
             int crt = choose_route();
             p->set_pathid(_path_ids[crt]);
             /*
@@ -958,7 +1020,8 @@ void NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
             break;
         }
         case SINGLE_PATH:
-            p = NdpPacket::newpkt(_flow, *_route, _highest_sent + 1, pacer_no, _mss, false, 1, last_packet, _dstaddr);
+            p = NdpPacket::newpkt(_flow, *_route, _highest_sent + 1, pacer_no,
+                                  _mss, false, 1, last_packet, _dstaddr);
             break;
         case NOT_SET:
             abort();
@@ -977,6 +1040,10 @@ void NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
         _highest_sent += _mss; // XX beware wrapping
         _packets_sent++;
         _new_packets_sent++;
+
+        p->from = this->from;
+        p->to = this->to;
+        p->tag = this->tag;
 
         PacketSink *sink = p->sendOn();
 
@@ -1067,7 +1134,8 @@ void NdpSrc::retransmit_packet() {
         case SCATTER_ECMP: {
             assert(_paths.size() > 0);
             const Route *rt = _paths.at(_crt_path);
-            p = NdpPacket::newpkt(_flow, *rt, seqno, 0, _mss, true, _paths.size(), last_packet, _dstaddr);
+            p = NdpPacket::newpkt(_flow, *rt, seqno, 0, _mss, true,
+                                  _paths.size(), last_packet, _dstaddr);
             if (_route_strategy == SCATTER_RANDOM) {
                 _crt_path = random() % _paths.size();
             } else {
@@ -1082,12 +1150,14 @@ void NdpSrc::retransmit_packet() {
         case ECMP_FIB:
         case ECMP_FIB_ECN:
         case REACTIVE_ECN:
-            p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true, _path_ids.size(), last_packet, _dstaddr);
+            p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true,
+                                  _path_ids.size(), last_packet, _dstaddr);
             p->set_pathid(_path_ids[choose_route()]);
             break;
 
         case SINGLE_PATH:
-            p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true, _paths.size(), last_packet, _dstaddr);
+            p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true,
+                                  _paths.size(), last_packet, _dstaddr);
             break;
         case NOT_SET:
             abort();
@@ -1107,6 +1177,9 @@ void NdpSrc::retransmit_packet() {
 #ifdef DEBUG_PATH_STATS
         _path_counts_rto[p->path_id()]++;
 #endif
+        p->from = this->from;
+        p->to = this->to;
+        p->tag = this->tag;
         p->sendOn();
         _packets_sent++;
         _rtx_packets_sent++;
@@ -1126,9 +1199,10 @@ void NdpSrc::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
     if (_rtx_timeout == timeInf || now + period < _rtx_timeout)
         return;
 
-    cout << "At " << timeAsUs(now) << "us RTO " << timeAsUs(_rto) << "us MDEV " << timeAsUs(_mdev) << "us RTT "
-         << timeAsUs(_rtt) << "us SEQ " << _last_acked / _mss << " CWND " << _cwnd / _mss << " Flow ID " << str()
-         << endl;
+    cout << "At " << timeAsUs(now) << "us RTO " << timeAsUs(_rto) << "us MDEV "
+         << timeAsUs(_mdev) << "us RTT " << timeAsUs(_rtt) << "us SEQ "
+         << _last_acked / _mss << " CWND " << _cwnd / _mss << " Flow ID "
+         << str() << endl;
 
     // here we can run into phase effects because the timer is checked
     // only periodically for ALL flows but if we keep the difference
@@ -1141,8 +1215,8 @@ void NdpSrc::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
         simtime_picosec too_early = _rtx_timeout - now;
         if (now > _rtx_timeout) {
             // this shouldn't happen
-            cout << "late_rtx_timeout: " << _rtx_timeout << " now: " << now << " now+rto: " << now + _rto
-                 << " rto: " << _rto << endl;
+            cout << "late_rtx_timeout: " << _rtx_timeout << " now: " << now
+                 << " now+rto: " << now + _rto << " rto: " << _rto << endl;
             too_early = 0;
         }
         eventlist().sourceIsPendingRel(*this, too_early);
@@ -1176,13 +1250,15 @@ void NdpSrc::print_stats() {
     cout << _nodename << "\n";
     int total_new = 0, total_rtx = 0, total_rto = 0;
     for (uint32_t i = 0; i < _paths.size(); i++) {
-        cout << _path_counts_new[i] << "/" << _path_counts_rtx[i] << "/" << _path_counts_rto[i] << " ";
+        cout << _path_counts_new[i] << "/" << _path_counts_rtx[i] << "/"
+             << _path_counts_rto[i] << " ";
         total_new += _path_counts_new[i];
         total_rtx += _path_counts_rtx[i];
         total_rto += _path_counts_rto[i];
     }
     cout << "\n";
-    cout << "New: " << total_new << "  RTX: " << total_rtx << "  RTO " << total_rto << "\n";
+    cout << "New: " << total_new << "  RTX: " << total_rtx << "  RTO "
+         << total_rto << "\n";
 #endif
 }
 
@@ -1191,8 +1267,10 @@ void NdpSrc::print_stats() {
 ////////////////////////////////////////////////////////////////
 
 /* Only use this constructor when there is only one for to this receiver */
-NdpSink::NdpSink(EventList &event, linkspeed_bps linkspeed, double pull_rate_modifier)
-        : DataReceiver("ndp_sink"), _cumulative_ack(0), _total_received(0), _ooo(0) {
+NdpSink::NdpSink(EventList &event, linkspeed_bps linkspeed,
+                 double pull_rate_modifier)
+        : DataReceiver("ndp_sink"), _cumulative_ack(0), _total_received(0),
+          _ooo(0) {
     _src = 0;
     _pacer = new NdpPullPacer(event, linkspeed, pull_rate_modifier);
     //_pacer = new NdpPullPacer(event,
@@ -1230,7 +1308,9 @@ NdpSink::NdpSink(EventList &event, linkspeed_bps linkspeed, double pull_rate_mod
 /* Use this constructor when there are multiple flows to one receiver
    - all the flows to one receiver need to share the same
    NdpPullPacer */
-NdpSink::NdpSink(NdpPullPacer *pacer) : DataReceiver("ndp_sink"), _cumulative_ack(0), _total_received(0), _ooo(0) {
+NdpSink::NdpSink(NdpPullPacer *pacer)
+        : DataReceiver("ndp_sink"), _cumulative_ack(0), _total_received(0),
+          _ooo(0) {
     _src = 0;
     _pacer = pacer;
     _nodename = "ndpsink";
@@ -1258,7 +1338,9 @@ NdpSink::NdpSink(NdpPullPacer *pacer) : DataReceiver("ndp_sink"), _cumulative_ac
 #endif
 }
 
-void NdpSink::set_end_trigger(Trigger &end_trigger) { _end_trigger = &end_trigger; }
+void NdpSink::set_end_trigger(Trigger &end_trigger) {
+    _end_trigger = &end_trigger;
+}
 
 void NdpSink::log_me() {
     // avoid looping
@@ -1365,8 +1447,8 @@ void NdpSink::receiver_core_trim(NdpPacket *p) {
     // park this credit since the packet was trimmed.
     _parked_cwnd += p->data_packet_size();
 
-    cout << "ReduceRate " << _src->_nodename << " Parked " << _parked_cwnd << " Increase at " << _parked_increase
-         << endl;
+    cout << "ReduceRate " << _src->_nodename << " Parked " << _parked_cwnd
+         << " Increase at " << _parked_increase << endl;
 }
 
 void NdpSink::receiver_ecn_accounting(NdpPacket *p) {
@@ -1380,8 +1462,8 @@ void NdpSink::receiver_ecn_accounting(NdpPacket *p) {
         double M = ((double)_marked_bytes) / _acked_bytes;
 
         _alpha = _alpha * (1 - _g) + _g * M;
-        cout << "Alpha set to " << _alpha << " M " << M << " marked " << _marked_bytes << " acked " << _acked_bytes
-             << endl;
+        cout << "Alpha set to " << _alpha << " M " << M << " marked "
+             << _marked_bytes << " acked " << _acked_bytes << endl;
 
         _marked_bytes = 0;
         _acked_bytes = 0;
@@ -1392,22 +1474,27 @@ void NdpSink::receiver_ecn_accounting(NdpPacket *p) {
 void NdpSink::receiver_increase(NdpPacket *p) {
     // when should we increase CWND? This only applies when there is a parked
     // CWND.
-    if (_parked_cwnd != 0 && _parked_cwnd < (uint32_t)Packet::data_packet_size())
+    if (_parked_cwnd != 0 &&
+        _parked_cwnd < (uint32_t)Packet::data_packet_size())
         return;
 
-    if (p->pacerno() >= _parked_increase && _parked_cwnd > (uint32_t)Packet::data_packet_size()) {
+    if (p->pacerno() >= _parked_increase &&
+        _parked_cwnd > (uint32_t)Packet::data_packet_size()) {
 
-        cout << "IssuePull " << _src->_nodename << " Parked " << _parked_cwnd << " Increase at " << _parked_increase
-             << " packet pacer " << p->pacerno() << endl;
+        cout << "IssuePull " << _src->_nodename << " Parked " << _parked_cwnd
+             << " Increase at " << _parked_increase << " packet pacer "
+             << p->pacerno() << endl;
         _parked_cwnd -= Packet::data_packet_size();
 
         NdpPull *pull_pkt;
 
         if (_route)
-            pull_pkt = NdpPull::newpkt(p->flow(), *_route, _cumulative_ack, ++_pull_no, _srcaddr);
+            pull_pkt = NdpPull::newpkt(p->flow(), *_route, _cumulative_ack,
+                                       ++_pull_no, _srcaddr);
         else
-            pull_pkt = NdpPull::newpkt(p->flow(), *(_paths[random() % _paths.size()]), _cumulative_ack, ++_pull_no,
-                                       _srcaddr);
+            pull_pkt = NdpPull::newpkt(p->flow(),
+                                       *(_paths[random() % _paths.size()]),
+                                       _cumulative_ack, ++_pull_no, _srcaddr);
 
         _pacer->enqueue_pull(pull_pkt, this);
         _parked_increase = _pacer->pacer_no();
@@ -1451,6 +1538,9 @@ void NdpSink::receivePacket(Packet &pkt) {
     NdpPacket *p = (NdpPacket *)(&pkt);
     NdpPacket::seq_t seqno = p->seqno();
     NdpPacket::seq_t pacer_no = p->pacerno();
+    this->_from = pkt.from;
+    this->_to = pkt.to;
+    this->_tag = pkt.tag;
 
     bool pull = true;
     bool marked = (p->flags() & ECN_CE) != 0; // ECN for load balancing
@@ -1465,7 +1555,8 @@ void NdpSink::receivePacket(Packet &pkt) {
 
         // cout << "Trim " << p->trim_hop() << " " << p->nexthop() << endl;
 
-        if (NdpSink::_oversubscribed_congestion_control && ((p->nexthop() - p->trim_hop()) > 2) &&
+        if (NdpSink::_oversubscribed_congestion_control &&
+            ((p->nexthop() - p->trim_hop()) > 2) &&
             ((_parked_cwnd + 2 * Packet::data_packet_size()) < _src->_cwnd)) {
 
             send_nack(ts, p->seqno(), pacer_no, false, marked);
@@ -1495,10 +1586,12 @@ void NdpSink::receivePacket(Packet &pkt) {
         // reduce the window probabilistically at the receiver, based on the
         // value of alpha.
 
-        if (drand48() < _alpha / 2 && ((_parked_cwnd + 2 * Packet::data_packet_size()) < _src->_cwnd)) {
+        if (drand48() < _alpha / 2 &&
+            ((_parked_cwnd + 2 * Packet::data_packet_size()) < _src->_cwnd)) {
             _parked_cwnd += p->data_packet_size();
             pull = false;
-            cout << "DCTCP ReduceRate " << _src->_nodename << " Parked " << _parked_cwnd << endl;
+            cout << "DCTCP ReduceRate " << _src->_nodename << " Parked "
+                 << _parked_cwnd << endl;
         }
     }
 
@@ -1523,8 +1616,9 @@ void NdpSink::receivePacket(Packet &pkt) {
     if (p->seqno() > _highest_seqno)
         _highest_seqno = p->seqno();
 
-    if (ooo_distance < (int)(seqno - _cumulative_ack)) { // careful - we want a signed
-                                                         // comparison - RHS would be unsigned
+    if (ooo_distance <
+        (int)(seqno - _cumulative_ack)) { // careful - we want a signed
+                                          // comparison - RHS would be unsigned
         ooo_distance = seqno - _cumulative_ack;
         // cout << "OOO distance " << ooo_distance << endl;
     }
@@ -1532,7 +1626,8 @@ void NdpSink::receivePacket(Packet &pkt) {
     if (seqno == _cumulative_ack + 1) { // it's the next expected seq no
         _cumulative_ack = seqno + size - 1;
         // are there any additional received packets we can now ack?
-        while (!_received.empty() && (_received.front() == _cumulative_ack + 1)) {
+        while (!_received.empty() &&
+               (_received.front() == _cumulative_ack + 1)) {
             _received.pop_front();
             _cumulative_ack += size;
             if (_buffer_logger)
@@ -1562,7 +1657,8 @@ void NdpSink::receivePacket(Packet &pkt) {
                 if (seqno < (*i)) {
                     _received.insert(i, seqno);
                     if (_buffer_logger)
-                        _buffer_logger->logBuffer(ReorderBufferLogger::BUF_ENQUEUE);
+                        _buffer_logger->logBuffer(
+                                ReorderBufferLogger::BUF_ENQUEUE);
                     break;
                 }
             }
@@ -1613,7 +1709,8 @@ void NdpSink::process_request_to_send(NdpRTS *pkt) {
             r = _paths.at(_crt_path);
         }
 
-        NdpPull *pull_pkt = NdpPull::newpkt(pkt, *r, _cumulative_ack, _pull_no, _srcaddr);
+        NdpPull *pull_pkt =
+                NdpPull::newpkt(pkt, *r, _cumulative_ack, _pull_no, _srcaddr);
         _pacer->enqueue_pull(pull_pkt, this);
     }
 
@@ -1633,18 +1730,23 @@ void NdpSink::update_path_history(const NdpPacket &p) {
         _path_history.resize(_no_of_paths * HISTORY_PER_PATH);
         _path_hist_index = 0;
         _path_hist_first = 0;
-        _path_history[_path_hist_index] = ReceiptEvent(p.path_id(), p.header_only());
+        _path_history[_path_hist_index] =
+                ReceiptEvent(p.path_id(), p.header_only());
     } else {
         assert(_no_of_paths == p.no_of_paths());
-        _path_hist_index = (_path_hist_index + 1) % _no_of_paths * HISTORY_PER_PATH;
+        _path_hist_index =
+                (_path_hist_index + 1) % _no_of_paths * HISTORY_PER_PATH;
         if (_path_hist_first == _path_hist_index) {
-            _path_hist_first = (_path_hist_first + 1) % _no_of_paths * HISTORY_PER_PATH;
+            _path_hist_first =
+                    (_path_hist_first + 1) % _no_of_paths * HISTORY_PER_PATH;
         }
-        _path_history[_path_hist_index] = ReceiptEvent(p.path_id(), p.header_only());
+        _path_history[_path_hist_index] =
+                ReceiptEvent(p.path_id(), p.header_only());
     }
 }
 
-void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno, NdpPacket::seq_t pacer_no, bool ecn_marked,
+void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno,
+                       NdpPacket::seq_t pacer_no, bool ecn_marked,
                        bool enqueue_pull) {
     NdpAck *ack = 0;
     // if (ecn_marked)
@@ -1658,8 +1760,9 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno, NdpPacket::se
     case PULL_BASED:
     case SCATTER_ECMP:
         assert(_paths.size() > 0);
-        ack = NdpAck::newpkt(_src->_flow, *(_paths.at(_crt_path)), 0, ackno, _cumulative_ack, _pull_no,
-                             _path_history[_path_hist_index].path_id(), _srcaddr);
+        ack = NdpAck::newpkt(
+                _src->_flow, *(_paths.at(_crt_path)), 0, ackno, _cumulative_ack,
+                _pull_no, _path_history[_path_hist_index].path_id(), _srcaddr);
         if (_route_strategy == SCATTER_RANDOM) {
             _crt_path = random() % _paths.size();
         } else {
@@ -1675,8 +1778,9 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno, NdpPacket::se
     case ECMP_FIB:
     case ECMP_FIB_ECN:
     case REACTIVE_ECN:
-        ack = NdpAck::newpkt(_src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no,
-                             _path_history[_path_hist_index].path_id(), _srcaddr);
+        ack = NdpAck::newpkt(
+                _src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no,
+                _path_history[_path_hist_index].path_id(), _srcaddr);
 
         ack->set_pathid(_path_ids[_crt_path]);
         _crt_path++;
@@ -1685,13 +1789,16 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno, NdpPacket::se
             _crt_path = 0;
         }
         // set ECN echo only if that is selected strategy
-        ack->set_ecn_echo(ecn_marked && (_route_strategy == ECMP_FIB_ECN || _route_strategy == REACTIVE_ECN));
-        if (ecn_marked && (_route_strategy == ECMP_FIB_ECN || _route_strategy == REACTIVE_ECN))
+        ack->set_ecn_echo(ecn_marked && (_route_strategy == ECMP_FIB_ECN ||
+                                         _route_strategy == REACTIVE_ECN));
+        if (ecn_marked && (_route_strategy == ECMP_FIB_ECN ||
+                           _route_strategy == REACTIVE_ECN))
             cout << "setting ECE\n";
         break;
     case SINGLE_PATH:
-        ack = NdpAck::newpkt(_src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no, 0,
-                             _srcaddr); // _path_history[_path_hist_index].path_id());
+        ack = NdpAck::newpkt(
+                _src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no, 0,
+                _srcaddr); // _path_history[_path_hist_index].path_id());
         break;
     case NOT_SET:
         abort();
@@ -1699,6 +1806,9 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno, NdpPacket::se
     assert(ack);
     ack->flow().logTraffic(*ack, *this, TrafficLogger::PKT_CREATE);
     ack->set_ts(ts);
+    ack->from = _from;
+    ack->to = _to;
+    ack->tag = _tag;
 
     if (enqueue_pull)
         _pacer->sendPacket(ack, pacer_no, this);
@@ -1708,7 +1818,8 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno, NdpPacket::se
     }
 }
 
-void NdpSink::send_nack(simtime_picosec ts, NdpPacket::seq_t ackno, NdpPacket::seq_t pacer_no, bool enqueue_pull,
+void NdpSink::send_nack(simtime_picosec ts, NdpPacket::seq_t ackno,
+                        NdpPacket::seq_t pacer_no, bool enqueue_pull,
                         bool ecn_marked) {
     NdpNack *nack = NULL;
 
@@ -1721,8 +1832,9 @@ void NdpSink::send_nack(simtime_picosec ts, NdpPacket::seq_t ackno, NdpPacket::s
     case PULL_BASED:
     case SCATTER_ECMP:
         assert(_paths.size() > 0);
-        nack = NdpNack::newpkt(_src->_flow, *(_paths.at(_crt_path)), 0, ackno, _cumulative_ack, _pull_no,
-                               _path_history[_path_hist_index].path_id(), _srcaddr);
+        nack = NdpNack::newpkt(
+                _src->_flow, *(_paths.at(_crt_path)), 0, ackno, _cumulative_ack,
+                _pull_no, _path_history[_path_hist_index].path_id(), _srcaddr);
         if (_route_strategy == SCATTER_RANDOM) {
             _crt_path = random() % _paths.size();
         } else {
@@ -1736,8 +1848,9 @@ void NdpSink::send_nack(simtime_picosec ts, NdpPacket::seq_t ackno, NdpPacket::s
     case ECMP_FIB:
     case ECMP_FIB_ECN:
     case REACTIVE_ECN:
-        nack = NdpNack::newpkt(_src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no,
-                               _path_history[_path_hist_index].path_id(), _srcaddr);
+        nack = NdpNack::newpkt(
+                _src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no,
+                _path_history[_path_hist_index].path_id(), _srcaddr);
 
         nack->set_pathid(_path_ids[_crt_path]);
         _crt_path++;
@@ -1746,11 +1859,13 @@ void NdpSink::send_nack(simtime_picosec ts, NdpPacket::seq_t ackno, NdpPacket::s
             _crt_path = 0;
         }
         // set ECN echo only if that is selected strategy
-        nack->set_ecn_echo(ecn_marked && (_route_strategy == ECMP_FIB_ECN || _route_strategy == REACTIVE_ECN));
+        nack->set_ecn_echo(ecn_marked && (_route_strategy == ECMP_FIB_ECN ||
+                                          _route_strategy == REACTIVE_ECN));
         break;
     case SINGLE_PATH:
-        nack = NdpNack::newpkt(_src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no, 0,
-                               _srcaddr); //_path_history[_path_hist_index].path_id());
+        nack = NdpNack::newpkt(
+                _src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no, 0,
+                _srcaddr); //_path_history[_path_hist_index].path_id());
         break;
     case NOT_SET:
         abort();
@@ -1787,10 +1902,12 @@ int NdpPullPacer::_pull_spacing_cdf_count = 0;
 /* Every NdpSink needs an NdpPullPacer to pace out it's PULL packets.
    Multiple incoming flows at the same receiving node must share a
    single pacer */
-NdpPullPacer::NdpPullPacer(EventList &event, linkspeed_bps linkspeed, double pull_rate_modifier)
+NdpPullPacer::NdpPullPacer(EventList &event, linkspeed_bps linkspeed,
+                           double pull_rate_modifier)
         : EventSource(event, "ndp_pacer"), _last_pull(0) {
     _packet_drain_time =
-            (simtime_picosec)((Packet::data_packet_size() + ndp_acksize) * (pow(10.0, 12.0) * 8) / linkspeed) /
+            (simtime_picosec)((Packet::data_packet_size() + ndp_acksize) *
+                              (pow(10.0, 12.0) * 8) / linkspeed) /
             pull_rate_modifier;
     // cout << "Packet drain time " << timeAsUs(_packet_drain_time) << "us" <<
     // endl;
@@ -1798,7 +1915,8 @@ NdpPullPacer::NdpPullPacer(EventList &event, linkspeed_bps linkspeed, double pul
     _pacer_no = 0;
 }
 
-NdpPullPacer::NdpPullPacer(EventList &event, char *filename) : EventSource(event, "ndp_pacer"), _last_pull(0) {
+NdpPullPacer::NdpPullPacer(EventList &event, char *filename)
+        : EventSource(event, "ndp_pacer"), _last_pull(0) {
     int t;
     _packet_drain_time = 0;
 
@@ -1806,8 +1924,9 @@ NdpPullPacer::NdpPullPacer(EventList &event, char *filename) : EventSource(event
         FILE *f = fopen(filename, "r");
         int count = fscanf(f, "%d\n", &_pull_spacing_cdf_count);
         assert(count == 1);
-        cout << "Generating pull spacing from CDF; reading " << _pull_spacing_cdf_count << " entries from CDF file "
-             << filename << endl;
+        cout << "Generating pull spacing from CDF; reading "
+             << _pull_spacing_cdf_count << " entries from CDF file " << filename
+             << endl;
         _pull_spacing_cdf = new double[_pull_spacing_cdf_count];
 
         for (int i = 0; i < _pull_spacing_cdf_count; i++) {
@@ -1844,7 +1963,8 @@ void NdpPullPacer::set_pacerno(Packet *pkt, NdpPull::seq_t pacer_no) {
     }
 }
 
-void NdpPullPacer::sendPacket(Packet *ack, NdpPacket::seq_t rcvd_pacer_no, NdpSink *receiver) {
+void NdpPullPacer::sendPacket(Packet *ack, NdpPacket::seq_t rcvd_pacer_no,
+                              NdpSink *receiver) {
     /*
     if (_log_me) {
         cout << "pacerno diff: " << _pacer_no - rcvd_pacer_no << endl;
@@ -1962,7 +2082,8 @@ void NdpPullPacer::release_pulls(uint32_t flow_id, NdpSink *receiver) {
 
 void NdpPullPacer::enqueue_pull(NdpPull *pkt, NdpSink *receiver) {
     simtime_picosec delta = eventlist().now() - _last_pull;
-    bool should_tx = _pull_queue.empty() && (_last_pull == 0 || (delta >= _packet_drain_time));
+    bool should_tx = _pull_queue.empty() &&
+                     (_last_pull == 0 || (delta >= _packet_drain_time));
     bool should_schedule = _pull_queue.empty() && delta < _packet_drain_time;
 
     _pull_queue.enqueue(*pkt, receiver->priority());
@@ -2051,18 +2172,21 @@ void NdpPullPacer::doNextEvent() {
 /* Every NdpSrc running in RTS mode may use an NdpRTSPacer to pace out it's RTS
    packets. Multiple outgoing flows from the same node must share a single pacer
  */
-NdpRTSPacer::NdpRTSPacer(EventList &event, linkspeed_bps linkspeed, double pull_rate_modifier)
+NdpRTSPacer::NdpRTSPacer(EventList &event, linkspeed_bps linkspeed,
+                         double pull_rate_modifier)
         : EventSource(event, "ndp_pacer") {
     _last_rts = 0;
     _first = true;
     _packet_drain_time =
-            (simtime_picosec)((Packet::data_packet_size() + ndp_acksize) * (pow(10.0, 12.0) * 8) / linkspeed) /
+            (simtime_picosec)((Packet::data_packet_size() + ndp_acksize) *
+                              (pow(10.0, 12.0) * 8) / linkspeed) /
             pull_rate_modifier;
 }
 
 void NdpRTSPacer::enqueue_rts(NdpRTS *pkt) {
     simtime_picosec delta = eventlist().now() - _last_rts;
-    bool should_tx = _rts_queue.empty() && (_first || (delta >= _packet_drain_time));
+    bool should_tx =
+            _rts_queue.empty() && (_first || (delta >= _packet_drain_time));
     bool should_schedule = _rts_queue.empty() && delta < _packet_drain_time;
 
     _rts_queue.enqueue(*pkt);
@@ -2094,7 +2218,8 @@ void NdpRTSPacer::doNextEvent() {
     if (!_rts_queue.empty()) {
         eventlist().sourceIsPendingRel(*this, _packet_drain_time);
     } else {
-        cout << "Empty RTS pacer queue at " << timeAsMs(eventlist().now()) << endl;
+        cout << "Empty RTS pacer queue at " << timeAsMs(eventlist().now())
+             << endl;
     }
 }
 
@@ -2102,12 +2227,15 @@ void NdpRTSPacer::doNextEvent() {
 //  NDP RETRANSMISSION TIMER
 ////////////////////////////////////////////////////////////////
 
-NdpRtxTimerScanner::NdpRtxTimerScanner(simtime_picosec scanPeriod, EventList &eventlist)
+NdpRtxTimerScanner::NdpRtxTimerScanner(simtime_picosec scanPeriod,
+                                       EventList &eventlist)
         : EventSource(eventlist, "RtxScanner"), _scanPeriod(scanPeriod) {
     eventlist.sourceIsPendingRel(*this, 0);
 }
 
-void NdpRtxTimerScanner::registerNdp(NdpSrc &tcpsrc) { _tcps.push_back(&tcpsrc); }
+void NdpRtxTimerScanner::registerNdp(NdpSrc &tcpsrc) {
+    _tcps.push_back(&tcpsrc);
+}
 
 void NdpRtxTimerScanner::doNextEvent() {
     simtime_picosec now = eventlist().now();
