@@ -59,12 +59,20 @@ class OversubscribedFatTreeTopology : public Topology {
 
     queue_type qt;
 
-    OversubscribedFatTreeTopology(mem_b queuesize, Logfile *log, EventList *ev,
-                                  FirstFit *f, queue_type q);
+    OversubscribedFatTreeTopology(mem_b queuesize, linkspeed_bps linkspeed,
+                                  Logfile *lg, EventList *ev, FirstFit *fit,
+                                  queue_type q, simtime_picosec latency,
+                                  simtime_picosec switch_latency);
 
     void init_network();
     virtual vector<const Route *> *get_bidir_paths(uint32_t src, uint32_t dest,
                                                    bool reverse);
+
+    static void set_ecn_thresholds_as_queue_percentage(int min_thresh,
+                                                       int max_thresh) {
+        kmin = min_thresh;
+        kmax = max_thresh;
+    }
 
     Queue *alloc_src_queue(QueueLogger *q);
     Queue *alloc_queue(QueueLogger *q);
@@ -83,6 +91,10 @@ class OversubscribedFatTreeTopology : public Topology {
     int64_t find_destination(Queue *queue);
     uint32_t _no_of_nodes;
     mem_b _queuesize;
+    static int kmin;
+    static int kmax;
+    linkspeed_bps _linkspeed;
+    simtime_picosec _hop_latency, _switch_latency;
 };
 
 #endif

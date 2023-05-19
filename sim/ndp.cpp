@@ -683,6 +683,8 @@ void NdpSrc::processAck(const NdpAck &ack) {
             _base_rtt = m;
     }
 
+    _list_rtt.push_back(std::make_pair(eventlist().now() / 1000, m / 1000));
+
     if (_rto < _min_rto)
         _rto = _min_rto * ((drand() * 0.5) + 0.75);
 
@@ -745,6 +747,7 @@ void NdpSrc::receivePacket(Packet &pkt) {
         } else {
             printf("NACK\n");
         }*/
+        _list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
         processNack((const NdpNack &)pkt);
         pkt.free();
         return;

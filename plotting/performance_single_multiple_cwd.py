@@ -205,7 +205,8 @@ def main(args):
 
     # Add figure title
     fig.update_layout(
-        title_text="<b>Incast 8:1 - ECN based congestion control</b>"
+        #title_text="<b>Incast 64:1 - ECN based congestion control - 100Gbps</b>"
+        title_text="<b>Permutation Across + Outcast - 4:1 FT - ECN based congestion control - 400Gbps - 2 MiB - UEC</b>"
     )
 
 

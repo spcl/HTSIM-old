@@ -77,15 +77,22 @@ void print_path(std::ofstream &paths, const Route *rt) {
 }
 
 int main(int argc, char **argv) {
-    Packet::set_packet_size(PKT_SIZE_MODERN);
+    Packet::set_packet_size(2048);
     eventlist.setEndtime(timeFromSec(10));
     Clock c(timeFromSec(5 / 100.), eventlist);
     mem_b queuesize = memFromPkt(INFINITE_BUFFER_SIZE);
     int no_of_conns = 0, cwnd = 40, no_of_nodes = DEFAULT_NODES,
-        flowsize = Packet::data_packet_size() * 50;
+        flowsize = 0 * 50;
     stringstream filename(ios_base::out);
     RouteStrategy route_strategy = NOT_SET;
     std::string goal_filename;
+    linkspeed_bps linkspeed = speedFromMbps((double)HOST_NIC);
+    simtime_picosec hop_latency = timeFromNs((uint32_t)RTT);
+    simtime_picosec switch_latency = timeFromNs((uint32_t)0);
+    int packet_size = 2048;
+    int kmin = -1;
+    int kmax = -1;
+    int seed = -1;
 
     int i = 1;
     filename << "logout.dat";
@@ -101,24 +108,54 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-conns")) {
             no_of_conns = atoi(argv[i + 1]);
             cout << "no_of_conns " << no_of_conns << endl;
+            cout << "!!currently hardcoded to 8, value will be ignored!!"
+                 << endl;
             i++;
         } else if (!strcmp(argv[i], "-nodes")) {
             no_of_nodes = atoi(argv[i + 1]);
             cout << "no_of_nodes " << no_of_nodes << endl;
             i++;
-        } else if (!strcmp(argv[i], "-goal")) {
-            goal_filename = argv[i + 1];
-            i++;
         } else if (!strcmp(argv[i], "-cwnd")) {
             cwnd = atoi(argv[i + 1]);
             cout << "cwnd " << cwnd << endl;
             i++;
-        } else if (!strcmp(argv[i], "-flowsize")) {
-            flowsize = atoi(argv[i + 1]);
-            cout << "flowsize " << flowsize << endl;
-            i++;
         } else if (!strcmp(argv[i], "-q")) {
-            queuesize = (atoi(argv[i + 1]));
+            queuesize = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-linkspeed")) {
+            // linkspeed specified is in Mbps
+            linkspeed = speedFromMbps(atof(argv[i + 1]));
+            LINK_SPEED_MODERN = atoi(argv[i + 1]);
+            printf("Speed is %lu\n", LINK_SPEED_MODERN);
+            LINK_SPEED_MODERN = LINK_SPEED_MODERN / 1000;
+            // Saving this for UEC reference, Gbps
+            i++;
+        } else if (!strcmp(argv[i], "-kmin")) {
+            // kmin as percentage of queue size (0..100)
+            kmin = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-kmax")) {
+            // kmin as percentage of queue size (0..100)
+            kmax = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-mtu")) {
+            packet_size = atoi(argv[i + 1]);
+            PKT_SIZE_MODERN =
+                    packet_size; // Saving this for UEC reference, Bytes
+            i++;
+        } else if (!strcmp(argv[i], "-switch_latency")) {
+            switch_latency = timeFromNs(atof(argv[i + 1]));
+            i++;
+        } else if (!strcmp(argv[i], "-hop_latency")) {
+            hop_latency = timeFromNs(atof(argv[i + 1]));
+            LINK_DELAY_MODERN = hop_latency /
+                                1000; // Saving this for UEC reference, ps to ns
+            i++;
+        } else if (!strcmp(argv[i], "-seed")) {
+            seed = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-goal")) {
+            goal_filename = argv[i + 1];
             i++;
         } else if (!strcmp(argv[i], "-strat")) {
             if (!strcmp(argv[i + 1], "perm")) {
@@ -136,7 +173,15 @@ int main(int argc, char **argv) {
 
         i++;
     }
-    srand(time(NULL));
+
+    // Initialize Seed, Logging and Other variables
+    if (seed != -1) {
+        srand(seed);
+        srandom(seed);
+    } else {
+        srand(time(NULL));
+        srandom(time(NULL));
+    }
     initializeLoggingFolders();
 
     if (route_strategy == NOT_SET) {
@@ -196,9 +241,10 @@ int main(int argc, char **argv) {
 
 #ifdef OV_FAT_TREE
     OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(
-            queuesize, &logfile, &eventlist, ff,
-            COMPOSITE); // TODO(tommaso): added a queuesize parameter to fit new
-                        // constructor, verify correctness
+            queuesize, linkspeed, &logfile, &eventlist, ff, COMPOSITE,
+            hop_latency,
+            switch_latency); // TODO(tommaso): added a queuesize parameter to
+                             // fit new constructor, verify correctness
 #endif
 
 #ifdef MH_FAT_TREE

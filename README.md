@@ -12,8 +12,14 @@ To get started with running experiments, take a look in the experiments director
 
 ## Basic Instructions
 
-Compile with 
+Compile with the following instruction. Note that currently there are some issues with the make file (being fixed ASAP) so it is necessary to clean and recompile everything each time.
+
+```
+make clean && cd datacenter/ && make clean && cd .. && make -j 8 && cd datacenter/ && make -j 8 && cd ..
+```
 
 Run a simulation with 
 
-'./htsim_uec_entry_modern -o uec_entry -nodes 16 -q 72500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -hop_latency 400 -switch_latency 0 -mtu 2048 -goal test_cwd.bin > outUEC.tmp'
+```
+./htsim_uec_entry_modern -o uec_entry -nodes 16 -q 72500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -hop_latency 400 -switch_latency 0 -mtu 2048 -goal test_cwd.bin > outUEC.tmp
+```

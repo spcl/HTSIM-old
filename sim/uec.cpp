@@ -21,7 +21,7 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
 
     _last_acked = 0;
     _highest_sent = 0;
-    _use_good_entropies = false;
+    _use_good_entropies = true;
     _next_good_entropy = 0;
 
     _nack_rtx_pending = 0;
@@ -99,14 +99,14 @@ UecSrc::~UecSrc() {
         MyFileUnack.close();
 
         // NACK
-        /*file_name = "../output/nack/nack" + _name + ".txt";
+        file_name = "../output/nack/nack" + _name + ".txt";
         std::ofstream MyFileNack(file_name, std::ios_base::app);
 
         for (const auto &p : _list_nack) {
             MyFileNack << p.first << "," << p.second << std::endl;
         }
 
-        MyFileNack.close();*/
+        MyFileNack.close();
     }
 }
 
@@ -217,7 +217,7 @@ void UecSrc::set_traffic_logger(TrafficLogger *pktlogger) {
 void UecSrc::reduce_cwnd(uint64_t amount) {
     // printf("Reducing by %lu\n", amount);
     if (_cwnd >= amount + _mss) {
-        _cwnd -= amount;
+        _cwnd -= amount * 1;
     } else {
         _cwnd = _mss;
     }
@@ -233,8 +233,10 @@ void UecSrc::reduce_unacked(uint64_t amount) {
 }
 
 void UecSrc::processNack(UecNack &pkt) {
-    if (GLOBAL_TIME > _ignore_ecn_until)
+    if (GLOBAL_TIME > _ignore_ecn_until) {
+        _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
         reduce_cwnd(_mss);
+    }
 
     _list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
     // mark corresponding packet for retransmission
@@ -276,7 +278,8 @@ void UecSrc::processAck(UecAck &pkt) {
     bool marked = pkt.flags() &
                   ECN_ECHO; // ECN was marked on data packet and echoed on ACK
 
-    printf("packet is ECN Marked %d - Time %lu\n", marked, GLOBAL_TIME / 1000);
+    // printf("packet is ECN Marked %d - Time %lu\n", marked, GLOBAL_TIME /
+    // 1000);
 
     if (_start_timer_window) {
         _start_timer_window = false;
@@ -387,12 +390,12 @@ void UecSrc::receivePacket(Packet &pkt) {
 }
 
 void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
-    printf("From %d - Time %lu - Ecn %d - Consecutive Low %d - BDP %lu - CWD "
+    /*printf("From %d - Time %lu - Ecn %d - Consecutive Low %d - BDP %lu - CWD "
            "%d - Sizr "
            "%d - No ECN %d - MSS is %d\n",
            from, _eventlist.now() / 1000, ecn, _consecutive_no_ecn,
            (long long)_bdp, _cwnd, _received_ecn.size(),
-           no_ecn_last_target_rtt(), _mss);
+           no_ecn_last_target_rtt(), _mss);*/
     if (ecn) {
         uint64_t total = 0;
         for (auto [ts, ecn, size, rtt] : _received_ecn) {
@@ -418,19 +421,19 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
         _cwnd += _mss * ((double)_cwnd / _bdp);
         _consecutive_low_rtt = 0;
         _consecutive_no_ecn = 0;
-        printf("%d Else1 %lu\n", from, GLOBAL_TIME / 1000);
+        // printf("%d Else1 %lu\n", from, GLOBAL_TIME / 1000);
     } else if (false && _cwnd > ceil(sqrt(_bdp * _mss)) &&
                _consecutive_no_ecn >= ceil(_bdp / _cwnd)) {
         _cwnd += _mss * _mss * (_bdp / _cwnd) / _cwnd;
         _consecutive_no_ecn = 0;
-        printf("%d Else2 %lu\n", from, GLOBAL_TIME / 1000);
+        // printf("%d Else2 %lu\n", from, GLOBAL_TIME / 1000);
     } else if (!ecn) {
         // _consecutive_no_ecn >= floor((double)_cwnd / _mss) * ((double)_cwnd /
         // _bdp)
         //_cwnd += ((double)_mss / _cwnd) * _mss * ((double)_cwnd / _bdp);
-        _cwnd += ((double)_mss / _cwnd) * _mss;
+        _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
         //_cwnd += ((double)_mss / _cwnd) * _mss * ((double)_cwnd / _bdp);
-        printf("%d Else3 %lu\n", from, GLOBAL_TIME / 1000);
+        // printf("%d Else3 %lu\n", from, GLOBAL_TIME / 1000);
         _consecutive_no_ecn = 0;
     }
 

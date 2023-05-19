@@ -90,6 +90,13 @@ int main(int argc, char **argv) {
     stringstream filename(ios_base::out);
     RouteStrategy route_strategy = NOT_SET;
     std::string goal_filename;
+    linkspeed_bps linkspeed = speedFromMbps((double)HOST_NIC);
+    simtime_picosec hop_latency = timeFromNs((uint32_t)RTT);
+    simtime_picosec switch_latency = timeFromNs((uint32_t)0);
+    int packet_size = 2048;
+    int kmin = -1;
+    int kmax = -1;
+    int seed = -1;
 
     int i = 1;
     filename << "logout.dat";
@@ -119,6 +126,38 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-q")) {
             queuesize = atoi(argv[i + 1]);
             i++;
+        } else if (!strcmp(argv[i], "-linkspeed")) {
+            // linkspeed specified is in Mbps
+            linkspeed = speedFromMbps(atof(argv[i + 1]));
+            LINK_SPEED_MODERN = atoi(argv[i + 1]);
+            printf("Speed is %lu\n", LINK_SPEED_MODERN);
+            LINK_SPEED_MODERN = LINK_SPEED_MODERN / 1000;
+            // Saving this for UEC reference, Gbps
+            i++;
+        } else if (!strcmp(argv[i], "-kmin")) {
+            // kmin as percentage of queue size (0..100)
+            kmin = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-kmax")) {
+            // kmin as percentage of queue size (0..100)
+            kmax = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-mtu")) {
+            packet_size = atoi(argv[i + 1]);
+            PKT_SIZE_MODERN =
+                    packet_size; // Saving this for UEC reference, Bytes
+            i++;
+        } else if (!strcmp(argv[i], "-switch_latency")) {
+            switch_latency = timeFromNs(atof(argv[i + 1]));
+            i++;
+        } else if (!strcmp(argv[i], "-hop_latency")) {
+            hop_latency = timeFromNs(atof(argv[i + 1]));
+            LINK_DELAY_MODERN = hop_latency /
+                                1000; // Saving this for UEC reference, ps to ns
+            i++;
+        } else if (!strcmp(argv[i], "-seed")) {
+            seed = atoi(argv[i + 1]);
+            i++;
         } else if (!strcmp(argv[i], "-goal")) {
             goal_filename = argv[i + 1];
             i++;
@@ -138,7 +177,16 @@ int main(int argc, char **argv) {
 
         i++;
     }
-    srand(time(NULL));
+
+    // Initialize Seed, Logging and Other variables
+    if (seed != -1) {
+        srand(seed);
+        srandom(seed);
+    } else {
+        srand(time(NULL));
+        srandom(time(NULL));
+    }
+    Packet::set_packet_size(packet_size);
     initializeLoggingFolders();
 
     if (route_strategy == NOT_SET) {
@@ -192,12 +240,11 @@ int main(int argc, char **argv) {
 #endif
 
 #ifdef OV_FAT_TREE
+    OversubscribedFatTreeTopology::set_ecn_thresholds_as_queue_percentage(kmin,
+                                                                          kmax);
     OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(
-            queuesize, &logfile, &eventlist, ff,
-            COMPOSITE); // TODO(tommaso): was UECQUEUE before -- I don't think
-                        // we need it anymore now that they added ECN
-                        // everywhere, but confirm that -- also added queuesize
-                        // parameter
+            queuesize, linkspeed, &logfile, &eventlist, ff, COMPOSITE,
+            hop_latency, switch_latency);
 #endif
 
 #ifdef MH_FAT_TREE

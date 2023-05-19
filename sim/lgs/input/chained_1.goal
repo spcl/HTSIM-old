@@ -1,0 +1,833 @@
+num_ranks 32
+
+rank 0 {
+/* Iallreduce begin */
+l1: send 100000b to 1 tag 16877216
+l2: recv 100000b from 31 tag 16877216
+l3: send 100000b to 2 tag 16877216
+l3 requires l2
+l4: recv 100000b from 30 tag 16877216
+l5: send 100000b to 4 tag 16877216
+l5 requires l4
+l6: recv 100000b from 28 tag 16877216
+l7: send 100000b to 8 tag 16877216
+l7 requires l6
+l8: recv 100000b from 24 tag 16877216
+l9: send 100000b to 16 tag 16877216
+l9 requires l8
+l10: recv 100000b from 16 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 1 {
+/* Iallreduce begin */
+l1: send 100000b to 2 tag 16877216
+l2: recv 100000b from 0 tag 16877216
+l3: send 100000b to 3 tag 16877216
+l3 requires l2
+l4: recv 100000b from 31 tag 16877216
+l5: send 100000b to 5 tag 16877216
+l5 requires l4
+l6: recv 100000b from 29 tag 16877216
+l7: send 100000b to 9 tag 16877216
+l7 requires l6
+l8: recv 100000b from 25 tag 16877216
+l9: send 100000b to 17 tag 16877216
+l9 requires l8
+l10: recv 100000b from 17 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 2 {
+/* Iallreduce begin */
+l1: send 100000b to 3 tag 16877216
+l2: recv 100000b from 1 tag 16877216
+l3: send 100000b to 4 tag 16877216
+l3 requires l2
+l4: recv 100000b from 0 tag 16877216
+l5: send 100000b to 6 tag 16877216
+l5 requires l4
+l6: recv 100000b from 30 tag 16877216
+l7: send 100000b to 10 tag 16877216
+l7 requires l6
+l8: recv 100000b from 26 tag 16877216
+l9: send 100000b to 18 tag 16877216
+l9 requires l8
+l10: recv 100000b from 18 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 3 {
+/* Iallreduce begin */
+l1: send 100000b to 4 tag 16877216
+l2: recv 100000b from 2 tag 16877216
+l3: send 100000b to 5 tag 16877216
+l3 requires l2
+l4: recv 100000b from 1 tag 16877216
+l5: send 100000b to 7 tag 16877216
+l5 requires l4
+l6: recv 100000b from 31 tag 16877216
+l7: send 100000b to 11 tag 16877216
+l7 requires l6
+l8: recv 100000b from 27 tag 16877216
+l9: send 100000b to 19 tag 16877216
+l9 requires l8
+l10: recv 100000b from 19 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 4 {
+/* Iallreduce begin */
+l1: send 100000b to 5 tag 16877216
+l2: recv 100000b from 3 tag 16877216
+l3: send 100000b to 6 tag 16877216
+l3 requires l2
+l4: recv 100000b from 2 tag 16877216
+l5: send 100000b to 8 tag 16877216
+l5 requires l4
+l6: recv 100000b from 0 tag 16877216
+l7: send 100000b to 12 tag 16877216
+l7 requires l6
+l8: recv 100000b from 28 tag 16877216
+l9: send 100000b to 20 tag 16877216
+l9 requires l8
+l10: recv 100000b from 20 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 5 {
+/* Iallreduce begin */
+l1: send 100000b to 6 tag 16877216
+l2: recv 100000b from 4 tag 16877216
+l3: send 100000b to 7 tag 16877216
+l3 requires l2
+l4: recv 100000b from 3 tag 16877216
+l5: send 100000b to 9 tag 16877216
+l5 requires l4
+l6: recv 100000b from 1 tag 16877216
+l7: send 100000b to 13 tag 16877216
+l7 requires l6
+l8: recv 100000b from 29 tag 16877216
+l9: send 100000b to 21 tag 16877216
+l9 requires l8
+l10: recv 100000b from 21 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 6 {
+/* Iallreduce begin */
+l1: send 100000b to 7 tag 16877216
+l2: recv 100000b from 5 tag 16877216
+l3: send 100000b to 8 tag 16877216
+l3 requires l2
+l4: recv 100000b from 4 tag 16877216
+l5: send 100000b to 10 tag 16877216
+l5 requires l4
+l6: recv 100000b from 2 tag 16877216
+l7: send 100000b to 14 tag 16877216
+l7 requires l6
+l8: recv 100000b from 30 tag 16877216
+l9: send 100000b to 22 tag 16877216
+l9 requires l8
+l10: recv 100000b from 22 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 7 {
+/* Iallreduce begin */
+l1: send 100000b to 8 tag 16877216
+l2: recv 100000b from 6 tag 16877216
+l3: send 100000b to 9 tag 16877216
+l3 requires l2
+l4: recv 100000b from 5 tag 16877216
+l5: send 100000b to 11 tag 16877216
+l5 requires l4
+l6: recv 100000b from 3 tag 16877216
+l7: send 100000b to 15 tag 16877216
+l7 requires l6
+l8: recv 100000b from 31 tag 16877216
+l9: send 100000b to 23 tag 16877216
+l9 requires l8
+l10: recv 100000b from 23 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 8 {
+/* Iallreduce begin */
+l1: send 100000b to 9 tag 16877216
+l2: recv 100000b from 7 tag 16877216
+l3: send 100000b to 10 tag 16877216
+l3 requires l2
+l4: recv 100000b from 6 tag 16877216
+l5: send 100000b to 12 tag 16877216
+l5 requires l4
+l6: recv 100000b from 4 tag 16877216
+l7: send 100000b to 16 tag 16877216
+l7 requires l6
+l8: recv 100000b from 0 tag 16877216
+l9: send 100000b to 24 tag 16877216
+l9 requires l8
+l10: recv 100000b from 24 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 9 {
+/* Iallreduce begin */
+l1: send 100000b to 10 tag 16877216
+l2: recv 100000b from 8 tag 16877216
+l3: send 100000b to 11 tag 16877216
+l3 requires l2
+l4: recv 100000b from 7 tag 16877216
+l5: send 100000b to 13 tag 16877216
+l5 requires l4
+l6: recv 100000b from 5 tag 16877216
+l7: send 100000b to 17 tag 16877216
+l7 requires l6
+l8: recv 100000b from 1 tag 16877216
+l9: send 100000b to 25 tag 16877216
+l9 requires l8
+l10: recv 100000b from 25 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 10 {
+/* Iallreduce begin */
+l1: send 100000b to 11 tag 16877216
+l2: recv 100000b from 9 tag 16877216
+l3: send 100000b to 12 tag 16877216
+l3 requires l2
+l4: recv 100000b from 8 tag 16877216
+l5: send 100000b to 14 tag 16877216
+l5 requires l4
+l6: recv 100000b from 6 tag 16877216
+l7: send 100000b to 18 tag 16877216
+l7 requires l6
+l8: recv 100000b from 2 tag 16877216
+l9: send 100000b to 26 tag 16877216
+l9 requires l8
+l10: recv 100000b from 26 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 11 {
+/* Iallreduce begin */
+l1: send 100000b to 12 tag 16877216
+l2: recv 100000b from 10 tag 16877216
+l3: send 100000b to 13 tag 16877216
+l3 requires l2
+l4: recv 100000b from 9 tag 16877216
+l5: send 100000b to 15 tag 16877216
+l5 requires l4
+l6: recv 100000b from 7 tag 16877216
+l7: send 100000b to 19 tag 16877216
+l7 requires l6
+l8: recv 100000b from 3 tag 16877216
+l9: send 100000b to 27 tag 16877216
+l9 requires l8
+l10: recv 100000b from 27 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 12 {
+/* Iallreduce begin */
+l1: send 100000b to 13 tag 16877216
+l2: recv 100000b from 11 tag 16877216
+l3: send 100000b to 14 tag 16877216
+l3 requires l2
+l4: recv 100000b from 10 tag 16877216
+l5: send 100000b to 16 tag 16877216
+l5 requires l4
+l6: recv 100000b from 8 tag 16877216
+l7: send 100000b to 20 tag 16877216
+l7 requires l6
+l8: recv 100000b from 4 tag 16877216
+l9: send 100000b to 28 tag 16877216
+l9 requires l8
+l10: recv 100000b from 28 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 13 {
+/* Iallreduce begin */
+l1: send 100000b to 14 tag 16877216
+l2: recv 100000b from 12 tag 16877216
+l3: send 100000b to 15 tag 16877216
+l3 requires l2
+l4: recv 100000b from 11 tag 16877216
+l5: send 100000b to 17 tag 16877216
+l5 requires l4
+l6: recv 100000b from 9 tag 16877216
+l7: send 100000b to 21 tag 16877216
+l7 requires l6
+l8: recv 100000b from 5 tag 16877216
+l9: send 100000b to 29 tag 16877216
+l9 requires l8
+l10: recv 100000b from 29 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 14 {
+/* Iallreduce begin */
+l1: send 100000b to 15 tag 16877216
+l2: recv 100000b from 13 tag 16877216
+l3: send 100000b to 16 tag 16877216
+l3 requires l2
+l4: recv 100000b from 12 tag 16877216
+l5: send 100000b to 18 tag 16877216
+l5 requires l4
+l6: recv 100000b from 10 tag 16877216
+l7: send 100000b to 22 tag 16877216
+l7 requires l6
+l8: recv 100000b from 6 tag 16877216
+l9: send 100000b to 30 tag 16877216
+l9 requires l8
+l10: recv 100000b from 30 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 15 {
+/* Iallreduce begin */
+l1: send 100000b to 16 tag 16877216
+l2: recv 100000b from 14 tag 16877216
+l3: send 100000b to 17 tag 16877216
+l3 requires l2
+l4: recv 100000b from 13 tag 16877216
+l5: send 100000b to 19 tag 16877216
+l5 requires l4
+l6: recv 100000b from 11 tag 16877216
+l7: send 100000b to 23 tag 16877216
+l7 requires l6
+l8: recv 100000b from 7 tag 16877216
+l9: send 100000b to 31 tag 16877216
+l9 requires l8
+l10: recv 100000b from 31 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 16 {
+/* Iallreduce begin */
+l1: send 100000b to 17 tag 16877216
+l2: recv 100000b from 15 tag 16877216
+l3: send 100000b to 18 tag 16877216
+l3 requires l2
+l4: recv 100000b from 14 tag 16877216
+l5: send 100000b to 20 tag 16877216
+l5 requires l4
+l6: recv 100000b from 12 tag 16877216
+l7: send 100000b to 24 tag 16877216
+l7 requires l6
+l8: recv 100000b from 8 tag 16877216
+l9: send 100000b to 0 tag 16877216
+l9 requires l8
+l10: recv 100000b from 0 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 17 {
+/* Iallreduce begin */
+l1: send 100000b to 18 tag 16877216
+l2: recv 100000b from 16 tag 16877216
+l3: send 100000b to 19 tag 16877216
+l3 requires l2
+l4: recv 100000b from 15 tag 16877216
+l5: send 100000b to 21 tag 16877216
+l5 requires l4
+l6: recv 100000b from 13 tag 16877216
+l7: send 100000b to 25 tag 16877216
+l7 requires l6
+l8: recv 100000b from 9 tag 16877216
+l9: send 100000b to 1 tag 16877216
+l9 requires l8
+l10: recv 100000b from 1 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 18 {
+/* Iallreduce begin */
+l1: send 100000b to 19 tag 16877216
+l2: recv 100000b from 17 tag 16877216
+l3: send 100000b to 20 tag 16877216
+l3 requires l2
+l4: recv 100000b from 16 tag 16877216
+l5: send 100000b to 22 tag 16877216
+l5 requires l4
+l6: recv 100000b from 14 tag 16877216
+l7: send 100000b to 26 tag 16877216
+l7 requires l6
+l8: recv 100000b from 10 tag 16877216
+l9: send 100000b to 2 tag 16877216
+l9 requires l8
+l10: recv 100000b from 2 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 19 {
+/* Iallreduce begin */
+l1: send 100000b to 20 tag 16877216
+l2: recv 100000b from 18 tag 16877216
+l3: send 100000b to 21 tag 16877216
+l3 requires l2
+l4: recv 100000b from 17 tag 16877216
+l5: send 100000b to 23 tag 16877216
+l5 requires l4
+l6: recv 100000b from 15 tag 16877216
+l7: send 100000b to 27 tag 16877216
+l7 requires l6
+l8: recv 100000b from 11 tag 16877216
+l9: send 100000b to 3 tag 16877216
+l9 requires l8
+l10: recv 100000b from 3 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 20 {
+/* Iallreduce begin */
+l1: send 100000b to 21 tag 16877216
+l2: recv 100000b from 19 tag 16877216
+l3: send 100000b to 22 tag 16877216
+l3 requires l2
+l4: recv 100000b from 18 tag 16877216
+l5: send 100000b to 24 tag 16877216
+l5 requires l4
+l6: recv 100000b from 16 tag 16877216
+l7: send 100000b to 28 tag 16877216
+l7 requires l6
+l8: recv 100000b from 12 tag 16877216
+l9: send 100000b to 4 tag 16877216
+l9 requires l8
+l10: recv 100000b from 4 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 21 {
+/* Iallreduce begin */
+l1: send 100000b to 22 tag 16877216
+l2: recv 100000b from 20 tag 16877216
+l3: send 100000b to 23 tag 16877216
+l3 requires l2
+l4: recv 100000b from 19 tag 16877216
+l5: send 100000b to 25 tag 16877216
+l5 requires l4
+l6: recv 100000b from 17 tag 16877216
+l7: send 100000b to 29 tag 16877216
+l7 requires l6
+l8: recv 100000b from 13 tag 16877216
+l9: send 100000b to 5 tag 16877216
+l9 requires l8
+l10: recv 100000b from 5 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 22 {
+/* Iallreduce begin */
+l1: send 100000b to 23 tag 16877216
+l2: recv 100000b from 21 tag 16877216
+l3: send 100000b to 24 tag 16877216
+l3 requires l2
+l4: recv 100000b from 20 tag 16877216
+l5: send 100000b to 26 tag 16877216
+l5 requires l4
+l6: recv 100000b from 18 tag 16877216
+l7: send 100000b to 30 tag 16877216
+l7 requires l6
+l8: recv 100000b from 14 tag 16877216
+l9: send 100000b to 6 tag 16877216
+l9 requires l8
+l10: recv 100000b from 6 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 23 {
+/* Iallreduce begin */
+l1: send 100000b to 24 tag 16877216
+l2: recv 100000b from 22 tag 16877216
+l3: send 100000b to 25 tag 16877216
+l3 requires l2
+l4: recv 100000b from 21 tag 16877216
+l5: send 100000b to 27 tag 16877216
+l5 requires l4
+l6: recv 100000b from 19 tag 16877216
+l7: send 100000b to 31 tag 16877216
+l7 requires l6
+l8: recv 100000b from 15 tag 16877216
+l9: send 100000b to 7 tag 16877216
+l9 requires l8
+l10: recv 100000b from 7 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 24 {
+/* Iallreduce begin */
+l1: send 100000b to 25 tag 16877216
+l2: recv 100000b from 23 tag 16877216
+l3: send 100000b to 26 tag 16877216
+l3 requires l2
+l4: recv 100000b from 22 tag 16877216
+l5: send 100000b to 28 tag 16877216
+l5 requires l4
+l6: recv 100000b from 20 tag 16877216
+l7: send 100000b to 0 tag 16877216
+l7 requires l6
+l8: recv 100000b from 16 tag 16877216
+l9: send 100000b to 8 tag 16877216
+l9 requires l8
+l10: recv 100000b from 8 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 25 {
+/* Iallreduce begin */
+l1: send 100000b to 26 tag 16877216
+l2: recv 100000b from 24 tag 16877216
+l3: send 100000b to 27 tag 16877216
+l3 requires l2
+l4: recv 100000b from 23 tag 16877216
+l5: send 100000b to 29 tag 16877216
+l5 requires l4
+l6: recv 100000b from 21 tag 16877216
+l7: send 100000b to 1 tag 16877216
+l7 requires l6
+l8: recv 100000b from 17 tag 16877216
+l9: send 100000b to 9 tag 16877216
+l9 requires l8
+l10: recv 100000b from 9 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 26 {
+/* Iallreduce begin */
+l1: send 100000b to 27 tag 16877216
+l2: recv 100000b from 25 tag 16877216
+l3: send 100000b to 28 tag 16877216
+l3 requires l2
+l4: recv 100000b from 24 tag 16877216
+l5: send 100000b to 30 tag 16877216
+l5 requires l4
+l6: recv 100000b from 22 tag 16877216
+l7: send 100000b to 2 tag 16877216
+l7 requires l6
+l8: recv 100000b from 18 tag 16877216
+l9: send 100000b to 10 tag 16877216
+l9 requires l8
+l10: recv 100000b from 10 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 27 {
+/* Iallreduce begin */
+l1: send 100000b to 28 tag 16877216
+l2: recv 100000b from 26 tag 16877216
+l3: send 100000b to 29 tag 16877216
+l3 requires l2
+l4: recv 100000b from 25 tag 16877216
+l5: send 100000b to 31 tag 16877216
+l5 requires l4
+l6: recv 100000b from 23 tag 16877216
+l7: send 100000b to 3 tag 16877216
+l7 requires l6
+l8: recv 100000b from 19 tag 16877216
+l9: send 100000b to 11 tag 16877216
+l9 requires l8
+l10: recv 100000b from 11 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 28 {
+/* Iallreduce begin */
+l1: send 100000b to 29 tag 16877216
+l2: recv 100000b from 27 tag 16877216
+l3: send 100000b to 30 tag 16877216
+l3 requires l2
+l4: recv 100000b from 26 tag 16877216
+l5: send 100000b to 0 tag 16877216
+l5 requires l4
+l6: recv 100000b from 24 tag 16877216
+l7: send 100000b to 4 tag 16877216
+l7 requires l6
+l8: recv 100000b from 20 tag 16877216
+l9: send 100000b to 12 tag 16877216
+l9 requires l8
+l10: recv 100000b from 12 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 29 {
+/* Iallreduce begin */
+l1: send 100000b to 30 tag 16877216
+l2: recv 100000b from 28 tag 16877216
+l3: send 100000b to 31 tag 16877216
+l3 requires l2
+l4: recv 100000b from 27 tag 16877216
+l5: send 100000b to 1 tag 16877216
+l5 requires l4
+l6: recv 100000b from 25 tag 16877216
+l7: send 100000b to 5 tag 16877216
+l7 requires l6
+l8: recv 100000b from 21 tag 16877216
+l9: send 100000b to 13 tag 16877216
+l9 requires l8
+l10: recv 100000b from 13 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 30 {
+/* Iallreduce begin */
+l1: send 100000b to 31 tag 16877216
+l2: recv 100000b from 29 tag 16877216
+l3: send 100000b to 0 tag 16877216
+l3 requires l2
+l4: recv 100000b from 28 tag 16877216
+l5: send 100000b to 2 tag 16877216
+l5 requires l4
+l6: recv 100000b from 26 tag 16877216
+l7: send 100000b to 6 tag 16877216
+l7 requires l6
+l8: recv 100000b from 22 tag 16877216
+l9: send 100000b to 14 tag 16877216
+l9 requires l8
+l10: recv 100000b from 14 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}
+
+rank 31 {
+/* Iallreduce begin */
+l1: send 100000b to 0 tag 16877216
+l2: recv 100000b from 30 tag 16877216
+l3: send 100000b to 1 tag 16877216
+l3 requires l2
+l4: recv 100000b from 29 tag 16877216
+l5: send 100000b to 3 tag 16877216
+l5 requires l4
+l6: recv 100000b from 27 tag 16877216
+l7: send 100000b to 7 tag 16877216
+l7 requires l6
+l8: recv 100000b from 23 tag 16877216
+l9: send 100000b to 15 tag 16877216
+l9 requires l8
+l10: recv 100000b from 15 tag 16877216
+/* Iallreduce end */
+l11: send 0b to 9999999 tag 16877216
+l11 requires l1
+l11 requires l3
+l11 requires l5
+l11 requires l7
+l11 requires l9
+l11 requires l10
+}

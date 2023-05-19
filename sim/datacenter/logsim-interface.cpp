@@ -127,12 +127,12 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         uecSink->set_paths(_netPaths[to][from]);
     } else if (_protocolName == NDP_PROTOCOL) {
 
-        NdpSrc::setRouteStrategy(SCATTER_PERMUTE);
-        NdpSink::setRouteStrategy(SCATTER_PERMUTE);
+        NdpSrc::setRouteStrategy(SCATTER_RANDOM);
+        NdpSink::setRouteStrategy(SCATTER_RANDOM);
 
         NdpSrc *ndpSrc = new NdpSrc(NULL, NULL, *_eventlist);
         _ndpSrcVector.push_back(ndpSrc);
-        ndpSrc->setCwnd(MAX_CWD_MODERN_UEC);
+        ndpSrc->setCwnd(_cwd);
         ndpSrc->set_flowsize(size);
         ndpSrc->set_flow_over_hook(std::bind(&LogSimInterface::flow_over, this,
                                              std::placeholders::_1));
@@ -224,11 +224,11 @@ void LogSimInterface::flow_over(const Packet &p) {
 void LogSimInterface::reset_latest_receive() { _latest_recv->updated = false; }
 
 void LogSimInterface::terminate_sim() {
-    for (std::size_t i = 0; i < _uecSrcVector.size(); ++i) {
-        delete _uecSrcVector[i];
-    }
     for (std::size_t i = 0; i < _ndpSrcVector.size(); ++i) {
         delete _ndpSrcVector[i];
+    }
+    for (std::size_t i = 0; i < _uecSrcVector.size(); ++i) {
+        delete _uecSrcVector[i];
     }
 }
 

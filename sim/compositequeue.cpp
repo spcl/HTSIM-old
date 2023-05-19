@@ -150,8 +150,9 @@ void CompositeQueue::receivePacket(Packet &pkt) {
 
     // is this a Tofino packet from the egress pipeline?
     if (!pkt.header_only()) {
-
-        // Queue
+        // printf("Current Queue Size %d - Max %d - Bit Rate %lu\n",
+        //        _queuesize_low, _maxsize, _bitrate);
+        //  Queue
         if (COLLECT_DATA) {
             if (_queuesize_low != 0) {
                 std::string file_name =
@@ -200,7 +201,7 @@ void CompositeQueue::receivePacket(Packet &pkt) {
                 if (_logger)
                     _logger->logQueue(*this, QueueLogger::PKT_TRIM, pkt);
 
-                if (_queuesize_high + booted_pkt->size() > 2 * _maxsize) {
+                if (_queuesize_high + booted_pkt->size() > 200 * _maxsize) {
                     if (booted_pkt->reverse_route() &&
                         booted_pkt->bounced() == false) {
                         // return the packet to the sender
@@ -270,7 +271,7 @@ void CompositeQueue::receivePacket(Packet &pkt) {
     }
     assert(pkt.header_only());
 
-    if (_queuesize_high + pkt.size() > 2 * _maxsize) {
+    if (_queuesize_high + pkt.size() > 200 * _maxsize) {
         // drop header
         // cout << "drop!\n";
         if (pkt.reverse_route() && pkt.bounced() == false) {
