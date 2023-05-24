@@ -13,7 +13,7 @@
 #include "topology.h"
 #include <ostream>
 
-#define K 4
+#define K 8
 #define NK (K * K / 2)
 #define NC (K * K / 4)
 #define NSRV (K * K * K)

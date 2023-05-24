@@ -18,3 +18,14 @@ datacenter/uec_entry
 /plotting/sent/*
 /sim/output/sent/*
 *.csv
+
+plotting/cwd
+plotting/queue_size_normalized
+plotting/ecn
+plotting/out
+plotting/rtt
+plotting/sent
+plotting/nack
+plotting/input
+plotting/ls_to_us
+plotting/us_to_cs

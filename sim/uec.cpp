@@ -398,7 +398,7 @@ void UecSrc::receivePacket(Packet &pkt) {
         processAck(dynamic_cast<UecAck &>(pkt));
         break;
     case UECNACK:
-        printf("NACK %d\n", from);
+        // printf("NACK %d\n", from);
         if (_trimming_enabled) {
             processNack(dynamic_cast<UecNack &>(pkt));
         }
@@ -603,7 +603,6 @@ void UecSrc::send_packets() {
                                               pattern)) {
                             std::string numberStr = matches[1].str();
                             int number = std::stoi(numberStr);
-                            printf("Route to %d\n", number);
                             us_to_cs.push_back(std::make_pair(
                                     eventlist().now() / 1000 +
                                             (service_time / 1000),
@@ -620,7 +619,6 @@ void UecSrc::send_packets() {
                                               pattern)) {
                             std::string numberStr = matches[1].str();
                             int number = std::stoi(numberStr);
-                            printf("Route to %d\n", number);
                             ls_to_us.push_back(std::make_pair(
                                     eventlist().now() / 1000 +
                                             (service_time / 1000),
