@@ -95,7 +95,7 @@ int main(int argc, char **argv) {
     int kmin = -1;
     int kmax = -1;
     int seed = -1;
-    bool reuse_entropy;
+    bool reuse_entropy = false;
 
     int i = 1;
     filename << "logout.dat";

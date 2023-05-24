@@ -97,7 +97,8 @@ int main(int argc, char **argv) {
     int kmin = -1;
     int kmax = -1;
     int seed = -1;
-    bool reuse_entropy;
+    bool reuse_entropy = false;
+    int fat_tree_k = 4; // 64 Nodes by default
 
     int i = 1;
     filename << "logout.dat";
@@ -142,6 +143,9 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-kmax")) {
             // kmin as percentage of queue size (0..100)
             kmax = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-k")) {
+            fat_tree_k = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-reuse_entropy")) {
             reuse_entropy = atoi(argv[i + 1]);
@@ -248,7 +252,7 @@ int main(int argc, char **argv) {
                                                                           kmax);
     OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(
             queuesize, linkspeed, &logfile, &eventlist, ff, COMPOSITE,
-            hop_latency, switch_latency);
+            hop_latency, switch_latency, fat_tree_k);
 #endif
 
 #ifdef MH_FAT_TREE

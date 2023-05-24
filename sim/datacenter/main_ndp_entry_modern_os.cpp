@@ -90,6 +90,7 @@ int main(int argc, char **argv) {
     simtime_picosec switch_latency = timeFromNs((uint32_t)0);
     int packet_size = 2048;
     int seed = -1;
+    int fat_tree_k = 4; // 64 Nodes by default
 
     int i = 1;
     filename << "logout.dat";
@@ -115,6 +116,9 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-cwnd")) {
             cwnd = atoi(argv[i + 1]);
             cout << "cwnd " << cwnd << endl;
+            i++;
+        } else if (!strcmp(argv[i], "-k")) {
+            fat_tree_k = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-q")) {
             queuesize = atoi(argv[i + 1]);
@@ -231,9 +235,8 @@ int main(int argc, char **argv) {
 #ifdef OV_FAT_TREE
     OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(
             queuesize, linkspeed, &logfile, &eventlist, ff, COMPOSITE,
-            hop_latency,
-            switch_latency); // TODO(tommaso): added a queuesize parameter to
-                             // fit new constructor, verify correctness
+            hop_latency, switch_latency, fat_tree_k);
+
 #endif
 
 #ifdef MH_FAT_TREE

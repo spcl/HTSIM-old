@@ -14,7 +14,7 @@ htsim_*
 *.png
 *.html
 *.txt
-datacenter/uec_entry
+sim/datacenter/uec_entry
 /plotting/sent/*
 /sim/output/sent/*
 *.csv

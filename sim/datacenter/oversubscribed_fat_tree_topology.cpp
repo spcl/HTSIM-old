@@ -22,11 +22,12 @@ extern int N;
 OversubscribedFatTreeTopology::OversubscribedFatTreeTopology(
         mem_b queuesize, linkspeed_bps linkspeed, Logfile *lg, EventList *ev,
         FirstFit *fit, queue_type q, simtime_picosec latency,
-        simtime_picosec switch_latency) {
+        simtime_picosec switch_latency, int k) {
     logfile = lg;
     eventlist = ev;
     ff = fit;
 
+    K = k;
     _no_of_nodes = K * K * K;
 
     qt = q;
@@ -36,7 +37,36 @@ OversubscribedFatTreeTopology::OversubscribedFatTreeTopology(
     _switch_latency = switch_latency;
     _linkspeed = linkspeed;
 
+    set_params(_no_of_nodes);
     init_network();
+}
+
+void OversubscribedFatTreeTopology::set_params(uint32_t no_of_nodes) {
+
+    int NK = (K * K / 2);
+    NSRV = (K * K * K);
+    NTOR = NK;
+    NAGG = NK;
+    NPOD = K;
+    NCORE = (K * K / 4);
+
+    // These vectors are sparse - we won't use all the entries
+    pipes_nc_nup.resize(NCORE, vector<Pipe *>(NAGG));
+    queues_nc_nup.resize(NCORE, vector<Queue *>(NAGG));
+
+    pipes_nup_nlp.resize(NAGG, vector<Pipe *>(NTOR));
+    queues_nup_nlp.resize(NAGG, vector<Queue *>(NTOR));
+
+    pipes_nlp_ns.resize(NTOR, vector<Pipe *>(NSRV));
+    queues_nlp_ns.resize(NTOR, vector<Queue *>(NSRV));
+
+    pipes_nup_nc.resize(NAGG, vector<Pipe *>(NCORE));
+    queues_nup_nc.resize(NAGG, vector<Queue *>(NCORE));
+
+    pipes_nlp_nup.resize(NTOR, vector<Pipe *>(NAGG));
+    pipes_ns_nlp.resize(NSRV, vector<Pipe *>(NTOR));
+    queues_nlp_nup.resize(NTOR, vector<Queue *>(NAGG));
+    queues_ns_nlp.resize(NSRV, vector<Queue *>(NTOR));
 }
 
 Queue *
@@ -72,23 +102,23 @@ Queue *OversubscribedFatTreeTopology::alloc_queue(QueueLogger *queueLogger,
 void OversubscribedFatTreeTopology::init_network() {
     QueueLoggerSampling *queueLogger;
 
-    for (uint32_t j = 0; j < NC; j++)
-        for (uint32_t k = 0; k < NK; k++) {
+    for (uint32_t j = 0; j < NCORE; j++)
+        for (uint32_t k = 0; k < NTOR; k++) {
             queues_nc_nup[j][k] = NULL;
             pipes_nc_nup[j][k] = NULL;
             queues_nup_nc[k][j] = NULL;
             pipes_nup_nc[k][j] = NULL;
         }
 
-    for (uint32_t j = 0; j < NK; j++)
-        for (uint32_t k = 0; k < NK; k++) {
+    for (uint32_t j = 0; j < NTOR; j++)
+        for (uint32_t k = 0; k < NTOR; k++) {
             queues_nup_nlp[j][k] = NULL;
             pipes_nup_nlp[j][k] = NULL;
             queues_nlp_nup[k][j] = NULL;
             pipes_nlp_nup[k][j] = NULL;
         }
 
-    for (uint32_t j = 0; j < NK; j++)
+    for (uint32_t j = 0; j < NTOR; j++)
         for (uint32_t k = 0; k < NSRV; k++) {
             queues_nlp_ns[j][k] = NULL;
             pipes_nlp_ns[j][k] = NULL;
@@ -97,10 +127,10 @@ void OversubscribedFatTreeTopology::init_network() {
         }
 
     // lower layer pod switch to server
-    for (uint32_t j = 0; j < NK; j++) {
+    for (uint32_t j = 0; j < NTOR; j++) {
         for (uint32_t l = 0; l < 2 * K; l++) {
             uint32_t k = j * 2 * K + l;
-            // Downlink
+            // DownliNTOR
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             // queueLogger = NULL;
             logfile->addLogger(*queueLogger);
@@ -115,7 +145,7 @@ void OversubscribedFatTreeTopology::init_network() {
                                         ntoa(k));
             logfile->writeName(*(pipes_nlp_ns[j][k]));
 
-            // Uplink
+            // UpliNTOR
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
             queues_ns_nlp[k][j] = alloc_src_queue(queueLogger);
@@ -136,19 +166,19 @@ void OversubscribedFatTreeTopology::init_network() {
     }
 
     /*    for (uint32_t i = 0;i<NSRV;i++){
-          for (uint32_t j = 0;j<NK;j++){
+          for (uint32_t j = 0;j<NTOR;j++){
           printf("%p/%p ",queues_ns_nlp[i][j], queues_nlp_ns[j][i]);
           }
           printf("\n");
           }*/
 
     // Lower layer in pod to upper layer in pod!
-    for (uint32_t j = 0; j < NK; j++) {
+    for (uint32_t j = 0; j < NTOR; j++) {
         uint32_t podid = 2 * j / K;
         // Connect the lower layer switch to the upper layer switches in the
         // same pod
         for (uint32_t k = MIN_POD_ID(podid); k <= MAX_POD_ID(podid); k++) {
-            // Downlink
+            // DownliNTOR
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
             queues_nup_nlp[k][j] = alloc_queue(queueLogger);
@@ -162,7 +192,7 @@ void OversubscribedFatTreeTopology::init_network() {
                                          ntoa(j));
             logfile->writeName(*(pipes_nup_nlp[k][j]));
 
-            // Uplink
+            // UpliNTOR
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
             queues_nlp_nup[j][k] = alloc_queue(queueLogger);
@@ -183,19 +213,19 @@ void OversubscribedFatTreeTopology::init_network() {
         }
     }
 
-    /*for (uint32_t i = 0;i<NK;i++){
-      for (uint32_t j = 0;j<NK;j++){
+    /*for (uint32_t i = 0;i<NTOR;i++){
+      for (uint32_t j = 0;j<NTOR;j++){
       printf("%p/%p ",queues_nlp_nup[i][j], queues_nup_nlp[j][i]);
       }
       printf("\n");
       }*/
 
     // Upper layer in pod to core!
-    for (uint32_t j = 0; j < NK; j++) {
+    for (uint32_t j = 0; j < NTOR; j++) {
         uint32_t podpos = j % (K / 2);
         for (uint32_t l = 0; l < K / 2; l++) {
             uint32_t k = podpos * K / 2 + l;
-            // Downlink
+            // DownliNTOR
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
 
@@ -209,7 +239,7 @@ void OversubscribedFatTreeTopology::init_network() {
                                         ntoa(k));
             logfile->writeName(*(pipes_nup_nc[j][k]));
 
-            // Uplink
+            // UpliNTOR
 
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
@@ -235,7 +265,7 @@ void OversubscribedFatTreeTopology::init_network() {
         }
     }
 
-    /*    for (uint32_t i = 0;i<NK;i++){
+    /*    for (uint32_t i = 0;i<NTOR;i++){
           for (uint32_t j = 0;j<NC;j++){
           printf("%p/%p ",queues_nup_nc[i][j], queues_nc_nup[j][i]);
           }
@@ -311,7 +341,7 @@ OversubscribedFatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest,
                 routeout->push_back(queues_nup_nc[upper][core]);
                 routeout->push_back(pipes_nup_nc[upper][core]);
 
-                // now take the only link down to the destination server!
+                // now take the only liNTOR down to the destination server!
 
                 uint32_t upper2 = HOST_POD(dest) * K / 2 + 2 * core / K;
                 // printf("K %d HOST_POD(%d) %d core %d upper2
@@ -346,15 +376,15 @@ void OversubscribedFatTreeTopology::count_queue(Queue *queue) {
 int64_t OversubscribedFatTreeTopology::find_lp_switch(Queue *queue) {
     // first check ns_nlp
     for (uint32_t i = 0; i < NSRV; i++)
-        for (uint32_t j = 0; j < NK; j++)
+        for (uint32_t j = 0; j < NTOR; j++)
             if (queues_ns_nlp[i][j] == queue)
                 return j;
 
     // only count nup to nlp
     count_queue(queue);
 
-    for (uint32_t i = 0; i < NK; i++)
-        for (uint32_t j = 0; j < NK; j++)
+    for (uint32_t i = 0; i < NTOR; i++)
+        for (uint32_t j = 0; j < NTOR; j++)
             if (queues_nup_nlp[i][j] == queue)
                 return j;
 
@@ -364,14 +394,14 @@ int64_t OversubscribedFatTreeTopology::find_lp_switch(Queue *queue) {
 int64_t OversubscribedFatTreeTopology::find_up_switch(Queue *queue) {
     count_queue(queue);
     // first check nc_nup
-    for (uint32_t i = 0; i < NC; i++)
-        for (uint32_t j = 0; j < NK; j++)
+    for (uint32_t i = 0; i < NCORE; i++)
+        for (uint32_t j = 0; j < NTOR; j++)
             if (queues_nc_nup[i][j] == queue)
                 return j;
 
     // check nlp_nup
-    for (uint32_t i = 0; i < NK; i++)
-        for (uint32_t j = 0; j < NK; j++)
+    for (uint32_t i = 0; i < NTOR; i++)
+        for (uint32_t j = 0; j < NTOR; j++)
             if (queues_nlp_nup[i][j] == queue)
                 return j;
 
@@ -381,8 +411,8 @@ int64_t OversubscribedFatTreeTopology::find_up_switch(Queue *queue) {
 int64_t OversubscribedFatTreeTopology::find_core_switch(Queue *queue) {
     count_queue(queue);
     // first check nup_nc
-    for (uint32_t i = 0; i < NK; i++)
-        for (uint32_t j = 0; j < NC; j++)
+    for (uint32_t i = 0; i < NTOR; i++)
+        for (uint32_t j = 0; j < NCORE; j++)
             if (queues_nup_nc[i][j] == queue)
                 return j;
 
@@ -391,7 +421,7 @@ int64_t OversubscribedFatTreeTopology::find_core_switch(Queue *queue) {
 
 int64_t OversubscribedFatTreeTopology::find_destination(Queue *queue) {
     // first check nlp_ns
-    for (uint32_t i = 0; i < NK; i++)
+    for (uint32_t i = 0; i < NTOR; i++)
         for (uint32_t j = 0; j < NSRV; j++)
             if (queues_nlp_ns[i][j] == queue)
                 return j;

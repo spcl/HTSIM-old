@@ -13,7 +13,7 @@
 #include "topology.h"
 #include <ostream>
 
-#define K 8
+/*#define K 8
 #define NK (K * K / 2)
 #define NC (K * K / 4)
 #define NSRV (K * K * K)
@@ -22,7 +22,7 @@
 #define HOST_POD(src) (src / K / K)
 
 #define MIN_POD_ID(pod_id) (pod_id * K / 2)
-#define MAX_POD_ID(pod_id) ((pod_id + 1) * K / 2 - 1)
+#define MAX_POD_ID(pod_id) ((pod_id + 1) * K / 2 - 1)*/
 
 #ifndef QT
 #define QT
@@ -39,19 +39,19 @@ typedef enum {
 
 class OversubscribedFatTreeTopology : public Topology {
   public:
-    Pipe *pipes_nc_nup[NC][NK];
-    Pipe *pipes_nup_nlp[NK][NK];
-    Pipe *pipes_nlp_ns[NK][NSRV];
-    Queue *queues_nc_nup[NC][NK];
-    Queue *queues_nup_nlp[NK][NK];
-    Queue *queues_nlp_ns[NK][NSRV];
+    vector<vector<Pipe *>> pipes_nc_nup;
+    vector<vector<Pipe *>> pipes_nup_nlp;
+    vector<vector<Pipe *>> pipes_nlp_ns;
+    vector<vector<Queue *>> queues_nc_nup;
+    vector<vector<Queue *>> queues_nup_nlp;
+    vector<vector<Queue *>> queues_nlp_ns;
 
-    Pipe *pipes_nup_nc[NK][NC];
-    Pipe *pipes_nlp_nup[NK][NK];
-    Pipe *pipes_ns_nlp[NSRV][NK];
-    Queue *queues_nup_nc[NK][NC];
-    Queue *queues_nlp_nup[NK][NK];
-    Queue *queues_ns_nlp[NSRV][NK];
+    vector<vector<Pipe *>> pipes_nup_nc;
+    vector<vector<Pipe *>> pipes_nlp_nup;
+    vector<vector<Pipe *>> pipes_ns_nlp;
+    vector<vector<Queue *>> queues_nup_nc;
+    vector<vector<Queue *>> queues_nlp_nup;
+    vector<vector<Queue *>> queues_ns_nlp;
 
     FirstFit *ff;
     Logfile *logfile;
@@ -62,7 +62,7 @@ class OversubscribedFatTreeTopology : public Topology {
     OversubscribedFatTreeTopology(mem_b queuesize, linkspeed_bps linkspeed,
                                   Logfile *lg, EventList *ev, FirstFit *fit,
                                   queue_type q, simtime_picosec latency,
-                                  simtime_picosec switch_latency);
+                                  simtime_picosec switch_latency, int k);
 
     void init_network();
     virtual vector<const Route *> *get_bidir_paths(uint32_t src, uint32_t dest,
@@ -83,14 +83,21 @@ class OversubscribedFatTreeTopology : public Topology {
     vector<uint32_t> *get_neighbours(uint32_t src);
     uint32_t no_of_nodes() const { return _no_of_nodes; }
 
+    uint32_t HOST_POD_SWITCH(uint32_t src) { return src / 2 / K; }
+    uint32_t HOST_POD(uint32_t src) { return src / K / K; }
+    uint32_t MIN_POD_ID(uint32_t pod_id) { return pod_id * K / 2; }
+    uint32_t MAX_POD_ID(uint32_t pod_id) { return (pod_id + 1) * K / 2 - 1; }
+
   private:
     map<Queue *, int> _link_usage;
     int64_t find_lp_switch(Queue *queue);
     int64_t find_up_switch(Queue *queue);
     int64_t find_core_switch(Queue *queue);
     int64_t find_destination(Queue *queue);
-    uint32_t _no_of_nodes;
+    void set_params(uint32_t no_of_nodes);
+    uint32_t K, _no_of_nodes;
     mem_b _queuesize;
+    uint32_t NCORE, NAGG, NTOR, NSRV, NPOD;
     static int kmin;
     static int kmax;
     linkspeed_bps _linkspeed;
