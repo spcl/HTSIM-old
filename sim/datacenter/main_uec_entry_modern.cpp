@@ -95,6 +95,7 @@ int main(int argc, char **argv) {
     int kmin = -1;
     int kmax = -1;
     int seed = -1;
+    bool reuse_entropy;
 
     int i = 1;
     filename << "logout.dat";
@@ -144,6 +145,9 @@ int main(int argc, char **argv) {
             packet_size = atoi(argv[i + 1]);
             PKT_SIZE_MODERN =
                     packet_size; // Saving this for UEC reference, Bytes
+            i++;
+        } else if (!strcmp(argv[i], "-reuse_entropy")) {
+            reuse_entropy = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-switch_latency")) {
             switch_latency = timeFromNs(atof(argv[i + 1]));
@@ -322,6 +326,7 @@ int main(int argc, char **argv) {
     lgs->set_protocol(UEC_PROTOCOL);
     lgs->set_cwd(cwnd);
     lgs->set_queue_size(queuesize);
+    lgs->setReuse(reuse_entropy);
     start_lgs(goal_filename, *lgs);
 
     for (int src = 0; src < dest; ++src) {

@@ -17,3 +17,4 @@ htsim_*
 datacenter/uec_entry
 /plotting/sent/*
 /sim/output/sent/*
+*.csv

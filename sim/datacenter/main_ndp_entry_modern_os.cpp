@@ -81,8 +81,7 @@ int main(int argc, char **argv) {
     eventlist.setEndtime(timeFromSec(10));
     Clock c(timeFromSec(5 / 100.), eventlist);
     mem_b queuesize = memFromPkt(INFINITE_BUFFER_SIZE);
-    int no_of_conns = 0, cwnd = 40, no_of_nodes = DEFAULT_NODES,
-        flowsize = 0 * 50;
+    int no_of_conns = 0, cwnd = 40, no_of_nodes = DEFAULT_NODES;
     stringstream filename(ios_base::out);
     RouteStrategy route_strategy = NOT_SET;
     std::string goal_filename;
@@ -90,8 +89,6 @@ int main(int argc, char **argv) {
     simtime_picosec hop_latency = timeFromNs((uint32_t)RTT);
     simtime_picosec switch_latency = timeFromNs((uint32_t)0);
     int packet_size = 2048;
-    int kmin = -1;
-    int kmax = -1;
     int seed = -1;
 
     int i = 1;
@@ -129,14 +126,6 @@ int main(int argc, char **argv) {
             printf("Speed is %lu\n", LINK_SPEED_MODERN);
             LINK_SPEED_MODERN = LINK_SPEED_MODERN / 1000;
             // Saving this for UEC reference, Gbps
-            i++;
-        } else if (!strcmp(argv[i], "-kmin")) {
-            // kmin as percentage of queue size (0..100)
-            kmin = atoi(argv[i + 1]);
-            i++;
-        } else if (!strcmp(argv[i], "-kmax")) {
-            // kmin as percentage of queue size (0..100)
-            kmax = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-mtu")) {
             packet_size = atoi(argv[i + 1]);

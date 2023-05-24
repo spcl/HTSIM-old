@@ -54,6 +54,7 @@ class UecSrc : public PacketSink, public EventSource {
     void set_paths(vector<const Route *> *rt);
 
     void setCwnd(uint64_t cwnd) { _cwnd = cwnd; };
+    void setReuse(bool reuse) { _use_good_entropies = reuse; };
     void setHopCount(int hops) {
         _hop_count = hops;
         printf("Hop Count is %d\n", hops);
@@ -147,6 +148,8 @@ class UecSrc : public PacketSink, public EventSource {
     vector<pair<simtime_picosec, uint64_t>> _list_cwd;
     vector<pair<simtime_picosec, uint64_t>> _list_unacked;
     vector<pair<simtime_picosec, uint64_t>> _list_nack;
+    vector<pair<simtime_picosec, int>> us_to_cs;
+    vector<pair<simtime_picosec, int>> ls_to_us;
 
     vector<const Route *> _good_entropies;
     bool _use_good_entropies;

@@ -5,7 +5,10 @@
 #include <fstream>
 #include <iostream>
 #include <math.h>
+#include <regex>
 #include <sstream>
+#include <stdio.h>
+#include <utility>
 
 CompositeQueue::CompositeQueue(linkspeed_bps bitrate, mem_b maxsize,
                                EventList &eventlist, QueueLogger *logger)
@@ -99,6 +102,43 @@ void CompositeQueue::completeService() {
             }
         }
 
+        if (COLLECT_DATA) {
+            if (_nodename.find("US_0") != std::string::npos &&
+                pkt->type() == UEC) {
+                std::regex pattern("-CS_(\\d+)");
+                std::smatch matches;
+                if (std::regex_search(_nodename, matches, pattern)) {
+                    std::string numberStr = matches[1].str();
+                    int number = std::stoi(numberStr);
+                    std::string file_name =
+                            "../output/us_to_cs/us_to_cs" + _name + ".txt";
+                    std::ofstream MyFileUsToCs(file_name, std::ios_base::app);
+
+                    MyFileUsToCs << eventlist().now() / 1000 << "," << number
+                                 << std::endl;
+
+                    MyFileUsToCs.close();
+                }
+            }
+            if (_nodename.find("LS_0") != std::string::npos &&
+                pkt->type() == UEC) {
+                std::regex pattern("-US_(\\d+)");
+                std::smatch matches;
+                if (std::regex_search(_nodename, matches, pattern)) {
+                    std::string numberStr = matches[1].str();
+                    int number = std::stoi(numberStr);
+                    std::string file_name =
+                            "../output/ls_to_us/ls_to_us" + _name + ".txt";
+                    std::ofstream MyFileUsToCs(file_name, std::ios_base::app);
+
+                    MyFileUsToCs << eventlist().now() / 1000 << "," << number
+                                 << std::endl;
+
+                    MyFileUsToCs.close();
+                }
+            }
+        }
+
         if (_logger)
             _logger->logQueue(*this, QueueLogger::PKT_SERVICE, *pkt);
         _num_packets++;
@@ -150,8 +190,10 @@ void CompositeQueue::receivePacket(Packet &pkt) {
 
     // is this a Tofino packet from the egress pipeline?
     if (!pkt.header_only()) {
-        // printf("Current Queue Size %d - Max %d - Bit Rate %lu\n",
-        //        _queuesize_low, _maxsize, _bitrate);
+        /*printf("Current Queue Size %d - Max %d - Bit Rate %lu - Name %s vs "
+               "%s\n",
+               _queuesize_low, _maxsize, _bitrate, _nodename.c_str(),
+               _name.c_str());*/
         //  Queue
         if (COLLECT_DATA) {
             if (_queuesize_low != 0) {
@@ -167,7 +209,6 @@ void CompositeQueue::receivePacket(Packet &pkt) {
                 MyFile.close();
             }
         }
-
         if (_queuesize_low + pkt.size() <= _maxsize || drand() < 0.5) {
             // regular packet; don't drop the arriving packet
 
@@ -178,12 +219,13 @@ void CompositeQueue::receivePacket(Packet &pkt) {
             if (_queuesize_low + pkt.size() > _maxsize) {
                 // we're going to drop an existing packet from the queue
                 if (_enqueued_low.empty()) {
-                    // cout << "QUeuesize " << _queuesize_low << " packetsize "
+                    // cout << "QUeuesize " << _queuesize_low << "
+                    // packetsize "
                     // << pkt.size() << " maxsize " << _maxsize << endl;
                     assert(0);
                 }
-                // take last packet from low prio queue, make it a header and
-                // place it in the high prio queue
+                // take last packet from low prio queue, make it a header
+                // and place it in the high prio queue
 
                 Packet *booted_pkt = _enqueued_low.pop_front();
                 _queuesize_low -= booted_pkt->size();
@@ -316,8 +358,8 @@ void CompositeQueue::receivePacket(Packet &pkt) {
     if (_logger)
         _logger->logQueue(*this, QueueLogger::PKT_ENQUEUE, pkt);
 
-    // cout << "BH[ " << _enqueued_low.size() << " " << _enqueued_high.size() <<
-    // " ]" << endl;
+    // cout << "BH[ " << _enqueued_low.size() << " " <<
+    // _enqueued_high.size() << " ]" << endl;
 
     if (_serv == QUEUE_INVALID) {
         beginService();
