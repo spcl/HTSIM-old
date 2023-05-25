@@ -69,7 +69,8 @@ UecSrc::~UecSrc() {
     // If we are collecting specific logs
     if (COLLECT_DATA) {
         // RTT
-        std::string file_name = "../output/rtt/rtt" + _name + ".txt";
+        std::string file_name = "../output/rtt/rtt" + _name + "_" +
+                                std::to_string(tag) + ".txt";
         std::ofstream MyFile(file_name, std::ios_base::app);
 
         for (const auto &p : _list_rtt) {
@@ -80,7 +81,8 @@ UecSrc::~UecSrc() {
         MyFile.close();
 
         // CWD
-        file_name = "../output/cwd/cwd" + _name + ".txt";
+        file_name = "../output/cwd/cwd" + _name + "_" + std::to_string(tag) +
+                    ".txt";
         std::ofstream MyFileCWD(file_name, std::ios_base::app);
 
         for (const auto &p : _list_cwd) {
@@ -90,7 +92,8 @@ UecSrc::~UecSrc() {
         MyFileCWD.close();
 
         // Unacked
-        file_name = "../output/unacked/unacked" + _name + ".txt";
+        file_name = "../output/unacked/unacked" + _name + "_" +
+                    std::to_string(tag) + ".txt";
         std::ofstream MyFileUnack(file_name, std::ios_base::app);
 
         for (const auto &p : _list_unacked) {
@@ -100,7 +103,8 @@ UecSrc::~UecSrc() {
         MyFileUnack.close();
 
         // NACK
-        file_name = "../output/nack/nack" + _name + ".txt";
+        file_name = "../output/nack/nack" + _name + "_" + std::to_string(tag) +
+                    ".txt";
         std::ofstream MyFileNack(file_name, std::ios_base::app);
 
         for (const auto &p : _list_nack) {
