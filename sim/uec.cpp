@@ -52,6 +52,10 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     _trimming_enabled = true;
 
     _bdp = (_base_rtt * LINK_SPEED_MODERN / 8) / 1000;
+    printf("Link Delay %lu - Link Speed %lu - Pkt Size %d - Base RTT %lu - "
+           "Target RTT is %lu - BDP/CWDN %lu\n",
+           LINK_DELAY_MODERN, LINK_SPEED_MODERN, PKT_SIZE_MODERN, _base_rtt,
+           _target_rtt, _bdp);
     _maxcwnd = _bdp;
     _cwnd = _bdp;
     _consecutive_low_rtt = 0;
@@ -59,7 +63,7 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
 
     _target_based_received = true;
 
-    _max_good_entropies = 8; // TODO: experimental value
+    _max_good_entropies = 1; // TODO: experimental value
     _enableDistanceBasedRtx = false;
     f_flow_over_hook = nullptr;
 }
@@ -320,9 +324,8 @@ void UecSrc::processAck(UecAck &pkt) {
             newRtt)); // TODO: assuming same size for all packets
     mark_received(pkt);
 
-    add_ack_path(pkt.inRoute);
-
     if (!marked) {
+        add_ack_path(pkt.inRoute);
         ++_consecutive_no_ecn;
     } else {
         _consecutive_no_ecn = 0;
@@ -402,7 +405,7 @@ void UecSrc::receivePacket(Packet &pkt) {
         processAck(dynamic_cast<UecAck &>(pkt));
         break;
     case UECNACK:
-        // printf("NACK %d\n", from);
+        printf("NACK %d\n", from);
         if (_trimming_enabled) {
             processNack(dynamic_cast<UecNack &>(pkt));
         }
@@ -547,9 +550,11 @@ void UecSrc::startflow() {
 const Route *UecSrc::get_path() {
     // TODO: add other ways to select paths
     if (_use_good_entropies && !_good_entropies.empty()) {
-        auto rt = _good_entropies[_next_good_entropy];
-        ++_next_good_entropy;
-        _next_good_entropy %= _good_entropies.size();
+        // auto rt = _good_entropies[_next_good_entropy];
+        // ++_next_good_entropy;
+        // _next_good_entropy %= _good_entropies.size();
+        auto rt = _good_entropies.back();
+        _good_entropies.pop_back();
         return rt;
     }
     _crt_path = random() % _paths.size();

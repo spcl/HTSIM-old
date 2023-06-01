@@ -86,6 +86,12 @@ int main(int argc, char **argv) {
     stringstream filename(ios_base::out);
     RouteStrategy route_strategy = NOT_SET;
     std::string goal_filename;
+    linkspeed_bps linkspeed = speedFromMbps((double)HOST_NIC);
+    simtime_picosec hop_latency = timeFromNs((uint32_t)RTT);
+    simtime_picosec switch_latency = timeFromNs((uint32_t)0);
+    int packet_size = 2048;
+    int seed = -1;
+    int fat_tree_k = 4; // 64 Nodes by default
 
     int i = 1;
     filename << "logout.dat";
@@ -116,6 +122,30 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-flowsize")) {
             flowsize = atoi(argv[i + 1]);
             cout << "flowsize " << flowsize << endl;
+            i++;
+        } else if (!strcmp(argv[i], "-linkspeed")) {
+            // linkspeed specified is in Mbps
+            linkspeed = speedFromMbps(atof(argv[i + 1]));
+            LINK_SPEED_MODERN = atoi(argv[i + 1]);
+            printf("Speed is %lu\n", LINK_SPEED_MODERN);
+            LINK_SPEED_MODERN = LINK_SPEED_MODERN / 1000;
+            // Saving this for UEC reference, Gbps
+            i++;
+        } else if (!strcmp(argv[i], "-mtu")) {
+            packet_size = atoi(argv[i + 1]);
+            PKT_SIZE_MODERN =
+                    packet_size; // Saving this for UEC reference, Bytes
+            i++;
+        } else if (!strcmp(argv[i], "-switch_latency")) {
+            switch_latency = timeFromNs(atof(argv[i + 1]));
+            i++;
+        } else if (!strcmp(argv[i], "-hop_latency")) {
+            hop_latency = timeFromNs(atof(argv[i + 1]));
+            LINK_DELAY_MODERN = hop_latency /
+                                1000; // Saving this for UEC reference, ps to ns
+            i++;
+        } else if (!strcmp(argv[i], "-seed")) {
+            seed = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-q")) {
             queuesize = (atoi(argv[i + 1]));
@@ -195,13 +225,10 @@ int main(int argc, char **argv) {
 #endif
 
 #ifdef FAT_TREE
-    FatTreeTopology::set_tiers(3);
+    FatTreeTopology::set_tiers(2);
     FatTreeTopology *top = new FatTreeTopology(
-            no_of_nodes, speedFromMbps(static_cast<double>(HOST_NIC)),
-            queuesize, NULL, &eventlist, ff, COMPOSITE, timeFromNs(RTT),
-            timeFromUs(0.0)); // TODO(tommaso): check parameters -- see
-                              // main_ndp.cpp for how you can turn them into
-                              // runtime options instead of compiled parameters
+            no_of_nodes, linkspeed, queuesize, NULL, &eventlist, ff, COMPOSITE,
+            hop_latency, switch_latency);
 #endif
 
 #ifdef OV_FAT_TREE

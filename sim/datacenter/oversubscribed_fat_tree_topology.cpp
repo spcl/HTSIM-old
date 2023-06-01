@@ -247,7 +247,13 @@ void OversubscribedFatTreeTopology::init_network() {
             //        if (k==0&&j==0)
             // queues_nc_nup[k][j] = alloc_queue(queueLogger,HOST_NIC/10);
             // else
-            queues_nc_nup[k][j] = alloc_queue(queueLogger);
+
+            if (true) {
+                queues_nc_nup[k][j] = alloc_queue(queueLogger, _linkspeed / 2);
+            } else {
+                queues_nc_nup[k][j] = alloc_queue(queueLogger, _linkspeed);
+            }
+
             queues_nc_nup[k][j]->setName("CS_" + ntoa(k) + "-" + "US_" +
                                          ntoa(j));
 

@@ -407,6 +407,7 @@ void FatTreeTopology::init_network() {
             } else {
                 queueLogger = NULL;
             }
+
             queues_nup_nlp[agg][tor] =
                     alloc_queue(queueLogger, _queuesize, DOWNLINK);
             queues_nup_nlp[agg][tor]->setName("US" + ntoa(agg) + "->LS_" +
@@ -424,11 +425,37 @@ void FatTreeTopology::init_network() {
             } else {
                 queueLogger = NULL;
             }
-            queues_nlp_nup[tor][agg] =
-                    alloc_queue(queueLogger, _queuesize, UPLINK, true);
+
+            // TODO: Check this
+            if (true) {
+                if (tor == 0 && agg == 7) {
+                    queues_nlp_nup[tor][agg] =
+                            alloc_queue(queueLogger, _linkspeed / 4, _queuesize,
+                                        UPLINK, true);
+                } else {
+                    queues_nlp_nup[tor][agg] =
+                            alloc_queue(queueLogger, _linkspeed / 4, _queuesize,
+                                        UPLINK, true);
+                }
+            } else {
+                if (tor == 0 && agg == 7) {
+                    queues_nlp_nup[tor][agg] =
+                            alloc_queue(queueLogger, _linkspeed * 1, _queuesize,
+                                        UPLINK, true);
+                } else if (tor == 0 && agg == 0) {
+                    queues_nlp_nup[tor][agg] =
+                            alloc_queue(queueLogger, _linkspeed * 0.25,
+                                        _queuesize, UPLINK, true);
+                } else {
+                    queues_nlp_nup[tor][agg] = alloc_queue(
+                            queueLogger, _linkspeed, _queuesize, UPLINK, true);
+                }
+            }
+
             queues_nlp_nup[tor][agg]->setName("LS" + ntoa(tor) + "->US" +
                                               ntoa(agg));
-            // if (logfile) logfile->writeName(*(queues_nlp_nup[tor][agg]));
+            // if (logfile)
+            // logfile->writeName(*(queues_nlp_nup[tor][agg]));
 
             switches_lp[tor]->addPort(queues_nlp_nup[tor][agg]);
             switches_up[agg]->addPort(queues_nup_nlp[agg][tor]);
@@ -449,7 +476,8 @@ void FatTreeTopology::init_network() {
             pipes_nlp_nup[tor][agg] = new Pipe(_hop_latency, *_eventlist);
             pipes_nlp_nup[tor][agg]->setName("Pipe-LS" + ntoa(tor) + "->US" +
                                              ntoa(agg));
-            // if (logfile) logfile->writeName(*(pipes_nlp_nup[tor][agg]));
+            // if (logfile)
+            // logfile->writeName(*(pipes_nlp_nup[tor][agg]));
 
             if (ff) {
                 ff->add_queue(queues_nlp_nup[tor][agg]);
@@ -482,12 +510,14 @@ void FatTreeTopology::init_network() {
                         alloc_queue(queueLogger, _queuesize, UPLINK);
                 queues_nup_nc[agg][core]->setName("US" + ntoa(agg) + "->CS" +
                                                   ntoa(core));
-                // if (logfile) logfile->writeName(*(queues_nup_nc[agg][core]));
+                // if (logfile)
+                // logfile->writeName(*(queues_nup_nc[agg][core]));
 
                 pipes_nup_nc[agg][core] = new Pipe(_hop_latency, *_eventlist);
                 pipes_nup_nc[agg][core]->setName("Pipe-US" + ntoa(agg) +
                                                  "->CS" + ntoa(core));
-                // if (logfile) logfile->writeName(*(pipes_nup_nc[agg][core]));
+                // if (logfile)
+                // logfile->writeName(*(pipes_nup_nc[agg][core]));
 
                 // Uplink
                 if (_logger_factory) {
@@ -528,12 +558,14 @@ void FatTreeTopology::init_network() {
                                            queues_nc_nup[core][agg],
                                            switches_up[agg]);
                 }
-                // if (logfile) logfile->writeName(*(queues_nc_nup[core][agg]));
+                // if (logfile)
+                // logfile->writeName(*(queues_nc_nup[core][agg]));
 
                 pipes_nc_nup[core][agg] = new Pipe(_hop_latency, *_eventlist);
                 pipes_nc_nup[core][agg]->setName("Pipe-CS" + ntoa(core) +
                                                  "->US" + ntoa(agg));
-                // if (logfile) logfile->writeName(*(pipes_nc_nup[core][agg]));
+                // if (logfile)
+                // logfile->writeName(*(pipes_nc_nup[core][agg]));
 
                 if (ff) {
                     ff->add_queue(queues_nup_nc[agg][core]);
@@ -593,7 +625,8 @@ FatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
     // QueueLoggerSimple *simplequeuelogger = 0;
     // logfile->addLogger(*simplequeuelogger);
     // Queue* pqueue = new Queue(_linkspeed, memFromPkt(FEEDER_BUFFER),
-    // *_eventlist, simplequeuelogger); pqueue->setName("PQueue_" + ntoa(src) +
+    // *_eventlist, simplequeuelogger); pqueue->setName("PQueue_" +
+    // ntoa(src) +
     // "_" + ntoa(dest)); logfile->writeName(*pqueue);
     if (HOST_POD_SWITCH(src) == HOST_POD_SWITCH(dest)) {
 
@@ -754,7 +787,8 @@ FatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
                     routeout->push_back(
                             queues_nup_nc[upper][core]->getRemoteEndpoint());
 
-                // now take the only link down to the destination server!
+                // now take the only link down to the destination
+                // server!
 
                 uint32_t upper2 = HOST_POD(dest) * K / 2 + 2 * core / K;
                 // printf("K %d HOST_POD(%d) %d core %d upper2
@@ -811,7 +845,8 @@ FatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
                         routeback->push_back(queues_nup_nc[upper2][core]
                                                      ->getRemoteEndpoint());
 
-                    // now take the only link back down to the src server!
+                    // now take the only link back down to the src
+                    // server!
 
                     routeback->push_back(queues_nc_nup[core][upper]);
                     routeback->push_back(pipes_nc_nup[core][upper]);

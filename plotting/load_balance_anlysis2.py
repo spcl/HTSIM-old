@@ -52,53 +52,6 @@ def main(args):
         temp_df3.drop_duplicates('Time', inplace = True)
         df3 = pd.concat([df3, temp_df3])
 
-    # US TO CS
-    colnames=['Time', 'Link Used']
-    df = pd.DataFrame(columns =['Time','Link Used'])
-    name = ['0'] * df.shape[0]
-    df = df.assign(Node=name)
-
-    pathlist = Path('us_to_cs').glob('**/*.txt')
-    for files in sorted(pathlist):
-        path_in_str = str(files)
-        temp_df = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
-        name = [str(path_in_str)] * temp_df.shape[0]
-        temp_df = temp_df.assign(Node=name)
-        df = pd.concat([df, temp_df])
-
-    # Generate Througput 
-    df = df.sort_values('Time')
-    df.to_csv("test.csv", encoding='utf-8', index=False)
-    list_unique_links = len(df['Link Used'].unique())
-    packet_size = args.mtu
-    interval_width = args.interval_width
-    link_speed = 400
-
-    for link in range(list_unique_links):
-        list_throughput = []
-        interval_start = args.interval_start
-        interval_end = interval_start + interval_width
-        list_pkts = []
-        count_pkts = 0
-        for index, row in df.iterrows():
-            if (link == int(row['Link Used']) and int(row['Time']) > args.interval_start and int(row['Time']) < args.interval_end):
-                if (int(row['Time']) < interval_end):
-                    count_pkts += 1
-                else:
-                    list_pkts.append(count_pkts)
-                    list_throughput.append({"Link":link, "Time":interval_end, "Throughput":count_pkts * packet_size * 8 / interval_width})
-
-                    interval_end = interval_end + interval_width
-                    count_pkts = 1
-        # Now save to dataframe
-        list_throughput = list_throughput[1:]
-        list_pkts = list_pkts[1:]
-        if (link == 0):
-            df2 = pd.DataFrame(list_throughput)
-        else:
-            temp_df = pd.DataFrame(list_throughput)
-            df2 = pd.concat([df2, temp_df])
-
     # LS TO US 
     colnames=['Time', 'Link Used']
     df_ls_ = pd.DataFrame(columns =['Time','Link Used'])
@@ -150,20 +103,6 @@ def main(args):
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     color = ['#0511a9', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880', '#FF97FF','#636EFA', '#FECB52']
 
-    # Add traces US TO CS
-    count = 0
-    for i in df2['Link'].unique():
-        sub_df2 = df2.loc[df2['Link'] == i]
-        fig.add_trace(
-            go.Scatter(x=sub_df2["Time"], y=sub_df2['Throughput'], marker=dict(size=10), name="Upper Switch to Core, link: " + str(i), line=dict(color=color[i]), opacity=0.9, showlegend=True, marker_symbol="triangle-up"),
-            secondary_y=False,
-        )
-
-        if (args.show_triangles is not None):
-            fig.add_trace(
-                go.Scatter(x=sub_df2["Time"], y=sub_df2['Throughput'], mode="markers",name="Upper Switch to Core, link: " + str(i), marker_symbol="triangle-up", marker=dict(size=6, color=color[i]), showlegend=False),
-                secondary_y=False
-            )
 
     # Queue
     count = 0
@@ -171,7 +110,7 @@ def main(args):
     max_ele = df3[['Queue']].idxmax(1)
     for i in df3['Node'].unique():
         sub_df = df3.loc[df3['Node'] == str(i)]
-        if not "US_0-CS_" in str(i):
+        if not "LS0" in str(i):
             continue
         color_idx = count % len(color)
         fig.add_trace(
@@ -181,11 +120,13 @@ def main(args):
         count += 1
 
     # Add traces LS TO US
+    print(df_ls_2)
     count = 0
     for i in df_ls_2['Link'].unique():
         sub_df_ls_2 = df_ls_2.loc[df_ls_2['Link'] == i]
+        color_idx = i % len(color)
         fig.add_trace(
-            go.Scatter(x=sub_df_ls_2["Time"], y=sub_df_ls_2['Throughput'], marker=dict(size=10), name="Lower Switch to Upper Switch, link: " + str(i), line=dict(dash='dash', color=color[i]), opacity=0.9, showlegend=True, marker_symbol="triangle-up"),
+            go.Scatter(x=sub_df_ls_2["Time"], y=sub_df_ls_2['Throughput'], marker=dict(size=10), name="LS_US_" + str(i), line=dict(color=color[color_idx], width=2), opacity=1, showlegend=True, marker_symbol="triangle-up"),
             secondary_y=False,
         )
 
@@ -194,6 +135,7 @@ def main(args):
                 go.Scatter(x=sub_df_ls_2["Time"], y=sub_df_ls_2['Throughput'], mode="markers",name="Lower Switch to Upper Switch, link: " + str(i), marker_symbol="triangle-up", marker=dict(size=6, color=color[i]), showlegend=False),
                 secondary_y=False
             )
+
 
     # Add figure title
     fig.update_layout(
@@ -208,8 +150,7 @@ def main(args):
     if (args.y_limit is not None):
         fig.update_layout(yaxis_range=[0,args.y_limit])
 
-    fig.update_yaxes(range=[0,15000], secondary_y=True)
-
+    fig.update_yaxes(range=[0,21000], secondary_y=True)
 
     config = {
     'toImageButtonOptions': {
@@ -225,7 +166,7 @@ def main(args):
     fig.update_xaxes(title_text="Time (ns)")
     # Set y-axes titles
     fig.update_yaxes(title_text="Link Throughput (Gb/s)", secondary_y=False)
-    fig.update_yaxes(title_text="Congestion Window (B)", secondary_y=True)
+    fig.update_yaxes(title_text="Queue Size (ns)", secondary_y=True)
 
     now = datetime.now() # current date and time
     date_time = now.strftime("%m:%d:%Y_%H:%M:%S")

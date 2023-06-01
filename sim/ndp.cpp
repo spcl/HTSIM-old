@@ -2182,7 +2182,7 @@ NdpRTSPacer::NdpRTSPacer(EventList &event, linkspeed_bps linkspeed,
     _first = true;
     _packet_drain_time =
             (simtime_picosec)((Packet::data_packet_size() + ndp_acksize) *
-                              (pow(10.0, 12.0) * 8) / linkspeed) /
+                              (pow(10.0, 12.0) * 8) / (linkspeed / 4)) /
             pull_rate_modifier;
 }
 

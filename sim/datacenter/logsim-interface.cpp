@@ -89,6 +89,7 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         _netPaths[to][from] = paths2;
 
         // Choose Path from possible routes
+        printf("Options are %d\n", _netPaths[from][to]->size());
         int choice = rand() % _netPaths[from][to]->size();
 
         // Store info
@@ -128,8 +129,8 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         uecSink->set_paths(_netPaths[to][from]);
     } else if (_protocolName == NDP_PROTOCOL) {
 
-        NdpSrc::setRouteStrategy(SCATTER_RANDOM);
-        NdpSink::setRouteStrategy(SCATTER_RANDOM);
+        NdpSrc::setRouteStrategy(PULL_BASED);
+        NdpSink::setRouteStrategy(PULL_BASED);
 
         NdpSrc *ndpSrc = new NdpSrc(NULL, NULL, *_eventlist);
         _ndpSrcVector.push_back(ndpSrc);
@@ -139,8 +140,7 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
                                              std::placeholders::_1));
         if (_puller_map.count(to) == 0) {
             _puller_map[to] = new NdpPullPacer(
-                    *_eventlist, speedFromMbps(static_cast<double>(HOST_NIC)),
-                    1);
+                    *_eventlist, speedFromMbps(LINK_SPEED_MODERN * 1000), 1);
         }
         NdpSink *ndpSnk = new NdpSink(_puller_map[to]);
         ndpSrc->from = from;

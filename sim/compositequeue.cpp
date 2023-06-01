@@ -83,6 +83,7 @@ bool CompositeQueue::decide_ECN() {
 void CompositeQueue::completeService() {
     Packet *pkt;
     if (_serv == QUEUE_LOW) {
+
         assert(!_enqueued_low.empty());
         pkt = _enqueued_low.pop();
         _queuesize_low -= pkt->size();
@@ -102,7 +103,7 @@ void CompositeQueue::completeService() {
             }
         }
 
-        if (COLLECT_DATA) {
+        if (COLLECT_DATA && !pkt->header_only()) {
             if (_nodename.find("US_0") != std::string::npos &&
                 pkt->type() == UEC) {
                 std::regex pattern("-CS_(\\d+)");
@@ -120,9 +121,11 @@ void CompositeQueue::completeService() {
                     MyFileUsToCs.close();
                 }
             }
-            if (_nodename.find("LS_0") != std::string::npos &&
+            // printf("Test1 %s\n", _nodename.c_str());
+            if (_nodename.find("LS0") != std::string::npos &&
                 pkt->type() == UEC) {
-                std::regex pattern("-US_(\\d+)");
+                // printf("Test2 %s\n", _nodename.c_str());
+                std::regex pattern(">US(\\d+)");
                 std::smatch matches;
                 if (std::regex_search(_nodename, matches, pattern)) {
                     std::string numberStr = matches[1].str();
@@ -187,7 +190,6 @@ void CompositeQueue::receivePacket(Packet &pkt) {
     pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_ARRIVE);
     if (_logger)
         _logger->logQueue(*this, QueueLogger::PKT_ARRIVE, pkt);
-
     // is this a Tofino packet from the egress pipeline?
     if (!pkt.header_only()) {
         /*printf("Current Queue Size %d - Max %d - Bit Rate %lu - Name %s vs "

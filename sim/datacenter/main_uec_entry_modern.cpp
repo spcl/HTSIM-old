@@ -242,7 +242,7 @@ int main(int argc, char **argv) {
 #endif
 
 #ifdef FAT_TREE
-    FatTreeTopology::set_tiers(3);
+    FatTreeTopology::set_tiers(2);
     FatTreeTopology::set_ecn_thresholds_as_queue_percentage(kmin, kmax);
     FatTreeTopology *top = new FatTreeTopology(
             no_of_nodes, linkspeed, queuesize, NULL, &eventlist, ff, COMPOSITE,

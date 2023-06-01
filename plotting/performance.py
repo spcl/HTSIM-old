@@ -128,7 +128,7 @@ def main(args):
 
     # Add traces
     mean_rtt = df["RTT"].mean()
-    mean_rtt = 30000
+    mean_rtt = 10000
     count = 0
     for i in df['Node'].unique():
         sub_df = df.loc[df['Node'] == str(i)]
@@ -206,7 +206,7 @@ def main(args):
     # Add figure title
     fig.update_layout(
         #title_text="<b>Incast 64:1 - ECN based congestion control - 100Gbps</b>"
-        title_text="<b>Permutation Across + Outcast - 4:1 FT - ECN based congestion control - 400Gbps - 2 MiB - UEC</b>"
+        title_text="<b>Permutation Across - 4:1 FT - 400Gbps - 2 MiB - UEC</b>"
     )
 
 
