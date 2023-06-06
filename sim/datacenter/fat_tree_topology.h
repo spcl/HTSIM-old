@@ -23,6 +23,7 @@ typedef enum {
     RANDOM,
     ECN,
     COMPOSITE,
+    COMPOSITE_BTS,
     PRIORITY,
     CTRL_PRIO,
     FAIR_PRIO,
@@ -112,6 +113,8 @@ class FatTreeTopology : public Topology {
         kmax = max_thresh;
     }
 
+    static void set_bts_threshold(int value) { bts_trigger = value; }
+
     uint32_t HOST_POD_SWITCH(uint32_t src) { return 2 * src / K; }
     uint32_t HOST_POD_ID(uint32_t src) {
         if (_tiers == 3)
@@ -156,6 +159,7 @@ class FatTreeTopology : public Topology {
     simtime_picosec _hop_latency, _switch_latency;
     static int kmin;
     static int kmax;
+    static int bts_trigger;
 };
 
 #endif

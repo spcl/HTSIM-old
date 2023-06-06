@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "compositequeue.h"
+#include "compositequeuebts.h"
 #include "ecnqueue.h"
 #include "fat_tree_switch.h"
 #include "main.h"
@@ -24,6 +25,7 @@ string itoa(uint64_t n);
 uint32_t FatTreeTopology::_tiers = 3;
 int FatTreeTopology::kmin = -1;
 int FatTreeTopology::kmax = -1;
+int FatTreeTopology::bts_trigger = -1;
 //  extern int N;
 
 FatTreeTopology::FatTreeTopology(uint32_t no_of_nodes, linkspeed_bps linkspeed,
@@ -233,6 +235,19 @@ BaseQueue *FatTreeTopology::alloc_queue(QueueLogger *queueLogger,
         }
         return q;
     }
+    case COMPOSITE_BTS: {
+        CompositeQueueBts *q = new CompositeQueueBts(speed, queuesize,
+                                                     *_eventlist, queueLogger);
+
+        if (kmin != -1) {
+            q->set_ecn_thresholds((kmin / 100.0) * queuesize,
+                                  (kmax / 100.0) * queuesize);
+        }
+        if (bts_trigger != -1) {
+            q->set_bts_threshold((bts_trigger / 100.0) * queuesize);
+        }
+        return q;
+    }
     case CTRL_PRIO:
         return new CtrlPrioQueue(speed, queuesize, *_eventlist, queueLogger);
     case ECN:
@@ -430,11 +445,11 @@ void FatTreeTopology::init_network() {
             if (true) {
                 if (tor == 0 && agg == 7) {
                     queues_nlp_nup[tor][agg] =
-                            alloc_queue(queueLogger, _linkspeed / 4, _queuesize,
+                            alloc_queue(queueLogger, _linkspeed / 1, _queuesize,
                                         UPLINK, true);
                 } else {
                     queues_nlp_nup[tor][agg] =
-                            alloc_queue(queueLogger, _linkspeed / 4, _queuesize,
+                            alloc_queue(queueLogger, _linkspeed / 1, _queuesize,
                                         UPLINK, true);
                 }
             } else {

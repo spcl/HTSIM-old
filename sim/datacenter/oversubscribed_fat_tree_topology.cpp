@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "compositequeue.h"
+#include "compositequeuebts.h"
 #include "ecnqueue.h"
 #include "main.h"
 #include "queue.h"
@@ -17,6 +18,7 @@ string itoa(uint64_t n);
 
 int OversubscribedFatTreeTopology::kmin = -1;
 int OversubscribedFatTreeTopology::kmax = -1;
+int OversubscribedFatTreeTopology::bts_trigger = -1;
 extern int N;
 
 OversubscribedFatTreeTopology::OversubscribedFatTreeTopology(
@@ -81,12 +83,24 @@ Queue *OversubscribedFatTreeTopology::alloc_queue(QueueLogger *queueLogger) {
 
 Queue *OversubscribedFatTreeTopology::alloc_queue(QueueLogger *queueLogger,
                                                   uint64_t speed) {
-    if (qt == RANDOM)
+    if (qt == RANDOM) {
         return new RandomQueue((speed), _queuesize, *eventlist, queueLogger,
                                memFromPkt(RANDOM_BUFFER));
-    else if (qt == COMPOSITE) {
+    } else if (qt == COMPOSITE) {
         CompositeQueue *q = new CompositeQueue((speed), _queuesize, *eventlist,
                                                queueLogger);
+
+        if (kmin != -1) {
+            q->set_ecn_thresholds((kmin / 100.0) * _queuesize,
+                                  (kmax / 100.0) * _queuesize);
+        }
+        if (bts_trigger != -1) {
+            q->set_bts_threshold((bts_trigger / 100.0) * _queuesize);
+        }
+        return q;
+    } else if (qt == COMPOSITE_BTS) {
+        CompositeQueueBts *q = new CompositeQueueBts((speed), _queuesize,
+                                                     *eventlist, queueLogger);
 
         if (kmin != -1) {
             q->set_ecn_thresholds((kmin / 100.0) * _queuesize,

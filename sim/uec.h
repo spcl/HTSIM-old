@@ -148,6 +148,7 @@ class UecSrc : public PacketSink, public EventSource {
     vector<pair<simtime_picosec, uint64_t>> _list_cwd;
     vector<pair<simtime_picosec, uint64_t>> _list_unacked;
     vector<pair<simtime_picosec, uint64_t>> _list_nack;
+    vector<pair<simtime_picosec, uint64_t>> _list_bts;
     vector<pair<simtime_picosec, int>> us_to_cs;
     vector<pair<simtime_picosec, int>> ls_to_us;
 
@@ -157,6 +158,7 @@ class UecSrc : public PacketSink, public EventSource {
     std::size_t _next_good_entropy;
     bool _enableDistanceBasedRtx;
     bool _trimming_enabled;
+    bool _bts_enabled = true;
     int _hop_count;
 
     void send_packets();
@@ -178,6 +180,7 @@ class UecSrc : public PacketSink, public EventSource {
     void update_rtx_time();
     void reduce_cwnd(uint64_t amount);
     void processNack(UecNack &nack);
+    void processBts(UecPacket &nack);
     void reduce_unacked(uint64_t amount);
     void apply_timeout_penalty();
 };

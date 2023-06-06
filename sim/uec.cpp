@@ -63,7 +63,7 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
 
     _target_based_received = true;
 
-    _max_good_entropies = 1; // TODO: experimental value
+    _max_good_entropies = 10; // TODO: experimental value
     _enableDistanceBasedRtx = false;
     f_flow_over_hook = nullptr;
 }
@@ -117,6 +117,18 @@ UecSrc::~UecSrc() {
 
         MyFileNack.close();
 
+        // BTS
+        if (_list_bts.size() > 0) {
+            file_name = "../output/bts/bts" + _name + "_" +
+                        std::to_string(tag) + ".txt";
+            std::ofstream MyFileBTS(file_name, std::ios_base::app);
+
+            for (const auto &p : _list_bts) {
+                MyFileBTS << p.first << "," << p.second << std::endl;
+            }
+
+            MyFileBTS.close();
+        }
         // US TO CS
         /*if (us_to_cs.size() > 0) {
             file_name = "../output/us_to_cs/us_to_cs" + _name + ".txt";
@@ -228,6 +240,7 @@ void UecSrc::add_ack_path(const Route *rt) {
         }
     }
     if (_good_entropies.size() < _max_good_entropies) {
+        printf("Pushing Back Now, %d\n", from);
         _good_entropies.push_back(rt);
     } else {
         // TODO: this could cause some weird corner cases that would
@@ -248,7 +261,7 @@ void UecSrc::set_traffic_logger(TrafficLogger *pktlogger) {
 }
 
 void UecSrc::reduce_cwnd(uint64_t amount) {
-    // printf("Reducing by %lu\n", amount);
+    printf("Reducing by %d - %lu\n", from, amount);
     if (_cwnd >= amount + _mss) {
         _cwnd -= amount * 1;
     } else {
@@ -295,6 +308,32 @@ void UecSrc::processNack(UecNack &pkt) {
     if (marked) {
         adjust_window(ts, marked);
         }*/
+    // retransmit only the NACK'ed packet
+    bool success = resend_packet(i);
+    if (!_rtx_pending && !success) {
+        _rtx_pending = true;
+    }
+}
+
+void UecSrc::processBts(UecPacket &pkt) {
+    if (GLOBAL_TIME > _ignore_ecn_until) {
+        _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
+        reduce_cwnd(_mss);
+    }
+
+    _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
+    // mark corresponding packet for retransmission
+    auto i = get_sent_packet_idx(pkt.seqno());
+    assert(i < _sent_packets.size());
+
+    assert(!_sent_packets[i].acked); // TODO: would it be possible for a packet
+                                     // to receive a nack after being acked?
+    if (!_sent_packets[i].nacked) {
+        // ignore duplicate nacks for the same packet
+        _sent_packets[i].nacked = true;
+        ++_nack_rtx_pending;
+    }
+
     // retransmit only the NACK'ed packet
     bool success = resend_packet(i);
     if (!_rtx_pending && !success) {
@@ -398,10 +437,16 @@ void UecSrc::receivePacket(Packet &pkt) {
     }
     switch (pkt.type()) {
     case UEC:
-        // RTS
+        // BTS
+        if (_bts_enabled) {
+            if (pkt.bounced()) {
+                printf("BTS\n");
+                processBts(dynamic_cast<UecPacket &>(pkt));
+            }
+        }
         break;
     case UECACK:
-        // printf("NORMALACK");
+        printf("NORMALACK\n");
         processAck(dynamic_cast<UecAck &>(pkt));
         break;
     case UECNACK:
@@ -549,6 +594,7 @@ void UecSrc::startflow() {
 
 const Route *UecSrc::get_path() {
     // TODO: add other ways to select paths
+    printf("Entropy Size %d\n", _good_entropies.size());
     if (_use_good_entropies && !_good_entropies.empty()) {
         // auto rt = _good_entropies[_next_good_entropy];
         // ++_next_good_entropy;
@@ -594,6 +640,7 @@ void UecSrc::send_packets() {
         _unacked += _mss;
 
         // Getting time until packet is really sent
+        printf("Sent Packet, %d\n", from);
         PacketSink *sink = p->sendOn();
         HostQueue *q = dynamic_cast<HostQueue *>(sink);
         assert(q);

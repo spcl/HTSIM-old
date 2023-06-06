@@ -225,7 +225,7 @@ int main(int argc, char **argv) {
 #endif
 
 #ifdef FAT_TREE
-    FatTreeTopology::set_tiers(2);
+    FatTreeTopology::set_tiers(3);
     FatTreeTopology *top = new FatTreeTopology(
             no_of_nodes, linkspeed, queuesize, NULL, &eventlist, ff, COMPOSITE,
             hop_latency, switch_latency);

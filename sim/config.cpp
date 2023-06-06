@@ -112,6 +112,7 @@ void initializeLoggingFolders() {
     std::filesystem::remove_all("../output/acked/");
     std::filesystem::remove_all("../output/sent/");
     std::filesystem::remove_all("../output/nack/");
+    std::filesystem::remove_all("../output/bts/");
     std::filesystem::remove_all("../output/ls_to_us/");
     std::filesystem::remove_all("../output/us_to_cs/");
 
@@ -123,6 +124,7 @@ void initializeLoggingFolders() {
     ret_val &= std::filesystem::create_directory("../output/acked");
     ret_val &= std::filesystem::create_directory("../output/sent");
     ret_val &= std::filesystem::create_directory("../output/nack");
+    ret_val &= std::filesystem::create_directory("../output/bts");
     ret_val &= std::filesystem::create_directory("../output/ls_to_us");
     ret_val &= std::filesystem::create_directory("../output/us_to_cs");
 }

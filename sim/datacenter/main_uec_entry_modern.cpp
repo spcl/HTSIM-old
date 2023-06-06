@@ -94,8 +94,10 @@ int main(int argc, char **argv) {
     int packet_size = 2048;
     int kmin = -1;
     int kmax = -1;
+    int bts_threshold = -1;
     int seed = -1;
     bool reuse_entropy = false;
+    queue_type queue_choice = COMPOSITE;
 
     int i = 1;
     filename << "logout.dat";
@@ -141,6 +143,9 @@ int main(int argc, char **argv) {
             // kmin as percentage of queue size (0..100)
             kmax = atoi(argv[i + 1]);
             i++;
+        } else if (!strcmp(argv[i], "-bts_trigger")) {
+            bts_threshold = atoi(argv[i + 1]);
+            i++;
         } else if (!strcmp(argv[i], "-mtu")) {
             packet_size = atoi(argv[i + 1]);
             PKT_SIZE_MODERN =
@@ -172,6 +177,13 @@ int main(int argc, char **argv) {
                 route_strategy = PULL_BASED;
             } else if (!strcmp(argv[i + 1], "single")) {
                 route_strategy = SINGLE_PATH;
+            }
+            i++;
+        } else if (!strcmp(argv[i], "-queue_type")) {
+            if (!strcmp(argv[i + 1], "composite")) {
+                queue_choice = COMPOSITE;
+            } else if (!strcmp(argv[i + 1], "composite_bts")) {
+                queue_choice = COMPOSITE_BTS;
             }
             i++;
         } else
@@ -242,11 +254,12 @@ int main(int argc, char **argv) {
 #endif
 
 #ifdef FAT_TREE
-    FatTreeTopology::set_tiers(2);
+    FatTreeTopology::set_tiers(3);
     FatTreeTopology::set_ecn_thresholds_as_queue_percentage(kmin, kmax);
+    FatTreeTopology::set_bts_threshold(bts_threshold);
     FatTreeTopology *top = new FatTreeTopology(
-            no_of_nodes, linkspeed, queuesize, NULL, &eventlist, ff, COMPOSITE,
-            hop_latency, switch_latency);
+            no_of_nodes, linkspeed, queuesize, NULL, &eventlist, ff,
+            queue_choice, hop_latency, switch_latency);
 #endif
 
 #ifdef OV_FAT_TREE

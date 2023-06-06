@@ -1,6 +1,6 @@
 // -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
-#ifndef COMPOSITE_QUEUE_H
-#define COMPOSITE_QUEUE_H
+#ifndef COMPOSITE_QUEUE_BTS_H
+#define COMPOSITE_QUEUE_BTS_H
 
 /*
  * A composite queue that transforms packets into headers when there is no space
@@ -18,10 +18,10 @@
 #include "queue.h"
 #include <list>
 
-class CompositeQueue : public Queue {
+class CompositeQueueBts : public Queue {
   public:
-    CompositeQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist,
-                   QueueLogger *logger);
+    CompositeQueueBts(linkspeed_bps bitrate, mem_b maxsize,
+                      EventList &eventlist, QueueLogger *logger);
     virtual void receivePacket(Packet &pkt);
     virtual void doNextEvent();
     // should really be private, but loggers want to see

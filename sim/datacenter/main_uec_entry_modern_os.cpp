@@ -99,6 +99,8 @@ int main(int argc, char **argv) {
     int seed = -1;
     bool reuse_entropy = false;
     int fat_tree_k = 4; // 64 Nodes by default
+    queue_type queue_choice = COMPOSITE;
+    int bts_threshold = -1;
 
     int i = 1;
     filename << "logout.dat";
@@ -147,6 +149,9 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-k")) {
             fat_tree_k = atoi(argv[i + 1]);
             i++;
+        } else if (!strcmp(argv[i], "-bts_trigger")) {
+            bts_threshold = atoi(argv[i + 1]);
+            i++;
         } else if (!strcmp(argv[i], "-reuse_entropy")) {
             reuse_entropy = atoi(argv[i + 1]);
             i++;
@@ -178,6 +183,13 @@ int main(int argc, char **argv) {
                 route_strategy = PULL_BASED;
             } else if (!strcmp(argv[i + 1], "single")) {
                 route_strategy = SINGLE_PATH;
+            }
+            i++;
+        } else if (!strcmp(argv[i], "-queue_type")) {
+            if (!strcmp(argv[i + 1], "composite")) {
+                queue_choice = COMPOSITE;
+            } else if (!strcmp(argv[i + 1], "composite_bts")) {
+                queue_choice = COMPOSITE_BTS;
             }
             i++;
         } else
@@ -250,8 +262,9 @@ int main(int argc, char **argv) {
 #ifdef OV_FAT_TREE
     OversubscribedFatTreeTopology::set_ecn_thresholds_as_queue_percentage(kmin,
                                                                           kmax);
+    OversubscribedFatTreeTopology::set_bts_threshold(bts_threshold);
     OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(
-            queuesize, linkspeed, &logfile, &eventlist, ff, COMPOSITE,
+            queuesize, linkspeed, &logfile, &eventlist, ff, queue_choice,
             hop_latency, switch_latency, fat_tree_k);
 #endif
 

@@ -149,9 +149,16 @@ class QueueLogger : public Logger {
 
 class MultipathTcpLogger : public Logger {
   public:
-    enum MultipathTcpEvent { CHANGE_A = 0, RTT_UPDATE = 1, WINDOW_UPDATE = 2, RATE = 3, MEMORY = 4 };
+    enum MultipathTcpEvent {
+        CHANGE_A = 0,
+        RTT_UPDATE = 1,
+        WINDOW_UPDATE = 2,
+        RATE = 3,
+        MEMORY = 4
+    };
 
-    virtual void logMultipathTcp(MultipathTcpSrc &src, MultipathTcpEvent ev) = 0;
+    virtual void logMultipathTcp(MultipathTcpSrc &src,
+                                 MultipathTcpEvent ev) = 0;
     virtual ~MultipathTcpLogger(){};
 };
 
@@ -314,10 +321,17 @@ class NdpLiteLogger : public Logger {
 
 class QcnLogger : public Logger {
   public:
-    enum QcnEvent { QCN_SEND = 0, QCN_INC = 1, QCN_DEC = 2, QCN_INCD = 3, QCN_DECD = 4 };
+    enum QcnEvent {
+        QCN_SEND = 0,
+        QCN_INC = 1,
+        QCN_DEC = 2,
+        QCN_INCD = 3,
+        QCN_DECD = 4
+    };
     enum QcnQueueEvent { QCN_FB = 0, QCN_NOFB = 1 };
     virtual void logQcn(QcnReactor &src, QcnEvent ev, double var3) = 0;
-    virtual void logQcnQueue(QcnQueue &src, QcnQueueEvent ev, double var1, double var2, double var3) = 0;
+    virtual void logQcnQueue(QcnQueue &src, QcnQueueEvent ev, double var1,
+                             double var2, double var3) = 0;
     virtual ~QcnLogger(){};
 };
 

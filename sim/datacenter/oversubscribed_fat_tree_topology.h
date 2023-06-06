@@ -30,6 +30,7 @@ typedef enum {
     RANDOM,
     ECN,
     COMPOSITE,
+    COMPOSITE_BTS,
     CTRL_PRIO,
     LOSSLESS,
     LOSSLESS_INPUT,
@@ -74,6 +75,8 @@ class OversubscribedFatTreeTopology : public Topology {
         kmax = max_thresh;
     }
 
+    static void set_bts_threshold(int value) { bts_trigger = value; }
+
     Queue *alloc_src_queue(QueueLogger *q);
     Queue *alloc_queue(QueueLogger *q);
     Queue *alloc_queue(QueueLogger *q, uint64_t speed);
@@ -100,6 +103,7 @@ class OversubscribedFatTreeTopology : public Topology {
     uint32_t NCORE, NAGG, NTOR, NSRV, NPOD;
     static int kmin;
     static int kmax;
+    static int bts_trigger;
     linkspeed_bps _linkspeed;
     simtime_picosec _hop_latency, _switch_latency;
 };
