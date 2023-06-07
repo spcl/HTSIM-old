@@ -607,6 +607,18 @@ const Route *UecSrc::get_path() {
     return _paths.at(_crt_path);
 }
 
+void UecSrc::map_entropies() {
+    for (int i = 0; i < _num_entropies; i++) {
+        _entropy_array.push_back(random() % _paths.size());
+    }
+    printf("Printing my Paths: ");
+    fflush(stdout);
+    for (int i = 0; i < _num_entropies; i++) {
+        printf("%d - ", _entropy_array[i]);
+    }
+    printf("\n");
+}
+
 void UecSrc::send_packets() {
     if (_rtx_pending) {
         retransmit_packet();
@@ -699,6 +711,7 @@ void UecSrc::set_paths(vector<const Route *> *rt) {
         t->add_endpoints(this, _sink);
         _paths.push_back(t);
     }
+    map_entropies();
 }
 
 void UecSrc::apply_timeout_penalty() {

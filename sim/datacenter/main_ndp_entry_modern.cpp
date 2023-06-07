@@ -91,7 +91,6 @@ int main(int argc, char **argv) {
     simtime_picosec switch_latency = timeFromNs((uint32_t)0);
     int packet_size = 2048;
     int seed = -1;
-    int fat_tree_k = 4; // 64 Nodes by default
 
     int i = 1;
     filename << "logout.dat";

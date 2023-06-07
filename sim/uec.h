@@ -52,6 +52,7 @@ class UecSrc : public PacketSink, public EventSource {
                          UecSink &sink, simtime_picosec startTime);
     void startflow();
     void set_paths(vector<const Route *> *rt);
+    void map_entropies();
 
     void setCwnd(uint64_t cwnd) { _cwnd = cwnd; };
     void setReuse(bool reuse) { _use_good_entropies = reuse; };
@@ -156,6 +157,9 @@ class UecSrc : public PacketSink, public EventSource {
     bool _use_good_entropies;
     std::size_t _max_good_entropies;
     std::size_t _next_good_entropy;
+    std::vector<int> _entropy_array;
+    int _num_entropies = 64;
+    int current_entropy = 0;
     bool _enableDistanceBasedRtx;
     bool _trimming_enabled;
     bool _bts_enabled = true;
