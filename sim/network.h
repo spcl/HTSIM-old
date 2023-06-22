@@ -233,6 +233,8 @@ class Packet {
 
     uint32_t from, to, tag;
     const Route *get_route() { return _route; };
+    bool _queue_full; // Queue is full, BTS indicates packet drop
+    uint8_t queue_status;
 
   protected:
     virtual void set_route(PacketFlow &flow, const Route &route, int pkt_size,
@@ -251,6 +253,7 @@ class Packet {
     bool _is_header;
     bool _bounced; // packet has hit a full queue, and is being bounced back to
                    // the sender
+
     uint32_t _flags; // used for ECN & friends
 
     uint32_t _dst;    // used for packets that do not have a route in switched

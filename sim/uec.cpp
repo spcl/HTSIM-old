@@ -315,10 +315,26 @@ void UecSrc::processNack(UecNack &pkt) {
     }
 }
 
+/*void btsReduce() {
+    int cwnd = 0;
+    float alpha = 0.5;
+    float queue_deviation = (delta * observed_ecn) / max_ecn;
+    float observed_queue_occupancy = cwnd =
+            (delta * observed_ecn) / max_ecn + kmin + bdp;
+    cwnd - (cwnd * alpha *
+            (queue_deviation / (observed_queue_occupancy) / (cwnd / _mss)))
+}*/
+
 void UecSrc::processBts(UecPacket &pkt) {
     if (GLOBAL_TIME > _ignore_ecn_until) {
         _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
         reduce_cwnd(_mss);
+    }
+
+    if (pkt._queue_full) {
+        printf("BTS - Queue is full - Level %d\n", pkt.queue_status);
+    } else {
+        printf("BTS - Warning - Level %d\n", pkt.queue_status);
     }
 
     _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
@@ -440,7 +456,6 @@ void UecSrc::receivePacket(Packet &pkt) {
         // BTS
         if (_bts_enabled) {
             if (pkt.bounced()) {
-                printf("BTS\n");
                 processBts(dynamic_cast<UecPacket &>(pkt));
             }
         }

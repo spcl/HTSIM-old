@@ -211,7 +211,14 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
         if (_queuesize_low + pkt.size() > _bts_triggering ||
             _queuesize_low + pkt.size() > _maxsize) {
             // If queue is full, we send it back
+            if (_queuesize_low + pkt.size() > _maxsize) {
+                pkt._queue_full = true;
+            } else {
+                pkt._queue_full = false;
+            }
             printf("BTS Case\n");
+            pkt.queue_status =
+                    ((_queuesize_low + pkt.size()) * 64.0) / _maxsize;
             pkt.strip_payload();
             pkt.bounce();
             pkt.reverse_route();
