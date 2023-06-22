@@ -326,18 +326,23 @@ void UecSrc::processNack(UecNack &pkt) {
 }*/
 
 void UecSrc::processBts(UecPacket &pkt) {
-    if (GLOBAL_TIME > _ignore_ecn_until) {
-        _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
-        reduce_cwnd(_mss);
-    }
+    _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
+    _received_ecn.push_back(std::make_tuple(
+            eventlist().now(), true, _mss,
+            eventlist().now())); // TODO: assuming same size for all packets
 
     if (pkt._queue_full) {
         printf("BTS - Queue is full - Level %d\n", pkt.queue_status);
+        reduce_cwnd(_mss);
+        _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
     } else {
-        printf("BTS - Warning - Level %d\n", pkt.queue_status);
+        printf("BTS - Warning - Level %d - Reduce %d (%d)\n", pkt.queue_status,
+               _mss, (uint64_t)(_mss * (pkt.queue_status / 64.0)));
+        reduce_cwnd((uint64_t)(_mss * (pkt.queue_status / 64.0)));
+        _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
+        return;
     }
 
-    _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
     // mark corresponding packet for retransmission
     auto i = get_sent_packet_idx(pkt.seqno());
     assert(i < _sent_packets.size());
@@ -490,6 +495,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
            (long long)_bdp, _cwnd, _received_ecn.size(),
            no_ecn_last_target_rtt(), _mss);*/
     if (ecn) {
+        printf("ECN Case");
         uint64_t total = 0;
         for (auto [ts, ecn, size, rtt] : _received_ecn) {
             total += size;

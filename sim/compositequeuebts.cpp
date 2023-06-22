@@ -69,6 +69,9 @@ void CompositeQueueBts::beginService() {
 
 bool CompositeQueueBts::decide_ECN() {
     // ECN mark on deque
+    printf("Min ECN %d - Max ECN %d\n",
+           int(_ecn_minthresh * 8 / (_bitrate / 1e9)),
+           int(_ecn_maxthresh * 8 / (_bitrate / 1e9)));
     if (_queuesize_low > _ecn_maxthresh) {
         return true;
     } else if (_queuesize_low > _ecn_minthresh) {
@@ -91,16 +94,16 @@ void CompositeQueueBts::completeService() {
 
         // ECN mark on deque
         if (decide_ECN()) {
-            pkt->set_flags(pkt->flags() | ECN_CE);
+            // pkt->set_flags(pkt->flags() | ECN_CE);
             if (COLLECT_DATA) {
-                std::string file_name = "../output/ecn/ecn" +
+                /*std::string file_name = "../output/ecn/ecn" +
                                         std::to_string(pkt->from) + "_" +
                                         std::to_string(pkt->to) + ".txt";
                 std::ofstream MyFile(file_name, std::ios_base::app);
 
                 MyFile << eventlist().now() / 1000 << "," << 1 << std::endl;
 
-                MyFile.close();
+                MyFile.close();*/
             }
         }
 
@@ -163,9 +166,9 @@ void CompositeQueueBts::completeService() {
             _num_headers++;
             // ECN mark on deque of a header, if low priority queue is still
             // over threshold
-            if (decide_ECN()) {
-                pkt->set_flags(pkt->flags() | ECN_CE);
-            }
+            // if (decide_ECN()) {
+            //    pkt->set_flags(pkt->flags() | ECN_CE);
+            //}
         }
     } else {
         assert(0);
@@ -209,7 +212,7 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
             }
         }
         if (_queuesize_low + pkt.size() > _bts_triggering ||
-            _queuesize_low + pkt.size() > _maxsize) {
+            _queuesize_low + pkt.size() > _maxsize || decide_ECN()) {
             // If queue is full, we send it back
             if (_queuesize_low + pkt.size() > _maxsize) {
                 pkt._queue_full = true;
