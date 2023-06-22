@@ -200,12 +200,12 @@ void FatTreeTopology::set_params(uint32_t no_of_nodes) {
 BaseQueue *FatTreeTopology::alloc_src_queue(QueueLogger *queueLogger) {
     switch (_sender_qt) {
     case SWIFT_SCHEDULER:
-        return new FairScheduler(_linkspeed, *_eventlist, queueLogger);
+        return new FairScheduler(_linkspeed * 1, *_eventlist, queueLogger);
     case PRIORITY:
-        return new PriorityQueue(_linkspeed, memFromPkt(FEEDER_BUFFER),
+        return new PriorityQueue(_linkspeed * 1, memFromPkt(FEEDER_BUFFER),
                                  *_eventlist, queueLogger);
     case FAIR_PRIO:
-        return new FairPriorityQueue(_linkspeed, memFromPkt(FEEDER_BUFFER),
+        return new FairPriorityQueue(_linkspeed * 1, memFromPkt(FEEDER_BUFFER),
                                      *_eventlist, queueLogger);
     default:
         abort();
@@ -445,18 +445,18 @@ void FatTreeTopology::init_network() {
             if (true) {
                 if (tor == 0 && agg == 7) {
                     queues_nlp_nup[tor][agg] =
-                            alloc_queue(queueLogger, _linkspeed / 1, _queuesize,
+                            alloc_queue(queueLogger, _linkspeed / 4, _queuesize,
                                         UPLINK, true);
                 } else {
                     queues_nlp_nup[tor][agg] =
-                            alloc_queue(queueLogger, _linkspeed / 1, _queuesize,
+                            alloc_queue(queueLogger, _linkspeed / 4, _queuesize,
                                         UPLINK, true);
                 }
             } else {
                 if (tor == 0 && agg == 7) {
                     queues_nlp_nup[tor][agg] =
-                            alloc_queue(queueLogger, _linkspeed * 1, _queuesize,
-                                        UPLINK, true);
+                            alloc_queue(queueLogger, _linkspeed * 0.75,
+                                        _queuesize, UPLINK, true);
                 } else if (tor == 0 && agg == 0) {
                     queues_nlp_nup[tor][agg] =
                             alloc_queue(queueLogger, _linkspeed * 0.25,

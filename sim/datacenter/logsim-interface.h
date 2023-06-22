@@ -43,6 +43,9 @@ class LogSimInterface {
     void set_protocol(ProtocolName name) { _protocolName = name; };
     void set_cwd(int cwd);
     void setReuse(bool reuse) { _use_good_entropies = reuse; };
+    void setNumberEntropies(int num_entropies) {
+        _num_entropies = num_entropies;
+    };
     void set_queue_size(int queue_size) { _queuesize = queue_size; };
     std::unordered_map<std::string, MsgInfo> get_active_sends();
     void update_active_map(std::string, int);
@@ -71,6 +74,7 @@ class LogSimInterface {
     UecRtxTimerScanner *_uecRtxScanner;
     std::unordered_map<int, NdpPullPacer *> _puller_map;
     bool _use_good_entropies;
+    int _num_entropies;
 };
 
 int start_lgs(std::string, LogSimInterface &);

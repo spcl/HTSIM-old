@@ -212,7 +212,6 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
             _queuesize_low + pkt.size() > _maxsize) {
             // If queue is full, we send it back
             printf("BTS Case\n");
-            fflush(stdout);
             pkt.strip_payload();
             pkt.bounce();
             pkt.reverse_route();
@@ -220,8 +219,6 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
             pkt.sendOn();
             return;
         } else {
-            printf("Normal Case\n");
-            fflush(stdout);
             Packet *pkt_p = &pkt;
             _enqueued_low.push(pkt_p);
             _queuesize_low += pkt.size();
@@ -251,7 +248,6 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
 
         return;
     } else {
-        printf("Problem\n");
         assert(pkt.header_only());
 
         if (_queuesize_high + pkt.size() > 200 * _maxsize) {

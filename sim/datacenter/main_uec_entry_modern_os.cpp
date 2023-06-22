@@ -101,6 +101,7 @@ int main(int argc, char **argv) {
     int fat_tree_k = 4; // 64 Nodes by default
     queue_type queue_choice = COMPOSITE;
     int bts_threshold = -1;
+    int number_entropies = 16;
 
     int i = 1;
     filename << "logout.dat";
@@ -154,6 +155,9 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-reuse_entropy")) {
             reuse_entropy = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-number_entropies")) {
+            number_entropies = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-mtu")) {
             packet_size = atoi(argv[i + 1]);
@@ -341,6 +345,7 @@ int main(int argc, char **argv) {
     lgs->set_cwd(cwnd);
     lgs->set_queue_size(queuesize);
     lgs->setReuse(reuse_entropy);
+    lgs->setNumberEntropies(number_entropies);
     start_lgs(goal_filename, *lgs);
 
     for (int src = 0; src < dest; ++src) {

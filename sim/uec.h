@@ -56,6 +56,9 @@ class UecSrc : public PacketSink, public EventSource {
 
     void setCwnd(uint64_t cwnd) { _cwnd = cwnd; };
     void setReuse(bool reuse) { _use_good_entropies = reuse; };
+    void setNumberEntropies(int num_entropies) {
+        _num_entropies = num_entropies;
+    };
     void setHopCount(int hops) {
         _hop_count = hops;
         printf("Hop Count is %d\n", hops);
@@ -158,7 +161,7 @@ class UecSrc : public PacketSink, public EventSource {
     std::size_t _max_good_entropies;
     std::size_t _next_good_entropy;
     std::vector<int> _entropy_array;
-    int _num_entropies = 64;
+    int _num_entropies = -1;
     int current_entropy = 0;
     bool _enableDistanceBasedRtx;
     bool _trimming_enabled;

@@ -97,6 +97,7 @@ int main(int argc, char **argv) {
     int bts_threshold = -1;
     int seed = -1;
     bool reuse_entropy = false;
+    int number_entropies = 16;
     queue_type queue_choice = COMPOSITE;
 
     int i = 1;
@@ -153,6 +154,9 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-reuse_entropy")) {
             reuse_entropy = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-number_entropies")) {
+            number_entropies = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-switch_latency")) {
             switch_latency = timeFromNs(atof(argv[i + 1]));
@@ -340,6 +344,7 @@ int main(int argc, char **argv) {
     lgs->set_cwd(cwnd);
     lgs->set_queue_size(queuesize);
     lgs->setReuse(reuse_entropy);
+    lgs->setNumberEntropies(number_entropies);
     start_lgs(goal_filename, *lgs);
 
     for (int src = 0; src < dest; ++src) {

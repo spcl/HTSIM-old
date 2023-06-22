@@ -603,7 +603,17 @@ const Route *UecSrc::get_path() {
         _good_entropies.pop_back();
         return rt;
     }
-    _crt_path = random() % _paths.size();
+
+    // Means we want to select a random one out of all paths, the original idea
+    if (_num_entropies == -1) {
+        _crt_path = random() % _paths.size();
+
+    } else {
+        // Else we use our entropy array of a certain size and roud robin it
+        _crt_path = _entropy_array[current_entropy];
+        current_entropy = ++current_entropy % _num_entropies;
+    }
+
     return _paths.at(_crt_path);
 }
 
