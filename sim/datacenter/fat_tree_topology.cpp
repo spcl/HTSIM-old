@@ -443,13 +443,13 @@ void FatTreeTopology::init_network() {
 
             // TODO: Check this
             if (true) {
-                if (tor == 0 && agg == 7) {
+                if (tor == 0 && agg == 0) {
                     queues_nlp_nup[tor][agg] =
-                            alloc_queue(queueLogger, _linkspeed / 4, _queuesize,
+                            alloc_queue(queueLogger, _linkspeed * 1, _queuesize,
                                         UPLINK, true);
                 } else {
                     queues_nlp_nup[tor][agg] =
-                            alloc_queue(queueLogger, _linkspeed / 4, _queuesize,
+                            alloc_queue(queueLogger, _linkspeed * 1, _queuesize,
                                         UPLINK, true);
                 }
             } else {
@@ -521,8 +521,21 @@ void FatTreeTopology::init_network() {
                     queueLogger = NULL;
                 }
 
-                queues_nup_nc[agg][core] =
-                        alloc_queue(queueLogger, _queuesize, UPLINK);
+                if (true) {
+                    if (agg == 0 && core == 0) {
+                        queues_nup_nc[agg][core] =
+                                alloc_queue(queueLogger, _linkspeed * 0.01,
+                                            _queuesize, UPLINK, true);
+                    } else {
+                        queues_nup_nc[agg][core] =
+                                alloc_queue(queueLogger, _linkspeed * 0.01,
+                                            _queuesize, UPLINK, true);
+                    }
+                } else {
+                    queues_nup_nc[agg][core] =
+                            alloc_queue(queueLogger, _queuesize, UPLINK);
+                }
+
                 queues_nup_nc[agg][core]->setName("US" + ntoa(agg) + "->CS" +
                                                   ntoa(core));
                 // if (logfile)

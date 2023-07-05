@@ -300,7 +300,7 @@ OversubscribedFatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest,
                                                bool reverse) {
     vector<const Route *> *paths = new vector<const Route *>();
 
-    Route *routeout;
+    Route *routeout, *routeback;
 
     if (HOST_POD_SWITCH(src) == HOST_POD_SWITCH(dest)) {
         routeout = new Route();
@@ -310,6 +310,19 @@ OversubscribedFatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest,
 
         routeout->push_back(queues_nlp_ns[HOST_POD_SWITCH(dest)][dest]);
         routeout->push_back(pipes_nlp_ns[HOST_POD_SWITCH(dest)][dest]);
+
+        if (reverse) {
+            // reverse path for RTS packets
+            routeback = new Route();
+            routeback->push_back(queues_ns_nlp[dest][HOST_POD_SWITCH(dest)]);
+            routeback->push_back(pipes_ns_nlp[dest][HOST_POD_SWITCH(dest)]);
+
+            routeback->push_back(queues_nlp_ns[HOST_POD_SWITCH(src)][src]);
+            routeback->push_back(pipes_nlp_ns[HOST_POD_SWITCH(src)][src]);
+
+            routeout->set_reverse(routeback);
+            routeback->set_reverse(routeout);
+        }
 
         paths->push_back(routeout);
 
@@ -335,6 +348,31 @@ OversubscribedFatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest,
 
             routeout->push_back(queues_nlp_ns[HOST_POD_SWITCH(dest)][dest]);
             routeout->push_back(pipes_nlp_ns[HOST_POD_SWITCH(dest)][dest]);
+
+            if (reverse) {
+                // reverse path for RTS packets
+                routeback = new Route();
+
+                routeback->push_back(
+                        queues_ns_nlp[dest][HOST_POD_SWITCH(dest)]);
+                routeback->push_back(pipes_ns_nlp[dest][HOST_POD_SWITCH(dest)]);
+
+                routeback->push_back(
+                        queues_nlp_nup[HOST_POD_SWITCH(dest)][upper]);
+                routeback->push_back(
+                        pipes_nlp_nup[HOST_POD_SWITCH(dest)][upper]);
+
+                routeback->push_back(
+                        queues_nup_nlp[upper][HOST_POD_SWITCH(src)]);
+                routeback->push_back(
+                        pipes_nup_nlp[upper][HOST_POD_SWITCH(src)]);
+
+                routeback->push_back(queues_nlp_ns[HOST_POD_SWITCH(src)][src]);
+                routeback->push_back(pipes_nlp_ns[HOST_POD_SWITCH(src)][src]);
+
+                routeout->set_reverse(routeback);
+                routeback->set_reverse(routeout);
+            }
 
             paths->push_back(routeout);
             check_non_null(routeout);
@@ -377,6 +415,43 @@ OversubscribedFatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest,
 
                 routeout->push_back(queues_nlp_ns[HOST_POD_SWITCH(dest)][dest]);
                 routeout->push_back(pipes_nlp_ns[HOST_POD_SWITCH(dest)][dest]);
+
+                if (reverse) {
+                    // reverse path for RTS packets
+                    routeback = new Route();
+
+                    routeback->push_back(
+                            queues_ns_nlp[dest][HOST_POD_SWITCH(dest)]);
+                    routeback->push_back(
+                            pipes_ns_nlp[dest][HOST_POD_SWITCH(dest)]);
+
+                    routeback->push_back(
+                            queues_nlp_nup[HOST_POD_SWITCH(dest)][upper2]);
+                    routeback->push_back(
+                            pipes_nlp_nup[HOST_POD_SWITCH(dest)][upper2]);
+
+                    routeback->push_back(queues_nup_nc[upper2][core]);
+                    routeback->push_back(pipes_nup_nc[upper2][core]);
+
+                    // now take the only link back down to the src
+                    // server!
+
+                    routeback->push_back(queues_nc_nup[core][upper]);
+                    routeback->push_back(pipes_nc_nup[core][upper]);
+
+                    routeback->push_back(
+                            queues_nup_nlp[upper][HOST_POD_SWITCH(src)]);
+                    routeback->push_back(
+                            pipes_nup_nlp[upper][HOST_POD_SWITCH(src)]);
+
+                    routeback->push_back(
+                            queues_nlp_ns[HOST_POD_SWITCH(src)][src]);
+                    routeback->push_back(
+                            pipes_nlp_ns[HOST_POD_SWITCH(src)][src]);
+
+                    routeout->set_reverse(routeback);
+                    routeback->set_reverse(routeout);
+                }
 
                 paths->push_back(routeout);
                 check_non_null(routeout);

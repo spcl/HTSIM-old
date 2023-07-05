@@ -51,7 +51,7 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     _flow_size = _mss * 934;
     _trimming_enabled = true;
 
-    _bdp = (_base_rtt * LINK_SPEED_MODERN / 8) / 1000;
+    _bdp = (_base_rtt * LINK_SPEED_MODERN / 8) / 1000 / 1;
     printf("Link Delay %lu - Link Speed %lu - Pkt Size %d - Base RTT %lu - "
            "Target RTT is %lu - BDP/CWDN %lu\n",
            LINK_DELAY_MODERN, LINK_SPEED_MODERN, PKT_SIZE_MODERN, _base_rtt,
@@ -530,6 +530,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
         _consecutive_no_ecn = 0;
     }
 
+    printf("Increasing to %d\n", _cwnd);
     if (_cwnd > _maxcwnd || false) {
         _cwnd = _maxcwnd;
     }

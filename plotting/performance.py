@@ -100,14 +100,13 @@ def main(args):
     name = ['0'] * df5.shape[0]
     df5 = df5.assign(Node=name)
 
-    pathlist = Path('sent').glob('**/*.txt')
-    for files in sorted(pathlist):
+    pathlist = Path('sent').glob('*')
+    for files in (pathlist):
         path_in_str = str(files)
         temp_df5 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
         name = [str(path_in_str)] * temp_df5.shape[0]
         temp_df5 = temp_df5.assign(Node=name)
         df5 = pd.concat([df5, temp_df5])
-    print(df5)
 
     # Nack data
     colnames=['Time', 'Nack'] 
@@ -185,7 +184,7 @@ def main(args):
 
     # Sent
     mean_sent = df5["Time"].mean()
-    df5['Sent'] = df5['Sent'].multiply(20000)
+    df5['Sent'] = mean_rtt - 5000
     for i in df5['Node'].unique():
         sub_df5 = df5.loc[df5['Node'] == str(i)]
         fig.add_trace(
@@ -195,7 +194,7 @@ def main(args):
 
     # NACK
     mean_sent = df6["Time"].mean()
-    df6['Nack'] = df6['Nack'].multiply(17000)
+    df6['Nack'] = df6['Nack'].multiply(8000)
     for i in df6['Node'].unique():
         sub_df6 = df6.loc[df6['Node'] == str(i)]
         fig.add_trace(
