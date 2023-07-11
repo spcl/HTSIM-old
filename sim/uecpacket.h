@@ -41,7 +41,12 @@ class UecPacket : public Packet {
         return newpkt(flow, route, seqno, 0, size);
     }
 
-    void free() { _packetdb.freePacket(this); }
+    void free() {
+        printf("Packet (UecPacket) being freed ID is %d - From %d\n", id(),
+               from);
+        fflush(stdout);
+        _packetdb.freePacket(this);
+    }
     virtual ~UecPacket() {}
     inline seq_t seqno() const { return _seqno; }
     inline seq_t data_seqno() const { return _data_seqno; }
@@ -91,7 +96,11 @@ class UecAck : public Packet {
         return newpkt(flow, route, seqno, ackno, 0);
     }
 
-    void free() { _packetdb.freePacket(this); }
+    void free() {
+        printf("Packet (UecAck) being freed ID is %d - From %d\n", id(), from);
+        fflush(stdout);
+        _packetdb.freePacket(this);
+    }
     inline seq_t seqno() const { return _seqno; }
     inline seq_t ackno() const { return _ackno; }
     inline seq_t data_ackno() const { return _data_ackno; }
@@ -137,7 +146,11 @@ class UecNack : public Packet {
         return newpkt(flow, route, seqno, ackno, 0);
     }
 
-    void free() { _packetdb.freePacket(this); }
+    void free() {
+        printf("Packet (UecNack) being freed ID is %d - From %d\n", id(), from);
+        fflush(stdout);
+        _packetdb.freePacket(this);
+    }
     inline seq_t seqno() const { return _seqno; }
     inline seq_t ackno() const { return _ackno; }
     inline seq_t data_ackno() const { return _data_ackno; }

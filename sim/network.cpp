@@ -54,6 +54,15 @@ PacketSink *Packet::sendOn() {
 
     if (_route) {
         if (_bounced) {
+            printf("ID %d - From %d - Route Size is %d - Hops %d - Size %d - "
+                   "Full %d\n",
+                   id(), from, _route->size(), _nexthop, _size, _queue_full);
+            fflush(stdout);
+            printf("Route2 Size is %d - Hops %d - Size %d - Full %d - Name "
+                   "%s\n",
+                   _route->size(), _nexthop, _size, _queue_full,
+                   _route->reverse()->at(_nexthop)->nodename().c_str());
+            fflush(stdout);
             assert(_nexthop > 0);
             assert(_nexthop < _route->size());
             assert(_nexthop < _route->reverse()->size());

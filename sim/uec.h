@@ -181,13 +181,13 @@ class UecSrc : public PacketSink, public EventSource {
     void add_ack_path(const Route *rt);
     bool resend_packet(std::size_t i);
     void retransmit_packet();
-    void processAck(UecAck &pkt);
+    void processAck(UecAck &pkt, bool);
     std::size_t get_sent_packet_idx(uint32_t pkt_seqno);
 
     void update_rtx_time();
     void reduce_cwnd(uint64_t amount);
     void processNack(UecNack &nack);
-    void processBts(UecPacket &nack);
+    void processBts(UecPacket *nack);
     void reduce_unacked(uint64_t amount);
     void apply_timeout_penalty();
 };

@@ -270,6 +270,7 @@ void UecSrc::reduce_cwnd(uint64_t amount) {
 }
 
 void UecSrc::reduce_unacked(uint64_t amount) {
+    printf("Unacked %d - Amount %lu\n", _unacked, amount);
     if (_unacked >= amount) {
         _unacked -= amount;
     } else {
@@ -283,6 +284,7 @@ void UecSrc::processNack(UecNack &pkt) {
         _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
         reduce_cwnd(_mss);
     }
+    printf("Got a NACK\n");
 
     _list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
     // mark corresponding packet for retransmission
@@ -325,26 +327,33 @@ void UecSrc::processNack(UecNack &pkt) {
             (queue_deviation / (observed_queue_occupancy) / (cwnd / _mss)))
 }*/
 
-void UecSrc::processBts(UecPacket &pkt) {
+void UecSrc::processBts(UecPacket *pkt) {
     _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
     _received_ecn.push_back(std::make_tuple(
             eventlist().now(), true, _mss,
             eventlist().now())); // TODO: assuming same size for all packets
 
-    if (pkt._queue_full) {
-        printf("BTS - Queue is full - Level %d\n", pkt.queue_status);
+    pkt->unbounce(64 + _mss);
+    if (pkt->_queue_full) {
+        printf("BTS - Queue is full - Level %d - %ld\n", pkt->queue_status,
+               eventlist().now() / 1000);
         reduce_cwnd(_mss);
         _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
     } else {
-        printf("BTS - Warning - Level %d - Reduce %d (%d)\n", pkt.queue_status,
-               _mss, (uint64_t)(_mss * (pkt.queue_status / 64.0)));
-        reduce_cwnd((uint64_t)(_mss * (pkt.queue_status / 64.0)));
+        printf("BTS - Warning - Level %d - Reduce %d (%d) - %lc\n",
+               pkt->queue_status, _mss,
+               (uint64_t)(_mss * (pkt->queue_status / 64.0)),
+               eventlist().now() / 1000);
+        reduce_cwnd((uint64_t)(_mss * (pkt->queue_status / 64.0)));
         _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
+        printf("Free1\n");
+        fflush(stdout);
+        // pkt->free();
         return;
     }
 
     // mark corresponding packet for retransmission
-    auto i = get_sent_packet_idx(pkt.seqno());
+    auto i = get_sent_packet_idx(pkt->seqno());
     assert(i < _sent_packets.size());
 
     assert(!_sent_packets[i].acked); // TODO: would it be possible for a packet
@@ -360,9 +369,12 @@ void UecSrc::processBts(UecPacket &pkt) {
     if (!_rtx_pending && !success) {
         _rtx_pending = true;
     }
+    pkt->free();
+    printf("Free2\n");
+    fflush(stdout);
 }
 
-void UecSrc::processAck(UecAck &pkt) {
+void UecSrc::processAck(UecAck &pkt, bool force_marked) {
     UecAck::seq_t seqno = pkt.ackno();
     simtime_picosec ts = pkt.ts();
     if (seqno < _last_acked) {
@@ -429,6 +441,7 @@ void UecSrc::processAck(UecAck &pkt) {
         adjust_window(ts, marked);
 
         _effcwnd = _cwnd;
+        printf("Received From %d - Sending More\n", from);
         send_packets();
         return; // TODO: if no further code, this can be removed
     }
@@ -448,6 +461,9 @@ uint64_t UecSrc::get_unacked() {
 void UecSrc::receivePacket(Packet &pkt) {
     // every packet received represents one less packet in flight
 
+    printf("Node %s - Received packet %d - From %d\n", nodename().c_str(),
+           pkt.id(), pkt.from);
+
     reduce_unacked(_mss);
 
     // TODO: receive window?
@@ -461,13 +477,13 @@ void UecSrc::receivePacket(Packet &pkt) {
         // BTS
         if (_bts_enabled) {
             if (pkt.bounced()) {
-                processBts(dynamic_cast<UecPacket &>(pkt));
+                processBts((UecPacket *)(&pkt));
             }
         }
         break;
     case UECACK:
         printf("NORMALACK\n");
-        processAck(dynamic_cast<UecAck &>(pkt));
+        processAck(dynamic_cast<UecAck &>(pkt), false);
         break;
     case UECNACK:
         printf("NACK %d\n", from);
@@ -484,6 +500,8 @@ void UecSrc::receivePacket(Packet &pkt) {
         eventlist().sourceIsPendingRel(*this, 0);
     }
     pkt.free();
+    printf("Free3\n");
+    fflush(stdout);
 }
 
 void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
@@ -512,7 +530,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
                 reduce_cwnd(0); // fix cwnd if it goes below minimum
             }
         } else if (GLOBAL_TIME > _ignore_ecn_until) {
-            reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+            // reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
         }
         // max(1.0, floor((double)_cwnd / _mss) * ((double)_cwnd / _bdp))) {
     } else if (true && no_ecn_last_target_rtt() &&
@@ -654,6 +672,7 @@ void UecSrc::send_packets() {
     if (_rtx_pending) {
         retransmit_packet();
     }
+    printf("Sent Packet Called, %d\n", from);
     _list_unacked.push_back(std::make_pair(eventlist().now() / 1000, _unacked));
     unsigned c = _cwnd;
 
@@ -896,14 +915,21 @@ void UecSink::receivePacket(Packet &pkt) {
     case UECNACK:
         // bounced, ignore
         pkt.free();
+        printf("Free4\n");
+        fflush(stdout);
         return;
     case UEC:
         // do what comes after the switch
+        if (pkt.bounced()) {
+            printf("Bounced at Sink, no sense\n");
+        }
         break;
     default:
         std::cout << "unknown packet receive with type code: " << pkt.type()
                   << "\n";
         pkt.free();
+        printf("Free5\n");
+        fflush(stdout);
         return;
     }
     UecPacket *p = dynamic_cast<UecPacket *>(&pkt);
@@ -932,6 +958,8 @@ void UecSink::receivePacket(Packet &pkt) {
         send_nack(ts, marked, seqno, ackno, _paths.at(crt_path));
         pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_RCVDESTROY);
         p->free();
+        printf("Free6\n");
+        fflush(stdout);
         // cout << "trimmed packet";
         return;
     }
@@ -939,6 +967,8 @@ void UecSink::receivePacket(Packet &pkt) {
     int size = p->data_packet_size();
     // pkt._flow().logTraffic(pkt, *this, TrafficLogger::PKT_RCVDESTROY);
     p->free();
+    printf("Free7\n");
+    fflush(stdout);
 
     _packets += size;
 

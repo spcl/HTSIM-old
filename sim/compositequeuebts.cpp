@@ -92,21 +92,6 @@ void CompositeQueueBts::completeService() {
         pkt = _enqueued_low.pop();
         _queuesize_low -= pkt->size();
 
-        // ECN mark on deque
-        if (decide_ECN()) {
-            // pkt->set_flags(pkt->flags() | ECN_CE);
-            if (COLLECT_DATA) {
-                /*std::string file_name = "../output/ecn/ecn" +
-                                        std::to_string(pkt->from) + "_" +
-                                        std::to_string(pkt->to) + ".txt";
-                std::ofstream MyFile(file_name, std::ios_base::app);
-
-                MyFile << eventlist().now() / 1000 << "," << 1 << std::endl;
-
-                MyFile.close();*/
-            }
-        }
-
         if (COLLECT_DATA && !pkt->header_only()) {
             if (_nodename.find("US_0") != std::string::npos &&
                 pkt->type() == UEC) {
@@ -195,6 +180,11 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
     if (_logger)
         _logger->logQueue(*this, QueueLogger::PKT_ARRIVE, pkt);
     // is this a Tofino packet from the egress pipeline?
+
+    printf("Considering Queue %s - Header Only %d\n", _nodename.c_str(),
+           pkt.header_only());
+    fflush(stdout);
+
     if (!pkt.header_only()) {
         //  Queue
         if (COLLECT_DATA) {
@@ -213,20 +203,33 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
         }
         if (_queuesize_low + pkt.size() > _bts_triggering ||
             _queuesize_low + pkt.size() > _maxsize || decide_ECN()) {
-            // If queue is full, we send it back
+            // If queue is full or BTS is triggered or we want to do
+            // probabilistic BTS, we send it back
             if (_queuesize_low + pkt.size() > _maxsize) {
                 pkt._queue_full = true;
             } else {
                 pkt._queue_full = false;
             }
+
             printf("BTS Case\n");
-            pkt.queue_status =
-                    ((_queuesize_low + pkt.size()) * 64.0) / _maxsize;
-            pkt.strip_payload();
-            pkt.bounce();
-            pkt.reverse_route();
-            _num_bounced++;
-            pkt.sendOn();
+            if (pkt.reverse_route() && pkt.bounced() == false) {
+                pkt.queue_status =
+                        ((_queuesize_low + pkt.size()) * 64.0) / _maxsize;
+                pkt.strip_payload();
+                pkt.bounce();
+                pkt.reverse_route();
+                _num_bounced++;
+
+                printf("Bounce1 at %s\n", _nodename.c_str());
+                printf("Fwd route:\n");
+                print_route(*(pkt.route()));
+                printf("nexthop: %d\n", pkt.nexthop());
+                printf("\nRev route:\n");
+                print_route(*(pkt.reverse_route()));
+                fflush(stdout);
+
+                pkt.sendOn();
+            }
             return;
         } else {
             Packet *pkt_p = &pkt;
@@ -282,6 +285,15 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
             printf("nexthop: %d\n", pkt.nexthop());
 #endif
                 _num_bounced++;
+
+                printf("Bounce2 at %s\n", _nodename.c_str());
+                printf("Fwd route:\n");
+                print_route(*(pkt.route()));
+                printf("nexthop: %d\n", pkt.nexthop());
+                printf("\nRev route:\n");
+                print_route(*(pkt.reverse_route()));
+                fflush(stdout);
+
                 pkt.sendOn();
                 return;
             } else {
@@ -291,6 +303,8 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
                 cout << "B[ " << _enqueued_low.size() << " "
                      << _enqueued_high.size() << " ] DROP "
                      << pkt.flow().get_id() << endl;
+                printf("Free8\n");
+                fflush(stdout);
                 pkt.free();
                 _num_drops++;
                 return;
