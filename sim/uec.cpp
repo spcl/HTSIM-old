@@ -343,7 +343,8 @@ void UecSrc::processBts(UecPacket *pkt) {
                pkt->queue_status, _mss,
                (uint64_t)(_mss * (pkt->queue_status / 64.0)),
                eventlist().now() / 1000);
-        reduce_cwnd((uint64_t)(_mss * (pkt->queue_status / 64.0)));
+        // reduce_cwnd((uint64_t)(_mss * (pkt->queue_status / 64.0)));
+        reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
         _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
         printf("Free1\n");
         fflush(stdout);
@@ -532,7 +533,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
                 reduce_cwnd(0); // fix cwnd if it goes below minimum
             }
         } else if (GLOBAL_TIME > _ignore_ecn_until) {
-            // reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+            reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
         }
         // max(1.0, floor((double)_cwnd / _mss) * ((double)_cwnd / _bdp))) {
     } else if (true && no_ecn_last_target_rtt() &&
