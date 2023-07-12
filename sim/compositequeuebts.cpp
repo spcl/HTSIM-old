@@ -1,6 +1,7 @@
 // -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
 #include "compositequeuebts.h"
 #include "ecn.h"
+#include "uecpacket.h"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -91,6 +92,12 @@ void CompositeQueueBts::completeService() {
         assert(!_enqueued_low.empty());
         pkt = _enqueued_low.pop();
         _queuesize_low -= pkt->size();
+        printf("Considering Queue2 %s - From %d - Header Only %d - Size %d - "
+               "Arrayt Size "
+               "%d\n",
+               _nodename.c_str(), pkt->from, pkt->header_only(), _queuesize_low,
+               _enqueued_low.size());
+        fflush(stdout);
 
         if (COLLECT_DATA && !pkt->header_only()) {
             if (_nodename.find("US_0") != std::string::npos &&
@@ -181,8 +188,13 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
         _logger->logQueue(*this, QueueLogger::PKT_ARRIVE, pkt);
     // is this a Tofino packet from the egress pipeline?
 
-    printf("Considering Queue %s - Header Only %d\n", _nodename.c_str(),
-           pkt.header_only());
+    printf("Considering Queue %s - ID %d - From %d - Header Only %d - "
+           "IsSpecial %d - "
+           "Size %d - "
+           "Arrayt Size "
+           "%d\n",
+           _nodename.c_str(), pkt.id(), pkt.from, pkt.header_only(),
+           pkt.is_special, _queuesize_low, _enqueued_low.size());
     fflush(stdout);
 
     if (!pkt.header_only()) {
@@ -201,64 +213,93 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
                 MyFile.close();
             }
         }
+        bool prepare_bts = decide_ECN();
         if (_queuesize_low + pkt.size() > _bts_triggering ||
-            _queuesize_low + pkt.size() > _maxsize || decide_ECN()) {
+            _queuesize_low + pkt.size() > _maxsize || prepare_bts) {
             // If queue is full or BTS is triggered or we want to do
             // probabilistic BTS, we send it back
+            // Packet bts_pkt = pkt;
+            // UecPacket bts_pkt = UecPacket::newpkt((UecPacket)pkt);
+            printf("Pre Copy %d\n", pkt.nexthop());
+            UecPacket *bts_pkt =
+                    UecPacket::newpkt(dynamic_cast<UecPacket &>(pkt));
+
+            // create packet
+            /*UecPacket *bts_pkt = UecPacket::newpkt(
+                    _flow, *rt, _highest_sent + 1, data_seq, 64);
+            p->from = pkt.from;
+            p->to = pkt.to;
+            p->tag = pkt.tag;
+            p->set_ts(eventlist().now());*/
+
             if (_queuesize_low + pkt.size() > _maxsize) {
-                pkt._queue_full = true;
+                bts_pkt->_queue_full = true;
             } else {
-                pkt._queue_full = false;
+                bts_pkt->_queue_full = false;
             }
 
-            printf("BTS Case\n");
-            if (pkt.reverse_route() && pkt.bounced() == false) {
-                pkt.queue_status =
-                        ((_queuesize_low + pkt.size()) * 64.0) / _maxsize;
-                pkt.strip_payload();
-                pkt.bounce();
-                pkt.reverse_route();
+            printf("BTS Case %d\n", bts_pkt->from);
+            if (bts_pkt->reverse_route() && bts_pkt->bounced() == false) {
+                printf("BTS Case1 - Size %d - Queue Full %d\n", _queuesize_low,
+                       bts_pkt->_queue_full);
+                bts_pkt->queue_status =
+                        ((_queuesize_low + bts_pkt->size()) * 64.0) / _maxsize;
+                bts_pkt->strip_payload();
+                bts_pkt->bounce();
+                // bts_pkt->reverse_route();
                 _num_bounced++;
+                bts_pkt->is_special = true;
 
-                printf("Bounce1 at %s\n", _nodename.c_str());
+                /*printf("Bounce1 at %s\n", _nodename.c_str());
                 printf("Fwd route:\n");
-                print_route(*(pkt.route()));
-                printf("nexthop: %d\n", pkt.nexthop());
+                print_route(*(bts_pkt->route()));
+                printf("nexthop: %d\n", bts_pkt->nexthop());
                 printf("\nRev route:\n");
-                print_route(*(pkt.reverse_route()));
+                print_route(*(bts_pkt->reverse_route()));
+                fflush(stdout);*/
+                printf("Post Copy %d\n", pkt.nexthop());
                 fflush(stdout);
 
-                pkt.sendOn();
+                bts_pkt->sendOn();
             }
-            return;
-        } else {
+            // return;
+        }
+        /*if (_queuesize_low + pkt.size() <= _maxsize) {
+                Packet *pkt_p = &pkt;
+                _enqueued_low.push(pkt_p);
+                _queuesize_low += pkt.size();
+                printf("- Queue %s, Increasing by %d\n", _nodename.c_str(),
+                       _queuesize_low);
+                if (_logger)
+                    _logger->logQueue(*this, QueueLogger::PKT_ENQUEUE, pkt);
+
+                if (_serv == QUEUE_INVALID) {
+                    beginService();
+                }
+                return;
+            }
+        */
+
+        if (_queuesize_low + pkt.size() <= _maxsize) {
+            assert(_queuesize_low + pkt.size() <= _maxsize);
             Packet *pkt_p = &pkt;
             _enqueued_low.push(pkt_p);
             _queuesize_low += pkt.size();
+            printf("Considering Queue %s - ID %d - From %d - Header Only %d - "
+                   "IsSpecial %d - "
+                   "Size %d - "
+                   "Arrayt Size "
+                   "%d\n",
+                   _nodename.c_str(), pkt.id(), pkt.from, pkt.header_only(),
+                   pkt.is_special, _queuesize_low, _enqueued_low.size());
+            fflush(stdout);
             if (_logger)
                 _logger->logQueue(*this, QueueLogger::PKT_ENQUEUE, pkt);
 
             if (_serv == QUEUE_INVALID) {
                 beginService();
             }
-
-            return;
         }
-
-        assert(_queuesize_low + pkt.size() <= _maxsize);
-        Packet *pkt_p = &pkt;
-        _enqueued_low.push(pkt_p);
-        _queuesize_low += pkt.size();
-        if (_logger)
-            _logger->logQueue(*this, QueueLogger::PKT_ENQUEUE, pkt);
-
-        if (_serv == QUEUE_INVALID) {
-            beginService();
-        }
-
-        // cout << "BL[ " << _enqueued_low.size() << " " <<
-        // _enqueued_high.size() << " ]" << endl;
-
         return;
     } else {
         assert(pkt.header_only());
@@ -266,6 +307,7 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
         if (_queuesize_high + pkt.size() > 200 * _maxsize) {
             // drop header
             // cout << "drop!\n";
+            printf("Should never reach here");
             if (pkt.reverse_route() && pkt.bounced() == false) {
                 // return the packet to the sender
                 if (_logger)

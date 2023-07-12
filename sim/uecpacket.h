@@ -36,6 +36,27 @@ class UecPacket : public Packet {
         return p;
     }
 
+    inline static UecPacket *newpkt(UecPacket &source) {
+        UecPacket *p = _packetdb.allocPacket();
+
+        p->set_route(source.flow(), *(source.route()), 64, source.id() - 2);
+        assert(p->route());
+        p->_type = UEC;
+        p->_is_header = false;
+        p->_bounced = false;
+        p->is_special = false;
+        p->_seqno = source._seqno;
+        p->_data_seqno = source._data_seqno;
+        p->_syn = false;
+        p->_retransmitted = false;
+        p->_flags = 0;
+        p->from = source.from;
+        p->to = source.to;
+        p->tag = source.tag;
+        p->_nexthop = source._nexthop;
+        return p;
+    }
+
     inline static UecPacket *newpkt(PacketFlow &flow, const Route &route,
                                     seq_t seqno, int size) {
         return newpkt(flow, route, seqno, 0, size);

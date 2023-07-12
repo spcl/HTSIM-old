@@ -333,7 +333,6 @@ void UecSrc::processBts(UecPacket *pkt) {
             eventlist().now(), true, _mss,
             eventlist().now())); // TODO: assuming same size for all packets
 
-    pkt->unbounce(64 + _mss);
     if (pkt->_queue_full) {
         printf("BTS - Queue is full - Level %d - %ld\n", pkt->queue_status,
                eventlist().now() / 1000);
@@ -348,11 +347,12 @@ void UecSrc::processBts(UecPacket *pkt) {
         _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
         printf("Free1\n");
         fflush(stdout);
-        // pkt->free();
+        pkt->free();
         return;
     }
 
     // mark corresponding packet for retransmission
+    pkt->unbounce(64 + _mss);
     auto i = get_sent_packet_idx(pkt->seqno());
     assert(i < _sent_packets.size());
 
@@ -482,13 +482,15 @@ void UecSrc::receivePacket(Packet &pkt) {
         }
         break;
     case UECACK:
-        printf("NORMALACK\n");
+        printf("NORMALACK, %d\n", pkt.from);
         processAck(dynamic_cast<UecAck &>(pkt), false);
+        pkt.free();
         break;
     case UECNACK:
         printf("NACK %d\n", from);
         if (_trimming_enabled) {
             processNack(dynamic_cast<UecNack &>(pkt));
+            pkt.free();
         }
         break;
     default:
@@ -499,7 +501,7 @@ void UecSrc::receivePacket(Packet &pkt) {
     if (get_unacked() < _cwnd && _rtx_timeout_pending) {
         eventlist().sourceIsPendingRel(*this, 0);
     }
-    pkt.free();
+    // pkt.free();
     printf("Free3\n");
     fflush(stdout);
 }
@@ -1011,6 +1013,7 @@ void UecSink::receivePacket(Packet &pkt) {
     // same exact links, which is not correct in Packet Spray, but
     // there doesn't seem to be a good, quick way of doing that in
     // htsim
+    printf("Ack Sending From %d - %d\n", this->from, pkt.is_special);
     send_ack(ts, marked, seqno, ackno, _paths.at(crt_path), pkt.get_route());
 }
 

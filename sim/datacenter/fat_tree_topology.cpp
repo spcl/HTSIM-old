@@ -445,11 +445,11 @@ void FatTreeTopology::init_network() {
             if (true) {
                 if (tor == 0 && agg == 7) {
                     queues_nlp_nup[tor][agg] =
-                            alloc_queue(queueLogger, _linkspeed / 4, _queuesize,
+                            alloc_queue(queueLogger, _linkspeed / 1, _queuesize,
                                         UPLINK, true);
                 } else {
                     queues_nlp_nup[tor][agg] =
-                            alloc_queue(queueLogger, _linkspeed / 4, _queuesize,
+                            alloc_queue(queueLogger, _linkspeed / 1, _queuesize,
                                         UPLINK, true);
                 }
             } else {
