@@ -236,6 +236,7 @@ class Packet {
     bool _queue_full; // Queue is full, BTS indicates packet drop
     bool is_special = false;
     uint8_t queue_status;
+    int acked_size = 2048;
 
   protected:
     virtual void set_route(PacketFlow &flow, const Route &route, int pkt_size,

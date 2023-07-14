@@ -175,13 +175,14 @@ class UecSrc : public PacketSink, public EventSource {
     bool _trimming_enabled;
     bool _bts_enabled = true;
     int _hop_count;
+    double _max_level_bts = 64.0;
 
     void send_packets();
     uint64_t get_unacked();
 
     void adjust_window(simtime_picosec ts, bool ecn);
-    bool no_ecn_last_target_rtt();
-    bool no_rtt_over_target_last_target_rtt();
+    bool RTT_Exceeded_Seen();
+    bool BTS_Seen();
     bool ecn_congestion();
     void drop_old_received();
     const Route *get_path();

@@ -36,11 +36,6 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
                 1000;
     _target_rtt = _base_rtt * 1.21;
 
-    /*printf("Link Delay %lu - Link Speed %lu - Pkt Size %d - Base RTT %lu - "
-           "Target RTT is %lu\n",
-           LINK_DELAY_MODERN, LINK_SPEED_MODERN, PKT_SIZE_MODERN, _base_rtt,
-           _target_rtt);*/
-
     _rtt = _base_rtt;
     _rto = rtt + _hop_count * queueDrainTime + (rtt * 90000);
     _rto_margin = _rtt / 2;
@@ -52,14 +47,9 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     _trimming_enabled = true;
 
     _bdp = (_base_rtt * LINK_SPEED_MODERN / 8) / 1000;
-    printf("Link Delay %lu - Link Speed %lu - Pkt Size %d - Base RTT %lu - "
-           "Target RTT is %lu - BDP/CWDN %lu\n",
-           LINK_DELAY_MODERN, LINK_SPEED_MODERN, PKT_SIZE_MODERN, _base_rtt,
-           _target_rtt, _bdp);
     _maxcwnd = _bdp;
     _cwnd = _bdp;
     _consecutive_low_rtt = 0;
-    //_consecutive_no_ecn = 0;
 
     _target_based_received = true;
 
@@ -129,29 +119,6 @@ UecSrc::~UecSrc() {
 
             MyFileBTS.close();
         }
-        // US TO CS
-        /*if (us_to_cs.size() > 0) {
-            file_name = "../output/us_to_cs/us_to_cs" + _name + ".txt";
-            std::ofstream MyFileUsToCs(file_name, std::ios_base::app);
-
-            for (const auto &p : us_to_cs) {
-                MyFileUsToCs << p.first << "," << p.second << std::endl;
-            }
-
-            MyFileUsToCs.close();
-        }
-
-        // LS TO US
-        if (ls_to_us.size() > 0) {
-            file_name = "../output/ls_to_us/ls_to_us" + _name + ".txt";
-            std::ofstream MyFileLsToUs(file_name, std::ios_base::app);
-
-            for (const auto &p : ls_to_us) {
-                MyFileLsToUs << p.first << "," << p.second << std::endl;
-            }
-
-            MyFileLsToUs.close();
-        }*/
     }
 }
 
@@ -233,26 +200,15 @@ void UecSrc::mark_received(UecAck &pkt) {
     update_rtx_time();
 }
 
+// If we are here, it means we are not ECN Marked
 void UecSrc::add_ack_path(const Route *rt) {
-    for (auto &r : _good_entropies) {
-        if (r == rt) {
-            return;
-        }
-    }
+    // This might get tuned later to better match the pseudocode but it already
+    // matches it logically. If we are not full, we just push to array.
+    // Otherwise we overwrite the oldest element.
     if (_good_entropies.size() < _max_good_entropies) {
-        printf("Pushing Back Now, %d\n", from);
         _good_entropies.push_back(rt);
     } else {
-        // TODO: this could cause some weird corner cases that would
-        // preserve old entropies, but it probably won't be an issue
-        // for simulations.
-        // Example corner case: if a path is used, then the other
-        // paths are replaced up to the point that _next_good_entropy
-        // comes back to that path, it could be used again before any
-        // of the newer paths.
-        _good_entropies[_next_good_entropy] = rt;
-        ++_next_good_entropy;
-        _next_good_entropy %= _max_good_entropies;
+        _good_entropies[0] = rt;
     }
 }
 
@@ -261,8 +217,6 @@ void UecSrc::set_traffic_logger(TrafficLogger *pktlogger) {
 }
 
 void UecSrc::reduce_cwnd(uint64_t amount) {
-    printf("Reducing from %d (%s) - %lu - Now %d\n", from, _name.c_str(),
-           amount, _cwnd);
     if (_cwnd >= amount + _mss) {
         _cwnd -= amount * 1;
     } else {
@@ -271,11 +225,9 @@ void UecSrc::reduce_cwnd(uint64_t amount) {
 }
 
 void UecSrc::reduce_unacked(uint64_t amount) {
-    printf("Unacked %d - Amount %lu\n", _unacked, amount);
     if (_unacked >= amount) {
         _unacked -= amount;
     } else {
-        // printf("Else2 - Unacked %d - Amount %lu\n", _unacked, amount);
         _unacked = 0;
     }
 }
@@ -285,8 +237,6 @@ void UecSrc::processNack(UecNack &pkt) {
         _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
         reduce_cwnd(_mss);
     }
-    printf("Got a NACK\n");
-
     _consecutive_no_ecn = 0;
     _consecutive_low_rtt = 0;
     _received_ecn.push_back(std::make_tuple(eventlist().now(), true, _mss,
@@ -305,17 +255,6 @@ void UecSrc::processNack(UecNack &pkt) {
         ++_nack_rtx_pending;
     }
 
-    /*
-    // update ECN
-    simtime_picosec ts = pkt.ts();
-    bool marked = pkt.flags() &
-                  ECN_ECHO; // ECN was marked on data packet and echoed on NACK
-    _received_ecn.push_back(
-            std::make_tuple(eventlist().now(), marked,
-                            0)); // TODO: assuming same size for all packets
-    if (marked) {
-        adjust_window(ts, marked);
-        }*/
     // retransmit only the NACK'ed packet
     bool success = resend_packet(i);
     if (!_rtx_pending && !success) {
@@ -343,23 +282,7 @@ void UecSrc::processBts(UecPacket *pkt) {
                                             _target_rtt + 10000));
     _list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
 
-    if (pkt->_queue_full) {
-        printf("BTS %d - Queue is full - Level %d - %ld\n", from,
-               pkt->queue_status, eventlist().now() / 1000);
-        reduce_cwnd(_mss);
-        _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
-    } else {
-        printf("BTS %d - Warning - Level %d - Reduce %lu (%f) - %lu\n", from,
-               pkt->queue_status,
-               (uint64_t)(_mss * (pkt->queue_status / 64.0) *
-                          ((double)_cwnd / _bdp)),
-               (double)_cwnd / _bdp, eventlist().now() / 1000);
-        reduce_cwnd((uint64_t)(_mss * (pkt->queue_status / 64.0) *
-                               ((double)(_cwnd * 1) / _bdp)));
-        _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
-        printf("Free1\n");
-        fflush(stdout);
-        pkt->free();
+    if (!pkt->_queue_full) {
         return;
     }
 
@@ -382,8 +305,6 @@ void UecSrc::processBts(UecPacket *pkt) {
         _rtx_pending = true;
     }
     pkt->free();
-    printf("Free2\n");
-    fflush(stdout);
 }
 
 void UecSrc::processAck(UecAck &pkt, bool force_marked) {
@@ -394,8 +315,6 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
     }
     bool marked = pkt.flags() &
                   ECN_ECHO; // ECN was marked on data packet and echoed on ACK
-
-    printf("packet is ECN Marked %d - Time %lu\n", marked, GLOBAL_TIME / 1000);
 
     if (_start_timer_window) {
         _start_timer_window = false;
@@ -419,14 +338,9 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
         _consecutive_low_rtt = 0;
     }
 
-    // printf("Current Time %lu - New RTT is %lu - Sent Time %lu - FlowName
-    // %s - ECN %d\n",(long long)eventlist().now(), (long long)newRtt, (long
-    // long) ts, _name.c_str(), marked);
     _list_rtt.push_back(std::make_tuple(eventlist().now() / 1000, newRtt / 1000,
                                         pkt.seqno(), pkt.ackno()));
 
-    // printf("Received Good Ack %lu vs %lu || %lu\n", seqno, _flow_size,
-    //        _last_acked);
     if (seqno >= _flow_size && _sent_packets.empty() && !_flow_finished) {
         _flow_finished = true;
         if (f_flow_over_hook) {
@@ -448,11 +362,8 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
         _last_acked = seqno;
 
         _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
-        // printf("Window Is %d - From %d To %d\n", _cwnd, from, to);
-        adjust_window(ts, marked);
 
         _effcwnd = _cwnd;
-        printf("Received From %d - Sending More\n", from);
         send_packets();
         return; // TODO: if no further code, this can be removed
     }
@@ -470,35 +381,51 @@ uint64_t UecSrc::get_unacked() {
 }
 
 void UecSrc::receivePacket(Packet &pkt) {
-    // every packet received represents one less packet in flight
+    // We received an ACK, BTS Queue Full Event or NACK. We can release the
+    // packet size.
+    if (pkt._queue_full || !pkt.bounced()) {
+        reduce_unacked(pkt.acked_size);
+    }
 
-    printf("Node %s - Received packet %d - From %d\n", nodename().c_str(),
-           pkt.id(), pkt.from);
-
-    reduce_unacked(_mss);
-
-    // TODO: receive window?
+    // Logging
     pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_RCVDESTROY);
-
     if (_logger) {
         _logger->logUec(*this, UecLogger::UEC_RCV);
     }
+
+    // Check what kind of packet we have received
     switch (pkt.type()) {
+    case UECACK:
+        // Normal ACK, We do some standard processing on it
+        processAck(dynamic_cast<UecAck &>(pkt), false);
+
+        // Increase CWND
+        if (!RTT_Exceeded_Seen() && !BTS_Seen()) {
+            _cwnd += ((double)_cwnd / _bdp) * pkt.acked_size;
+        } else {
+            _cwnd += ((double)pkt.acked_size / _cwnd) * _mss;
+        }
+
+        // Release the packet
+        pkt.free();
+        break;
     case UEC:
-        // BTS
+        // BTS Case
         if (_bts_enabled) {
             if (pkt.bounced()) {
-                processBts((UecPacket *)(&pkt));
+                _cwnd -= ((double)(_cwnd) / _bdp) *
+                         (pkt.acked_size * (pkt.queue_status / _max_level_bts));
+                if (pkt._queue_full) {
+                    // We retransmit here
+                    processBts((UecPacket *)(&pkt));
+                } else {
+                    pkt.free();
+                }
             }
         }
         break;
-    case UECACK:
-        printf("NORMALACK, %d\n", pkt.from);
-        processAck(dynamic_cast<UecAck &>(pkt), false);
-        pkt.free();
-        break;
     case UECNACK:
-        printf("NACK %d\n", from);
+        // Trimmed Packet
         if (_trimming_enabled) {
             processNack(dynamic_cast<UecNack &>(pkt));
             pkt.free();
@@ -509,43 +436,34 @@ void UecSrc::receivePacket(Packet &pkt) {
                   << "\n";
         return;
     }
+
+    // Check cwnd boundries
+    if (_cwnd > _maxcwnd) {
+        _cwnd = _maxcwnd;
+    }
+
+    // For timeout purposes
     if (get_unacked() < _cwnd && _rtx_timeout_pending) {
         eventlist().sourceIsPendingRel(*this, 0);
     }
-    // pkt.free();
-    printf("Free3\n");
-    fflush(stdout);
 }
 
 void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
-    /*printf("From %d - Time %lu - Ecn %d - Consecutive Low %d - BDP %lu -
-       CWD "
-           "%d - Sizr "
-           "%d - No ECN %d - MSS is %d\n",
-           from, _eventlist.now() / 1000, ecn, _consecutive_no_ecn,
-           (long long)_bdp, _cwnd, _received_ecn.size(),
-           no_ecn_last_target_rtt(), _mss);*/
 
     if (_bts_enabled) {
         if (ecn && _ignore_ecn_ack) {
-            printf("BTS Case with ECN, ignore.");
-        } else if (no_ecn_last_target_rtt() &&
-                   no_rtt_over_target_last_target_rtt()) {
-            printf("First Increase, %d", from);
+        } else if (!RTT_Exceeded_Seen() && !BTS_Seen()) {
             _cwnd += _mss * ((double)_cwnd / _bdp);
             _consecutive_low_rtt = 0;
             _consecutive_no_ecn = 0;
         } else if (!ecn) {
-            printf("Second Increase, %d", from);
             _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
             _consecutive_no_ecn = 0;
         }
     } else {
         if (ecn) {
-            printf("ECN Case");
             reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
-        } else if (true && no_ecn_last_target_rtt() &&
-                   no_rtt_over_target_last_target_rtt()) {
+        } else if (true && !RTT_Exceeded_Seen() && !BTS_Seen()) {
             _cwnd += _mss * ((double)_cwnd / _bdp);
             _consecutive_low_rtt = 0;
             _consecutive_no_ecn = 0;
@@ -580,24 +498,25 @@ void UecSrc::drop_old_received() {
     }
 }
 
-bool UecSrc::no_ecn_last_target_rtt() {
+bool UecSrc::BTS_Seen() {
     drop_old_received();
     for (const auto &[ts, ecn, size, rtt] : _received_ecn) {
+        // Here we consider either ECN or BTS
         if (ecn) {
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
-bool UecSrc::no_rtt_over_target_last_target_rtt() {
+bool UecSrc::RTT_Exceeded_Seen() {
     drop_old_received();
     for (const auto &[ts, ecn, size, rtt] : _received_ecn) {
         if (rtt > _target_rtt) {
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 std::size_t UecSrc::getEcnInTargetRtt() {
@@ -637,21 +556,17 @@ void UecSrc::startflow() {
 }
 
 const Route *UecSrc::get_path() {
-    // TODO: add other ways to select paths
-    printf("Entropy Size %d\n", _good_entropies.size());
+    // Use Good Entropies is a flag to enable this logic
     if (_use_good_entropies && !_good_entropies.empty()) {
-        // auto rt = _good_entropies[_next_good_entropy];
-        // ++_next_good_entropy;
-        // _next_good_entropy %= _good_entropies.size();
-        auto rt = _good_entropies.back();
-        _good_entropies.pop_back();
+        auto rt = _good_entropies.front();
+        _good_entropies.erase(_good_entropies.begin());
         return rt;
     }
 
-    // Means we want to select a random one out of all paths, the original idea
+    // Means we want to select a random one out of all paths.
+    // This holds true if we don't set a fixed number of entropies
     if (_num_entropies == -1) {
         _crt_path = random() % _paths.size();
-
     } else {
         // Else we use our entropy array of a certain size and roud robin it
         _crt_path = _entropy_array[current_entropy];
@@ -665,19 +580,12 @@ void UecSrc::map_entropies() {
     for (int i = 0; i < _num_entropies; i++) {
         _entropy_array.push_back(random() % _paths.size());
     }
-    printf("Printing my Paths: ");
-    fflush(stdout);
-    for (int i = 0; i < _num_entropies; i++) {
-        printf("%d - ", _entropy_array[i]);
-    }
-    printf("\n");
 }
 
 void UecSrc::send_packets() {
     if (_rtx_pending) {
         retransmit_packet();
     }
-    printf("Sent Packet Called, %d\n", from);
     _list_unacked.push_back(std::make_pair(eventlist().now() / 1000, _unacked));
     unsigned c = _cwnd;
 
@@ -694,9 +602,6 @@ void UecSrc::send_packets() {
         p->from = this->from;
         p->to = this->to;
         p->tag = this->tag;
-        // printf("Sending packet %d %d %d - Name %s - Time %ld\n",
-        // this->from, this->to, this->tag, _name.c_str(), (long
-        // long)GLOBAL_TIME//);
 
         p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATESEND);
         p->set_ts(eventlist().now());
@@ -707,7 +612,6 @@ void UecSrc::send_packets() {
         _unacked += _mss;
 
         // Getting time until packet is really sent
-        printf("Sent Packet, %d\n", from);
         PacketSink *sink = p->sendOn();
         HostQueue *q = dynamic_cast<HostQueue *>(sink);
         assert(q);
@@ -920,8 +824,6 @@ void UecSink::receivePacket(Packet &pkt) {
     case UECNACK:
         // bounced, ignore
         pkt.free();
-        printf("Free4\n");
-        fflush(stdout);
         return;
     case UEC:
         // do what comes after the switch
@@ -933,8 +835,6 @@ void UecSink::receivePacket(Packet &pkt) {
         std::cout << "unknown packet receive with type code: " << pkt.type()
                   << "\n";
         pkt.free();
-        printf("Free5\n");
-        fflush(stdout);
         return;
     }
     UecPacket *p = dynamic_cast<UecPacket *>(&pkt);
@@ -963,8 +863,6 @@ void UecSink::receivePacket(Packet &pkt) {
         send_nack(ts, marked, seqno, ackno, _paths.at(crt_path));
         pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_RCVDESTROY);
         p->free();
-        printf("Free6\n");
-        fflush(stdout);
         // cout << "trimmed packet";
         return;
     }
@@ -972,8 +870,6 @@ void UecSink::receivePacket(Packet &pkt) {
     int size = p->data_packet_size();
     // pkt._flow().logTraffic(pkt, *this, TrafficLogger::PKT_RCVDESTROY);
     p->free();
-    printf("Free7\n");
-    fflush(stdout);
 
     _packets += size;
 
@@ -1016,7 +912,6 @@ void UecSink::receivePacket(Packet &pkt) {
     // same exact links, which is not correct in Packet Spray, but
     // there doesn't seem to be a good, quick way of doing that in
     // htsim
-    printf("Ack Sending From %d - %d\n", this->from, pkt.is_special);
     send_ack(ts, marked, seqno, ackno, _paths.at(crt_path), pkt.get_route());
 }
 
