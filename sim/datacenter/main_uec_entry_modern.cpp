@@ -99,6 +99,8 @@ int main(int argc, char **argv) {
     bool reuse_entropy = false;
     int number_entropies = 16;
     queue_type queue_choice = COMPOSITE;
+    bool ignore_ecn_data = true;
+    bool ignore_ecn_ack = true;
 
     int i = 1;
     filename << "logout.dat";
@@ -165,6 +167,12 @@ int main(int argc, char **argv) {
             hop_latency = timeFromNs(atof(argv[i + 1]));
             LINK_DELAY_MODERN = hop_latency /
                                 1000; // Saving this for UEC reference, ps to ns
+            i++;
+        } else if (!strcmp(argv[i], "-ignore_ecn_ack")) {
+            ignore_ecn_ack = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-ignore_ecn_data")) {
+            ignore_ecn_data = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-seed")) {
             seed = atoi(argv[i + 1]);
@@ -261,6 +269,7 @@ int main(int argc, char **argv) {
     FatTreeTopology::set_tiers(3);
     FatTreeTopology::set_ecn_thresholds_as_queue_percentage(kmin, kmax);
     FatTreeTopology::set_bts_threshold(bts_threshold);
+    FatTreeTopology::set_ignore_data_ecn(ignore_ecn_data);
     FatTreeTopology *top = new FatTreeTopology(
             no_of_nodes, linkspeed, queuesize, NULL, &eventlist, ff,
             queue_choice, hop_latency, switch_latency);
@@ -345,6 +354,8 @@ int main(int argc, char **argv) {
     lgs->set_queue_size(queuesize);
     lgs->setReuse(reuse_entropy);
     lgs->setNumberEntropies(number_entropies);
+    lgs->setIgnoreEcnAck(ignore_ecn_ack);
+    lgs->setIgnoreEcnData(ignore_ecn_data);
     start_lgs(goal_filename, *lgs);
 
     for (int src = 0; src < dest; ++src) {

@@ -26,6 +26,7 @@ uint32_t FatTreeTopology::_tiers = 3;
 int FatTreeTopology::kmin = -1;
 int FatTreeTopology::kmax = -1;
 int FatTreeTopology::bts_trigger = -1;
+bool FatTreeTopology::bts_ignore_data = true;
 //  extern int N;
 
 FatTreeTopology::FatTreeTopology(uint32_t no_of_nodes, linkspeed_bps linkspeed,
@@ -246,6 +247,7 @@ BaseQueue *FatTreeTopology::alloc_queue(QueueLogger *queueLogger,
         if (bts_trigger != -1) {
             q->set_bts_threshold((bts_trigger / 100.0) * queuesize);
         }
+        q->set_ignore_ecn_data(bts_ignore_data);
         return q;
     }
     case CTRL_PRIO:

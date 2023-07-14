@@ -34,7 +34,7 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
                  (_hop_count * LINK_DELAY_MODERN) +
                  (64 * 8 / LINK_SPEED_MODERN * _hop_count)) *
                 1000;
-    _target_rtt = _base_rtt * 1.15;
+    _target_rtt = _base_rtt * 1.21;
 
     /*printf("Link Delay %lu - Link Speed %lu - Pkt Size %d - Base RTT %lu - "
            "Target RTT is %lu\n",
@@ -261,7 +261,8 @@ void UecSrc::set_traffic_logger(TrafficLogger *pktlogger) {
 }
 
 void UecSrc::reduce_cwnd(uint64_t amount) {
-    printf("Reducing by %d - %lu\n", from, amount);
+    printf("Reducing from %d (%s) - %lu - Now %d\n", from, _name.c_str(),
+           amount, _cwnd);
     if (_cwnd >= amount + _mss) {
         _cwnd -= amount * 1;
     } else {
@@ -285,6 +286,11 @@ void UecSrc::processNack(UecNack &pkt) {
         reduce_cwnd(_mss);
     }
     printf("Got a NACK\n");
+
+    _consecutive_no_ecn = 0;
+    _consecutive_low_rtt = 0;
+    _received_ecn.push_back(std::make_tuple(eventlist().now(), true, _mss,
+                                            _target_rtt + 10000));
 
     _list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
     // mark corresponding packet for retransmission
@@ -329,22 +335,27 @@ void UecSrc::processNack(UecNack &pkt) {
 
 void UecSrc::processBts(UecPacket *pkt) {
     _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
-    _received_ecn.push_back(std::make_tuple(
-            eventlist().now(), true, _mss,
-            eventlist().now())); // TODO: assuming same size for all packets
+
+    // Update variables
+    _consecutive_no_ecn = 0;
+    _consecutive_low_rtt = 0;
+    _received_ecn.push_back(std::make_tuple(eventlist().now(), true, _mss,
+                                            _target_rtt + 10000));
+    _list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
 
     if (pkt->_queue_full) {
-        printf("BTS - Queue is full - Level %d - %ld\n", pkt->queue_status,
-               eventlist().now() / 1000);
+        printf("BTS %d - Queue is full - Level %d - %ld\n", from,
+               pkt->queue_status, eventlist().now() / 1000);
         reduce_cwnd(_mss);
         _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
     } else {
-        printf("BTS - Warning - Level %d - Reduce %d (%d) - %lc\n",
-               pkt->queue_status, _mss,
-               (uint64_t)(_mss * (pkt->queue_status / 64.0)),
-               eventlist().now() / 1000);
-        // reduce_cwnd((uint64_t)(_mss * (pkt->queue_status / 64.0)));
-        reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+        printf("BTS %d - Warning - Level %d - Reduce %lu (%f) - %lu\n", from,
+               pkt->queue_status,
+               (uint64_t)(_mss * (pkt->queue_status / 64.0) *
+                          ((double)_cwnd / _bdp)),
+               (double)_cwnd / _bdp, eventlist().now() / 1000);
+        reduce_cwnd((uint64_t)(_mss * (pkt->queue_status / 64.0) *
+                               ((double)(_cwnd * 1) / _bdp)));
         _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
         printf("Free1\n");
         fflush(stdout);
@@ -384,8 +395,7 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
     bool marked = pkt.flags() &
                   ECN_ECHO; // ECN was marked on data packet and echoed on ACK
 
-    // printf("packet is ECN Marked %d - Time %lu\n", marked, GLOBAL_TIME /
-    // 1000);
+    printf("packet is ECN Marked %d - Time %lu\n", marked, GLOBAL_TIME / 1000);
 
     if (_start_timer_window) {
         _start_timer_window = false;
@@ -515,46 +525,38 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
            from, _eventlist.now() / 1000, ecn, _consecutive_no_ecn,
            (long long)_bdp, _cwnd, _received_ecn.size(),
            no_ecn_last_target_rtt(), _mss);*/
-    if (ecn) {
-        printf("ECN Case");
-        uint64_t total = 0;
-        for (auto [ts, ecn, size, rtt] : _received_ecn) {
-            total += size;
+
+    if (_bts_enabled) {
+        if (ecn && _ignore_ecn_ack) {
+            printf("BTS Case with ECN, ignore.");
+        } else if (no_ecn_last_target_rtt() &&
+                   no_rtt_over_target_last_target_rtt()) {
+            printf("First Increase, %d", from);
+            _cwnd += _mss * ((double)_cwnd / _bdp);
+            _consecutive_low_rtt = 0;
+            _consecutive_no_ecn = 0;
+        } else if (!ecn) {
+            printf("Second Increase, %d", from);
+            _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
+            _consecutive_no_ecn = 0;
         }
-        if (ecn_congestion() && GLOBAL_TIME >= _next_check_window &&
-            _cwnd > 2 * total && ENABLE_FAST_DROP == true) {
-            if (GLOBAL_TIME >= _next_check_window && _cwnd > 2 * total) {
-                //_start_timer_window = true;
-                _ignore_ecn_until = GLOBAL_TIME + (1 * BASE_RTT_MODERN * 1000 *
-                                                   ((_cwnd / total) - 1));
-                _start_timer_window = true;
-                drop_old_received();
-                _cwnd = total;
-                reduce_cwnd(0); // fix cwnd if it goes below minimum
-            }
-        } else if (GLOBAL_TIME > _ignore_ecn_until) {
+    } else {
+        if (ecn) {
+            printf("ECN Case");
             reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+        } else if (true && no_ecn_last_target_rtt() &&
+                   no_rtt_over_target_last_target_rtt()) {
+            _cwnd += _mss * ((double)_cwnd / _bdp);
+            _consecutive_low_rtt = 0;
+            _consecutive_no_ecn = 0;
+        } else if (false && _cwnd > ceil(sqrt(_bdp * _mss)) &&
+                   _consecutive_no_ecn >= ceil(_bdp / _cwnd)) {
+            _cwnd += _mss * _mss * (_bdp / _cwnd) / _cwnd;
+            _consecutive_no_ecn = 0;
+        } else if (!ecn) {
+            _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
+            _consecutive_no_ecn = 0;
         }
-        // max(1.0, floor((double)_cwnd / _mss) * ((double)_cwnd / _bdp))) {
-    } else if (true && no_ecn_last_target_rtt() &&
-               no_rtt_over_target_last_target_rtt()) {
-        _cwnd += _mss * ((double)_cwnd / _bdp);
-        _consecutive_low_rtt = 0;
-        _consecutive_no_ecn = 0;
-        // printf("%d Else1 %lu\n", from, GLOBAL_TIME / 1000);
-    } else if (false && _cwnd > ceil(sqrt(_bdp * _mss)) &&
-               _consecutive_no_ecn >= ceil(_bdp / _cwnd)) {
-        _cwnd += _mss * _mss * (_bdp / _cwnd) / _cwnd;
-        _consecutive_no_ecn = 0;
-        // printf("%d Else2 %lu\n", from, GLOBAL_TIME / 1000);
-    } else if (!ecn) {
-        // _consecutive_no_ecn >= floor((double)_cwnd / _mss) *
-        // ((double)_cwnd / _bdp)
-        //_cwnd += ((double)_mss / _cwnd) * _mss * ((double)_cwnd / _bdp);
-        _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
-        //_cwnd += ((double)_mss / _cwnd) * _mss * ((double)_cwnd / _bdp);
-        // printf("%d Else3 %lu\n", from, GLOBAL_TIME / 1000);
-        _consecutive_no_ecn = 0;
     }
 
     if (_cwnd > _maxcwnd || false) {

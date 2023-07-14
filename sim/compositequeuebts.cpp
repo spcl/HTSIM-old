@@ -214,8 +214,7 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
             }
         }
         bool prepare_bts = decide_ECN();
-        if (_queuesize_low + pkt.size() > _bts_triggering ||
-            _queuesize_low + pkt.size() > _maxsize || prepare_bts) {
+        if (_queuesize_low + pkt.size() > _maxsize || prepare_bts) {
             // If queue is full or BTS is triggered or we want to do
             // probabilistic BTS, we send it back
             // Packet bts_pkt = pkt;
@@ -231,54 +230,47 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
             p->to = pkt.to;
             p->tag = pkt.tag;
             p->set_ts(eventlist().now());*/
+            bool marked = pkt.flags() & ECN_ECHO; // ECN check
 
             if (_queuesize_low + pkt.size() > _maxsize) {
                 bts_pkt->_queue_full = true;
             } else {
                 bts_pkt->_queue_full = false;
+                // We set ECN to the former data packet, so it doesn't
+                // trigger more BTS events
+                if (_bts_ignore_ecn_data) {
+                    pkt.set_flags(pkt.flags() | ECN_CE);
+                }
             }
 
             printf("BTS Case %d\n", bts_pkt->from);
             if (bts_pkt->reverse_route() && bts_pkt->bounced() == false) {
-                printf("BTS Case1 - Size %d - Queue Full %d\n", _queuesize_low,
-                       bts_pkt->_queue_full);
-                bts_pkt->queue_status =
-                        ((_queuesize_low + bts_pkt->size()) * 64.0) / _maxsize;
-                bts_pkt->strip_payload();
-                bts_pkt->bounce();
-                // bts_pkt->reverse_route();
-                _num_bounced++;
-                bts_pkt->is_special = true;
+                if (bts_pkt->_queue_full || !marked) {
+                    printf("BTS Case1 - Size %d - Queue Full %d\n",
+                           _queuesize_low, bts_pkt->_queue_full);
+                    bts_pkt->queue_status =
+                            ((_queuesize_low + bts_pkt->size()) * 64.0) /
+                            _maxsize;
+                    bts_pkt->strip_payload();
+                    bts_pkt->bounce();
+                    // bts_pkt->reverse_route();
+                    _num_bounced++;
+                    bts_pkt->is_special = true;
 
-                /*printf("Bounce1 at %s\n", _nodename.c_str());
-                printf("Fwd route:\n");
-                print_route(*(bts_pkt->route()));
-                printf("nexthop: %d\n", bts_pkt->nexthop());
-                printf("\nRev route:\n");
-                print_route(*(bts_pkt->reverse_route()));
-                fflush(stdout);*/
-                printf("Post Copy %d\n", pkt.nexthop());
-                fflush(stdout);
+                    /*printf("Bounce1 at %s\n", _nodename.c_str());
+                    printf("Fwd route:\n");
+                    print_route(*(bts_pkt->route()));
+                    printf("nexthop: %d\n", bts_pkt->nexthop());
+                    printf("\nRev route:\n");
+                    print_route(*(bts_pkt->reverse_route()));
+                    fflush(stdout);*/
+                    printf("Post Copy %d\n", pkt.nexthop());
+                    fflush(stdout);
 
-                bts_pkt->sendOn();
-            }
-            // return;
-        }
-        /*if (_queuesize_low + pkt.size() <= _maxsize) {
-                Packet *pkt_p = &pkt;
-                _enqueued_low.push(pkt_p);
-                _queuesize_low += pkt.size();
-                printf("- Queue %s, Increasing by %d\n", _nodename.c_str(),
-                       _queuesize_low);
-                if (_logger)
-                    _logger->logQueue(*this, QueueLogger::PKT_ENQUEUE, pkt);
-
-                if (_serv == QUEUE_INVALID) {
-                    beginService();
+                    bts_pkt->sendOn();
                 }
-                return;
             }
-        */
+        }
 
         if (_queuesize_low + pkt.size() <= _maxsize) {
             assert(_queuesize_low + pkt.size() <= _maxsize);

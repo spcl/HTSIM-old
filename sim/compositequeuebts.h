@@ -52,6 +52,10 @@ class CompositeQueueBts : public Queue {
         _bts_triggering = bts_triggers_at;
     }
 
+    void set_ignore_ecn_data(mem_b bts_ignore_data) {
+        _bts_ignore_ecn_data = bts_ignore_data;
+    }
+
     int _num_packets;
     int _num_headers; // only includes data packets stripped to headers, not
                       // acks or nacks
@@ -75,6 +79,7 @@ class CompositeQueueBts : public Queue {
     mem_b _ecn_minthresh;
     mem_b _ecn_maxthresh;
     mem_b _bts_triggering;
+    bool _bts_ignore_ecn_data = true;
 
     CircularBuffer<Packet *> _enqueued_low;
     CircularBuffer<Packet *> _enqueued_high;

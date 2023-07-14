@@ -100,8 +100,9 @@ def main(args):
     name = ['0'] * df5.shape[0]
     df5 = df5.assign(Node=name)
 
-    pathlist = Path('sent').glob('**/*.txt')
+    pathlist = Path('sent').glob('*')
     for files in sorted(pathlist):
+        print(str(files))
         path_in_str = str(files)
         temp_df5 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
         name = [str(path_in_str)] * temp_df5.shape[0]
@@ -125,7 +126,6 @@ def main(args):
     # Create figure with secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     color = ['#636EFA', '#0511a9', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880', '#FF97FF', '#FECB52']
-
     # Add traces
     mean_rtt = df["RTT"].mean()
     mean_rtt = 10000
@@ -186,6 +186,7 @@ def main(args):
     # Sent
     mean_sent = df5["Time"].mean()
     df5['Sent'] = df5['Sent'].multiply(20000)
+    print(df5)
     for i in df5['Node'].unique():
         sub_df5 = df5.loc[df5['Node'] == str(i)]
         fig.add_trace(

@@ -56,6 +56,12 @@ class UecSrc : public PacketSink, public EventSource {
 
     void setCwnd(uint64_t cwnd) { _cwnd = cwnd; };
     void setReuse(bool reuse) { _use_good_entropies = reuse; };
+    void setIgnoreEcnAck(bool ignore_ecn_ack) {
+        _ignore_ecn_ack = ignore_ecn_ack;
+    };
+    void setIgnoreEcnData(bool ignore_ecn_data) {
+        _ignore_ecn_data = ignore_ecn_data;
+    };
     void setNumberEntropies(int num_entropies) {
         _num_entropies = num_entropies;
     };
@@ -158,6 +164,8 @@ class UecSrc : public PacketSink, public EventSource {
 
     vector<const Route *> _good_entropies;
     bool _use_good_entropies;
+    bool _ignore_ecn_ack;
+    bool _ignore_ecn_data;
     std::size_t _max_good_entropies;
     std::size_t _next_good_entropy;
     std::vector<int> _entropy_array;

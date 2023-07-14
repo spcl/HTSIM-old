@@ -43,6 +43,12 @@ class LogSimInterface {
     void set_protocol(ProtocolName name) { _protocolName = name; };
     void set_cwd(int cwd);
     void setReuse(bool reuse) { _use_good_entropies = reuse; };
+    void setIgnoreEcnAck(bool ignore_ecn_ack) {
+        _ignore_ecn_ack = ignore_ecn_ack;
+    };
+    void setIgnoreEcnData(bool ignore_ecn_data) {
+        _ignore_ecn_data = ignore_ecn_data;
+    };
     void setNumberEntropies(int num_entropies) {
         _num_entropies = num_entropies;
     };
@@ -74,6 +80,8 @@ class LogSimInterface {
     UecRtxTimerScanner *_uecRtxScanner;
     std::unordered_map<int, NdpPullPacer *> _puller_map;
     bool _use_good_entropies;
+    bool _ignore_ecn_ack;
+    bool _ignore_ecn_data;
     int _num_entropies;
 };
 

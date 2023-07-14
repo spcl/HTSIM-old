@@ -98,6 +98,8 @@ int main(int argc, char **argv) {
     int kmax = -1;
     int seed = -1;
     bool reuse_entropy = false;
+    bool ignore_ecn_data = true;
+    bool ignore_ecn_ack = true;
     int fat_tree_k = 4; // 64 Nodes by default
     queue_type queue_choice = COMPOSITE;
     int bts_threshold = -1;
@@ -155,6 +157,12 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-reuse_entropy")) {
             reuse_entropy = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-ignore_ecn_ack")) {
+            ignore_ecn_ack = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-ignore_ecn_data")) {
+            ignore_ecn_data = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-number_entropies")) {
             number_entropies = atoi(argv[i + 1]);
@@ -341,11 +349,17 @@ int main(int argc, char **argv) {
     printf("Starting LGS Interface");
     LogSimInterface *lgs = new LogSimInterface(NULL, &traffic_logger, eventlist,
                                                top, net_paths);
+
+    // Set UEC Specific parameters
     lgs->set_protocol(UEC_PROTOCOL);
     lgs->set_cwd(cwnd);
     lgs->set_queue_size(queuesize);
     lgs->setReuse(reuse_entropy);
+    lgs->setIgnoreEcnAck(ignore_ecn_ack);
+    lgs->setIgnoreEcnData(ignore_ecn_data);
     lgs->setNumberEntropies(number_entropies);
+
+    // Start LGS
     start_lgs(goal_filename, *lgs);
 
     for (int src = 0; src < dest; ++src) {

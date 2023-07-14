@@ -100,6 +100,8 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
                                     queueDrainTime, routein->hop_count());
         uecSrc->setFlowSize(size);
         uecSrc->setReuse(_use_good_entropies);
+        uecSrc->setIgnoreEcnAck(_ignore_ecn_ack);
+        uecSrc->setIgnoreEcnData(_ignore_ecn_data);
         uecSrc->setNumberEntropies(_num_entropies);
         printf("CWD Start %d - From %d To %d\n", uecSrc->_cwnd, from, to);
         uecSrc->setName("uec_" + std::to_string(from) + "_" +

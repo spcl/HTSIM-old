@@ -114,6 +114,7 @@ class FatTreeTopology : public Topology {
     }
 
     static void set_bts_threshold(int value) { bts_trigger = value; }
+    static void set_ignore_data_ecn(bool value) { bts_ignore_data = value; }
 
     uint32_t HOST_POD_SWITCH(uint32_t src) { return 2 * src / K; }
     uint32_t HOST_POD_ID(uint32_t src) {
@@ -160,6 +161,7 @@ class FatTreeTopology : public Topology {
     static int kmin;
     static int kmax;
     static int bts_trigger;
+    static bool bts_ignore_data;
 };
 
 #endif

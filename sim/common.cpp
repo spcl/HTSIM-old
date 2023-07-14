@@ -34,6 +34,7 @@ uint64_t MAX_CWD_MODERN_NDP =
         BDP_MODERN_NDP *
         3; // BDP * 3. Based on their choice to use 23 cwd with 9000 pacekts
 bool ENABLE_FAST_DROP = false;
+bool IGNORE_ECN_DATA_BTS = true;
 
 // Values for "old" networking simulations
 int PKT_SIZE_OLD = 9000;      // Bytes
