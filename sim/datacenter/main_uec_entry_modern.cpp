@@ -97,7 +97,7 @@ int main(int argc, char **argv) {
     int bts_threshold = -1;
     int seed = -1;
     bool reuse_entropy = false;
-    int number_entropies = 16;
+    int number_entropies = 2048;
     queue_type queue_choice = COMPOSITE;
     bool ignore_ecn_data = true;
     bool ignore_ecn_ack = true;

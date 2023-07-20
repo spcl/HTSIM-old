@@ -64,6 +64,8 @@ class CompositeQueueBts : public Queue {
     int _num_pulls;
     int _num_stripped; // count of packets we stripped
     int _num_bounced;  // count of packets we bounced
+    int _current_from;
+    int my_id;
 
   protected:
     // Mechanism

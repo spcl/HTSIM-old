@@ -128,18 +128,24 @@ def main(args):
     color = ['#636EFA', '#0511a9', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880', '#FF97FF', '#FECB52']
     # Add traces
     mean_rtt = df["RTT"].mean()
+    max_rtt = df["RTT"].max()
+    y_sent = max_rtt * 0.9
+    y_ecn = max_rtt * 0.8
+    y_nack =max_rtt * 0.7
     mean_rtt = 10000
     count = 0
     for i in df['Node'].unique():
         sub_df = df.loc[df['Node'] == str(i)]
         fig.add_trace(
-            go.Scatter(x=sub_df["Time"], y=sub_df['RTT'], marker=dict(size=10), name=str(i), line=dict(color=color[0]), opacity=0.9, showlegend=True, marker_symbol="triangle-up"),
+            go.Scatter(x=sub_df["Time"], y=sub_df['RTT'], mode='markers', marker=dict(size=2), name=str(i), line=dict(color=color[0]), opacity=0.9, showlegend=True),
             secondary_y=False,
         )
-        '''fig.add_trace(
-            go.Scatter(x=sub_df["Time"], y=sub_df['RTT'], marker=dict(size=10), name=str(i).split("rtt/rttNDP_",1)[1], line=dict(color=color[0]), opacity=0.9, showlegend=True, marker_symbol="triangle-up"),
+        '''
+        fig.add_trace(
+            go.Scatter(x=sub_df["Time"], y=sub_df['RTT'], mode='markers', marker=dict(size=10), name=str(i), line=dict(color=color[0]), opacity=0.9, showlegend=True, marker_symbol="triangle-up"),
             secondary_y=False,
-        )'''
+        )
+        '''
         if (args.show_triangles is not None):
             fig.add_trace(
                 go.Scatter(x=sub_df["Time"], y=sub_df['RTT'], mode="markers", marker_symbol="triangle-up", name="Mark Packet", marker=dict(size=6, color=color[1]), showlegend=True),
@@ -176,7 +182,7 @@ def main(args):
     # ECN
     mean_ecn = df4["Time"].mean()
     for i in df4['Node'].unique():
-        df4['ECN'] = mean_rtt - 3000
+        df4['ECN'] = y_ecn
         sub_df4 = df4.loc[df4['Node'] == str(i)]
         fig.add_trace(
             go.Scatter(x=sub_df4["Time"], y=sub_df4['ECN'], mode="markers", marker_symbol="triangle-up", name="ECN Packet", marker=dict(size=5, color="yellow"), showlegend=True),
@@ -185,7 +191,7 @@ def main(args):
 
     # Sent
     mean_sent = df5["Time"].mean()
-    df5['Sent'] = df5['Sent'].multiply(20000)
+    df5['Sent'] = df5['Sent'].multiply(y_sent)
     print(df5)
     for i in df5['Node'].unique():
         sub_df5 = df5.loc[df5['Node'] == str(i)]
@@ -196,7 +202,7 @@ def main(args):
 
     # NACK
     mean_sent = df6["Time"].mean()
-    df6['Nack'] = df6['Nack'].multiply(17000)
+    df6['Nack'] = df6['Nack'].multiply(y_nack)
     for i in df6['Node'].unique():
         sub_df6 = df6.loc[df6['Node'] == str(i)]
         fig.add_trace(

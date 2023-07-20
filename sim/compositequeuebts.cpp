@@ -70,18 +70,30 @@ void CompositeQueueBts::beginService() {
 
 bool CompositeQueueBts::decide_ECN() {
     // ECN mark on deque
-    printf("Min ECN %d - Max ECN %d\n",
-           int(_ecn_minthresh * 8 / (_bitrate / 1e9)),
-           int(_ecn_maxthresh * 8 / (_bitrate / 1e9)));
+    uint64_t randValue = (uint64_t)random();
     if (_queuesize_low > _ecn_maxthresh) {
+        printf("Queue From %d - %s - %d - Min ECN %d - Max ECN %d - Current %d "
+               "- Time %lu - ID %d\n",
+               _current_from, _nodename.c_str(), 1,
+               int(_ecn_minthresh * 8 / (_bitrate / 1e9)),
+               int(_ecn_maxthresh * 8 / (_bitrate / 1e9)), _queuesize_low,
+               GLOBAL_TIME / 1000, my_id);
         return true;
     } else if (_queuesize_low > _ecn_minthresh) {
         uint64_t p = (0x7FFFFFFF * (_queuesize_low - _ecn_minthresh)) /
                      (_ecn_maxthresh - _ecn_minthresh);
-        if ((uint64_t)random() < p) {
+        printf("Queue From %d - %s - %d - Min ECN %d - Max ECN %d - Current %d "
+               "- Time %lu - ID %d\n",
+               _current_from, _nodename.c_str(), randValue < p,
+               int(_ecn_minthresh * 8 / (_bitrate / 1e9)),
+               int(_ecn_maxthresh * 8 / (_bitrate / 1e9)), _queuesize_low,
+               GLOBAL_TIME / 1000, my_id);
+        if (randValue < p) {
             return true;
         }
     }
+    printf("Queue From %d - %s - FALSE - Time %lu\n", _current_from,
+           _nodename.c_str(), GLOBAL_TIME / 1000);
     return false;
 }
 
@@ -213,6 +225,8 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
                 MyFile.close();
             }
         }
+        _current_from = pkt.from;
+        my_id = pkt.id();
         bool prepare_bts = decide_ECN();
         if (_queuesize_low + pkt.size() > _maxsize || prepare_bts) {
             // If queue is full or BTS is triggered or we want to do
@@ -230,7 +244,7 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
             p->to = pkt.to;
             p->tag = pkt.tag;
             p->set_ts(eventlist().now());*/
-            bool marked = pkt.flags() & ECN_ECHO; // ECN check
+            bool marked = pkt.flags() & ECN_CE; // ECN check
 
             if (_queuesize_low + pkt.size() > _maxsize) {
                 bts_pkt->_queue_full = true;
@@ -240,12 +254,15 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
                 // trigger more BTS events
                 if (_bts_ignore_ecn_data) {
                     pkt.set_flags(pkt.flags() | ECN_CE);
+                    if (marked) {
+                        printf("Edge Case\n");
+                    }
                 }
             }
 
             printf("BTS Case %d\n", bts_pkt->from);
             if (bts_pkt->reverse_route() && bts_pkt->bounced() == false) {
-                if (bts_pkt->_queue_full || !marked) {
+                if (bts_pkt->_queue_full || (!marked)) {
                     printf("BTS Case1 - Size %d - Queue Full %d\n",
                            _queuesize_low, bts_pkt->_queue_full);
                     bts_pkt->queue_status =

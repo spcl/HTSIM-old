@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
     int fat_tree_k = 4; // 64 Nodes by default
     queue_type queue_choice = COMPOSITE;
     int bts_threshold = -1;
-    int number_entropies = 16;
+    int number_entropies = -1;
 
     int i = 1;
     filename << "logout.dat";

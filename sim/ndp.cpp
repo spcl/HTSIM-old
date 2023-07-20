@@ -660,6 +660,7 @@ void NdpSrc::processAck(const NdpAck &ack) {
     // Compute rtt.  This comes originally from TCP, and may not be optimal for
     // NDP */
     uint64_t m = eventlist().now() - ts;
+    printf("ID %d - Previous time %lu\n", ack.id(), ack.ts());
 
     if (m != 0) {
         if (_rtt > 0) {
@@ -747,6 +748,7 @@ void NdpSrc::receivePacket(Packet &pkt) {
         } else {
             printf("NACK\n");
         }*/
+
         _list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
         processNack((const NdpNack &)pkt);
         pkt.free();
@@ -781,6 +783,7 @@ void NdpSrc::receivePacket(Packet &pkt) {
         _acks_received++;
         _pull_window++;
         _first_window_count--;
+        printf("NORMALACK, %d\n", pkt.from);
         processAck((const NdpAck &)pkt);
         pkt.free();
         return;
@@ -1548,7 +1551,8 @@ void NdpSink::receivePacket(Packet &pkt) {
     bool pull = true;
     bool marked = (p->flags() & ECN_CE) != 0; // ECN for load balancing
 
-    simtime_picosec ts = p->ts();
+    simtime_picosec ts = pkt.ts();
+    printf("ID %d - Data - Previous time %lu vs %lu\n", pkt.id(), pkt.ts(), ts);
     bool last_packet = ((NdpPacket *)&pkt)->last_packet();
 
     update_path_history(*p);

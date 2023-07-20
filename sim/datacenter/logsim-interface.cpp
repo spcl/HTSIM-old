@@ -42,7 +42,7 @@ LogSimInterface::LogSimInterface(UecLogger *logger, TrafficLogger *pktLogger,
     _ndpRtxScanner =
             new NdpRtxTimerScanner(timeFromUs((uint32_t)1000), *_eventlist);
     _uecRtxScanner =
-            new UecRtxTimerScanner(BASE_RTT_MODERN * 1000 / 4, *_eventlist);
+            new UecRtxTimerScanner(BASE_RTT_MODERN * 1000, *_eventlist);
 }
 
 void LogSimInterface::set_cwd(int cwd) { _cwd = cwd; }
@@ -132,8 +132,8 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         uecSink->set_paths(_netPaths[to][from]);
     } else if (_protocolName == NDP_PROTOCOL) {
 
-        NdpSrc::setRouteStrategy(PULL_BASED);
-        NdpSink::setRouteStrategy(PULL_BASED);
+        NdpSrc::setRouteStrategy(SCATTER_RANDOM);
+        NdpSink::setRouteStrategy(SCATTER_RANDOM);
 
         NdpSrc *ndpSrc = new NdpSrc(NULL, NULL, *_eventlist);
         _ndpSrcVector.push_back(ndpSrc);

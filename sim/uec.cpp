@@ -354,8 +354,8 @@ void UecSrc::processBts(UecPacket *pkt) {
                (uint64_t)(_mss * (pkt->queue_status / 64.0) *
                           ((double)_cwnd / _bdp)),
                (double)_cwnd / _bdp, eventlist().now() / 1000);
-        reduce_cwnd((uint64_t)(_mss * (pkt->queue_status / 64.0) *
-                               ((double)(_cwnd * 1) / _bdp)));
+        reduce_cwnd((uint64_t)1 * (_mss * (pkt->queue_status / 64.0) *
+                                   ((double)(_cwnd) / _bdp)));
         _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
         printf("Free1\n");
         fflush(stdout);
@@ -364,7 +364,7 @@ void UecSrc::processBts(UecPacket *pkt) {
     }
 
     // mark corresponding packet for retransmission
-    pkt->unbounce(64 + _mss);
+    pkt->unbounce(_mss);
     auto i = get_sent_packet_idx(pkt->seqno());
     assert(i < _sent_packets.size());
 
@@ -395,7 +395,7 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
     bool marked = pkt.flags() &
                   ECN_ECHO; // ECN was marked on data packet and echoed on ACK
 
-    printf("packet is ECN Marked %d - Time %lu\n", marked, GLOBAL_TIME / 1000);
+    printf("Packet is ECN Marked %d - Time %lu\n", marked, GLOBAL_TIME / 1000);
 
     if (_start_timer_window) {
         _start_timer_window = false;
@@ -475,7 +475,9 @@ void UecSrc::receivePacket(Packet &pkt) {
     printf("Node %s - Received packet %d - From %d\n", nodename().c_str(),
            pkt.id(), pkt.from);
 
-    reduce_unacked(_mss);
+    if (pkt._queue_full || pkt.bounced() == false) {
+        reduce_unacked(_mss);
+    }
 
     // TODO: receive window?
     pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_RCVDESTROY);
@@ -533,12 +535,14 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
                    no_rtt_over_target_last_target_rtt()) {
             printf("First Increase, %d", from);
             _cwnd += _mss * ((double)_cwnd / _bdp);
-            _consecutive_low_rtt = 0;
-            _consecutive_no_ecn = 0;
+            //_consecutive_low_rtt = 0;
+            //_consecutive_no_ecn = 0;
         } else if (!ecn) {
             printf("Second Increase, %d", from);
             _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
-            _consecutive_no_ecn = 0;
+            //_consecutive_no_ecn = 0;
+        } else {
+            _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
         }
     } else {
         if (ecn) {
@@ -651,7 +655,6 @@ const Route *UecSrc::get_path() {
     // Means we want to select a random one out of all paths, the original idea
     if (_num_entropies == -1) {
         _crt_path = random() % _paths.size();
-
     } else {
         // Else we use our entropy array of a certain size and roud robin it
         _crt_path = _entropy_array[current_entropy];
@@ -1030,8 +1033,10 @@ void UecSink::send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
     ack->flow().logTraffic(*ack, *this, TrafficLogger::PKT_CREATESEND);
     ack->set_ts(ts);
     if (marked) {
+        printf("ACK - ECN\n");
         ack->set_flags(ECN_ECHO);
     } else {
+        printf("ACK - NO ECN\n");
         ack->set_flags(0);
     }
 
