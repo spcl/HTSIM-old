@@ -94,6 +94,7 @@ int main(int argc, char **argv) {
 
     int i = 1;
     filename << "logout.dat";
+    printf("Name Running: NDP\n");
 
     while (i < argc) {
         if (!strcmp(argv[i], "-o")) {

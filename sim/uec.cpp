@@ -12,6 +12,8 @@
 
 #define timeInf 0
 
+std::string UecSrc::queue_type = "composite";
+
 UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
                EventList &eventList, uint64_t rtt, uint64_t bdp,
                uint64_t queueDrainTime, int hops)
@@ -34,7 +36,7 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
                  (_hop_count * LINK_DELAY_MODERN) +
                  (64 * 8 / LINK_SPEED_MODERN * _hop_count)) *
                 1000;
-    _target_rtt = _base_rtt * 1.21;
+    _target_rtt = _base_rtt * 1.25;
 
     /*printf("Link Delay %lu - Link Speed %lu - Pkt Size %d - Base RTT %lu - "
            "Target RTT is %lu\n",
@@ -66,6 +68,12 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     _max_good_entropies = 10; // TODO: experimental value
     _enableDistanceBasedRtx = false;
     f_flow_over_hook = nullptr;
+
+    if (queue_type == "composite_bts") {
+        _bts_enabled = true;
+    } else {
+        _bts_enabled = false;
+    }
 }
 
 // Add deconstructor and save data once we are done.
@@ -129,6 +137,18 @@ UecSrc::~UecSrc() {
 
             MyFileBTS.close();
         }
+
+        // Acked Bytes
+        file_name = "../output/acked/acked" + _name + "_" +
+                    std::to_string(tag) + ".txt";
+        std::ofstream MyFileAcked(file_name, std::ios_base::app);
+
+        for (const auto &p : _list_acked_bytes) {
+            MyFileAcked << p.first << "," << p.second << std::endl;
+        }
+
+        MyFileAcked.close();
+
         // US TO CS
         /*if (us_to_cs.size() > 0) {
             file_name = "../output/us_to_cs/us_to_cs" + _name + ".txt";
@@ -240,7 +260,7 @@ void UecSrc::add_ack_path(const Route *rt) {
         }
     }
     if (_good_entropies.size() < _max_good_entropies) {
-        printf("Pushing Back Now, %d\n", from);
+        // printf("Pushing Back Now, %d\n", from);
         _good_entropies.push_back(rt);
     } else {
         // TODO: this could cause some weird corner cases that would
@@ -271,7 +291,7 @@ void UecSrc::reduce_cwnd(uint64_t amount) {
 }
 
 void UecSrc::reduce_unacked(uint64_t amount) {
-    printf("Unacked %d - Amount %lu\n", _unacked, amount);
+    // printf("Unacked %d - Amount %lu\n", _unacked, amount);
     if (_unacked >= amount) {
         _unacked -= amount;
     } else {
@@ -283,9 +303,8 @@ void UecSrc::reduce_unacked(uint64_t amount) {
 void UecSrc::processNack(UecNack &pkt) {
     if (GLOBAL_TIME > _ignore_ecn_until) {
         _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
-        reduce_cwnd(_mss);
+        reduce_cwnd(uint64_t(_mss * 1));
     }
-    printf("Got a NACK\n");
 
     _consecutive_no_ecn = 0;
     _consecutive_low_rtt = 0;
@@ -337,27 +356,62 @@ void UecSrc::processBts(UecPacket *pkt) {
     _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
 
     // Update variables
+    counter_consecutive_good_bytes = 0;
     _consecutive_no_ecn = 0;
     _consecutive_low_rtt = 0;
     _received_ecn.push_back(std::make_tuple(eventlist().now(), true, _mss,
                                             _target_rtt + 10000));
     _list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
+    bool marked = pkt->flags() &
+                  ECN_CE; // ECN was marked on data packet and echoed on ACK
 
     if (pkt->_queue_full) {
-        printf("BTS %d - Queue is full - Level %d - %ld\n", from,
-               pkt->queue_status, eventlist().now() / 1000);
-        reduce_cwnd(_mss);
+        printf("BTS %d - Queue is full - Level %d - %ld - Name %s\n", from,
+               pkt->queue_status, eventlist().now() / 1000,
+               pkt->switch_name.c_str());
+        double reduce_by = exp_avg_bts / 64.0 * _mss;
+        // reduce_by = 0;
+        if (marked) {
+            // printf("Using");
+            reduce_cwnd(uint64_t((_mss - reduce_by)));
+        } else {
+            reduce_cwnd(uint64_t(_mss));
+        }
+
+        // reduce_cwnd(uint64_t(_mss));
+        exp_avg_route = 1024;
+
         _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
     } else {
-        printf("BTS %d - Warning - Level %d - Reduce %lu (%f) - %lu\n", from,
-               pkt->queue_status,
+        printf("BTS %d - Warning - Level %d - Reduce %lu (%f) - %lu - Name "
+               "%s\n",
+               from, pkt->queue_status,
                (uint64_t)(_mss * (pkt->queue_status / 64.0) *
                           ((double)_cwnd / _bdp)),
-               (double)_cwnd / _bdp, eventlist().now() / 1000);
-        reduce_cwnd((uint64_t)1 * (_mss * (pkt->queue_status / 64.0) *
-                                   ((double)(_cwnd) / _bdp)));
+               (double)_cwnd / _bdp, eventlist().now() / 1000,
+               pkt->switch_name.c_str());
+
         _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
-        printf("Free1\n");
+
+        double alpha = 0.125;
+        exp_avg_bts = alpha * pkt->queue_status + (1 - alpha) * exp_avg_bts;
+
+        exp_avg_route = alpha_route * 1024 + (1 - alpha_route) * exp_avg_route;
+
+        if (exp_avg_route >= 512 || true) {
+            uint64_t value_d =
+                    (uint64_t)(1 * (_mss * (pkt->queue_status / 64.0) *
+                                    ((double)(_cwnd) / _bdp)));
+            if (value_d >= _mss) {
+                reduce_cwnd((uint64_t)(_mss));
+            } else {
+                reduce_cwnd((uint64_t)(value_d));
+            }
+        } else {
+            // printf("%d Not changing cwnd\n", from);
+        }
+
+        // printf("Free1\n");
         fflush(stdout);
         pkt->free();
         return;
@@ -382,7 +436,7 @@ void UecSrc::processBts(UecPacket *pkt) {
         _rtx_pending = true;
     }
     pkt->free();
-    printf("Free2\n");
+    // printf("Free2\n");
     fflush(stdout);
 }
 
@@ -395,7 +449,8 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
     bool marked = pkt.flags() &
                   ECN_ECHO; // ECN was marked on data packet and echoed on ACK
 
-    printf("Packet is ECN Marked %d - Time %lu\n", marked, GLOBAL_TIME / 1000);
+    printf("Packet from %d is ECN Marked %d - Time %lu\n", from, marked,
+           GLOBAL_TIME / 1000);
 
     if (_start_timer_window) {
         _start_timer_window = false;
@@ -407,9 +462,42 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
             newRtt)); // TODO: assuming same size for all packets
     mark_received(pkt);
 
+    if (update_next_window) {
+        next_window_end = eventlist().now() + _base_rtt;
+        update_next_window = false;
+        printf("Scheduling Next Check %d is %d at %lu for %lu\n", from,
+               saved_acked_bytes, eventlist().now() / 1000,
+               next_window_end / 1000);
+    }
+
+    acked_bytes += _mss;
+    if (eventlist().now() >= next_window_end) {
+        update_next_window = true;
+        _list_acked_bytes.push_back(
+                std::make_pair(eventlist().now() / 1000, acked_bytes));
+        if (count_total_ecn * 2 >= count_total_ack) {
+            fast_drop = true;
+            drop_amount = acked_bytes;
+        } else {
+            fast_drop = false;
+        }
+        count_total_ack = 0;
+        count_total_ecn = 0;
+        saved_acked_bytes = acked_bytes;
+        printf("Saved Acked %d is %d at %lu\n", from, saved_acked_bytes,
+               eventlist().now() / 1000);
+        acked_bytes = 0;
+    }
+
+    count_total_ack++;
+    if (marked) {
+        count_total_ecn++;
+    }
+
     if (!marked) {
         add_ack_path(pkt.inRoute);
-        ++_consecutive_no_ecn;
+        _consecutive_no_ecn += _mss;
+        // printf("Not Marked!\n");
     } else {
         _consecutive_no_ecn = 0;
     }
@@ -437,6 +525,9 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
              << timeAsMs(eventlist().now()) << endl;
         cout << "Flow " << nodename() << " completion time is "
              << timeAsMs(eventlist().now() - _flow_start_time) << endl;
+
+        printf("Completion Time Flow is %lu",
+               eventlist().now() - _flow_start_time);
     }
 
     if (seqno > _last_acked || true) { // TODO: new ack, we don't care about
@@ -449,10 +540,10 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
 
         _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
         // printf("Window Is %d - From %d To %d\n", _cwnd, from, to);
-        adjust_window(ts, marked);
+        adjust_window(ts, marked, newRtt);
 
         _effcwnd = _cwnd;
-        printf("Received From %d - Sending More\n", from);
+        // printf("Received From %d - Sending More\n", from);
         send_packets();
         return; // TODO: if no further code, this can be removed
     }
@@ -472,8 +563,8 @@ uint64_t UecSrc::get_unacked() {
 void UecSrc::receivePacket(Packet &pkt) {
     // every packet received represents one less packet in flight
 
-    printf("Node %s - Received packet %d - From %d\n", nodename().c_str(),
-           pkt.id(), pkt.from);
+    // printf("Node %s - Received packet %d - From %d\n", nodename().c_str(),
+    //        pkt.id(), pkt.from);
 
     if (pkt._queue_full || pkt.bounced() == false) {
         reduce_unacked(_mss);
@@ -491,6 +582,8 @@ void UecSrc::receivePacket(Packet &pkt) {
         if (_bts_enabled) {
             if (pkt.bounced()) {
                 processBts((UecPacket *)(&pkt));
+                counter_consecutive_good_bytes = 0;
+                increasing = false;
             }
         }
         break;
@@ -515,51 +608,92 @@ void UecSrc::receivePacket(Packet &pkt) {
         eventlist().sourceIsPendingRel(*this, 0);
     }
     // pkt.free();
-    printf("Free3\n");
+    // printf("Free3\n");
     fflush(stdout);
 }
 
-void UecSrc::adjust_window(simtime_picosec ts, bool ecn) {
-    /*printf("From %d - Time %lu - Ecn %d - Consecutive Low %d - BDP %lu -
-       CWD "
-           "%d - Sizr "
-           "%d - No ECN %d - MSS is %d\n",
-           from, _eventlist.now() / 1000, ecn, _consecutive_no_ecn,
-           (long long)_bdp, _cwnd, _received_ecn.size(),
-           no_ecn_last_target_rtt(), _mss);*/
+void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
+
+    if (rtt <= _target_rtt && !ecn) {
+        counter_consecutive_good_bytes += _mss;
+    } else {
+        counter_consecutive_good_bytes = 0;
+        _consecutive_no_ecn = 0;
+        increasing = false;
+    }
 
     if (_bts_enabled) {
         if (ecn && _ignore_ecn_ack) {
             printf("BTS Case with ECN, ignore.");
-        } else if (no_ecn_last_target_rtt() &&
-                   no_rtt_over_target_last_target_rtt()) {
-            printf("First Increase, %d", from);
-            _cwnd += _mss * ((double)_cwnd / _bdp);
-            //_consecutive_low_rtt = 0;
-            //_consecutive_no_ecn = 0;
+            _cwnd += ((double)_mss / _cwnd) * 0.1 * _mss;
+        } else if (counter_consecutive_good_bytes > _cwnd) {
+            _cwnd += 1 * _mss;
+            counter_consecutive_good_bytes = _cwnd / 2;
+            exp_avg_bts = 0;
+            exp_avg_route = 0;
+            /*if (no_ecn_last_target_rtt() &&
+                no_rtt_over_target_last_target_rtt()) {
+                printf("Fast Increasen\n");
+                _cwnd += _mss * ((double)_cwnd / _bdp) * 1;
+                _consecutive_low_rtt = 0;
+                _consecutive_no_ecn = 0;
+            }*/
         } else if (!ecn) {
-            printf("Second Increase, %d", from);
-            _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
+            // printf("Second Increase, %d", from);
+            //_cwnd += ((double)_mss / _cwnd) * 1 * _mss;
             //_consecutive_no_ecn = 0;
-        } else {
+
+            /*double ratio = (_bdp / (double)_cwnd);
+            int threshold = max(1, (int)((_cwnd / ratio)));
+
+            if (_consecutive_no_ecn >= threshold) {
+                // printf("Actual Increase\n");
+                _cwnd += _mss * (_cwnd / (double)_bdp) *
+                         (_consecutive_no_ecn / threshold);
+                _consecutive_no_ecn = 0;
+            }
+            */
             _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
+
+        } else {
+            _cwnd += ((double)_mss / _cwnd) * 0 * _mss;
         }
     } else {
-        if (ecn) {
-            printf("ECN Case");
-            reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
-        } else if (true && no_ecn_last_target_rtt() &&
-                   no_rtt_over_target_last_target_rtt()) {
-            _cwnd += _mss * ((double)_cwnd / _bdp);
-            _consecutive_low_rtt = 0;
-            _consecutive_no_ecn = 0;
-        } else if (false && _cwnd > ceil(sqrt(_bdp * _mss)) &&
-                   _consecutive_no_ecn >= ceil(_bdp / _cwnd)) {
-            _cwnd += _mss * _mss * (_bdp / _cwnd) / _cwnd;
-            _consecutive_no_ecn = 0;
+        if (ecn && _cwnd > saved_acked_bytes) {
+            if (/*fast_drop &&*/ _cwnd > 2 * saved_acked_bytes &&
+                saved_acked_bytes != 0) {
+                _cwnd = max((uint32_t)(saved_acked_bytes * 1.1),
+                            saved_acked_bytes + _mss);
+                printf("Fast Drop %d to %d at %lu!\n", from, _cwnd,
+                       GLOBAL_TIME / 1000);
+                fast_drop = false;
+            } else {
+                reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+            }
+
+        } else if (counter_consecutive_good_bytes > _cwnd) {
+            _cwnd += _mss * 1;
+            // increasing = true;
+            counter_consecutive_good_bytes = _cwnd / 2;
+            /*if (no_ecn_last_target_rtt() &&
+                no_rtt_over_target_last_target_rtt()) {
+                printf("Fast Increasen\n");
+                _cwnd += _mss * ((double)_cwnd / _bdp) * 1;
+                _consecutive_low_rtt = 0;
+                _consecutive_no_ecn = 0;
+            }*/
         } else if (!ecn) {
+            /*double ratio = (_bdp / (double)_cwnd);
+            int threshold = max(1, (int)((_cwnd / ratio)));
+            if (_consecutive_no_ecn >= threshold) {
+                // printf("Actual Increase\n");
+                _cwnd += _mss * (_cwnd / (double)_bdp) *
+                         (_consecutive_no_ecn / threshold);
+                _consecutive_no_ecn = 0;
+            }
+            */
             _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
-            _consecutive_no_ecn = 0;
+            //_consecutive_no_ecn = 0;
         }
     }
 
@@ -642,7 +776,7 @@ void UecSrc::startflow() {
 
 const Route *UecSrc::get_path() {
     // TODO: add other ways to select paths
-    printf("Entropy Size %d\n", _good_entropies.size());
+    // printf("Entropy Size %d\n", _good_entropies.size());
     if (_use_good_entropies && !_good_entropies.empty()) {
         // auto rt = _good_entropies[_next_good_entropy];
         // ++_next_good_entropy;
@@ -661,6 +795,7 @@ const Route *UecSrc::get_path() {
         current_entropy = ++current_entropy % _num_entropies;
     }
 
+    total_routes = _paths.size();
     return _paths.at(_crt_path);
 }
 
@@ -677,10 +812,11 @@ void UecSrc::map_entropies() {
 }
 
 void UecSrc::send_packets() {
+    //_list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
     if (_rtx_pending) {
         retransmit_packet();
     }
-    printf("Sent Packet Called, %d\n", from);
+    // printf("Sent Packet Called, %d\n", from);
     _list_unacked.push_back(std::make_pair(eventlist().now() / 1000, _unacked));
     unsigned c = _cwnd;
 
@@ -710,7 +846,7 @@ void UecSrc::send_packets() {
         _unacked += _mss;
 
         // Getting time until packet is really sent
-        printf("Sent Packet, %d\n", from);
+        // printf("Sent Packet, %d\n", from);
         PacketSink *sink = p->sendOn();
         HostQueue *q = dynamic_cast<HostQueue *>(sink);
         assert(q);
@@ -720,7 +856,7 @@ void UecSrc::send_packets() {
                            false, false, false));
         if (COLLECT_DATA) {
             for (size_t i = 0; i < rt->size(); i++) {
-                if (i == 4) { // Intercept US TO CS
+                if (i == 4) { // Intercept US TO CSf
                     PacketSink *sink = rt->at(i);
                     if (sink->nodename().find("US_0") != std::string::npos) {
                         std::regex pattern("CS_(\\d+)");
@@ -823,6 +959,7 @@ void UecSrc::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
 bool UecSrc::resend_packet(std::size_t idx) {
 
     if (get_unacked() >= _cwnd) {
+        // printf("This si FALSE\n");
         return false;
     }
     assert(!_sent_packets[idx].acked);
@@ -923,20 +1060,20 @@ void UecSink::receivePacket(Packet &pkt) {
     case UECNACK:
         // bounced, ignore
         pkt.free();
-        printf("Free4\n");
+        // printf("Free4\n");
         fflush(stdout);
         return;
     case UEC:
         // do what comes after the switch
         if (pkt.bounced()) {
-            printf("Bounced at Sink, no sense\n");
+            // printf("Bounced at Sink, no sense\n");
         }
         break;
     default:
         std::cout << "unknown packet receive with type code: " << pkt.type()
                   << "\n";
         pkt.free();
-        printf("Free5\n");
+        // printf("Free5\n");
         fflush(stdout);
         return;
     }
@@ -951,10 +1088,11 @@ void UecSink::receivePacket(Packet &pkt) {
     auto crt_path = random() % _paths.size();
     if (already_received(*p)) {
         // duplicate retransmit
-        if (_src->supportsTrimming()) { // we can assume that they have been
-                                        // configured similarly, or
-                                        // exchanged information about
-                                        // options somehow
+        if (_src->supportsTrimming()) { // we can assume that they
+                                        // have been configured
+                                        // similarly, or exchanged
+                                        // information about options
+                                        // somehow
             send_ack(ts, marked, 1, _cumulative_ack, _paths.at(crt_path),
                      pkt.get_route());
         }
@@ -966,16 +1104,17 @@ void UecSink::receivePacket(Packet &pkt) {
         send_nack(ts, marked, seqno, ackno, _paths.at(crt_path));
         pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_RCVDESTROY);
         p->free();
-        printf("Free6\n");
+        // printf("Free6\n");
         fflush(stdout);
         // cout << "trimmed packet";
         return;
     }
 
     int size = p->data_packet_size();
-    // pkt._flow().logTraffic(pkt, *this, TrafficLogger::PKT_RCVDESTROY);
+    // pkt._flow().logTraffic(pkt, *this,
+    // TrafficLogger::PKT_RCVDESTROY);
     p->free();
-    printf("Free7\n");
+    // printf("Free7\n");
     fflush(stdout);
 
     _packets += size;
@@ -987,8 +1126,8 @@ void UecSink::receivePacket(Packet &pkt) {
         // handling packets received OOO
         while (!_received.empty() && _received.front() == _cumulative_ack + 1) {
             _received.pop_front();
-            _cumulative_ack += size; // this assumes that all packets have
-                                     // the same size
+            _cumulative_ack += size; // this assumes that all
+                                     // packets have the same size
         }
         ackno = _cumulative_ack;
     } else if (seqno < _cumulative_ack + 1) { // already ack'ed
@@ -1000,8 +1139,8 @@ void UecSink::receivePacket(Packet &pkt) {
         if (_received.empty()) {
             _received.push_front(seqno);
             _drops += (1000 + seqno - _cumulative_ack - 1) /
-                      1000; // TODO: figure out what is this calculating
-                            // exactly
+                      1000; // TODO: figure out what is this
+                            // calculating exactly
         } else if (seqno > _received.back()) {
             _received.push_back(seqno);
         } else {
@@ -1019,7 +1158,8 @@ void UecSink::receivePacket(Packet &pkt) {
     // same exact links, which is not correct in Packet Spray, but
     // there doesn't seem to be a good, quick way of doing that in
     // htsim
-    printf("Ack Sending From %d - %d\n", this->from, pkt.is_special);
+    // printf("Ack Sending From %d - %d\n", this->from,
+    // pkt.is_special);
     send_ack(ts, marked, seqno, ackno, _paths.at(crt_path), pkt.get_route());
 }
 

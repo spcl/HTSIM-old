@@ -63,9 +63,9 @@ class UecPacket : public Packet {
     }
 
     void free() {
-        printf("Packet (UecPacket) being freed ID is %d - From %d\n", id(),
-               from);
-        fflush(stdout);
+        // printf("Packet (UecPacket) being freed ID is %d - From %d\n", id(),
+        //        from);
+        // fflush(stdout);
         _packetdb.freePacket(this);
     }
     virtual ~UecPacket() {}
@@ -118,8 +118,8 @@ class UecAck : public Packet {
     }
 
     void free() {
-        printf("Packet (UecAck) being freed ID is %d - From %d\n", id(), from);
-        fflush(stdout);
+        // printf("Packet (UecAck) being freed ID is %d - From %d\n", id(),
+        // from); fflush(stdout);
         _packetdb.freePacket(this);
     }
     inline seq_t seqno() const { return _seqno; }
@@ -168,8 +168,8 @@ class UecNack : public Packet {
     }
 
     void free() {
-        printf("Packet (UecNack) being freed ID is %d - From %d\n", id(), from);
-        fflush(stdout);
+        // printf("Packet (UecNack) being freed ID is %d - From %d\n", id(),
+        // from); fflush(stdout);
         _packetdb.freePacket(this);
     }
     inline seq_t seqno() const { return _seqno; }

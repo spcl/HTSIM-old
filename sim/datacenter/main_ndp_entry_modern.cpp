@@ -165,7 +165,13 @@ int main(int argc, char **argv) {
 
         i++;
     }
-    srand(time(NULL));
+    if (seed != -1) {
+        srand(seed);
+        srandom(seed);
+    } else {
+        srand(time(NULL));
+        srandom(time(NULL));
+    }
     initializeLoggingFolders();
 
     if (route_strategy == NOT_SET) {
@@ -216,7 +222,8 @@ int main(int argc, char **argv) {
     NdpRtxTimerScanner ndpRtxScanner(timeFromUs((uint32_t)1000), eventlist);
 
     // int dest;
-
+    printf("Name Running: NDP\n");
+    fflush(stdout);
 #if USE_FIRST_FIT
     if (subflow_count == 1) {
         ff = new FirstFit(timeFromMs(FIRST_FIT_INTERVAL), eventlist);

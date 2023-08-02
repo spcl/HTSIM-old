@@ -87,12 +87,12 @@ void CompositeQueue::completeService() {
         assert(!_enqueued_low.empty());
         pkt = _enqueued_low.pop();
         _queuesize_low -= pkt->size();
-        printf("Considering Queue1 %s - From %d - Header Only %d - Size %d - "
+        /*printf("Considering Queue1 %s - From %d - Header Only %d - Size %d - "
                "Arrayt Size "
                "%d\n",
                _nodename.c_str(), pkt->from, pkt->header_only(), _queuesize_low,
                _enqueued_low.size());
-        fflush(stdout);
+        fflush(stdout);*/
         // ECN mark on deque
         if (decide_ECN()) {
             pkt->set_flags(pkt->flags() | ECN_CE);
@@ -294,13 +294,14 @@ void CompositeQueue::receivePacket(Packet &pkt) {
 
             assert(_queuesize_low + pkt.size() <= _maxsize);
             Packet *pkt_p = &pkt;
-            printf("Considering Queue2 %s - From %d - Header Only %d - Size %d "
+            /*printf("Considering Queue2 %s - From %d - Header Only %d - Size %d
+            "
                    "- "
                    "Arrayt Size "
                    "%d\n",
                    _nodename.c_str(), pkt.from, pkt.header_only(),
                    _queuesize_low, _enqueued_low.size());
-            fflush(stdout);
+            fflush(stdout);*/
             _enqueued_low.push(pkt_p);
             _queuesize_low += pkt.size();
             if (_logger)

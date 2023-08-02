@@ -86,6 +86,7 @@ class UecSrc : public PacketSink, public EventSource {
     std::size_t getEcnInTargetRtt();
 
     void set_traffic_logger(TrafficLogger *pktlogger);
+    static void set_queue_type(std::string value) { queue_type = value; }
     void set_flow_over_hook(std::function<void(const Packet &)> hook) {
         f_flow_over_hook = hook;
     }
@@ -103,12 +104,28 @@ class UecSrc : public PacketSink, public EventSource {
     uint64_t _implicit_pulls;
     uint64_t _bounces_received;
     uint32_t _cwnd;
+    uint32_t acked_bytes = 0;
+    uint32_t saved_acked_bytes = 0;
+    uint32_t drop_amount = 0;
+    uint32_t count_total_ecn = 0;
+    uint32_t count_total_ack = 0;
     uint64_t _last_acked;
     uint32_t _flight_size;
     uint32_t _acked_packets;
     uint64_t _flow_start_time;
     uint64_t _next_check_window;
+    uint64_t next_window_end;
+    bool update_next_window = true;
     bool _start_timer_window = true;
+    bool fast_drop = false;
+    int counter_consecutive_good_bytes;
+    bool increasing = false;
+    int total_routes;
+    int routes_changed = 0;
+    int exp_avg_bts = 0;
+    int exp_avg_route = 0;
+    double alpha_route = 0.0625;
+    static std::string queue_type;
 
   private:
     uint32_t _unacked;
@@ -157,6 +174,7 @@ class UecSrc : public PacketSink, public EventSource {
     vector<tuple<simtime_picosec, uint64_t, uint64_t, uint64_t>> _list_rtt;
     vector<pair<simtime_picosec, uint64_t>> _list_cwd;
     vector<pair<simtime_picosec, uint64_t>> _list_unacked;
+    vector<pair<simtime_picosec, uint64_t>> _list_acked_bytes;
     vector<pair<simtime_picosec, uint64_t>> _list_nack;
     vector<pair<simtime_picosec, uint64_t>> _list_bts;
     vector<pair<simtime_picosec, int>> us_to_cs;
@@ -179,7 +197,7 @@ class UecSrc : public PacketSink, public EventSource {
     void send_packets();
     uint64_t get_unacked();
 
-    void adjust_window(simtime_picosec ts, bool ecn);
+    void adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt);
     bool no_ecn_last_target_rtt();
     bool no_rtt_over_target_last_target_rtt();
     bool ecn_congestion();

@@ -126,6 +126,7 @@ class NdpSrc : public PacketSink, public EventSource, public TriggerTarget {
     uint32_t _cwnd;
     uint32_t _flight_size;
     uint32_t _acked_packets;
+    uint64_t _flow_start_time;
 
     // the following are used with SCATTER_PERMUTE, SCATTER_RANDOM and
     // PULL_BASED route strategies

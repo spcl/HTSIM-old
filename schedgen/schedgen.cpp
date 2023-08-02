@@ -1097,7 +1097,7 @@ void create_multiple_permutation(gengetopt_args_info *args_info) {
 
     int comm_size = args_info->commsize_arg;
     int datasize = args_info->datasize_arg;
-    int num_perms = 4;
+    int num_perms = 3;
 
     Goal goal(args_info, comm_size);
     MTRand mtrand;
@@ -1255,7 +1255,7 @@ void create_special_incast(gengetopt_args_info *args_info) {
 
     int comm_size = args_info->commsize_arg;
     int datasize = args_info->datasize_arg;
-    int active_nodes = 32;
+    int active_nodes = 48;
 
     Goal goal(args_info, comm_size);
 

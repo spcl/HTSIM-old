@@ -23,6 +23,7 @@ def main(args):
     os.system("rm -r ecn/")
     os.system("rm -r sent/")
     os.system("rm -r nack/")
+    os.system("rm -r acked/")
 
     os.system("cp -a ../sim/output/cwd/. cwd/")
     os.system("cp -a ../sim/output/rtt/. rtt/")
@@ -30,6 +31,7 @@ def main(args):
     os.system("cp -a ../sim/output/sent/. sent/")
     os.system("cp -a ../sim/output/ecn/. ecn/")
     os.system("cp -a ../sim/output/nack/. nack/")
+    os.system("cp -a ../sim/output/acked/. acked/")
 
     # RTT Data
     colnames=['Time', 'RTT', 'seqno', 'ackno']
@@ -115,6 +117,7 @@ def main(args):
     df6 = pd.DataFrame(columns =colnames)
     name = ['0'] * df6.shape[0]
     df6 = df6.assign(Node=name)
+    
 
     pathlist = Path('nack').glob('**/*.txt')
     for files in sorted(pathlist):
@@ -123,6 +126,24 @@ def main(args):
         name = [str(path_in_str)] * temp_df6.shape[0]
         temp_df6 = temp_df6.assign(Node=name)
         df6 = pd.concat([df6, temp_df6])
+
+
+    # Acked Bytes Data
+    colnames=['Time', 'AckedBytes'] 
+    df8 = pd.DataFrame(columns =colnames)
+    name = ['0'] * df8.shape[0]
+    df8 = df8.assign(Node=name)
+    df8.drop_duplicates('Time', inplace = True)
+
+    pathlist = Path('acked').glob('**/*.txt')
+    for files in sorted(pathlist):
+        path_in_str = str(files)
+        temp_df8 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
+        name = [str(path_in_str)] * temp_df8.shape[0]
+        temp_df8 = temp_df8.assign(Node=name)
+        temp_df8.drop_duplicates('Time', inplace = True)
+        df8 = pd.concat([df8, temp_df8])
+
     # Create figure with secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     color = ['#636EFA', '#0511a9', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880', '#FF97FF', '#FECB52']
@@ -162,6 +183,14 @@ def main(args):
             secondary_y=True,
         )
 
+
+    # Acked Bytes
+    for i in df8['Node'].unique():
+        sub_df = df8.loc[df8['Node'] == str(i)]
+        fig.add_trace(
+            go.Scatter(x=sub_df["Time"], y=sub_df['AckedBytes'], name="Acked " + str(i), line=dict(dash='longdashdot'), showlegend=True),
+            secondary_y=True,
+        )
 
     # Queue
     count = 0
@@ -278,6 +307,8 @@ def main(args):
     date_time = now.strftime("%m:%d:%Y_%H:%M:%S")
     fig.write_image("out/fid_simple_{}.png".format(date_time),  width=2560, height=1440)
     plotly.offline.plot(fig, filename='out/fid_simple_{}.html'.format(date_time))
+    if (args.output_folder is not None):
+        plotly.offline.plot(fig, filename=args.output_folder + "/fid_simple_{}.html".format(date_time))
     fig.show()
 
 
@@ -291,5 +322,6 @@ if __name__ == "__main__":
     parser.add_argument("--show_triangles", type=str, help="Show RTT triangles", default=None) 
     parser.add_argument("--num_to_show", type=int, help="Number of lines to show", default=None) 
     parser.add_argument("--annotations", type=str, help="Number of lines to show", default=None) 
+    parser.add_argument("--output_folder", type=str, help="OutFold", default=None) 
     args = parser.parse_args()
     main(args)

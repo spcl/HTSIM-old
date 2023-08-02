@@ -260,7 +260,8 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 
     if (true) {
         // Temp Only
-        filename_goal = "../lgs/input/" + filename_goal;
+        filename_goal =
+                "/home/tommaso/csg-htsim/sim/lgs/input/" + filename_goal;
         std::cout << "Current working directory: "
                   << std::filesystem::current_path() << std::endl;
 

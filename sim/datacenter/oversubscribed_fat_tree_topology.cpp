@@ -209,7 +209,12 @@ void OversubscribedFatTreeTopology::init_network() {
             // UpliNTOR
             queueLogger = new QueueLoggerSampling(timeFromMs(1000), *eventlist);
             logfile->addLogger(*queueLogger);
-            queues_nlp_nup[j][k] = alloc_queue(queueLogger);
+
+            if (true) {
+                queues_nlp_nup[j][k] = alloc_queue(queueLogger, _linkspeed / 4);
+            } else {
+                queues_nlp_nup[j][k] = alloc_queue(queueLogger, _linkspeed);
+            }
 
             queues_nlp_nup[j][k]->setName("LS_" + ntoa(j) + "-" + "US_" +
                                           ntoa(k));

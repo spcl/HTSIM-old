@@ -232,10 +232,12 @@ class Packet {
     bool is_ack = false;
 
     uint32_t from, to, tag;
+    int previous_queue_bts = 0;
     const Route *get_route() { return _route; };
     bool _queue_full; // Queue is full, BTS indicates packet drop
     bool is_special = false;
     uint8_t queue_status;
+    string switch_name;
 
   protected:
     virtual void set_route(PacketFlow &flow, const Route &route, int pkt_size,

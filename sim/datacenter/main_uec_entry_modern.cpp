@@ -193,9 +193,13 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-queue_type")) {
             if (!strcmp(argv[i + 1], "composite")) {
+                printf("Name Running: UEC Trimming\n");
                 queue_choice = COMPOSITE;
+                UecSrc::set_queue_type("composite");
             } else if (!strcmp(argv[i + 1], "composite_bts")) {
                 queue_choice = COMPOSITE_BTS;
+                UecSrc::set_queue_type("composite_bts");
+                printf("Name Running: UEC BTS\n");
             }
             i++;
         } else

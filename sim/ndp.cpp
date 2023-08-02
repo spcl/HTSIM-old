@@ -310,6 +310,7 @@ void NdpSrc::startflow() {
          << " at " << timeAsUs(eventlist().now()) << endl;
     _highest_sent = 0;
     _last_acked = 0;
+    _flow_start_time = eventlist().now();
 
     _acked_packets = 0;
     _packets_sent = 0;
@@ -708,6 +709,9 @@ void NdpSrc::processAck(const NdpAck &ack) {
         cout << "Flow " << _name << " flow_id " << flow_id() << " finished at "
              << timeAsUs(eventlist().now()) << " total bytes " << cum_ackno
              << endl;
+
+        printf("Completion Time Flow is %lu",
+               eventlist().now() - _flow_start_time);
         if (_end_trigger) {
             _end_trigger->activate();
         }
@@ -1530,6 +1534,7 @@ void NdpSink::receivePacket(Packet &pkt) {
         return;
     case NDPACK:
     case NDPNACK:
+        printf("NACK \n");
     case NDPPULL:
         // Is there anything we should do here?  Generally won't happen unless
         // the topolgy is very asymmetric.

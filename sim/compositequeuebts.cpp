@@ -72,28 +72,30 @@ bool CompositeQueueBts::decide_ECN() {
     // ECN mark on deque
     uint64_t randValue = (uint64_t)random();
     if (_queuesize_low > _ecn_maxthresh) {
-        printf("Queue From %d - %s - %d - Min ECN %d - Max ECN %d - Current %d "
+        /*printf("Queue From %d - %s - %d - Min ECN %d - Max ECN %d - Current %d
+           "
                "- Time %lu - ID %d\n",
                _current_from, _nodename.c_str(), 1,
                int(_ecn_minthresh * 8 / (_bitrate / 1e9)),
                int(_ecn_maxthresh * 8 / (_bitrate / 1e9)), _queuesize_low,
-               GLOBAL_TIME / 1000, my_id);
+               GLOBAL_TIME / 1000, my_id);*/
         return true;
     } else if (_queuesize_low > _ecn_minthresh) {
         uint64_t p = (0x7FFFFFFF * (_queuesize_low - _ecn_minthresh)) /
                      (_ecn_maxthresh - _ecn_minthresh);
-        printf("Queue From %d - %s - %d - Min ECN %d - Max ECN %d - Current %d "
+        /*printf("Queue From %d - %s - %d - Min ECN %d - Max ECN %d - Current %d
+           "
                "- Time %lu - ID %d\n",
                _current_from, _nodename.c_str(), randValue < p,
                int(_ecn_minthresh * 8 / (_bitrate / 1e9)),
                int(_ecn_maxthresh * 8 / (_bitrate / 1e9)), _queuesize_low,
-               GLOBAL_TIME / 1000, my_id);
+               GLOBAL_TIME / 1000, my_id);*/
         if (randValue < p) {
             return true;
         }
     }
-    printf("Queue From %d - %s - FALSE - Time %lu\n", _current_from,
-           _nodename.c_str(), GLOBAL_TIME / 1000);
+    /*printf("Queue From %d - %s - FALSE - Time %lu\n", _current_from,
+           _nodename.c_str(), GLOBAL_TIME / 1000);*/
     return false;
 }
 
@@ -104,11 +106,11 @@ void CompositeQueueBts::completeService() {
         assert(!_enqueued_low.empty());
         pkt = _enqueued_low.pop();
         _queuesize_low -= pkt->size();
-        printf("Considering Queue2 %s - From %d - Header Only %d - Size %d - "
+        /*printf("Considering Queue2 %s - From %d - Header Only %d - Size %d - "
                "Arrayt Size "
                "%d\n",
                _nodename.c_str(), pkt->from, pkt->header_only(), _queuesize_low,
-               _enqueued_low.size());
+               _enqueued_low.size());*/
         fflush(stdout);
 
         if (COLLECT_DATA && !pkt->header_only()) {
@@ -200,14 +202,14 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
         _logger->logQueue(*this, QueueLogger::PKT_ARRIVE, pkt);
     // is this a Tofino packet from the egress pipeline?
 
-    printf("Considering Queue %s - ID %d - From %d - Header Only %d - "
+    /*printf("Considering Queue %s - ID %d - From %d - Header Only %d - "
            "IsSpecial %d - "
            "Size %d - "
            "Arrayt Size "
            "%d\n",
            _nodename.c_str(), pkt.id(), pkt.from, pkt.header_only(),
            pkt.is_special, _queuesize_low, _enqueued_low.size());
-    fflush(stdout);
+    fflush(stdout);*/
 
     if (!pkt.header_only()) {
         //  Queue
@@ -233,7 +235,7 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
             // probabilistic BTS, we send it back
             // Packet bts_pkt = pkt;
             // UecPacket bts_pkt = UecPacket::newpkt((UecPacket)pkt);
-            printf("Pre Copy %d\n", pkt.nexthop());
+            // printf("Pre Copy %d\n", pkt.nexthop());
             UecPacket *bts_pkt =
                     UecPacket::newpkt(dynamic_cast<UecPacket &>(pkt));
 
@@ -248,24 +250,33 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
 
             if (_queuesize_low + pkt.size() > _maxsize) {
                 bts_pkt->_queue_full = true;
+                if (marked) {
+                    // printf("Marking BTS");
+                    bts_pkt->set_flags(pkt.flags() | ECN_CE);
+                }
             } else {
                 bts_pkt->_queue_full = false;
                 // We set ECN to the former data packet, so it doesn't
                 // trigger more BTS events
                 if (_bts_ignore_ecn_data) {
                     pkt.set_flags(pkt.flags() | ECN_CE);
-                    if (marked) {
-                        printf("Edge Case\n");
+                    if (marked && bts_pkt->_queue_full) {
+                        // printf("Edge Case\n");
                     }
                 }
             }
 
-            printf("BTS Case %d\n", bts_pkt->from);
+            // printf("BTS Case %d\n", bts_pkt->from);
             if (bts_pkt->reverse_route() && bts_pkt->bounced() == false) {
                 if (bts_pkt->_queue_full || (!marked)) {
-                    printf("BTS Case1 - Size %d - Queue Full %d\n",
-                           _queuesize_low, bts_pkt->_queue_full);
+                    bts_pkt->switch_name = _nodename;
+                    /*printf("BTS Case1 - Size %d - Queue Full %d\n",
+                           _queuesize_low, bts_pkt->_queue_full);*/
                     bts_pkt->queue_status =
+                            ((_queuesize_low + bts_pkt->size()) * 64.0) /
+                            _maxsize;
+                    bts_pkt->queue_status -= pkt.previous_queue_bts;
+                    pkt.previous_queue_bts =
                             ((_queuesize_low + bts_pkt->size()) * 64.0) /
                             _maxsize;
                     bts_pkt->strip_payload();
@@ -281,7 +292,7 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
                     printf("\nRev route:\n");
                     print_route(*(bts_pkt->reverse_route()));
                     fflush(stdout);*/
-                    printf("Post Copy %d\n", pkt.nexthop());
+                    // printf("Post Copy %d\n", pkt.nexthop());
                     fflush(stdout);
 
                     bts_pkt->sendOn();
@@ -294,14 +305,12 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
             Packet *pkt_p = &pkt;
             _enqueued_low.push(pkt_p);
             _queuesize_low += pkt.size();
-            printf("Considering Queue %s - ID %d - From %d - Header Only %d - "
-                   "IsSpecial %d - "
-                   "Size %d - "
-                   "Arrayt Size "
+            /*printf("Considering Queue %s - ID %d - From %d - Header Only %d -
+            " "IsSpecial %d - " "Size %d - " "Arrayt Size "
                    "%d\n",
                    _nodename.c_str(), pkt.id(), pkt.from, pkt.header_only(),
                    pkt.is_special, _queuesize_low, _enqueued_low.size());
-            fflush(stdout);
+            fflush(stdout);*/
             if (_logger)
                 _logger->logQueue(*this, QueueLogger::PKT_ENQUEUE, pkt);
 
@@ -316,7 +325,7 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
         if (_queuesize_high + pkt.size() > 200 * _maxsize) {
             // drop header
             // cout << "drop!\n";
-            printf("Should never reach here");
+            // printf("Should never reach here");
             if (pkt.reverse_route() && pkt.bounced() == false) {
                 // return the packet to the sender
                 if (_logger)
@@ -337,13 +346,13 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
 #endif
                 _num_bounced++;
 
-                printf("Bounce2 at %s\n", _nodename.c_str());
-                printf("Fwd route:\n");
-                print_route(*(pkt.route()));
-                printf("nexthop: %d\n", pkt.nexthop());
-                printf("\nRev route:\n");
-                print_route(*(pkt.reverse_route()));
-                fflush(stdout);
+                // printf("Bounce2 at %s\n", _nodename.c_str());
+                // printf("Fwd route:\n");
+                // print_route(*(pkt.route()));
+                // printf("nexthop: %d\n", pkt.nexthop());
+                // printf("\nRev route:\n");
+                // print_route(*(pkt.reverse_route()));
+                // fflush(stdout);
 
                 pkt.sendOn();
                 return;
@@ -354,7 +363,7 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
                 cout << "B[ " << _enqueued_low.size() << " "
                      << _enqueued_high.size() << " ] DROP "
                      << pkt.flow().get_id() << endl;
-                printf("Free8\n");
+                // printf("Free8\n");
                 fflush(stdout);
                 pkt.free();
                 _num_drops++;
