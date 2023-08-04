@@ -86,6 +86,8 @@ void CompositeQueue::completeService() {
 
         assert(!_enqueued_low.empty());
         pkt = _enqueued_low.pop();
+        packets_seen++;
+        printf("Queue %s - Packets %d\n", _nodename.c_str(), packets_seen);
         _queuesize_low -= pkt->size();
         /*printf("Considering Queue1 %s - From %d - Header Only %d - Size %d - "
                "Arrayt Size "
@@ -153,6 +155,8 @@ void CompositeQueue::completeService() {
     } else if (_serv == QUEUE_HIGH) {
         assert(!_enqueued_high.empty());
         pkt = _enqueued_high.pop();
+        trimmed_seen++;
+        printf("Queue %s - Trimmed %d\n", _nodename.c_str(), trimmed_seen);
         _queuesize_high -= pkt->size();
         if (_logger)
             _logger->logQueue(*this, QueueLogger::PKT_SERVICE, *pkt);

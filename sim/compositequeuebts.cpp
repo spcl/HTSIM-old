@@ -275,10 +275,10 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
                     bts_pkt->queue_status =
                             ((_queuesize_low + bts_pkt->size()) * 64.0) /
                             _maxsize;
-                    bts_pkt->queue_status -= pkt.previous_queue_bts;
-                    pkt.previous_queue_bts =
+                    // bts_pkt->queue_status -= pkt.previous_queue_bts;
+                    /*pkt.previous_queue_bts =
                             ((_queuesize_low + bts_pkt->size()) * 64.0) /
-                            _maxsize;
+                            _maxsize;*/
                     bts_pkt->strip_payload();
                     bts_pkt->bounce();
                     // bts_pkt->reverse_route();

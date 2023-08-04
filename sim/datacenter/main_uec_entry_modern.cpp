@@ -101,6 +101,7 @@ int main(int argc, char **argv) {
     queue_type queue_choice = COMPOSITE;
     bool ignore_ecn_data = true;
     bool ignore_ecn_ack = true;
+    UecSrc::set_fast_drop(false);
 
     int i = 1;
     filename << "logout.dat";
@@ -174,8 +175,14 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-ignore_ecn_data")) {
             ignore_ecn_data = atoi(argv[i + 1]);
             i++;
+        } else if (!strcmp(argv[i], "-fast_drop")) {
+            UecSrc::set_fast_drop(atoi(argv[i + 1]));
+            i++;
         } else if (!strcmp(argv[i], "-seed")) {
             seed = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-fast_drop_rtt")) {
+            UecSrc::set_fast_drop_rtt(atoi(argv[i + 1]));
             i++;
         } else if (!strcmp(argv[i], "-goal")) {
             goal_filename = argv[i + 1];
@@ -200,6 +207,19 @@ int main(int argc, char **argv) {
                 queue_choice = COMPOSITE_BTS;
                 UecSrc::set_queue_type("composite_bts");
                 printf("Name Running: UEC BTS\n");
+            }
+            i++;
+        } else if (!strcmp(argv[i], "-algorithm")) {
+            if (!strcmp(argv[i + 1], "delayA")) {
+                UecSrc::set_alogirthm("delayA");
+            } else if (!strcmp(argv[i + 1], "delayB")) {
+                UecSrc::set_alogirthm("delayB");
+            } else if (!strcmp(argv[i + 1], "delayC")) {
+                UecSrc::set_alogirthm("delayC");
+            } else if (!strcmp(argv[i + 1], "delayD")) {
+                UecSrc::set_alogirthm("delayD");
+            } else if (!strcmp(argv[i + 1], "standard_trimming")) {
+                UecSrc::set_alogirthm("standard_trimming");
             }
             i++;
         } else

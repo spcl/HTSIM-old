@@ -24,6 +24,11 @@ def main(args):
     os.system("rm -r sent/")
     os.system("rm -r nack/")
     os.system("rm -r acked/")
+    os.system("rm -r fasti/")
+    os.system("rm -r fastd/")
+    os.system("rm -r mediumi/")
+    os.system("rm -r trimmed_rtt/")
+    os.system("rm -r ecn_rtt/")
 
     os.system("cp -a ../sim/output/cwd/. cwd/")
     os.system("cp -a ../sim/output/rtt/. rtt/")
@@ -31,7 +36,12 @@ def main(args):
     os.system("cp -a ../sim/output/sent/. sent/")
     os.system("cp -a ../sim/output/ecn/. ecn/")
     os.system("cp -a ../sim/output/nack/. nack/")
+    os.system("cp -a ../sim/output/fasti/. fasti/")
+    os.system("cp -a ../sim/output/fastd/. fastd/")
+    os.system("cp -a ../sim/output/mediumi/. mediumi/")
     os.system("cp -a ../sim/output/acked/. acked/")
+    os.system("cp -a ../sim/output/trimmed_rtt/. trimmed_rtt/")
+    os.system("cp -a ../sim/output/ecn_rtt/. ecn_rtt/")
 
     # RTT Data
     colnames=['Time', 'RTT', 'seqno', 'ackno']
@@ -104,13 +114,11 @@ def main(args):
 
     pathlist = Path('sent').glob('*')
     for files in sorted(pathlist):
-        print(str(files))
         path_in_str = str(files)
         temp_df5 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
         name = [str(path_in_str)] * temp_df5.shape[0]
         temp_df5 = temp_df5.assign(Node=name)
         df5 = pd.concat([df5, temp_df5])
-    print(df5)
 
     # Nack data
     colnames=['Time', 'Nack'] 
@@ -144,6 +152,84 @@ def main(args):
         temp_df8.drop_duplicates('Time', inplace = True)
         df8 = pd.concat([df8, temp_df8])
 
+    # ECN in RTT Data
+    colnames=['Time', 'ECNRTT'] 
+    df13 = pd.DataFrame(columns =colnames)
+    name = ['0'] * df13.shape[0]
+    df13 = df13.assign(Node=name)
+    df13.drop_duplicates('Time', inplace = True)
+
+    pathlist = Path('ecn_rtt').glob('**/*.txt')
+    for files in sorted(pathlist):
+        path_in_str = str(files)
+        temp_df13 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
+        name = [str(path_in_str)] * temp_df13.shape[0]
+        temp_df13 = temp_df13.assign(Node=name)
+        temp_df13.drop_duplicates('Time', inplace = True)
+        df13 = pd.concat([df13, temp_df13])
+
+    # Trimming in RTT Data
+    colnames=['Time', 'TrimmedRTT'] 
+    df14 = pd.DataFrame(columns =colnames)
+    name = ['0'] * df14.shape[0]
+    df14 = df14.assign(Node=name)
+    df14.drop_duplicates('Time', inplace = True)
+
+    pathlist = Path('trimmed_rtt').glob('**/*.txt')
+    for files in sorted(pathlist):
+        path_in_str = str(files)
+        temp_df14 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
+        name = [str(path_in_str)] * temp_df14.shape[0]
+        temp_df14 = temp_df14.assign(Node=name)
+        temp_df14.drop_duplicates('Time', inplace = True)
+        df14 = pd.concat([df14, temp_df14])
+
+
+    # FastI data
+    colnames=['Time', 'FastI'] 
+    df9 = pd.DataFrame(columns =colnames)
+    name = ['0'] * df9.shape[0]
+    df9 = df9.assign(Node=name)
+    
+
+    pathlist = Path('fasti').glob('**/*.txt')
+    for files in sorted(pathlist):
+        path_in_str = str(files)
+        temp_df9 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
+        name = [str(path_in_str)] * temp_df9.shape[0]
+        temp_df9 = temp_df9.assign(Node=name)
+        df9 = pd.concat([df9, temp_df9])
+
+    # FastD data
+    colnames=['Time', 'FastD'] 
+    df10 = pd.DataFrame(columns =colnames)
+    name = ['0'] * df10.shape[0]
+    df10 = df10.assign(Node=name)
+    
+
+    pathlist = Path('fastd').glob('**/*.txt')
+    for files in sorted(pathlist):
+        path_in_str = str(files)
+        temp_df10 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
+        name = [str(path_in_str)] * temp_df10.shape[0]
+        temp_df10 = temp_df10.assign(Node=name)
+        df10 = pd.concat([df10, temp_df10])
+
+    # MediumI data
+    colnames=['Time', 'MediumI'] 
+    df11 = pd.DataFrame(columns =colnames)
+    name = ['0'] * df11.shape[0]
+    df11 = df11.assign(Node=name)
+    
+
+    pathlist = Path('mediumi').glob('**/*.txt')
+    for files in sorted(pathlist):
+        path_in_str = str(files)
+        temp_df11 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
+        name = [str(path_in_str)] * temp_df11.shape[0]
+        temp_df11 = temp_df11.assign(Node=name)
+        df11 = pd.concat([df11, temp_df11])
+
     # Create figure with secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     color = ['#636EFA', '#0511a9', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880', '#FF97FF', '#FECB52']
@@ -151,8 +237,11 @@ def main(args):
     mean_rtt = df["RTT"].mean()
     max_rtt = df["RTT"].max()
     y_sent = max_rtt * 0.9
-    y_ecn = max_rtt * 0.8
-    y_nack =max_rtt * 0.7
+    y_ecn = max_rtt * 0.85
+    y_nack =max_rtt * 0.80
+    y_fasti =max_rtt * 0.75
+    y_fastd =max_rtt * 0.70
+    y_mediumi =max_rtt * 0.65
     mean_rtt = 10000
     count = 0
     for i in df['Node'].unique():
@@ -182,15 +271,30 @@ def main(args):
             go.Scatter(x=sub_df["Time"], y=sub_df['Congestion Window'], name="CWD " + str(i), line=dict(dash='dot'), showlegend=True),
             secondary_y=True,
         )
+    # Trimming RTT Bytes
+    '''for i in df14['Node'].unique():
+        sub_df = df14.loc[df14['Node'] == str(i)]
+        fig.add_trace(
+            go.Scatter(x=sub_df["Time"], y=sub_df['TrimmedRTT'], name="TrimmedRTT " + str(i), line=dict(dash='longdashdot'), showlegend=True),
+            secondary_y=True,
+        )
 
+    # ECN RTT Bytes
+    for i in df13['Node'].unique():
+        sub_df = df13.loc[df13['Node'] == str(i)]
+        fig.add_trace(
+            go.Scatter(x=sub_df["Time"], y=sub_df['ECNRTT'], name="ECNRTT " + str(i), line=dict(dash='longdashdot'), showlegend=True),
+            secondary_y=True,
+        )
 
     # Acked Bytes
+    print(df8)
     for i in df8['Node'].unique():
         sub_df = df8.loc[df8['Node'] == str(i)]
         fig.add_trace(
             go.Scatter(x=sub_df["Time"], y=sub_df['AckedBytes'], name="Acked " + str(i), line=dict(dash='longdashdot'), showlegend=True),
             secondary_y=True,
-        )
+        )'''
 
     # Queue
     count = 0
@@ -221,7 +325,6 @@ def main(args):
     # Sent
     mean_sent = df5["Time"].mean()
     df5['Sent'] = df5['Sent'].multiply(y_sent)
-    print(df5)
     for i in df5['Node'].unique():
         sub_df5 = df5.loc[df5['Node'] == str(i)]
         fig.add_trace(
@@ -239,11 +342,44 @@ def main(args):
             secondary_y=False
         )
 
+    # FastI
+    mean_sent = df9["Time"].mean()
+    df9['FastI'] = df9['FastI'].multiply(y_fasti)
+    for i in df9['Node'].unique():
+        sub_df9 = df9.loc[df9['Node'] == str(i)]
+        fig.add_trace(
+            go.Scatter(x=sub_df9["Time"], y=sub_df9["FastI"], mode="markers", marker_symbol="triangle-up", name="FastI Packet", marker=dict(size=5, color="brown"), showlegend=True),
+            secondary_y=False
+        )
+
+    # FastD
+    mean_sent = df10["Time"].mean()
+    df10['FastD'] = df10['FastD'].multiply(y_fastd)
+    for i in df10['Node'].unique():
+        sub_df10 = df10.loc[df10['Node'] == str(i)]
+        fig.add_trace(
+            go.Scatter(x=sub_df10["Time"], y=sub_df10["FastD"], mode="markers", marker_symbol="triangle-up", name="FastD Packet", marker=dict(size=5, color="black"), showlegend=True),
+            secondary_y=False
+        )
+
+    # MediumI
+    mean_sent = df11["Time"].mean()
+    df11['MediumI'] = df11['MediumI'].multiply(y_mediumi)
+    for i in df11['Node'].unique():
+        sub_df11 = df11.loc[df11['Node'] == str(i)]
+        fig.add_trace(
+            go.Scatter(x=sub_df11["Time"], y=sub_df11["MediumI"], mode="markers", marker_symbol="triangle-up", name="MediumI Packet", marker=dict(size=5, color="white"), showlegend=True),
+            secondary_y=False
+        )
+
+
+    if args.name is not None:
+        my_title=args.name
+    else:
+        my_title="<b>Permutation Across - 4:1 FT - 400Gbps - 2 MiB - UEC</b>"
+
     # Add figure title
-    fig.update_layout(
-        #title_text="<b>Incast 64:1 - ECN based congestion control - 100Gbps</b>"
-        title_text="<b>Permutation Across - 4:1 FT - 400Gbps - 2 MiB - UEC</b>"
-    )
+    fig.update_layout(title_text=my_title)
 
 
     if (args.x_limit is not None):
@@ -323,5 +459,6 @@ if __name__ == "__main__":
     parser.add_argument("--num_to_show", type=int, help="Number of lines to show", default=None) 
     parser.add_argument("--annotations", type=str, help="Number of lines to show", default=None) 
     parser.add_argument("--output_folder", type=str, help="OutFold", default=None) 
+    parser.add_argument("--name", type=str, help="Name Algo", default=None) 
     args = parser.parse_args()
     main(args)

@@ -236,7 +236,7 @@ class Packet {
     const Route *get_route() { return _route; };
     bool _queue_full; // Queue is full, BTS indicates packet drop
     bool is_special = false;
-    uint8_t queue_status;
+    uint16_t queue_status;
     string switch_name;
 
   protected:

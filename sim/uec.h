@@ -87,6 +87,9 @@ class UecSrc : public PacketSink, public EventSource {
 
     void set_traffic_logger(TrafficLogger *pktlogger);
     static void set_queue_type(std::string value) { queue_type = value; }
+    static void set_alogirthm(std::string value) { algorithm_type = value; }
+    static void set_fast_drop(bool value) { use_fast_drop = value; }
+    static void set_fast_drop_rtt(int value) { fast_drop_rtt = value; }
     void set_flow_over_hook(std::function<void(const Packet &)> hook) {
         f_flow_over_hook = hook;
     }
@@ -117,7 +120,12 @@ class UecSrc : public PacketSink, public EventSource {
     uint64_t next_window_end;
     bool update_next_window = true;
     bool _start_timer_window = true;
+    bool stop_decrease = false;
     bool fast_drop = false;
+    int ignore_for = 0;
+    int count_received;
+    int count_ecn_in_rtt = 0;
+    int count_trimmed_in_rtt = 0;
     int counter_consecutive_good_bytes;
     bool increasing = false;
     int total_routes;
@@ -126,6 +134,10 @@ class UecSrc : public PacketSink, public EventSource {
     int exp_avg_route = 0;
     double alpha_route = 0.0625;
     static std::string queue_type;
+    static std::string algorithm_type;
+    static bool use_fast_drop;
+    static int fast_drop_rtt;
+    bool was_zero_before = false;
 
   private:
     uint32_t _unacked;
@@ -138,6 +150,7 @@ class UecSrc : public PacketSink, public EventSource {
     uint64_t _rtx_timeout;
     uint64_t _maxcwnd;
     uint16_t _crt_path;
+    uint64_t target_window;
     // LogSimInterface *_lgs;
     bool _flow_finished = false;
 
@@ -153,6 +166,7 @@ class UecSrc : public PacketSink, public EventSource {
     uint64_t _ignore_ecn_until = 0;
     bool _target_based_received;
     bool _using_lgs = false;
+    int consecutive_nack = 0;
 
     // SentPackets _sent_packets;
     uint64_t _highest_data_seq;
@@ -175,8 +189,13 @@ class UecSrc : public PacketSink, public EventSource {
     vector<pair<simtime_picosec, uint64_t>> _list_cwd;
     vector<pair<simtime_picosec, uint64_t>> _list_unacked;
     vector<pair<simtime_picosec, uint64_t>> _list_acked_bytes;
+    vector<pair<simtime_picosec, uint64_t>> _list_ecn_rtt;
+    vector<pair<simtime_picosec, uint64_t>> _list_trimmed_rtt;
     vector<pair<simtime_picosec, uint64_t>> _list_nack;
     vector<pair<simtime_picosec, uint64_t>> _list_bts;
+    vector<pair<simtime_picosec, uint64_t>> _list_fast_increase_event;
+    vector<pair<simtime_picosec, uint64_t>> _list_medium_increase_event;
+    vector<pair<simtime_picosec, uint64_t>> _list_fast_decrease;
     vector<pair<simtime_picosec, int>> us_to_cs;
     vector<pair<simtime_picosec, int>> ls_to_us;
 

@@ -66,6 +66,8 @@ class CompositeQueueBts : public Queue {
     int _num_bounced;  // count of packets we bounced
     int _current_from;
     int my_id;
+    int packets_seen = 0;
+    int trimmed_seen = 0;
 
   protected:
     // Mechanism

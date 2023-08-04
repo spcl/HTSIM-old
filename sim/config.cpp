@@ -115,6 +115,11 @@ void initializeLoggingFolders() {
     std::filesystem::remove_all("../output/bts/");
     std::filesystem::remove_all("../output/ls_to_us/");
     std::filesystem::remove_all("../output/us_to_cs/");
+    std::filesystem::remove_all("../output/fasti/");
+    std::filesystem::remove_all("../output/fastd/");
+    std::filesystem::remove_all("../output/mediumi/");
+    std::filesystem::remove_all("../output/ecn_rtt/");
+    std::filesystem::remove_all("../output/trimmed_rtt/");
 
     bool ret_val = std::filesystem::create_directory("../output");
     ret_val &= std::filesystem::create_directory("../output/rtt");
@@ -127,4 +132,9 @@ void initializeLoggingFolders() {
     ret_val &= std::filesystem::create_directory("../output/bts");
     ret_val &= std::filesystem::create_directory("../output/ls_to_us");
     ret_val &= std::filesystem::create_directory("../output/us_to_cs");
+    ret_val &= std::filesystem::create_directory("../output/fastd");
+    ret_val &= std::filesystem::create_directory("../output/fasti");
+    ret_val &= std::filesystem::create_directory("../output/mediumi");
+    ret_val &= std::filesystem::create_directory("../output/ecn_rtt");
+    ret_val &= std::filesystem::create_directory("../output/trimmed_rtt");
 }
