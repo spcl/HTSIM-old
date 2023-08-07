@@ -5,7 +5,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import argparse
 
-
 list_fct = []
 list_size = []
 num_bts_warning = 0
@@ -16,11 +15,23 @@ bw_speed_gbps = 0
 incast_size = 0
 min_bw  = 0
 name = ""
+DoJitter = 0
+DoExpGain = 0
+FastIncrease = 0
+FastDrop = 0
+GainValueMedIncrease = 0
+JitterValue = 0
+DelayGainValue = 0
+TargetRTT = 0
+KMin = 0
+KMax = 0
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_file', dest='input_file', type=str, help='File to parse.')
 parser.add_argument('--folder', dest='folder', type=str, help='Folder to parse and save')
 parser.add_argument('--scaling_plot', dest='scaling_plot', type=str, help='Scaling Plot Option', default=None)
+parser.add_argument('--parameter_analysis', dest='parameter_analysis', type=str, help='Parameter Analysis Option', default=None)
+parser.add_argument('--complex_name', dest='complex_name', type=str, help='Adv Name', default=None)
 args = parser.parse_args()
 
 folder = args.folder
@@ -32,6 +43,55 @@ with open(folder + "/" + file_name) as file:
         if "Name Running: " in line:
             name = line.split(': ')[1]
         
+        # DoJitter
+        result = re.search(r"DoJitter: (\d+)", line)
+        if result:
+            DoJitter = int(result.group(1))
+        
+        # DoExpGain
+        result = re.search(r"DoExpGain: (\d+)", line)
+        if result:
+            DoExpGain = int(result.group(1))
+
+        # FastIncrease
+        result = re.search(r"FastIncrease: (\d+)", line)
+        if result:
+            FastIncrease = int(result.group(1))
+
+        # FastDrop
+        result = re.search(r"FastDrop: (\d+)", line)
+        if result:
+            FastDrop = int(result.group(1))
+
+        # KMin
+        result = re.search(r"KMin: (\d+)", line)
+        if result:
+            KMin = int(result.group(1))
+
+        # KMax
+        result = re.search(r"KMax: (\d+)", line)
+        if result:
+            KMax = int(result.group(1))
+
+        # GainValueMedIncrease
+        result = re.search(r"GainValueMedIncrease: (\d+)", line)
+        if result:
+            GainValueMedIncrease = re.findall('\d+.\d+', line )[0]
+
+        # JitterValue
+        result = re.search(r"JitterValue: (\d+)", line)
+        if result:
+            JitterValue = re.findall('\d+.\d+', line )[0]
+
+        # DelayGainValue
+        result = re.search(r"DelayGainValue: (\d+)", line)
+        if result:
+            DelayGainValue = re.findall('\d+.\d+', line )[0]
+
+        # TargetRTT
+        result = re.search(r"TargetRTT: (\d+)", line)
+        if result:
+            TargetRTT = int(result.group(1))
 
         # BW
         result = re.search(r"Speed is (\d+)", line)
@@ -67,8 +127,9 @@ with open(folder + "/" + file_name) as file:
     min_bw = (incast_size * 8 + (incast_size*8*0.03)) / (max_time - 8500)
 
         
-
-if (args.scaling_plot is not None and int(args.scaling_plot) == 1):
+if (args.parameter_analysis is not None and int(args.parameter_analysis) == 1):
+    file_name = folder + '/GeneratedReport{}.tmp'.format(args.complex_name)
+elif (args.scaling_plot is not None and int(args.scaling_plot) == 1):
     file_name = folder + '/GeneratedReport{}_{}.tmp'.format(name.rstrip(), size_m)
 else:
     file_name = folder + '/GeneratedReport{}.tmp'.format(name.rstrip())
@@ -113,4 +174,38 @@ with open(file_name, 'w') as f:
     # Max FCT
     f.write('Max FCT: {}\n'.format(max(list_fct)))  
 
+    # Min FCT
+    f.write('Min FCT: {}\n'.format(min(list_fct))) 
+
+    # DoJitter
+    f.write('DoJitter: {}\n'.format(DoJitter)) 
     
+    # DoExpGain
+    f.write('DoExpGain: {}\n'.format(DoExpGain)) 
+
+    # FastIncrease
+    f.write('FastIncrease: {}\n'.format(FastIncrease)) 
+
+    # FastDrop
+    f.write('FastDrop: {}\n'.format(FastDrop)) 
+
+    # GainValueMedIncrease
+    f.write('GainValueMedIncrease: {}\n'.format(GainValueMedIncrease)) 
+
+    # JitterValue
+    f.write('JitterValue: {}\n'.format(JitterValue)) 
+
+    # DelayGainValue
+    f.write('DelayGainValue: {}\n'.format(DelayGainValue)) 
+
+    # TargetRTT
+    f.write('TargetRTT: {}\n'.format(TargetRTT)) 
+
+    # KMin
+    f.write('KMin: {}\n'.format(KMin)) 
+
+    # KMax
+    f.write('KMax: {}\n'.format(KMax)) 
+
+    # ComplexName
+    f.write('ComplexFull: {}\n'.format(args.complex_name)) 

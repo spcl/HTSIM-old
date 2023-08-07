@@ -104,6 +104,14 @@ int main(int argc, char **argv) {
     queue_type queue_choice = COMPOSITE;
     int bts_threshold = -1;
     int number_entropies = -1;
+    UecSrc::set_fast_drop(false);
+    bool do_jitter = false;
+    bool do_exponential_gain = false;
+    bool use_fast_increase = false;
+    double gain_value_med_inc = 1;
+    double jitter_value_med_inc = 1;
+    double delay_gain_value_med_inc = 5;
+    int target_rtt_percentage_over_base = 50;
 
     int i = 1;
     filename << "logout.dat";
@@ -142,10 +150,12 @@ int main(int argc, char **argv) {
             // Saving this for UEC reference, Gbps
             i++;
         } else if (!strcmp(argv[i], "-kmin")) {
+            printf("KMin: %d\n", atoi(argv[i + 1]));
             // kmin as percentage of queue size (0..100)
             kmin = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-kmax")) {
+            printf("KMax: %d\n", atoi(argv[i + 1]));
             // kmin as percentage of queue size (0..100)
             kmax = atoi(argv[i + 1]);
             i++;
@@ -179,6 +189,46 @@ int main(int argc, char **argv) {
             hop_latency = timeFromNs(atof(argv[i + 1]));
             LINK_DELAY_MODERN = hop_latency /
                                 1000; // Saving this for UEC reference, ps to ns
+            i++;
+        } else if (!strcmp(argv[i], "-do_jitter")) {
+            do_jitter = atoi(argv[i + 1]);
+            UecSrc::set_do_jitter(do_jitter);
+            printf("DoJitter: %d\n", do_jitter);
+            i++;
+        } else if (!strcmp(argv[i], "-do_exponential_gain")) {
+            do_exponential_gain = atoi(argv[i + 1]);
+            UecSrc::set_do_exponential_gain(do_exponential_gain);
+            printf("DoExpGain: %d\n", do_exponential_gain);
+            i++;
+        } else if (!strcmp(argv[i], "-use_fast_increase")) {
+            use_fast_increase = atoi(argv[i + 1]);
+            UecSrc::set_use_fast_increase(use_fast_increase);
+            printf("FastIncrease: %d\n", use_fast_increase);
+            i++;
+        } else if (!strcmp(argv[i], "-gain_value_med_inc")) {
+            gain_value_med_inc = std::stod(argv[i + 1]);
+            UecSrc::set_gain_value_med_inc(gain_value_med_inc);
+            printf("GainValueMedIncrease: %f\n", gain_value_med_inc);
+            i++;
+        } else if (!strcmp(argv[i], "-jitter_value_med_inc")) {
+            jitter_value_med_inc = std::stod(argv[i + 1]);
+            UecSrc::set_jitter_value_med_inc(jitter_value_med_inc);
+            printf("JitterValue: %f\n", jitter_value_med_inc);
+            i++;
+        } else if (!strcmp(argv[i], "-delay_gain_value_med_inc")) {
+            delay_gain_value_med_inc = std::stod(argv[i + 1]);
+            UecSrc::set_delay_gain_value_med_inc(delay_gain_value_med_inc);
+            printf("DelayGainValue: %f\n", delay_gain_value_med_inc);
+            i++;
+        } else if (!strcmp(argv[i], "-target_rtt_percentage_over_base")) {
+            target_rtt_percentage_over_base = atoi(argv[i + 1]);
+            UecSrc::set_target_rtt_percentage_over_base(
+                    target_rtt_percentage_over_base);
+            printf("TargetRTT: %d\n", target_rtt_percentage_over_base);
+            i++;
+        } else if (!strcmp(argv[i], "-fast_drop")) {
+            UecSrc::set_fast_drop(atoi(argv[i + 1]));
+            printf("FastDrop: %d\n", atoi(argv[i + 1]));
             i++;
         } else if (!strcmp(argv[i], "-seed")) {
             seed = atoi(argv[i + 1]);

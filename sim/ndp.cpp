@@ -119,7 +119,8 @@ NdpSrc::~NdpSrc() {
     // If we are collecting specific logs
     if (COLLECT_DATA) {
         // RTT
-        std::string file_name = "../output/rtt/rtt" + _name + ".txt";
+        std::string file_name =
+                "/home/tommaso/csg-htsim/sim/output/rtt/rtt" + _name + ".txt";
         std::ofstream MyFile(file_name, std::ios_base::app);
 
         for (const auto &p : _list_rtt) {
@@ -129,7 +130,8 @@ NdpSrc::~NdpSrc() {
         MyFile.close();
 
         // CWD
-        file_name = "../output/cwd/cwd" + _name + ".txt";
+        file_name =
+                "/home/tommaso/csg-htsim/sim/output/cwd/cwd" + _name + ".txt";
         std::ofstream MyFileCWD(file_name, std::ios_base::app);
 
         for (const auto &p : _list_cwd) {
@@ -139,7 +141,8 @@ NdpSrc::~NdpSrc() {
         MyFileCWD.close();
 
         // NACK
-        file_name = "../output/nack/nack" + _name + ".txt";
+        file_name =
+                "/home/tommaso/csg-htsim/sim/output/nack/nack" + _name + ".txt";
         std::ofstream MyFileNack(file_name, std::ios_base::app);
 
         for (const auto &p : _list_nack) {
@@ -266,7 +269,8 @@ void NdpSrc::set_paths(vector<const Route *> *rt_list) {
         _path_counts_rto.resize(no_of_paths);
 #endif
 
-        // generate a randomize sequence of 0 .. size of rt_list - 1
+        // generate a randomize sequence of 0 /home/tommaso/csg-htsim/sim size
+        // of rt_list - 1
         vector<int> randseq(rt_list->size());
         if (_route_strategy == SCATTER_ECMP) {
             // randsec may have duplicates, as with ECMP

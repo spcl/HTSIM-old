@@ -12,10 +12,18 @@
 
 #define timeInf 0
 
+// Parameters
 std::string UecSrc::queue_type = "composite";
 std::string UecSrc::algorithm_type = "standard_trimming";
 bool UecSrc::use_fast_drop = false;
 int UecSrc::fast_drop_rtt = 1;
+bool UecSrc::do_jitter = false;
+bool UecSrc::do_exponential_gain = false;
+bool UecSrc::use_fast_increase = false;
+double UecSrc::exp_gain_value_med_inc = 1;
+double UecSrc::jitter_value_med_inc = 1;
+double UecSrc::delay_gain_value_med_inc = 5;
+int UecSrc::target_rtt_percentage_over_base = 50;
 
 UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
                EventList &eventList, uint64_t rtt, uint64_t bdp,
@@ -39,12 +47,7 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
                  (_hop_count * LINK_DELAY_MODERN) +
                  (64 * 8 / LINK_SPEED_MODERN * _hop_count)) *
                 1000;
-    _target_rtt = _base_rtt * 1.20;
-
-    /*printf("Link Delay %lu - Link Speed %lu - Pkt Size %d - Base RTT %lu - "
-           "Target RTT is %lu\n",
-           LINK_DELAY_MODERN, LINK_SPEED_MODERN, PKT_SIZE_MODERN, _base_rtt,
-           _target_rtt);*/
+    _target_rtt = _base_rtt * (target_rtt_percentage_over_base / 100.0 + 1);
 
     _rtt = _base_rtt;
     _rto = rtt + _hop_count * queueDrainTime + (rtt * 90000);
@@ -65,7 +68,6 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     _maxcwnd = _bdp;
     _cwnd = _bdp;
     _consecutive_low_rtt = 0;
-    //_consecutive_no_ecn = 0;
 
     _target_based_received = true;
 
@@ -85,8 +87,8 @@ UecSrc::~UecSrc() {
     // If we are collecting specific logs
     if (COLLECT_DATA) {
         // RTT
-        std::string file_name = "../output/rtt/rtt" + _name + "_" +
-                                std::to_string(tag) + ".txt";
+        std::string file_name = "/home/tommaso/csg-htsim/sim/output/rtt/rtt" +
+                                _name + "_" + std::to_string(tag) + ".txt";
         std::ofstream MyFile(file_name, std::ios_base::app);
 
         for (const auto &p : _list_rtt) {
@@ -97,8 +99,8 @@ UecSrc::~UecSrc() {
         MyFile.close();
 
         // CWD
-        file_name = "../output/cwd/cwd" + _name + "_" + std::to_string(tag) +
-                    ".txt";
+        file_name = "/home/tommaso/csg-htsim/sim/output/cwd/cwd" + _name + "_" +
+                    std::to_string(tag) + ".txt";
         std::ofstream MyFileCWD(file_name, std::ios_base::app);
 
         for (const auto &p : _list_cwd) {
@@ -108,8 +110,8 @@ UecSrc::~UecSrc() {
         MyFileCWD.close();
 
         // Unacked
-        file_name = "../output/unacked/unacked" + _name + "_" +
-                    std::to_string(tag) + ".txt";
+        file_name = "/home/tommaso/csg-htsim/sim/output/unacked/unacked" +
+                    _name + "_" + std::to_string(tag) + ".txt";
         std::ofstream MyFileUnack(file_name, std::ios_base::app);
 
         for (const auto &p : _list_unacked) {
@@ -119,8 +121,8 @@ UecSrc::~UecSrc() {
         MyFileUnack.close();
 
         // NACK
-        file_name = "../output/nack/nack" + _name + "_" + std::to_string(tag) +
-                    ".txt";
+        file_name = "/home/tommaso/csg-htsim/sim/output/nack/nack" + _name +
+                    "_" + std::to_string(tag) + ".txt";
         std::ofstream MyFileNack(file_name, std::ios_base::app);
 
         for (const auto &p : _list_nack) {
@@ -131,8 +133,8 @@ UecSrc::~UecSrc() {
 
         // BTS
         if (_list_bts.size() > 0) {
-            file_name = "../output/bts/bts" + _name + "_" +
-                        std::to_string(tag) + ".txt";
+            file_name = "/home/tommaso/csg-htsim/sim/output/bts/bts" + _name +
+                        "_" + std::to_string(tag) + ".txt";
             std::ofstream MyFileBTS(file_name, std::ios_base::app);
 
             for (const auto &p : _list_bts) {
@@ -143,8 +145,8 @@ UecSrc::~UecSrc() {
         }
 
         // Acked Bytes
-        file_name = "../output/acked/acked" + _name + "_" +
-                    std::to_string(tag) + ".txt";
+        file_name = "/home/tommaso/csg-htsim/sim/output/acked/acked" + _name +
+                    "_" + std::to_string(tag) + ".txt";
         std::ofstream MyFileAcked(file_name, std::ios_base::app);
 
         for (const auto &p : _list_acked_bytes) {
@@ -154,8 +156,8 @@ UecSrc::~UecSrc() {
         MyFileAcked.close();
 
         // Acked ECN
-        file_name = "../output/ecn_rtt/ecn_rtt" + _name + "_" +
-                    std::to_string(tag) + ".txt";
+        file_name = "/home/tommaso/csg-htsim/sim/output/ecn_rtt/ecn_rtt" +
+                    _name + "_" + std::to_string(tag) + ".txt";
         std::ofstream MyFileEcnRTT(file_name, std::ios_base::app);
 
         for (const auto &p : _list_ecn_rtt) {
@@ -165,8 +167,9 @@ UecSrc::~UecSrc() {
         MyFileEcnRTT.close();
 
         // Acked Trimmed
-        file_name = "../output/trimmed_rtt/trimmed_rtt" + _name + "_" +
-                    std::to_string(tag) + ".txt";
+        file_name =
+                "/home/tommaso/csg-htsim/sim/output/trimmed_rtt/trimmed_rtt" +
+                _name + "_" + std::to_string(tag) + ".txt";
         std::ofstream MyFileTrimmedRTT(file_name, std::ios_base::app);
 
         for (const auto &p : _list_trimmed_rtt) {
@@ -176,8 +179,8 @@ UecSrc::~UecSrc() {
         MyFileTrimmedRTT.close();
 
         // Fast Increase
-        file_name = "../output/fasti/fasti" + _name + "_" +
-                    std::to_string(tag) + ".txt";
+        file_name = "/home/tommaso/csg-htsim/sim/output/fasti/fasti" + _name +
+                    "_" + std::to_string(tag) + ".txt";
         std::ofstream MyFileFastInc(file_name, std::ios_base::app);
 
         for (const auto &p : _list_fast_increase_event) {
@@ -187,8 +190,8 @@ UecSrc::~UecSrc() {
         MyFileFastInc.close();
 
         // Fast Decrease
-        file_name = "../output/fastd/fastd" + _name + "_" +
-                    std::to_string(tag) + ".txt";
+        file_name = "/home/tommaso/csg-htsim/sim/output/fastd/fastd" + _name +
+                    "_" + std::to_string(tag) + ".txt";
         std::ofstream MyFileFastDec(file_name, std::ios_base::app);
 
         for (const auto &p : _list_fast_decrease) {
@@ -198,8 +201,8 @@ UecSrc::~UecSrc() {
         MyFileFastDec.close();
 
         // Medium Increase
-        file_name = "../output/mediumi/mediumi" + _name + "_" +
-                    std::to_string(tag) + ".txt";
+        file_name = "/home/tommaso/csg-htsim/sim/output/mediumi/mediumi" +
+                    _name + "_" + std::to_string(tag) + ".txt";
         std::ofstream MyFileMediumInc(file_name, std::ios_base::app);
 
         for (const auto &p : _list_medium_increase_event) {
@@ -210,8 +213,9 @@ UecSrc::~UecSrc() {
 
         // US TO CS
         /*if (us_to_cs.size() > 0) {
-            file_name = "../output/us_to_cs/us_to_cs" + _name + ".txt";
-            std::ofstream MyFileUsToCs(file_name, std::ios_base::app);
+            file_name = "/home/tommaso/csg-htsim/sim/output/us_to_cs/us_to_cs" +
+        _name + ".txt"; std::ofstream MyFileUsToCs(file_name,
+        std::ios_base::app);
 
             for (const auto &p : us_to_cs) {
                 MyFileUsToCs << p.first << "," << p.second << std::endl;
@@ -222,8 +226,9 @@ UecSrc::~UecSrc() {
 
         // LS TO US
         if (ls_to_us.size() > 0) {
-            file_name = "../output/ls_to_us/ls_to_us" + _name + ".txt";
-            std::ofstream MyFileLsToUs(file_name, std::ios_base::app);
+            file_name = "/home/tommaso/csg-htsim/sim/output/ls_to_us/ls_to_us" +
+        _name + ".txt"; std::ofstream MyFileLsToUs(file_name,
+        std::ios_base::app);
 
             for (const auto &p : ls_to_us) {
                 MyFileLsToUs << p.first << "," << p.second << std::endl;
@@ -362,49 +367,68 @@ void UecSrc::reduce_unacked(uint64_t amount) {
     }
 }
 
-void UecSrc::processNack(UecNack &pkt) {
-    count_trimmed_in_rtt++;
+void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
+    if (eventlist().now() >= next_window_end) {
+        previous_window_end = next_window_end;
+        _list_acked_bytes.push_back(
+                std::make_pair(eventlist().now() / 1000, acked_bytes));
+        saved_acked_bytes = acked_bytes;
+        acked_bytes = 0;
 
-    consecutive_nack++;
-
-    if (use_fast_drop) {
-        if (eventlist().now() >= next_window_end) {
-            _list_acked_bytes.push_back(
-                    std::make_pair(eventlist().now() / 1000, acked_bytes));
-            saved_acked_bytes = acked_bytes;
-            acked_bytes = 0;
-
-            _list_ecn_rtt.push_back(std::make_pair(eventlist().now() / 1000,
-                                                   count_ecn_in_rtt * _mss));
-            _list_trimmed_rtt.push_back(std::make_pair(
-                    eventlist().now() / 1000, count_trimmed_in_rtt * _mss));
-            count_trimmed_in_rtt = 0;
-            count_ecn_in_rtt = 0;
+        _list_ecn_rtt.push_back(std::make_pair(eventlist().now() / 1000,
+                                               count_ecn_in_rtt * _mss));
+        _list_trimmed_rtt.push_back(std::make_pair(
+                eventlist().now() / 1000, count_trimmed_in_rtt * _mss));
+        count_trimmed_in_rtt = 0;
+        count_ecn_in_rtt = 0;
+        if (next_window_end == 0) {
+            next_window_end = eventlist().now() + (_base_rtt * fast_drop_rtt);
+        } else {
             next_window_end += (_base_rtt * fast_drop_rtt);
         }
+        ecn_last_rtt = false;
 
         // Enable Fast Drop
         printf("Using Fast Drop2 - Flow %d, Ecn %d, CWND %d, Saved "
-               "Acked %d\n",
-               from, 1, _cwnd, saved_acked_bytes);
-        if (_cwnd > 1 * saved_acked_bytes && (saved_acked_bytes > 0) &&
-            _cwnd * 2 > _bdp) {
+               "Acked %d - Previous Window %lu - Next Window %lu// "
+               "Time "
+               "%lu\n",
+               from, 1, _cwnd, saved_acked_bytes, previous_window_end / 1000,
+               next_window_end / 1000, eventlist().now() / 1000);
+        if (ecn_or_trimmed && _cwnd > 4 * saved_acked_bytes &&
+            (saved_acked_bytes > 0 || previous_window_end != 0) &&
+            _cwnd * 4 > _bdp) {
             saved_acked_bytes = saved_acked_bytes / fast_drop_rtt;
-            _cwnd = max((uint32_t)(saved_acked_bytes * 1.),
+            saved_acked_bytes += _mss;
+            _cwnd = max((uint32_t)(saved_acked_bytes * 1.5),
                         saved_acked_bytes + (_mss * 1));
             ignore_for = get_unacked() / _mss * 1;
-            printf("Ignoring %d for %d pkts\n", from, ignore_for);
+            printf("Ignoring %d for %d pkts - New Wnd %d\n", from, ignore_for,
+                   _cwnd);
             count_received = 0;
             was_zero_before = false;
             _list_fast_decrease.push_back(
                     std::make_pair(eventlist().now() / 1000, 1));
-        } else {
-            if (count_received > ignore_for) {
-                reduce_cwnd(uint64_t(_mss * 1));
-            }
+        }
+    }
+}
+
+void UecSrc::processNack(UecNack &pkt) {
+    count_trimmed_in_rtt++;
+
+    consecutive_nack++;
+    trimmed_last_rtt++;
+    consecutive_good_medium = 0;
+
+    printf("Just NA CK from %d at %lu\n", from, eventlist().now() / 1000);
+
+    if (use_fast_drop) {
+        do_fast_drop(true);
+        if (count_received > ignore_for) {
+            reduce_cwnd(uint64_t(_mss * 1));
         }
     } else {
-        reduce_cwnd(uint64_t(_mss * consecutive_nack));
+        reduce_cwnd(uint64_t(_mss * 1));
     }
 
     _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
@@ -431,9 +455,8 @@ void UecSrc::processNack(UecNack &pkt) {
     // update ECN
     simtime_picosec ts = pkt.ts();
     bool marked = pkt.flags() &
-                  ECN_ECHO; // ECN was marked on data packet and echoed on NACK
-    _received_ecn.push_back(
-            std::make_tuple(eventlist().now(), marked,
+                  ECN_ECHO; // ECN was marked on data packet and echoed on
+    NACK _received_ecn.push_back( std::make_tuple(eventlist().now(), marked,
                             0)); // TODO: assuming same size for all packets
     if (marked) {
         adjust_window(ts, marked);
@@ -497,9 +520,7 @@ void UecSrc::processBts(UecPacket *pkt) {
         _list_bts.push_back(std::make_pair(eventlist().now() / 1000, 1));
 
         double alpha = 0.125;
-        printf("Before From %d - Exp Avg is %d\n", from, exp_avg_bts);
         exp_avg_bts = alpha * pkt->queue_status + (1 - alpha) * exp_avg_bts;
-        printf("After From %d - Exp Avg is %d\n", from, exp_avg_bts);
 
         exp_avg_route = alpha_route * 1024 + (1 - alpha_route) * exp_avg_route;
 
@@ -555,7 +576,8 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
     bool marked = pkt.flags() &
                   ECN_ECHO; // ECN was marked on data packet and echoed on ACK
 
-    printf("Packet from %d is ECN Marked %d - Time %lu - Next Window End %lu\n",
+    printf("Packet from %d is ECN Marked %d - Time %lu - Next Window End "
+           "%lu\n",
            from, marked, GLOBAL_TIME / 1000, next_window_end / 1000);
 
     if (_start_timer_window) {
@@ -576,13 +598,13 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
                next_window_end / 1000);
     }*/
 
-    if (next_window_end == 0) {
-        next_window_end = eventlist().now() + (_base_rtt * fast_drop_rtt);
-    }
-
-    acked_bytes += _mss;
-    if (eventlist().now() >= next_window_end) {
-        next_window_end += (_base_rtt * fast_drop_rtt);
+    /*if (eventlist().now() >= next_window_end) {
+        previous_window_end = next_window_end;
+        if (next_window_end == 0) {
+            next_window_end = eventlist().now() + (_base_rtt * fast_drop_rtt);
+        } else {
+            next_window_end += (_base_rtt * fast_drop_rtt);
+        }
         _list_acked_bytes.push_back(
                 std::make_pair(eventlist().now() / 1000, acked_bytes));
         if (count_total_ecn * 2 >= count_total_ack) {
@@ -591,6 +613,8 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
         } else {
             fast_drop = false;
         }
+
+        ecn_last_rtt = false;
         count_total_ack = 0;
         count_total_ecn = 0;
         saved_acked_bytes = acked_bytes;
@@ -603,11 +627,13 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
         printf("Saved Acked %d is %d at %lu\n", from, saved_acked_bytes,
                eventlist().now() / 1000);
         acked_bytes = 0;
-    }
+        trimmed_last_rtt = 0;
+    }*/
 
     count_total_ack++;
     if (marked) {
         count_total_ecn++;
+        consecutive_good_medium = 0;
     }
 
     if (!marked) {
@@ -615,6 +641,7 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
         _consecutive_no_ecn += _mss;
         // printf("Not Marked!\n");
     } else {
+        ecn_last_rtt = true;
         _consecutive_no_ecn = 0;
     }
     if (newRtt < _target_rtt) {
@@ -657,6 +684,7 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
         _list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
         // printf("Window Is %d - From %d To %d\n", _cwnd, from, to);
         adjust_window(ts, marked, newRtt);
+        acked_bytes += _mss;
 
         _effcwnd = _cwnd;
         // printf("Received From %d - Sending More\n", from);
@@ -679,7 +707,8 @@ uint64_t UecSrc::get_unacked() {
 void UecSrc::receivePacket(Packet &pkt) {
     // every packet received represents one less packet in flight
 
-    // printf("Node %s - Received packet %d - From %d\n", nodename().c_str(),
+    // printf("Node %s - Received packet %d - From %d\n",
+    // nodename().c_str(),
     //        pkt.id(), pkt.from);
 
     if (pkt._queue_full || pkt.bounced() == false) {
@@ -730,15 +759,68 @@ void UecSrc::receivePacket(Packet &pkt) {
     fflush(stdout);
 }
 
+uint32_t UecSrc::medium_increase(simtime_picosec rtt) {
+    /*printf("Inceasing %d by %d at %lu\n", from,
+           min(uint32_t((((_target_rtt - rtt) / (double)rtt) * 5 *
+                         ((double)_mss / _cwnd) * _mss) +
+                        (((double)_mss / _cwnd) * _mss)),
+               uint32_t(_mss)),
+           eventlist().now() / 1000);*/
+    consecutive_good_medium += _mss;
+    // Jitter
+    if (do_jitter) {
+        jitter_value_med_inc = (_cwnd / (double)_mss);
+    } else {
+        jitter_value_med_inc = 1;
+    }
+    // Exponential/Linear
+    if (do_exponential_gain) {
+        exp_gain_value_med_inc = 1;
+    } else {
+        exp_gain_value_med_inc = (_mss / (double)_cwnd);
+    }
+
+    // Delay Gain Automated (1 / (target_ratio - 1)) vs manually set at 0 (put
+    // close to target_rtt)
+
+    if (consecutive_good_medium < _cwnd && do_jitter) {
+        return 0;
+    } else {
+        consecutive_good_medium = 0;
+
+        // 5 or 2 param.
+        // If Delay Gain == 0 --> Gain Value for entire thing
+        // Else Gain Value should be in the first term
+        if (delay_gain_value_med_inc == 0) {
+            return min(uint32_t(_mss) * exp_gain_value_med_inc, double(_mss)) *
+                   jitter_value_med_inc;
+        } else {
+            return min(uint32_t((((_target_rtt - rtt) / (double)rtt) *
+                                 delay_gain_value_med_inc * _mss) *
+                                        exp_gain_value_med_inc +
+                                (_mss) * (_mss / (double)_cwnd)),
+                       uint32_t(_mss)) *
+                   jitter_value_med_inc;
+        }
+    }
+}
+
 void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
 
-    if (rtt <= (_base_rtt + 120000) && !ecn) {
+    printf("Linkspeed here is %lu\n",
+           ((_mss * 8 / LINK_SPEED_MODERN * 3 * 1000)));
+    if (rtt <= (_base_rtt + (_mss * 8 / LINK_SPEED_MODERN * 3 * 1000)) &&
+        !ecn) {
         counter_consecutive_good_bytes += _mss;
     } else {
         target_window = _cwnd;
         counter_consecutive_good_bytes = 0;
         _consecutive_no_ecn = 0;
         increasing = false;
+    }
+
+    if (rtt >= _target_rtt) {
+        consecutive_good_medium = 0;
     }
 
     // BTS Logic
@@ -785,41 +867,18 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
 
         // Trimming Logic
         if (algorithm_type == "standard_trimming") {
+            printf("Name Running: UEC Version D\n");
             if (use_fast_drop) {
-                printf("Using Fast Drop - Flow %d, Ecn %d, CWND %d, Saved "
-                       "Acked %d\n",
-                       from, ecn, _cwnd, saved_acked_bytes);
-                if (ecn && _cwnd > saved_acked_bytes && _cwnd * 1.8 > _bdp) {
-                    if (saved_acked_bytes == 0 && !was_zero_before) {
-                        was_zero_before = true;
-                    }
-                    if (_cwnd > 1 * saved_acked_bytes &&
-                        (saved_acked_bytes != 0) && _cwnd * 1.8 > _bdp) {
-                        saved_acked_bytes = saved_acked_bytes / fast_drop_rtt;
-                        _cwnd = max((uint32_t)(saved_acked_bytes * 1.),
-                                    saved_acked_bytes + (_mss * 1));
-                        printf("Fast Drop %d to %d at %lu!\n", from, _cwnd,
-                               GLOBAL_TIME / 1000);
-                        ignore_for = get_unacked() / _mss * 1;
-                        printf("Ignoring %d for %d pkts\n", from, ignore_for);
-                        count_received = 0;
-                        fast_drop = false;
-                        was_zero_before = false;
-                        _list_fast_decrease.push_back(
-                                std::make_pair(eventlist().now() / 1000, 1));
-                    }
-                } else {
-                    if (count_received >= ignore_for) {
-                        reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
-                    }
+                do_fast_drop(ecn);
+                if (count_received >= ignore_for) {
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
                 }
-            } else if (ecn) {
-                reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
             }
             if (ecn) {
-
-            } else if (increasing ||
-                       counter_consecutive_good_bytes > target_window) {
+                reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+            } else if ((increasing ||
+                        counter_consecutive_good_bytes > target_window) &&
+                       use_fast_increase) {
 
                 if (use_fast_drop) {
                     if (count_received >= ignore_for) {
@@ -830,28 +889,20 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 }
 
                 increasing = true;
-                // counter_consecutive_good_bytes = target_window / 2;
                 _list_fast_increase_event.push_back(
                         std::make_pair(eventlist().now() / 1000, 1));
-                printf("Fast Increase\n");
             } else if (rtt < _target_rtt) {
-                _list_medium_increase_event.push_back(
-                        std::make_pair(eventlist().now() / 1000, 1));
 
                 if (use_fast_drop) {
                     if (count_received >= ignore_for) {
-                        _cwnd += min(uint32_t((((_target_rtt - rtt) /
-                                                (double)_target_rtt) *
-                                               3 * _mss) +
-                                              (((double)_mss / _cwnd) * _mss)),
-                                     uint32_t(_mss));
+                        _cwnd += medium_increase(rtt);
+                        _list_medium_increase_event.push_back(
+                                std::make_pair(eventlist().now() / 1000, 1));
                     }
                 } else {
-                    _cwnd += min(uint32_t((((_target_rtt - rtt) /
-                                            (double)_target_rtt) *
-                                           3 * _mss) +
-                                          (((double)_mss / _cwnd) * _mss)),
-                                 uint32_t(_mss));
+                    _cwnd += medium_increase(rtt);
+                    _list_medium_increase_event.push_back(
+                            std::make_pair(eventlist().now() / 1000, 1));
                 }
             } else if (rtt >= _target_rtt) {
                 if (use_fast_drop) {
@@ -865,96 +916,224 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
 
             // Delay Logic, Version A Logic
         } else if (algorithm_type == "delayA") {
-            if (rtt > _target_rtt) {
-                _cwnd -= _mss * ((rtt - _target_rtt) / (double)rtt) * 1;
+            printf("Name Running: UEC Version A\n");
+            if ((increasing ||
+                 counter_consecutive_good_bytes > target_window) &&
+                use_fast_increase) {
 
-                // Pre Existing
-            } else if (increasing ||
-                       counter_consecutive_good_bytes > target_window * 1) {
-                _cwnd += _mss;
+                if (use_fast_drop) {
+                    if (count_received >= ignore_for) {
+                        _cwnd += _mss;
+                    }
+                } else {
+                    _cwnd += _mss;
+                }
+
                 increasing = true;
                 _list_fast_increase_event.push_back(
                         std::make_pair(eventlist().now() / 1000, 1));
-                printf("Fast Increase\n");
-            } else if (rtt < _target_rtt) {
-                _cwnd += _mss *
-                         min(uint32_t((((_target_rtt - rtt) /
-                                        (double)_target_rtt) *
-                                       6 * _mss)),
-                             uint32_t(_mss)) /
-                         _cwnd;
-                _list_medium_increase_event.push_back(
-                        std::make_pair(eventlist().now() / 1000, 1));
+            } else if (!ecn && rtt < _target_rtt) {
+                if (use_fast_drop) {
+                    if (count_received >= ignore_for) {
+                        _cwnd += medium_increase(rtt);
+                        _list_medium_increase_event.push_back(
+                                std::make_pair(eventlist().now() / 1000, 1));
+                    }
+                } else {
+                    _cwnd += medium_increase(rtt);
+                    _list_medium_increase_event.push_back(
+                            std::make_pair(eventlist().now() / 1000, 1));
+                }
+                /*_cwnd += min(
+                        uint32_t((((_target_rtt - rtt) / (double)_target_rtt) *
+                                  _mss) *
+                                 6 * ((double)_mss / _cwnd)),
+                        uint32_t(_mss));
+
+                min(uint32_t((((_target_rtt - rtt) / (double)_target_rtt) * 3
+                   * _mss) +
+                             (((double)_mss / _cwnd) * _mss)),
+                    uint32_t(_mss));*/
+
+                // Insta or Exp Avg (in Perm)
+            } else if (ecn && rtt > _target_rtt) {
+                if (use_fast_drop) {
+                    if (count_received >= ignore_for) {
+                        reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+                    }
+                } else {
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+                }
+            } else if (ecn && rtt < _target_rtt) {
+                if (use_fast_drop) {
+                    if (count_received >= ignore_for) {
+                        reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+                    }
+                } else {
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+                }
+            } else if (!ecn && rtt > _target_rtt) {
+                if (ecn_last_rtt) {
+                    if (use_fast_drop) {
+                        if (count_received >= ignore_for) {
+                            // reduce_cwnd(static_cast<double>(_cwnd) / _bdp *
+                            //             _mss);
+                        }
+                    } else {
+                        // reduce_cwnd(static_cast<double>(_cwnd) / _bdp *
+                        // _mss);
+                    }
+                }
             }
 
             // Delay Logic, Version B Logic
         } else if (algorithm_type == "delayB") {
-            if (rtt > _target_rtt && ecn) {
-                _cwnd -= 1 * max(1, int(((rtt - _target_rtt) / (double)rtt) *
-                                        (_cwnd / _bdp)));
-            } else if (rtt > _target_rtt && !ecn) {
-                //_cwnd -= _mss * ((rtt - _target_rtt) / (double)rtt) * 1;
-                reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+            if (increasing || counter_consecutive_good_bytes > target_window) {
 
-                // Pre Existing
-            } else if (increasing ||
-                       counter_consecutive_good_bytes > target_window) {
-                _cwnd += _mss;
+                if (use_fast_drop) {
+                    if (count_received >= ignore_for) {
+                        _cwnd += _mss;
+                    }
+                } else {
+                    _cwnd += _mss;
+                }
+
                 increasing = true;
                 _list_fast_increase_event.push_back(
                         std::make_pair(eventlist().now() / 1000, 1));
                 printf("Fast Increase\n");
-            } else if (rtt < _target_rtt) {
-                _cwnd += _mss *
-                         min(uint32_t((((_target_rtt - rtt) /
-                                        (double)_target_rtt) *
-                                       6 * _mss)),
-                             uint32_t(_mss)) /
-                         _cwnd;
-                _list_medium_increase_event.push_back(
-                        std::make_pair(eventlist().now() / 1000, 1));
-            } else if (rtt >= _target_rtt) {
-                _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
+            } else if (!ecn && rtt < _target_rtt) {
+                _cwnd += medium_increase(rtt);
+            } else if (ecn && rtt > _target_rtt) {
+                _cwnd -= min(
+                        uint32_t(_mss),
+                        uint32_t(_mss * ((rtt - _target_rtt) / (double)rtt) *
+                                 0.5));
+            } else if (ecn && rtt < _target_rtt) {
+                reduce_cwnd(static_cast<double>(0.5) * _mss);
+            } else if (!ecn && rtt > _target_rtt) {
+                /*if (ecn_last_rtt) {
+                    _cwnd -= min(uint32_t(_mss),
+                                 uint32_t(_mss *
+                                          ((rtt - _target_rtt) / (double)rtt) *
+                                          0.5));
+                }*/
             }
 
             // Delay Logic, Version C Logic
         } else if (algorithm_type == "delayC") {
-            printf("Using DelayC");
-            if (rtt > _target_rtt && !ecn) {
-                _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
-            } else if (increasing ||
-                       counter_consecutive_good_bytes > target_window * 1) {
-                _cwnd += _mss;
-                increasing = true;
-                _list_fast_increase_event.push_back(
-                        std::make_pair(eventlist().now() / 1000, 1));
-                printf("Fast Increase\n");
-            } else if (rtt < _target_rtt && !ecn) {
-                _cwnd += _mss *
-                         min(uint32_t((((_target_rtt - rtt) /
-                                        (double)_target_rtt) *
-                                       6 * _mss)),
-                             uint32_t(_mss)) /
-                         _cwnd;
-            } else if (ecn) {
-                reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+
+            if (!ecn && rtt < _target_rtt) {
+                /*_cwnd += min(
+                        uint32_t((((_target_rtt - rtt) / (double)_target_rtt) *
+                                  _mss)),
+                        uint32_t(_mss));*/
+
+                _cwnd += medium_increase(rtt);
+            } else if (ecn && rtt > _target_rtt) {
+                _cwnd -= max(int(_mss),
+                             int(_mss * ((rtt - _target_rtt) / (double)rtt) *
+                                 2.5 * (_cwnd / _bdp)));
+            } else if (ecn && rtt < _target_rtt) {
+                reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss * 0.5);
+            } else if (!ecn && rtt > _target_rtt) {
+                if (ecn_last_rtt) {
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+                }
             }
+
+            printf("Using DelayC");
 
             // Delay Logic, Version D Logic
         } else if (algorithm_type == "delayD") {
-            if (rtt > _target_rtt && ecn) {
-                _cwnd -= max(1, int(((rtt - _target_rtt) / (double)rtt) +
-                                    (_cwnd / _bdp)));
-            } else if (rtt > _target_rtt && !ecn) {
-                _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
-            } else if (rtt > _target_rtt) {
-                _cwnd -= _mss * ((rtt - _target_rtt) / (double)rtt) * 1;
+            printf("Name Running: STrack\n");
+            int b = 5;
+            uint64_t custom_target_delay = _base_rtt * 2;
+            double scaling_a = _bdp / 100.0 * (_base_rtt / 1000);
+            double scaling_b = double(_base_rtt) / custom_target_delay;
+            double alpha_d = 8.0 * scaling_a * scaling_b / (_base_rtt / 1000);
+            double ewma = 0.15;
+            double y = 0.15 * scaling_a;
+            printf("Alpha D is %lu %f %f %f\n", _bdp, scaling_a, scaling_b,
+                   alpha_d);
+
+            if (t_last_decrease == 0) {
+                t_last_decrease = eventlist().now();
+            }
+            if (t_last_clear_byte == 0) {
+                t_last_clear_byte = eventlist().now();
+            }
+            if (t_last_fairness == 0) {
+                t_last_fairness = eventlist().now();
+            }
+
+            // D Logic
+            can_fairness = (eventlist().now() - t_last_fairness) > _base_rtt;
+            can_decrease = (eventlist().now() - t_last_decrease) > _base_rtt;
+            can_clear_byte =
+                    (eventlist().now() - t_last_clear_byte) > _base_rtt;
+            rx_count += _mss;
+
+            if (can_clear_byte) {
+                printf("From %d - At %lu achieved BDP is %d\n", from,
+                       eventlist().now() / 1000, rx_count);
+                achieved_bdp = rx_count;
+                rx_count = 0;
+                t_last_clear_byte = eventlist().now();
+            }
+
+            if (avg_rtt == 0) {
+                avg_rtt = rtt;
+            } else {
+                avg_rtt = avg_rtt * (1 - ewma) + ewma * rtt;
+            }
+
+            printf("Allowed to Decrease %d %d %d %d - RTT vs Current AvgRTT vs "
+                   "Target "
+                   "%lu vs %lu vs %lu - Saved Acked %d\n",
+                   ecn, can_decrease, avg_rtt > custom_target_delay,
+                   _cwnd > achieved_bdp, rtt / 1000, avg_rtt / 1000,
+                   custom_target_delay / 1000, achieved_bdp);
+            if (rtt > custom_target_delay * 2 && !ecn) {
+                _cwnd += ((double)b * _mss) / (_cwnd * _mss);
+                printf("Increase 1 by %f\n", ((double)b / _cwnd) * _mss * _mss);
+            } else if (rtt < custom_target_delay && !ecn) {
+                printf("Increase 2 by %f\n",
+                       (alpha_d *
+                        ((custom_target_delay / 1000) - (rtt / 1000)) /
+                        (double)_cwnd));
+                _cwnd += alpha_d *
+                         ((custom_target_delay / 1000) - (rtt / 1000)) /
+                         (double)_cwnd;
+            } else if (can_decrease && avg_rtt > custom_target_delay &&
+                       _cwnd > achieved_bdp) {
+                if (rtt > custom_target_delay * 1.5 && achieved_bdp > 0) {
+                    _cwnd = achieved_bdp;
+                    printf("Decreasing 1\n");
+                } else if (rtt > custom_target_delay) {
+                    printf("Decreasing 2 - Factor %f\n",
+                           max(0.5, 1 - 0.8 * ((avg_rtt - custom_target_delay) /
+                                               (double)avg_rtt)));
+                    _cwnd = _cwnd *
+                            max(0.5,
+                                1 - 0.8 * ((avg_rtt - custom_target_delay) /
+                                           (double)avg_rtt));
+                }
+
+                t_last_decrease = eventlist().now();
+            }
+            if (can_fairness) {
+                _cwnd = _cwnd + (y / _mss);
+                t_last_fairness = eventlist().now();
             }
         }
     }
 
     if (_cwnd > _maxcwnd) {
         _cwnd = _maxcwnd;
+    }
+    if (_cwnd < _mss) {
+        _cwnd = _mss;
     }
 }
 

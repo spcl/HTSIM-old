@@ -27,6 +27,6 @@ for Item in incast_128_32_2.bin incast_128_32_4.bin incast_128_32_8.bin incast_1
     eval ${CMD}
   done
 
-CMD="python3 scaling.py --folder=SCALING_INCAST_100 --bdp=432000 --folder=${RES_FOLDER}"
+CMD="python3 scaling.py --folder=SCALING_INCAST_100 --bdp=432000 --folder=${RES_FOLDER} --incast_degree=32"
 echo ${CMD}
 eval ${CMD}

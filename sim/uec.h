@@ -90,6 +90,25 @@ class UecSrc : public PacketSink, public EventSource {
     static void set_alogirthm(std::string value) { algorithm_type = value; }
     static void set_fast_drop(bool value) { use_fast_drop = value; }
     static void set_fast_drop_rtt(int value) { fast_drop_rtt = value; }
+
+    static void set_do_jitter(bool value) { do_jitter = value; }
+    static void set_do_exponential_gain(bool value) {
+        do_exponential_gain = value;
+    }
+    static void set_use_fast_increase(bool value) { use_fast_increase = value; }
+    static void set_gain_value_med_inc(double value) {
+        exp_gain_value_med_inc = value;
+    }
+    static void set_jitter_value_med_inc(double value) {
+        jitter_value_med_inc = value;
+    }
+    static void set_delay_gain_value_med_inc(double value) {
+        delay_gain_value_med_inc = value;
+    }
+    static void set_target_rtt_percentage_over_base(int value) {
+        target_rtt_percentage_over_base = value;
+    }
+
     void set_flow_over_hook(std::function<void(const Packet &)> hook) {
         f_flow_over_hook = hook;
     }
@@ -123,7 +142,7 @@ class UecSrc : public PacketSink, public EventSource {
     bool stop_decrease = false;
     bool fast_drop = false;
     int ignore_for = 0;
-    int count_received;
+    int count_received = 0;
     int count_ecn_in_rtt = 0;
     int count_trimmed_in_rtt = 0;
     int counter_consecutive_good_bytes;
@@ -133,11 +152,21 @@ class UecSrc : public PacketSink, public EventSource {
     int exp_avg_bts = 0;
     int exp_avg_route = 0;
     double alpha_route = 0.0625;
+
+    // Custom Parameters
     static std::string queue_type;
     static std::string algorithm_type;
     static bool use_fast_drop;
     static int fast_drop_rtt;
     bool was_zero_before = false;
+
+    static bool do_jitter;
+    static bool do_exponential_gain;
+    static bool use_fast_increase;
+    static double exp_gain_value_med_inc;
+    static double jitter_value_med_inc;
+    static double delay_gain_value_med_inc;
+    static int target_rtt_percentage_over_base;
 
   private:
     uint32_t _unacked;
@@ -164,13 +193,25 @@ class UecSrc : public PacketSink, public EventSource {
     uint32_t _consecutive_low_rtt;
     uint32_t _consecutive_no_ecn;
     uint64_t _ignore_ecn_until = 0;
+    uint64_t previous_window_end = 0;
     bool _target_based_received;
     bool _using_lgs = false;
     int consecutive_nack = 0;
+    bool ecn_last_rtt = false;
+    int trimmed_last_rtt = 0;
+    int consecutive_good_medium = 0;
 
     // SentPackets _sent_packets;
     uint64_t _highest_data_seq;
-
+    uint64_t t_last_decrease = 0;
+    uint64_t t_last_fairness = 0;
+    uint64_t t_last_clear_byte = 0;
+    bool can_decrease = false;
+    bool can_clear_byte = false;
+    bool can_fairness = false;
+    uint64_t avg_rtt;
+    int rx_count = 0;
+    int achieved_bdp = 0;
     UecLogger *_logger;
     UecSink *_sink;
 
@@ -214,9 +255,11 @@ class UecSrc : public PacketSink, public EventSource {
     int _hop_count;
 
     void send_packets();
+    void do_fast_drop(bool);
     uint64_t get_unacked();
 
     void adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt);
+    uint32_t medium_increase(simtime_picosec);
     bool no_ecn_last_target_rtt();
     bool no_rtt_over_target_last_target_rtt();
     bool ecn_congestion();

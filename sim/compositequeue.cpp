@@ -99,9 +99,10 @@ void CompositeQueue::completeService() {
         if (decide_ECN()) {
             pkt->set_flags(pkt->flags() | ECN_CE);
             if (COLLECT_DATA) {
-                std::string file_name = "../output/ecn/ecn" +
-                                        std::to_string(pkt->from) + "_" +
-                                        std::to_string(pkt->to) + ".txt";
+                std::string file_name =
+                        "/home/tommaso/csg-htsim/sim/output/ecn/ecn" +
+                        std::to_string(pkt->from) + "_" +
+                        std::to_string(pkt->to) + ".txt";
                 std::ofstream MyFile(file_name, std::ios_base::app);
 
                 MyFile << eventlist().now() / 1000 << "," << 1 << std::endl;
@@ -118,8 +119,9 @@ void CompositeQueue::completeService() {
                 if (std::regex_search(_nodename, matches, pattern)) {
                     std::string numberStr = matches[1].str();
                     int number = std::stoi(numberStr);
-                    std::string file_name =
-                            "../output/us_to_cs/us_to_cs" + _name + ".txt";
+                    std::string file_name = "/home/tommaso/csg-htsim/sim/"
+                                            "output/us_to_cs/us_to_cs" +
+                                            _name + ".txt";
                     std::ofstream MyFileUsToCs(file_name, std::ios_base::app);
 
                     MyFileUsToCs << eventlist().now() / 1000 << "," << number
@@ -137,8 +139,9 @@ void CompositeQueue::completeService() {
                 if (std::regex_search(_nodename, matches, pattern)) {
                     std::string numberStr = matches[1].str();
                     int number = std::stoi(numberStr);
-                    std::string file_name =
-                            "../output/ls_to_us/ls_to_us" + _name + ".txt";
+                    std::string file_name = "/home/tommaso/csg-htsim/sim/"
+                                            "output/ls_to_us/ls_to_us" +
+                                            _name + ".txt";
                     std::ofstream MyFileUsToCs(file_name, std::ios_base::app);
 
                     MyFileUsToCs << eventlist().now() / 1000 << "," << number
@@ -209,7 +212,7 @@ void CompositeQueue::receivePacket(Packet &pkt) {
         if (COLLECT_DATA) {
             if (_queuesize_low != 0) {
                 std::string file_name =
-                        "../output/queue/queue" +
+                        "/home/tommaso/csg-htsim/sim/output/queue/queue" +
                         _nodename.substr(_nodename.find(")") + 1) + ".txt";
                 std::ofstream MyFile(file_name, std::ios_base::app);
 

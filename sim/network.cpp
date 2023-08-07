@@ -82,9 +82,9 @@ PacketSink *Packet::sendOn() {
                 if (COLLECT_DATA) {
                     _list_sent.push_back(std::make_pair(GLOBAL_TIME / 1000, 1));
                     // Sent
-                    std::string file_name = "../output/sent/s" +
-                                            std::to_string(this->from) +
-                                            ".txt ";
+                    std::string file_name =
+                            "/home/tommaso/csg-htsim/sim/output/sent/s" +
+                            std::to_string(this->from) + ".txt ";
                     std::ofstream MyFile(file_name, std::ios_base::app);
 
                     MyFile << GLOBAL_TIME / 1000 << "," << 1 << std::endl;

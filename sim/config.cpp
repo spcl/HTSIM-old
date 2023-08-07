@@ -104,37 +104,54 @@ double speedAsPktps(linkspeed_bps bps) {
 mem_pkts memFromPkts(double pkts) { return (int)(ceil(pkts)); }
 
 void initializeLoggingFolders() {
-    std::filesystem::remove_all("../output/");
-    std::filesystem::remove_all("../output/rtt/");
-    std::filesystem::remove_all("../output/ecn/");
-    std::filesystem::remove_all("../output/cwd/");
-    std::filesystem::remove_all("../output/queue/");
-    std::filesystem::remove_all("../output/acked/");
-    std::filesystem::remove_all("../output/sent/");
-    std::filesystem::remove_all("../output/nack/");
-    std::filesystem::remove_all("../output/bts/");
-    std::filesystem::remove_all("../output/ls_to_us/");
-    std::filesystem::remove_all("../output/us_to_cs/");
-    std::filesystem::remove_all("../output/fasti/");
-    std::filesystem::remove_all("../output/fastd/");
-    std::filesystem::remove_all("../output/mediumi/");
-    std::filesystem::remove_all("../output/ecn_rtt/");
-    std::filesystem::remove_all("../output/trimmed_rtt/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/rtt/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/ecn/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/cwd/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/queue/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/acked/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/sent/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/nack/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/bts/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/ls_to_us/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/us_to_cs/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/fasti/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/fastd/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/mediumi/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/ecn_rtt/");
+    std::filesystem::remove_all(
+            "/home/tommaso/csg-htsim/sim/output/trimmed_rtt/");
 
-    bool ret_val = std::filesystem::create_directory("../output");
-    ret_val &= std::filesystem::create_directory("../output/rtt");
-    ret_val &= std::filesystem::create_directory("../output/ecn");
-    ret_val &= std::filesystem::create_directory("../output/cwd");
-    ret_val &= std::filesystem::create_directory("../output/queue");
-    ret_val &= std::filesystem::create_directory("../output/acked");
-    ret_val &= std::filesystem::create_directory("../output/sent");
-    ret_val &= std::filesystem::create_directory("../output/nack");
-    ret_val &= std::filesystem::create_directory("../output/bts");
-    ret_val &= std::filesystem::create_directory("../output/ls_to_us");
-    ret_val &= std::filesystem::create_directory("../output/us_to_cs");
-    ret_val &= std::filesystem::create_directory("../output/fastd");
-    ret_val &= std::filesystem::create_directory("../output/fasti");
-    ret_val &= std::filesystem::create_directory("../output/mediumi");
-    ret_val &= std::filesystem::create_directory("../output/ecn_rtt");
-    ret_val &= std::filesystem::create_directory("../output/trimmed_rtt");
+    bool ret_val = std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/rtt");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/ecn");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/cwd");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/queue");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/acked");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/sent");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/nack");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/bts");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/ls_to_us");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/us_to_cs");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/fastd");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/fasti");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/mediumi");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/ecn_rtt");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/trimmed_rtt");
 }

@@ -1255,7 +1255,7 @@ void create_special_incast(gengetopt_args_info *args_info) {
 
     int comm_size = args_info->commsize_arg;
     int datasize = args_info->datasize_arg;
-    int active_nodes = 48;
+    int active_nodes = 64;
 
     Goal goal(args_info, comm_size);
 

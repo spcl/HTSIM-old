@@ -17,31 +17,31 @@ ECN = True
 
 def main(args):
     # Clean Data and Copy Data
-    os.system("rm -r queue_size_normalized/")
-    os.system("rm -r rtt/")
-    os.system("rm -r cwd/")
-    os.system("rm -r ecn/")
-    os.system("rm -r sent/")
-    os.system("rm -r nack/")
-    os.system("rm -r acked/")
-    os.system("rm -r fasti/")
-    os.system("rm -r fastd/")
-    os.system("rm -r mediumi/")
-    os.system("rm -r trimmed_rtt/")
-    os.system("rm -r ecn_rtt/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/queue_size_normalized/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/rtt/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/cwd/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/ecn/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/sent/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/nack/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/acked/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/fasti/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/fastd/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/mediumi/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/trimmed_rtt/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/ecn_rtt/")
 
-    os.system("cp -a ../sim/output/cwd/. cwd/")
-    os.system("cp -a ../sim/output/rtt/. rtt/")
-    os.system("cp -a ../sim/output/queue/. queue_size_normalized/")
-    os.system("cp -a ../sim/output/sent/. sent/")
-    os.system("cp -a ../sim/output/ecn/. ecn/")
-    os.system("cp -a ../sim/output/nack/. nack/")
-    os.system("cp -a ../sim/output/fasti/. fasti/")
-    os.system("cp -a ../sim/output/fastd/. fastd/")
-    os.system("cp -a ../sim/output/mediumi/. mediumi/")
-    os.system("cp -a ../sim/output/acked/. acked/")
-    os.system("cp -a ../sim/output/trimmed_rtt/. trimmed_rtt/")
-    os.system("cp -a ../sim/output/ecn_rtt/. ecn_rtt/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/cwd/. /home/tommaso/csg-htsim/plotting/cwd/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/rtt/. /home/tommaso/csg-htsim/plotting/rtt/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/queue/. /home/tommaso/csg-htsim/plotting/queue_size_normalized/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/sent/. /home/tommaso/csg-htsim/plotting/sent/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/ecn/. /home/tommaso/csg-htsim/plotting/ecn/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/nack/. /home/tommaso/csg-htsim/plotting/nack/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/fasti/. /home/tommaso/csg-htsim/plotting/fasti/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/fastd/. /home/tommaso/csg-htsim/plotting/fastd/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/mediumi/. /home/tommaso/csg-htsim/plotting/mediumi/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/acked/. /home/tommaso/csg-htsim/plotting/acked/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/trimmed_rtt/. /home/tommaso/csg-htsim/plotting/trimmed_rtt/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/ecn_rtt/. /home/tommaso/csg-htsim/plotting/ecn_rtt/")
 
     # RTT Data
     colnames=['Time', 'RTT', 'seqno', 'ackno']
@@ -286,7 +286,7 @@ def main(args):
             go.Scatter(x=sub_df["Time"], y=sub_df['ECNRTT'], name="ECNRTT " + str(i), line=dict(dash='longdashdot'), showlegend=True),
             secondary_y=True,
         )
-
+    
     # Acked Bytes
     print(df8)
     for i in df8['Node'].unique():
@@ -444,10 +444,9 @@ def main(args):
     fig.write_image("out/fid_simple_{}.png".format(date_time),  width=2560, height=1440)
     plotly.offline.plot(fig, filename='out/fid_simple_{}.html'.format(date_time))
     if (args.output_folder is not None):
-        plotly.offline.plot(fig, filename=args.output_folder + "/fid_simple_{}.html".format(date_time))
-    fig.show()
-
-
+        plotly.offline.plot(fig, filename=args.output_folder + "/{}.html".format(args.name))
+    if (args.no_show is None):
+        fig.show()
 
 if __name__ == "__main__":
     parser = ArgumentParser()
@@ -459,6 +458,8 @@ if __name__ == "__main__":
     parser.add_argument("--num_to_show", type=int, help="Number of lines to show", default=None) 
     parser.add_argument("--annotations", type=str, help="Number of lines to show", default=None) 
     parser.add_argument("--output_folder", type=str, help="OutFold", default=None) 
+    parser.add_argument("--input_file", type=str, help="InFold", default=None) 
     parser.add_argument("--name", type=str, help="Name Algo", default=None) 
+    parser.add_argument("--no_show", type=int, help="Don't show plot, just save", default=None) 
     args = parser.parse_args()
     main(args)
