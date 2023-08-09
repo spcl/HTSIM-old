@@ -14,6 +14,8 @@ class Configuration:
         self.version = version
         self.runtime_vs_ndp = runtime_vs_ndp
         self.maxvsminfair = maxvsminfair
+        self.my_results = []
+        self.my_results_raw = []
     def __eq__(self, other):
         return ((self.k == other.k) and (self.fd == other.fd) and (self.fi == other.fi) and (self.e == other.e) and (self.j == other.j) and  (self.d == other.d) and  (self.version == other.version)) 
 
@@ -85,27 +87,30 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--input_filter', dest='input_filter', type=str, help='FInput file name to use as filter')
 args = parser.parse_args()
 
-link_speeds = [100000, 400000, 800000]
+link_speeds = [100000]
 incast_degree_and_sizes = ["incast_128_8_64.bin", "incast_128_32_64.bin", "incast_128_64_64.bin", "incast_128_8_100.bin", "incast_128_32_100.bin", "incast_128_64_100.bin", "incast_128_8_512.bin", "incast_128_32_512.bin", "incast_128_64_512.bin", "incast_128_8_2000.bin", "incast_128_32_2000.bin", "incast_128_64_2000.bin"]
-incast_degree_and_sizes = ["incast_128_8_64.bin"]
-incast_degree_and_sizes = ["incast_128_8_100.bin","incast_128_8_512.bin", "incast_128_32_512.bin", "incast_128_64_512.bin", "incast_128_8_2000.bin", "incast_128_32_2000.bin", "incast_128_64_2000.bin"]
+incast_degree_and_sizes = ["incast_128_8_512.bin"]
+
+incast_degree_and_sizes = ["incast_128_8_100.bin","incast_128_32_100.bin","incast_128_64_100.bin","incast_128_8_512.bin", "incast_128_32_512.bin", "incast_128_64_512.bin", "incast_128_8_2000.bin", "incast_128_32_2000.bin", "incast_128_64_2000.bin"]
+incast_degree_and_sizes = ["incast_128_8_100.bin","incast_128_32_100.bin","incast_128_8_512.bin"]
 
 
-kmins = [50, 20]
+kmins = [20, 50]
 use_fast_drops = [0, 1]
 use_fast_incs = [0, 1]
 use_exp_gains = [0, 1]
 use_jitters = [0, 1]
 delay_gain_values = [0, 2, 5]
-algorithm_names = ["standard_trimming", "delayA"]
+algorithm_names = ["standard_trimming"]
 cwnd_and_buffer = 112500
 filtered_out_value = []
 good_config = []
 config_considered = 0
 config_run = 0
 killed_config = 0
-threshold = 0.08
+threshold = 0.07
 should_skip = False
+list_experiments = []
 
 if (args.input_filter is not None):
     filtered_out_value = load_filtered_list(args.input_filter, filtered_out_value)
@@ -121,6 +126,7 @@ for link_speed in link_speeds:
     for incast_degree_and_size in incast_degree_and_sizes:
         # Define FileName
         RES_FOLDER="Parameter_Analysis_{}_{}Gbps".format(incast_degree_and_size.replace(".", "_" ), link_speed)
+        list_experiments.append("{} - {} ".format(incast_degree_and_size.replace(".", "_" ), link_speed))
         create_folder_clean(RES_FOLDER)
         # Run NDP and collect runtime
         FILE_NAME="ndp.tmp"
@@ -132,6 +138,7 @@ for link_speed in link_speeds:
         os.system(cmd)
         report_file_name = "GeneratedReport{}.tmp".format(FILE_NAME)
         ndp_best_runtime = get_runtime(RES_FOLDER, report_file_name)
+        print("Best NDP --> {}\n".format(ndp_best_runtime))
         cmd="rm {}/{}".format(RES_FOLDER, FILE_NAME)
         #print(cmd)
         os.system(cmd)
@@ -179,21 +186,32 @@ for link_speed in link_speeds:
                                     if (runtime_config > ndp_best_runtime + (ndp_best_runtime * threshold)):
                                         if (Configuration(kmin, use_fast_drop, use_fast_inc, use_exp_gain, use_jitter, delay_gain_value, algorithm_name) not in filtered_out_value):
                                             killed_config += 1
-                                            print("BadConfig Scenario {} Link {} -- Algo: {} - KMin: {} - FastDrop: {} - FastInc: {} - DoExpGain: {} - DoJitter: {} - DelayGainValue: {}\n".format(incast_degree_and_size.replace(".", "_" ), link_speed, algorithm_name, kmin, use_fast_drop, use_fast_inc, use_exp_gain, use_jitter, delay_gain_value))
+                                            #print("BadConfig Scenario {} Link {} -- Algo: {} - KMin: {} - FastDrop: {} - FastInc: {} - DoExpGain: {} - DoJitter: {} - DelayGainValue: {}\n".format(incast_degree_and_size.replace(".", "_" ), link_speed, algorithm_name, kmin, use_fast_drop, use_fast_inc, use_exp_gain, use_jitter, delay_gain_value))
                                             filtered_out_value.append(Configuration(kmin, use_fast_drop, use_fast_inc, use_exp_gain, use_jitter, delay_gain_value, algorithm_name))
+                                            for idx, config in enumerate(filtered_out_value):
+                                                if (config.k == kmin and config.fd == use_fast_drop and config.fi == use_fast_inc and config.e == use_exp_gain and config.j == use_jitter and config.d == delay_gain_value and config.version == algorithm_name):
+                                                    filtered_out_value[idx].my_results_raw.append(runtime_config)
+                                                    filtered_out_value[idx].my_results.append(round(((runtime_config / ndp_best_runtime) - 1) * 100,2))
+                                    else:
+                                        for idx, config in enumerate(good_config):
+                                            if (config.k == kmin and config.fd == use_fast_drop and config.fi == use_fast_inc and config.e == use_exp_gain and config.j == use_jitter and config.d == delay_gain_value and config.version == algorithm_name):
+                                                good_config[idx].my_results_raw.append(runtime_config)
+                                                print("We are good\n")
+                                                good_config[idx].my_results.append(round(((runtime_config / ndp_best_runtime) - 1) * 100,2))
         # We Are Switching config, save in the folder these results and move on
         cmd="python3 ranking.py --folder={}".format(RES_FOLDER)
         #print(cmd)
         os.system(cmd)
 
+# FIlter out bad ones
 good_config = [x for x in good_config if x not in filtered_out_value]
 print("\nConsideredConfig: {} - RunConfig {} - NotRunConfig {} - KilledConfig: {} - GoodConfig {} - UniqueGoodConfig {}\n".format(config_considered, config_run, config_considered - config_run, killed_config, config_run - killed_config, len(good_config) ))
-with open("Results_RunTime.txt", 'w') as f:
-    # Name
+with open("Results_RunTime_Good.txt", 'w') as f:
+    f.write("Experiments order: {}\n\n".format(list_experiments))
     for good_ele in good_config:
-        f.write('Config --> Algo: {} - KMin: {} - FastDrop: {} - FastInc: {} - DoExpGain: {} - DoJitter: {} - DelayGainValue: {}\n'.format(good_ele.version, good_ele.k, good_ele.fd, good_ele.fi, good_ele.e, good_ele.j, good_ele.d)) 
+        f.write('Config --> Algo: {} - KMin: {} - FastDrop: {} - FastInc: {} - DoExpGain: {} - DoJitter: {} - DelayGainValue: {} - Res {} {}\n'.format(good_ele.version, good_ele.k, good_ele.fd, good_ele.fi, good_ele.e, good_ele.j, good_ele.d, good_ele.my_results, good_ele.my_results_raw)) 
 
 with open("Results_RunTime_Bad.txt", 'w') as f:
-    # Name
+    f.write("Experiments order: {}\n\n".format(list_experiments))
     for bad_ele in filtered_out_value:
-        f.write('Config --> Algo: {} - KMin: {} - FastDrop: {} - FastInc: {} - DoExpGain: {} - DoJitter: {} - DelayGainValue: {}\n'.format(bad_ele.version, bad_ele.k, bad_ele.fd, bad_ele.fi, bad_ele.e, bad_ele.j, bad_ele.d)) 
+        f.write('Config --> Algo: {} - KMin: {} - FastDrop: {} - FastInc: {} - DoExpGain: {} - DoJitter: {} - DelayGainValue: {} - Res {} {}\n'.format(bad_ele.version, bad_ele.k, bad_ele.fd, bad_ele.fi, bad_ele.e, bad_ele.j, bad_ele.d, bad_ele.my_results, bad_ele.my_results_raw)) 

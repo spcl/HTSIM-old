@@ -23,6 +23,7 @@ bool UecSrc::use_fast_increase = false;
 double UecSrc::exp_gain_value_med_inc = 1;
 double UecSrc::jitter_value_med_inc = 1;
 double UecSrc::delay_gain_value_med_inc = 5;
+bool UecSrc::use_super_fast_increase = false;
 int UecSrc::target_rtt_percentage_over_base = 50;
 
 UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
@@ -933,7 +934,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                         //_cwnd += ((double)_mss / _cwnd) * 1 * _mss;
                     }
                 } else {
-                    //_cwnd += ((double)_mss / _cwnd) * 1 * _mss;
+                    _cwnd += ((double)_mss / _cwnd) * 1 * _mss;
                     // * 0.15
                 }
             }
@@ -1005,8 +1006,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                             //             _mss);
                         }
                     } else {
-                        // reduce_cwnd(static_cast<double>(_cwnd) / _bdp *
-                        // _mss);
+                        reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
                     }
                 }
             }

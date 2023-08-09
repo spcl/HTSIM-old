@@ -1,8 +1,8 @@
 Name Running: UEC Version D
 no_of_nodes 128
-KMin: 20
+KMin: 50
 KMax: 80
-TargetRTT: 20
+TargetRTT: 50
 DelayGainValue: 0.000000
 DoJitter: 0
 JitterValue: 1.000000
@@ -10,13 +10,13 @@ FastIncrease: 1
 FastDrop: 1
 DoExpGain: 0
 GainValueMedIncrease: 1.000000
-Speed is 100000
-Test 1.000000 20
+Speed is 400000
+Test 1.000000 50
 Using subflow count 1
 Logging to uec_entry
 Fat Tree topology with 0.7us links and 0us switching latency.
 Set params 128
-QueueSize 112500
+QueueSize 432500
 _no_of_nodes 128
 K 8
 Queue type 3
@@ -24,903 +24,63 @@ Running incastt with 0 connections
 Starting LGS InterfaceCurrent working directory: "/home/tommaso/csg-htsim/plotting"
 LogGP network backend; size: 128 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O=0, P=128, S=65535
 Starting 128
-----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 256 - 0 66 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 0 To 66
-Setting 0 66 0
-Printing my Paths: 
-Scheduling Event (0@66@0) of size 512000 from 0 to 66 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [0] searching matching queue for src target 82 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 1 To 75
-Setting 1 75 0
-Printing my Paths: 
-Scheduling Event (1@75@0) of size 512000 from 1 to 75 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [1] searching matching queue for src target 68 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 2 To 91
-Setting 2 91 0
-Printing my Paths: 
-Scheduling Event (2@91@0) of size 512000 from 2 to 91 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [2] searching matching queue for src target 86 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 3 To 87
-Setting 3 87 0
-Printing my Paths: 
-Scheduling Event (3@87@0) of size 512000 from 3 to 87 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [3] searching matching queue for src target 111 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 4 To 107
-Setting 4 107 0
-Printing my Paths: 
-Scheduling Event (4@107@0) of size 512000 from 4 to 107 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [4] searching matching queue for src target 126 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 5 To 109
-Setting 5 109 0
-Printing my Paths: 
-Scheduling Event (5@109@0) of size 512000 from 5 to 109 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [5] searching matching queue for src target 89 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 6 To 116
-Setting 6 116 0
-Printing my Paths: 
-Scheduling Event (6@116@0) of size 512000 from 6 to 116 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [6] searching matching queue for src target 73 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 7 To 85
-Setting 7 85 0
-Printing my Paths: 
-Scheduling Event (7@85@0) of size 512000 from 7 to 85 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [7] searching matching queue for src target 99 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 8 To 117
-Setting 8 117 0
-Printing my Paths: 
-Scheduling Event (8@117@0) of size 512000 from 8 to 117 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [8] searching matching queue for src target 69 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 9 To 82
-Setting 9 82 0
-Printing my Paths: 
-Scheduling Event (9@82@0) of size 512000 from 9 to 82 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [9] searching matching queue for src target 74 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 10 To 89
-Setting 10 89 0
-Printing my Paths: 
-Scheduling Event (10@89@0) of size 512000 from 10 to 89 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [10] searching matching queue for src target 80 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 11 To 95
-Setting 11 95 0
-Printing my Paths: 
-Scheduling Event (11@95@0) of size 512000 from 11 to 95 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [11] searching matching queue for src target 93 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 12 To 92
-Setting 12 92 0
-Printing my Paths: 
-Scheduling Event (12@92@0) of size 512000 from 12 to 92 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [12] searching matching queue for src target 106 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 13 To 78
-Setting 13 78 0
-Printing my Paths: 
-Scheduling Event (13@78@0) of size 512000 from 13 to 78 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [13] searching matching queue for src target 105 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 14 To 121
-Setting 14 121 0
-Printing my Paths: 
-Scheduling Event (14@121@0) of size 512000 from 14 to 121 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [14] searching matching queue for src target 102 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 15 To 67
-Setting 15 67 0
-Printing my Paths: 
-Scheduling Event (15@67@0) of size 512000 from 15 to 67 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [15] searching matching queue for src target 120 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 16 To 101
-Setting 16 101 0
-Printing my Paths: 
-Scheduling Event (16@101@0) of size 512000 from 16 to 101 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [16] searching matching queue for src target 117 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 17 To 88
-Setting 17 88 0
-Printing my Paths: 
-Scheduling Event (17@88@0) of size 512000 from 17 to 88 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [17] searching matching queue for src target 123 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 18 To 106
-Setting 18 106 0
-Printing my Paths: 
-Scheduling Event (18@106@0) of size 512000 from 18 to 106 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [18] searching matching queue for src target 76 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 19 To 69
-Setting 19 69 0
-Printing my Paths: 
-Scheduling Event (19@69@0) of size 512000 from 19 to 69 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [19] searching matching queue for src target 121 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 20 To 99
-Setting 20 99 0
-Printing my Paths: 
-Scheduling Event (20@99@0) of size 512000 from 20 to 99 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [20] searching matching queue for src target 122 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 21 To 114
-Setting 21 114 0
-Printing my Paths: 
-Scheduling Event (21@114@0) of size 512000 from 21 to 114 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [21] searching matching queue for src target 97 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 22 To 123
-Setting 22 123 0
-Printing my Paths: 
-Scheduling Event (22@123@0) of size 512000 from 22 to 123 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [22] searching matching queue for src target 79 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 23 To 90
-Setting 23 90 0
-Printing my Paths: 
-Scheduling Event (23@90@0) of size 512000 from 23 to 90 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [23] searching matching queue for src target 112 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 24 To 81
-Setting 24 81 0
-Printing my Paths: 
-Scheduling Event (24@81@0) of size 512000 from 24 to 81 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [24] searching matching queue for src target 91 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 25 To 105
-Setting 25 105 0
-Printing my Paths: 
-Scheduling Event (25@105@0) of size 512000 from 25 to 105 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [25] searching matching queue for src target 90 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 26 To 120
-Setting 26 120 0
-Printing my Paths: 
-Scheduling Event (26@120@0) of size 512000 from 26 to 120 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [26] searching matching queue for src target 95 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 27 To 86
-Setting 27 86 0
-Printing my Paths: 
-Scheduling Event (27@86@0) of size 512000 from 27 to 86 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [27] searching matching queue for src target 113 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 28 To 84
-Setting 28 84 0
-Printing my Paths: 
-Scheduling Event (28@84@0) of size 512000 from 28 to 84 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [28] searching matching queue for src target 94 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 29 To 68
-Setting 29 68 0
-Printing my Paths: 
-Scheduling Event (29@68@0) of size 512000 from 29 to 68 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [29] searching matching queue for src target 71 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 30 To 77
-Setting 30 77 0
-Printing my Paths: 
-Scheduling Event (30@77@0) of size 512000 from 30 to 77 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [30] searching matching queue for src target 98 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 31 To 111
-Setting 31 111 0
-Printing my Paths: 
-Scheduling Event (31@111@0) of size 512000 from 31 to 111 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [31] searching matching queue for src target 110 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 32 To 65
-Setting 32 65 0
-Printing my Paths: 
-Scheduling Event (32@65@0) of size 512000 from 32 to 65 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [32] searching matching queue for src target 104 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 33 To 112
-Setting 33 112 0
-Printing my Paths: 
-Scheduling Event (33@112@0) of size 512000 from 33 to 112 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [33] searching matching queue for src target 64 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 34 To 70
-Setting 34 70 0
-Printing my Paths: 
-Scheduling Event (34@70@0) of size 512000 from 34 to 70 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [34] searching matching queue for src target 124 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 35 To 110
-Setting 35 110 0
-Printing my Paths: 
-Scheduling Event (35@110@0) of size 512000 from 35 to 110 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [35] searching matching queue for src target 67 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 36 To 115
-Setting 36 115 0
-Printing my Paths: 
-Scheduling Event (36@115@0) of size 512000 from 36 to 115 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [36] searching matching queue for src target 84 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 37 To 93
-Setting 37 93 0
-Printing my Paths: 
-Scheduling Event (37@93@0) of size 512000 from 37 to 93 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [37] searching matching queue for src target 70 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 38 To 100
-Setting 38 100 0
-Printing my Paths: 
-Scheduling Event (38@100@0) of size 512000 from 38 to 100 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [38] searching matching queue for src target 88 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 39 To 113
-Setting 39 113 0
-Printing my Paths: 
-Scheduling Event (39@113@0) of size 512000 from 39 to 113 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [39] searching matching queue for src target 65 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 40 To 79
-Setting 40 79 0
-Printing my Paths: 
-Scheduling Event (40@79@0) of size 512000 from 40 to 79 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [40] searching matching queue for src target 116 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 41 To 97
-Setting 41 97 0
-Printing my Paths: 
-Scheduling Event (41@97@0) of size 512000 from 41 to 97 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [41] searching matching queue for src target 72 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 42 To 126
-Setting 42 126 0
-Printing my Paths: 
-Scheduling Event (42@126@0) of size 512000 from 42 to 126 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [42] searching matching queue for src target 107 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 43 To 64
-Setting 43 64 0
-Printing my Paths: 
-Scheduling Event (43@64@0) of size 512000 from 43 to 64 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [43] searching matching queue for src target 66 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 44 To 83
-Setting 44 83 0
-Printing my Paths: 
-Scheduling Event (44@83@0) of size 512000 from 44 to 83 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [44] searching matching queue for src target 118 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 45 To 94
-Setting 45 94 0
-Printing my Paths: 
-Scheduling Event (45@94@0) of size 512000 from 45 to 94 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [45] searching matching queue for src target 125 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 46 To 127
-Setting 46 127 0
-Printing my Paths: 
-Scheduling Event (46@127@0) of size 512000 from 46 to 127 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [46] searching matching queue for src target 81 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 47 To 98
-Setting 47 98 0
-Printing my Paths: 
-Scheduling Event (47@98@0) of size 512000 from 47 to 98 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [47] searching matching queue for src target 103 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 48 To 103
-Setting 48 103 0
-Printing my Paths: 
-Scheduling Event (48@103@0) of size 512000 from 48 to 103 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [48] searching matching queue for src target 96 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 49 To 119
-Setting 49 119 0
-Printing my Paths: 
-Scheduling Event (49@119@0) of size 512000 from 49 to 119 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [49] searching matching queue for src target 75 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 50 To 72
-Setting 50 72 0
-Printing my Paths: 
-Scheduling Event (50@72@0) of size 512000 from 50 to 72 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [50] searching matching queue for src target 127 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 51 To 71
-Setting 51 71 0
-Printing my Paths: 
-Scheduling Event (51@71@0) of size 512000 from 51 to 71 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [51] searching matching queue for src target 87 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 52 To 118
-Setting 52 118 0
-Printing my Paths: 
-Scheduling Event (52@118@0) of size 512000 from 52 to 118 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [52] searching matching queue for src target 101 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 53 To 96
-Setting 53 96 0
-Printing my Paths: 
-Scheduling Event (53@96@0) of size 512000 from 53 to 96 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [53] searching matching queue for src target 114 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 54 To 76
-Setting 54 76 0
-Printing my Paths: 
-Scheduling Event (54@76@0) of size 512000 from 54 to 76 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [54] searching matching queue for src target 100 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 55 To 122
-Setting 55 122 0
-Printing my Paths: 
-Scheduling Event (55@122@0) of size 512000 from 55 to 122 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [55] searching matching queue for src target 119 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 56 To 73
-Setting 56 73 0
-Printing my Paths: 
-Scheduling Event (56@73@0) of size 512000 from 56 to 73 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [56] searching matching queue for src target 85 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 57 To 125
-Setting 57 125 0
-Printing my Paths: 
-Scheduling Event (57@125@0) of size 512000 from 57 to 125 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [57] searching matching queue for src target 108 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 58 To 74
-Setting 58 74 0
-Printing my Paths: 
-Scheduling Event (58@74@0) of size 512000 from 58 to 74 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [58] searching matching queue for src target 92 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 59 To 108
-Setting 59 108 0
-Printing my Paths: 
-Scheduling Event (59@108@0) of size 512000 from 59 to 108 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [59] searching matching queue for src target 109 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 60 To 104
-Setting 60 104 0
-Printing my Paths: 
-Scheduling Event (60@104@0) of size 512000 from 60 to 104 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [60] searching matching queue for src target 78 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 61 To 80
-Setting 61 80 0
-Printing my Paths: 
-Scheduling Event (61@80@0) of size 512000 from 61 to 80 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [61] searching matching queue for src target 83 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 62 To 124
-Setting 62 124 0
-Printing my Paths: 
-Scheduling Event (62@124@0) of size 512000 from 62 to 124 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [62] searching matching queue for src target 77 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 63 To 102
-Setting 63 102 0
-Printing my Paths: 
-Scheduling Event (63@102@0) of size 512000 from 63 to 102 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [63] searching matching queue for src target 115 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 64 To 33
-Setting 64 33 0
-Printing my Paths: 
-Scheduling Event (64@33@0) of size 512000 from 64 to 33 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [64] searching matching queue for src target 43 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 65 To 39
-Setting 65 39 0
-Printing my Paths: 
-Scheduling Event (65@39@0) of size 512000 from 65 to 39 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [65] searching matching queue for src target 32 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 66 To 43
-Setting 66 43 0
-Printing my Paths: 
-Scheduling Event (66@43@0) of size 512000 from 66 to 43 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [66] searching matching queue for src target 0 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 67 To 35
-Setting 67 35 0
-Printing my Paths: 
-Scheduling Event (67@35@0) of size 512000 from 67 to 35 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [67] searching matching queue for src target 15 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 68 To 1
-Setting 68 1 0
-Printing my Paths: 
-Scheduling Event (68@1@0) of size 512000 from 68 to 1 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [68] searching matching queue for src target 29 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 69 To 8
-Setting 69 8 0
-Printing my Paths: 
-Scheduling Event (69@8@0) of size 512000 from 69 to 8 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [69] searching matching queue for src target 19 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 70 To 37
-Setting 70 37 0
-Printing my Paths: 
-Scheduling Event (70@37@0) of size 512000 from 70 to 37 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [70] searching matching queue for src target 34 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 71 To 29
-Setting 71 29 0
-Printing my Paths: 
-Scheduling Event (71@29@0) of size 512000 from 71 to 29 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [71] searching matching queue for src target 51 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 72 To 41
-Setting 72 41 0
-Printing my Paths: 
-Scheduling Event (72@41@0) of size 512000 from 72 to 41 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [72] searching matching queue for src target 50 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 73 To 6
-Setting 73 6 0
-Printing my Paths: 
-Scheduling Event (73@6@0) of size 512000 from 73 to 6 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [73] searching matching queue for src target 56 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 74 To 9
-Setting 74 9 0
-Printing my Paths: 
-Scheduling Event (74@9@0) of size 512000 from 74 to 9 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [74] searching matching queue for src target 58 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 75 To 49
-Setting 75 49 0
-Printing my Paths: 
-Scheduling Event (75@49@0) of size 512000 from 75 to 49 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [75] searching matching queue for src target 1 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 76 To 18
-Setting 76 18 0
-Printing my Paths: 
-Scheduling Event (76@18@0) of size 512000 from 76 to 18 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [76] searching matching queue for src target 54 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 77 To 62
-Setting 77 62 0
-Printing my Paths: 
-Scheduling Event (77@62@0) of size 512000 from 77 to 62 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [77] searching matching queue for src target 30 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 78 To 60
-Setting 78 60 0
-Printing my Paths: 
-Scheduling Event (78@60@0) of size 512000 from 78 to 60 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [78] searching matching queue for src target 13 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 79 To 22
-Setting 79 22 0
-Printing my Paths: 
-Scheduling Event (79@22@0) of size 512000 from 79 to 22 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [79] searching matching queue for src target 40 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 80 To 10
-Setting 80 10 0
-Printing my Paths: 
-Scheduling Event (80@10@0) of size 512000 from 80 to 10 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [80] searching matching queue for src target 61 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 81 To 46
-Setting 81 46 0
-Printing my Paths: 
-Scheduling Event (81@46@0) of size 512000 from 81 to 46 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [81] searching matching queue for src target 24 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 82 To 0
-Setting 82 0 0
-Printing my Paths: 
-Scheduling Event (82@0@0) of size 512000 from 82 to 0 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [82] searching matching queue for src target 9 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 83 To 61
-Setting 83 61 0
-Printing my Paths: 
-Scheduling Event (83@61@0) of size 512000 from 83 to 61 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [83] searching matching queue for src target 44 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 84 To 36
-Setting 84 36 0
-Printing my Paths: 
-Scheduling Event (84@36@0) of size 512000 from 84 to 36 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [84] searching matching queue for src target 28 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 85 To 56
-Setting 85 56 0
-Printing my Paths: 
-Scheduling Event (85@56@0) of size 512000 from 85 to 56 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [85] searching matching queue for src target 7 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 86 To 2
-Setting 86 2 0
-Printing my Paths: 
-Scheduling Event (86@2@0) of size 512000 from 86 to 2 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [86] searching matching queue for src target 27 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 87 To 51
-Setting 87 51 0
-Printing my Paths: 
-Scheduling Event (87@51@0) of size 512000 from 87 to 51 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [87] searching matching queue for src target 3 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 88 To 38
-Setting 88 38 0
-Printing my Paths: 
-Scheduling Event (88@38@0) of size 512000 from 88 to 38 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [88] searching matching queue for src target 17 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 89 To 5
-Setting 89 5 0
-Printing my Paths: 
-Scheduling Event (89@5@0) of size 512000 from 89 to 5 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [89] searching matching queue for src target 10 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 90 To 25
-Setting 90 25 0
-Printing my Paths: 
-Scheduling Event (90@25@0) of size 512000 from 90 to 25 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [90] searching matching queue for src target 23 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 91 To 24
-Setting 91 24 0
-Printing my Paths: 
-Scheduling Event (91@24@0) of size 512000 from 91 to 24 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [91] searching matching queue for src target 2 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 92 To 58
-Setting 92 58 0
-Printing my Paths: 
-Scheduling Event (92@58@0) of size 512000 from 92 to 58 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [92] searching matching queue for src target 12 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 93 To 11
-Setting 93 11 0
-Printing my Paths: 
-Scheduling Event (93@11@0) of size 512000 from 93 to 11 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [93] searching matching queue for src target 37 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 94 To 28
-Setting 94 28 0
-Printing my Paths: 
-Scheduling Event (94@28@0) of size 512000 from 94 to 28 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [94] searching matching queue for src target 45 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 95 To 26
-Setting 95 26 0
-Printing my Paths: 
-Scheduling Event (95@26@0) of size 512000 from 95 to 26 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [95] searching matching queue for src target 11 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 96 To 48
-Setting 96 48 0
-Printing my Paths: 
-Scheduling Event (96@48@0) of size 512000 from 96 to 48 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [96] searching matching queue for src target 53 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 97 To 21
-Setting 97 21 0
-Printing my Paths: 
-Scheduling Event (97@21@0) of size 512000 from 97 to 21 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [97] searching matching queue for src target 41 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 98 To 30
-Setting 98 30 0
-Printing my Paths: 
-Scheduling Event (98@30@0) of size 512000 from 98 to 30 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [98] searching matching queue for src target 47 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 99 To 7
-Setting 99 7 0
-Printing my Paths: 
-Scheduling Event (99@7@0) of size 512000 from 99 to 7 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [99] searching matching queue for src target 20 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 100 To 54
-Setting 100 54 0
-Printing my Paths: 
-Scheduling Event (100@54@0) of size 512000 from 100 to 54 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [100] searching matching queue for src target 38 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 101 To 52
-Setting 101 52 0
-Printing my Paths: 
-Scheduling Event (101@52@0) of size 512000 from 101 to 52 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [101] searching matching queue for src target 16 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 102 To 14
-Setting 102 14 0
-Printing my Paths: 
-Scheduling Event (102@14@0) of size 512000 from 102 to 14 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [102] searching matching queue for src target 63 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 103 To 47
-Setting 103 47 0
-Printing my Paths: 
-Scheduling Event (103@47@0) of size 512000 from 103 to 47 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [103] searching matching queue for src target 48 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 104 To 32
-Setting 104 32 0
-Printing my Paths: 
-Scheduling Event (104@32@0) of size 512000 from 104 to 32 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [104] searching matching queue for src target 60 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 105 To 13
-Setting 105 13 0
-Printing my Paths: 
-Scheduling Event (105@13@0) of size 512000 from 105 to 13 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [105] searching matching queue for src target 25 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 106 To 12
-Setting 106 12 0
-Printing my Paths: 
-Scheduling Event (106@12@0) of size 512000 from 106 to 12 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [106] searching matching queue for src target 18 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 107 To 42
-Setting 107 42 0
-Printing my Paths: 
-Scheduling Event (107@42@0) of size 512000 from 107 to 42 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [107] searching matching queue for src target 4 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 108 To 57
-Setting 108 57 0
-Printing my Paths: 
-Scheduling Event (108@57@0) of size 512000 from 108 to 57 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [108] searching matching queue for src target 59 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 109 To 59
-Setting 109 59 0
-Printing my Paths: 
-Scheduling Event (109@59@0) of size 512000 from 109 to 59 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [109] searching matching queue for src target 5 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 110 To 31
-Setting 110 31 0
-Printing my Paths: 
-Scheduling Event (110@31@0) of size 512000 from 110 to 31 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [110] searching matching queue for src target 35 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 111 To 3
-Setting 111 3 0
-Printing my Paths: 
-Scheduling Event (111@3@0) of size 512000 from 111 to 3 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [111] searching matching queue for src target 31 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 112 To 23
-Setting 112 23 0
-Printing my Paths: 
-Scheduling Event (112@23@0) of size 512000 from 112 to 23 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [112] searching matching queue for src target 33 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 113 To 27
-Setting 113 27 0
-Printing my Paths: 
-Scheduling Event (113@27@0) of size 512000 from 113 to 27 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [113] searching matching queue for src target 39 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 114 To 53
-Setting 114 53 0
-Printing my Paths: 
-Scheduling Event (114@53@0) of size 512000 from 114 to 53 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [114] searching matching queue for src target 21 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 115 To 63
-Setting 115 63 0
-Printing my Paths: 
-Scheduling Event (115@63@0) of size 512000 from 115 to 63 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [115] searching matching queue for src target 36 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 116 To 40
-Setting 116 40 0
-Printing my Paths: 
-Scheduling Event (116@40@0) of size 512000 from 116 to 40 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [116] searching matching queue for src target 6 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 117 To 16
-Setting 117 16 0
-Printing my Paths: 
-Scheduling Event (117@16@0) of size 512000 from 117 to 16 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [117] searching matching queue for src target 8 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 118 To 44
-Setting 118 44 0
-Printing my Paths: 
-Scheduling Event (118@44@0) of size 512000 from 118 to 44 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [118] searching matching queue for src target 52 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 119 To 55
-Setting 119 55 0
-Printing my Paths: 
-Scheduling Event (119@55@0) of size 512000 from 119 to 55 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [119] searching matching queue for src target 49 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 120 To 15
-Setting 120 15 0
-Printing my Paths: 
-Scheduling Event (120@15@0) of size 512000 from 120 to 15 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [120] searching matching queue for src target 26 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 121 To 19
-Setting 121 19 0
-Printing my Paths: 
-Scheduling Event (121@19@0) of size 512000 from 121 to 19 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [121] searching matching queue for src target 14 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 122 To 20
-Setting 122 20 0
-Printing my Paths: 
-Scheduling Event (122@20@0) of size 512000 from 122 to 20 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [122] searching matching queue for src target 55 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 123 To 17
-Setting 123 17 0
-Printing my Paths: 
-Scheduling Event (123@17@0) of size 512000 from 123 to 17 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [123] searching matching queue for src target 22 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 124 To 34
-Setting 124 34 0
-Printing my Paths: 
-Scheduling Event (124@34@0) of size 512000 from 124 to 34 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [124] searching matching queue for src target 62 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 125 To 45
-Setting 125 45 0
-Printing my Paths: 
-Scheduling Event (125@45@0) of size 512000 from 125 to 45 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [125] searching matching queue for src target 57 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 126 To 4
-Setting 126 4 0
-Printing my Paths: 
-Scheduling Event (126@4@0) of size 512000 from 126 to 4 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [126] searching matching queue for src target 42 tag 0
-Options are 16
-Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 11477760 - BDP/CWDN 117600
-CWD Start 117600 - From 127 To 50
-Setting 127 50 0
-Printing my Paths: 
-Scheduling Event (127@50@0) of size 512000 from 127 to 50 tag 0 start_tiem 80 - Time is 0
- ++ size is 0,  host [127] searching matching queue for src target 46 tag 0
+----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 16 - 0 64 0
+Options are 16
+Link Delay 700 - Link Speed 400 - Pkt Size 2048 - Base RTT 8646000 - Target RTT is 13141920 - BDP/CWDN 432300
+CWD Start 432300 - From 0 To 64
+Setting 0 64 0
+Printing my Paths: 
+Scheduling Event (0@64@0) of size 2000000 from 0 to 64 tag 0 start_tiem 80 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 400 - Pkt Size 2048 - Base RTT 8646000 - Target RTT is 13141920 - BDP/CWDN 432300
+CWD Start 432300 - From 1 To 64
+Setting 1 64 0
+Printing my Paths: 
+Scheduling Event (1@64@0) of size 2000000 from 1 to 64 tag 0 start_tiem 80 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 400 - Pkt Size 2048 - Base RTT 8646000 - Target RTT is 13141920 - BDP/CWDN 432300
+CWD Start 432300 - From 2 To 64
+Setting 2 64 0
+Printing my Paths: 
+Scheduling Event (2@64@0) of size 2000000 from 2 to 64 tag 0 start_tiem 80 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 400 - Pkt Size 2048 - Base RTT 8646000 - Target RTT is 13141920 - BDP/CWDN 432300
+CWD Start 432300 - From 3 To 64
+Setting 3 64 0
+Printing my Paths: 
+Scheduling Event (3@64@0) of size 2000000 from 3 to 64 tag 0 start_tiem 80 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 400 - Pkt Size 2048 - Base RTT 8646000 - Target RTT is 13141920 - BDP/CWDN 432300
+CWD Start 432300 - From 4 To 64
+Setting 4 64 0
+Printing my Paths: 
+Scheduling Event (4@64@0) of size 2000000 from 4 to 64 tag 0 start_tiem 80 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 400 - Pkt Size 2048 - Base RTT 8646000 - Target RTT is 13141920 - BDP/CWDN 432300
+CWD Start 432300 - From 5 To 64
+Setting 5 64 0
+Printing my Paths: 
+Scheduling Event (5@64@0) of size 2000000 from 5 to 64 tag 0 start_tiem 80 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 400 - Pkt Size 2048 - Base RTT 8646000 - Target RTT is 13141920 - BDP/CWDN 432300
+CWD Start 432300 - From 6 To 64
+Setting 6 64 0
+Printing my Paths: 
+Scheduling Event (6@64@0) of size 2000000 from 6 to 64 tag 0 start_tiem 80 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 400 - Pkt Size 2048 - Base RTT 8646000 - Target RTT is 13141920 - BDP/CWDN 432300
+CWD Start 432300 - From 7 To 64
+Setting 7 64 0
+Printing my Paths: 
+Scheduling Event (7@64@0) of size 2000000 from 7 to 64 tag 0 start_tiem 80 - Time is 0
+ ++ size is 0,  host [64] searching matching queue for src target 0 tag 0
+++ size is 0,  host [64] searching matching queue for src target 1 tag 0
+++ size is 0,  host [64] searching matching queue for src target 2 tag 0
+++ size is 0,  host [64] searching matching queue for src target 3 tag 0
+++ size is 0,  host [64] searching matching queue for src target 4 tag 0
+++ size is 0,  host [64] searching matching queue for src target 5 tag 0
+++ size is 0,  host [64] searching matching queue for src target 6 tag 0
+++ size is 0,  host [64] searching matching queue for src target 7 tag 0
 Current elem time is 0 while NS3 0
 Simulating Until Called
 Decrease
@@ -947,6 +107,2405 @@ Decrease
 Decrease
 Decrease
 Decrease
+NACK 7
+Just NA CK from 7 at 11492
+NACK 3
+Just NA CK from 3 at 11493
+Decrease
+NACK 2
+Just NA CK from 2 at 11537
+NACK 0
+Just NA CK from 0 at 11538
+NACK 7
+Just NA CK from 7 at 11539
+NACK 3
+Just NA CK from 3 at 11541
+Decrease
+NACK 0
+Just NA CK from 0 at 11584
+NACK 3
+Just NA CK from 3 at 11585
+NACK 0
+Just NA CK from 0 at 11587
+Decrease
+NACK 5
+Just NA CK from 5 at 11630
+NACK 1
+Just NA CK from 1 at 11632
+NACK 7
+Just NA CK from 7 at 11633
+Decrease
+NACK 6
+Just NA CK from 6 at 11676
+NACK 6
+Just NA CK from 6 at 11678
+NACK 1
+Just NA CK from 1 at 11679
+Decrease
+NACK 1
+Just NA CK from 1 at 11722
+NACK 0
+Just NA CK from 0 at 11724
+NACK 7
+Just NA CK from 7 at 11725
+Decrease
+NACK 7
+Just NA CK from 7 at 11768
+NACK 3
+Just NA CK from 3 at 11770
+NACK 2
+Just NA CK from 2 at 11771
+Decrease
+NACK 3
+Just NA CK from 3 at 11815
+NACK 4
+Just NA CK from 4 at 11816
+NACK 4
+Just NA CK from 4 at 11817
+Decrease
+NACK 7
+Just NA CK from 7 at 11861
+NACK 5
+Just NA CK from 5 at 11862
+NACK 6
+Just NA CK from 6 at 11863
+Decrease
+NACK 3
+Just NA CK from 3 at 11907
+NACK 5
+Just NA CK from 5 at 11908
+NACK 3
+Just NA CK from 3 at 11909
+Decrease
+NACK 1
+Just NA CK from 1 at 11953
+NACK 2
+Just NA CK from 2 at 11954
+NACK 4
+Just NA CK from 4 at 11955
+NACK 4
+Just NA CK from 4 at 11957
+NACK 5
+Just NA CK from 5 at 11958
+NACK 5
+Just NA CK from 5 at 11959
+Decrease
+NACK 6
+Just NA CK from 6 at 12003
+NACK 5
+Just NA CK from 5 at 12004
+NACK 1
+Just NA CK from 1 at 12005
+NACK 6
+Just NA CK from 6 at 12007
+Decrease
+NACK 0
+Just NA CK from 0 at 12050
+NACK 1
+Just NA CK from 1 at 12051
+NACK 6
+Just NA CK from 6 at 12053
+Decrease
+NACK 1
+Just NA CK from 1 at 12096
+NACK 5
+Just NA CK from 5 at 12097
+NACK 0
+Just NA CK from 0 at 12099
+Decrease
+NACK 4
+Just NA CK from 4 at 12142
+NACK 7
+Just NA CK from 7 at 12144
+NACK 3
+Just NA CK from 3 at 12145
+Decrease
+NACK 2
+Just NA CK from 2 at 12188
+NACK 5
+Just NA CK from 5 at 12190
+NACK 6
+Just NA CK from 6 at 12191
+Decrease
+NACK 0
+Just NA CK from 0 at 12234
+NACK 1
+Just NA CK from 1 at 12236
+NACK 0
+Just NA CK from 0 at 12237
+Decrease
+NACK 7
+Just NA CK from 7 at 12280
+NACK 6
+Just NA CK from 6 at 12282
+NACK 1
+Just NA CK from 1 at 12283
+Decrease
+NACK 3
+Just NA CK from 3 at 12327
+NACK 5
+Just NA CK from 5 at 12328
+NACK 3
+Just NA CK from 3 at 12329
+Decrease
+NACK 7
+Just NA CK from 7 at 12373
+NACK 4
+Just NA CK from 4 at 12374
+NACK 5
+Just NA CK from 5 at 12375
+Decrease
+NACK 4
+Just NA CK from 4 at 12419
+NACK 4
+Just NA CK from 4 at 12420
+NACK 0
+Just NA CK from 0 at 12421
+NACK 1
+Just NA CK from 1 at 12423
+NACK 2
+Just NA CK from 2 at 12424
+NACK 2
+Just NA CK from 2 at 12425
+Decrease
+NACK 7
+Just NA CK from 7 at 12469
+NACK 5
+Just NA CK from 5 at 12470
+NACK 5
+Just NA CK from 5 at 12471
+NACK 0
+Just NA CK from 0 at 12472
+Decrease
+NACK 2
+Just NA CK from 2 at 12516
+NACK 1
+Just NA CK from 1 at 12517
+NACK 2
+Just NA CK from 2 at 12519
+Decrease
+NACK 4
+Just NA CK from 4 at 12562
+NACK 5
+Just NA CK from 5 at 12563
+NACK 7
+Just NA CK from 7 at 12565
+Decrease
+NACK 2
+Just NA CK from 2 at 12608
+NACK 6
+Just NA CK from 6 at 12609
+NACK 4
+Just NA CK from 4 at 12611
+Decrease
+NACK 6
+Just NA CK from 6 at 12654
+NACK 1
+Just NA CK from 1 at 12656
+NACK 2
+Just NA CK from 2 at 12657
+Decrease
+NACK 3
+Just NA CK from 3 at 12700
+NACK 3
+Just NA CK from 3 at 12702
+NACK 3
+Just NA CK from 3 at 12703
+Decrease
+NACK 1
+Just NA CK from 1 at 12746
+NACK 7
+Just NA CK from 7 at 12748
+NACK 1
+Just NA CK from 1 at 12749
+Decrease
+NACK 0
+Just NA CK from 0 at 12792
+NACK 0
+Just NA CK from 0 at 12794
+NACK 6
+Just NA CK from 6 at 12795
+Decrease
+NACK 7
+Just NA CK from 7 at 12839
+NACK 4
+Just NA CK from 4 at 12840
+NACK 3
+Just NA CK from 3 at 12841
+Decrease
+NACK 5
+Just NA CK from 5 at 12885
+NACK 4
+Just NA CK from 4 at 12886
+NACK 3
+Just NA CK from 3 at 12887
+NACK 4
+Just NA CK from 4 at 12888
+NACK 2
+Just NA CK from 2 at 12890
+NACK 0
+Just NA CK from 0 at 12891
+Decrease
+NACK 3
+Just NA CK from 3 at 12935
+NACK 2
+Just NA CK from 2 at 12936
+NACK 3
+Just NA CK from 3 at 12937
+NACK 4
+Just NA CK from 4 at 12938
+Decrease
+NACK 6
+Just NA CK from 6 at 12982
+NACK 6
+Just NA CK from 6 at 12983
+NACK 2
+Just NA CK from 2 at 12984
+Decrease
+NACK 1
+Just NA CK from 1 at 13028
+NACK 0
+Just NA CK from 0 at 13029
+NACK 6
+Just NA CK from 6 at 13031
+Decrease
+NACK 3
+Just NA CK from 3 at 13074
+NACK 0
+Just NA CK from 0 at 13075
+NACK 3
+Just NA CK from 3 at 13077
+Decrease
+NACK 4
+Just NA CK from 4 at 13120
+NACK 0
+Just NA CK from 0 at 13121
+NACK 0
+Just NA CK from 0 at 13123
+Decrease
+NACK 3
+Just NA CK from 3 at 13166
+NACK 7
+Just NA CK from 7 at 13168
+NACK 2
+Just NA CK from 2 at 13169
+Decrease
+NACK 1
+Just NA CK from 1 at 13212
+NACK 6
+Just NA CK from 6 at 13214
+NACK 2
+Just NA CK from 2 at 13215
+Decrease
+NACK 4
+Just NA CK from 4 at 13258
+NACK 6
+Just NA CK from 6 at 13260
+NACK 5
+Just NA CK from 5 at 13261
+Decrease
+NACK 1
+Just NA CK from 1 at 13304
+NACK 0
+Just NA CK from 0 at 13306
+NACK 1
+Just NA CK from 1 at 13307
+NACK 7
+Just NA CK from 7 at 13308
+NACK 5
+Just NA CK from 5 at 13310
+NACK 7
+Just NA CK from 7 at 13311
+Decrease
+NACK 5
+Just NA CK from 5 at 13354
+NACK 5
+Just NA CK from 5 at 13356
+NACK 3
+Just NA CK from 3 at 13357
+NACK 5
+Just NA CK from 5 at 13358
+Decrease
+NACK 3
+Just NA CK from 3 at 13402
+NACK 0
+Just NA CK from 0 at 13403
+NACK 6
+Just NA CK from 6 at 13404
+Decrease
+NACK 2
+Just NA CK from 2 at 13448
+NACK 1
+Just NA CK from 1 at 13449
+NACK 0
+Just NA CK from 0 at 13450
+Decrease
+NACK 7
+Just NA CK from 7 at 13494
+NACK 2
+Just NA CK from 2 at 13495
+NACK 4
+Just NA CK from 4 at 13496
+Decrease
+NACK 1
+Just NA CK from 1 at 13540
+NACK 6
+Just NA CK from 6 at 13541
+NACK 7
+Just NA CK from 7 at 13543
+Decrease
+NACK 5
+Just NA CK from 5 at 13586
+NACK 7
+Just NA CK from 7 at 13587
+NACK 5
+Just NA CK from 5 at 13589
+Decrease
+NACK 0
+Just NA CK from 0 at 13632
+NACK 2
+Just NA CK from 2 at 13633
+NACK 7
+Just NA CK from 7 at 13635
+Decrease
+NACK 1
+Just NA CK from 1 at 13678
+NACK 4
+Just NA CK from 4 at 13680
+NACK 4
+Just NA CK from 4 at 13681
+Decrease
+NACK 3
+Just NA CK from 3 at 13724
+NACK 4
+Just NA CK from 4 at 13726
+NACK 0
+Just NA CK from 0 at 13727
+Decrease
+NACK 6
+Just NA CK from 6 at 13770
+NACK 7
+Just NA CK from 7 at 13772
+NACK 4
+Just NA CK from 4 at 13773
+NACK 2
+Just NA CK from 2 at 13774
+NACK 0
+Just NA CK from 0 at 13776
+NACK 6
+Just NA CK from 6 at 13777
+Decrease
+NACK 3
+Just NA CK from 3 at 13820
+NACK 6
+Just NA CK from 6 at 13822
+NACK 5
+Just NA CK from 5 at 13823
+NACK 7
+Just NA CK from 7 at 13824
+Decrease
+NACK 3
+Just NA CK from 3 at 13868
+NACK 3
+Just NA CK from 3 at 13869
+NACK 0
+Just NA CK from 0 at 13870
+Decrease
+NACK 4
+Just NA CK from 4 at 13914
+NACK 7
+Just NA CK from 7 at 13915
+NACK 0
+Just NA CK from 0 at 13916
+Decrease
+NACK 1
+Just NA CK from 1 at 13960
+NACK 6
+Just NA CK from 6 at 13961
+NACK 6
+Just NA CK from 6 at 13962
+Decrease
+NACK 7
+Just NA CK from 7 at 14006
+NACK 1
+Just NA CK from 1 at 14007
+NACK 1
+Just NA CK from 1 at 14008
+Decrease
+NACK 5
+Just NA CK from 5 at 14052
+NACK 2
+Just NA CK from 2 at 14053
+NACK 7
+Just NA CK from 7 at 14055
+Decrease
+NACK 1
+Just NA CK from 1 at 14098
+NACK 7
+Just NA CK from 7 at 14099
+NACK 7
+Just NA CK from 7 at 14101
+Decrease
+NACK 3
+Just NA CK from 3 at 14144
+NACK 5
+Just NA CK from 5 at 14145
+NACK 5
+Just NA CK from 5 at 14147
+Decrease
+NACK 5
+Just NA CK from 5 at 14190
+NACK 3
+Just NA CK from 3 at 14192
+NACK 3
+Just NA CK from 3 at 14193
+Decrease
+NACK 3
+Just NA CK from 3 at 14236
+NACK 5
+Just NA CK from 5 at 14238
+NACK 4
+Just NA CK from 4 at 14239
+NACK 0
+Just NA CK from 0 at 14240
+NACK 6
+Just NA CK from 6 at 14241
+NACK 7
+Just NA CK from 7 at 14243
+Decrease
+NACK 4
+Just NA CK from 4 at 14286
+NACK 3
+Just NA CK from 3 at 14288
+NACK 2
+Just NA CK from 2 at 14289
+NACK 6
+Just NA CK from 6 at 14290
+Decrease
+NACK 5
+Just NA CK from 5 at 14334
+NACK 5
+Just NA CK from 5 at 14335
+NACK 6
+Just NA CK from 6 at 14336
+Decrease
+NACK 4
+Just NA CK from 4 at 14380
+NACK 1
+Just NA CK from 1 at 14381
+NACK 3
+Just NA CK from 3 at 14382
+Decrease
+NACK 0
+Just NA CK from 0 at 14426
+NACK 7
+Just NA CK from 7 at 14427
+NACK 4
+Just NA CK from 4 at 14428
+Decrease
+NACK 3
+Just NA CK from 3 at 14472
+NACK 2
+Just NA CK from 2 at 14473
+NACK 4
+Just NA CK from 4 at 14474
+Decrease
+NACK 5
+Just NA CK from 5 at 14518
+NACK 1
+Just NA CK from 1 at 14519
+NACK 4
+Just NA CK from 4 at 14520
+Decrease
+NACK 2
+Just NA CK from 2 at 14564
+NACK 7
+Just NA CK from 7 at 14565
+NACK 0
+Just NA CK from 0 at 14567
+Decrease
+NACK 3
+Just NA CK from 3 at 14610
+NACK 7
+Just NA CK from 7 at 14611
+NACK 5
+Just NA CK from 5 at 14613
+Decrease
+NACK 4
+Just NA CK from 4 at 14656
+NACK 3
+Just NA CK from 3 at 14657
+NACK 4
+Just NA CK from 4 at 14659
+NACK 5
+Just NA CK from 5 at 14660
+NACK 2
+Just NA CK from 2 at 14661
+NACK 5
+Just NA CK from 5 at 14663
+Decrease
+NACK 3
+Just NA CK from 3 at 14706
+NACK 5
+Just NA CK from 5 at 14707
+NACK 7
+Just NA CK from 7 at 14709
+NACK 5
+Just NA CK from 5 at 14710
+Decrease
+NACK 2
+Just NA CK from 2 at 14753
+NACK 7
+Just NA CK from 7 at 14755
+NACK 0
+Just NA CK from 0 at 14756
+Decrease
+NACK 0
+Just NA CK from 0 at 14800
+NACK 0
+Just NA CK from 0 at 14801
+NACK 1
+Just NA CK from 1 at 14802
+Decrease
+NACK 6
+Just NA CK from 6 at 14846
+NACK 5
+Just NA CK from 5 at 14847
+NACK 5
+Just NA CK from 5 at 14848
+Decrease
+NACK 3
+Just NA CK from 3 at 14892
+NACK 2
+Just NA CK from 2 at 14893
+NACK 0
+Just NA CK from 0 at 14894
+Decrease
+NACK 6
+Just NA CK from 6 at 14938
+NACK 6
+Just NA CK from 6 at 14939
+NACK 4
+Just NA CK from 4 at 14940
+Decrease
+NACK 6
+Just NA CK from 6 at 14984
+NACK 5
+Just NA CK from 5 at 14985
+NACK 7
+Just NA CK from 7 at 14986
+Decrease
+NACK 1
+Just NA CK from 1 at 15030
+NACK 3
+Just NA CK from 3 at 15031
+NACK 2
+Just NA CK from 2 at 15032
+Decrease
+NACK 2
+Just NA CK from 2 at 15076
+NACK 6
+Just NA CK from 6 at 15077
+NACK 3
+Just NA CK from 3 at 15079
+Decrease
+NACK 2
+Just NA CK from 2 at 15122
+NACK 1
+Just NA CK from 1 at 15123
+NACK 1
+Just NA CK from 1 at 15125
+NACK 1
+Just NA CK from 1 at 15126
+NACK 0
+Just NA CK from 0 at 15127
+NACK 5
+Just NA CK from 5 at 15128
+Decrease
+NACK 5
+Just NA CK from 5 at 15172
+NACK 3
+Just NA CK from 3 at 15173
+NACK 6
+Just NA CK from 6 at 15175
+NACK 6
+Just NA CK from 6 at 15176
+Decrease
+NACK 4
+Just NA CK from 4 at 15219
+NACK 5
+Just NA CK from 5 at 15221
+NACK 2
+Just NA CK from 2 at 15222
+Decrease
+NACK 0
+Just NA CK from 0 at 15265
+NACK 5
+Just NA CK from 5 at 15267
+NACK 5
+Just NA CK from 5 at 15268
+Decrease
+NACK 2
+Just NA CK from 2 at 15312
+NACK 3
+Just NA CK from 3 at 15313
+NACK 0
+Just NA CK from 0 at 15314
+Decrease
+NACK 0
+Just NA CK from 0 at 15358
+NACK 4
+Just NA CK from 4 at 15359
+NACK 7
+Just NA CK from 7 at 15360
+Decrease
+NACK 2
+Just NA CK from 2 at 15404
+NACK 0
+Just NA CK from 0 at 15405
+NACK 7
+Just NA CK from 7 at 15406
+Decrease
+NACK 0
+Just NA CK from 0 at 15450
+NACK 4
+Just NA CK from 4 at 15451
+NACK 5
+Just NA CK from 5 at 15452
+Decrease
+NACK 6
+Just NA CK from 6 at 15496
+NACK 1
+Just NA CK from 1 at 15497
+NACK 0
+Just NA CK from 0 at 15498
+Decrease
+NACK 0
+Just NA CK from 0 at 15542
+NACK 0
+Just NA CK from 0 at 15543
+NACK 6
+Just NA CK from 6 at 15544
+Decrease
+NACK 1
+Just NA CK from 1 at 15588
+NACK 2
+Just NA CK from 2 at 15589
+NACK 1
+Just NA CK from 1 at 15591
+NACK 5
+Just NA CK from 5 at 15592
+NACK 4
+Just NA CK from 4 at 15593
+NACK 7
+Just NA CK from 7 at 15594
+Decrease
+NACK 4
+Just NA CK from 4 at 15638
+NACK 4
+Just NA CK from 4 at 15639
+NACK 3
+Just NA CK from 3 at 15640
+NACK 0
+Just NA CK from 0 at 15642
+Decrease
+NACK 5
+Just NA CK from 5 at 15685
+NACK 6
+Just NA CK from 6 at 15687
+NACK 4
+Just NA CK from 4 at 15688
+Decrease
+NACK 2
+Just NA CK from 2 at 15731
+NACK 1
+Just NA CK from 1 at 15733
+NACK 1
+Just NA CK from 1 at 15734
+Decrease
+NACK 6
+Just NA CK from 6 at 15777
+NACK 3
+Just NA CK from 3 at 15779
+NACK 0
+Just NA CK from 0 at 15780
+Decrease
+NACK 2
+Just NA CK from 2 at 15824
+NACK 3
+Just NA CK from 3 at 15825
+NACK 2
+Just NA CK from 2 at 15826
+Decrease
+NACK 4
+Just NA CK from 4 at 15870
+NACK 1
+Just NA CK from 1 at 15871
+NACK 4
+Just NA CK from 4 at 15872
+Decrease
+NACK 6
+Just NA CK from 6 at 15916
+NACK 5
+Just NA CK from 5 at 15917
+NACK 2
+Just NA CK from 2 at 15918
+Decrease
+NACK 2
+Just NA CK from 2 at 15962
+NACK 6
+Just NA CK from 6 at 15963
+NACK 1
+Just NA CK from 1 at 15964
+Decrease
+NACK 7
+Just NA CK from 7 at 16008
+NACK 4
+Just NA CK from 4 at 16009
+NACK 0
+Just NA CK from 0 at 16010
+NACK 1
+Just NA CK from 1 at 16012
+NACK 3
+Just NA CK from 3 at 16013
+NACK 6
+Just NA CK from 6 at 16014
+Decrease
+NACK 2
+Just NA CK from 2 at 16058
+NACK 0
+Just NA CK from 0 at 16059
+NACK 5
+Just NA CK from 5 at 16060
+NACK 2
+Just NA CK from 2 at 16062
+Decrease
+NACK 5
+Just NA CK from 5 at 16105
+NACK 7
+Just NA CK from 7 at 16106
+NACK 6
+Just NA CK from 6 at 16108
+Decrease
+NACK 6
+Just NA CK from 6 at 16151
+NACK 0
+Just NA CK from 0 at 16152
+NACK 2
+Just NA CK from 2 at 16154
+Decrease
+NACK 3
+Just NA CK from 3 at 16197
+NACK 0
+Just NA CK from 0 at 16199
+NACK 6
+Just NA CK from 6 at 16200
+Decrease
+NACK 7
+Just NA CK from 7 at 16243
+NACK 6
+Just NA CK from 6 at 16245
+NACK 4
+Just NA CK from 4 at 16246
+Decrease
+NACK 6
+Just NA CK from 6 at 16289
+NACK 1
+Just NA CK from 1 at 16291
+NACK 0
+Just NA CK from 0 at 16292
+Decrease
+NACK 0
+Just NA CK from 0 at 16336
+NACK 5
+Just NA CK from 5 at 16337
+NACK 2
+Just NA CK from 2 at 16338
+Decrease
+NACK 3
+Just NA CK from 3 at 16382
+NACK 5
+Just NA CK from 5 at 16383
+NACK 2
+Just NA CK from 2 at 16384
+Decrease
+NACK 1
+Just NA CK from 1 at 16428
+NACK 0
+Just NA CK from 0 at 16429
+NACK 1
+Just NA CK from 1 at 16430
+Decrease
+NACK 6
+Just NA CK from 6 at 16474
+NACK 3
+Just NA CK from 3 at 16475
+NACK 1
+Just NA CK from 1 at 16476
+NACK 6
+Just NA CK from 6 at 16478
+NACK 2
+Just NA CK from 2 at 16479
+NACK 3
+Just NA CK from 3 at 16480
+Decrease
+NACK 7
+Just NA CK from 7 at 16524
+NACK 7
+Just NA CK from 7 at 16525
+NACK 2
+Just NA CK from 2 at 16526
+NACK 7
+Just NA CK from 7 at 16528
+Decrease
+NACK 7
+Just NA CK from 7 at 16571
+NACK 0
+Just NA CK from 0 at 16572
+NACK 3
+Just NA CK from 3 at 16574
+Decrease
+NACK 6
+Just NA CK from 6 at 16617
+NACK 4
+Just NA CK from 4 at 16618
+NACK 0
+Just NA CK from 0 at 16620
+Decrease
+NACK 4
+Just NA CK from 4 at 16663
+NACK 4
+Just NA CK from 4 at 16664
+NACK 4
+Just NA CK from 4 at 16666
+Decrease
+NACK 0
+Just NA CK from 0 at 16709
+NACK 1
+Just NA CK from 1 at 16711
+NACK 0
+Just NA CK from 0 at 16712
+Decrease
+NACK 6
+Just NA CK from 6 at 16755
+NACK 2
+Just NA CK from 2 at 16757
+NACK 7
+Just NA CK from 7 at 16758
+Decrease
+NACK 5
+Just NA CK from 5 at 16801
+NACK 4
+Just NA CK from 4 at 16803
+NACK 2
+Just NA CK from 2 at 16804
+Decrease
+NACK 7
+Just NA CK from 7 at 16848
+NACK 1
+Just NA CK from 1 at 16849
+NACK 7
+Just NA CK from 7 at 16850
+Decrease
+NACK 5
+Just NA CK from 5 at 16894
+NACK 7
+Just NA CK from 7 at 16895
+NACK 6
+Just NA CK from 6 at 16896
+Decrease
+NACK 3
+Just NA CK from 3 at 16940
+NACK 0
+Just NA CK from 0 at 16941
+NACK 3
+Just NA CK from 3 at 16942
+NACK 0
+Just NA CK from 0 at 16944
+NACK 4
+Just NA CK from 4 at 16945
+NACK 4
+Just NA CK from 4 at 16946
+Decrease
+NACK 5
+Just NA CK from 5 at 16990
+NACK 2
+Just NA CK from 2 at 16991
+NACK 5
+Just NA CK from 5 at 16992
+NACK 3
+Just NA CK from 3 at 16993
+Decrease
+NACK 0
+Just NA CK from 0 at 17037
+NACK 1
+Just NA CK from 1 at 17038
+NACK 6
+Just NA CK from 6 at 17040
+Decrease
+NACK 3
+Just NA CK from 3 at 17083
+NACK 3
+Just NA CK from 3 at 17084
+NACK 3
+Just NA CK from 3 at 17086
+Decrease
+NACK 4
+Just NA CK from 4 at 17129
+NACK 4
+Just NA CK from 4 at 17130
+NACK 2
+Just NA CK from 2 at 17132
+Decrease
+NACK 3
+Just NA CK from 3 at 17175
+NACK 5
+Just NA CK from 5 at 17176
+NACK 4
+Just NA CK from 4 at 17178
+Decrease
+NACK 5
+Just NA CK from 5 at 17221
+NACK 1
+Just NA CK from 1 at 17223
+NACK 3
+Just NA CK from 3 at 17224
+Decrease
+NACK 3
+Just NA CK from 3 at 17267
+NACK 0
+Just NA CK from 0 at 17269
+NACK 5
+Just NA CK from 5 at 17270
+Decrease
+NACK 6
+Just NA CK from 6 at 17313
+NACK 2
+Just NA CK from 2 at 17315
+NACK 0
+Just NA CK from 0 at 17316
+Ignoring 0 for 138 pkts - New Wnd 76800
+Decrease
+NACK 5
+Just NA CK from 5 at 17360
+NACK 5
+Just NA CK from 5 at 17361
+NACK 1
+Just NA CK from 1 at 17362
+Ignoring 1 for 146 pkts - New Wnd 76800
+NACK 2
+Just NA CK from 2 at 17363
+NACK 4
+Just NA CK from 4 at 17365
+NACK 4
+Just NA CK from 4 at 17366
+Ignoring 2 for 144 pkts - New Wnd 70656
+NACK 1
+Just NA CK from 1 at 17409
+NACK 6
+Just NA CK from 6 at 17411
+NACK 0
+Just NA CK from 0 at 17412
+NACK 2
+Just NA CK from 2 at 17413
+NACK 6
+Just NA CK from 6 at 17457
+NACK 7
+Just NA CK from 7 at 17458
+NACK 2
+Just NA CK from 2 at 17459
+Decrease
+NACK 5
+Just NA CK from 5 at 17503
+Ignoring 5 for 138 pkts - New Wnd 70656
+NACK 3
+Just NA CK from 3 at 17504
+NACK 4
+Just NA CK from 4 at 17505
+NACK 5
+Just NA CK from 5 at 17507
+Ignoring 4 for 139 pkts - New Wnd 79872
+NACK 0
+Just NA CK from 0 at 17550
+NACK 4
+Just NA CK from 4 at 17552
+NACK 3
+Just NA CK from 3 at 17553
+NACK 1
+Just NA CK from 1 at 17554
+NACK 4
+Just NA CK from 4 at 17555
+NACK 1
+Just NA CK from 1 at 17599
+NACK 5
+Just NA CK from 5 at 17600
+NACK 3
+Just NA CK from 3 at 17601
+NACK 5
+Just NA CK from 5 at 17603
+NACK 0
+Just NA CK from 0 at 17646
+NACK 3
+Just NA CK from 3 at 17648
+Ignoring 3 for 132 pkts - New Wnd 76800
+NACK 4
+Just NA CK from 4 at 17649
+NACK 5
+Just NA CK from 5 at 17650
+NACK 1
+Just NA CK from 1 at 17651
+NACK 6
+Just NA CK from 6 at 17695
+NACK 2
+Just NA CK from 2 at 17696
+NACK 5
+Just NA CK from 5 at 17697
+NACK 1
+Just NA CK from 1 at 17699
+NACK 6
+Just NA CK from 6 at 17700
+NACK 7
+Just NA CK from 7 at 17701
+NACK 0
+Just NA CK from 0 at 17745
+NACK 6
+Just NA CK from 6 at 17746
+Ignoring 6 for 141 pkts - New Wnd 70656
+NACK 6
+Just NA CK from 6 at 17747
+NACK 1
+Just NA CK from 1 at 17749
+NACK 4
+Just NA CK from 4 at 17750
+NACK 7
+Just NA CK from 7 at 17751
+NACK 0
+Just NA CK from 0 at 17795
+NACK 0
+Just NA CK from 0 at 17796
+NACK 0
+Just NA CK from 0 at 17797
+NACK 4
+Just NA CK from 4 at 17799
+NACK 7
+Just NA CK from 7 at 17842
+Ignoring 7 for 143 pkts - New Wnd 76800
+NACK 0
+Just NA CK from 0 at 17843
+NACK 2
+Just NA CK from 2 at 17845
+NACK 3
+Just NA CK from 3 at 17888
+NACK 7
+Just NA CK from 7 at 17889
+NACK 4
+Just NA CK from 4 at 17891
+NACK 1
+Just NA CK from 1 at 17934
+NACK 3
+Just NA CK from 3 at 17936
+NACK 0
+Just NA CK from 0 at 17937
+NACK 4
+Just NA CK from 4 at 17938
+NACK 6
+Just NA CK from 6 at 17982
+NACK 1
+Just NA CK from 1 at 17983
+NACK 7
+Just NA CK from 7 at 17984
+NACK 4
+Just NA CK from 4 at 18028
+NACK 2
+Just NA CK from 2 at 18029
+NACK 4
+Just NA CK from 4 at 18030
+NACK 0
+Just NA CK from 0 at 18074
+NACK 7
+Just NA CK from 7 at 18075
+NACK 7
+Just NA CK from 7 at 18076
+NACK 2
+Just NA CK from 2 at 18120
+NACK 1
+Just NA CK from 1 at 18121
+NACK 2
+Just NA CK from 2 at 18122
+NACK 3
+Just NA CK from 3 at 18124
+NACK 5
+Just NA CK from 5 at 18125
+NACK 5
+Just NA CK from 5 at 18126
+NACK 7
+Just NA CK from 7 at 18170
+NACK 2
+Just NA CK from 2 at 18171
+NACK 5
+Just NA CK from 5 at 18172
+NACK 5
+Just NA CK from 5 at 18174
+NACK 7
+Just NA CK from 7 at 18175
+NACK 5
+Just NA CK from 5 at 18218
+NACK 3
+Just NA CK from 3 at 18220
+NACK 5
+Just NA CK from 5 at 18221
+NACK 1
+Just NA CK from 1 at 18222
+NACK 3
+Just NA CK from 3 at 18266
+NACK 1
+Just NA CK from 1 at 18267
+NACK 6
+Just NA CK from 6 at 18268
+NACK 2
+Just NA CK from 2 at 18312
+NACK 7
+Just NA CK from 7 at 18313
+NACK 5
+Just NA CK from 5 at 18314
+NACK 7
+Just NA CK from 7 at 18358
+NACK 0
+Just NA CK from 0 at 18359
+NACK 6
+Just NA CK from 6 at 18360
+NACK 0
+Just NA CK from 0 at 18404
+NACK 1
+Just NA CK from 1 at 18405
+NACK 2
+Just NA CK from 2 at 18407
+NACK 0
+Just NA CK from 0 at 18450
+NACK 4
+Just NA CK from 4 at 18451
+NACK 6
+Just NA CK from 6 at 18453
+NACK 3
+Just NA CK from 3 at 18496
+NACK 0
+Just NA CK from 0 at 18497
+NACK 0
+Just NA CK from 0 at 18499
+NACK 4
+Just NA CK from 4 at 18542
+NACK 6
+Just NA CK from 6 at 18544
+NACK 7
+Just NA CK from 7 at 18545
+NACK 3
+Just NA CK from 3 at 18588
+NACK 6
+Just NA CK from 6 at 18590
+NACK 7
+Just NA CK from 7 at 18591
+NACK 3
+Just NA CK from 3 at 18592
+NACK 1
+Just NA CK from 1 at 18593
+NACK 2
+Just NA CK from 2 at 18637
+NACK 7
+Just NA CK from 7 at 18638
+NACK 5
+Just NA CK from 5 at 18640
+NACK 0
+Just NA CK from 0 at 18641
+NACK 3
+Just NA CK from 3 at 18684
+NACK 4
+Just NA CK from 4 at 18686
+NACK 2
+Just NA CK from 2 at 18687
+NACK 4
+Just NA CK from 4 at 18688
+NACK 3
+Just NA CK from 3 at 18732
+NACK 1
+Just NA CK from 1 at 18733
+NACK 1
+Just NA CK from 1 at 18734
+NACK 5
+Just NA CK from 5 at 18778
+NACK 5
+Just NA CK from 5 at 18779
+NACK 4
+Just NA CK from 4 at 18780
+NACK 3
+Just NA CK from 3 at 18824
+NACK 2
+Just NA CK from 2 at 18825
+NACK 6
+Just NA CK from 6 at 18826
+NACK 0
+Just NA CK from 0 at 18870
+NACK 7
+Just NA CK from 7 at 18871
+NACK 7
+Just NA CK from 7 at 18872
+NACK 5
+Just NA CK from 5 at 18916
+NACK 7
+Just NA CK from 7 at 18917
+NACK 3
+Just NA CK from 3 at 18919
+NACK 2
+Just NA CK from 2 at 18962
+NACK 1
+Just NA CK from 1 at 18963
+NACK 1
+Just NA CK from 1 at 18965
+NACK 7
+Just NA CK from 7 at 19008
+NACK 5
+Just NA CK from 5 at 19009
+NACK 6
+Just NA CK from 6 at 19011
+NACK 0
+Just NA CK from 0 at 19012
+NACK 3
+Just NA CK from 3 at 19056
+NACK 5
+Just NA CK from 5 at 19057
+NACK 4
+Just NA CK from 4 at 19058
+NACK 5
+Just NA CK from 5 at 19059
+NACK 1
+Just NA CK from 1 at 19103
+NACK 1
+Just NA CK from 1 at 19104
+NACK 1
+Just NA CK from 1 at 19105
+NACK 0
+Just NA CK from 0 at 19107
+NACK 4
+Just NA CK from 4 at 19150
+NACK 4
+Just NA CK from 4 at 19152
+NACK 3
+Just NA CK from 3 at 19153
+NACK 6
+Just NA CK from 6 at 19154
+NACK 7
+Just NA CK from 7 at 19198
+NACK 1
+Just NA CK from 1 at 19199
+NACK 0
+Just NA CK from 0 at 19200
+NACK 4
+Just NA CK from 4 at 19244
+NACK 5
+Just NA CK from 5 at 19245
+NACK 2
+Just NA CK from 2 at 19246
+NACK 3
+Just NA CK from 3 at 19290
+NACK 6
+Just NA CK from 6 at 19291
+NACK 0
+Just NA CK from 0 at 19292
+NACK 4
+Just NA CK from 4 at 19336
+NACK 1
+Just NA CK from 1 at 19337
+NACK 5
+Just NA CK from 5 at 19338
+NACK 1
+Just NA CK from 1 at 19382
+NACK 6
+Just NA CK from 6 at 19383
+NACK 7
+Just NA CK from 7 at 19384
+NACK 0
+Just NA CK from 0 at 19428
+NACK 4
+Just NA CK from 4 at 19429
+NACK 0
+Just NA CK from 0 at 19431
+NACK 2
+Just NA CK from 2 at 19474
+NACK 3
+Just NA CK from 3 at 19475
+NACK 6
+Just NA CK from 6 at 19477
+NACK 4
+Just NA CK from 4 at 19478
+NACK 5
+Just NA CK from 5 at 19521
+NACK 2
+Just NA CK from 2 at 19523
+NACK 1
+Just NA CK from 1 at 19524
+NACK 3
+Just NA CK from 3 at 19525
+NACK 3
+Just NA CK from 3 at 19527
+NACK 0
+Just NA CK from 0 at 19570
+NACK 1
+Just NA CK from 1 at 19571
+NACK 4
+Just NA CK from 4 at 19573
+NACK 4
+Just NA CK from 4 at 19574
+NACK 7
+Just NA CK from 7 at 19617
+NACK 3
+Just NA CK from 3 at 19619
+NACK 3
+Just NA CK from 3 at 19620
+NACK 1
+Just NA CK from 1 at 19664
+NACK 6
+Just NA CK from 6 at 19665
+NACK 7
+Just NA CK from 7 at 19666
+NACK 7
+Just NA CK from 7 at 19710
+NACK 5
+Just NA CK from 5 at 19711
+NACK 5
+Just NA CK from 5 at 19712
+NACK 4
+Just NA CK from 4 at 19756
+NACK 7
+Just NA CK from 7 at 19757
+NACK 4
+Just NA CK from 4 at 19758
+NACK 0
+Just NA CK from 0 at 19802
+NACK 2
+Just NA CK from 2 at 19803
+NACK 0
+Just NA CK from 0 at 19804
+NACK 1
+Just NA CK from 1 at 19848
+NACK 5
+Just NA CK from 5 at 19849
+NACK 7
+Just NA CK from 7 at 19850
+NACK 5
+Just NA CK from 5 at 19894
+NACK 1
+Just NA CK from 1 at 19895
+NACK 1
+Just NA CK from 1 at 19896
+NACK 4
+Just NA CK from 4 at 19940
+NACK 5
+Just NA CK from 5 at 19941
+NACK 1
+Just NA CK from 1 at 19943
+NACK 2
+Just NA CK from 2 at 19944
+NACK 7
+Just NA CK from 7 at 19945
+NACK 6
+Just NA CK from 6 at 19989
+NACK 3
+Just NA CK from 3 at 19990
+NACK 6
+Just NA CK from 6 at 19991
+NACK 2
+Just NA CK from 2 at 19992
+NACK 7
+Just NA CK from 7 at 20036
+NACK 2
+Just NA CK from 2 at 20037
+NACK 1
+Just NA CK from 1 at 20039
+NACK 5
+Just NA CK from 5 at 20040
+NACK 1
+Just NA CK from 1 at 20083
+NACK 2
+Just NA CK from 2 at 20085
+NACK 1
+Just NA CK from 1 at 20086
+NACK 0
+Just NA CK from 0 at 20129
+NACK 4
+Just NA CK from 4 at 20131
+NACK 7
+Just NA CK from 7 at 20132
+NACK 3
+Just NA CK from 3 at 20176
+NACK 7
+Just NA CK from 7 at 20177
+NACK 2
+Just NA CK from 2 at 20178
+NACK 6
+Just NA CK from 6 at 20222
+NACK 7
+Just NA CK from 7 at 20223
+NACK 4
+Just NA CK from 4 at 20224
+NACK 2
+Just NA CK from 2 at 20268
+NACK 6
+Just NA CK from 6 at 20269
+NACK 7
+Just NA CK from 7 at 20270
+NACK 3
+Just NA CK from 3 at 20314
+NACK 2
+Just NA CK from 2 at 20315
+NACK 2
+Just NA CK from 2 at 20316
+NACK 1
+Just NA CK from 1 at 20360
+NACK 4
+Just NA CK from 4 at 20361
+NACK 1
+Just NA CK from 1 at 20362
+NACK 6
+Just NA CK from 6 at 20364
+NACK 0
+Just NA CK from 0 at 20407
+NACK 0
+Just NA CK from 0 at 20408
+NACK 5
+Just NA CK from 5 at 20410
+NACK 4
+Just NA CK from 4 at 20411
+NACK 7
+Just NA CK from 7 at 20455
+NACK 6
+Just NA CK from 6 at 20456
+NACK 3
+Just NA CK from 3 at 20457
+NACK 2
+Just NA CK from 2 at 20458
+NACK 0
+Just NA CK from 0 at 20502
+NACK 5
+Just NA CK from 5 at 20503
+NACK 7
+Just NA CK from 7 at 20504
+NACK 6
+Just NA CK from 6 at 20506
+NACK 6
+Just NA CK from 6 at 20549
+NACK 3
+Just NA CK from 3 at 20551
+NACK 3
+Just NA CK from 3 at 20552
+NACK 0
+Just NA CK from 0 at 20595
+NACK 2
+Just NA CK from 2 at 20597
+NACK 6
+Just NA CK from 6 at 20598
+NACK 7
+Just NA CK from 7 at 20641
+NACK 7
+Just NA CK from 7 at 20643
+NACK 1
+Just NA CK from 1 at 20644
+NACK 4
+Just NA CK from 4 at 20688
+NACK 7
+Just NA CK from 7 at 20689
+NACK 0
+Just NA CK from 0 at 20690
+NACK 4
+Just NA CK from 4 at 20734
+NACK 0
+Just NA CK from 0 at 20735
+NACK 1
+Just NA CK from 1 at 20736
+NACK 1
+Just NA CK from 1 at 20780
+NACK 1
+Just NA CK from 1 at 20781
+NACK 6
+Just NA CK from 6 at 20782
+NACK 3
+Just NA CK from 3 at 20826
+NACK 0
+Just NA CK from 0 at 20827
+NACK 2
+Just NA CK from 2 at 20828
+NACK 7
+Just NA CK from 7 at 20830
+NACK 0
+Just NA CK from 0 at 20873
+NACK 5
+Just NA CK from 5 at 20874
+NACK 3
+Just NA CK from 3 at 20876
+NACK 7
+Just NA CK from 7 at 20877
+NACK 2
+Just NA CK from 2 at 20878
+NACK 7
+Just NA CK from 7 at 20922
+NACK 5
+Just NA CK from 5 at 20923
+NACK 3
+Just NA CK from 3 at 20924
+NACK 2
+Just NA CK from 2 at 20926
+NACK 4
+Just NA CK from 4 at 20969
+NACK 4
+Just NA CK from 4 at 20970
+NACK 7
+Just NA CK from 7 at 20972
+NACK 4
+Just NA CK from 4 at 21015
+NACK 6
+Just NA CK from 6 at 21016
+NACK 3
+Just NA CK from 3 at 21018
+NACK 1
+Just NA CK from 1 at 21061
+NACK 5
+Just NA CK from 5 at 21063
+NACK 0
+Just NA CK from 0 at 21064
+NACK 2
+Just NA CK from 2 at 21107
+NACK 1
+Just NA CK from 1 at 21109
+NACK 6
+Just NA CK from 6 at 21110
+NACK 7
+Just NA CK from 7 at 21153
+NACK 7
+Just NA CK from 7 at 21155
+NACK 3
+Just NA CK from 3 at 21156
+NACK 3
+Just NA CK from 3 at 21200
+NACK 3
+Just NA CK from 3 at 21201
+NACK 4
+Just NA CK from 4 at 21202
+NACK 2
+Just NA CK from 2 at 21246
+NACK 4
+Just NA CK from 4 at 21247
+NACK 2
+Just NA CK from 2 at 21248
+NACK 0
+Just NA CK from 0 at 21292
+NACK 4
+Just NA CK from 4 at 21293
+NACK 1
+Just NA CK from 1 at 21294
+NACK 7
+Just NA CK from 7 at 21296
+NACK 0
+Just NA CK from 0 at 21297
+NACK 6
+Just NA CK from 6 at 21340
+NACK 5
+Just NA CK from 5 at 21342
+NACK 6
+Just NA CK from 6 at 21343
+NACK 0
+Just NA CK from 0 at 21344
+NACK 4
+Just NA CK from 4 at 21388
+NACK 1
+Just NA CK from 1 at 21389
+NACK 3
+Just NA CK from 3 at 21390
+NACK 0
+Just NA CK from 0 at 21392
+NACK 6
+Just NA CK from 6 at 21435
+NACK 7
+Just NA CK from 7 at 21436
+NACK 5
+Just NA CK from 5 at 21438
+NACK 5
+Just NA CK from 5 at 21481
+NACK 3
+Just NA CK from 3 at 21482
+NACK 5
+Just NA CK from 5 at 21484
+NACK 0
+Just NA CK from 0 at 21527
+NACK 7
+Just NA CK from 7 at 21528
+NACK 6
+Just NA CK from 6 at 21530
+NACK 3
+Just NA CK from 3 at 21573
+NACK 2
+Just NA CK from 2 at 21575
+NACK 3
+Just NA CK from 3 at 21576
+NACK 7
+Just NA CK from 7 at 21619
+NACK 0
+Just NA CK from 0 at 21621
+NACK 4
+Just NA CK from 4 at 21622
+NACK 3
+Just NA CK from 3 at 21665
+NACK 2
+Just NA CK from 2 at 21667
+NACK 5
+Just NA CK from 5 at 21668
+NACK 4
+Just NA CK from 4 at 21712
+NACK 6
+Just NA CK from 6 at 21713
+NACK 0
+Just NA CK from 0 at 21714
+NACK 5
+Just NA CK from 5 at 21715
+NACK 0
+Just NA CK from 0 at 21759
+NACK 5
+Just NA CK from 5 at 21760
+NACK 7
+Just NA CK from 7 at 21761
+NACK 6
+Just NA CK from 6 at 21763
+NACK 0
+Just NA CK from 0 at 21806
+NACK 1
+Just NA CK from 1 at 21808
+NACK 3
+Just NA CK from 3 at 21809
+NACK 6
+Just NA CK from 6 at 21810
+NACK 2
+Just NA CK from 2 at 21854
+NACK 2
+Just NA CK from 2 at 21855
+NACK 6
+Just NA CK from 6 at 21856
+NACK 6
+Just NA CK from 6 at 21857
+NACK 5
+Just NA CK from 5 at 21901
+NACK 5
+Just NA CK from 5 at 21902
+NACK 4
+Just NA CK from 4 at 21904
+NACK 3
+Just NA CK from 3 at 21947
+NACK 2
+Just NA CK from 2 at 21948
+NACK 6
+Just NA CK from 6 at 21950
+NACK 6
+Just NA CK from 6 at 21993
+NACK 7
+Just NA CK from 7 at 21994
+NACK 6
+Just NA CK from 6 at 21996
+NACK 2
+Just NA CK from 2 at 22039
+NACK 1
+Just NA CK from 1 at 22040
+NACK 0
+Just NA CK from 0 at 22042
+NACK 6
+Just NA CK from 6 at 22085
+NACK 0
+Just NA CK from 0 at 22087
+NACK 0
+Just NA CK from 0 at 22088
+NACK 3
+Just NA CK from 3 at 22131
+NACK 2
+Just NA CK from 2 at 22133
+NACK 2
+Just NA CK from 2 at 22134
+NACK 1
+Just NA CK from 1 at 22177
+NACK 5
+Just NA CK from 5 at 22179
+NACK 5
+Just NA CK from 5 at 22180
+NACK 7
+Just NA CK from 7 at 22181
+NACK 1
+Just NA CK from 1 at 22225
+NACK 6
+Just NA CK from 6 at 22226
+NACK 4
+Just NA CK from 4 at 22227
+NACK 3
+Just NA CK from 3 at 22229
+NACK 7
+Just NA CK from 7 at 22230
+NACK 2
+Just NA CK from 2 at 22273
+NACK 6
+Just NA CK from 6 at 22275
+NACK 5
+Just NA CK from 5 at 22276
+NACK 6
+Just NA CK from 6 at 22277
+NACK 7
+Just NA CK from 7 at 22321
+NACK 5
+Just NA CK from 5 at 22322
+NACK 2
+Just NA CK from 2 at 22323
+NACK 0
+Just NA CK from 0 at 22367
+NACK 6
+Just NA CK from 6 at 22368
+NACK 0
+Just NA CK from 0 at 22369
+NACK 0
+Just NA CK from 0 at 22413
+NACK 0
+Just NA CK from 0 at 22414
+NACK 2
+Just NA CK from 2 at 22416
+NACK 5
+Just NA CK from 5 at 22459
+NACK 7
+Just NA CK from 7 at 22460
+NACK 6
+Just NA CK from 6 at 22462
+NACK 2
+Just NA CK from 2 at 22505
+NACK 1
+Just NA CK from 1 at 22506
+NACK 7
+Just NA CK from 7 at 22508
+NACK 5
+Just NA CK from 5 at 22551
+NACK 5
+Just NA CK from 5 at 22552
+NACK 3
+Just NA CK from 3 at 22554
+NACK 2
+Just NA CK from 2 at 22597
+NACK 0
+Just NA CK from 0 at 22599
+NACK 0
+Just NA CK from 0 at 22600
+NACK 6
+Just NA CK from 6 at 22643
+NACK 5
+Just NA CK from 5 at 22645
+NACK 7
+Just NA CK from 7 at 22646
+NACK 0
+Just NA CK from 0 at 22647
+NACK 6
+Just NA CK from 6 at 22648
+NACK 7
+Just NA CK from 7 at 22692
+NACK 5
+Just NA CK from 5 at 22693
+NACK 0
+Just NA CK from 0 at 22695
+NACK 3
+Just NA CK from 3 at 22696
+NACK 1
+Just NA CK from 1 at 22739
+NACK 7
+Just NA CK from 7 at 22741
+NACK 1
+Just NA CK from 1 at 22742
+NACK 0
+Just NA CK from 0 at 22743
+NACK 3
+Just NA CK from 3 at 22787
+NACK 5
+Just NA CK from 5 at 22788
+NACK 1
+Just NA CK from 1 at 22789
+NACK 5
+Just NA CK from 5 at 22833
+NACK 3
+Just NA CK from 3 at 22834
+NACK 6
+Just NA CK from 6 at 22835
+NACK 5
+Just NA CK from 5 at 22879
+NACK 0
+Just NA CK from 0 at 22880
+NACK 2
+Just NA CK from 2 at 22881
+NACK 6
+Just NA CK from 6 at 22925
+NACK 5
+Just NA CK from 5 at 22926
+NACK 4
+Just NA CK from 4 at 22928
+NACK 2
+Just NA CK from 2 at 22971
+NACK 2
+Just NA CK from 2 at 22972
+NACK 2
+Just NA CK from 2 at 22974
+NACK 1
+Just NA CK from 1 at 23017
+NACK 0
+Just NA CK from 0 at 23018
+NACK 6
+Just NA CK from 6 at 23020
+NACK 6
+Just NA CK from 6 at 23063
+NACK 4
+Just NA CK from 4 at 23064
+NACK 6
+Just NA CK from 6 at 23066
+NACK 5
+Just NA CK from 5 at 23067
+NACK 7
+Just NA CK from 7 at 23111
+NACK 2
+Just NA CK from 2 at 23112
+NACK 3
+Just NA CK from 3 at 23113
+NACK 3
+Just NA CK from 3 at 23114
+NACK 3
+Just NA CK from 3 at 23158
+NACK 3
+Just NA CK from 3 at 23159
+NACK 7
+Just NA CK from 7 at 23160
+NACK 4
+Just NA CK from 4 at 23162
+NACK 7
+Just NA CK from 7 at 23205
+NACK 0
+Just NA CK from 0 at 23207
+NACK 5
+Just NA CK from 5 at 23208
+NACK 1
+Just NA CK from 1 at 23209
+NACK 5
+Just NA CK from 5 at 23253
+NACK 6
+Just NA CK from 6 at 23254
+NACK 1
+Just NA CK from 1 at 23255
+NACK 6
+Just NA CK from 6 at 23299
+NACK 1
+Just NA CK from 1 at 23300
+NACK 6
+Just NA CK from 6 at 23301
+NACK 2
+Just NA CK from 2 at 23345
+NACK 2
+Just NA CK from 2 at 23346
+NACK 0
+Just NA CK from 0 at 23347
+NACK 5
+Just NA CK from 5 at 23391
+NACK 5
+Just NA CK from 5 at 23392
+NACK 2
+Just NA CK from 2 at 23393
+NACK 2
+Just NA CK from 2 at 23437
+NACK 1
+Just NA CK from 1 at 23438
+NACK 7
+Just NA CK from 7 at 23440
+NACK 4
+Just NA CK from 4 at 23483
+NACK 7
+Just NA CK from 7 at 23484
+NACK 3
+Just NA CK from 3 at 23486
+NACK 0
+Just NA CK from 0 at 23529
+NACK 0
+Just NA CK from 0 at 23530
+NACK 3
+Just NA CK from 3 at 23532
+NACK 7
+Just NA CK from 7 at 23533
+NACK 2
+Just NA CK from 2 at 23576
+NACK 4
+Just NA CK from 4 at 23578
+NACK 2
+Just NA CK from 2 at 23579
+NACK 1
+Just NA CK from 1 at 23580
+NACK 6
+Just NA CK from 6 at 23582
+NACK 4
+Just NA CK from 4 at 23625
+NACK 0
+Just NA CK from 0 at 23626
+NACK 5
+Just NA CK from 5 at 23628
+NACK 4
+Just NA CK from 4 at 23629
+NACK 3
+Just NA CK from 3 at 23672
+NACK 6
+Just NA CK from 6 at 23674
+NACK 1
+Just NA CK from 1 at 23675
+NACK 5
+Just NA CK from 5 at 23719
+NACK 4
+Just NA CK from 4 at 23720
+NACK 1
+Just NA CK from 1 at 23721
+NACK 2
+Just NA CK from 2 at 23765
+NACK 1
+Just NA CK from 1 at 23766
+NACK 4
+Just NA CK from 4 at 23767
+NACK 5
+Just NA CK from 5 at 23811
+NACK 2
+Just NA CK from 2 at 23812
+NACK 5
+Just NA CK from 5 at 23813
+NACK 6
+Just NA CK from 6 at 23857
+NACK 7
+Just NA CK from 7 at 23858
+NACK 1
+Just NA CK from 1 at 23859
+NACK 1
+Just NA CK from 1 at 23903
+NACK 2
+Just NA CK from 2 at 23904
+NACK 2
+Just NA CK from 2 at 23905
+NACK 4
+Just NA CK from 4 at 23949
+NACK 1
+Just NA CK from 1 at 23950
+NACK 3
+Just NA CK from 3 at 23952
+NACK 2
+Just NA CK from 2 at 23995
+NACK 6
+Just NA CK from 6 at 23996
+NACK 3
+Just NA CK from 3 at 23998
+NACK 1
+Just NA CK from 1 at 23999
+NACK 1
+Just NA CK from 1 at 24000
+NACK 5
+Just NA CK from 5 at 24044
+NACK 0
+Just NA CK from 0 at 24045
+NACK 2
+Just NA CK from 2 at 24046
+NACK 2
+Just NA CK from 2 at 24048
+NACK 5
+Just NA CK from 5 at 24091
+NACK 6
+Just NA CK from 6 at 24092
+NACK 5
+Just NA CK from 5 at 24094
+NACK 1
+Just NA CK from 1 at 24095
+NACK 7
+Just NA CK from 7 at 24138
+NACK 3
+Just NA CK from 3 at 24140
+NACK 6
+Just NA CK from 6 at 24141
+NACK 4
+Just NA CK from 4 at 24184
+NACK 0
+Just NA CK from 0 at 24186
+NACK 4
+Just NA CK from 4 at 24187
+NACK 6
+Just NA CK from 6 at 24231
+NACK 2
+Just NA CK from 2 at 24232
+NACK 3
+Just NA CK from 3 at 24233
+NACK 0
+Just NA CK from 0 at 24277
+NACK 2
+Just NA CK from 2 at 24278
+NACK 7
+Just NA CK from 7 at 24279
+NACK 6
+Just NA CK from 6 at 24323
+NACK 5
+Just NA CK from 5 at 24324
+NACK 6
+Just NA CK from 6 at 24325
+NACK 7
+Just NA CK from 7 at 24369
+NACK 3
+Just NA CK from 3 at 24370
+NACK 2
+Just NA CK from 2 at 24371
+NACK 7
+Just NA CK from 7 at 24415
+NACK 6
+Just NA CK from 6 at 24416
+NACK 2
+Just NA CK from 2 at 24417
+NACK 4
+Just NA CK from 4 at 24419
+NACK 4
+Just NA CK from 4 at 24462
+NACK 6
+Just NA CK from 6 at 24464
+NACK 0
+Just NA CK from 0 at 24465
+NACK 2
+Just NA CK from 2 at 24466
+NACK 7
+Just NA CK from 7 at 24510
+NACK 2
+Just NA CK from 2 at 24511
+NACK 3
+Just NA CK from 3 at 24512
+NACK 5
+Just NA CK from 5 at 24513
+NACK 2
+Just NA CK from 2 at 24557
+NACK 2
+Just NA CK from 2 at 24558
+NACK 1
+Just NA CK from 1 at 24560
+NACK 4
+Just NA CK from 4 at 24561
+NACK 6
+Just NA CK from 6 at 24604
+NACK 2
+Just NA CK from 2 at 24606
+NACK 6
+Just NA CK from 6 at 24607
+NACK 4
+Just NA CK from 4 at 24650
+NACK 2
+Just NA CK from 2 at 24652
+NACK 6
+Just NA CK from 6 at 24653
+NACK 7
+Just NA CK from 7 at 24696
+NACK 3
+Just NA CK from 3 at 24698
+NACK 6
+Just NA CK from 6 at 24699
+NACK 4
+Just NA CK from 4 at 24743
+NACK 1
+Just NA CK from 1 at 24744
+NACK 7
+Just NA CK from 7 at 24745
+NACK 1
+Just NA CK from 1 at 24789
+NACK 3
+Just NA CK from 3 at 24790
+NACK 3
+Just NA CK from 3 at 24791
+NACK 3
+Just NA CK from 3 at 24835
+NACK 6
+Just NA CK from 6 at 24836
+NACK 6
+Just NA CK from 6 at 24837
+NACK 4
+Just NA CK from 4 at 24881
+NACK 5
+Just NA CK from 5 at 24882
+NACK 7
+Just NA CK from 7 at 24883
+NACK 5
+Just NA CK from 5 at 24885
+NACK 3
+Just NA CK from 3 at 24928
+NACK 0
+Just NA CK from 0 at 24929
+NACK 1
+Just NA CK from 1 at 24931
+NACK 3
+Just NA CK from 3 at 24932
+NACK 1
+Just NA CK from 1 at 24933
+NACK 2
+Just NA CK from 2 at 24977
+NACK 4
+Just NA CK from 4 at 24978
+NACK 7
+Just NA CK from 7 at 24979
+NACK 3
+Just NA CK from 3 at 24981
+NACK 3
+Just NA CK from 3 at 25024
+NACK 2
+Just NA CK from 2 at 25025
+NACK 0
+Just NA CK from 0 at 25027
+NACK 1
+Just NA CK from 1 at 25070
+NACK 5
+Just NA CK from 5 at 25072
+NACK 1
+Just NA CK from 1 at 25073
+NACK 5
+Just NA CK from 5 at 25116
+NACK 4
+Just NA CK from 4 at 25118
+NACK 0
+Just NA CK from 0 at 25119
+NACK 1
+Just NA CK from 1 at 25162
+NACK 3
+Just NA CK from 3 at 25164
+NACK 7
+Just NA CK from 7 at 25165
+NACK 1
+Just NA CK from 1 at 25208
+NACK 7
+Just NA CK from 7 at 25210
+NACK 1
+Just NA CK from 1 at 25211
+NACK 6
+Just NA CK from 6 at 25255
+NACK 6
+Just NA CK from 6 at 25256
+NACK 6
+Just NA CK from 6 at 25257
+NACK 7
+Just NA CK from 7 at 25301
+NACK 0
+Just NA CK from 0 at 25302
+NACK 2
+Just NA CK from 2 at 25303
+NACK 4
+Just NA CK from 4 at 25347
+NACK 0
+Just NA CK from 0 at 25348
+NACK 1
+Just NA CK from 1 at 25349
+NACK 4
+Just NA CK from 4 at 25351
+NACK 6
+Just NA CK from 6 at 25352
+NACK 2
+Just NA CK from 2 at 25395
+NACK 2
+Just NA CK from 2 at 25397
+NACK 2
+Just NA CK from 2 at 25398
+NACK 4
+Just NA CK from 4 at 25399
+NACK 0
+Just NA CK from 0 at 25443
+NACK 4
+Just NA CK from 4 at 25444
+NACK 7
+Just NA CK from 7 at 25445
+NACK 7
+Just NA CK from 7 at 25447
+NACK 4
+Just NA CK from 4 at 25490
+NACK 7
+Just NA CK from 7 at 25491
+NACK 4
+Just NA CK from 4 at 25493
+NACK 7
+Just NA CK from 7 at 25536
+NACK 7
+Just NA CK from 7 at 25537
+NACK 2
+Just NA CK from 2 at 25539
+NACK 3
+Just NA CK from 3 at 25582
+NACK 1
+Just NA CK from 1 at 25584
+NACK 3
+Just NA CK from 3 at 25585
+NACK 6
+Just NA CK from 6 at 25628
+NACK 4
+Just NA CK from 4 at 25630
+NACK 0
+Just NA CK from 0 at 25673
+NACK 3
+Just NA CK from 3 at 25674
+NACK 0
+Just NA CK from 0 at 25718
+NACK 4
+Just NA CK from 4 at 25719
+NACK 6
+Just NA CK from 6 at 25763
+NACK 7
+Just NA CK from 7 at 25764
+NACK 6
+Just NA CK from 6 at 25808
+NACK 7
+Just NA CK from 7 at 25809
+NACK 1
+Just NA CK from 1 at 25810
+NACK 1
+Just NA CK from 1 at 25854
+NACK 0
+Just NA CK from 0 at 25855
+NACK 0
+Just NA CK from 0 at 25898
+NACK 7
+Just NA CK from 7 at 25900
+NACK 0
+Just NA CK from 0 at 25901
+NACK 2
+Just NA CK from 2 at 25944
+NACK 5
+Just NA CK from 5 at 25946
+NACK 1
+Just NA CK from 1 at 25947
+NACK 4
+Just NA CK from 4 at 25991
+NACK 5
+Just NA CK from 5 at 25992
+NACK 4
+Just NA CK from 4 at 25993
+NACK 6
+Just NA CK from 6 at 26037
+NACK 3
+Just NA CK from 3 at 26038
+NACK 0
+Just NA CK from 0 at 26081
+NACK 7
+Just NA CK from 7 at 26083
+NACK 2
+Just NA CK from 2 at 26126
+NACK 0
+Just NA CK from 0 at 26128
+NACK 0
+Just NA CK from 0 at 26171
+NACK 3
+Just NA CK from 3 at 26172
+NACK 4
+Just NA CK from 4 at 26216
+NACK 5
+Just NA CK from 5 at 26217
+NACK 7
+Just NA CK from 7 at 26261
+NACK 2
+Just NA CK from 2 at 26262
+NACK 6
+Just NA CK from 6 at 26305
+NACK 1
+Just NA CK from 1 at 26307
+NACK 4
+Just NA CK from 4 at 26350
+NACK 3
+Just NA CK from 3 at 26352
+NACK 7
+Just NA CK from 7 at 26395
+NACK 1
+Just NA CK from 1 at 26396
+NACK 3
+Just NA CK from 3 at 26440
+NACK 3
+Just NA CK from 3 at 26441
+NACK 7
+Just NA CK from 7 at 26485
+NACK 1
+Just NA CK from 1 at 26486
+NACK 6
+Just NA CK from 6 at 26529
+NACK 3
+Just NA CK from 3 at 26531
+NACK 4
+Just NA CK from 4 at 26574
+NACK 4
+Just NA CK from 4 at 26576
+NACK 0
+Just NA CK from 0 at 26577
+NACK 3
+Just NA CK from 3 at 26620
+NACK 5
+Just NA CK from 5 at 26622
+NACK 5
+Just NA CK from 5 at 26623
+NACK 5
+Just NA CK from 5 at 26666
+NACK 6
+Just NA CK from 6 at 26668
+NACK 3
+Just NA CK from 3 at 26669
+NACK 7
+Just NA CK from 7 at 26712
+NACK 2
+Just NA CK from 2 at 26714
+NACK 6
+Just NA CK from 6 at 26757
+NACK 2
+Just NA CK from 2 at 26759
+NACK 4
+Just NA CK from 4 at 26802
+NACK 1
+Just NA CK from 1 at 26803
+NACK 1
+Just NA CK from 1 at 26847
+NACK 2
+Just NA CK from 2 at 26848
+NACK 7
+Just NA CK from 7 at 26892
+NACK 2
+Just NA CK from 2 at 26893
+NACK 6
+Just NA CK from 6 at 26936
+NACK 2
+Just NA CK from 2 at 26938
+NACK 6
+Just NA CK from 6 at 26981
+NACK 3
+Just NA CK from 3 at 26983
+NACK 5
+Just NA CK from 5 at 27026
+NACK 2
+Just NA CK from 2 at 27027
+NACK 6
+Just NA CK from 6 at 27071
+NACK 0
+Just NA CK from 0 at 27072
+NACK 5
+Just NA CK from 5 at 27116
+NACK 3
+Just NA CK from 3 at 27117
+NACK 5
+Just NA CK from 5 at 27160
+NACK 5
+Just NA CK from 5 at 27162
+NACK 6
+Just NA CK from 6 at 27205
+NACK 5
+Just NA CK from 5 at 27207
+NACK 1
+Just NA CK from 1 at 27250
+NACK 0
+Just NA CK from 0 at 27251
+NACK 2
+Just NA CK from 2 at 27253
+NACK 7
+Just NA CK from 7 at 27296
+NACK 5
+Just NA CK from 5 at 27297
+NACK 6
+Just NA CK from 6 at 27341
+NACK 7
+Just NA CK from 7 at 27384
+NACK 4
+Just NA CK from 4 at 27428
 Decrease
 Decrease
 Decrease
@@ -1023,1690 +2582,667 @@ Decrease
 Decrease
 Decrease
 Decrease
-Flow Finished 96@48@0 at 58869440
-Flow uecsrc finished at 0.0588694
-Flow uecsrc completion time is 0.0588694
-Completion Time Flow is 58869440Running - 1 - 58869440
-Updated - Time 58869440
-..... Received a MSG -- host 48 to target 96, proc 0 - Type 1
-----------------------------    ENTERING WHILE        // ---------------------------- | 58869440 58869440 -  1 0 - 1 0 1 - 48 96 0
-OP MSGnexto[elem.host][elem.proc] 0 (48 0) - nextgr[elem.host][elem.nic] 0( 48  0) - time  58869440
-++ size is 1,  host [48] searching matching queue for src target 96 tag 0
-Compared element is -> 96 0 vs 96 0
-Searching for MATCHCurrent elem time is 58869440 while NS3 58869440
-Simulating Until Called
-Flow Finished 77@62@0 at 59041920
-Flow uecsrc finished at 0.0590419
-Flow uecsrc completion time is 0.0590419
-Completion Time Flow is 59041920Running - 1 - 59041920
-Updated - Time 59041920
-..... Received a MSG -- host 62 to target 77, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59041920 59041920 -  1 0 - 1 0 1 - 62 77 0
-OP MSGnexto[elem.host][elem.proc] 0 (62 0) - nextgr[elem.host][elem.nic] 0( 62  0) - time  59041920
-++ size is 1,  host [62] searching matching queue for src target 77 tag 0
-Compared element is -> 77 0 vs 77 0
-Searching for MATCHCurrent elem time is 59041920 while NS3 59041920
-Simulating Until Called
-Flow Finished 102@14@0 at 59099840
-Flow uecsrc finished at 0.0590998
-Flow uecsrc completion time is 0.0590998
-Completion Time Flow is 59099840Running - 1 - 59099840
-Updated - Time 59099840
-..... Received a MSG -- host 14 to target 102, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59099840 59099840 -  1 0 - 1 0 1 - 14 102 0
-OP MSGnexto[elem.host][elem.proc] 0 (14 0) - nextgr[elem.host][elem.nic] 0( 14  0) - time  59099840
-++ size is 1,  host [14] searching matching queue for src target 102 tag 0
-Compared element is -> 102 0 vs 102 0
-Searching for MATCHCurrent elem time is 59099840 while NS3 59099840
-Simulating Until Called
-Flow Finished 125@45@0 at 59125440
-Flow uecsrc finished at 0.0591254
-Flow uecsrc completion time is 0.0591254
-Completion Time Flow is 59125440Running - 1 - 59125440
-Updated - Time 59125440
-..... Received a MSG -- host 45 to target 125, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59125440 59125440 -  1 0 - 1 0 1 - 45 125 0
-OP MSGnexto[elem.host][elem.proc] 0 (45 0) - nextgr[elem.host][elem.nic] 0( 45  0) - time  59125440
-++ size is 1,  host [45] searching matching queue for src target 125 tag 0
-Compared element is -> 125 0 vs 125 0
-Searching for MATCHCurrent elem time is 59125440 while NS3 59125440
-Simulating Until Called
-Flow Finished 104@32@0 at 59216000
-Flow uecsrc finished at 0.059216
-Flow uecsrc completion time is 0.059216
-Completion Time Flow is 59216000Running - 1 - 59216000
-Updated - Time 59216000
-..... Received a MSG -- host 32 to target 104, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59216000 59216000 -  1 0 - 1 0 1 - 32 104 0
-OP MSGnexto[elem.host][elem.proc] 0 (32 0) - nextgr[elem.host][elem.nic] 0( 32  0) - time  59216000
-++ size is 1,  host [32] searching matching queue for src target 104 tag 0
-Compared element is -> 104 0 vs 104 0
-Searching for MATCHCurrent elem time is 59216000 while NS3 59216000
-Simulating Until Called
-Flow Finished 64@33@0 at 59424000
-Flow uecsrc finished at 0.059424
-Flow uecsrc completion time is 0.059424
-Completion Time Flow is 59424000Running - 1 - 59424000
-Updated - Time 59424000
-..... Received a MSG -- host 33 to target 64, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59424000 59424000 -  1 0 - 1 0 1 - 33 64 0
-OP MSGnexto[elem.host][elem.proc] 0 (33 0) - nextgr[elem.host][elem.nic] 0( 33  0) - time  59424000
-++ size is 1,  host [33] searching matching queue for src target 64 tag 0
-Compared element is -> 64 0 vs 64 0
-Searching for MATCHCurrent elem time is 59424000 while NS3 59424000
-Simulating Until Called
-Flow Finished 126@4@0 at 59468480
-Flow uecsrc finished at 0.0594685
-Flow uecsrc completion time is 0.0594685
-Completion Time Flow is 59468480Running - 1 - 59468480
-Updated - Time 59468480
-..... Received a MSG -- host 4 to target 126, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59468480 59468480 -  1 0 - 1 0 1 - 4 126 0
-OP MSGnexto[elem.host][elem.proc] 0 (4 0) - nextgr[elem.host][elem.nic] 0( 4  0) - time  59468480
-++ size is 1,  host [4] searching matching queue for src target 126 tag 0
-Compared element is -> 126 0 vs 126 0
-Searching for MATCHCurrent elem time is 59468480 while NS3 59468480
-Simulating Until Called
-Flow Finished 114@53@0 at 59555520
-Flow uecsrc finished at 0.0595555
-Flow uecsrc completion time is 0.0595555
-Completion Time Flow is 59555520Running - 1 - 59555520
-Updated - Time 59555520
-..... Received a MSG -- host 53 to target 114, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59555520 59555520 -  1 0 - 1 0 1 - 53 114 0
-OP MSGnexto[elem.host][elem.proc] 0 (53 0) - nextgr[elem.host][elem.nic] 0( 53  0) - time  59555520
-++ size is 1,  host [53] searching matching queue for src target 114 tag 0
-Compared element is -> 114 0 vs 114 0
-Searching for MATCHCurrent elem time is 59555520 while NS3 59555520
-Simulating Until Called
-Flow Finished 12@92@0 at 59586240
-Flow uecsrc finished at 0.0595862
-Flow uecsrc completion time is 0.0595862
-Completion Time Flow is 59586240Running - 1 - 59586240
-Updated - Time 59586240
-..... Received a MSG -- host 92 to target 12, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59586240 59586240 -  1 0 - 1 0 1 - 92 12 0
-OP MSGnexto[elem.host][elem.proc] 0 (92 0) - nextgr[elem.host][elem.nic] 0( 92  0) - time  59586240
-++ size is 1,  host [92] searching matching queue for src target 12 tag 0
-Compared element is -> 12 0 vs 12 0
-Searching for MATCHCurrent elem time is 59586240 while NS3 59586240
-Simulating Until Called
-Flow Finished 100@54@0 at 59603200
-Flow uecsrc finished at 0.0596032
-Flow uecsrc completion time is 0.0596032
-Completion Time Flow is 59603200Running - 1 - 59603200
-Updated - Time 59603200
-..... Received a MSG -- host 54 to target 100, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59603200 59603200 -  1 0 - 1 0 1 - 54 100 0
-OP MSGnexto[elem.host][elem.proc] 0 (54 0) - nextgr[elem.host][elem.nic] 0( 54  0) - time  59603200
-++ size is 1,  host [54] searching matching queue for src target 100 tag 0
-Compared element is -> 100 0 vs 100 0
-Searching for MATCHCurrent elem time is 59603200 while NS3 59603200
-Simulating Until Called
-Decrease
-Flow Finished 54@76@0 at 59647680
-Flow uecsrc finished at 0.0596477
-Flow uecsrc completion time is 0.0596477
-Completion Time Flow is 59647680Running - 1 - 59647680
-Updated - Time 59647680
-..... Received a MSG -- host 76 to target 54, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59647680 59647680 -  1 0 - 1 0 1 - 76 54 0
-OP MSGnexto[elem.host][elem.proc] 0 (76 0) - nextgr[elem.host][elem.nic] 0( 76  0) - time  59647680
-++ size is 1,  host [76] searching matching queue for src target 54 tag 0
-Compared element is -> 54 0 vs 54 0
-Searching for MATCHCurrent elem time is 59647680 while NS3 59647680
-Simulating Until Called
-Flow Finished 52@118@0 at 59654400
-Flow uecsrc finished at 0.0596544
-Flow uecsrc completion time is 0.0596544
-Completion Time Flow is 59654400Running - 1 - 59654400
-Updated - Time 59654400
-..... Received a MSG -- host 118 to target 52, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59654400 59654400 -  1 0 - 1 0 1 - 118 52 0
-OP MSGnexto[elem.host][elem.proc] 0 (118 0) - nextgr[elem.host][elem.nic] 0( 118  0) - time  59654400
-++ size is 1,  host [118] searching matching queue for src target 52 tag 0
-Compared element is -> 52 0 vs 52 0
-Searching for MATCHCurrent elem time is 59654400 while NS3 59654400
-Simulating Until Called
-Flow Finished 47@98@0 at 59678080
-Flow uecsrc finished at 0.0596781
-Flow uecsrc completion time is 0.0596781
-Completion Time Flow is 59678080Running - 1 - 59678080
-Updated - Time 59678080
-..... Received a MSG -- host 98 to target 47, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59678080 59678080 -  1 0 - 1 0 1 - 98 47 0
-OP MSGnexto[elem.host][elem.proc] 0 (98 0) - nextgr[elem.host][elem.nic] 0( 98  0) - time  59678080
-++ size is 1,  host [98] searching matching queue for src target 47 tag 0
-Compared element is -> 47 0 vs 47 0
-Searching for MATCHCurrent elem time is 59678080 while NS3 59678080
-Simulating Until Called
-Flow Finished 74@9@0 at 59678400
-Flow uecsrc finished at 0.0596784
-Flow uecsrc completion time is 0.0596784
-Completion Time Flow is 59678400Running - 1 - 59678400
-Updated - Time 59678400
-..... Received a MSG -- host 9 to target 74, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59678400 59678400 -  1 0 - 1 0 1 - 9 74 0
-OP MSGnexto[elem.host][elem.proc] 0 (9 0) - nextgr[elem.host][elem.nic] 0( 9  0) - time  59678400
-++ size is 1,  host [9] searching matching queue for src target 74 tag 0
-Compared element is -> 74 0 vs 74 0
-Searching for MATCHCurrent elem time is 59678400 while NS3 59678400
-Simulating Until Called
-Flow Finished 115@63@0 at 59693760
-Flow uecsrc finished at 0.0596938
-Flow uecsrc completion time is 0.0596938
-Completion Time Flow is 59693760Running - 1 - 59693760
-Updated - Time 59693760
-..... Received a MSG -- host 63 to target 115, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59693760 59693760 -  1 0 - 1 0 1 - 63 115 0
-OP MSGnexto[elem.host][elem.proc] 0 (63 0) - nextgr[elem.host][elem.nic] 0( 63  0) - time  59693760
-++ size is 1,  host [63] searching matching queue for src target 115 tag 0
-Compared element is -> 115 0 vs 115 0
-Searching for MATCHCurrent elem time is 59693760 while NS3 59693760
-Simulating Until Called
-Flow Finished 108@57@0 at 59695360
-Flow uecsrc finished at 0.0596954
-Flow uecsrc completion time is 0.0596954
-Completion Time Flow is 59695360Running - 1 - 59695360
-Updated - Time 59695360
-..... Received a MSG -- host 57 to target 108, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59695360 59695360 -  1 0 - 1 0 1 - 57 108 0
-OP MSGnexto[elem.host][elem.proc] 0 (57 0) - nextgr[elem.host][elem.nic] 0( 57  0) - time  59695360
-++ size is 1,  host [57] searching matching queue for src target 108 tag 0
-Compared element is -> 108 0 vs 108 0
-Searching for MATCHCurrent elem time is 59695360 while NS3 59695360
-Simulating Until Called
-Flow Finished 122@20@0 at 59702400
-Flow uecsrc finished at 0.0597024
-Flow uecsrc completion time is 0.0597024
-Completion Time Flow is 59702400Running - 1 - 59702400
-Updated - Time 59702400
-..... Received a MSG -- host 20 to target 122, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59702400 59702400 -  1 0 - 1 0 1 - 20 122 0
-OP MSGnexto[elem.host][elem.proc] 0 (20 0) - nextgr[elem.host][elem.nic] 0( 20  0) - time  59702400
-++ size is 1,  host [20] searching matching queue for src target 122 tag 0
-Compared element is -> 122 0 vs 122 0
-Searching for MATCHCurrent elem time is 59702400 while NS3 59702400
-Simulating Until Called
-Flow Finished 72@41@0 at 59703680
-Flow uecsrc finished at 0.0597037
-Flow uecsrc completion time is 0.0597037
-Completion Time Flow is 59703680Running - 1 - 59703680
-Updated - Time 59703680
-..... Received a MSG -- host 41 to target 72, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59703680 59703680 -  1 0 - 1 0 1 - 41 72 0
-OP MSGnexto[elem.host][elem.proc] 0 (41 0) - nextgr[elem.host][elem.nic] 0( 41  0) - time  59703680
-++ size is 1,  host [41] searching matching queue for src target 72 tag 0
-Compared element is -> 72 0 vs 72 0
-Searching for MATCHCurrent elem time is 59703680 while NS3 59703680
-Simulating Until Called
-Flow Finished 78@60@0 at 59704000
-Flow uecsrc finished at 0.059704
-Flow uecsrc completion time is 0.059704
-Completion Time Flow is 59704000Running - 1 - 59704000
-Updated - Time 59704000
-..... Received a MSG -- host 60 to target 78, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59704000 59704000 -  1 0 - 1 0 1 - 60 78 0
-OP MSGnexto[elem.host][elem.proc] 0 (60 0) - nextgr[elem.host][elem.nic] 0( 60  0) - time  59704000
-++ size is 1,  host [60] searching matching queue for src target 78 tag 0
-Compared element is -> 78 0 vs 78 0
-Searching for MATCHCurrent elem time is 59704000 while NS3 59704000
-Simulating Until Called
-Flow Finished 60@104@0 at 59712320
-Flow uecsrc finished at 0.0597123
-Flow uecsrc completion time is 0.0597123
-Completion Time Flow is 59712320Running - 1 - 59712320
-Updated - Time 59712320
-..... Received a MSG -- host 104 to target 60, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59712320 59712320 -  1 0 - 1 0 1 - 104 60 0
-OP MSGnexto[elem.host][elem.proc] 0 (104 0) - nextgr[elem.host][elem.nic] 0( 104  0) - time  59712320
-++ size is 1,  host [104] searching matching queue for src target 60 tag 0
-Compared element is -> 60 0 vs 60 0
-Searching for MATCHCurrent elem time is 59712320 while NS3 59712320
-Simulating Until Called
-Flow Finished 106@12@0 at 59719360
-Flow uecsrc finished at 0.0597194
-Flow uecsrc completion time is 0.0597194
-Completion Time Flow is 59719360Running - 1 - 59719360
-Updated - Time 59719360
-..... Received a MSG -- host 12 to target 106, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59719360 59719360 -  1 0 - 1 0 1 - 12 106 0
-OP MSGnexto[elem.host][elem.proc] 0 (12 0) - nextgr[elem.host][elem.nic] 0( 12  0) - time  59719360
-++ size is 1,  host [12] searching matching queue for src target 106 tag 0
-Compared element is -> 106 0 vs 106 0
-Searching for MATCHCurrent elem time is 59719360 while NS3 59719360
-Simulating Until Called
-Flow Finished 4@107@0 at 59722560
-Flow uecsrc finished at 0.0597226
-Flow uecsrc completion time is 0.0597226
-Completion Time Flow is 59722560Running - 1 - 59722560
-Updated - Time 59722560
-..... Received a MSG -- host 107 to target 4, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59722560 59722560 -  1 0 - 1 0 1 - 107 4 0
-OP MSGnexto[elem.host][elem.proc] 0 (107 0) - nextgr[elem.host][elem.nic] 0( 107  0) - time  59722560
-++ size is 1,  host [107] searching matching queue for src target 4 tag 0
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Decrease
+Flow Finished 4@64@0 at 317828480
+Flow uecsrc finished at 0.317828
+Flow uecsrc completion time is 0.317828
+Completion Time Flow is 317828480Running - 1 - 317828480
+Updated - Time 317828480
+..... Received a MSG -- host 64 to target 4, proc 0 - Type 1
+----------------------------    ENTERING WHILE        // ---------------------------- | 317828480 317828480 -  1 0 - 8 0 1 - 64 4 0
+OP MSGnexto[elem.host][elem.proc] 0 (64 0) - nextgr[elem.host][elem.nic] 0( 64  0) - time  317828480
+++ size is 8,  host [64] searching matching queue for src target 4 tag 0
+Compared element is -> 0 0 vs 4 0
+Compared element is -> 1 0 vs 4 0
+Compared element is -> 2 0 vs 4 0
+Compared element is -> 3 0 vs 4 0
 Compared element is -> 4 0 vs 4 0
-Searching for MATCHCurrent elem time is 59722560 while NS3 59722560
+Searching for MATCHCurrent elem time is 317828480 while NS3 317828480
 Simulating Until Called
-Flow Finished 83@61@0 at 59722880
-Flow uecsrc finished at 0.0597229
-Flow uecsrc completion time is 0.0597229
-Completion Time Flow is 59722880Running - 1 - 59722880
-Updated - Time 59722880
-..... Received a MSG -- host 61 to target 83, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59722880 59722880 -  1 0 - 1 0 1 - 61 83 0
-OP MSGnexto[elem.host][elem.proc] 0 (61 0) - nextgr[elem.host][elem.nic] 0( 61  0) - time  59722880
-++ size is 1,  host [61] searching matching queue for src target 83 tag 0
-Compared element is -> 83 0 vs 83 0
-Searching for MATCHCurrent elem time is 59722880 while NS3 59722880
-Simulating Until Called
-Flow Finished 101@52@0 at 59724480
-Flow uecsrc finished at 0.0597245
-Flow uecsrc completion time is 0.0597245
-Completion Time Flow is 59724480Running - 1 - 59724480
-Updated - Time 59724480
-..... Received a MSG -- host 52 to target 101, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59724480 59724480 -  1 0 - 1 0 1 - 52 101 0
-OP MSGnexto[elem.host][elem.proc] 0 (52 0) - nextgr[elem.host][elem.nic] 0( 52  0) - time  59724480
-++ size is 1,  host [52] searching matching queue for src target 101 tag 0
-Compared element is -> 101 0 vs 101 0
-Searching for MATCHCurrent elem time is 59724480 while NS3 59724480
-Simulating Until Called
-Flow Finished 35@110@0 at 59732800
-Flow uecsrc finished at 0.0597328
-Flow uecsrc completion time is 0.0597328
-Completion Time Flow is 59732800Running - 1 - 59732800
-Updated - Time 59732800
-..... Received a MSG -- host 110 to target 35, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59732800 59732800 -  1 0 - 1 0 1 - 110 35 0
-OP MSGnexto[elem.host][elem.proc] 0 (110 0) - nextgr[elem.host][elem.nic] 0( 110  0) - time  59732800
-++ size is 1,  host [110] searching matching queue for src target 35 tag 0
-Compared element is -> 35 0 vs 35 0
-Searching for MATCHCurrent elem time is 59732800 while NS3 59732800
-Simulating Until Called
-Flow Finished 36@115@0 at 59744640
-Flow uecsrc finished at 0.0597446
-Flow uecsrc completion time is 0.0597446
-Completion Time Flow is 59744640Running - 1 - 59744640
-Updated - Time 59744640
-..... Received a MSG -- host 115 to target 36, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59744640 59744640 -  1 0 - 1 0 1 - 115 36 0
-OP MSGnexto[elem.host][elem.proc] 0 (115 0) - nextgr[elem.host][elem.nic] 0( 115  0) - time  59744640
-++ size is 1,  host [115] searching matching queue for src target 36 tag 0
-Compared element is -> 36 0 vs 36 0
-Searching for MATCHCurrent elem time is 59744640 while NS3 59744640
-Simulating Until Called
-Flow Finished 109@59@0 at 59785920
-Flow uecsrc finished at 0.0597859
-Flow uecsrc completion time is 0.0597859
-Completion Time Flow is 59785920Running - 1 - 59785920
-Updated - Time 59785920
-..... Received a MSG -- host 59 to target 109, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59785920 59785920 -  1 0 - 1 0 1 - 59 109 0
-OP MSGnexto[elem.host][elem.proc] 0 (59 0) - nextgr[elem.host][elem.nic] 0( 59  0) - time  59785920
-++ size is 1,  host [59] searching matching queue for src target 109 tag 0
-Compared element is -> 109 0 vs 109 0
-Searching for MATCHCurrent elem time is 59785920 while NS3 59785920
-Simulating Until Called
-Flow Finished 24@81@0 at 59792640
-Flow uecsrc finished at 0.0597926
-Flow uecsrc completion time is 0.0597926
-Completion Time Flow is 59792640Running - 1 - 59792640
-Updated - Time 59792640
-..... Received a MSG -- host 81 to target 24, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59792640 59792640 -  1 0 - 1 0 1 - 81 24 0
-OP MSGnexto[elem.host][elem.proc] 0 (81 0) - nextgr[elem.host][elem.nic] 0( 81  0) - time  59792640
-++ size is 1,  host [81] searching matching queue for src target 24 tag 0
-Compared element is -> 24 0 vs 24 0
-Searching for MATCHCurrent elem time is 59792640 while NS3 59792640
-Simulating Until Called
-Flow Finished 107@42@0 at 59813120
-Flow uecsrc finished at 0.0598131
-Flow uecsrc completion time is 0.0598131
-Completion Time Flow is 59813120Running - 1 - 59813120
-Updated - Time 59813120
-..... Received a MSG -- host 42 to target 107, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59813120 59813120 -  1 0 - 1 0 1 - 42 107 0
-OP MSGnexto[elem.host][elem.proc] 0 (42 0) - nextgr[elem.host][elem.nic] 0( 42  0) - time  59813120
-++ size is 1,  host [42] searching matching queue for src target 107 tag 0
-Compared element is -> 107 0 vs 107 0
-Searching for MATCHCurrent elem time is 59813120 while NS3 59813120
-Simulating Until Called
-Flow Finished 67@35@0 at 59814720
-Flow uecsrc finished at 0.0598147
-Flow uecsrc completion time is 0.0598147
-Completion Time Flow is 59814720Running - 1 - 59814720
-Updated - Time 59814720
-..... Received a MSG -- host 35 to target 67, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59814720 59814720 -  1 0 - 1 0 1 - 35 67 0
-OP MSGnexto[elem.host][elem.proc] 0 (35 0) - nextgr[elem.host][elem.nic] 0( 35  0) - time  59814720
-++ size is 1,  host [35] searching matching queue for src target 67 tag 0
-Compared element is -> 67 0 vs 67 0
-Searching for MATCHCurrent elem time is 59814720 while NS3 59814720
-Simulating Until Called
-Flow Finished 8@117@0 at 59830080
-Flow uecsrc finished at 0.0598301
-Flow uecsrc completion time is 0.0598301
-Completion Time Flow is 59830080Running - 1 - 59830080
-Updated - Time 59830080
-..... Received a MSG -- host 117 to target 8, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59830080 59830080 -  1 0 - 1 0 1 - 117 8 0
-OP MSGnexto[elem.host][elem.proc] 0 (117 0) - nextgr[elem.host][elem.nic] 0( 117  0) - time  59830080
-++ size is 1,  host [117] searching matching queue for src target 8 tag 0
-Compared element is -> 8 0 vs 8 0
-Searching for MATCHCurrent elem time is 59830080 while NS3 59830080
-Simulating Until Called
-Flow Finished 87@51@0 at 59845760
-Flow uecsrc finished at 0.0598458
-Flow uecsrc completion time is 0.0598458
-Completion Time Flow is 59845760Running - 1 - 59845760
-Updated - Time 59845760
-..... Received a MSG -- host 51 to target 87, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59845760 59845760 -  1 0 - 1 0 1 - 51 87 0
-OP MSGnexto[elem.host][elem.proc] 0 (51 0) - nextgr[elem.host][elem.nic] 0( 51  0) - time  59845760
-++ size is 1,  host [51] searching matching queue for src target 87 tag 0
-Compared element is -> 87 0 vs 87 0
-Searching for MATCHCurrent elem time is 59845760 while NS3 59845760
-Simulating Until Called
-Flow Finished 81@46@0 at 59854080
-Flow uecsrc finished at 0.0598541
-Flow uecsrc completion time is 0.0598541
-Completion Time Flow is 59854080Running - 1 - 59854080
-Updated - Time 59854080
-..... Received a MSG -- host 46 to target 81, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59854080 59854080 -  1 0 - 1 0 1 - 46 81 0
-OP MSGnexto[elem.host][elem.proc] 0 (46 0) - nextgr[elem.host][elem.nic] 0( 46  0) - time  59854080
-++ size is 1,  host [46] searching matching queue for src target 81 tag 0
-Compared element is -> 81 0 vs 81 0
-Searching for MATCHCurrent elem time is 59854080 while NS3 59854080
-Simulating Until Called
-Flow Finished 84@36@0 at 59857600
-Flow uecsrc finished at 0.0598576
-Flow uecsrc completion time is 0.0598576
-Completion Time Flow is 59857600Running - 1 - 59857600
-Updated - Time 59857600
-..... Received a MSG -- host 36 to target 84, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59857600 59857600 -  1 0 - 1 0 1 - 36 84 0
-OP MSGnexto[elem.host][elem.proc] 0 (36 0) - nextgr[elem.host][elem.nic] 0( 36  0) - time  59857600
-++ size is 1,  host [36] searching matching queue for src target 84 tag 0
-Compared element is -> 84 0 vs 84 0
-Searching for MATCHCurrent elem time is 59857600 while NS3 59857600
-Simulating Until Called
-Flow Finished 73@6@0 at 59862720
-Flow uecsrc finished at 0.0598627
-Flow uecsrc completion time is 0.0598627
-Completion Time Flow is 59862720Running - 1 - 59862720
-Updated - Time 59862720
-..... Received a MSG -- host 6 to target 73, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59862720 59862720 -  1 0 - 1 0 1 - 6 73 0
-OP MSGnexto[elem.host][elem.proc] 0 (6 0) - nextgr[elem.host][elem.nic] 0( 6  0) - time  59862720
-++ size is 1,  host [6] searching matching queue for src target 73 tag 0
-Compared element is -> 73 0 vs 73 0
-Searching for MATCHCurrent elem time is 59862720 while NS3 59862720
-Simulating Until Called
-Flow Finished 9@82@0 at 59876480
-Flow uecsrc finished at 0.0598765
-Flow uecsrc completion time is 0.0598765
-Completion Time Flow is 59876480Running - 1 - 59876480
-Updated - Time 59876480
-..... Received a MSG -- host 82 to target 9, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59876480 59876480 -  1 0 - 1 0 1 - 82 9 0
-OP MSGnexto[elem.host][elem.proc] 0 (82 0) - nextgr[elem.host][elem.nic] 0( 82  0) - time  59876480
-++ size is 1,  host [82] searching matching queue for src target 9 tag 0
-Compared element is -> 9 0 vs 9 0
-Searching for MATCHCurrent elem time is 59876480 while NS3 59876480
-Simulating Until Called
-Flow Finished 26@120@0 at 59893440
-Flow uecsrc finished at 0.0598934
-Flow uecsrc completion time is 0.0598934
-Completion Time Flow is 59893440Running - 1 - 59893440
-Updated - Time 59893440
-..... Received a MSG -- host 120 to target 26, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59893440 59893440 -  1 0 - 1 0 1 - 120 26 0
-OP MSGnexto[elem.host][elem.proc] 0 (120 0) - nextgr[elem.host][elem.nic] 0( 120  0) - time  59893440
-++ size is 1,  host [120] searching matching queue for src target 26 tag 0
-Compared element is -> 26 0 vs 26 0
-Searching for MATCHCurrent elem time is 59893440 while NS3 59893440
-Simulating Until Called
-Flow Finished 65@39@0 at 59896640
-Flow uecsrc finished at 0.0598966
-Flow uecsrc completion time is 0.0598966
-Completion Time Flow is 59896640Running - 1 - 59896640
-Updated - Time 59896640
-..... Received a MSG -- host 39 to target 65, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59896640 59896640 -  1 0 - 1 0 1 - 39 65 0
-OP MSGnexto[elem.host][elem.proc] 0 (39 0) - nextgr[elem.host][elem.nic] 0( 39  0) - time  59896640
-++ size is 1,  host [39] searching matching queue for src target 65 tag 0
-Compared element is -> 65 0 vs 65 0
-Searching for MATCHCurrent elem time is 59896640 while NS3 59896640
-Simulating Until Called
-Flow Finished 75@49@0 at 59898560
-Flow uecsrc finished at 0.0598986
-Flow uecsrc completion time is 0.0598986
-Completion Time Flow is 59898560Running - 1 - 59898560
-Updated - Time 59898560
-..... Received a MSG -- host 49 to target 75, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59898560 59898560 -  1 0 - 1 0 1 - 49 75 0
-OP MSGnexto[elem.host][elem.proc] 0 (49 0) - nextgr[elem.host][elem.nic] 0( 49  0) - time  59898560
-++ size is 1,  host [49] searching matching queue for src target 75 tag 0
-Compared element is -> 75 0 vs 75 0
-Searching for MATCHCurrent elem time is 59898560 while NS3 59898560
-Simulating Until Called
-Flow Finished 6@116@0 at 59913600
-Flow uecsrc finished at 0.0599136
-Flow uecsrc completion time is 0.0599136
-Completion Time Flow is 59913600Running - 1 - 59913600
-Updated - Time 59913600
-..... Received a MSG -- host 116 to target 6, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59913600 59913600 -  1 0 - 1 0 1 - 116 6 0
-OP MSGnexto[elem.host][elem.proc] 0 (116 0) - nextgr[elem.host][elem.nic] 0( 116  0) - time  59913600
-++ size is 1,  host [116] searching matching queue for src target 6 tag 0
-Compared element is -> 6 0 vs 6 0
-Searching for MATCHCurrent elem time is 59913600 while NS3 59913600
-Simulating Until Called
-Flow Finished 92@58@0 at 59917440
-Flow uecsrc finished at 0.0599174
-Flow uecsrc completion time is 0.0599174
-Completion Time Flow is 59917440Running - 1 - 59917440
-Updated - Time 59917440
-..... Received a MSG -- host 58 to target 92, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59917440 59917440 -  1 0 - 1 0 1 - 58 92 0
-OP MSGnexto[elem.host][elem.proc] 0 (58 0) - nextgr[elem.host][elem.nic] 0( 58  0) - time  59917440
-++ size is 1,  host [58] searching matching queue for src target 92 tag 0
-Compared element is -> 92 0 vs 92 0
-Searching for MATCHCurrent elem time is 59917440 while NS3 59917440
-Simulating Until Called
-Flow Finished 5@109@0 at 59920640
-Flow uecsrc finished at 0.0599206
-Flow uecsrc completion time is 0.0599206
-Completion Time Flow is 59920640Running - 1 - 59920640
-Updated - Time 59920640
-..... Received a MSG -- host 109 to target 5, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59920640 59920640 -  1 0 - 1 0 1 - 109 5 0
-OP MSGnexto[elem.host][elem.proc] 0 (109 0) - nextgr[elem.host][elem.nic] 0( 109  0) - time  59920640
-++ size is 1,  host [109] searching matching queue for src target 5 tag 0
-Compared element is -> 5 0 vs 5 0
-Searching for MATCHCurrent elem time is 59920640 while NS3 59920640
-Simulating Until Called
-Flow Finished 11@95@0 at 59947840
-Flow uecsrc finished at 0.0599478
-Flow uecsrc completion time is 0.0599478
-Completion Time Flow is 59947840Running - 1 - 59947840
-Updated - Time 59947840
-..... Received a MSG -- host 95 to target 11, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59947840 59947840 -  1 0 - 1 0 1 - 95 11 0
-OP MSGnexto[elem.host][elem.proc] 0 (95 0) - nextgr[elem.host][elem.nic] 0( 95  0) - time  59947840
-++ size is 1,  host [95] searching matching queue for src target 11 tag 0
-Compared element is -> 11 0 vs 11 0
-Searching for MATCHCurrent elem time is 59947840 while NS3 59947840
-Simulating Until Called
-Flow Finished 85@56@0 at 59954880
-Flow uecsrc finished at 0.0599549
-Flow uecsrc completion time is 0.0599549
-Completion Time Flow is 59954880Running - 1 - 59954880
-Updated - Time 59954880
-..... Received a MSG -- host 56 to target 85, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59954880 59954880 -  1 0 - 1 0 1 - 56 85 0
-OP MSGnexto[elem.host][elem.proc] 0 (56 0) - nextgr[elem.host][elem.nic] 0( 56  0) - time  59954880
-++ size is 1,  host [56] searching matching queue for src target 85 tag 0
-Compared element is -> 85 0 vs 85 0
-Searching for MATCHCurrent elem time is 59954880 while NS3 59954880
-Simulating Until Called
-Flow Finished 124@34@0 at 59978560
-Flow uecsrc finished at 0.0599786
-Flow uecsrc completion time is 0.0599786
-Completion Time Flow is 59978560Running - 1 - 59978560
-Updated - Time 59978560
-..... Received a MSG -- host 34 to target 124, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59978560 59978560 -  1 0 - 1 0 1 - 34 124 0
-OP MSGnexto[elem.host][elem.proc] 0 (34 0) - nextgr[elem.host][elem.nic] 0( 34  0) - time  59978560
-++ size is 1,  host [34] searching matching queue for src target 124 tag 0
-Compared element is -> 124 0 vs 124 0
-Searching for MATCHCurrent elem time is 59978560 while NS3 59978560
-Simulating Until Called
-Flow Finished 16@101@0 at 59980480
-Flow uecsrc finished at 0.0599805
-Flow uecsrc completion time is 0.0599805
-Completion Time Flow is 59980480Running - 1 - 59980480
-Updated - Time 59980480
-..... Received a MSG -- host 101 to target 16, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59980480 59980480 -  1 0 - 1 0 1 - 101 16 0
-OP MSGnexto[elem.host][elem.proc] 0 (101 0) - nextgr[elem.host][elem.nic] 0( 101  0) - time  59980480
-++ size is 1,  host [101] searching matching queue for src target 16 tag 0
-Compared element is -> 16 0 vs 16 0
-Searching for MATCHCurrent elem time is 59980480 while NS3 59980480
-Simulating Until Called
-Flow Finished 30@77@0 at 59987200
-Flow uecsrc finished at 0.0599872
-Flow uecsrc completion time is 0.0599872
-Completion Time Flow is 59987200Running - 1 - 59987200
-Updated - Time 59987200
-..... Received a MSG -- host 77 to target 30, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 59987200 59987200 -  1 0 - 1 0 1 - 77 30 0
-OP MSGnexto[elem.host][elem.proc] 0 (77 0) - nextgr[elem.host][elem.nic] 0( 77  0) - time  59987200
-++ size is 1,  host [77] searching matching queue for src target 30 tag 0
-Compared element is -> 30 0 vs 30 0
-Searching for MATCHCurrent elem time is 59987200 while NS3 59987200
-Simulating Until Called
-Flow Finished 103@47@0 at 60000960
-Flow uecsrc finished at 0.060001
-Flow uecsrc completion time is 0.060001
-Completion Time Flow is 60000960Running - 1 - 60000960
-Updated - Time 60000960
-..... Received a MSG -- host 47 to target 103, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60000960 60000960 -  1 0 - 1 0 1 - 47 103 0
-OP MSGnexto[elem.host][elem.proc] 0 (47 0) - nextgr[elem.host][elem.nic] 0( 47  0) - time  60000960
-++ size is 1,  host [47] searching matching queue for src target 103 tag 0
-Compared element is -> 103 0 vs 103 0
-Searching for MATCHCurrent elem time is 60000960 while NS3 60000960
-Simulating Until Called
-Flow Finished 28@84@0 at 60006080
-Flow uecsrc finished at 0.0600061
-Flow uecsrc completion time is 0.0600061
-Completion Time Flow is 60006080Running - 1 - 60006080
-Updated - Time 60006080
-..... Received a MSG -- host 84 to target 28, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60006080 60006080 -  1 0 - 1 0 1 - 84 28 0
-OP MSGnexto[elem.host][elem.proc] 0 (84 0) - nextgr[elem.host][elem.nic] 0( 84  0) - time  60006080
-++ size is 1,  host [84] searching matching queue for src target 28 tag 0
-Compared element is -> 28 0 vs 28 0
-Searching for MATCHCurrent elem time is 60006080 while NS3 60006080
-Simulating Until Called
-Flow Finished 15@67@0 at 60019520
-Flow uecsrc finished at 0.0600195
-Flow uecsrc completion time is 0.0600195
-Completion Time Flow is 60019520Running - 1 - 60019520
-Updated - Time 60019520
-..... Received a MSG -- host 67 to target 15, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60019520 60019520 -  1 0 - 1 0 1 - 67 15 0
-OP MSGnexto[elem.host][elem.proc] 0 (67 0) - nextgr[elem.host][elem.nic] 0( 67  0) - time  60019520
-++ size is 1,  host [67] searching matching queue for src target 15 tag 0
-Compared element is -> 15 0 vs 15 0
-Searching for MATCHCurrent elem time is 60019520 while NS3 60019520
-Simulating Until Called
-Flow Finished 111@3@0 at 60031360
-Flow uecsrc finished at 0.0600314
-Flow uecsrc completion time is 0.0600314
-Completion Time Flow is 60031360Running - 1 - 60031360
-Updated - Time 60031360
-..... Received a MSG -- host 3 to target 111, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60031360 60031360 -  1 0 - 1 0 1 - 3 111 0
-OP MSGnexto[elem.host][elem.proc] 0 (3 0) - nextgr[elem.host][elem.nic] 0( 3  0) - time  60031360
-++ size is 1,  host [3] searching matching queue for src target 111 tag 0
-Compared element is -> 111 0 vs 111 0
-Searching for MATCHCurrent elem time is 60031360 while NS3 60031360
-Simulating Until Called
-Flow Finished 32@65@0 at 60060800
-Flow uecsrc finished at 0.0600608
-Flow uecsrc completion time is 0.0600608
-Completion Time Flow is 60060800Running - 1 - 60060800
-Updated - Time 60060800
-..... Received a MSG -- host 65 to target 32, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60060800 60060800 -  1 0 - 1 0 1 - 65 32 0
-OP MSGnexto[elem.host][elem.proc] 0 (65 0) - nextgr[elem.host][elem.nic] 0( 65  0) - time  60060800
-++ size is 1,  host [65] searching matching queue for src target 32 tag 0
-Compared element is -> 32 0 vs 32 0
-Searching for MATCHCurrent elem time is 60060800 while NS3 60060800
-Simulating Until Called
-Flow Finished 127@50@0 at 60067520
-Flow uecsrc finished at 0.0600675
-Flow uecsrc completion time is 0.0600675
-Completion Time Flow is 60067520Running - 1 - 60067520
-Updated - Time 60067520
-..... Received a MSG -- host 50 to target 127, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60067520 60067520 -  1 0 - 1 0 1 - 50 127 0
-OP MSGnexto[elem.host][elem.proc] 0 (50 0) - nextgr[elem.host][elem.nic] 0( 50  0) - time  60067520
-++ size is 1,  host [50] searching matching queue for src target 127 tag 0
-Compared element is -> 127 0 vs 127 0
-Searching for MATCHCurrent elem time is 60067520 while NS3 60067520
-Simulating Until Called
-Flow Finished 53@96@0 at 60104960
-Flow uecsrc finished at 0.060105
-Flow uecsrc completion time is 0.060105
-Completion Time Flow is 60104960Running - 1 - 60104960
-Updated - Time 60104960
-..... Received a MSG -- host 96 to target 53, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60104960 60104960 -  1 0 - 1 0 1 - 96 53 0
-OP MSGnexto[elem.host][elem.proc] 0 (96 0) - nextgr[elem.host][elem.nic] 0( 96  0) - time  60104960
-++ size is 1,  host [96] searching matching queue for src target 53 tag 0
-Compared element is -> 53 0 vs 53 0
-Searching for MATCHCurrent elem time is 60104960 while NS3 60104960
-Simulating Until Called
-Flow Finished 105@13@0 at 60115200
-Flow uecsrc finished at 0.0601152
-Flow uecsrc completion time is 0.0601152
-Completion Time Flow is 60115200Running - 1 - 60115200
-Updated - Time 60115200
-..... Received a MSG -- host 13 to target 105, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60115200 60115200 -  1 0 - 1 0 1 - 13 105 0
-OP MSGnexto[elem.host][elem.proc] 0 (13 0) - nextgr[elem.host][elem.nic] 0( 13  0) - time  60115200
-++ size is 1,  host [13] searching matching queue for src target 105 tag 0
-Compared element is -> 105 0 vs 105 0
-Searching for MATCHCurrent elem time is 60115200 while NS3 60115200
-Simulating Until Called
-Flow Finished 120@15@0 at 60125440
-Flow uecsrc finished at 0.0601254
-Flow uecsrc completion time is 0.0601254
-Completion Time Flow is 60125440Running - 1 - 60125440
-Updated - Time 60125440
-..... Received a MSG -- host 15 to target 120, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60125440 60125440 -  1 0 - 1 0 1 - 15 120 0
-OP MSGnexto[elem.host][elem.proc] 0 (15 0) - nextgr[elem.host][elem.nic] 0( 15  0) - time  60125440
-++ size is 1,  host [15] searching matching queue for src target 120 tag 0
-Compared element is -> 120 0 vs 120 0
-Searching for MATCHCurrent elem time is 60125440 while NS3 60125440
-Simulating Until Called
-Flow Finished 38@100@0 at 60154560
-Flow uecsrc finished at 0.0601546
-Flow uecsrc completion time is 0.0601546
-Completion Time Flow is 60154560Running - 1 - 60154560
-Updated - Time 60154560
-..... Received a MSG -- host 100 to target 38, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60154560 60154560 -  1 0 - 1 0 1 - 100 38 0
-OP MSGnexto[elem.host][elem.proc] 0 (100 0) - nextgr[elem.host][elem.nic] 0( 100  0) - time  60154560
-++ size is 1,  host [100] searching matching queue for src target 38 tag 0
-Compared element is -> 38 0 vs 38 0
-Searching for MATCHCurrent elem time is 60154560 while NS3 60154560
-Simulating Until Called
-Flow Finished 31@111@0 at 60171520
-Flow uecsrc finished at 0.0601715
-Flow uecsrc completion time is 0.0601715
-Completion Time Flow is 60171520Running - 1 - 60171520
-Updated - Time 60171520
-..... Received a MSG -- host 111 to target 31, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60171520 60171520 -  1 0 - 1 0 1 - 111 31 0
-OP MSGnexto[elem.host][elem.proc] 0 (111 0) - nextgr[elem.host][elem.nic] 0( 111  0) - time  60171520
-++ size is 1,  host [111] searching matching queue for src target 31 tag 0
-Compared element is -> 31 0 vs 31 0
-Searching for MATCHCurrent elem time is 60171520 while NS3 60171520
-Simulating Until Called
-Flow Finished 25@105@0 at 60176640
-Flow uecsrc finished at 0.0601766
-Flow uecsrc completion time is 0.0601766
-Completion Time Flow is 60176640Running - 1 - 60176640
-Updated - Time 60176640
-..... Received a MSG -- host 105 to target 25, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60176640 60176640 -  1 0 - 1 0 1 - 105 25 0
-OP MSGnexto[elem.host][elem.proc] 0 (105 0) - nextgr[elem.host][elem.nic] 0( 105  0) - time  60176640
-++ size is 1,  host [105] searching matching queue for src target 25 tag 0
-Compared element is -> 25 0 vs 25 0
-Searching for MATCHCurrent elem time is 60176640 while NS3 60176640
-Simulating Until Called
-Flow Finished 7@85@0 at 60197120
-Flow uecsrc finished at 0.0601971
-Flow uecsrc completion time is 0.0601971
-Completion Time Flow is 60197120Running - 1 - 60197120
-Updated - Time 60197120
-..... Received a MSG -- host 85 to target 7, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60197120 60197120 -  1 0 - 1 0 1 - 85 7 0
-OP MSGnexto[elem.host][elem.proc] 0 (85 0) - nextgr[elem.host][elem.nic] 0( 85  0) - time  60197120
-++ size is 1,  host [85] searching matching queue for src target 7 tag 0
+Flow Finished 7@64@0 at 325304960
+Flow uecsrc finished at 0.325305
+Flow uecsrc completion time is 0.325305
+Completion Time Flow is 325304960Running - 1 - 325304960
+Updated - Time 325304960
+..... Received a MSG -- host 64 to target 7, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 325304960 325304960 -  1 0 - 7 0 1 - 64 7 0
+OP MSGnexto[elem.host][elem.proc] 317828480 (64 0) - nextgr[elem.host][elem.nic] 317828480( 64  0) - time  325304960
+++ size is 7,  host [64] searching matching queue for src target 7 tag 0
+Compared element is -> 0 0 vs 7 0
+Compared element is -> 1 0 vs 7 0
+Compared element is -> 2 0 vs 7 0
+Compared element is -> 3 0 vs 7 0
+Compared element is -> 5 0 vs 7 0
+Compared element is -> 6 0 vs 7 0
 Compared element is -> 7 0 vs 7 0
-Searching for MATCHCurrent elem time is 60197120 while NS3 60197120
+Searching for MATCHCurrent elem time is 325304960 while NS3 325304960
 Simulating Until Called
-Flow Finished 19@69@0 at 60204160
-Flow uecsrc finished at 0.0602042
-Flow uecsrc completion time is 0.0602042
-Completion Time Flow is 60204160Running - 1 - 60204160
-Updated - Time 60204160
-..... Received a MSG -- host 69 to target 19, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60204160 60204160 -  1 0 - 1 0 1 - 69 19 0
-OP MSGnexto[elem.host][elem.proc] 0 (69 0) - nextgr[elem.host][elem.nic] 0( 69  0) - time  60204160
-++ size is 1,  host [69] searching matching queue for src target 19 tag 0
-Compared element is -> 19 0 vs 19 0
-Searching for MATCHCurrent elem time is 60204160 while NS3 60204160
-Simulating Until Called
-Flow Finished 99@7@0 at 60216000
-Flow uecsrc finished at 0.060216
-Flow uecsrc completion time is 0.060216
-Completion Time Flow is 60216000Running - 1 - 60216000
-Updated - Time 60216000
-..... Received a MSG -- host 7 to target 99, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60216000 60216000 -  1 0 - 1 0 1 - 7 99 0
-OP MSGnexto[elem.host][elem.proc] 0 (7 0) - nextgr[elem.host][elem.nic] 0( 7  0) - time  60216000
-++ size is 1,  host [7] searching matching queue for src target 99 tag 0
-Compared element is -> 99 0 vs 99 0
-Searching for MATCHCurrent elem time is 60216000 while NS3 60216000
-Simulating Until Called
-Flow Finished 18@106@0 at 60234560
-Flow uecsrc finished at 0.0602346
-Flow uecsrc completion time is 0.0602346
-Completion Time Flow is 60234560Running - 1 - 60234560
-Updated - Time 60234560
-..... Received a MSG -- host 106 to target 18, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60234560 60234560 -  1 0 - 1 0 1 - 106 18 0
-OP MSGnexto[elem.host][elem.proc] 0 (106 0) - nextgr[elem.host][elem.nic] 0( 106  0) - time  60234560
-++ size is 1,  host [106] searching matching queue for src target 18 tag 0
-Compared element is -> 18 0 vs 18 0
-Searching for MATCHCurrent elem time is 60234560 while NS3 60234560
-Simulating Until Called
-Flow Finished 27@86@0 at 60236480
-Flow uecsrc finished at 0.0602365
-Flow uecsrc completion time is 0.0602365
-Completion Time Flow is 60236480Running - 1 - 60236480
-Updated - Time 60236480
-..... Received a MSG -- host 86 to target 27, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60236480 60236480 -  1 0 - 1 0 1 - 86 27 0
-OP MSGnexto[elem.host][elem.proc] 0 (86 0) - nextgr[elem.host][elem.nic] 0( 86  0) - time  60236480
-++ size is 1,  host [86] searching matching queue for src target 27 tag 0
-Compared element is -> 27 0 vs 27 0
-Searching for MATCHCurrent elem time is 60236480 while NS3 60236480
-Simulating Until Called
-Flow Finished 66@43@0 at 60249920
-Flow uecsrc finished at 0.0602499
-Flow uecsrc completion time is 0.0602499
-Completion Time Flow is 60249920Running - 1 - 60249920
-Updated - Time 60249920
-..... Received a MSG -- host 43 to target 66, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60249920 60249920 -  1 0 - 1 0 1 - 43 66 0
-OP MSGnexto[elem.host][elem.proc] 0 (43 0) - nextgr[elem.host][elem.nic] 0( 43  0) - time  60249920
-++ size is 1,  host [43] searching matching queue for src target 66 tag 0
-Compared element is -> 66 0 vs 66 0
-Searching for MATCHCurrent elem time is 60249920 while NS3 60249920
-Simulating Until Called
-Flow Finished 118@44@0 at 60256960
-Flow uecsrc finished at 0.060257
-Flow uecsrc completion time is 0.060257
-Completion Time Flow is 60256960Running - 1 - 60256960
-Updated - Time 60256960
-..... Received a MSG -- host 44 to target 118, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60256960 60256960 -  1 0 - 1 0 1 - 44 118 0
-OP MSGnexto[elem.host][elem.proc] 0 (44 0) - nextgr[elem.host][elem.nic] 0( 44  0) - time  60256960
-++ size is 1,  host [44] searching matching queue for src target 118 tag 0
-Compared element is -> 118 0 vs 118 0
-Searching for MATCHCurrent elem time is 60256960 while NS3 60256960
-Simulating Until Called
-Flow Finished 49@119@0 at 60265280
-Flow uecsrc finished at 0.0602653
-Flow uecsrc completion time is 0.0602653
-Completion Time Flow is 60265280Running - 1 - 60265280
-Updated - Time 60265280
-..... Received a MSG -- host 119 to target 49, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60265280 60265280 -  1 0 - 1 0 1 - 119 49 0
-OP MSGnexto[elem.host][elem.proc] 0 (119 0) - nextgr[elem.host][elem.nic] 0( 119  0) - time  60265280
-++ size is 1,  host [119] searching matching queue for src target 49 tag 0
-Compared element is -> 49 0 vs 49 0
-Searching for MATCHCurrent elem time is 60265280 while NS3 60265280
-Simulating Until Called
-Flow Finished 14@121@0 at 60282560
-Flow uecsrc finished at 0.0602826
-Flow uecsrc completion time is 0.0602826
-Completion Time Flow is 60282560Running - 1 - 60282560
-Updated - Time 60282560
-..... Received a MSG -- host 121 to target 14, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60282560 60282560 -  1 0 - 1 0 1 - 121 14 0
-OP MSGnexto[elem.host][elem.proc] 0 (121 0) - nextgr[elem.host][elem.nic] 0( 121  0) - time  60282560
-++ size is 1,  host [121] searching matching queue for src target 14 tag 0
-Compared element is -> 14 0 vs 14 0
-Searching for MATCHCurrent elem time is 60282560 while NS3 60282560
-Simulating Until Called
-Flow Finished 113@27@0 at 60287680
-Flow uecsrc finished at 0.0602877
-Flow uecsrc completion time is 0.0602877
-Completion Time Flow is 60287680Running - 1 - 60287680
-Updated - Time 60287680
-..... Received a MSG -- host 27 to target 113, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60287680 60287680 -  1 0 - 1 0 1 - 27 113 0
-OP MSGnexto[elem.host][elem.proc] 0 (27 0) - nextgr[elem.host][elem.nic] 0( 27  0) - time  60287680
-++ size is 1,  host [27] searching matching queue for src target 113 tag 0
-Compared element is -> 113 0 vs 113 0
-Searching for MATCHCurrent elem time is 60287680 while NS3 60287680
-Simulating Until Called
-Flow Finished 79@22@0 at 60296320
-Flow uecsrc finished at 0.0602963
-Flow uecsrc completion time is 0.0602963
-Completion Time Flow is 60296320Running - 1 - 60296320
-Updated - Time 60296320
-..... Received a MSG -- host 22 to target 79, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60296320 60296320 -  1 0 - 1 0 1 - 22 79 0
-OP MSGnexto[elem.host][elem.proc] 0 (22 0) - nextgr[elem.host][elem.nic] 0( 22  0) - time  60296320
-++ size is 1,  host [22] searching matching queue for src target 79 tag 0
-Compared element is -> 79 0 vs 79 0
-Searching for MATCHCurrent elem time is 60296320 while NS3 60296320
-Simulating Until Called
-Flow Finished 44@83@0 at 60355840
-Flow uecsrc finished at 0.0603558
-Flow uecsrc completion time is 0.0603558
-Completion Time Flow is 60355840Running - 1 - 60355840
-Updated - Time 60355840
-..... Received a MSG -- host 83 to target 44, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60355840 60355840 -  1 0 - 1 0 1 - 83 44 0
-OP MSGnexto[elem.host][elem.proc] 0 (83 0) - nextgr[elem.host][elem.nic] 0( 83  0) - time  60355840
-++ size is 1,  host [83] searching matching queue for src target 44 tag 0
-Compared element is -> 44 0 vs 44 0
-Searching for MATCHCurrent elem time is 60355840 while NS3 60355840
-Simulating Until Called
-Flow Finished 3@87@0 at 60357760
-Flow uecsrc finished at 0.0603578
-Flow uecsrc completion time is 0.0603578
-Completion Time Flow is 60357760Running - 1 - 60357760
-Updated - Time 60357760
-..... Received a MSG -- host 87 to target 3, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60357760 60357760 -  1 0 - 1 0 1 - 87 3 0
-OP MSGnexto[elem.host][elem.proc] 0 (87 0) - nextgr[elem.host][elem.nic] 0( 87  0) - time  60357760
-++ size is 1,  host [87] searching matching queue for src target 3 tag 0
-Compared element is -> 3 0 vs 3 0
-Searching for MATCHCurrent elem time is 60357760 while NS3 60357760
-Simulating Until Called
-Flow Finished 41@97@0 at 60388480
-Flow uecsrc finished at 0.0603885
-Flow uecsrc completion time is 0.0603885
-Completion Time Flow is 60388480Running - 1 - 60388480
-Updated - Time 60388480
-..... Received a MSG -- host 97 to target 41, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60388480 60388480 -  1 0 - 1 0 1 - 97 41 0
-OP MSGnexto[elem.host][elem.proc] 0 (97 0) - nextgr[elem.host][elem.nic] 0( 97  0) - time  60388480
-++ size is 1,  host [97] searching matching queue for src target 41 tag 0
-Compared element is -> 41 0 vs 41 0
-Searching for MATCHCurrent elem time is 60388480 while NS3 60388480
-Simulating Until Called
-Flow Finished 55@122@0 at 60425600
-Flow uecsrc finished at 0.0604256
-Flow uecsrc completion time is 0.0604256
-Completion Time Flow is 60425600Running - 1 - 60425600
-Updated - Time 60425600
-..... Received a MSG -- host 122 to target 55, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60425600 60425600 -  1 0 - 1 0 1 - 122 55 0
-OP MSGnexto[elem.host][elem.proc] 0 (122 0) - nextgr[elem.host][elem.nic] 0( 122  0) - time  60425600
-++ size is 1,  host [122] searching matching queue for src target 55 tag 0
-Compared element is -> 55 0 vs 55 0
-Searching for MATCHCurrent elem time is 60425600 while NS3 60425600
-Simulating Until Called
-Flow Finished 98@30@0 at 60444800
-Flow uecsrc finished at 0.0604448
-Flow uecsrc completion time is 0.0604448
-Completion Time Flow is 60444800Running - 1 - 60444800
-Updated - Time 60444800
-..... Received a MSG -- host 30 to target 98, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60444800 60444800 -  1 0 - 1 0 1 - 30 98 0
-OP MSGnexto[elem.host][elem.proc] 0 (30 0) - nextgr[elem.host][elem.nic] 0( 30  0) - time  60444800
-++ size is 1,  host [30] searching matching queue for src target 98 tag 0
-Compared element is -> 98 0 vs 98 0
-Searching for MATCHCurrent elem time is 60444800 while NS3 60444800
-Simulating Until Called
-Flow Finished 116@40@0 at 60448000
-Flow uecsrc finished at 0.060448
-Flow uecsrc completion time is 0.060448
-Completion Time Flow is 60448000Running - 1 - 60448000
-Updated - Time 60448000
-..... Received a MSG -- host 40 to target 116, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60448000 60448000 -  1 0 - 1 0 1 - 40 116 0
-OP MSGnexto[elem.host][elem.proc] 0 (40 0) - nextgr[elem.host][elem.nic] 0( 40  0) - time  60448000
-++ size is 1,  host [40] searching matching queue for src target 116 tag 0
-Compared element is -> 116 0 vs 116 0
-Searching for MATCHCurrent elem time is 60448000 while NS3 60448000
-Simulating Until Called
-Flow Finished 46@127@0 at 60460160
-Flow uecsrc finished at 0.0604602
-Flow uecsrc completion time is 0.0604602
-Completion Time Flow is 60460160Running - 1 - 60460160
-Updated - Time 60460160
-..... Received a MSG -- host 127 to target 46, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60460160 60460160 -  1 0 - 1 0 1 - 127 46 0
-OP MSGnexto[elem.host][elem.proc] 0 (127 0) - nextgr[elem.host][elem.nic] 0( 127  0) - time  60460160
-++ size is 1,  host [127] searching matching queue for src target 46 tag 0
-Compared element is -> 46 0 vs 46 0
-Searching for MATCHCurrent elem time is 60460160 while NS3 60460160
-Simulating Until Called
-Flow Finished 57@125@0 at 60483840
-Flow uecsrc finished at 0.0604838
-Flow uecsrc completion time is 0.0604838
-Completion Time Flow is 60483840Running - 1 - 60483840
-Updated - Time 60483840
-..... Received a MSG -- host 125 to target 57, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60483840 60483840 -  1 0 - 1 0 1 - 125 57 0
-OP MSGnexto[elem.host][elem.proc] 0 (125 0) - nextgr[elem.host][elem.nic] 0( 125  0) - time  60483840
-++ size is 1,  host [125] searching matching queue for src target 57 tag 0
-Compared element is -> 57 0 vs 57 0
-Searching for MATCHCurrent elem time is 60483840 while NS3 60483840
-Simulating Until Called
-Flow Finished 93@11@0 at 60492480
-Flow uecsrc finished at 0.0604925
-Flow uecsrc completion time is 0.0604925
-Completion Time Flow is 60492480Running - 1 - 60492480
-Updated - Time 60492480
-..... Received a MSG -- host 11 to target 93, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60492480 60492480 -  1 0 - 1 0 1 - 11 93 0
-OP MSGnexto[elem.host][elem.proc] 0 (11 0) - nextgr[elem.host][elem.nic] 0( 11  0) - time  60492480
-++ size is 1,  host [11] searching matching queue for src target 93 tag 0
-Compared element is -> 93 0 vs 93 0
-Searching for MATCHCurrent elem time is 60492480 while NS3 60492480
-Simulating Until Called
-Flow Finished 61@80@0 at 60529920
-Flow uecsrc finished at 0.0605299
-Flow uecsrc completion time is 0.0605299
-Completion Time Flow is 60529920Running - 1 - 60529920
-Updated - Time 60529920
-..... Received a MSG -- host 80 to target 61, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60529920 60529920 -  1 0 - 1 0 1 - 80 61 0
-OP MSGnexto[elem.host][elem.proc] 0 (80 0) - nextgr[elem.host][elem.nic] 0( 80  0) - time  60529920
-++ size is 1,  host [80] searching matching queue for src target 61 tag 0
-Compared element is -> 61 0 vs 61 0
-Searching for MATCHCurrent elem time is 60529920 while NS3 60529920
-Simulating Until Called
-Flow Finished 88@38@0 at 60533440
-Flow uecsrc finished at 0.0605334
-Flow uecsrc completion time is 0.0605334
-Completion Time Flow is 60533440Running - 1 - 60533440
-Updated - Time 60533440
-..... Received a MSG -- host 38 to target 88, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60533440 60533440 -  1 0 - 1 0 1 - 38 88 0
-OP MSGnexto[elem.host][elem.proc] 0 (38 0) - nextgr[elem.host][elem.nic] 0( 38  0) - time  60533440
-++ size is 1,  host [38] searching matching queue for src target 88 tag 0
-Compared element is -> 88 0 vs 88 0
-Searching for MATCHCurrent elem time is 60533440 while NS3 60533440
-Simulating Until Called
-Flow Finished 51@71@0 at 60552320
-Flow uecsrc finished at 0.0605523
-Flow uecsrc completion time is 0.0605523
-Completion Time Flow is 60552320Running - 1 - 60552320
-Updated - Time 60552320
-..... Received a MSG -- host 71 to target 51, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60552320 60552320 -  1 0 - 1 0 1 - 71 51 0
-OP MSGnexto[elem.host][elem.proc] 0 (71 0) - nextgr[elem.host][elem.nic] 0( 71  0) - time  60552320
-++ size is 1,  host [71] searching matching queue for src target 51 tag 0
-Compared element is -> 51 0 vs 51 0
-Searching for MATCHCurrent elem time is 60552320 while NS3 60552320
-Simulating Until Called
-Flow Finished 80@10@0 at 60553920
-Flow uecsrc finished at 0.0605539
-Flow uecsrc completion time is 0.0605539
-Completion Time Flow is 60553920Running - 1 - 60553920
-Updated - Time 60553920
-..... Received a MSG -- host 10 to target 80, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60553920 60553920 -  1 0 - 1 0 1 - 10 80 0
-OP MSGnexto[elem.host][elem.proc] 0 (10 0) - nextgr[elem.host][elem.nic] 0( 10  0) - time  60553920
-++ size is 1,  host [10] searching matching queue for src target 80 tag 0
-Compared element is -> 80 0 vs 80 0
-Searching for MATCHCurrent elem time is 60553920 while NS3 60553920
-Simulating Until Called
-Flow Finished 63@102@0 at 60562560
-Flow uecsrc finished at 0.0605626
-Flow uecsrc completion time is 0.0605626
-Completion Time Flow is 60562560Running - 1 - 60562560
-Updated - Time 60562560
-..... Received a MSG -- host 102 to target 63, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60562560 60562560 -  1 0 - 1 0 1 - 102 63 0
-OP MSGnexto[elem.host][elem.proc] 0 (102 0) - nextgr[elem.host][elem.nic] 0( 102  0) - time  60562560
-++ size is 1,  host [102] searching matching queue for src target 63 tag 0
-Compared element is -> 63 0 vs 63 0
-Searching for MATCHCurrent elem time is 60562560 while NS3 60562560
-Simulating Until Called
-Flow Finished 29@68@0 at 60565760
-Flow uecsrc finished at 0.0605658
-Flow uecsrc completion time is 0.0605658
-Completion Time Flow is 60565760Running - 1 - 60565760
-Updated - Time 60565760
-..... Received a MSG -- host 68 to target 29, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60565760 60565760 -  1 0 - 1 0 1 - 68 29 0
-OP MSGnexto[elem.host][elem.proc] 0 (68 0) - nextgr[elem.host][elem.nic] 0( 68  0) - time  60565760
-++ size is 1,  host [68] searching matching queue for src target 29 tag 0
-Compared element is -> 29 0 vs 29 0
-Searching for MATCHCurrent elem time is 60565760 while NS3 60565760
-Simulating Until Called
-Flow Finished 39@113@0 at 60570880
-Flow uecsrc finished at 0.0605709
-Flow uecsrc completion time is 0.0605709
-Completion Time Flow is 60570880Running - 1 - 60570880
-Updated - Time 60570880
-..... Received a MSG -- host 113 to target 39, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60570880 60570880 -  1 0 - 1 0 1 - 113 39 0
-OP MSGnexto[elem.host][elem.proc] 0 (113 0) - nextgr[elem.host][elem.nic] 0( 113  0) - time  60570880
-++ size is 1,  host [113] searching matching queue for src target 39 tag 0
-Compared element is -> 39 0 vs 39 0
-Searching for MATCHCurrent elem time is 60570880 while NS3 60570880
-Simulating Until Called
-Flow Finished 33@112@0 at 60576000
-Flow uecsrc finished at 0.060576
-Flow uecsrc completion time is 0.060576
-Completion Time Flow is 60576000Running - 1 - 60576000
-Updated - Time 60576000
-..... Received a MSG -- host 112 to target 33, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60576000 60576000 -  1 0 - 1 0 1 - 112 33 0
-OP MSGnexto[elem.host][elem.proc] 0 (112 0) - nextgr[elem.host][elem.nic] 0( 112  0) - time  60576000
-++ size is 1,  host [112] searching matching queue for src target 33 tag 0
-Compared element is -> 33 0 vs 33 0
-Searching for MATCHCurrent elem time is 60576000 while NS3 60576000
-Simulating Until Called
-Flow Finished 59@108@0 at 60606720
-Flow uecsrc finished at 0.0606067
-Flow uecsrc completion time is 0.0606067
-Completion Time Flow is 60606720Running - 1 - 60606720
-Updated - Time 60606720
-..... Received a MSG -- host 108 to target 59, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60606720 60606720 -  1 0 - 1 0 1 - 108 59 0
-OP MSGnexto[elem.host][elem.proc] 0 (108 0) - nextgr[elem.host][elem.nic] 0( 108  0) - time  60606720
-++ size is 1,  host [108] searching matching queue for src target 59 tag 0
-Compared element is -> 59 0 vs 59 0
-Searching for MATCHCurrent elem time is 60606720 while NS3 60606720
-Simulating Until Called
-Flow Finished 42@126@0 at 60629120
-Flow uecsrc finished at 0.0606291
-Flow uecsrc completion time is 0.0606291
-Completion Time Flow is 60629120Running - 1 - 60629120
-Updated - Time 60629120
-..... Received a MSG -- host 126 to target 42, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60629120 60629120 -  1 0 - 1 0 1 - 126 42 0
-OP MSGnexto[elem.host][elem.proc] 0 (126 0) - nextgr[elem.host][elem.nic] 0( 126  0) - time  60629120
-++ size is 1,  host [126] searching matching queue for src target 42 tag 0
-Compared element is -> 42 0 vs 42 0
-Searching for MATCHCurrent elem time is 60629120 while NS3 60629120
-Simulating Until Called
-Flow Finished 90@25@0 at 60644160
-Flow uecsrc finished at 0.0606442
-Flow uecsrc completion time is 0.0606442
-Completion Time Flow is 60644160Running - 1 - 60644160
-Updated - Time 60644160
-..... Received a MSG -- host 25 to target 90, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60644160 60644160 -  1 0 - 1 0 1 - 25 90 0
-OP MSGnexto[elem.host][elem.proc] 0 (25 0) - nextgr[elem.host][elem.nic] 0( 25  0) - time  60644160
-++ size is 1,  host [25] searching matching queue for src target 90 tag 0
-Compared element is -> 90 0 vs 90 0
-Searching for MATCHCurrent elem time is 60644160 while NS3 60644160
-Simulating Until Called
-Flow Finished 48@103@0 at 60670080
-Flow uecsrc finished at 0.0606701
-Flow uecsrc completion time is 0.0606701
-Completion Time Flow is 60670080Running - 1 - 60670080
-Updated - Time 60670080
-..... Received a MSG -- host 103 to target 48, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60670080 60670080 -  1 0 - 1 0 1 - 103 48 0
-OP MSGnexto[elem.host][elem.proc] 0 (103 0) - nextgr[elem.host][elem.nic] 0( 103  0) - time  60670080
-++ size is 1,  host [103] searching matching queue for src target 48 tag 0
-Compared element is -> 48 0 vs 48 0
-Searching for MATCHCurrent elem time is 60670080 while NS3 60670080
-Simulating Until Called
-Flow Finished 89@5@0 at 60676800
-Flow uecsrc finished at 0.0606768
-Flow uecsrc completion time is 0.0606768
-Completion Time Flow is 60676800Running - 1 - 60676800
-Updated - Time 60676800
-..... Received a MSG -- host 5 to target 89, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60676800 60676800 -  1 0 - 1 0 1 - 5 89 0
-OP MSGnexto[elem.host][elem.proc] 0 (5 0) - nextgr[elem.host][elem.nic] 0( 5  0) - time  60676800
-++ size is 1,  host [5] searching matching queue for src target 89 tag 0
-Compared element is -> 89 0 vs 89 0
-Searching for MATCHCurrent elem time is 60676800 while NS3 60676800
-Simulating Until Called
-Flow Finished 0@66@0 at 60726400
-Flow uecsrc finished at 0.0607264
-Flow uecsrc completion time is 0.0607264
-Completion Time Flow is 60726400Running - 1 - 60726400
-Updated - Time 60726400
-..... Received a MSG -- host 66 to target 0, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60726400 60726400 -  1 0 - 1 0 1 - 66 0 0
-OP MSGnexto[elem.host][elem.proc] 0 (66 0) - nextgr[elem.host][elem.nic] 0( 66  0) - time  60726400
-++ size is 1,  host [66] searching matching queue for src target 0 tag 0
-Compared element is -> 0 0 vs 0 0
-Searching for MATCHCurrent elem time is 60726400 while NS3 60726400
-Simulating Until Called
-Flow Finished 86@2@0 at 60727680
-Flow uecsrc finished at 0.0607277
-Flow uecsrc completion time is 0.0607277
-Completion Time Flow is 60727680Running - 1 - 60727680
-Updated - Time 60727680
-..... Received a MSG -- host 2 to target 86, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60727680 60727680 -  1 0 - 1 0 1 - 2 86 0
-OP MSGnexto[elem.host][elem.proc] 0 (2 0) - nextgr[elem.host][elem.nic] 0( 2  0) - time  60727680
-++ size is 1,  host [2] searching matching queue for src target 86 tag 0
-Compared element is -> 86 0 vs 86 0
-Searching for MATCHCurrent elem time is 60727680 while NS3 60727680
-Simulating Until Called
-Flow Finished 119@55@0 at 60744960
-Flow uecsrc finished at 0.060745
-Flow uecsrc completion time is 0.060745
-Completion Time Flow is 60744960Running - 1 - 60744960
-Updated - Time 60744960
-..... Received a MSG -- host 55 to target 119, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60744960 60744960 -  1 0 - 1 0 1 - 55 119 0
-OP MSGnexto[elem.host][elem.proc] 0 (55 0) - nextgr[elem.host][elem.nic] 0( 55  0) - time  60744960
-++ size is 1,  host [55] searching matching queue for src target 119 tag 0
-Compared element is -> 119 0 vs 119 0
-Searching for MATCHCurrent elem time is 60744960 while NS3 60744960
-Simulating Until Called
-Flow Finished 121@19@0 at 60752000
-Flow uecsrc finished at 0.060752
-Flow uecsrc completion time is 0.060752
-Completion Time Flow is 60752000Running - 1 - 60752000
-Updated - Time 60752000
-..... Received a MSG -- host 19 to target 121, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60752000 60752000 -  1 0 - 1 0 1 - 19 121 0
-OP MSGnexto[elem.host][elem.proc] 0 (19 0) - nextgr[elem.host][elem.nic] 0( 19  0) - time  60752000
-++ size is 1,  host [19] searching matching queue for src target 121 tag 0
-Compared element is -> 121 0 vs 121 0
-Searching for MATCHCurrent elem time is 60752000 while NS3 60752000
-Simulating Until Called
-Flow Finished 110@31@0 at 60757120
-Flow uecsrc finished at 0.0607571
-Flow uecsrc completion time is 0.0607571
-Completion Time Flow is 60757120Running - 1 - 60757120
-Updated - Time 60757120
-..... Received a MSG -- host 31 to target 110, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60757120 60757120 -  1 0 - 1 0 1 - 31 110 0
-OP MSGnexto[elem.host][elem.proc] 0 (31 0) - nextgr[elem.host][elem.nic] 0( 31  0) - time  60757120
-++ size is 1,  host [31] searching matching queue for src target 110 tag 0
-Compared element is -> 110 0 vs 110 0
-Searching for MATCHCurrent elem time is 60757120 while NS3 60757120
-Simulating Until Called
-Flow Finished 10@89@0 at 60762240
-Flow uecsrc finished at 0.0607622
-Flow uecsrc completion time is 0.0607622
-Completion Time Flow is 60762240Running - 1 - 60762240
-Updated - Time 60762240
-..... Received a MSG -- host 89 to target 10, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60762240 60762240 -  1 0 - 1 0 1 - 89 10 0
-OP MSGnexto[elem.host][elem.proc] 0 (89 0) - nextgr[elem.host][elem.nic] 0( 89  0) - time  60762240
-++ size is 1,  host [89] searching matching queue for src target 10 tag 0
-Compared element is -> 10 0 vs 10 0
-Searching for MATCHCurrent elem time is 60762240 while NS3 60762240
-Simulating Until Called
-Flow Finished 62@124@0 at 60803200
-Flow uecsrc finished at 0.0608032
-Flow uecsrc completion time is 0.0608032
-Completion Time Flow is 60803200Running - 1 - 60803200
-Updated - Time 60803200
-..... Received a MSG -- host 124 to target 62, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60803200 60803200 -  1 0 - 1 0 1 - 124 62 0
-OP MSGnexto[elem.host][elem.proc] 0 (124 0) - nextgr[elem.host][elem.nic] 0( 124  0) - time  60803200
-++ size is 1,  host [124] searching matching queue for src target 62 tag 0
-Compared element is -> 62 0 vs 62 0
-Searching for MATCHCurrent elem time is 60803200 while NS3 60803200
-Simulating Until Called
-Flow Finished 76@18@0 at 60857600
-Flow uecsrc finished at 0.0608576
-Flow uecsrc completion time is 0.0608576
-Completion Time Flow is 60857600Running - 1 - 60857600
-Updated - Time 60857600
-..... Received a MSG -- host 18 to target 76, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60857600 60857600 -  1 0 - 1 0 1 - 18 76 0
-OP MSGnexto[elem.host][elem.proc] 0 (18 0) - nextgr[elem.host][elem.nic] 0( 18  0) - time  60857600
-++ size is 1,  host [18] searching matching queue for src target 76 tag 0
-Compared element is -> 76 0 vs 76 0
-Searching for MATCHCurrent elem time is 60857600 while NS3 60857600
-Simulating Until Called
-Flow Finished 97@21@0 at 60905600
-Flow uecsrc finished at 0.0609056
-Flow uecsrc completion time is 0.0609056
-Completion Time Flow is 60905600Running - 1 - 60905600
-Updated - Time 60905600
-..... Received a MSG -- host 21 to target 97, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60905600 60905600 -  1 0 - 1 0 1 - 21 97 0
-OP MSGnexto[elem.host][elem.proc] 0 (21 0) - nextgr[elem.host][elem.nic] 0( 21  0) - time  60905600
-++ size is 1,  host [21] searching matching queue for src target 97 tag 0
-Compared element is -> 97 0 vs 97 0
-Searching for MATCHCurrent elem time is 60905600 while NS3 60905600
-Simulating Until Called
-Flow Finished 13@78@0 at 60905600
-Flow uecsrc finished at 0.0609056
-Flow uecsrc completion time is 0.0609056
-Completion Time Flow is 60905600Running - 1 - 60905600
-Updated - Time 60905600
-..... Received a MSG -- host 78 to target 13, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60905600 60905600 -  1 0 - 1 0 1 - 78 13 0
-OP MSGnexto[elem.host][elem.proc] 0 (78 0) - nextgr[elem.host][elem.nic] 0( 78  0) - time  60905600
-++ size is 1,  host [78] searching matching queue for src target 13 tag 0
-Compared element is -> 13 0 vs 13 0
-Searching for MATCHCurrent elem time is 60905600 while NS3 60905600
-Simulating Until Called
-Flow Finished 82@0@0 at 60912000
-Flow uecsrc finished at 0.060912
-Flow uecsrc completion time is 0.060912
-Completion Time Flow is 60912000Running - 1 - 60912000
-Updated - Time 60912000
-..... Received a MSG -- host 0 to target 82, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60912000 60912000 -  1 0 - 1 0 1 - 0 82 0
-OP MSGnexto[elem.host][elem.proc] 0 (0 0) - nextgr[elem.host][elem.nic] 0( 0  0) - time  60912000
-++ size is 1,  host [0] searching matching queue for src target 82 tag 0
-Compared element is -> 82 0 vs 82 0
-Searching for MATCHCurrent elem time is 60912000 while NS3 60912000
-Simulating Until Called
-Flow Finished 2@91@0 at 60931200
-Flow uecsrc finished at 0.0609312
-Flow uecsrc completion time is 0.0609312
-Completion Time Flow is 60931200Running - 1 - 60931200
-Updated - Time 60931200
-..... Received a MSG -- host 91 to target 2, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60931200 60931200 -  1 0 - 1 0 1 - 91 2 0
-OP MSGnexto[elem.host][elem.proc] 0 (91 0) - nextgr[elem.host][elem.nic] 0( 91  0) - time  60931200
-++ size is 1,  host [91] searching matching queue for src target 2 tag 0
-Compared element is -> 2 0 vs 2 0
-Searching for MATCHCurrent elem time is 60931200 while NS3 60931200
-Simulating Until Called
-Flow Finished 112@23@0 at 60954880
-Flow uecsrc finished at 0.0609549
-Flow uecsrc completion time is 0.0609549
-Completion Time Flow is 60954880Running - 1 - 60954880
-Updated - Time 60954880
-..... Received a MSG -- host 23 to target 112, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60954880 60954880 -  1 0 - 1 0 1 - 23 112 0
-OP MSGnexto[elem.host][elem.proc] 0 (23 0) - nextgr[elem.host][elem.nic] 0( 23  0) - time  60954880
-++ size is 1,  host [23] searching matching queue for src target 112 tag 0
-Compared element is -> 112 0 vs 112 0
-Searching for MATCHCurrent elem time is 60954880 while NS3 60954880
-Simulating Until Called
-Flow Finished 70@37@0 at 60997440
-Flow uecsrc finished at 0.0609974
-Flow uecsrc completion time is 0.0609974
-Completion Time Flow is 60997440Running - 1 - 60997440
-Updated - Time 60997440
-..... Received a MSG -- host 37 to target 70, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 60997440 60997440 -  1 0 - 1 0 1 - 37 70 0
-OP MSGnexto[elem.host][elem.proc] 0 (37 0) - nextgr[elem.host][elem.nic] 0( 37  0) - time  60997440
-++ size is 1,  host [37] searching matching queue for src target 70 tag 0
-Compared element is -> 70 0 vs 70 0
-Searching for MATCHCurrent elem time is 60997440 while NS3 60997440
-Simulating Until Called
-Flow Finished 94@28@0 at 61009600
-Flow uecsrc finished at 0.0610096
-Flow uecsrc completion time is 0.0610096
-Completion Time Flow is 61009600Running - 1 - 61009600
-Updated - Time 61009600
-..... Received a MSG -- host 28 to target 94, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61009600 61009600 -  1 0 - 1 0 1 - 28 94 0
-OP MSGnexto[elem.host][elem.proc] 0 (28 0) - nextgr[elem.host][elem.nic] 0( 28  0) - time  61009600
-++ size is 1,  host [28] searching matching queue for src target 94 tag 0
-Compared element is -> 94 0 vs 94 0
-Searching for MATCHCurrent elem time is 61009600 while NS3 61009600
-Simulating Until Called
-Flow Finished 40@79@0 at 61084800
-Flow uecsrc finished at 0.0610848
-Flow uecsrc completion time is 0.0610848
-Completion Time Flow is 61084800Running - 1 - 61084800
-Updated - Time 61084800
-..... Received a MSG -- host 79 to target 40, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61084800 61084800 -  1 0 - 1 0 1 - 79 40 0
-OP MSGnexto[elem.host][elem.proc] 0 (79 0) - nextgr[elem.host][elem.nic] 0( 79  0) - time  61084800
-++ size is 1,  host [79] searching matching queue for src target 40 tag 0
-Compared element is -> 40 0 vs 40 0
-Searching for MATCHCurrent elem time is 61084800 while NS3 61084800
-Simulating Until Called
-Flow Finished 17@88@0 at 61100160
-Flow uecsrc finished at 0.0611002
-Flow uecsrc completion time is 0.0611002
-Completion Time Flow is 61100160Running - 1 - 61100160
-Updated - Time 61100160
-..... Received a MSG -- host 88 to target 17, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61100160 61100160 -  1 0 - 1 0 1 - 88 17 0
-OP MSGnexto[elem.host][elem.proc] 0 (88 0) - nextgr[elem.host][elem.nic] 0( 88  0) - time  61100160
-++ size is 1,  host [88] searching matching queue for src target 17 tag 0
-Compared element is -> 17 0 vs 17 0
-Searching for MATCHCurrent elem time is 61100160 while NS3 61100160
-Simulating Until Called
-Flow Finished 37@93@0 at 61104960
-Flow uecsrc finished at 0.061105
-Flow uecsrc completion time is 0.061105
-Completion Time Flow is 61104960Running - 1 - 61104960
-Updated - Time 61104960
-..... Received a MSG -- host 93 to target 37, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61104960 61104960 -  1 0 - 1 0 1 - 93 37 0
-OP MSGnexto[elem.host][elem.proc] 0 (93 0) - nextgr[elem.host][elem.nic] 0( 93  0) - time  61104960
-++ size is 1,  host [93] searching matching queue for src target 37 tag 0
-Compared element is -> 37 0 vs 37 0
-Searching for MATCHCurrent elem time is 61104960 while NS3 61104960
-Simulating Until Called
-Flow Finished 95@26@0 at 61120640
-Flow uecsrc finished at 0.0611206
-Flow uecsrc completion time is 0.0611206
-Completion Time Flow is 61120640Running - 1 - 61120640
-Updated - Time 61120640
-..... Received a MSG -- host 26 to target 95, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61120640 61120640 -  1 0 - 1 0 1 - 26 95 0
-OP MSGnexto[elem.host][elem.proc] 0 (26 0) - nextgr[elem.host][elem.nic] 0( 26  0) - time  61120640
-++ size is 1,  host [26] searching matching queue for src target 95 tag 0
-Compared element is -> 95 0 vs 95 0
-Searching for MATCHCurrent elem time is 61120640 while NS3 61120640
-Simulating Until Called
-Flow Finished 68@1@0 at 61166720
-Flow uecsrc finished at 0.0611667
-Flow uecsrc completion time is 0.0611667
-Completion Time Flow is 61166720Running - 1 - 61166720
-Updated - Time 61166720
-..... Received a MSG -- host 1 to target 68, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61166720 61166720 -  1 0 - 1 0 1 - 1 68 0
-OP MSGnexto[elem.host][elem.proc] 0 (1 0) - nextgr[elem.host][elem.nic] 0( 1  0) - time  61166720
-++ size is 1,  host [1] searching matching queue for src target 68 tag 0
-Compared element is -> 68 0 vs 68 0
-Searching for MATCHCurrent elem time is 61166720 while NS3 61166720
-Simulating Until Called
-Flow Finished 123@17@0 at 61210880
-Flow uecsrc finished at 0.0612109
-Flow uecsrc completion time is 0.0612109
-Completion Time Flow is 61210880Running - 1 - 61210880
-Updated - Time 61210880
-..... Received a MSG -- host 17 to target 123, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61210880 61210880 -  1 0 - 1 0 1 - 17 123 0
-OP MSGnexto[elem.host][elem.proc] 0 (17 0) - nextgr[elem.host][elem.nic] 0( 17  0) - time  61210880
-++ size is 1,  host [17] searching matching queue for src target 123 tag 0
-Compared element is -> 123 0 vs 123 0
-Searching for MATCHCurrent elem time is 61210880 while NS3 61210880
-Simulating Until Called
-Flow Finished 91@24@0 at 61248640
-Flow uecsrc finished at 0.0612486
-Flow uecsrc completion time is 0.0612486
-Completion Time Flow is 61248640Running - 1 - 61248640
-Updated - Time 61248640
-..... Received a MSG -- host 24 to target 91, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61248640 61248640 -  1 0 - 1 0 1 - 24 91 0
-OP MSGnexto[elem.host][elem.proc] 0 (24 0) - nextgr[elem.host][elem.nic] 0( 24  0) - time  61248640
-++ size is 1,  host [24] searching matching queue for src target 91 tag 0
-Compared element is -> 91 0 vs 91 0
-Searching for MATCHCurrent elem time is 61248640 while NS3 61248640
-Simulating Until Called
-Flow Finished 34@70@0 at 61258880
-Flow uecsrc finished at 0.0612589
-Flow uecsrc completion time is 0.0612589
-Completion Time Flow is 61258880Running - 1 - 61258880
-Updated - Time 61258880
-..... Received a MSG -- host 70 to target 34, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61258880 61258880 -  1 0 - 1 0 1 - 70 34 0
-OP MSGnexto[elem.host][elem.proc] 0 (70 0) - nextgr[elem.host][elem.nic] 0( 70  0) - time  61258880
-++ size is 1,  host [70] searching matching queue for src target 34 tag 0
-Compared element is -> 34 0 vs 34 0
-Searching for MATCHCurrent elem time is 61258880 while NS3 61258880
-Simulating Until Called
-Flow Finished 69@8@0 at 61340800
-Flow uecsrc finished at 0.0613408
-Flow uecsrc completion time is 0.0613408
-Completion Time Flow is 61340800Running - 1 - 61340800
-Updated - Time 61340800
-..... Received a MSG -- host 8 to target 69, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61340800 61340800 -  1 0 - 1 0 1 - 8 69 0
-OP MSGnexto[elem.host][elem.proc] 0 (8 0) - nextgr[elem.host][elem.nic] 0( 8  0) - time  61340800
-++ size is 1,  host [8] searching matching queue for src target 69 tag 0
-Compared element is -> 69 0 vs 69 0
-Searching for MATCHCurrent elem time is 61340800 while NS3 61340800
-Simulating Until Called
-Flow Finished 71@29@0 at 61357760
-Flow uecsrc finished at 0.0613578
-Flow uecsrc completion time is 0.0613578
-Completion Time Flow is 61357760Running - 1 - 61357760
-Updated - Time 61357760
-..... Received a MSG -- host 29 to target 71, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61357760 61357760 -  1 0 - 1 0 1 - 29 71 0
-OP MSGnexto[elem.host][elem.proc] 0 (29 0) - nextgr[elem.host][elem.nic] 0( 29  0) - time  61357760
-++ size is 1,  host [29] searching matching queue for src target 71 tag 0
-Compared element is -> 71 0 vs 71 0
-Searching for MATCHCurrent elem time is 61357760 while NS3 61357760
-Simulating Until Called
-Flow Finished 117@16@0 at 61374720
-Flow uecsrc finished at 0.0613747
-Flow uecsrc completion time is 0.0613747
-Completion Time Flow is 61374720Running - 1 - 61374720
-Updated - Time 61374720
-..... Received a MSG -- host 16 to target 117, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61374720 61374720 -  1 0 - 1 0 1 - 16 117 0
-OP MSGnexto[elem.host][elem.proc] 0 (16 0) - nextgr[elem.host][elem.nic] 0( 16  0) - time  61374720
-++ size is 1,  host [16] searching matching queue for src target 117 tag 0
-Compared element is -> 117 0 vs 117 0
-Searching for MATCHCurrent elem time is 61374720 while NS3 61374720
-Simulating Until Called
-Flow Finished 1@75@0 at 61431040
-Flow uecsrc finished at 0.061431
-Flow uecsrc completion time is 0.061431
-Completion Time Flow is 61431040Running - 1 - 61431040
-Updated - Time 61431040
-..... Received a MSG -- host 75 to target 1, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61431040 61431040 -  1 0 - 1 0 1 - 75 1 0
-OP MSGnexto[elem.host][elem.proc] 0 (75 0) - nextgr[elem.host][elem.nic] 0( 75  0) - time  61431040
-++ size is 1,  host [75] searching matching queue for src target 1 tag 0
+Flow Finished 1@64@0 at 330078080
+Flow uecsrc finished at 0.330078
+Flow uecsrc completion time is 0.330078
+Completion Time Flow is 330078080Running - 1 - 330078080
+Updated - Time 330078080
+..... Received a MSG -- host 64 to target 1, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 330078080 330078080 -  1 0 - 6 0 1 - 64 1 0
+OP MSGnexto[elem.host][elem.proc] 325304960 (64 0) - nextgr[elem.host][elem.nic] 325304960( 64  0) - time  330078080
+++ size is 6,  host [64] searching matching queue for src target 1 tag 0
+Compared element is -> 0 0 vs 1 0
 Compared element is -> 1 0 vs 1 0
-Searching for MATCHCurrent elem time is 61431040 while NS3 61431040
+Searching for MATCHCurrent elem time is 330078080 while NS3 330078080
 Simulating Until Called
-Flow Finished 45@94@0 at 61449600
-Flow uecsrc finished at 0.0614496
-Flow uecsrc completion time is 0.0614496
-Completion Time Flow is 61449600Running - 1 - 61449600
-Updated - Time 61449600
-..... Received a MSG -- host 94 to target 45, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61449600 61449600 -  1 0 - 1 0 1 - 94 45 0
-OP MSGnexto[elem.host][elem.proc] 0 (94 0) - nextgr[elem.host][elem.nic] 0( 94  0) - time  61449600
-++ size is 1,  host [94] searching matching queue for src target 45 tag 0
-Compared element is -> 45 0 vs 45 0
-Searching for MATCHCurrent elem time is 61449600 while NS3 61449600
+Flow Finished 3@64@0 at 331556480
+Flow uecsrc finished at 0.331556
+Flow uecsrc completion time is 0.331556
+Completion Time Flow is 331556480Running - 1 - 331556480
+Updated - Time 331556480
+..... Received a MSG -- host 64 to target 3, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 331556480 331556480 -  1 0 - 5 0 1 - 64 3 0
+OP MSGnexto[elem.host][elem.proc] 330078080 (64 0) - nextgr[elem.host][elem.nic] 330078080( 64  0) - time  331556480
+++ size is 5,  host [64] searching matching queue for src target 3 tag 0
+Compared element is -> 0 0 vs 3 0
+Compared element is -> 2 0 vs 3 0
+Compared element is -> 3 0 vs 3 0
+Searching for MATCHCurrent elem time is 331556480 while NS3 331556480
 Simulating Until Called
-Flow Finished 50@72@0 at 61473920
-Flow uecsrc finished at 0.0614739
-Flow uecsrc completion time is 0.0614739
-Completion Time Flow is 61473920Running - 1 - 61473920
-Updated - Time 61473920
-..... Received a MSG -- host 72 to target 50, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61473920 61473920 -  1 0 - 1 0 1 - 72 50 0
-OP MSGnexto[elem.host][elem.proc] 0 (72 0) - nextgr[elem.host][elem.nic] 0( 72  0) - time  61473920
-++ size is 1,  host [72] searching matching queue for src target 50 tag 0
-Compared element is -> 50 0 vs 50 0
-Searching for MATCHCurrent elem time is 61473920 while NS3 61473920
+Flow Finished 0@64@0 at 333161600
+Flow uecsrc finished at 0.333162
+Flow uecsrc completion time is 0.333162
+Completion Time Flow is 333161600Running - 1 - 333161600
+Updated - Time 333161600
+..... Received a MSG -- host 64 to target 0, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 333161600 333161600 -  1 0 - 4 0 1 - 64 0 0
+OP MSGnexto[elem.host][elem.proc] 331556480 (64 0) - nextgr[elem.host][elem.nic] 331556480( 64  0) - time  333161600
+++ size is 4,  host [64] searching matching queue for src target 0 tag 0
+Compared element is -> 0 0 vs 0 0
+Searching for MATCHCurrent elem time is 333161600 while NS3 333161600
 Simulating Until Called
-Flow Finished 43@64@0 at 61601920
-Flow uecsrc finished at 0.0616019
-Flow uecsrc completion time is 0.0616019
-Completion Time Flow is 61601920Running - 1 - 61601920
-Updated - Time 61601920
-..... Received a MSG -- host 64 to target 43, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61601920 61601920 -  1 0 - 1 0 1 - 64 43 0
-OP MSGnexto[elem.host][elem.proc] 0 (64 0) - nextgr[elem.host][elem.nic] 0( 64  0) - time  61601920
-++ size is 1,  host [64] searching matching queue for src target 43 tag 0
-Compared element is -> 43 0 vs 43 0
-Searching for MATCHCurrent elem time is 61601920 while NS3 61601920
+Flow Finished 6@64@0 at 344823680
+Flow uecsrc finished at 0.344824
+Flow uecsrc completion time is 0.344824
+Completion Time Flow is 344823680Running - 1 - 344823680
+Updated - Time 344823680
+..... Received a MSG -- host 64 to target 6, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 344823680 344823680 -  1 0 - 3 0 1 - 64 6 0
+OP MSGnexto[elem.host][elem.proc] 333161600 (64 0) - nextgr[elem.host][elem.nic] 333161600( 64  0) - time  344823680
+++ size is 3,  host [64] searching matching queue for src target 6 tag 0
+Compared element is -> 2 0 vs 6 0
+Compared element is -> 5 0 vs 6 0
+Compared element is -> 6 0 vs 6 0
+Searching for MATCHCurrent elem time is 344823680 while NS3 344823680
 Simulating Until Called
-Flow Finished 58@74@0 at 61653120
-Flow uecsrc finished at 0.0616531
-Flow uecsrc completion time is 0.0616531
-Completion Time Flow is 61653120Running - 1 - 61653120
-Updated - Time 61653120
-..... Received a MSG -- host 74 to target 58, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 61653120 61653120 -  1 0 - 1 0 1 - 74 58 0
-OP MSGnexto[elem.host][elem.proc] 0 (74 0) - nextgr[elem.host][elem.nic] 0( 74  0) - time  61653120
-++ size is 1,  host [74] searching matching queue for src target 58 tag 0
-Compared element is -> 58 0 vs 58 0
-Searching for MATCHCurrent elem time is 61653120 while NS3 61653120
+Flow Finished 5@64@0 at 346175360
+Flow uecsrc finished at 0.346175
+Flow uecsrc completion time is 0.346175
+Completion Time Flow is 346175360Running - 1 - 346175360
+Updated - Time 346175360
+..... Received a MSG -- host 64 to target 5, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 346175360 346175360 -  1 0 - 2 0 1 - 64 5 0
+OP MSGnexto[elem.host][elem.proc] 344823680 (64 0) - nextgr[elem.host][elem.nic] 344823680( 64  0) - time  346175360
+++ size is 2,  host [64] searching matching queue for src target 5 tag 0
+Compared element is -> 2 0 vs 5 0
+Compared element is -> 5 0 vs 5 0
+Searching for MATCHCurrent elem time is 346175360 while NS3 346175360
 Simulating Until Called
-Flow Finished 56@73@0 at 62006400
-Flow uecsrc finished at 0.0620064
-Flow uecsrc completion time is 0.0620064
-Completion Time Flow is 62006400Running - 1 - 62006400
-Updated - Time 62006400
-..... Received a MSG -- host 73 to target 56, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 62006400 62006400 -  1 0 - 1 0 1 - 73 56 0
-OP MSGnexto[elem.host][elem.proc] 0 (73 0) - nextgr[elem.host][elem.nic] 0( 73  0) - time  62006400
-++ size is 1,  host [73] searching matching queue for src target 56 tag 0
-Compared element is -> 56 0 vs 56 0
-Searching for MATCHCurrent elem time is 62006400 while NS3 62006400
-Simulating Until Called
-Flow Finished 20@99@0 at 62794880
-Flow uecsrc finished at 0.0627949
-Flow uecsrc completion time is 0.0627949
-Completion Time Flow is 62794880Running - 1 - 62794880
-Updated - Time 62794880
-..... Received a MSG -- host 99 to target 20, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 62794880 62794880 -  1 0 - 1 0 1 - 99 20 0
-OP MSGnexto[elem.host][elem.proc] 0 (99 0) - nextgr[elem.host][elem.nic] 0( 99  0) - time  62794880
-++ size is 1,  host [99] searching matching queue for src target 20 tag 0
-Compared element is -> 20 0 vs 20 0
-Searching for MATCHCurrent elem time is 62794880 while NS3 62794880
-Simulating Until Called
-Flow Finished 21@114@0 at 64352640
-Flow uecsrc finished at 0.0643526
-Flow uecsrc completion time is 0.0643526
-Completion Time Flow is 64352640Running - 1 - 64352640
-Updated - Time 64352640
-..... Received a MSG -- host 114 to target 21, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 64352640 64352640 -  1 0 - 1 0 1 - 114 21 0
-OP MSGnexto[elem.host][elem.proc] 0 (114 0) - nextgr[elem.host][elem.nic] 0( 114  0) - time  64352640
-++ size is 1,  host [114] searching matching queue for src target 21 tag 0
-Compared element is -> 21 0 vs 21 0
-Searching for MATCHCurrent elem time is 64352640 while NS3 64352640
-Simulating Until Called
-Flow Finished 23@90@0 at 64869760
-Flow uecsrc finished at 0.0648698
-Flow uecsrc completion time is 0.0648698
-Completion Time Flow is 64869760Running - 1 - 64869760
-Updated - Time 64869760
-..... Received a MSG -- host 90 to target 23, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 64869760 64869760 -  1 0 - 1 0 1 - 90 23 0
-OP MSGnexto[elem.host][elem.proc] 0 (90 0) - nextgr[elem.host][elem.nic] 0( 90  0) - time  64869760
-++ size is 1,  host [90] searching matching queue for src target 23 tag 0
-Compared element is -> 23 0 vs 23 0
-Searching for MATCHCurrent elem time is 64869760 while NS3 64869760
-Simulating Until Called
-Flow Finished 22@123@0 at 65059200
-Flow uecsrc finished at 0.0650592
-Flow uecsrc completion time is 0.0650592
-Completion Time Flow is 65059200Running - 1 - 65059200
-Updated - Time 65059200
-..... Received a MSG -- host 123 to target 22, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 65059200 65059200 -  1 0 - 1 0 1 - 123 22 0
-OP MSGnexto[elem.host][elem.proc] 0 (123 0) - nextgr[elem.host][elem.nic] 0( 123  0) - time  65059200
-++ size is 1,  host [123] searching matching queue for src target 22 tag 0
-Compared element is -> 22 0 vs 22 0
-Searching for MATCHCurrent elem time is 65059200 while NS3 65059200
+Flow Finished 2@64@0 at 346386560
+Flow uecsrc finished at 0.346387
+Flow uecsrc completion time is 0.346387
+Completion Time Flow is 346386560Running - 1 - 346386560
+Updated - Time 346386560
+..... Received a MSG -- host 64 to target 2, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 346386560 346386560 -  1 0 - 1 0 1 - 64 2 0
+OP MSGnexto[elem.host][elem.proc] 346175360 (64 0) - nextgr[elem.host][elem.nic] 346175360( 64  0) - time  346386560
+++ size is 1,  host [64] searching matching queue for src target 2 tag 0
+Compared element is -> 2 0 vs 2 0
+Searching for MATCHCurrent elem time is 346386560 while NS3 346386560
 ..... NOT Received a MSG
 
 
-RunTime Total LGS -> 1127ms
+RunTime Total LGS -> 303ms
 
 
-htsim Terminates at 65059200
+htsim Terminates at 346386560
 
 
 Remaining 128
-PERFORMANCE: Processes: 128 	 Events: 256 	 Time: 2 s 	 Speed: 128.00 ev/s
+PERFORMANCE: Processes: 128 	 Events: 16 	 Time: 0 s 	 Speed: inf ev/s
 AQ is 0
 Times: 
-Host 0: 60912000
-Host 1: 61166720
-Host 2: 60727680
-Host 3: 60031360
-Host 4: 59468480
-Host 5: 60676800
-Host 6: 59862720
-Host 7: 60216000
-Host 8: 61340800
-Host 9: 59678400
-Host 10: 60553920
-Host 11: 60492480
-Host 12: 59719360
-Host 13: 60115200
-Host 14: 59099840
-Host 15: 60125440
-Host 16: 61374720
-Host 17: 61210880
-Host 18: 60857600
-Host 19: 60752000
-Host 20: 59702400
-Host 21: 60905600
-Host 22: 60296320
-Host 23: 60954880
-Host 24: 61248640
-Host 25: 60644160
-Host 26: 61120640
-Host 27: 60287680
-Host 28: 61009600
-Host 29: 61357760
-Host 30: 60444800
-Host 31: 60757120
-Host 32: 59216000
-Host 33: 59424000
-Host 34: 59978560
-Host 35: 59814720
-Host 36: 59857600
-Host 37: 60997440
-Host 38: 60533440
-Host 39: 59896640
-Host 40: 60448000
-Host 41: 59703680
-Host 42: 59813120
-Host 43: 60249920
-Host 44: 60256960
-Host 45: 59125440
-Host 46: 59854080
-Host 47: 60000960
-Host 48: 58869440
-Host 49: 59898560
-Host 50: 60067520
-Host 51: 59845760
-Host 52: 59724480
-Host 53: 59555520
-Host 54: 59603200
-Host 55: 60744960
-Host 56: 59954880
-Host 57: 59695360
-Host 58: 59917440
-Host 59: 59785920
-Host 60: 59704000
-Host 61: 59722880
-Host 62: 59041920
-Host 63: 59693760
-Host 64: 61601920
-Host 65: 60060800
-Host 66: 60726400
-Host 67: 60019520
-Host 68: 60565760
-Host 69: 60204160
-Host 70: 61258880
-Host 71: 60552320
-Host 72: 61473920
-Host 73: 62006400
-Host 74: 61653120
-Host 75: 61431040
-Host 76: 59647680
-Host 77: 59987200
-Host 78: 60905600
-Host 79: 61084800
-Host 80: 60529920
-Host 81: 59792640
-Host 82: 59876480
-Host 83: 60355840
-Host 84: 60006080
-Host 85: 60197120
-Host 86: 60236480
-Host 87: 60357760
-Host 88: 61100160
-Host 89: 60762240
-Host 90: 64869760
-Host 91: 60931200
-Host 92: 59586240
-Host 93: 61104960
-Host 94: 61449600
-Host 95: 59947840
-Host 96: 60104960
-Host 97: 60388480
-Host 98: 59678080
-Host 99: 62794880
-Host 100: 60154560
-Host 101: 59980480
-Host 102: 60562560
-Host 103: 60670080
-Host 104: 59712320
-Host 105: 60176640
-Host 106: 60234560
-Host 107: 59722560
-Host 108: 60606720
-Host 109: 59920640
-Host 110: 59732800
-Host 111: 60171520
-Host 112: 60576000
-Host 113: 60570880
-Host 114: 64352640
-Host 115: 59744640
-Host 116: 59913600
-Host 117: 59830080
-Host 118: 59654400
-Host 119: 60265280
-Host 120: 59893440
-Host 121: 60282560
-Host 122: 60425600
-Host 123: 65059200
-Host 124: 60803200
-Host 125: 60483840
-Host 126: 60629120
-Host 127: 60460160
-Maximum finishing time at host 123: 65059200 (0.0650592 s)
+Host 0: 0
+Host 1: 0
+Host 2: 0
+Host 3: 0
+Host 4: 0
+Host 5: 0
+Host 6: 0
+Host 7: 0
+Host 8: 0
+Host 9: 0
+Host 10: 0
+Host 11: 0
+Host 12: 0
+Host 13: 0
+Host 14: 0
+Host 15: 0
+Host 16: 0
+Host 17: 0
+Host 18: 0
+Host 19: 0
+Host 20: 0
+Host 21: 0
+Host 22: 0
+Host 23: 0
+Host 24: 0
+Host 25: 0
+Host 26: 0
+Host 27: 0
+Host 28: 0
+Host 29: 0
+Host 30: 0
+Host 31: 0
+Host 32: 0
+Host 33: 0
+Host 34: 0
+Host 35: 0
+Host 36: 0
+Host 37: 0
+Host 38: 0
+Host 39: 0
+Host 40: 0
+Host 41: 0
+Host 42: 0
+Host 43: 0
+Host 44: 0
+Host 45: 0
+Host 46: 0
+Host 47: 0
+Host 48: 0
+Host 49: 0
+Host 50: 0
+Host 51: 0
+Host 52: 0
+Host 53: 0
+Host 54: 0
+Host 55: 0
+Host 56: 0
+Host 57: 0
+Host 58: 0
+Host 59: 0
+Host 60: 0
+Host 61: 0
+Host 62: 0
+Host 63: 0
+Host 64: 346386560
+Host 65: 0
+Host 66: 0
+Host 67: 0
+Host 68: 0
+Host 69: 0
+Host 70: 0
+Host 71: 0
+Host 72: 0
+Host 73: 0
+Host 74: 0
+Host 75: 0
+Host 76: 0
+Host 77: 0
+Host 78: 0
+Host 79: 0
+Host 80: 0
+Host 81: 0
+Host 82: 0
+Host 83: 0
+Host 84: 0
+Host 85: 0
+Host 86: 0
+Host 87: 0
+Host 88: 0
+Host 89: 0
+Host 90: 0
+Host 91: 0
+Host 92: 0
+Host 93: 0
+Host 94: 0
+Host 95: 0
+Host 96: 0
+Host 97: 0
+Host 98: 0
+Host 99: 0
+Host 100: 0
+Host 101: 0
+Host 102: 0
+Host 103: 0
+Host 104: 0
+Host 105: 0
+Host 106: 0
+Host 107: 0
+Host 108: 0
+Host 109: 0
+Host 110: 0
+Host 111: 0
+Host 112: 0
+Host 113: 0
+Host 114: 0
+Host 115: 0
+Host 116: 0
+Host 117: 0
+Host 118: 0
+Host 119: 0
+Host 120: 0
+Host 121: 0
+Host 122: 0
+Host 123: 0
+Host 124: 0
+Host 125: 0
+Host 126: 0
+Host 127: 0
+Maximum finishing time at host 64: 346386560 (0.346387 s)
 Mean number of subflows -nan
 Done
 Path:
-queue(100000Mb/s,2048000bytes)SRC0->LS0
+queue(400000Mb/s,2048000bytes)SRC0->LS0
 pipe(0us)
-compqueue(100000Mb/s,112500bytes)LS0->DST1 id=0 251pkts 251hdrs 0acks 0nacks 0stripped
+compqueue(400000Mb/s,432500bytes)LS0->DST1 id=0 0pkts 1113hdrs 0acks 0nacks 0stripped
 pipe(0us)
 
 Hop 0 Count 0

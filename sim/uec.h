@@ -96,6 +96,9 @@ class UecSrc : public PacketSink, public EventSource {
         do_exponential_gain = value;
     }
     static void set_use_fast_increase(bool value) { use_fast_increase = value; }
+    static void set_use_super_fast_increase(bool value) {
+        use_super_fast_increase = value;
+    }
     static void set_gain_value_med_inc(double value) {
         exp_gain_value_med_inc = value;
     }
@@ -163,6 +166,7 @@ class UecSrc : public PacketSink, public EventSource {
     static bool do_jitter;
     static bool do_exponential_gain;
     static bool use_fast_increase;
+    static bool use_super_fast_increase;
     static double exp_gain_value_med_inc;
     static double jitter_value_med_inc;
     static double delay_gain_value_med_inc;
@@ -260,6 +264,7 @@ class UecSrc : public PacketSink, public EventSource {
 
     void adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt);
     uint32_t medium_increase(simtime_picosec);
+    void fast_increase();
     bool no_ecn_last_target_rtt();
     bool no_rtt_over_target_last_target_rtt();
     bool ecn_congestion();

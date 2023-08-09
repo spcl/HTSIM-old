@@ -1,0 +1,1051 @@
+no_of_nodes 64
+cwnd 32500
+Speed is 100000
+Using subflow count 1
+Logging to uec_entry
+Logging path choices to uec_entry.paths
+Starting LGS InterfaceCurrent working directory: "/home/tommaso/csg-htsim/sim/datacenter"
+LogGP network backend; size: 64 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O=0, P=64, S=65535
+Starting 64
+----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 128 - 0 33 0
+sink tag is 0
+Scheduling Event (0@33@0) of size 512000 from 0 to 33 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [0] searching matching queue for src target 44 tag 0
+sink tag is 0
+Scheduling Event (1@35@0) of size 512000 from 1 to 35 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [1] searching matching queue for src target 63 tag 0
+sink tag is 0
+Scheduling Event (2@41@0) of size 512000 from 2 to 41 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [2] searching matching queue for src target 59 tag 0
+sink tag is 0
+Scheduling Event (3@45@0) of size 512000 from 3 to 45 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [3] searching matching queue for src target 46 tag 0
+sink tag is 0
+Scheduling Event (4@37@0) of size 512000 from 4 to 37 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [4] searching matching queue for src target 57 tag 0
+sink tag is 0
+Scheduling Event (5@57@0) of size 512000 from 5 to 57 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [5] searching matching queue for src target 52 tag 0
+sink tag is 0
+Scheduling Event (6@42@0) of size 512000 from 6 to 42 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [6] searching matching queue for src target 47 tag 0
+sink tag is 0
+Scheduling Event (7@50@0) of size 512000 from 7 to 50 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [7] searching matching queue for src target 45 tag 0
+sink tag is 0
+Scheduling Event (8@48@0) of size 512000 from 8 to 48 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [8] searching matching queue for src target 32 tag 0
+sink tag is 0
+Scheduling Event (9@54@0) of size 512000 from 9 to 54 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [9] searching matching queue for src target 36 tag 0
+sink tag is 0
+Scheduling Event (10@63@0) of size 512000 from 10 to 63 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [10] searching matching queue for src target 35 tag 0
+sink tag is 0
+Scheduling Event (11@40@0) of size 512000 from 11 to 40 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [11] searching matching queue for src target 43 tag 0
+sink tag is 0
+Scheduling Event (12@58@0) of size 512000 from 12 to 58 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [12] searching matching queue for src target 60 tag 0
+sink tag is 0
+Scheduling Event (13@38@0) of size 512000 from 13 to 38 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [13] searching matching queue for src target 41 tag 0
+sink tag is 0
+Scheduling Event (14@43@0) of size 512000 from 14 to 43 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [14] searching matching queue for src target 51 tag 0
+sink tag is 0
+Scheduling Event (15@56@0) of size 512000 from 15 to 56 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [15] searching matching queue for src target 56 tag 0
+sink tag is 0
+Scheduling Event (16@39@0) of size 512000 from 16 to 39 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [16] searching matching queue for src target 39 tag 0
+sink tag is 0
+Scheduling Event (17@52@0) of size 512000 from 17 to 52 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [17] searching matching queue for src target 48 tag 0
+sink tag is 0
+Scheduling Event (18@46@0) of size 512000 from 18 to 46 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [18] searching matching queue for src target 37 tag 0
+sink tag is 0
+Scheduling Event (19@53@0) of size 512000 from 19 to 53 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [19] searching matching queue for src target 53 tag 0
+sink tag is 0
+Scheduling Event (20@44@0) of size 512000 from 20 to 44 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [20] searching matching queue for src target 42 tag 0
+sink tag is 0
+Scheduling Event (21@59@0) of size 512000 from 21 to 59 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [21] searching matching queue for src target 33 tag 0
+sink tag is 0
+Scheduling Event (22@34@0) of size 512000 from 22 to 34 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [22] searching matching queue for src target 62 tag 0
+sink tag is 0
+Scheduling Event (23@55@0) of size 512000 from 23 to 55 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [23] searching matching queue for src target 58 tag 0
+sink tag is 0
+Scheduling Event (24@49@0) of size 512000 from 24 to 49 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [24] searching matching queue for src target 54 tag 0
+sink tag is 0
+Scheduling Event (25@62@0) of size 512000 from 25 to 62 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [25] searching matching queue for src target 61 tag 0
+sink tag is 0
+Scheduling Event (26@32@0) of size 512000 from 26 to 32 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [26] searching matching queue for src target 34 tag 0
+sink tag is 0
+Scheduling Event (27@36@0) of size 512000 from 27 to 36 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [27] searching matching queue for src target 49 tag 0
+sink tag is 0
+Scheduling Event (28@60@0) of size 512000 from 28 to 60 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [28] searching matching queue for src target 38 tag 0
+sink tag is 0
+Scheduling Event (29@47@0) of size 512000 from 29 to 47 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [29] searching matching queue for src target 50 tag 0
+sink tag is 0
+Scheduling Event (30@61@0) of size 512000 from 30 to 61 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [30] searching matching queue for src target 40 tag 0
+sink tag is 0
+Scheduling Event (31@51@0) of size 512000 from 31 to 51 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [31] searching matching queue for src target 55 tag 0
+sink tag is 0
+Scheduling Event (32@8@0) of size 512000 from 32 to 8 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [32] searching matching queue for src target 26 tag 0
+sink tag is 0
+Scheduling Event (33@21@0) of size 512000 from 33 to 21 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [33] searching matching queue for src target 0 tag 0
+sink tag is 0
+Scheduling Event (34@26@0) of size 512000 from 34 to 26 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [34] searching matching queue for src target 22 tag 0
+sink tag is 0
+Scheduling Event (35@10@0) of size 512000 from 35 to 10 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [35] searching matching queue for src target 1 tag 0
+sink tag is 0
+Scheduling Event (36@9@0) of size 512000 from 36 to 9 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [36] searching matching queue for src target 27 tag 0
+sink tag is 0
+Scheduling Event (37@18@0) of size 512000 from 37 to 18 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [37] searching matching queue for src target 4 tag 0
+sink tag is 0
+Scheduling Event (38@28@0) of size 512000 from 38 to 28 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [38] searching matching queue for src target 13 tag 0
+sink tag is 0
+Scheduling Event (39@16@0) of size 512000 from 39 to 16 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [39] searching matching queue for src target 16 tag 0
+sink tag is 0
+Scheduling Event (40@30@0) of size 512000 from 40 to 30 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [40] searching matching queue for src target 11 tag 0
+sink tag is 0
+Scheduling Event (41@13@0) of size 512000 from 41 to 13 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [41] searching matching queue for src target 2 tag 0
+sink tag is 0
+Scheduling Event (42@20@0) of size 512000 from 42 to 20 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [42] searching matching queue for src target 6 tag 0
+sink tag is 0
+Scheduling Event (43@11@0) of size 512000 from 43 to 11 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [43] searching matching queue for src target 14 tag 0
+sink tag is 0
+Scheduling Event (44@0@0) of size 512000 from 44 to 0 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [44] searching matching queue for src target 20 tag 0
+sink tag is 0
+Scheduling Event (45@7@0) of size 512000 from 45 to 7 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [45] searching matching queue for src target 3 tag 0
+sink tag is 0
+Scheduling Event (46@3@0) of size 512000 from 46 to 3 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [46] searching matching queue for src target 18 tag 0
+sink tag is 0
+Scheduling Event (47@6@0) of size 512000 from 47 to 6 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [47] searching matching queue for src target 29 tag 0
+sink tag is 0
+Scheduling Event (48@17@0) of size 512000 from 48 to 17 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [48] searching matching queue for src target 8 tag 0
+sink tag is 0
+Scheduling Event (49@27@0) of size 512000 from 49 to 27 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [49] searching matching queue for src target 24 tag 0
+sink tag is 0
+Scheduling Event (50@29@0) of size 512000 from 50 to 29 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [50] searching matching queue for src target 7 tag 0
+sink tag is 0
+Scheduling Event (51@14@0) of size 512000 from 51 to 14 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [51] searching matching queue for src target 31 tag 0
+sink tag is 0
+Scheduling Event (52@5@0) of size 512000 from 52 to 5 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [52] searching matching queue for src target 17 tag 0
+sink tag is 0
+Scheduling Event (53@19@0) of size 512000 from 53 to 19 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [53] searching matching queue for src target 19 tag 0
+sink tag is 0
+Scheduling Event (54@24@0) of size 512000 from 54 to 24 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [54] searching matching queue for src target 9 tag 0
+sink tag is 0
+Scheduling Event (55@31@0) of size 512000 from 55 to 31 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [55] searching matching queue for src target 23 tag 0
+sink tag is 0
+Scheduling Event (56@15@0) of size 512000 from 56 to 15 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [56] searching matching queue for src target 15 tag 0
+sink tag is 0
+Scheduling Event (57@4@0) of size 512000 from 57 to 4 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [57] searching matching queue for src target 5 tag 0
+sink tag is 0
+Scheduling Event (58@23@0) of size 512000 from 58 to 23 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [58] searching matching queue for src target 12 tag 0
+sink tag is 632521520
+Scheduling Event (59@2@0) of size 512000 from 59 to 2 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [59] searching matching queue for src target 21 tag 0
+sink tag is 0
+Scheduling Event (60@12@0) of size 512000 from 60 to 12 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [60] searching matching queue for src target 28 tag 0
+sink tag is 0
+Scheduling Event (61@25@0) of size 512000 from 61 to 25 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [61] searching matching queue for src target 30 tag 0
+sink tag is 0
+Scheduling Event (62@22@0) of size 512000 from 62 to 22 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [62] searching matching queue for src target 25 tag 0
+sink tag is 0
+Scheduling Event (63@1@0) of size 512000 from 63 to 1 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [63] searching matching queue for src target 10 tag 0
+Current elem time is 0 while NS3 0
+Simulating Until Called
+startflow NDP_0_33 CWND 32500 rts 0 at 0
+startflow NDP_1_35 CWND 32500 rts 0 at 0
+startflow NDP_2_41 CWND 32500 rts 0 at 0
+startflow NDP_3_45 CWND 32500 rts 0 at 0
+startflow NDP_4_37 CWND 32500 rts 0 at 0
+startflow NDP_5_57 CWND 32500 rts 0 at 0
+startflow NDP_6_42 CWND 32500 rts 0 at 0
+startflow NDP_7_50 CWND 32500 rts 0 at 0
+startflow NDP_8_48 CWND 32500 rts 0 at 0
+startflow NDP_9_54 CWND 32500 rts 0 at 0
+startflow NDP_10_63 CWND 32500 rts 0 at 0
+startflow NDP_11_40 CWND 32500 rts 0 at 0
+startflow NDP_12_58 CWND 32500 rts 0 at 0
+startflow NDP_13_38 CWND 32500 rts 0 at 0
+startflow NDP_14_43 CWND 32500 rts 0 at 0
+startflow NDP_15_56 CWND 32500 rts 0 at 0
+startflow NDP_16_39 CWND 32500 rts 0 at 0
+startflow NDP_17_52 CWND 32500 rts 0 at 0
+startflow NDP_18_46 CWND 32500 rts 0 at 0
+startflow NDP_19_53 CWND 32500 rts 0 at 0
+startflow NDP_20_44 CWND 32500 rts 0 at 0
+startflow NDP_21_59 CWND 32500 rts 0 at 0
+startflow NDP_22_34 CWND 32500 rts 0 at 0
+startflow NDP_23_55 CWND 32500 rts 0 at 0
+startflow NDP_24_49 CWND 32500 rts 0 at 0
+startflow NDP_25_62 CWND 32500 rts 0 at 0
+startflow NDP_26_32 CWND 32500 rts 0 at 0
+startflow NDP_27_36 CWND 32500 rts 0 at 0
+startflow NDP_28_60 CWND 32500 rts 0 at 0
+startflow NDP_29_47 CWND 32500 rts 0 at 0
+startflow NDP_30_61 CWND 32500 rts 0 at 0
+startflow NDP_31_51 CWND 32500 rts 0 at 0
+startflow NDP_32_8 CWND 32500 rts 0 at 0
+startflow NDP_33_21 CWND 32500 rts 0 at 0
+startflow NDP_34_26 CWND 32500 rts 0 at 0
+startflow NDP_35_10 CWND 32500 rts 0 at 0
+startflow NDP_36_9 CWND 32500 rts 0 at 0
+startflow NDP_37_18 CWND 32500 rts 0 at 0
+startflow NDP_38_28 CWND 32500 rts 0 at 0
+startflow NDP_39_16 CWND 32500 rts 0 at 0
+startflow NDP_40_30 CWND 32500 rts 0 at 0
+startflow NDP_41_13 CWND 32500 rts 0 at 0
+startflow NDP_42_20 CWND 32500 rts 0 at 0
+startflow NDP_43_11 CWND 32500 rts 0 at 0
+startflow NDP_44_0 CWND 32500 rts 0 at 0
+startflow NDP_45_7 CWND 32500 rts 0 at 0
+startflow NDP_46_3 CWND 32500 rts 0 at 0
+startflow NDP_47_6 CWND 32500 rts 0 at 0
+startflow NDP_48_17 CWND 32500 rts 0 at 0
+startflow NDP_49_27 CWND 32500 rts 0 at 0
+startflow NDP_50_29 CWND 32500 rts 0 at 0
+startflow NDP_51_14 CWND 32500 rts 0 at 0
+startflow NDP_52_5 CWND 32500 rts 0 at 0
+startflow NDP_53_19 CWND 32500 rts 0 at 0
+startflow NDP_54_24 CWND 32500 rts 0 at 0
+startflow NDP_55_31 CWND 32500 rts 0 at 0
+startflow NDP_56_15 CWND 32500 rts 0 at 0
+startflow NDP_57_4 CWND 32500 rts 0 at 0
+startflow NDP_58_23 CWND 32500 rts 0 at 0
+startflow NDP_59_2 CWND 32500 rts 0 at 0
+startflow NDP_60_12 CWND 32500 rts 0 at 0
+startflow NDP_61_25 CWND 32500 rts 0 at 0
+startflow NDP_62_22 CWND 32500 rts 0 at 0
+startflow NDP_63_1 CWND 32500 rts 0 at 0
+NACK 
+Flow Finished 48@17@0 at 185266240
+Flow NDP_48_17 flow_id 1000000048 finished at 185.266 total bytes 512000
+Running - 1 - 185266240
+Updated - Time 185266240
+..... Received a MSG -- host 17 to target 48, proc 0 - Type 1
+----------------------------    ENTERING WHILE        // ---------------------------- | 185266240 185266240 -  1 0 - 1 0 1 - 17 48 0
+OP MSGnexto[elem.host][elem.proc] 0 (17 0) - nextgr[elem.host][elem.nic] 0( 17  0) - time  185266240
+++ size is 1,  host [17] searching matching queue for src target 48 tag 0
+Compared element is -> 48 0 vs 48 0
+Searching for MATCHCurrent elem time is 185266240 while NS3 185266240
+Simulating Until Called
+Flow Finished 9@54@0 at 185587200
+Flow NDP_9_54 flow_id 1000000009 finished at 185.587 total bytes 512000
+Running - 1 - 185587200
+Updated - Time 185587200
+..... Received a MSG -- host 54 to target 9, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 185587200 185587200 -  1 0 - 1 0 1 - 54 9 0
+OP MSGnexto[elem.host][elem.proc] 0 (54 0) - nextgr[elem.host][elem.nic] 0( 54  0) - time  185587200
+++ size is 1,  host [54] searching matching queue for src target 9 tag 0
+Compared element is -> 9 0 vs 9 0
+Searching for MATCHCurrent elem time is 185587200 while NS3 185587200
+Simulating Until Called
+Flow Finished 52@5@0 at 185655360
+Flow NDP_52_5 flow_id 1000000052 finished at 185.655 total bytes 512000
+Running - 1 - 185655360
+Updated - Time 185655360
+..... Received a MSG -- host 5 to target 52, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 185655360 185655360 -  1 0 - 1 0 1 - 5 52 0
+OP MSGnexto[elem.host][elem.proc] 0 (5 0) - nextgr[elem.host][elem.nic] 0( 5  0) - time  185655360
+++ size is 1,  host [5] searching matching queue for src target 52 tag 0
+Compared element is -> 52 0 vs 52 0
+Searching for MATCHCurrent elem time is 185655360 while NS3 185655360
+Simulating Until Called
+Flow Finished 20@44@0 at 185716800
+Flow NDP_20_44 flow_id 1000000020 finished at 185.717 total bytes 512000
+Running - 1 - 185716800
+Updated - Time 185716800
+..... Received a MSG -- host 44 to target 20, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 185716800 185716800 -  1 0 - 1 0 1 - 44 20 0
+OP MSGnexto[elem.host][elem.proc] 0 (44 0) - nextgr[elem.host][elem.nic] 0( 44  0) - time  185716800
+++ size is 1,  host [44] searching matching queue for src target 20 tag 0
+Compared element is -> 20 0 vs 20 0
+Searching for MATCHCurrent elem time is 185716800 while NS3 185716800
+Simulating Until Called
+Flow Finished 49@27@0 at 185808960
+Flow NDP_49_27 flow_id 1000000049 finished at 185.809 total bytes 512000
+Running - 1 - 185808960
+Updated - Time 185808960
+..... Received a MSG -- host 27 to target 49, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 185808960 185808960 -  1 0 - 1 0 1 - 27 49 0
+OP MSGnexto[elem.host][elem.proc] 0 (27 0) - nextgr[elem.host][elem.nic] 0( 27  0) - time  185808960
+++ size is 1,  host [27] searching matching queue for src target 49 tag 0
+Compared element is -> 49 0 vs 49 0
+Searching for MATCHCurrent elem time is 185808960 while NS3 185808960
+Simulating Until Called
+Flow Finished 6@42@0 at 185896000
+Flow NDP_6_42 flow_id 1000000006 finished at 185.896 total bytes 512000
+Running - 1 - 185896000
+Updated - Time 185896000
+..... Received a MSG -- host 42 to target 6, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 185896000 185896000 -  1 0 - 1 0 1 - 42 6 0
+OP MSGnexto[elem.host][elem.proc] 0 (42 0) - nextgr[elem.host][elem.nic] 0( 42  0) - time  185896000
+++ size is 1,  host [42] searching matching queue for src target 6 tag 0
+Compared element is -> 6 0 vs 6 0
+Searching for MATCHCurrent elem time is 185896000 while NS3 185896000
+Simulating Until Called
+Flow Finished 35@10@0 at 186058240
+Flow NDP_35_10 flow_id 1000000035 finished at 186.058 total bytes 512000
+Running - 1 - 186058240
+Updated - Time 186058240
+..... Received a MSG -- host 10 to target 35, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186058240 186058240 -  1 0 - 1 0 1 - 10 35 0
+OP MSGnexto[elem.host][elem.proc] 0 (10 0) - nextgr[elem.host][elem.nic] 0( 10  0) - time  186058240
+++ size is 1,  host [10] searching matching queue for src target 35 tag 0
+Compared element is -> 35 0 vs 35 0
+Searching for MATCHCurrent elem time is 186058240 while NS3 186058240
+Simulating Until Called
+Flow Finished 44@0@0 at 186068480
+Flow NDP_44_0 flow_id 1000000044 finished at 186.068 total bytes 512000
+Running - 1 - 186068480
+Updated - Time 186068480
+..... Received a MSG -- host 0 to target 44, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186068480 186068480 -  1 0 - 1 0 1 - 0 44 0
+OP MSGnexto[elem.host][elem.proc] 0 (0 0) - nextgr[elem.host][elem.nic] 0( 0  0) - time  186068480
+++ size is 1,  host [0] searching matching queue for src target 44 tag 0
+Compared element is -> 44 0 vs 44 0
+Searching for MATCHCurrent elem time is 186068480 while NS3 186068480
+Simulating Until Called
+Flow Finished 24@49@0 at 186078720
+Flow NDP_24_49 flow_id 1000000024 finished at 186.079 total bytes 512000
+Running - 1 - 186078720
+Updated - Time 186078720
+..... Received a MSG -- host 49 to target 24, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186078720 186078720 -  1 0 - 1 0 1 - 49 24 0
+OP MSGnexto[elem.host][elem.proc] 0 (49 0) - nextgr[elem.host][elem.nic] 0( 49  0) - time  186078720
+++ size is 1,  host [49] searching matching queue for src target 24 tag 0
+Compared element is -> 24 0 vs 24 0
+Searching for MATCHCurrent elem time is 186078720 while NS3 186078720
+Simulating Until Called
+Flow Finished 19@53@0 at 186109440
+Flow NDP_19_53 flow_id 1000000019 finished at 186.109 total bytes 512000
+Running - 1 - 186109440
+Updated - Time 186109440
+..... Received a MSG -- host 53 to target 19, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186109440 186109440 -  1 0 - 1 0 1 - 53 19 0
+OP MSGnexto[elem.host][elem.proc] 0 (53 0) - nextgr[elem.host][elem.nic] 0( 53  0) - time  186109440
+++ size is 1,  host [53] searching matching queue for src target 19 tag 0
+Compared element is -> 19 0 vs 19 0
+Searching for MATCHCurrent elem time is 186109440 while NS3 186109440
+Simulating Until Called
+Flow Finished 26@32@0 at 186118080
+Flow NDP_26_32 flow_id 1000000026 finished at 186.118 total bytes 512000
+Running - 1 - 186118080
+Updated - Time 186118080
+..... Received a MSG -- host 32 to target 26, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186118080 186118080 -  1 0 - 1 0 1 - 32 26 0
+OP MSGnexto[elem.host][elem.proc] 0 (32 0) - nextgr[elem.host][elem.nic] 0( 32  0) - time  186118080
+++ size is 1,  host [32] searching matching queue for src target 26 tag 0
+Compared element is -> 26 0 vs 26 0
+Searching for MATCHCurrent elem time is 186118080 while NS3 186118080
+Simulating Until Called
+Flow Finished 50@29@0 at 186167360
+Flow NDP_50_29 flow_id 1000000050 finished at 186.167 total bytes 512000
+Running - 1 - 186167360
+Updated - Time 186167360
+..... Received a MSG -- host 29 to target 50, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186167360 186167360 -  1 0 - 1 0 1 - 29 50 0
+OP MSGnexto[elem.host][elem.proc] 0 (29 0) - nextgr[elem.host][elem.nic] 0( 29  0) - time  186167360
+++ size is 1,  host [29] searching matching queue for src target 50 tag 0
+Compared element is -> 50 0 vs 50 0
+Searching for MATCHCurrent elem time is 186167360 while NS3 186167360
+Simulating Until Called
+Flow Finished 58@23@0 at 186252800
+Flow NDP_58_23 flow_id 1000000058 finished at 186.253 total bytes 512000
+Running - 1 - 186252800
+Updated - Time 186252800
+..... Received a MSG -- host 23 to target 58, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186252800 186252800 -  1 0 - 1 0 1 - 23 58 0
+OP MSGnexto[elem.host][elem.proc] 0 (23 0) - nextgr[elem.host][elem.nic] 0( 23  0) - time  186252800
+++ size is 1,  host [23] searching matching queue for src target 58 tag 0
+Compared element is -> 58 0 vs 58 0
+Searching for MATCHCurrent elem time is 186252800 while NS3 186252800
+Simulating Until Called
+Flow Finished 28@60@0 at 186264640
+Flow NDP_28_60 flow_id 1000000028 finished at 186.265 total bytes 512000
+Running - 1 - 186264640
+Updated - Time 186264640
+..... Received a MSG -- host 60 to target 28, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186264640 186264640 -  1 0 - 1 0 1 - 60 28 0
+OP MSGnexto[elem.host][elem.proc] 0 (60 0) - nextgr[elem.host][elem.nic] 0( 60  0) - time  186264640
+++ size is 1,  host [60] searching matching queue for src target 28 tag 0
+Compared element is -> 28 0 vs 28 0
+Searching for MATCHCurrent elem time is 186264640 while NS3 186264640
+Simulating Until Called
+Flow Finished 56@15@0 at 186406400
+Flow NDP_56_15 flow_id 1000000056 finished at 186.406 total bytes 512000
+Running - 1 - 186406400
+Updated - Time 186406400
+..... Received a MSG -- host 15 to target 56, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186406400 186406400 -  1 0 - 1 0 1 - 15 56 0
+OP MSGnexto[elem.host][elem.proc] 0 (15 0) - nextgr[elem.host][elem.nic] 0( 15  0) - time  186406400
+++ size is 1,  host [15] searching matching queue for src target 56 tag 0
+Compared element is -> 56 0 vs 56 0
+Searching for MATCHCurrent elem time is 186406400 while NS3 186406400
+Simulating Until Called
+Flow Finished 61@25@0 at 186416640
+Flow NDP_61_25 flow_id 1000000061 finished at 186.417 total bytes 512000
+Running - 1 - 186416640
+Updated - Time 186416640
+..... Received a MSG -- host 25 to target 61, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186416640 186416640 -  1 0 - 1 0 1 - 25 61 0
+OP MSGnexto[elem.host][elem.proc] 0 (25 0) - nextgr[elem.host][elem.nic] 0( 25  0) - time  186416640
+++ size is 1,  host [25] searching matching queue for src target 61 tag 0
+Compared element is -> 61 0 vs 61 0
+Searching for MATCHCurrent elem time is 186416640 while NS3 186416640
+Simulating Until Called
+Flow Finished 2@41@0 at 186420160
+Flow NDP_2_41 flow_id 1000000002 finished at 186.42 total bytes 512000
+Running - 1 - 186420160
+Updated - Time 186420160
+..... Received a MSG -- host 41 to target 2, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186420160 186420160 -  1 0 - 1 0 1 - 41 2 0
+OP MSGnexto[elem.host][elem.proc] 0 (41 0) - nextgr[elem.host][elem.nic] 0( 41  0) - time  186420160
+++ size is 1,  host [41] searching matching queue for src target 2 tag 0
+Compared element is -> 2 0 vs 2 0
+Searching for MATCHCurrent elem time is 186420160 while NS3 186420160
+Simulating Until Called
+Flow Finished 31@51@0 at 186421760
+Flow NDP_31_51 flow_id 1000000031 finished at 186.422 total bytes 512000
+Running - 1 - 186421760
+Updated - Time 186421760
+..... Received a MSG -- host 51 to target 31, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186421760 186421760 -  1 0 - 1 0 1 - 51 31 0
+OP MSGnexto[elem.host][elem.proc] 0 (51 0) - nextgr[elem.host][elem.nic] 0( 51  0) - time  186421760
+++ size is 1,  host [51] searching matching queue for src target 31 tag 0
+Compared element is -> 31 0 vs 31 0
+Searching for MATCHCurrent elem time is 186421760 while NS3 186421760
+Simulating Until Called
+Flow Finished 10@63@0 at 186452480
+Flow NDP_10_63 flow_id 1000000010 finished at 186.452 total bytes 512000
+Running - 1 - 186452480
+Updated - Time 186452480
+..... Received a MSG -- host 63 to target 10, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186452480 186452480 -  1 0 - 1 0 1 - 63 10 0
+OP MSGnexto[elem.host][elem.proc] 0 (63 0) - nextgr[elem.host][elem.nic] 0( 63  0) - time  186452480
+++ size is 1,  host [63] searching matching queue for src target 10 tag 0
+Compared element is -> 10 0 vs 10 0
+Searching for MATCHCurrent elem time is 186452480 while NS3 186452480
+Simulating Until Called
+Flow Finished 8@48@0 at 186462720
+Flow NDP_8_48 flow_id 1000000008 finished at 186.463 total bytes 512000
+Running - 1 - 186462720
+Updated - Time 186462720
+..... Received a MSG -- host 48 to target 8, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186462720 186462720 -  1 0 - 1 0 1 - 48 8 0
+OP MSGnexto[elem.host][elem.proc] 0 (48 0) - nextgr[elem.host][elem.nic] 0( 48  0) - time  186462720
+++ size is 1,  host [48] searching matching queue for src target 8 tag 0
+Compared element is -> 8 0 vs 8 0
+Searching for MATCHCurrent elem time is 186462720 while NS3 186462720
+Simulating Until Called
+Flow Finished 22@34@0 at 186466240
+Flow NDP_22_34 flow_id 1000000022 finished at 186.466 total bytes 512000
+Running - 1 - 186466240
+Updated - Time 186466240
+..... Received a MSG -- host 34 to target 22, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186466240 186466240 -  1 0 - 1 0 1 - 34 22 0
+OP MSGnexto[elem.host][elem.proc] 0 (34 0) - nextgr[elem.host][elem.nic] 0( 34  0) - time  186466240
+++ size is 1,  host [34] searching matching queue for src target 22 tag 0
+Compared element is -> 22 0 vs 22 0
+Searching for MATCHCurrent elem time is 186466240 while NS3 186466240
+Simulating Until Called
+Flow Finished 18@46@0 at 186594240
+Flow NDP_18_46 flow_id 1000000018 finished at 186.594 total bytes 512000
+Running - 1 - 186594240
+Updated - Time 186594240
+..... Received a MSG -- host 46 to target 18, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186594240 186594240 -  1 0 - 1 0 1 - 46 18 0
+OP MSGnexto[elem.host][elem.proc] 0 (46 0) - nextgr[elem.host][elem.nic] 0( 46  0) - time  186594240
+++ size is 1,  host [46] searching matching queue for src target 18 tag 0
+Compared element is -> 18 0 vs 18 0
+Searching for MATCHCurrent elem time is 186594240 while NS3 186594240
+Simulating Until Called
+Flow Finished 40@30@0 at 186600960
+Flow NDP_40_30 flow_id 1000000040 finished at 186.601 total bytes 512000
+Running - 1 - 186600960
+Updated - Time 186600960
+..... Received a MSG -- host 30 to target 40, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186600960 186600960 -  1 0 - 1 0 1 - 30 40 0
+OP MSGnexto[elem.host][elem.proc] 0 (30 0) - nextgr[elem.host][elem.nic] 0( 30  0) - time  186600960
+++ size is 1,  host [30] searching matching queue for src target 40 tag 0
+Compared element is -> 40 0 vs 40 0
+Searching for MATCHCurrent elem time is 186600960 while NS3 186600960
+Simulating Until Called
+Flow Finished 37@18@0 at 186606080
+Flow NDP_37_18 flow_id 1000000037 finished at 186.606 total bytes 512000
+Running - 1 - 186606080
+Updated - Time 186606080
+..... Received a MSG -- host 18 to target 37, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186606080 186606080 -  1 0 - 1 0 1 - 18 37 0
+OP MSGnexto[elem.host][elem.proc] 0 (18 0) - nextgr[elem.host][elem.nic] 0( 18  0) - time  186606080
+++ size is 1,  host [18] searching matching queue for src target 37 tag 0
+Compared element is -> 37 0 vs 37 0
+Searching for MATCHCurrent elem time is 186606080 while NS3 186606080
+Simulating Until Called
+Flow Finished 33@21@0 at 186611200
+Flow NDP_33_21 flow_id 1000000033 finished at 186.611 total bytes 512000
+Running - 1 - 186611200
+Updated - Time 186611200
+..... Received a MSG -- host 21 to target 33, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186611200 186611200 -  1 0 - 1 0 1 - 21 33 0
+OP MSGnexto[elem.host][elem.proc] 0 (21 0) - nextgr[elem.host][elem.nic] 0( 21  0) - time  186611200
+++ size is 1,  host [21] searching matching queue for src target 33 tag 0
+Compared element is -> 33 0 vs 33 0
+Searching for MATCHCurrent elem time is 186611200 while NS3 186611200
+Simulating Until Called
+Flow Finished 27@36@0 at 186635200
+Flow NDP_27_36 flow_id 1000000027 finished at 186.635 total bytes 512000
+Running - 1 - 186635200
+Updated - Time 186635200
+..... Received a MSG -- host 36 to target 27, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186635200 186635200 -  1 0 - 1 0 1 - 36 27 0
+OP MSGnexto[elem.host][elem.proc] 0 (36 0) - nextgr[elem.host][elem.nic] 0( 36  0) - time  186635200
+++ size is 1,  host [36] searching matching queue for src target 27 tag 0
+Compared element is -> 27 0 vs 27 0
+Searching for MATCHCurrent elem time is 186635200 while NS3 186635200
+Simulating Until Called
+Flow Finished 45@7@0 at 186710080
+Flow NDP_45_7 flow_id 1000000045 finished at 186.71 total bytes 512000
+Running - 1 - 186710080
+Updated - Time 186710080
+..... Received a MSG -- host 7 to target 45, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186710080 186710080 -  1 0 - 1 0 1 - 7 45 0
+OP MSGnexto[elem.host][elem.proc] 0 (7 0) - nextgr[elem.host][elem.nic] 0( 7  0) - time  186710080
+++ size is 1,  host [7] searching matching queue for src target 45 tag 0
+Compared element is -> 45 0 vs 45 0
+Searching for MATCHCurrent elem time is 186710080 while NS3 186710080
+Simulating Until Called
+Flow Finished 57@4@0 at 186769920
+Flow NDP_57_4 flow_id 1000000057 finished at 186.77 total bytes 512000
+Running - 1 - 186769920
+Updated - Time 186769920
+..... Received a MSG -- host 4 to target 57, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186769920 186769920 -  1 0 - 1 0 1 - 4 57 0
+OP MSGnexto[elem.host][elem.proc] 0 (4 0) - nextgr[elem.host][elem.nic] 0( 4  0) - time  186769920
+++ size is 1,  host [4] searching matching queue for src target 57 tag 0
+Compared element is -> 57 0 vs 57 0
+Searching for MATCHCurrent elem time is 186769920 while NS3 186769920
+Simulating Until Called
+Flow Finished 55@31@0 at 186775040
+Flow NDP_55_31 flow_id 1000000055 finished at 186.775 total bytes 512000
+Running - 1 - 186775040
+Updated - Time 186775040
+..... Received a MSG -- host 31 to target 55, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186775040 186775040 -  1 0 - 1 0 1 - 31 55 0
+OP MSGnexto[elem.host][elem.proc] 0 (31 0) - nextgr[elem.host][elem.nic] 0( 31  0) - time  186775040
+++ size is 1,  host [31] searching matching queue for src target 55 tag 0
+Compared element is -> 55 0 vs 55 0
+Searching for MATCHCurrent elem time is 186775040 while NS3 186775040
+Simulating Until Called
+Flow Finished 3@45@0 at 186778560
+Flow NDP_3_45 flow_id 1000000003 finished at 186.779 total bytes 512000
+Running - 1 - 186778560
+Updated - Time 186778560
+..... Received a MSG -- host 45 to target 3, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186778560 186778560 -  1 0 - 1 0 1 - 45 3 0
+OP MSGnexto[elem.host][elem.proc] 0 (45 0) - nextgr[elem.host][elem.nic] 0( 45  0) - time  186778560
+++ size is 1,  host [45] searching matching queue for src target 3 tag 0
+Compared element is -> 3 0 vs 3 0
+Searching for MATCHCurrent elem time is 186778560 while NS3 186778560
+Simulating Until Called
+Flow Finished 17@52@0 at 186780160
+Flow NDP_17_52 flow_id 1000000017 finished at 186.78 total bytes 512000
+Running - 1 - 186780160
+Updated - Time 186780160
+..... Received a MSG -- host 52 to target 17, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186780160 186780160 -  1 0 - 1 0 1 - 52 17 0
+OP MSGnexto[elem.host][elem.proc] 0 (52 0) - nextgr[elem.host][elem.nic] 0( 52  0) - time  186780160
+++ size is 1,  host [52] searching matching queue for src target 17 tag 0
+Compared element is -> 17 0 vs 17 0
+Searching for MATCHCurrent elem time is 186780160 while NS3 186780160
+Simulating Until Called
+Flow Finished 25@62@0 at 186792000
+Flow NDP_25_62 flow_id 1000000025 finished at 186.792 total bytes 512000
+Running - 1 - 186792000
+Updated - Time 186792000
+..... Received a MSG -- host 62 to target 25, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186792000 186792000 -  1 0 - 1 0 1 - 62 25 0
+OP MSGnexto[elem.host][elem.proc] 0 (62 0) - nextgr[elem.host][elem.nic] 0( 62  0) - time  186792000
+++ size is 1,  host [62] searching matching queue for src target 25 tag 0
+Compared element is -> 25 0 vs 25 0
+Searching for MATCHCurrent elem time is 186792000 while NS3 186792000
+Simulating Until Called
+Flow Finished 12@58@0 at 186807360
+Flow NDP_12_58 flow_id 1000000012 finished at 186.807 total bytes 512000
+Running - 1 - 186807360
+Updated - Time 186807360
+..... Received a MSG -- host 58 to target 12, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186807360 186807360 -  1 0 - 1 0 1 - 58 12 0
+OP MSGnexto[elem.host][elem.proc] 0 (58 0) - nextgr[elem.host][elem.nic] 0( 58  0) - time  186807360
+++ size is 1,  host [58] searching matching queue for src target 12 tag 0
+Compared element is -> 12 0 vs 12 0
+Searching for MATCHCurrent elem time is 186807360 while NS3 186807360
+Simulating Until Called
+Flow Finished 1@35@0 at 186812480
+Flow NDP_1_35 flow_id 1000000001 finished at 186.812 total bytes 512000
+Running - 1 - 186812480
+Updated - Time 186812480
+..... Received a MSG -- host 35 to target 1, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186812480 186812480 -  1 0 - 1 0 1 - 35 1 0
+OP MSGnexto[elem.host][elem.proc] 0 (35 0) - nextgr[elem.host][elem.nic] 0( 35  0) - time  186812480
+++ size is 1,  host [35] searching matching queue for src target 1 tag 0
+Compared element is -> 1 0 vs 1 0
+Searching for MATCHCurrent elem time is 186812480 while NS3 186812480
+Simulating Until Called
+Flow Finished 54@24@0 at 186827840
+Flow NDP_54_24 flow_id 1000000054 finished at 186.828 total bytes 512000
+Running - 1 - 186827840
+Updated - Time 186827840
+..... Received a MSG -- host 24 to target 54, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186827840 186827840 -  1 0 - 1 0 1 - 24 54 0
+OP MSGnexto[elem.host][elem.proc] 0 (24 0) - nextgr[elem.host][elem.nic] 0( 24  0) - time  186827840
+++ size is 1,  host [24] searching matching queue for src target 54 tag 0
+Compared element is -> 54 0 vs 54 0
+Searching for MATCHCurrent elem time is 186827840 while NS3 186827840
+Simulating Until Called
+Flow Finished 53@19@0 at 186838080
+Flow NDP_53_19 flow_id 1000000053 finished at 186.838 total bytes 512000
+Running - 1 - 186838080
+Updated - Time 186838080
+..... Received a MSG -- host 19 to target 53, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186838080 186838080 -  1 0 - 1 0 1 - 19 53 0
+OP MSGnexto[elem.host][elem.proc] 0 (19 0) - nextgr[elem.host][elem.nic] 0( 19  0) - time  186838080
+++ size is 1,  host [19] searching matching queue for src target 53 tag 0
+Compared element is -> 53 0 vs 53 0
+Searching for MATCHCurrent elem time is 186838080 while NS3 186838080
+Simulating Until Called
+Flow Finished 51@14@0 at 186899520
+Flow NDP_51_14 flow_id 1000000051 finished at 186.9 total bytes 512000
+Running - 1 - 186899520
+Updated - Time 186899520
+..... Received a MSG -- host 14 to target 51, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186899520 186899520 -  1 0 - 1 0 1 - 14 51 0
+OP MSGnexto[elem.host][elem.proc] 0 (14 0) - nextgr[elem.host][elem.nic] 0( 14  0) - time  186899520
+++ size is 1,  host [14] searching matching queue for src target 51 tag 0
+Compared element is -> 51 0 vs 51 0
+Searching for MATCHCurrent elem time is 186899520 while NS3 186899520
+Simulating Until Called
+Flow Finished 36@9@0 at 186938880
+Flow NDP_36_9 flow_id 1000000036 finished at 186.939 total bytes 512000
+Running - 1 - 186938880
+Updated - Time 186938880
+..... Received a MSG -- host 9 to target 36, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186938880 186938880 -  1 0 - 1 0 1 - 9 36 0
+OP MSGnexto[elem.host][elem.proc] 0 (9 0) - nextgr[elem.host][elem.nic] 0( 9  0) - time  186938880
+++ size is 1,  host [9] searching matching queue for src target 36 tag 0
+Compared element is -> 36 0 vs 36 0
+Searching for MATCHCurrent elem time is 186938880 while NS3 186938880
+Simulating Until Called
+Flow Finished 59@2@0 at 186944000
+Flow NDP_59_2 flow_id 1000000059 finished at 186.944 total bytes 512000
+Running - 1 - 186944000
+Updated - Time 186944000
+..... Received a MSG -- host 2 to target 59, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186944000 186944000 -  1 0 - 1 0 1 - 2 59 0
+OP MSGnexto[elem.host][elem.proc] 0 (2 0) - nextgr[elem.host][elem.nic] 0( 2  0) - time  186944000
+++ size is 1,  host [2] searching matching queue for src target 59 tag 0
+Compared element is -> 59 0 vs 59 0
+Searching for MATCHCurrent elem time is 186944000 while NS3 186944000
+Simulating Until Called
+Flow Finished 30@61@0 at 186971200
+Flow NDP_30_61 flow_id 1000000030 finished at 186.971 total bytes 512000
+Running - 1 - 186971200
+Updated - Time 186971200
+..... Received a MSG -- host 61 to target 30, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186971200 186971200 -  1 0 - 1 0 1 - 61 30 0
+OP MSGnexto[elem.host][elem.proc] 0 (61 0) - nextgr[elem.host][elem.nic] 0( 61  0) - time  186971200
+++ size is 1,  host [61] searching matching queue for src target 30 tag 0
+Compared element is -> 30 0 vs 30 0
+Searching for MATCHCurrent elem time is 186971200 while NS3 186971200
+Simulating Until Called
+Flow Finished 21@59@0 at 186974720
+Flow NDP_21_59 flow_id 1000000021 finished at 186.975 total bytes 512000
+Running - 1 - 186974720
+Updated - Time 186974720
+..... Received a MSG -- host 59 to target 21, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186974720 186974720 -  1 0 - 1 0 1 - 59 21 0
+OP MSGnexto[elem.host][elem.proc] 0 (59 0) - nextgr[elem.host][elem.nic] 0( 59  0) - time  186974720
+++ size is 1,  host [59] searching matching queue for src target 21 tag 0
+Compared element is -> 21 0 vs 21 0
+Searching for MATCHCurrent elem time is 186974720 while NS3 186974720
+Simulating Until Called
+Flow Finished 16@39@0 at 186983360
+Flow NDP_16_39 flow_id 1000000016 finished at 186.983 total bytes 512000
+Running - 1 - 186983360
+Updated - Time 186983360
+..... Received a MSG -- host 39 to target 16, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 186983360 186983360 -  1 0 - 1 0 1 - 39 16 0
+OP MSGnexto[elem.host][elem.proc] 0 (39 0) - nextgr[elem.host][elem.nic] 0( 39  0) - time  186983360
+++ size is 1,  host [39] searching matching queue for src target 16 tag 0
+Compared element is -> 16 0 vs 16 0
+Searching for MATCHCurrent elem time is 186983360 while NS3 186983360
+Simulating Until Called
+Flow Finished 42@20@0 at 187012160
+Flow NDP_42_20 flow_id 1000000042 finished at 187.012 total bytes 512000
+Running - 1 - 187012160
+Updated - Time 187012160
+..... Received a MSG -- host 20 to target 42, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187012160 187012160 -  1 0 - 1 0 1 - 20 42 0
+OP MSGnexto[elem.host][elem.proc] 0 (20 0) - nextgr[elem.host][elem.nic] 0( 20  0) - time  187012160
+++ size is 1,  host [20] searching matching queue for src target 42 tag 0
+Compared element is -> 42 0 vs 42 0
+Searching for MATCHCurrent elem time is 187012160 while NS3 187012160
+Simulating Until Called
+Flow Finished 63@1@0 at 187112960
+Flow NDP_63_1 flow_id 1000000063 finished at 187.113 total bytes 512000
+Running - 1 - 187112960
+Updated - Time 187112960
+..... Received a MSG -- host 1 to target 63, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187112960 187112960 -  1 0 - 1 0 1 - 1 63 0
+OP MSGnexto[elem.host][elem.proc] 0 (1 0) - nextgr[elem.host][elem.nic] 0( 1  0) - time  187112960
+++ size is 1,  host [1] searching matching queue for src target 63 tag 0
+Compared element is -> 63 0 vs 63 0
+Searching for MATCHCurrent elem time is 187112960 while NS3 187112960
+Simulating Until Called
+Flow Finished 38@28@0 at 187123200
+Flow NDP_38_28 flow_id 1000000038 finished at 187.123 total bytes 512000
+Running - 1 - 187123200
+Updated - Time 187123200
+..... Received a MSG -- host 28 to target 38, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187123200 187123200 -  1 0 - 1 0 1 - 28 38 0
+OP MSGnexto[elem.host][elem.proc] 0 (28 0) - nextgr[elem.host][elem.nic] 0( 28  0) - time  187123200
+++ size is 1,  host [28] searching matching queue for src target 38 tag 0
+Compared element is -> 38 0 vs 38 0
+Searching for MATCHCurrent elem time is 187123200 while NS3 187123200
+Simulating Until Called
+Flow Finished 7@50@0 at 187126720
+Flow NDP_7_50 flow_id 1000000007 finished at 187.127 total bytes 512000
+Running - 1 - 187126720
+Updated - Time 187126720
+..... Received a MSG -- host 50 to target 7, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187126720 187126720 -  1 0 - 1 0 1 - 50 7 0
+OP MSGnexto[elem.host][elem.proc] 0 (50 0) - nextgr[elem.host][elem.nic] 0( 50  0) - time  187126720
+++ size is 1,  host [50] searching matching queue for src target 7 tag 0
+Compared element is -> 7 0 vs 7 0
+Searching for MATCHCurrent elem time is 187126720 while NS3 187126720
+Simulating Until Called
+Flow Finished 29@47@0 at 187129920
+Flow NDP_29_47 flow_id 1000000029 finished at 187.13 total bytes 512000
+Running - 1 - 187129920
+Updated - Time 187129920
+..... Received a MSG -- host 47 to target 29, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187129920 187129920 -  1 0 - 1 0 1 - 47 29 0
+OP MSGnexto[elem.host][elem.proc] 0 (47 0) - nextgr[elem.host][elem.nic] 0( 47  0) - time  187129920
+++ size is 1,  host [47] searching matching queue for src target 29 tag 0
+Compared element is -> 29 0 vs 29 0
+Searching for MATCHCurrent elem time is 187129920 while NS3 187129920
+Simulating Until Called
+Flow Finished 15@56@0 at 187150400
+Flow NDP_15_56 flow_id 1000000015 finished at 187.15 total bytes 512000
+Running - 1 - 187150400
+Updated - Time 187150400
+..... Received a MSG -- host 56 to target 15, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187150400 187150400 -  1 0 - 1 0 1 - 56 15 0
+OP MSGnexto[elem.host][elem.proc] 0 (56 0) - nextgr[elem.host][elem.nic] 0( 56  0) - time  187150400
+++ size is 1,  host [56] searching matching queue for src target 15 tag 0
+Compared element is -> 15 0 vs 15 0
+Searching for MATCHCurrent elem time is 187150400 while NS3 187150400
+Simulating Until Called
+Flow Finished 62@22@0 at 187186240
+Flow NDP_62_22 flow_id 1000000062 finished at 187.186 total bytes 512000
+Running - 1 - 187186240
+Updated - Time 187186240
+..... Received a MSG -- host 22 to target 62, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187186240 187186240 -  1 0 - 1 0 1 - 22 62 0
+OP MSGnexto[elem.host][elem.proc] 0 (22 0) - nextgr[elem.host][elem.nic] 0( 22  0) - time  187186240
+++ size is 1,  host [22] searching matching queue for src target 62 tag 0
+Compared element is -> 62 0 vs 62 0
+Searching for MATCHCurrent elem time is 187186240 while NS3 187186240
+Simulating Until Called
+Flow Finished 60@12@0 at 187247680
+Flow NDP_60_12 flow_id 1000000060 finished at 187.248 total bytes 512000
+Running - 1 - 187247680
+Updated - Time 187247680
+..... Received a MSG -- host 12 to target 60, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187247680 187247680 -  1 0 - 1 0 1 - 12 60 0
+OP MSGnexto[elem.host][elem.proc] 0 (12 0) - nextgr[elem.host][elem.nic] 0( 12  0) - time  187247680
+++ size is 1,  host [12] searching matching queue for src target 60 tag 0
+Compared element is -> 60 0 vs 60 0
+Searching for MATCHCurrent elem time is 187247680 while NS3 187247680
+Simulating Until Called
+Flow Finished 32@8@0 at 187252800
+Flow NDP_32_8 flow_id 1000000032 finished at 187.253 total bytes 512000
+Running - 1 - 187252800
+Updated - Time 187252800
+..... Received a MSG -- host 8 to target 32, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187252800 187252800 -  1 0 - 1 0 1 - 8 32 0
+OP MSGnexto[elem.host][elem.proc] 0 (8 0) - nextgr[elem.host][elem.nic] 0( 8  0) - time  187252800
+++ size is 1,  host [8] searching matching queue for src target 32 tag 0
+Compared element is -> 32 0 vs 32 0
+Searching for MATCHCurrent elem time is 187252800 while NS3 187252800
+Simulating Until Called
+Flow Finished 41@13@0 at 187281920
+Flow NDP_41_13 flow_id 1000000041 finished at 187.282 total bytes 512000
+Running - 1 - 187281920
+Updated - Time 187281920
+..... Received a MSG -- host 13 to target 41, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187281920 187281920 -  1 0 - 1 0 1 - 13 41 0
+OP MSGnexto[elem.host][elem.proc] 0 (13 0) - nextgr[elem.host][elem.nic] 0( 13  0) - time  187281920
+++ size is 1,  host [13] searching matching queue for src target 41 tag 0
+Compared element is -> 41 0 vs 41 0
+Searching for MATCHCurrent elem time is 187281920 while NS3 187281920
+Simulating Until Called
+Flow Finished 23@55@0 at 187288640
+Flow NDP_23_55 flow_id 1000000023 finished at 187.289 total bytes 512000
+Running - 1 - 187288640
+Updated - Time 187288640
+..... Received a MSG -- host 55 to target 23, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187288640 187288640 -  1 0 - 1 0 1 - 55 23 0
+OP MSGnexto[elem.host][elem.proc] 0 (55 0) - nextgr[elem.host][elem.nic] 0( 55  0) - time  187288640
+++ size is 1,  host [55] searching matching queue for src target 23 tag 0
+Compared element is -> 23 0 vs 23 0
+Searching for MATCHCurrent elem time is 187288640 while NS3 187288640
+Simulating Until Called
+Flow Finished 11@40@0 at 187290560
+Flow NDP_11_40 flow_id 1000000011 finished at 187.291 total bytes 512000
+Running - 1 - 187290560
+Updated - Time 187290560
+..... Received a MSG -- host 40 to target 11, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187290560 187290560 -  1 0 - 1 0 1 - 40 11 0
+OP MSGnexto[elem.host][elem.proc] 0 (40 0) - nextgr[elem.host][elem.nic] 0( 40  0) - time  187290560
+++ size is 1,  host [40] searching matching queue for src target 11 tag 0
+Compared element is -> 11 0 vs 11 0
+Searching for MATCHCurrent elem time is 187290560 while NS3 187290560
+Simulating Until Called
+Flow Finished 47@6@0 at 187292160
+Flow NDP_47_6 flow_id 1000000047 finished at 187.292 total bytes 512000
+Running - 1 - 187292160
+Updated - Time 187292160
+..... Received a MSG -- host 6 to target 47, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187292160 187292160 -  1 0 - 1 0 1 - 6 47 0
+OP MSGnexto[elem.host][elem.proc] 0 (6 0) - nextgr[elem.host][elem.nic] 0( 6  0) - time  187292160
+++ size is 1,  host [6] searching matching queue for src target 47 tag 0
+Compared element is -> 47 0 vs 47 0
+Searching for MATCHCurrent elem time is 187292160 while NS3 187292160
+Simulating Until Called
+Flow Finished 5@57@0 at 187322880
+Flow NDP_5_57 flow_id 1000000005 finished at 187.323 total bytes 512000
+Running - 1 - 187322880
+Updated - Time 187322880
+..... Received a MSG -- host 57 to target 5, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187322880 187322880 -  1 0 - 1 0 1 - 57 5 0
+OP MSGnexto[elem.host][elem.proc] 0 (57 0) - nextgr[elem.host][elem.nic] 0( 57  0) - time  187322880
+++ size is 1,  host [57] searching matching queue for src target 5 tag 0
+Compared element is -> 5 0 vs 5 0
+Searching for MATCHCurrent elem time is 187322880 while NS3 187322880
+Simulating Until Called
+Flow Finished 4@37@0 at 187341760
+Flow NDP_4_37 flow_id 1000000004 finished at 187.342 total bytes 512000
+Running - 1 - 187341760
+Updated - Time 187341760
+..... Received a MSG -- host 37 to target 4, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187341760 187341760 -  1 0 - 1 0 1 - 37 4 0
+OP MSGnexto[elem.host][elem.proc] 0 (37 0) - nextgr[elem.host][elem.nic] 0( 37  0) - time  187341760
+++ size is 1,  host [37] searching matching queue for src target 4 tag 0
+Compared element is -> 4 0 vs 4 0
+Searching for MATCHCurrent elem time is 187341760 while NS3 187341760
+Simulating Until Called
+Flow Finished 34@26@0 at 187355200
+Flow NDP_34_26 flow_id 1000000034 finished at 187.355 total bytes 512000
+Running - 1 - 187355200
+Updated - Time 187355200
+..... Received a MSG -- host 26 to target 34, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187355200 187355200 -  1 0 - 1 0 1 - 26 34 0
+OP MSGnexto[elem.host][elem.proc] 0 (26 0) - nextgr[elem.host][elem.nic] 0( 26  0) - time  187355200
+++ size is 1,  host [26] searching matching queue for src target 34 tag 0
+Compared element is -> 34 0 vs 34 0
+Searching for MATCHCurrent elem time is 187355200 while NS3 187355200
+Simulating Until Called
+Flow Finished 39@16@0 at 187360320
+Flow NDP_39_16 flow_id 1000000039 finished at 187.36 total bytes 512000
+Running - 1 - 187360320
+Updated - Time 187360320
+..... Received a MSG -- host 16 to target 39, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187360320 187360320 -  1 0 - 1 0 1 - 16 39 0
+OP MSGnexto[elem.host][elem.proc] 0 (16 0) - nextgr[elem.host][elem.nic] 0( 16  0) - time  187360320
+++ size is 1,  host [16] searching matching queue for src target 39 tag 0
+Compared element is -> 39 0 vs 39 0
+Searching for MATCHCurrent elem time is 187360320 while NS3 187360320
+Simulating Until Called
+Flow Finished 46@3@0 at 187461120
+Flow NDP_46_3 flow_id 1000000046 finished at 187.461 total bytes 512000
+Running - 1 - 187461120
+Updated - Time 187461120
+..... Received a MSG -- host 3 to target 46, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187461120 187461120 -  1 0 - 1 0 1 - 3 46 0
+OP MSGnexto[elem.host][elem.proc] 0 (3 0) - nextgr[elem.host][elem.nic] 0( 3  0) - time  187461120
+++ size is 1,  host [3] searching matching queue for src target 46 tag 0
+Compared element is -> 46 0 vs 46 0
+Searching for MATCHCurrent elem time is 187461120 while NS3 187461120
+Simulating Until Called
+Flow Finished 43@11@0 at 187466240
+Flow NDP_43_11 flow_id 1000000043 finished at 187.466 total bytes 512000
+Running - 1 - 187466240
+Updated - Time 187466240
+..... Received a MSG -- host 11 to target 43, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187466240 187466240 -  1 0 - 1 0 1 - 11 43 0
+OP MSGnexto[elem.host][elem.proc] 0 (11 0) - nextgr[elem.host][elem.nic] 0( 11  0) - time  187466240
+++ size is 1,  host [11] searching matching queue for src target 43 tag 0
+Compared element is -> 43 0 vs 43 0
+Searching for MATCHCurrent elem time is 187466240 while NS3 187466240
+Simulating Until Called
+Flow Finished 14@43@0 at 187474880
+Flow NDP_14_43 flow_id 1000000014 finished at 187.475 total bytes 512000
+Running - 1 - 187474880
+Updated - Time 187474880
+..... Received a MSG -- host 43 to target 14, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187474880 187474880 -  1 0 - 1 0 1 - 43 14 0
+OP MSGnexto[elem.host][elem.proc] 0 (43 0) - nextgr[elem.host][elem.nic] 0( 43  0) - time  187474880
+++ size is 1,  host [43] searching matching queue for src target 14 tag 0
+Compared element is -> 14 0 vs 14 0
+Searching for MATCHCurrent elem time is 187474880 while NS3 187474880
+Simulating Until Called
+Flow Finished 13@38@0 at 187510720
+Flow NDP_13_38 flow_id 1000000013 finished at 187.511 total bytes 512000
+Running - 1 - 187510720
+Updated - Time 187510720
+..... Received a MSG -- host 38 to target 13, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187510720 187510720 -  1 0 - 1 0 1 - 38 13 0
+OP MSGnexto[elem.host][elem.proc] 0 (38 0) - nextgr[elem.host][elem.nic] 0( 38  0) - time  187510720
+++ size is 1,  host [38] searching matching queue for src target 13 tag 0
+Compared element is -> 13 0 vs 13 0
+Searching for MATCHCurrent elem time is 187510720 while NS3 187510720
+Simulating Until Called
+Flow Finished 0@33@0 at 187695040
+Flow NDP_0_33 flow_id 1000000000 finished at 187.695 total bytes 512000
+Running - 1 - 187695040
+Updated - Time 187695040
+..... Received a MSG -- host 33 to target 0, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 187695040 187695040 -  1 0 - 1 0 1 - 33 0 0
+OP MSGnexto[elem.host][elem.proc] 0 (33 0) - nextgr[elem.host][elem.nic] 0( 33  0) - time  187695040
+++ size is 1,  host [33] searching matching queue for src target 0 tag 0
+Compared element is -> 0 0 vs 0 0
+Searching for MATCHCurrent elem time is 187695040 while NS3 187695040
+..... NOT Received a MSG
+
+
+RunTime Total LGS -> 218ms
+
+
+htsim Terminates at 187695040
+
+
+Remaining 64
+PERFORMANCE: Processes: 64 	 Events: 128 	 Time: 1 s 	 Speed: 128.00 ev/s
+AQ is 0
+Times: 
+Host 0: 186068480
+Host 1: 187112960
+Host 2: 186944000
+Host 3: 187461120
+Host 4: 186769920
+Host 5: 185655360
+Host 6: 187292160
+Host 7: 186710080
+Host 8: 187252800
+Host 9: 186938880
+Host 10: 186058240
+Host 11: 187466240
+Host 12: 187247680
+Host 13: 187281920
+Host 14: 186899520
+Host 15: 186406400
+Host 16: 187360320
+Host 17: 185266240
+Host 18: 186606080
+Host 19: 186838080
+Host 20: 187012160
+Host 21: 186611200
+Host 22: 187186240
+Host 23: 186252800
+Host 24: 186827840
+Host 25: 186416640
+Host 26: 187355200
+Host 27: 185808960
+Host 28: 187123200
+Host 29: 186167360
+Host 30: 186600960
+Host 31: 186775040
+Host 32: 186118080
+Host 33: 187695040
+Host 34: 186466240
+Host 35: 186812480
+Host 36: 186635200
+Host 37: 187341760
+Host 38: 187510720
+Host 39: 186983360
+Host 40: 187290560
+Host 41: 186420160
+Host 42: 185896000
+Host 43: 187474880
+Host 44: 185716800
+Host 45: 186778560
+Host 46: 186594240
+Host 47: 187129920
+Host 48: 186462720
+Host 49: 186078720
+Host 50: 187126720
+Host 51: 186421760
+Host 52: 186780160
+Host 53: 186109440
+Host 54: 185587200
+Host 55: 187288640
+Host 56: 187150400
+Host 57: 187322880
+Host 58: 186807360
+Host 59: 186974720
+Host 60: 186264640
+Host 61: 186971200
+Host 62: 186792000
+Host 63: 186452480
+Maximum finishing time at host 33: 187695040 (0.187695 s)
+Mean number of subflows -nan

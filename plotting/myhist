@@ -1,0 +1,1000 @@
+ 1088  ./launch_perm_100.sh 
+ 1089  ./launch_perm_100.sh && ./launch_perm_400.sh 
+ 1090  ./launch_scaling_incast_100.sh 
+ 1091  python3 scaling.py --folder=SCALING_INCAST
+ 1092  ./launch_scaling_incast_100.sh 
+ 1093  python3 scaling.py --folder=SCALING_INCAST
+ 1094  ./launch_scaling_incast_100.sh 
+ 1095  python3 scaling.py --folder=SCALING_INCAST
+ 1096  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 44 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > SCALING_INCAST/uecComposite.tmp
+ 1097  python3 scaling.py --folder=SCALING_INCAST
+ 1098  ./launch_scaling_incast_100.sh 
+ 1099  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 44 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_32.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > SCALING_INCAST/uecCompositeBTS.tmp
+ 1100  python3 generate_report.py --scaling_plot=1 --input_file=uecCompositeBTS.tmp --folder=SCALING_INCAST
+ 1101  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 44 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_32.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > SCALING_INCAST/uecCompositeBTS.tmp
+ 1102  ./launch_scaling_incast_100.sh 
+ 1103  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 44 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_16.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > SCALING_INCAST/uecCompositeBTS.tmp
+ 1104  python3 generate_report.py --scaling_plot=1 --input_file=uecCompositeBTS.tmp --folder=SCALING_INCAST
+ 1105  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 44 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_16.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > SCALING_INCAST/uecCompositeBTS.tmp
+ 1106  ./launch_scaling_incast_100.sh 
+ 1107  python3 scaling.py --folder=SCALING_INCAST
+ 1108  ./launch_scaling_incast_100.sh 
+ 1109  python3 scaling.py --folder=SCALING_INCAST
+ 1110  ./launch_scaling_incast_100.sh 
+ 1111  python3 scaling.py --folder=SCALING_INCAST
+ 1112  ./launch_scaling_incast_100.sh 
+ 1113  python3 scaling.py --folder=SCALING_INCAST
+ 1114  ./launch_scaling_incast_100.sh 
+ 1115  python3 scaling.py --folder=SCALING_INCAST
+ 1116  ./launch_scaling_incast_100.sh 
+ 1117  python3 scaling.py --folder=SCALING_INCAST
+ 1118  ./launch_scaling_incast_100.sh 
+ 1119  python3 scaling.py --folder=SCALING_INCAST
+ 1120  ./launch_scaling_incast_400.sh 
+ 1121  python3 scaling.py --folder=SCALING_INCAST
+ 1122  ./launch_scaling_incast_400.sh 
+ 1123  python3 scaling.py --folder=SCALING_INCAST_400
+ 1124  python3 scaling.py --folder=SCALING_INCAST_100
+ 1125  ./launch_scaling_incast_100.sh 
+ 1126  python3 scaling.py --folder=SCALING_INCAST_100 --bdp=118000
+ 1127  ./launch_scaling_incast_100.sh 
+ 1128  ./launch_scaling_incast32_100.sh 
+ 1129  ./launch_scaling_incast_400.sh 
+ 1130  ./launch_scaling_incast32_400.sh 
+ 1131  python3 scaling.py --folder=SCALING_INCAST_100 --bdp=118000
+ 1132  python3 scaling.py --folder=SCALING_INCAST_100 --bdp=118000 --incast_degree=32
+ 1133  ./launch_scaling_incast32_100.sh 
+ 1134  python3 scaling.py --folder=SCALING_INCAST_100 --bdp=118000 --incast_degree=32
+ 1135  ./launch_scaling_incast16_100.sh 
+ 1136  ./launch_scaling_incast48_100.sh 
+ 1137  ./launch_scaling_incast32_100.sh 
+ 1138  ./launch_scaling_incast32_100_.sh 
+ 1139  ./launch_scaling_permutation_100.sh 
+ 1140  ./launch_scaling_permutation_100_.sh 
+ 1141  ./launch_scaling_permutation_400.sh 
+ 1142  clear
+ 1143  ./launch_incast_100.sh 
+ 1144  ./launch_incast_400.sh 
+ 1145  ./launch_perm_400.sh 
+ 1146  ./launch_perm_100.sh 
+ 1147  ./launch_scaling_incast32_100.sh 
+ 1148  ./launch_scaling_incast32_100_.sh 
+ 1149  ./launch_scaling_incast32_100.sh 
+ 1150  python3 scaling.py --folder=SCALING_INCAST_100 --bdp=118000 --folder=SCALING_INCAST_100 --incast_degree=32
+ 1151  ./launch_scaling_incast48_100.sh 
+ 1152  ./launch_scaling_incast16_100.sh 
+ 1153  ./launch_scaling_permutation_100.sh 
+ 1154  ./launch_scaling_permutation_100_.sh 
+ 1155  ./launch_scaling_permutation_400.sh 
+ 1156  ./launch_scaling_incast32_100.sh 
+ 1157  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > SCALING_INCAST_100/uecComposite.tmp
+ 1158  ./launch_scaling_incast32_100.sh 
+ 1159  ./launch_scaling_incast32_100_.sh 
+ 1160  ./launch_scaling_incast32_100.sh 
+ 1161  chmod u+x launch_incast.sh 
+ 1162  ./launch_incast.sh
+ 1163  python3 generate_report.py --input_file=INCAST_SMALL/uecComposite.tmp
+ 1164  python3 generate_report.py --input_file INCAST_SMALL/uecComposite.tmp
+ 1165  python3 generate_report.py --input_file=INCAST_SMALL/uecComposite.tmp
+ 1166  python3 generate_report.py input_file=INCAST_SMALL/uecComposite.tmp
+ 1167  python3 generate_report.py --input_file=INCAST_SMALL/uecComposite.tmp
+ 1168  python3 generate_report.py --input_file=uecComposite.tmp --folder=INCAST_SMALL
+ 1169  ./launch_incast.sh
+ 1170  python3 performance.py 
+ 1171  python3 generate_report.py 
+ 1172  ./schedgen -p permutation_across -s 64 -o perm_across_64_100.goal -d 100000
+ 1173  python3 generate_report.py 
+ 1174  python3 fct.py 
+ 1175  python3 generate_report.py 
+ 1176  python3 fct.py 
+ 1177  python3 generate_report.py 
+ 1178  python3 fct.py 
+ 1179  python3 bw.py 
+ 1180  python3 generate_report.py 
+ 1181  python3 bw.py 
+ 1182  python3 fct.py 
+ 1183  python3 generate_report.py 
+ 1184  python3 fct.py 
+ 1185  python3 bw.py 
+ 1186  python3 fct.py 
+ 1187  python3 bw.py 
+ 1188  python3 fct.py 
+ 1189  python3 bw.py 
+ 1190  python3 fct.py 
+ 1191  python3 events.py 
+ 1192  python3 performance.py 
+ 1193  ./txt2bin -i ./incast_1024_128_400.goal -o ./incast_128_32_400.bin -p
+ 1194  ./txt2bin -i ./incast_1024_128_100.goal -o ./incast_1024_128_100.bin -p
+ 1195  ./txt2bin -i ./incast_1024_128_2000.goal -o ./incast_1024_128_2000.bin -p
+ 1196  ./txt2bin -i ./incast_1024_128_100.goal -o ./incast_1024_128_100.bin -p
+ 1197  ./txt2bin -i ./mp_5.goal -o ./mp_5.bin -p
+ 1198  ./txt2bin -i ./adversarial1.goal -o ./adversarial1.bin -p
+ 1199  ./txt2bin -i ./perm_across_64_400.goal -o ./perm_across_64_400.bin -p
+ 1200  ./txt2bin -i ./incast_128_32_25.goal -o ./incast_128_32_25.bin -p
+ 1201  ./txt2bin -i ./incast_128_32_50.goal -o ./incast_128_32_50.bin -p
+ 1202  ./txt2bin -i ./incast_128_32_75.goal -o ./incast_128_32_75.bin -p
+ 1203  ./txt2bin -i ./incast_128_32_100.goal -o ./incast_128_32_100.bin -p
+ 1204  ./txt2bin -i ./incast_128_32_150.goal -o ./incast_128_32_150.bin -p
+ 1205  ./txt2bin -i ./incast_128_32_200.goal -o ./incast_128_32_200.bin -p
+ 1206  ./txt2bin -i ./incast_128_32_2.goal -o ./incast_128_32_2.bin -p
+ 1207  ./txt2bin -i ./incast_128_32_4.goal -o ./incast_128_32_4.bin -p
+ 1208  ./txt2bin -i ./incast_128_32_8.goal -o ./incast_128_32_8.bin -p
+ 1209  ./txt2bin -i ./incast_128_32_16.goal -o ./incast_128_32_16.bin -p
+ 1210  ./txt2bin -i ./incast_128_32_32.goal -o ./incast_128_32_32.bin -p
+ 1211  ./txt2bin -i ./incast_128_32_64.goal -o ./incast_128_32_64.bin -p
+ 1212  ./txt2bin -i ./incast_128_32_128.goal -o ./incast_128_32_128.bin -p
+ 1213  ./txt2bin -i ./incast_128_32_256.goal -o ./incast_128_32_256.bin -p
+ 1214  ./txt2bin -i ./incast_128_32_512.goal -o ./incast_128_32_512.bin -p
+ 1215  ./txt2bin -i ./incast_128_32_16.goal -o ./incast_128_32_16.bin -p
+ 1216  ./txt2bin -i ./incast_128_32_24.goal -o ./incast_128_32_24.bin -p
+ 1217  ./txt2bin -i ./incast_128_32_48.goal -o ./incast_128_32_48.bin -p
+ 1218  ./txt2bin -i ./incast_128_32_40.goal -o ./incast_128_32_40.bin -p
+ 1219  ./txt2bin -i ./incast_128_32_28.goal -o ./incast_128_32_28.bin -p
+ 1220  ./txt2bin -i ./incast_128_32_36.goal -o ./incast_128_32_36.bin -p
+ 1221  ./txt2bin -i ./incast_128_32_384.goal -o ./incast_128_32_384.bin -p
+ 1222  ./txt2bin -i ./incast_128_32_96.goal -o ./incast_128_32_96.bin -p
+ 1223  ./txt2bin -i ./incast_128_16_512.goal -o ./incast_128_16_512.bin -p
+ 1224  ./txt2bin -i ./incast_128_16_256.goal -o ./incast_128_16_256.bin -p
+ 1225  ./txt2bin -i ./incast_128_16_128.goal -o ./incast_128_16_128.bin -p
+ 1226  ./txt2bin -i ./incast_128_16_64.goal -o ./incast_128_16_64.bin -p
+ 1227  ./txt2bin -i ./incast_128_16_32.goal -o ./incast_128_16_32.bin -p
+ 1228  ./txt2bin -i ./incast_128_16_16.goal -o ./incast_128_16_16.bin -p
+ 1229  ./txt2bin -i ./incast_128_16_8.goal -o ./incast_128_16_8.bin -p
+ 1230  ./txt2bin -i ./incast_128_16_4.goal -o ./incast_128_16_4.bin -p
+ 1231  ./txt2bin -i ./incast_128_16_2.goal -o ./incast_128_16_2.bin -p
+ 1232  ./txt2bin -i ./incast_128_48_2.goal -o ./incast_128_48_2.bin -p
+ 1233  ./txt2bin -i ./incast_128_48_4.goal -o ./incast_128_48_4.bin -p
+ 1234  ./txt2bin -i ./incast_128_48_8.goal -o ./incast_128_48_8.bin -p
+ 1235  ./txt2bin -i ./incast_128_48_16.goal -o ./incast_128_48_16.bin -p
+ 1236  ./txt2bin -i ./incast_128_48_32.goal -o ./incast_128_48_32.bin -p
+ 1237  ./txt2bin -i ./incast_128_48_64.goal -o ./incast_128_48_64.bin -p
+ 1238  ./txt2bin -i ./incast_128_48_128.goal -o ./incast_128_48_128.bin -p
+ 1239  ./txt2bin -i ./incast_128_48_256.goal -o ./incast_128_48_256.bin -p
+ 1240  ./txt2bin -i ./incast_128_48_512.goal -o ./incast_128_48_512.bin -p
+ 1241  ./txt2bin -i ./perm_across_64_2.goal -o ./perm_across_64_2.bin -p
+ 1242  ./txt2bin -i ./perm_across_64_4.goal -o ./perm_across_64_4.bin -p
+ 1243  ./txt2bin -i ./perm_across_64_8.goal -o ./perm_across_64_8.bin -p
+ 1244  ./txt2bin -i ./perm_across_64_16.goal -o ./perm_across_64_16.bin -p
+ 1245  ./txt2bin -i ./perm_across_64_32.goal -o ./perm_across_64_32.bin -p
+ 1246  ./txt2bin -i ./perm_across_64_64.goal -o ./perm_across_64_64.bin -p
+ 1247  ./txt2bin -i ./perm_across_64_128.goal -o ./perm_across_64_128.bin -p
+ 1248  ./txt2bin -i ./perm_across_64_256.goal -o ./perm_across_64_256.bin -p
+ 1249  ./txt2bin -i ./perm_across_64_512.goal -o ./perm_across_64_512.bin -p
+ 1250  ./txt2bin -i ./perm_across_64_768.goal -o ./perm_across_64_768.bin -p
+ 1251  ./txt2bin -i ./perm_across_64_1024.goal -o ./perm_across_64_1024.bin -p
+ 1252  ./txt2bin -i ./perm_across_64_1524.goal -o ./perm_across_64_1524.bin -p
+ 1253  ./txt2bin -i ./perm_across_64_2048.goal -o ./perm_across_64_2048.bin -p
+ 1254  ./schedgen -p special_incast -s 1024 -o incast_1024_128_100.goal -d 100000
+ 1255  make
+ 1256  ./schedgen -p special_incast -s 1024 -o incast_1024_128_100.goal -d 100000
+ 1257  ./schedgen -p special_incast -s 1024 -o incast_1024_128_2000.goal -d 2000000
+ 1258  make
+ 1259  ./schedgen -p special_incast -s 1024 -o incast_1024_128_2000.goal -d 2000000
+ 1260  ./schedgen -p special_incast -s 1024 -o incast_1024_128_100.goal -d 100000
+ 1261  ./schedgen -p special_incast -s 64 -o mp_5.goal -d 1000000
+ 1262  make
+ 1263  ./schedgen -p multiple_permutation -s 64 -o mp_5.goal -d 1000000
+ 1264  ./txt2bin -i ./mp_5.goal -o ./mp_5.bin -p
+ 1265  cd plotting/
+ 1266  clear
+ 1267  python3 plot_
+ 1268  python3 performance.py 
+ 1269  python3 plot_
+ 1270  python3 performance.py 
+ 1271  cd sim/datacenter/
+ 1272  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_50.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 > outUEC.tmp
+ 1273  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1274  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_400.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1275  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 438500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_400.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1276  ./htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 438500 -q 438500 -strat perm -linkspeed 400000 -mtu 2048 -hop_latency 700 -switch_latency 0 -goal incast_128_32_400.bin > outUEC.tmp
+ 1277  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 438500 -strat perm -kmin 20 -kmax 80 -linkspeed 800000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_400.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1278  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1279  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1280  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 25 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1281  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1282  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1283  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_50.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1284  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1285  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1286  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1287  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1288  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1289  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1290  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1291  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1292  ./htsim_uec_entry_modern -o uec_entry -nodes 512 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1293  ./htsim_uec_entry_modern -o uec_entry -nodes 1024 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1294  ./htsim_uec_entry_modern -o uec_entry -nodes 1024 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_1024_128_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1295  ./htsim_uec_entry_modern -o uec_entry -nodes 1024 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_1024_128_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1296  clear
+ 1297  ./htsim_uec_entry_modern -o uec_entry -nodes 1024 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_1024_64_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1298  ./htsim_uec_entry_modern -o uec_entry -nodes 1024 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_1024_128_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1299  ./htsim_uec_entry_modern -o uec_entry -nodes 1024 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_1024_128_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1300  ./htsim_uec_entry_modern -o uec_entry -nodes 1024 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_1024_128_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1301  ./htsim_uec_entry_modern -o uec_entry -nodes 1024 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_1024_128_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1302  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1303  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1304  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies 2048 > outUEC.tmp
+ 1305  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1306  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1307  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1308  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1309  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1310  ./htsim_ndp_entry_modern_os -o uec_entry -nodes 64 -cwnd 118500 -q 118500 -strat perm -linkspeed 100000 -mtu 2048 -hop_latency 700 -switch_latency 0 -goal perm_across_64_2000.bin -k 4 > outUEC.tmp
+ 1311  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1312  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1313  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1314  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal mp5.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1315  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal mp_5.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1316  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal mp_5.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1317  ./htsim_ndp_entry_modern_os -o uec_entry -nodes 64 -cwnd 118500 -q 118500 -strat perm -linkspeed 100000 -mtu 2048 -hop_latency 700 -switch_latency 0 -goal mp_5.bin -k 4 > outUEC.tmp
+ 1318  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal mp_5.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1319  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal mp_5.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1320  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal mp_5.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1321  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal mp_5.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies 2048 > outUEC.tmp
+ 1322  ./htsim_ndp_entry_modern_os -o uec_entry -nodes 64 -cwnd 118500 -q 118500 -strat perm -linkspeed 100000 -mtu 2048 -hop_latency 700 -switch_latency 0 -goal mp_5.bin -k 4 > outUEC.tmp
+ 1323  ./htsim_ndp_entry_modern_os -o uec_entry -nodes 64 -cwnd 118500 -q 118500 -strat perm -linkspeed 100000 -mtu 2048 -hop_latency 700 -switch_latency 0 -goal adversarial1.bin -k 4 > outUEC.tmp
+ 1324  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal adversarial1.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1325  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal mp_5.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1326  ./htsim_ndp_entry_modern_os -o uec_entry -nodes 64 -cwnd 118500 -q 118500 -strat perm -linkspeed 100000 -mtu 2048 -hop_latency 700 -switch_latency 0 -goal mp_5.bin -k 4 > outUEC.tmp
+ 1327  ./htsim_uec_entry_modern_os -o uec_entry -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal perm_across_64_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -k 4 -number_entropies -1 > outUEC.tmp
+ 1328  ./htsim_ndp_entry_modern_os -o uec_entry -nodes 64 -cwnd 118500 -q 118500 -strat perm -linkspeed 100000 -mtu 2048 -hop_latency 700 -switch_latency 0 -goal perm_across_64_2000.bin -k 4 > outUEC.tmp
+ 1329  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1330  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1331  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1332  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1333  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1334  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_100.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1335  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1336  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > SCALING_INCAST_100/uecCompositeBTS.tmp
+ 1337  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecCompositeBTS.tmp
+ 1338  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_32.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecCompositeBTS.tmp
+ 1339  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_48.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecCompositeBTS.tmp
+ 1340  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_32.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecCompositeBTS.tmp
+ 1341  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecCompositeBTS.tmp
+ 1342  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecCompositeBTS.tmp
+ 1343  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 1000 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecCompositeBTS.tmp
+ 1344  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecCompositeBTS.tmp
+ 1345  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecCompositeBTS.tmp
+ 1346  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 512 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecCompositeBTS.tmp
+ 1347  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 256 -seed 48 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_8.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1348  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 256 -seed 48 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_8.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1349  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 256 -seed 48 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_16.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1350  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 256 -seed 48 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_16.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1351  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 256 -seed 48 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_256.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1352  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 48 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_256.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1353  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 48 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_256.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1354  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 48 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_32.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1355  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 48 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1356  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 48 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_48.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1357  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 70 -kmax 70 -linkspeed 100000 -mtu 2048 -seed 48 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_48.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1358  cd sim/
+ 1359  make clean && cd datacenter/ && make clean && cd .. && make -j 8 && cd datacenter/ && make -j 8 && cd ..
+ 1360  cd sim/
+ 1361  make clean && cd datacenter/ && make clean && cd .. && make -j 8 && cd datacenter/ && make -j 8 && cd ..
+ 1362  cd sim/
+ 1363  make clean && cd datacenter/ && make clean && cd .. && make -j 8 && cd datacenter/ && make -j 8 && cd ..
+ 1364  python3 test.py 
+ 1365  [A
+ 1366  python3 test.py 
+ 1367  chmod u+x performance.py 
+ 1368  chmod u+x parameter_analysis.sh 
+ 1369  ./parameter_analysis.sh 
+ 1370  python3 performance.py --input_file="UEC_incast_128_32_512.bin_TargetRTT50_KMin50_Do_Jitter1" --folder=Parameter_Analysis
+ 1371  ./parameter_analysis.sh 
+ 1372  clear
+ 1373  ./parameter_analysis.sh 
+ 1374  python3 ranking.py --folder=Performance_Analysis
+ 1375  python3 ranking.py --folder=Performance_Analysis/
+ 1376  python3 ranking.py --folder=Parameter_Analysis
+ 1377  sudo apt-get install python3-jinja2
+ 1378  sudo apt-get update -y
+ 1379  sudo apt-get install -y python-jinja3
+ 1380  python3 ranking.py --folder=Parameter_Analysis
+ 1381  pip3 install jinja2==3.0.1
+ 1382  python3 ranking.py --folder=Parameter_Analysis
+ 1383  python3 ranking.py --folder=Parameter_Analysis_Incast_32_128_100G
+ 1384  python3 ranking.py --folder=Parameter_Analysis_Incast_16_128_100G
+ 1385  cd plotting/
+ 1386  python3 performance.py 
+ 1387  cd plotting/
+ 1388  python3 performance.py 
+ 1389  git status
+ 1390  git add -A
+ 1391  git commit -m "Small changes testing Trimming, fast drop"
+ 1392  clear
+ 1393  python3 performance.py 
+ 1394  clear
+ 1395  python3 performance.py 
+ 1396  clear
+ 1397  python3 performance.py 
+ 1398  python3 performance.py --name=Version A
+ 1399  python3 performance.py --name="Version A"
+ 1400  git status
+ 1401  git add -A
+ 1402  git commit -m "Stable 4 Version"
+ 1403  clear
+ 1404  python3 performance.py 
+ 1405  python3 performance.py --name=VersionA
+ 1406  python3 performance.py --name=VersionA3x
+ 1407  python3 performance.py --name=VersionD
+ 1408  python3 performance.py --name=VersionA_16
+ 1409  python3 performance.py --name=VersionA_64
+ 1410  python3 performance.py --name=VersionD_64
+ 1411  python3 performance.py --name=VersionD_36KiB
+ 1412  python3 performance.py --name=VersionA_36KiB
+ 1413  python3 performance.py --name=VersionA_36KiBFastDrop
+ 1414  python3 performance.py --name=VersionA_36KiBFastDropKMin50
+ 1415  python3 performance.py --name=VersionA_36KiBFastDropKMin20
+ 1416  python3 performance.py --name=VersionD_36KiBFastDropKMin20
+ 1417  clear
+ 1418  python3 performance.py --name=VersionA_Large
+ 1419  python3 performance.py --name=VersionD_Large
+ 1420  python3 performance.py --name=VersionA_Large
+ 1421  python3 performance.py --name=VersionA_Large_100
+ 1422  python3 performance.py --name=VersionA_Large_400
+ 1423  python3 performance.py --name=VersionD_Large_100
+ 1424  python3 performance.py --name=VersionD_Large_400
+ 1425  python3 performance.py --name=VersionD_Large_100
+ 1426  python3 performance.py --name=VersionA_Large_100
+ 1427  python3 performance.py --name=VersionA_Large_100_50
+ 1428  python3 performance.py --name=VersionD_Large_100
+ 1429  python3 performance.py --name=VersionA_Large_100
+ 1430  python3 performance.py --name=VersionA_Large_100_20kmin
+ 1431  python3 performance.py --name=VersionA_Large_400_20kmin
+ 1432  python3 performance.py --name=VersionA_Large_100_20kmin_FastDrop
+ 1433  python3 performance.py --name=VersionA_Large_100_20kmin_05
+ 1434  python3 performance.py --name=VersionA_Large_100_20kmin_05_5
+ 1435  python3 performance.py --name=VersionA_Large_100_20kmin_05_5_Condition4Enabled
+ 1436  python3 performance.py --name=VersionA_Large_100_20kmin_05_5_Condition4Nothing
+ 1437  python3 performance.py --name=VersionA_Large_100_20kmin_05_5_Condition4Nothing_FastDec
+ 1438  python3 performance.py --name=VersionA_Large_100_50kmin_05_5_Condition4Nothing_FastDec
+ 1439  python3 performance.py --name=VersionA_Large_400_50kmin_05_5_Condition4Nothing_FastDec
+ 1440  python3 performance.py --name=VersionA_Large_100_50kmin_05_5_Condition4Nothing_FastDec
+ 1441  python3 performance.py --name=VersionA_Large_100_50kmin_05_5_Condition4Nothing_FastDec_Reset
+ 1442  python3 performance.py --name=VersionB_Large_100_50kmin_05_5_Condition4Nothing_FastDec_Reset
+ 1443  python3 performance.py --name=VersionB_Large_100_NoJitter_Exponential
+ 1444  ls /home/tommaso/csg-htsim/plottin/queue_size_normalized/
+ 1445  python3 performance.py --name=VersionB_Large_100_NoJitter_Exponential
+ 1446  clear
+ 1447  ./parameter_analysis_incast_32_128_100G.sh && ./parameter_analysis_incast_16_128_100G.sh 
+ 1448  ./launch_scaling_incast16_100.sh 
+ 1449  python3 scaling_normalized.py --folder=SCALING_INCAST_100 --bdp=118000 --folder=SCALING_INCAST_100_16 --incast_degree=16
+ 1450  ./launch_scaling_incast16_100.sh 
+ 1451  python3 scaling_normalized.py --folder=SCALING_INCAST_100 --bdp=118000 --folder=SCALING_INCAST_100_16 --incast_degree=16
+ 1452  ./launch_scaling_incast32_100.sh 
+ 1453  python3 scaling_normalized.py --folder=SCALING_INCAST_100 --bdp=118000 --folder=SCALING_INCAST_100_32 --incast_degree=32
+ 1454  python3 scaling_normalized.py --folder=SCALING_INCAST_100 --bdp=118000 --folder=SCALING_INCAST_100 --incast_degree=32
+ 1455  ./launch_scaling_incast32_100.sh 
+ 1456  python3 scaling_normalized.py --folder=SCALING_INCAST_100 --bdp=118000 --folder=SCALING_INCAST_100 --incast_degree=32
+ 1457  ./launch_scaling_incast32_100_.sh 
+ 1458  python3 scaling_normalized.py --folder=SCALING_INCAST_100 --bdp=118000 --folder=SCALING_INCAST_100 --incast_degree=32
+ 1459  ./launch_scaling_incast16_100_.sh 
+ 1460  ./launch_scaling_incast16_100.sh 
+ 1461  python3 scaling_normalized.py --folder=SCALING_INCAST_100_16 --bdp=118000 --folder=SCALING_INCAST_100_16 --incast_degree=16
+ 1462  ./parameter_analysis_incast32_large.sh 
+ 1463  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 0 -use_fast_increase 0 - fast_drop_rtt 0 -do_exponential_gain 0 -gain_value_med_inc20 -linkspeed 100000 -mtu 2048 -seed 89 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis/UEC_incast_128_32_512.bin_TargetRTT20_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_ExpGainValue20_DoJitter0_JitterValue0_DelayGainvalue0
+ 1464  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 0 -use_fast_increase 0 - fast_drop_rtt 0 -do_exponential_gain 0 -gain_value_med_inc20 -linkspeed 100000 -mtu 2048 -seed 89 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis/UEC
+ 1465  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 0 -use_fast_increase 0 - fast_drop_rtt 0 -do_exponential_gain 0 -gain_value_med_inc 20 -linkspeed 100000 -mtu 2048 -seed 89 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis/UEC
+ 1466  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 0 -use_fast_increase 0 - fast_drop_rtt 0 -linkspeed 100000 -mtu 2048 -seed 89 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis/UEC
+ 1467  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 0 -use_fast_increase 0 -fast_drop_rtt 0 -linkspeed 100000 -mtu 2048 -seed 89 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis/UEC
+ 1468  clear
+ 1469  ./parameter_analysis_incast32_large.sh 
+ 1470  cler
+ 1471  clear
+ 1472  time ./parameter_analysis_incast32_large.sh 
+ 1473  python3 generate_report.py --input_file=UEC_incast_128_32_128.bin_TargetRTT20_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_ExpGainValue20_DoJitter0_JitterValue0_DelayGainvalue0 --folder=Parameter_Analysis --parameter_analysis=1 --complex_name=UEC_incast_128_32_128.bin_TargetRTT20_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_ExpGainValue20_DoJitter0_JitterValue0_DelayGainvalue0
+ 1474  python3 performance.py --name=UEC_incast_128_32_128.bin_TargetRTT20_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_ExpGainValue20_DoJitter0_JitterValue0_DelayGainvalue0 --no_show=1 --output_folder=Parameter_Analysis
+ 1475  python3 performance.py --name=UEC_incast_128_32_128.bin_TargetRTT20_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_ExpGainValue20_DoJitter0_JitterValue0_DelayGainvalue0 --output_folder=Parameter_Analysis
+ 1476  clear
+ 1477  time ./parameter_analysis_incast32_large.sh 
+ 1478  clear
+ 1479  time ./parameter_analysis_incast32_large.sh 
+ 1480  clear
+ 1481  time ./parameter_analysis_incast32_large.sh 
+ 1482  clear
+ 1483  time ./parameter_analysis_incast32_large.sh 
+ 1484  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 2 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis/UEC_incast_128_32_128.bin_VersiondelayA_TargetRTT20_KMin20_UseFastDrop1_UseFastIncrease0_DoExpGain1_ExpGainValue1_DoJitter1_JitterValue1_DelayGainvalue5
+ 1485  python3 performance.py 
+ 1486  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 2 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis/UEC_incast_128_32_128.bin_VersiondelayA_TargetRTT20_KMin20_UseFastDrop1_UseFastIncrease0_DoExpGain1_ExpGainValue1_DoJitter1_JitterValue1_DelayGainvalue5
+ 1487  python3 performance.py --name=UEC_incast_128_32_128.bin_VersiondelayA_TargetRTT20_KMin20_UseFastDrop1_UseFastIncrease
+ 1488  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 2 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis/UEC_incast_128_32_128.bin_VersiondelayA_TargetRTT20_KMin20_UseFastDrop1_UseFastIncrease0_DoExpGain1_ExpGainValue1_DoJitter1_JitterValue1_DelayGainvalue5
+ 1489  python3 performance.py --name=UEC_incast_128_32_128.bin_VersiondelayA_TargetRTT20_KMin20_UseFastDrop1_UseFastIncrease
+ 1490  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 2 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis/UEC_incast_128_32_128.bin_VersiondelayA_TargetRTT20_KMin20_UseFastDrop1_UseFastIncrease0_DoExpGain1_ExpGainValue1_DoJitter1_JitterValue1_DelayGainvalue5
+ 1491  python3 performance.py --name=UEC_incast_128_32_128.bin_VersiondelayA_TargetRTT20_KMin20_UseFastDrop1_UseFastIncrease
+ 1492  clear
+ 1493  cd sim/datacenter/
+ 1494  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 512 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > SCALING_INCAST_100/uecComposite.tmp
+ 1495  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 512 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1496  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1497  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1498  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1499  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_16_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1500  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1501  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_16_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1502  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1503  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_16_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1504  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1505  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_16_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1506  clear
+ 1507  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_16_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1508  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1509  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1510  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 438500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1511  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 438500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1512  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 438500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1513  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 438500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1514  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1515  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1516  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1517  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1518  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1519  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1520  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1521  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1522  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1523  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_16_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1524  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1525  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1526  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1527  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1528  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 12 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1529  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 28 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1530  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 28 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1531  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 218500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 28 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1532  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 218500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 28 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1533  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 448500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 28 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1534  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 448500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 28 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal incast_128_32_96.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1535  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1536  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1537  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1538  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1539  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1540  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1541  clear
+ 1542  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayC -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1543  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayB -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1544  clear
+ 1545  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayA -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1546  ./launch_compare.sh 
+ 1547  ./compare_algo.sh 
+ 1548  clear
+ 1549  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1550  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > uecComposite.tmp
+ 1551  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1552  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 3 > uecComposite.tmp
+ 1553  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1554  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 3 > uecComposite.tmp
+ 1555  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1556  ./htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 118500 -q 118500 -strat perm -linkspeed 100000 -mtu 2048 -seed 45 -hop_latency 700 -switch_latency 0 -goal incast_128_32_36.bin > uecComposite.tmp
+ 1557  ./htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 118500 -q 118500 -strat perm -linkspeed 100000 -mtu 2048 -seed 45 -hop_latency 700 -switch_latency 0 -goal incast_128_32_128.bin > uecComposite.tmp
+ 1558  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1559  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1560  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 3 > uecComposite.tmp
+ 1561  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 2 > uecComposite.tmp
+ 1562  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1563  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1.5 > uecComposite.tmp
+ 1564  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 438500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1565  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 438500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1566  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1567  ./compare_algo_incast_256_100.sh 
+ 1568  ./compare_algo_incast_256_400.sh 
+ 1569  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1570  ./compare_algo_incast_256_400.sh 
+ 1571  clear
+ 1572  ./compare_algo_incast_256_400.sh 
+ 1573  ./compare_algo_incast_256_100.sh 
+ 1574  ./compare_algo_incast_256_36.sh 
+ 1575  ./compare_algo_incast_36_100.sh 
+ 1576  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -fast_drop 0  -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1577  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -fast_drop 0  -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1578  ./compare_algo_incast_256_400.sh 
+ 1579  ./compare_algo_incast_256_100.sh 
+ 1580  clear
+ 1581  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -algorithm delayA -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_256.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1582  eval ${CMD}
+ 1583  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -algorithm delayA -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1584  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -algorithm delayB -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > outUEC.tmp
+ 1585  clear
+ 1586  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1587  clear
+ 1588  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1589  clear
+ 1590  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1591  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_16_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1592  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_16_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1593  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1594  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1595  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_16_64.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1596  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1597  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_16_64.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1598  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1599  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1600  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1601  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1602  ./htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 432500 -q 432500 -strat perm -linkspeed 400000 -mtu 2048 -seed 45 -hop_latency 700 -switch_latency 0 -goal incast_128_32_128.bin > uecComposite.tmp
+ 1603  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 4096 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1604  ./htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 432500 -q 432500 -strat perm -linkspeed 400000 -mtu 4096 -seed 45 -hop_latency 700 -switch_latency 0 -goal incast_128_32_128.bin > uecComposite.tmp
+ 1605  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 8192 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1606  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 8192 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1607  ./htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 432500 -q 432500 -strat perm -linkspeed 400000 -mtu 4096 -seed 45 -hop_latency 700 -switch_latency 0 -goal incast_128_32_512.bin > uecComposite.tmp
+ 1608  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 4096 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1609  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1610  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayD -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1611  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1612  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 43250000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1613  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 4325000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1614  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 832500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1615  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 2325000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1616  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 3325000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1617  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 3325000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1618  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 8325000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1619  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 9925000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1620  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 12025000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1621  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 12025000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp[D
+ 1622  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 12025000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 1024 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1623  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 12025000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1624  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 12025000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1625  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 12025000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1626  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1627  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 12025000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies 1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1628  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 12025000 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1629  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1630  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1631  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1632  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1633  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayB -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1634  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayC -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1635  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1636  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1637  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1638  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1639  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1640  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1641  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1642  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -algorithm versionA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1643  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_16_512.bin -algorithm versionA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1644  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_64_large.bin -algorithm versionA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1645  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_64_large.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1646  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1647  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1648  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm standard_trimming -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1649  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1650  clear
+ 1651  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1652  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1653  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1654  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayD -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1655  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1656  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1657  clear
+ 1658  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1659  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1660  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1661  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1662  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1663  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1664  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1665  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1666  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1667  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1668  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1669  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1670  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1671  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm standard_trimming -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1672  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1673  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1674  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1675  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1676  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1677  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_36.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1678  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1679  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1680  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1681  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1682  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1683  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1684  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1685  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -linkspeed 400000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayA -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1686  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayB -fast_drop 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1687  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayB -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 > uecComposite.tmp
+ 1688  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayB -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 -jitter_value_med_inc 0.5 -target_rtt_percentage_over_base 50> uecComposite.tmp
+ 1689  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayB -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 -jitter_value_med_inc 0.5 -target_rtt_percentage_over_base 50 > uecComposite.tmp
+ 1690  pwd
+ 1691  ls
+ 1692  ls output
+ 1693  pwd
+ 1694  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 0 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayB -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 -jitter_value_med_inc 0.5 -target_rtt_percentage_over_base 50 > uecComposite.tmp
+ 1695  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 70 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayB -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 -jitter_value_med_inc 0.5 -target_rtt_percentage_over_base 50 > uecComposite.tmp
+ 1696  clear
+ 1697  ./parameter_analysis_incast_64_512_400G.sh 
+ 1698  python3 filter.py 
+ 1699  python3 filter_fairness.py 
+ 1700  python3 filter_runtime.py 
+ 1701  python3 filter_fairness.py 
+ 1702  python3 filter_runtime.py 
+ 1703  python3 filter_fairness.py 
+ 1704  python3 filter_runtime.py 
+ 1705  cd plotting/
+ 1706  ./parameter_analysis_perm_yesos_512_100G.sh && ./parameter_analysis_perm_yesos_512_400G.sh && ./parameter_analysis_perm_yesos_2000_100G.sh && ./parameter_analysis_perm_yesos_2000_400G.sh
+ 1707  ./parameter_analysis_perm_yesos_512_100G.sh
+ 1708  clear
+ 1709  ./parameter_analysis_perm_yesos_512_100G.sh && ./parameter_analysis_perm_yesos_512_400G.sh && ./parameter_analysis_perm_yesos_2000_100G.sh && ./parameter_analysis_perm_yesos_2000_400G.sh
+ 1710  ./parameter_analysis_incast_64_2000_800G.sh
+ 1711  clear
+ 1712  ./parameter_analysis_incast_64_2000_800G.sh
+ 1713  ./param_analysis_all_incasts.sh && ./param_analysis_all_permutation.sh 
+ 1714  ./parameter_analysis_perm_noos_2000_100G.sh 
+ 1715  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 0 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal permutation_128_2000.goal -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Permutation_NoOS_2000_100G/UEC_permutation_128_2000.goal_VersiondelayA_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1716  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 0 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal permutation_128_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Permutation_NoOS_2000_100G/UEC_permutation_128_2000.goal_VersiondelayA_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1717  ./parameter_analysis_perm_noos_2000_100G.sh 
+ 1718  ./parameter_analysis_perm_noos_512_100G.sh 
+ 1719  ./param_analysis_all_permutation.sh 
+ 1720  clear
+ 1721  ./parameter_analysis_perm_yesos_512_100G.sh
+ 1722  ../sim/datacenter/htsim_uec_entry_modern_os -k 4 -o uec_entry -algorithm standard_trimming -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 0 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal permutation_64_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Permutation_YesOS_512_100G/UEC_permutation_64_512.bin_Versionstandard_trimming_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1723  ../sim/datacenter/htsim_uec_entry_modern_os -k 4 -o uec_entry -algorithm standard_trimming -nodes 64 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 0 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal permutation_64_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 1724  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > P
+ 1725  python3 performance.py 
+ 1726  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > P
+ 1727  python3 performance.py 
+ 1728  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > P
+ 1729  python3 performance.py 
+ 1730  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > P
+ 1731  python3 performance.py 
+ 1732  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1733  python3 performance.py 
+ 1734  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1735  python3 performance.py 
+ 1736  ./parameter_analysis_incast_64_2000_800G.sh
+ 1737  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 88112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 80100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1738  python3 performance.py 
+ 1739  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 88112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 80100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -collect_data 1 > Paaa
+ 1740  python3 performance.py 
+ 1741  clear
+ 1742  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -collect_data 1 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1743  clear
+ 1744  python3 performance.py 
+ 1745  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -collect_data 1 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1746  python3 performance.py 
+ 1747  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1748  python3 performance.py 
+ 1749  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1750  python3 performance.py 
+ 1751  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1752  python3 performance.py 
+ 1753  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1754  python3 performance.py 
+ 1755  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1756  python3 performance.py 
+ 1757  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1758  python3 performance.py 
+ 1759  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1760  python3 performance.py 
+ 1761  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1762  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 2 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1763  python3 performance.py 
+ 1764  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1765  python3 performance.py 
+ 1766  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1767  python3 performance.py 
+ 1768  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1769  python3 performance.py 
+ 1770  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1771  python3 performance.py 
+ 1772  time ./parameter_analysis_incast_8_64_400G.sh
+ 1773  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1774  time ./parameter_analysis_incast_8_64_400G.sh
+ 1775  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1776  time ./parameter_analysis_incast_8_64_400G.sh
+ 1777  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1778  python3 performance.py 
+ 1779  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1780  python3 performance.py 
+ 1781  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1782  python3 performance.py 
+ 1783  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1784  python3 performance.py 
+ 1785  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1786  python3 performance.py 
+ 1787  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1788  python3 performance.py 
+ 1789  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 1 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1790  python3 performance.py 
+ 1791  clear
+ 1792  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1793  python3 --name=DelayA_J:0_FI:1_FD:1_E:0_D:5___800Gbps
+ 1794  python3 performance.py --name=DelayA_J:0_FI:1_FD:1_E:0_D:5___800Gbps
+ 1795  python3 performance.py --name=DelayA_J:0_FI:1_FD:1_E:0_D:5___800Gbps___1Ratio
+ 1796  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1797  python3 performance.py --name=DelayA_J:0_FI:1_FD:1_E:0_D:5___400Gbps___1Ratio
+ 1798  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1799  python3 performance.py --name=DelayA_J:0_FI:1_FD:1_E:0_D:5___100Gbps___1Ratio
+ 1800  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1801  python3 performance.py --name=DelayA_J:1_FI:1_FD:1_E:0_D:5___100Gbps___1Ratio
+ 1802  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1803  python3 performance.py --name=DelayA_J:1_FI:1_FD:1_E:0_D:5___400Gbps___LinkRatio
+ 1804  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1805  python3 performance.py --name=DelayA_J:1_FI:1_FD:1_E:0_D:5___800Gbps___LinkRatio
+ 1806  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1807  python3 performance.py --name=VerD_J:0_FI:1_FD:1_E:0_D:5___800Gbps___1Ratio
+ 1808  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1809  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1810  python3 performance.py --name=VerD_J:0_FI:1_FD:1_E:0_D:5___800Gbps___1Ratio
+ 1811  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1812  python3 performance.py --name=VerD_J:0_FI:1_FD:1_E:0_D:5___800Gbps___1Ratio
+ 1813  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm versionD -nodes 128 -q 882500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1814  python3 performance.py --name=STrack
+ 1815  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm versionD -nodes 128 -q 882500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1816  python3 performance.py --name=STrack
+ 1817  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm versionD -nodes 128 -q 882500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1818  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayD -nodes 128 -q 882500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1819  python3 performance.py --name=STrack
+ 1820  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1821  python3 performance.py --name=VerA
+ 1822  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 882500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 5 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1823  python3 performance.py --name=VerA
+ 1824  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayD -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1825  python3 performance.py --name=STrack_100G
+ 1826  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1827  python3 performance.py --name=VersD_100G
+ 1828  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayD -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1829  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayD -nodes 128 -q 162500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1830  python3 performance.py --name=STrackInc
+ 1831  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1832  cclear
+ 1833  clear
+ 1834  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayD -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1835  python3 performance.py --name=STrackInc
+ 1836  python3 filter_runtime.py 
+ 1837  time python3 param_analysis_incast2.py 
+ 1838  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayD -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1839  python3 performance.py 
+ 1840  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayD -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1841  python3 performance.py 
+ 1842  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayD -nodes 128 -q 882500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 5 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -collect_data 1 -gain_value_med_inc 1 -linkspeed 800000 -mtu 4096 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Paaa
+ 1843  python3 performance.py 
+ 1844  make clean && cd datacenter/ && make clean && cd .. && make -j 8 && cd datacenter/ && make -j 8 && cd ..
+ 1845  cd sim
+ 1846  make clean && cd datacenter/ && make clean && cd .. && make -j 8 && cd datacenter/ && make -j 8 && cd ..
+ 1847  cd sim
+ 1848  make clean && cd datacenter/ && make clean && cd .. && make -j 8 && cd datacenter/ && make -j 8 && cd ..
+ 1849  ./param_analysis_all_incasts.sh 
+ 1850  time ./param_analysis_all_incasts.sh 
+ 1851  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 1 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_64_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_64_512_400G/UEC_incast_128_64_512.bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1852  python3 performance.py 
+ 1853  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_64_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_64_512_400G/UEC_incast_128_64_512.bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1854  python3 performance.py 
+ 1855  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_64_512_400G/UEC_incast_128_64_512.bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1856  python3 performance.py 
+ 1857  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_64_512_400G/UEC_incast_128_64_512.bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1858  python3 performance.py 
+ 1859  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_64_512_400G/UEC_incast_128_64_512.bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1860  python3 performance.py 
+ 1861  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_64_512_400G/UEC_incast_128_64_512.bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1862  python3 performance.py 
+ 1863  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_64_512_400G/UEC_incast_128_64_512.bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1864  python3 performance.py 
+ 1865  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_64_512_400G/UEC_incast_128_64_512.bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1866  python3 performance.py 
+ 1867  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_64_512_400G/UEC_incast_128_64_512.bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1868  python3 performance.py 
+ 1869  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > b.tmp
+ 1870  python3 performance.py 
+ 1871  ./parameter_analysis_incast_8_2000_100G.sh && ./parameter_analysis_incast_32_2000_100G.sh && ./parameter_analysis_incast_64_2000_100G.sh && ./parameter_analysis_incast_8_2000_400G.sh && ./parameter_analysis_incast_32_2000_400G.sh && ./parameter_analysis_incast_64_2000_400G.sh
+ 1872  ./parameter_analysis_incast_8_2000_100G.sh
+ 1873  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 0 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_8_2000_100G/UEC_incast_128_8_2000.bin_VersiondelayA_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1874  Couldn't open input file /home/tommaso/csg-htsim/sim/lgs/input/incast_128_8_2000.bin!
+ 1875  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 0 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_2000.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_8_2000_100G/UEC_incast_128_8_2000.bin_VersiondelayA_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1876  ./parameter_analysis_incast_8_2000_100G.sh && ./parameter_analysis_incast_32_2000_100G.sh && ./parameter_analysis_incast_64_2000_100G.sh && ./parameter_analysis_incast_8_2000_400G.sh && ./parameter_analysis_incast_32_2000_400G.sh && ./parameter_analysis_incast_64_2000_400G.sh
+ 1877  ./parameter_analysis_incast_8_64_800G.sh && ./parameter_analysis_incast_8_512_800G.sh && ./parameter_analysis_incast_8_2000_800G.sh && ./parameter_analysis_incast_32_64_800G.sh && ./parameter_analysis_incast_32_512_800G.sh && ./parameter_analysis_incast_32_2000_800G.sh && ./parameter_analysis_incast_64_64_800G.sh && ./parameter_analysis_incast_64_512_800G.sh && ./parameter_analysis_incast_64_2000_800G.sh
+ 1878  ./parameter_analysis_perm_yesos_512_100G.sh
+ 1879  ./parameter_analysis_incast_8_64_100G.sh
+ 1880  time ./parameter_analysis_incast_8_64_100G.sh
+ 1881  clear
+ 1882  time python3 param_analysis_incast2.py 
+ 1883  clear
+ 1884  time python3 param_analysis_incast2.py 
+ 1885  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 0 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_incast_128_8_64_bin_100000Gbps/LinkSpeed100000_Typeincast_128_8_64_bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1886  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -collect_data 1 -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 0 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_incast_128_8_64_bin_100000Gbps/LinkSpeed100000_Typeincast_128_8_64_bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1887  python3 performance.py 
+ 1888  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -collect_data 1 -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 0 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_64.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_incast_128_8_64_bin_100000Gbps/LinkSpeed100000_Typeincast_128_8_64_bin_Versionstandard_trimming_KMin50_UseFastDrop0_UseFastIncrease0_DoExpGain0_DoJitter0_DelayGainvalue0
+ 1889  python3 performance.py 
+ 1890  time python3 param_analysis_incast2.py 
+ 1891  clear
+ 1892  time python3 param_analysis_incast2.py 
+ 1893  clear
+ 1894  python3 param_analysis_incast3.py 
+ 1895  python3 param_analysis_incast3.py > NDPvSTrack.txt
+ 1896  python3 param_analysis_incast3.py 
+ 1897  python3 param_analysis_incast2.py 
+ 1898  clear
+ 1899  python3 param_analysis_incast2.py 
+ 1900  time python3 param_analysis_incast4.py 
+ 1901  clear
+ 1902  time python3 param_analysis_incast4.py 
+ 1903  ./txt2bin -i ./incast_128_64_64.goal -o ./incast_128_64_64.bin -p
+ 1904  ./txt2bin -i ./incast_128_64_512.goal -o ./incast_128_64_512.bin -p
+ 1905  ./txt2bin -i ./incast_128_32_512.goal -o ./incast_128_32_512.bin -p
+ 1906  ./txt2bin -i ./incast_128_32_64.goal -o ./incast_128_32_64.bin -p
+ 1907  ./txt2bin -i ./incast_128_8_64.goal -o ./incast_128_8_64.bin -p
+ 1908  ./txt2bin -i ./incast_128_8_512.goal -o ./incast_128_8_512.bin -p
+ 1909  ./txt2bin -i ./permutation_128_2000.goal -o ./permutation_128_2000.bin -p
+ 1910  ./txt2bin -i ./permutation_128_512.goal -o ./permutation_128_512.bin -p
+ 1911  ./txt2bin -i ./permutation_64_512.goal -o ./permutation_64_512.bin -p
+ 1912  ./txt2bin -i ./permutation_64_2000.goal -o ./permutation_64_2000.bin -p
+ 1913  ./txt2bin -i ./permutation_128_2000.goal -o ./permutation_128_2000.bin -p
+ 1914  ./txt2bin -i ./incast_128_64_2000000.goal -o ./incast_128_64_2000000.bin -p
+ 1915  ./txt2bin -i ./incast_128_32_2000000.goal -o ./incast_128_32_2000000.bin -p
+ 1916  ./txt2bin -i ./incast_128_8_2000000.goal -o ./incast_128_8_2000000.bin -p
+ 1917  ./txt2bin -i ./incast_128_8_100.goal -o ./incast_128_8_100.bin -p
+ 1918  ./txt2bin -i ./incast_128_32_100.goal -o ./incast_128_32_100.bin -p
+ 1919  ./txt2bin -i ./incast_128_64_100.goal -o ./incast_128_64_100.bin -p
+ 1920  ./schedgen -p special_incast -s 128 -o incast_128_8_64.goal -d 64000
+ 1921  make
+ 1922  ./schedgen -p special_incast -s 128 -o incast_128_8_64.goal -d 64000
+ 1923  ./schedgen -p special_incast -s 128 -o incast_128_8_512.goal -d 512000
+ 1924  ./schedgen -p special_incast -s 128 -o incast_128_32_64.goal -d 64000
+ 1925  make
+ 1926  ./schedgen -p special_incast -s 128 -o incast_128_32_64.goal -d 64000
+ 1927  ./schedgen -p special_incast -s 128 -o incast_128_32_512.goal -d 512000
+ 1928  make
+ 1929  ./schedgen -p special_incast -s 128 -o incast_128_64_64.goal -d 64000
+ 1930  ./schedgen -p special_incast -s 128 -o incast_128_64_512.goal -d 512000
+ 1931  ./schedgen -p permutation_across -s 128 -o permutation_128_512.goal -d 512000
+ 1932  ./schedgen -p permutation_across -s 128 -o permutation_128_2000.goal -d 2000000
+ 1933  ./schedgen -p permutation_across -s 64 -o permutation_64_512.goal -d 512000
+ 1934  ./schedgen -p permutation_across -s 64 -o permutation_64_2000.goal -d 2000000
+ 1935  make
+ 1936  ./schedgen -p special_incast -s 128 -o incast_128_8_2000000.goal -d 2000000
+ 1937  make
+ 1938  ./schedgen -p special_incast -s 128 -o incast_128_32_2000000.goal -d 2000000
+ 1939  make
+ 1940  ./schedgen -p special_incast -s 128 -o incast_128_64_2000000.goal -d 2000000
+ 1941  clear
+ 1942  ./schedgen -p special_incast -s 128 -o incast_128_64_100.goal -d 100000
+ 1943  make
+ 1944  ./schedgen -p special_incast -s 128 -o incast_128_32_100.goal -d 100000
+ 1945  make
+ 1946  ./schedgen -p special_incast -s 128 -o incast_128_8_100.goal -d 100000
+ 1947  cd sim/
+ 1948  make clean && cd datacenter/ && make clean && cd .. && make -j 8 && cd datacenter/ && make -j 8 && cd ..
+ 1949  ./htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 70 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -algorithm delayB -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop_rtt 1 -jitter_value_med_inc 0.5 -target_rtt_percentage_over_base 50 > uecComposite.tmp
+ 1950  make clean && cd datacenter/ && make clean && cd .. && make -j 8 && cd datacenter/ && make -j 8 && cd ..
+ 1951  python3 ranking.py 
+ 1952  python3 ranking.py --folder=Parameter_Analysis_Incast_32_128_100G
+ 1953  python3 test2.py --folder=Parameter_Analysis_Incast_32_128_100G
+ 1954  ./parameter_analysis_incast_32_128_100G.sh 
+ 1955  no_of_nodes 128
+ 1956  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm delayA -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 2 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 0 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_128.bin -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_32_128_100G/UEC_incast_128_32_128.bin_VersiondelayA_TargetRTT20_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_ExpGainValue1_DoJitter0_JitterValue1_DelayGainvalue0
+ 1957  ./parameter_analysis_incast_32_128_100G.sh 
+ 1958  python3 test2.py --folder=Parameter_Analysis_Incast_32_128_100G
+ 1959  python3 ranking.py --folder=Parameter_Analysis_Incast_32_128_100G
+ 1960  python3 test2.py --folder=Parameter_Analysis_Incast_32_128_100G
+ 1961  ./parameter_analysis_incast_32_128_100G.sh 
+ 1962  python3 ranking.py --folder=Parameter_Analysis_Incast_32_128_100G
+ 1963  chmod u+x param_analysis_all_incasts.sh 
+ 1964  ./param_analysis_all_incasts.sh 
+ 1965  clear
+ 1966  git status
+ 1967  git add -A
+ 1968  git commit -m "Stable Jupyter"
+ 1969  clear
+ 1970  cd sim/datacenter/
+ 1971  clear
+ 1972  pip3 install jupyter
+ 1973  jupyter
+ 1974  notebook
+ 1975  jupyter-notebook
+ 1976  jupyter notebook
+ 1977  sudo apt install jupyter-core
+ 1978  jupyter notebook
+ 1979  sudo apt update && upgrade
+ 1980  python3 --version
+ 1981  pip3 install jupyter
+ 1982  nano ~/.bashrc
+ 1983  sudo nano ~/.bashrc
+ 1984  jupyter-notebook
+ 1985  sudo apt install jupyter-notebookj
+ 1986  sudo apt install jupyter-notebook
+ 1987  jupyter-notebook
+ 1988  jupyter notebook --port=8889
+ 1989  clear
+ 1990  cd plotting/
+ 1991  cd Parameter_Analysis_Incast_32_128_100G/
+ 1992  jupyter notebook --port=8889
+ 1993  clear
+ 1994  ls
+ 1995  cd ..
+ 1996  cd Parameter_Analysis_Incast_32_128_100G/
+ 1997  jupyter notebook --port=8887
+ 1998  cd ..
+ 1999  jupyter notebook --port=8886
+ 2000  cd sim
+ 2001  cd datacenter/
+ 2002  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Parameter_Analysis_Incast_32_128_100G/UEC_incast_128_32_128.bin_VersiondelayA_TargetRTT20_KMin20_UseFastDrop0_UseFastIncrease0_DoExpGain0_ExpGainValue1_DoJitter0_JitterValue1_DelayGainvalue0
+ 2003  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2004  cd ..
+ 2005  cd ../plotting/
+ 2006  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2007  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2008  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2009  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2010  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2011  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2012  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2013  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_2000.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2014  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_2000.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2015  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2016  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_2000.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2017  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2018  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_2000.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2019  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 882500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_2000.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2020  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2021  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2022  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2023  ../sim/datacenter/htsim_uec_entry_modern_os -k 4 -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal permutation_64_2000.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2024  ../sim/datacenter/htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 112500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal permutation_64_2000 > a
+ 2025  ../sim/datacenter/htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 112500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal permutation_64_2000.bin > a
+ 2026  ../sim/datacenter/htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 112500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal permutation_64_512.bin > a
+ 2027  ../sim/datacenter/htsim_uec_entry_modern_os -k 4 -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal permutation_64_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2028  ../sim/datacenter/htsim_uec_entry_modern_os -k 4 -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal permutation_64_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2029  ../sim/datacenter/htsim_uec_entry_modern_os -k 4 -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal permutation_64_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2030  ../sim/datacenter/htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 112500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal permutation_64_512.bin > a
+ 2031  ../sim/datacenter/htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64  -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal permutation_64_512.bin > a
+ 2032  ../sim/datacenter/htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 35000 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal permutation_64_512.bin > a
+ 2033  ../sim/datacenter/htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 28125 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal permutation_64_512.bin > a
+ 2034  ../sim/datacenter/htsim_ndp_entry_modern -o uec_entry -nodes 64 -cwnd 28125 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal incast_128_32_2000.bin > a
+ 2035  ../sim/datacenter/htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 28125 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal incast_128_32_2000.bin > a
+ 2036  ../sim/datacenter/htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 28125 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal incast_128_32_100.bin > a
+ 2037  ../sim/datacenter/htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 28125 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal permutation_128_512.bin > a
+ 2038  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal permutation_128_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2039  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal permutation_128_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2040  ../sim/datacenter/htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 328125 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal permutation_128_512.bin > a
+ 2041  ../sim/datacenter/htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 128125 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal permutation_128_512.bin > a
+ 2042  ../sim/datacenter/htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 112500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal permutation_64_512.bin > a
+ 2043  ../sim/datacenter/htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 112500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal perm_across_64_512.bin > a
+ 2044  cd ..
+ 2045  cd sim/datacenter/
+ 2046  ../sim/datacenter/htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 112500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal perm_across_64_512.bin > a
+ 2047  ../htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 112500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal perm_across_64_512.bin > a
+ 2048  ./htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 112500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal perm_across_64_512.bin > a
+ 2049  ./htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 212500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal perm_across_64_512.bin > a
+ 2050  ./htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 34500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal perm_across_64_512.bin > a
+ 2051  ./htsim_ndp_entry_modern_os -k 4 -o uec_entry -nodes 64 -cwnd 32500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal perm_across_64_512.bin > a
+ 2052  clear
+ 2053  git push
+ 2054  git branch
+ 2055  git checkout advanced_bts 
+ 2056  git stash
+ 2057  git checkout advanced_bts 
+ 2058  git push
+ 2059  clear
+ 2060  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2061  cd ..
+ 2062  cd ../plotting/
+ 2063  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2064  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 100000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2065  ../sim/datacenter/htsim_ndp_entry_modern  -o uec_entry -nodes 64 -cwnd 112500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal incast_128_32_512.bin > a
+ 2066  ../sim/datacenter/htsim_ndp_entry_modern  -o uec_entry -nodes 128 -cwnd 112500 -q 112500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal incast_128_32_512.bin > a
+ 2067  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_100.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2068  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_100.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2069  ../sim/datacenter/htsim_ndp_entry_modern  -o uec_entry -nodes 128 -cwnd 432500 -q 432500 -strat perm -linkspeed 400000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal incast_128_8_100.bin > a
+ 2070  ../sim/datacenter/htsim_ndp_entry_modern  -o uec_entry -nodes 128 -cwnd 432500 -q 432500 -strat perm -linkspeed 400000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal incast_128_32_100.bin > a
+ 2071  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_100.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -use_super_fast_increase 1 > Para
+ 2072  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 1 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_100.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -use_super_fast_increase 1 > Para
+ 2073  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 1 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_100.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -use_super_fast_increase 1 > Para
+ 2074  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0ù -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_100.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -use_super_fast_increase 1 > Para
+ 2075  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_100.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -use_super_fast_increase 1 > Para
+ 2076  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -use_super_fast_increase 1 > Para
+ 2077  ../sim/datacenter/htsim_ndp_entry_modern  -o uec_entry -nodes 128 -cwnd 432500 -q 432500 -strat perm -linkspeed 400000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal incast_128_32_512.bin > a
+ 2078  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -use_super_fast_increase 1 > Para
+ 2079  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 1 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -use_super_fast_increase 1 > Para
+ 2080  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 1 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -use_super_fast_increase 1 > Para
+ 2081  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -use_super_fast_increase 1 > Para
+ 2082  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 0 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 90 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_32_2000.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -use_super_fast_increase 1 > Para
+ 2083  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_512.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2084  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 20 -kmax 80 -target_rtt_percentage_over_base 20 -delay_gain_value_med_inc 0 -do_jitter 1 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_2000.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2085  ../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm standard_trimming -nodes 128 -q 432500 -strat perm -kmin 50 -kmax 80 -target_rtt_percentage_over_base 50 -delay_gain_value_med_inc 0 -do_jitter 0 -jitter_value_med_inc 1 -use_fast_increase 1 -fast_drop 1 -do_exponential_gain 0 -gain_value_med_inc 1 -linkspeed 400000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal incast_128_8_2000.bin -collect_data 1 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > Para
+ 2086  history
+ 2087  history > myhist

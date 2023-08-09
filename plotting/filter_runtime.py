@@ -38,7 +38,7 @@ my_exp_list_large = [
 
 using_list = my_exp_list_small + my_exp_list_large
 possible_value_3 = None
-threshold_filter = 0.05
+threshold_filter = 0.06
 file_name_filtered = "filtered_raw.txt"
 file_name_filtered_no_dup = "filtered_no_duplicates.txt"
 open(file_name_filtered, 'w').close()

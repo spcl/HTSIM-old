@@ -111,6 +111,7 @@ int main(int argc, char **argv) {
     int target_rtt_percentage_over_base = 50;
     bool collect_data = false;
     COLLECT_DATA = collect_data;
+    bool use_super_fast_increase = false;
 
     int i = 1;
     filename << "logout.dat";
@@ -211,6 +212,11 @@ int main(int argc, char **argv) {
             use_fast_increase = atoi(argv[i + 1]);
             UecSrc::set_use_fast_increase(use_fast_increase);
             printf("FastIncrease: %d\n", use_fast_increase);
+            i++;
+        } else if (!strcmp(argv[i], "-use_super_fast_increase")) {
+            use_super_fast_increase = atoi(argv[i + 1]);
+            UecSrc::set_use_super_fast_increase(use_super_fast_increase);
+            printf("FastIncreaseSuper: %d\n", use_super_fast_increase);
             i++;
         } else if (!strcmp(argv[i], "-gain_value_med_inc")) {
             gain_value_med_inc = std::stod(argv[i + 1]);
