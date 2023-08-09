@@ -112,6 +112,8 @@ int main(int argc, char **argv) {
     double jitter_value_med_inc = 1;
     double delay_gain_value_med_inc = 5;
     int target_rtt_percentage_over_base = 50;
+    bool collect_data = false;
+    COLLECT_DATA = collect_data;
 
     int i = 1;
     filename << "logout.dat";
@@ -150,37 +152,32 @@ int main(int argc, char **argv) {
             // Saving this for UEC reference, Gbps
             i++;
         } else if (!strcmp(argv[i], "-kmin")) {
-            printf("KMin: %d\n", atoi(argv[i + 1]));
             // kmin as percentage of queue size (0..100)
             kmin = atoi(argv[i + 1]);
+            printf("KMin: %d\n", atoi(argv[i + 1]));
             i++;
         } else if (!strcmp(argv[i], "-kmax")) {
-            printf("KMax: %d\n", atoi(argv[i + 1]));
             // kmin as percentage of queue size (0..100)
             kmax = atoi(argv[i + 1]);
-            i++;
-        } else if (!strcmp(argv[i], "-k")) {
-            fat_tree_k = atoi(argv[i + 1]);
+            printf("KMax: %d\n", atoi(argv[i + 1]));
             i++;
         } else if (!strcmp(argv[i], "-bts_trigger")) {
             bts_threshold = atoi(argv[i + 1]);
-            i++;
-        } else if (!strcmp(argv[i], "-reuse_entropy")) {
-            reuse_entropy = atoi(argv[i + 1]);
-            i++;
-        } else if (!strcmp(argv[i], "-ignore_ecn_ack")) {
-            ignore_ecn_ack = atoi(argv[i + 1]);
-            i++;
-        } else if (!strcmp(argv[i], "-ignore_ecn_data")) {
-            ignore_ecn_data = atoi(argv[i + 1]);
-            i++;
-        } else if (!strcmp(argv[i], "-number_entropies")) {
-            number_entropies = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-mtu")) {
             packet_size = atoi(argv[i + 1]);
             PKT_SIZE_MODERN =
                     packet_size; // Saving this for UEC reference, Bytes
+            i++;
+        } else if (!strcmp(argv[i], "-reuse_entropy")) {
+            reuse_entropy = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-collect_data")) {
+            collect_data = atoi(argv[i + 1]);
+            COLLECT_DATA = collect_data;
+            i++;
+        } else if (!strcmp(argv[i], "-number_entropies")) {
+            number_entropies = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-switch_latency")) {
             switch_latency = timeFromNs(atof(argv[i + 1]));
@@ -189,6 +186,19 @@ int main(int argc, char **argv) {
             hop_latency = timeFromNs(atof(argv[i + 1]));
             LINK_DELAY_MODERN = hop_latency /
                                 1000; // Saving this for UEC reference, ps to ns
+            i++;
+        } else if (!strcmp(argv[i], "-ignore_ecn_ack")) {
+            ignore_ecn_ack = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-ignore_ecn_data")) {
+            ignore_ecn_data = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-fast_drop")) {
+            UecSrc::set_fast_drop(atoi(argv[i + 1]));
+            printf("FastDrop: %d\n", atoi(argv[i + 1]));
+            i++;
+        } else if (!strcmp(argv[i], "-seed")) {
+            seed = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-do_jitter")) {
             do_jitter = atoi(argv[i + 1]);
@@ -226,12 +236,11 @@ int main(int argc, char **argv) {
                     target_rtt_percentage_over_base);
             printf("TargetRTT: %d\n", target_rtt_percentage_over_base);
             i++;
-        } else if (!strcmp(argv[i], "-fast_drop")) {
-            UecSrc::set_fast_drop(atoi(argv[i + 1]));
-            printf("FastDrop: %d\n", atoi(argv[i + 1]));
+        } else if (!strcmp(argv[i], "-k")) {
+            fat_tree_k = atoi(argv[i + 1]);
             i++;
-        } else if (!strcmp(argv[i], "-seed")) {
-            seed = atoi(argv[i + 1]);
+        } else if (!strcmp(argv[i], "-fast_drop_rtt")) {
+            UecSrc::set_fast_drop_rtt(atoi(argv[i + 1]));
             i++;
         } else if (!strcmp(argv[i], "-goal")) {
             goal_filename = argv[i + 1];
@@ -249,13 +258,28 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-queue_type")) {
             if (!strcmp(argv[i + 1], "composite")) {
-                printf("Name Running: UEC Trimming\n");
                 queue_choice = COMPOSITE;
                 UecSrc::set_queue_type("composite");
             } else if (!strcmp(argv[i + 1], "composite_bts")) {
                 queue_choice = COMPOSITE_BTS;
-                printf("Name Running: UEC BTS\n");
                 UecSrc::set_queue_type("composite_bts");
+                printf("Name Running: UEC BTS\n");
+            }
+            i++;
+        } else if (!strcmp(argv[i], "-algorithm")) {
+            if (!strcmp(argv[i + 1], "delayA")) {
+                UecSrc::set_alogirthm("delayA");
+                printf("Name Running: UEC Version A\n");
+            } else if (!strcmp(argv[i + 1], "delayB")) {
+                UecSrc::set_alogirthm("delayB");
+            } else if (!strcmp(argv[i + 1], "delayC")) {
+                UecSrc::set_alogirthm("delayC");
+            } else if (!strcmp(argv[i + 1], "delayD")) {
+                UecSrc::set_alogirthm("delayD");
+                printf("Name Running: STrack\n");
+            } else if (!strcmp(argv[i + 1], "standard_trimming")) {
+                UecSrc::set_alogirthm("standard_trimming");
+                printf("Name Running: UEC Version D\n");
             }
             i++;
         } else
@@ -273,7 +297,9 @@ int main(int argc, char **argv) {
         srandom(time(NULL));
     }
     Packet::set_packet_size(packet_size);
-    initializeLoggingFolders();
+    if (COLLECT_DATA) {
+        initializeLoggingFolders();
+    }
 
     if (route_strategy == NOT_SET) {
         fprintf(stderr, "Route Strategy not set.  Use the -strat param.  "

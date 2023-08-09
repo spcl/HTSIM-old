@@ -1,5 +1,5 @@
 # Incast Small, 100GB BW - 400NS Latency
-RES_FOLDER="Parameter_Analysis_Incast_64_512_100G"
+RES_FOLDER="Parameter_Analysis_Incast_64_2000_100G"
 CMD="rm -r ${RES_FOLDER}"
 echo ${CMD}
 eval ${CMD}
@@ -8,7 +8,7 @@ echo ${CMD}
 eval ${CMD}
 
 # Threee Incast Sizes
-for Incast_Message_Size in incast_128_64_512.bin
+for Incast_Message_Size in incast_128_64_2000.bin
 do
     for KMin in 20 50
     do

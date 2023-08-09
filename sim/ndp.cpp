@@ -553,7 +553,7 @@ void NdpSrc::processNack(const NdpNack &nack) {
         else
             printf("Receive NACK (----)\n");
     */
-    printf("NACK \n");
+    // printf("NACK \n");
 
     bool last_packet = (nack.ackno() + _mss - 1) >= _flow_size;
     _sent_times.erase(nack.ackno());
@@ -665,7 +665,6 @@ void NdpSrc::processAck(const NdpAck &ack) {
     // Compute rtt.  This comes originally from TCP, and may not be optimal for
     // NDP */
     uint64_t m = eventlist().now() - ts;
-    printf("ID %d - Previous time %lu\n", ack.id(), ack.ts());
 
     if (m != 0) {
         if (_rtt > 0) {
@@ -1538,7 +1537,7 @@ void NdpSink::receivePacket(Packet &pkt) {
         return;
     case NDPACK:
     case NDPNACK:
-        printf("NACK \n");
+        // printf("NACK \n");
     case NDPPULL:
         // Is there anything we should do here?  Generally won't happen unless
         // the topolgy is very asymmetric.
@@ -1561,7 +1560,6 @@ void NdpSink::receivePacket(Packet &pkt) {
     bool marked = (p->flags() & ECN_CE) != 0; // ECN for load balancing
 
     simtime_picosec ts = pkt.ts();
-    printf("ID %d - Data - Previous time %lu vs %lu\n", pkt.id(), pkt.ts(), ts);
     bool last_packet = ((NdpPacket *)&pkt)->last_packet();
 
     update_path_history(*p);

@@ -176,7 +176,9 @@ int main(int argc, char **argv) {
         srand(time(NULL));
         srandom(time(NULL));
     }
-    initializeLoggingFolders();
+    if (COLLECT_DATA) {
+        initializeLoggingFolders();
+    }
 
     if (route_strategy == NOT_SET) {
         fprintf(stderr, "Route Strategy not set.  Use the -strat param.  "

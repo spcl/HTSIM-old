@@ -54,7 +54,7 @@ PacketSink *Packet::sendOn() {
 
     if (_route) {
         if (_bounced) {
-            printf("ID %d - From %d - Route Size is %d - Hops %d - Size %d - "
+            /*printf("ID %d - From %d - Route Size is %d - Hops %d - Size %d - "
                    "Full %d\n",
                    id(), from, _route->size(), _nexthop, _size, _queue_full);
             fflush(stdout);
@@ -62,7 +62,7 @@ PacketSink *Packet::sendOn() {
                    "%s\n",
                    _route->size(), _nexthop, _size, _queue_full,
                    _route->reverse()->at(_nexthop)->nodename().c_str());
-            fflush(stdout);
+            fflush(stdout);*/
             assert(_nexthop > 0);
             assert(_nexthop < _route->size());
             assert(_nexthop < _route->reverse()->size());
@@ -73,9 +73,10 @@ PacketSink *Packet::sendOn() {
             assert(_nexthop < _route->size());
 
             if (_nexthop == 1 && (type() == UEC || type() == NDP)) {
-                printf("ID %d - Hop %d - Previous time %lu - New time %lu\n",
+                /*printf("ID %d - Hop %d - Previous time %lu - New time %lu\n",
                        id(), _nexthop, ts(),
-                       GLOBAL_TIME - SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000);
+                       GLOBAL_TIME - SINGLE_PKT_TRASMISSION_TIME_MODERN *
+                   1000);*/
                 set_ts(GLOBAL_TIME -
                        (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000));
 

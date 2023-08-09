@@ -39,7 +39,6 @@ for files in sorted(pathlist):
     # Skip Any Possilbe Noise
     if ("GeneratedReport" not in str(files)):
         continue
-    print(files)
     with open(files) as file:
         for line in file:
             # Max FCT 

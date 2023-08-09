@@ -109,6 +109,8 @@ int main(int argc, char **argv) {
     double jitter_value_med_inc = 1;
     double delay_gain_value_med_inc = 5;
     int target_rtt_percentage_over_base = 50;
+    bool collect_data = false;
+    COLLECT_DATA = collect_data;
 
     int i = 1;
     filename << "logout.dat";
@@ -191,6 +193,10 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-seed")) {
             seed = atoi(argv[i + 1]);
             i++;
+        } else if (!strcmp(argv[i], "-collect_data")) {
+            collect_data = atoi(argv[i + 1]);
+            COLLECT_DATA = collect_data;
+            i++;
         } else if (!strcmp(argv[i], "-do_jitter")) {
             do_jitter = atoi(argv[i + 1]);
             UecSrc::set_do_jitter(do_jitter);
@@ -257,14 +263,17 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-algorithm")) {
             if (!strcmp(argv[i + 1], "delayA")) {
                 UecSrc::set_alogirthm("delayA");
+                printf("Name Running: UEC Version A\n");
             } else if (!strcmp(argv[i + 1], "delayB")) {
                 UecSrc::set_alogirthm("delayB");
             } else if (!strcmp(argv[i + 1], "delayC")) {
                 UecSrc::set_alogirthm("delayC");
             } else if (!strcmp(argv[i + 1], "delayD")) {
                 UecSrc::set_alogirthm("delayD");
+                printf("Name Running: STrack\n");
             } else if (!strcmp(argv[i + 1], "standard_trimming")) {
                 UecSrc::set_alogirthm("standard_trimming");
+                printf("Name Running: UEC Version D\n");
             }
             i++;
         } else
@@ -285,7 +294,9 @@ int main(int argc, char **argv) {
         srandom(time(NULL));
     }
     Packet::set_packet_size(packet_size);
-    initializeLoggingFolders();
+    if (COLLECT_DATA) {
+        initializeLoggingFolders();
+    }
 
     if (route_strategy == NOT_SET) {
         fprintf(stderr, "Route Strategy not set.  Use the -strat param.  "

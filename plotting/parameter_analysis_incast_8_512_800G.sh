@@ -1,5 +1,5 @@
 # Incast Small, 100GB BW - 400NS Latency
-RES_FOLDER="Parameter_Analysis_Incast_64_512_100G"
+RES_FOLDER="Parameter_Analysis_Incast_8_512_800G"
 CMD="rm -r ${RES_FOLDER}"
 echo ${CMD}
 eval ${CMD}
@@ -8,7 +8,7 @@ echo ${CMD}
 eval ${CMD}
 
 # Threee Incast Sizes
-for Incast_Message_Size in incast_128_64_512.bin
+for Incast_Message_Size in incast_128_8_512.bin
 do
     for KMin in 20 50
     do
@@ -29,7 +29,7 @@ do
                                     for Version in delayA standard_trimming
                                     do
                                         FILE_NAME="UEC_${Incast_Message_Size}_Version${Version}_KMin${KMin}_UseFastDrop${UseFastDrop}_UseFastIncrease${UseFastIncrease}_DoExpGain${DoExpGain}_DoJitter${Do_Jitter}_DelayGainvalue${DelayGainvalue}"
-                                        CMD="../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm ${Version} -nodes 128 -q 118500 -strat perm -kmin ${KMin} -kmax 80 -target_rtt_percentage_over_base ${KMin} -delay_gain_value_med_inc ${DelayGainvalue} -do_jitter ${Do_Jitter} -jitter_value_med_inc ${Jitter_value} -use_fast_increase ${UseFastIncrease} -fast_drop ${UseFastDrop} -do_exponential_gain ${DoExpGain} -gain_value_med_inc ${ExpGainValue} -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal ${Incast_Message_Size} -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > ${RES_FOLDER}/${FILE_NAME}"
+                                        CMD="../sim/datacenter/htsim_uec_entry_modern -o uec_entry -algorithm ${Version} -nodes 128 -q 852500 -strat perm -kmin ${KMin} -kmax 80 -target_rtt_percentage_over_base ${KMin} -delay_gain_value_med_inc ${DelayGainvalue} -do_jitter ${Do_Jitter} -jitter_value_med_inc ${Jitter_value} -use_fast_increase ${UseFastIncrease} -fast_drop ${UseFastDrop} -do_exponential_gain ${DoExpGain} -gain_value_med_inc ${ExpGainValue} -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal ${Incast_Message_Size} -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > ${RES_FOLDER}/${FILE_NAME}"
                                         echo ${CMD}
                                         eval ${CMD}
                                         CMD="python3 generate_report.py --input_file=${FILE_NAME} --folder=${RES_FOLDER} --parameter_analysis=1 --complex_name=${FILE_NAME}"
@@ -53,7 +53,7 @@ do
 done
 
 FILE_NAME="uecCompositeBTS.tmp"
-CMD="../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 99 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal ${Incast_Message_Size} -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > ${RES_FOLDER}/${FILE_NAME}"
+CMD="../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 852500 -strat perm -kmin 20 -kmax 80 -linkspeed 800000 -mtu 2048 -seed 99 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal ${Incast_Message_Size} -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > ${RES_FOLDER}/${FILE_NAME}"
 echo ${CMD}
 eval ${CMD}
 CMD="python3 generate_report.py --input_file=${FILE_NAME} --folder=${RES_FOLDER} --parameter_analysis=1 --complex_name=${FILE_NAME}"
@@ -67,7 +67,7 @@ echo ${CMD}
 eval ${CMD}
 
 FILE_NAME="ndp.tmp"
-CMD="../sim/datacenter/htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 118500 -q 118500 -strat perm -linkspeed 100000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal ${Incast_Message_Size} > ${RES_FOLDER}/${FILE_NAME}"
+CMD="../sim/datacenter/htsim_ndp_entry_modern -o uec_entry -nodes 128 -cwnd 852500 -q 852500 -strat perm -linkspeed 800000 -mtu 2048 -seed 99 -hop_latency 700 -switch_latency 0 -goal ${Incast_Message_Size} > ${RES_FOLDER}/${FILE_NAME}"
 echo ${CMD}
 eval ${CMD}
 CMD="python3 generate_report.py --input_file=${FILE_NAME} --folder=${RES_FOLDER} --parameter_analysis=1 --complex_name=${FILE_NAME}"
@@ -81,7 +81,7 @@ echo ${CMD}
 eval ${CMD}
 
 FILE_NAME="strack.tmp"
-CMD="../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal ${Incast_Message_Size} -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop 1 > ${RES_FOLDER}/${FILE_NAME}"
+CMD="../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 112500 -strat perm -kmin 20 -kmax 80 -linkspeed 800000 -mtu 2048 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal ${Incast_Message_Size} -algorithm delayD -fast_drop 0 -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 -fast_drop 1 > ${RES_FOLDER}/${FILE_NAME}"
 echo ${CMD}
 eval ${CMD}
 CMD="python3 generate_report.py --input_file=${FILE_NAME} --folder=${RES_FOLDER} --parameter_analysis=1 --complex_name=${FILE_NAME}"
