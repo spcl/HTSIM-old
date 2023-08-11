@@ -112,6 +112,10 @@ int main(int argc, char **argv) {
     bool collect_data = false;
     COLLECT_DATA = collect_data;
     bool use_super_fast_increase = false;
+    double y_gain = 1;
+    double x_gain = 0.15;
+    double z_gain = 1;
+    double w_gain = 1;
 
     int i = 1;
     filename << "logout.dat";
@@ -241,6 +245,26 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-fast_drop_rtt")) {
             UecSrc::set_fast_drop_rtt(atoi(argv[i + 1]));
+            i++;
+        } else if (!strcmp(argv[i], "-y_gain")) {
+            y_gain = std::stod(argv[i + 1]);
+            UecSrc::set_y_gain(y_gain);
+            printf("YGain: %f\n", y_gain);
+            i++;
+        } else if (!strcmp(argv[i], "-x_gain")) {
+            x_gain = std::stod(argv[i + 1]);
+            UecSrc::set_x_gain(x_gain);
+            printf("XGain: %f\n", x_gain);
+            i++;
+        } else if (!strcmp(argv[i], "-z_gain")) {
+            z_gain = std::stod(argv[i + 1]);
+            UecSrc::set_z_gain(z_gain);
+            printf("ZGain: %f\n", z_gain);
+            i++;
+        } else if (!strcmp(argv[i], "-w_gain")) {
+            w_gain = std::stod(argv[i + 1]);
+            UecSrc::set_w_gain(w_gain);
+            printf("WGain: %f\n", w_gain);
             i++;
         } else if (!strcmp(argv[i], "-goal")) {
             goal_filename = argv[i + 1];

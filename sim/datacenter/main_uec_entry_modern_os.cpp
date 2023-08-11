@@ -114,6 +114,10 @@ int main(int argc, char **argv) {
     int target_rtt_percentage_over_base = 50;
     bool collect_data = false;
     COLLECT_DATA = collect_data;
+    double y_gain = 1;
+    double x_gain = 0.15;
+    double z_gain = 1;
+    double w_gain = 1;
 
     int i = 1;
     filename << "logout.dat";
@@ -235,6 +239,26 @@ int main(int argc, char **argv) {
             UecSrc::set_target_rtt_percentage_over_base(
                     target_rtt_percentage_over_base);
             printf("TargetRTT: %d\n", target_rtt_percentage_over_base);
+            i++;
+        } else if (!strcmp(argv[i], "-y_gain")) {
+            y_gain = std::stod(argv[i + 1]);
+            UecSrc::set_y_gain(y_gain);
+            printf("YGain: %f\n", y_gain);
+            i++;
+        } else if (!strcmp(argv[i], "-x_gain")) {
+            x_gain = std::stod(argv[i + 1]);
+            UecSrc::set_x_gain(x_gain);
+            printf("XGain: %f\n", x_gain);
+            i++;
+        } else if (!strcmp(argv[i], "-z_gain")) {
+            z_gain = std::stod(argv[i + 1]);
+            UecSrc::set_z_gain(z_gain);
+            printf("ZGain: %f\n", z_gain);
+            i++;
+        } else if (!strcmp(argv[i], "-w_gain")) {
+            w_gain = std::stod(argv[i + 1]);
+            UecSrc::set_w_gain(w_gain);
+            printf("WGain: %f\n", w_gain);
             i++;
         } else if (!strcmp(argv[i], "-k")) {
             fat_tree_k = atoi(argv[i + 1]);

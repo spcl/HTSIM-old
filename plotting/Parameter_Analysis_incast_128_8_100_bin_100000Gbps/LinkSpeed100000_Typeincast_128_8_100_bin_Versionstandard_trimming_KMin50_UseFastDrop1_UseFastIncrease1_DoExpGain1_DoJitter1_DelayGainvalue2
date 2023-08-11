@@ -1,0 +1,968 @@
+Name Running: UEC Version D
+no_of_nodes 128
+KMin: 50
+KMax: 80
+TargetRTT: 50
+DelayGainValue: 2.000000
+DoJitter: 1
+JitterValue: 1.000000
+FastIncrease: 1
+FastDrop: 1
+DoExpGain: 1
+GainValueMedIncrease: 1.000000
+Speed is 100000
+Test 1.000000 50
+Using subflow count 1
+Logging to uec_entry
+Fat Tree topology with 0.7us links and 0us switching latency.
+Set params 128
+QueueSize 112500
+_no_of_nodes 128
+K 8
+Queue type 3
+Running incastt with 0 connections
+Starting LGS InterfaceCurrent working directory: "/home/tommaso/csg-htsim/plotting"
+LogGP network backend; size: 128 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O=0, P=128, S=65535
+Starting 128
+----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 16 - 0 64 0
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14300160 - BDP/CWDN 117600
+CWD Start 117600 - From 0 To 64
+Setting 0 64 0
+Printing my Paths: 
+Scheduling Event (0@64@0) of size 100000 from 0 to 64 tag 0 start_tiem 18446744073709551504 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14300160 - BDP/CWDN 117600
+CWD Start 117600 - From 1 To 64
+Setting 1 64 0
+Printing my Paths: 
+Scheduling Event (1@64@0) of size 100000 from 1 to 64 tag 0 start_tiem 18446744073709551504 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14300160 - BDP/CWDN 117600
+CWD Start 117600 - From 2 To 64
+Setting 2 64 0
+Printing my Paths: 
+Scheduling Event (2@64@0) of size 100000 from 2 to 64 tag 0 start_tiem 18446744073709551504 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14300160 - BDP/CWDN 117600
+CWD Start 117600 - From 3 To 64
+Setting 3 64 0
+Printing my Paths: 
+Scheduling Event (3@64@0) of size 100000 from 3 to 64 tag 0 start_tiem 18446744073709551504 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14300160 - BDP/CWDN 117600
+CWD Start 117600 - From 4 To 64
+Setting 4 64 0
+Printing my Paths: 
+Scheduling Event (4@64@0) of size 100000 from 4 to 64 tag 0 start_tiem 18446744073709551504 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14300160 - BDP/CWDN 117600
+CWD Start 117600 - From 5 To 64
+Setting 5 64 0
+Printing my Paths: 
+Scheduling Event (5@64@0) of size 100000 from 5 to 64 tag 0 start_tiem 18446744073709551504 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14300160 - BDP/CWDN 117600
+CWD Start 117600 - From 6 To 64
+Setting 6 64 0
+Printing my Paths: 
+Scheduling Event (6@64@0) of size 100000 from 6 to 64 tag 0 start_tiem 18446744073709551504 - Time is 0
+ Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14300160 - BDP/CWDN 117600
+CWD Start 117600 - From 7 To 64
+Setting 7 64 0
+Printing my Paths: 
+Scheduling Event (7@64@0) of size 100000 from 7 to 64 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [64] searching matching queue for src target 0 tag 0
+++ size is 0,  host [64] searching matching queue for src target 1 tag 0
+++ size is 0,  host [64] searching matching queue for src target 2 tag 0
+++ size is 0,  host [64] searching matching queue for src target 3 tag 0
+++ size is 0,  host [64] searching matching queue for src target 4 tag 0
+++ size is 0,  host [64] searching matching queue for src target 5 tag 0
+++ size is 0,  host [64] searching matching queue for src target 6 tag 0
+++ size is 0,  host [64] searching matching queue for src target 7 tag 0
+Current elem time is 0 while NS3 0
+Simulating Until Called
+NACK 0
+Just NA CK from 0 at 12321
+NACK 4
+Just NA CK from 4 at 12327
+NACK 3
+Just NA CK from 3 at 12332
+NACK 7
+Just NA CK from 7 at 12337
+NACK 2
+Just NA CK from 2 at 12342
+NACK 0
+Just NA CK from 0 at 12516
+NACK 4
+Just NA CK from 4 at 12521
+NACK 6
+Just NA CK from 6 at 12526
+NACK 3
+Just NA CK from 3 at 12531
+NACK 5
+Just NA CK from 5 at 12705
+NACK 4
+Just NA CK from 4 at 12711
+NACK 2
+Just NA CK from 2 at 12716
+NACK 6
+Just NA CK from 6 at 12890
+NACK 4
+Just NA CK from 4 at 12895
+NACK 3
+Just NA CK from 3 at 12900
+NACK 1
+Just NA CK from 1 at 13074
+NACK 2
+Just NA CK from 2 at 13079
+NACK 7
+Just NA CK from 7 at 13084
+NACK 7
+Just NA CK from 7 at 13258
+NACK 6
+Just NA CK from 6 at 13264
+NACK 2
+Just NA CK from 2 at 13269
+NACK 0
+Just NA CK from 0 at 13443
+NACK 1
+Just NA CK from 1 at 13448
+NACK 4
+Just NA CK from 4 at 13453
+NACK 2
+Just NA CK from 2 at 13627
+NACK 3
+Just NA CK from 3 at 13632
+NACK 6
+Just NA CK from 6 at 13637
+NACK 7
+Just NA CK from 7 at 13811
+NACK 2
+Just NA CK from 2 at 13816
+NACK 5
+Just NA CK from 5 at 13822
+NACK 1
+Just NA CK from 1 at 13996
+NACK 2
+Just NA CK from 2 at 14001
+NACK 4
+Just NA CK from 4 at 14006
+NACK 6
+Just NA CK from 6 at 14011
+NACK 5
+Just NA CK from 5 at 14016
+NACK 0
+Just NA CK from 0 at 14021
+NACK 0
+Just NA CK from 0 at 14195
+NACK 2
+Just NA CK from 2 at 14200
+NACK 1
+Just NA CK from 1 at 14206
+NACK 1
+Just NA CK from 1 at 14211
+NACK 4
+Just NA CK from 4 at 14385
+NACK 5
+Just NA CK from 5 at 14390
+NACK 7
+Just NA CK from 7 at 14395
+NACK 1
+Just NA CK from 1 at 14569
+NACK 1
+Just NA CK from 1 at 14574
+NACK 5
+Just NA CK from 5 at 14579
+NACK 0
+Just NA CK from 0 at 14753
+NACK 3
+Just NA CK from 3 at 14759
+NACK 7
+Just NA CK from 7 at 14764
+NACK 7
+Just NA CK from 7 at 14938
+NACK 3
+Just NA CK from 3 at 14943
+NACK 6
+Just NA CK from 6 at 14948
+NACK 3
+Just NA CK from 3 at 15122
+NACK 4
+Just NA CK from 4 at 15127
+NACK 6
+Just NA CK from 6 at 15132
+NACK 1
+Just NA CK from 1 at 15306
+NACK 2
+Just NA CK from 2 at 15312
+NACK 3
+Just NA CK from 3 at 15317
+NACK 7
+Just NA CK from 7 at 15491
+NACK 6
+Just NA CK from 6 at 15496
+NACK 7
+Just NA CK from 7 at 15501
+NACK 7
+Just NA CK from 7 at 15675
+NACK 0
+Just NA CK from 0 at 15680
+NACK 7
+Just NA CK from 7 at 15685
+NACK 2
+Just NA CK from 2 at 15859
+NACK 1
+Just NA CK from 1 at 15864
+NACK 0
+Just NA CK from 0 at 15870
+NACK 0
+Just NA CK from 0 at 15875
+NACK 7
+Just NA CK from 7 at 15880
+NACK 6
+Just NA CK from 6 at 15885
+NACK 3
+Just NA CK from 3 at 16059
+NACK 1
+Just NA CK from 1 at 16064
+NACK 6
+Just NA CK from 6 at 16069
+NACK 2
+Just NA CK from 2 at 16074
+NACK 1
+Just NA CK from 1 at 16248
+NACK 4
+Just NA CK from 4 at 16254
+NACK 0
+Just NA CK from 0 at 16259
+NACK 5
+Just NA CK from 5 at 16433
+NACK 3
+Just NA CK from 3 at 16438
+NACK 1
+Just NA CK from 1 at 16443
+NACK 6
+Just NA CK from 6 at 16617
+NACK 3
+Just NA CK from 3 at 16622
+NACK 0
+Just NA CK from 0 at 16627
+NACK 6
+Just NA CK from 6 at 16801
+NACK 6
+Just NA CK from 6 at 16807
+NACK 0
+Just NA CK from 0 at 16812
+NACK 0
+Just NA CK from 0 at 16986
+NACK 2
+Just NA CK from 2 at 16991
+NACK 6
+Just NA CK from 6 at 16996
+NACK 3
+Just NA CK from 3 at 17170
+NACK 5
+Just NA CK from 5 at 17175
+NACK 2
+Just NA CK from 2 at 17180
+NACK 0
+Just NA CK from 0 at 17354
+NACK 3
+Just NA CK from 3 at 17360
+NACK 7
+Just NA CK from 7 at 17365
+NACK 4
+Just NA CK from 4 at 17539
+NACK 4
+Just NA CK from 4 at 17544
+NACK 4
+Just NA CK from 4 at 17549
+NACK 0
+Just NA CK from 0 at 17723
+NACK 2
+Just NA CK from 2 at 17728
+NACK 6
+Just NA CK from 6 at 17733
+NACK 4
+Just NA CK from 4 at 17738
+NACK 2
+Just NA CK from 2 at 17744
+NACK 4
+Just NA CK from 4 at 17749
+NACK 1
+Just NA CK from 1 at 17923
+NACK 1
+Just NA CK from 1 at 17928
+NACK 5
+Just NA CK from 5 at 17933
+NACK 1
+Just NA CK from 1 at 17938
+NACK 5
+Just NA CK from 5 at 18112
+NACK 7
+Just NA CK from 7 at 18117
+NACK 4
+Just NA CK from 4 at 18122
+NACK 2
+Just NA CK from 2 at 18296
+NACK 2
+Just NA CK from 2 at 18302
+NACK 1
+Just NA CK from 1 at 18307
+NACK 7
+Just NA CK from 7 at 18481
+NACK 4
+Just NA CK from 4 at 18486
+NACK 5
+Just NA CK from 5 at 18491
+NACK 3
+Just NA CK from 3 at 18665
+NACK 5
+Just NA CK from 5 at 18670
+NACK 5
+Just NA CK from 5 at 18675
+NACK 5
+Just NA CK from 5 at 18849
+NACK 1
+Just NA CK from 1 at 18855
+NACK 3
+Just NA CK from 3 at 18860
+NACK 1
+Just NA CK from 1 at 19034
+Ignoring 1 for 37 pkts - New Wnd 21504
+NACK 2
+Just NA CK from 2 at 19039
+NACK 6
+Just NA CK from 6 at 19044
+NACK 7
+Just NA CK from 7 at 19218
+NACK 7
+Just NA CK from 7 at 19223
+NACK 6
+Just NA CK from 6 at 19228
+NACK 7
+Just NA CK from 7 at 19402
+NACK 3
+Just NA CK from 3 at 19408
+NACK 7
+Just NA CK from 7 at 19413
+NACK 0
+Just NA CK from 0 at 19418
+Ignoring 0 for 37 pkts - New Wnd 24576
+NACK 2
+Just NA CK from 2 at 19423
+NACK 5
+Just NA CK from 5 at 19428
+Ignoring 5 for 40 pkts - New Wnd 21504
+NACK 3
+Just NA CK from 3 at 19602
+Ignoring 3 for 37 pkts - New Wnd 18432
+NACK 6
+Just NA CK from 6 at 19607
+NACK 1
+Just NA CK from 1 at 19612
+NACK 1
+Just NA CK from 1 at 19617
+NACK 3
+Just NA CK from 3 at 19792
+NACK 6
+Just NA CK from 6 at 19797
+Ignoring 6 for 37 pkts - New Wnd 21504
+NACK 0
+Just NA CK from 0 at 19802
+Ignoring 4 for 37 pkts - New Wnd 21504
+NACK 5
+Just NA CK from 5 at 19976
+NACK 0
+Just NA CK from 0 at 19981
+NACK 4
+Just NA CK from 4 at 19986
+NACK 7
+Just NA CK from 7 at 20160
+NACK 7
+Just NA CK from 7 at 20165
+NACK 0
+Just NA CK from 0 at 20170
+NACK 1
+Just NA CK from 1 at 20344
+NACK 3
+Just NA CK from 3 at 20350
+NACK 7
+Just NA CK from 7 at 20355
+Ignoring 7 for 33 pkts - New Wnd 18432
+NACK 2
+Just NA CK from 2 at 20529
+Ignoring 2 for 34 pkts - New Wnd 21504
+NACK 6
+Just NA CK from 6 at 20534
+NACK 6
+Just NA CK from 6 at 20539
+NACK 1
+Just NA CK from 1 at 20713
+NACK 0
+Just NA CK from 0 at 20718
+NACK 0
+Just NA CK from 0 at 20723
+NACK 0
+Just NA CK from 0 at 20897
+NACK 6
+Just NA CK from 6 at 20903
+NACK 4
+Just NA CK from 4 at 20908
+NACK 7
+Just NA CK from 7 at 21082
+NACK 5
+Just NA CK from 5 at 21087
+NACK 3
+Just NA CK from 3 at 21092
+NACK 6
+Just NA CK from 6 at 21266
+NACK 5
+Just NA CK from 5 at 21271
+NACK 6
+Just NA CK from 6 at 21276
+NACK 1
+Just NA CK from 1 at 21281
+NACK 6
+Just NA CK from 6 at 21287
+NACK 4
+Just NA CK from 4 at 21292
+NACK 3
+Just NA CK from 3 at 21466
+NACK 2
+Just NA CK from 2 at 21471
+NACK 6
+Just NA CK from 6 at 21476
+NACK 3
+Just NA CK from 3 at 21481
+NACK 1
+Just NA CK from 1 at 21655
+NACK 7
+Just NA CK from 7 at 21660
+NACK 2
+Just NA CK from 2 at 21665
+NACK 4
+Just NA CK from 4 at 21840
+NACK 4
+Just NA CK from 4 at 21845
+NACK 3
+Just NA CK from 3 at 21850
+NACK 4
+Just NA CK from 4 at 22024
+NACK 1
+Just NA CK from 1 at 22029
+NACK 7
+Just NA CK from 7 at 22034
+NACK 7
+Just NA CK from 7 at 22208
+NACK 5
+Just NA CK from 5 at 22213
+NACK 5
+Just NA CK from 5 at 22218
+NACK 3
+Just NA CK from 3 at 22392
+NACK 4
+Just NA CK from 4 at 22398
+NACK 0
+Just NA CK from 0 at 22403
+NACK 5
+Just NA CK from 5 at 22577
+NACK 1
+Just NA CK from 1 at 22582
+NACK 2
+Just NA CK from 2 at 22587
+NACK 2
+Just NA CK from 2 at 22761
+NACK 5
+Just NA CK from 5 at 22766
+NACK 3
+Just NA CK from 3 at 22771
+NACK 6
+Just NA CK from 6 at 22945
+NACK 4
+Just NA CK from 4 at 22951
+NACK 1
+Just NA CK from 1 at 22956
+NACK 7
+Just NA CK from 7 at 23130
+NACK 1
+Just NA CK from 1 at 23135
+NACK 0
+Just NA CK from 0 at 23140
+NACK 7
+Just NA CK from 7 at 23145
+NACK 1
+Just NA CK from 1 at 23150
+NACK 5
+Just NA CK from 5 at 23155
+NACK 2
+Just NA CK from 2 at 23329
+NACK 0
+Just NA CK from 0 at 23335
+NACK 2
+Just NA CK from 2 at 23340
+NACK 6
+Just NA CK from 6 at 23345
+NACK 2
+Just NA CK from 2 at 23519
+NACK 5
+Just NA CK from 5 at 23524
+NACK 6
+Just NA CK from 6 at 23529
+NACK 3
+Just NA CK from 3 at 23703
+NACK 4
+Just NA CK from 4 at 23708
+NACK 2
+Just NA CK from 2 at 23713
+NACK 2
+Just NA CK from 2 at 23888
+NACK 7
+Just NA CK from 7 at 23893
+NACK 4
+Just NA CK from 4 at 23898
+NACK 4
+Just NA CK from 4 at 24072
+NACK 7
+Just NA CK from 7 at 24077
+NACK 1
+Just NA CK from 1 at 24082
+NACK 6
+Just NA CK from 6 at 24256
+NACK 2
+Just NA CK from 2 at 24261
+NACK 0
+Just NA CK from 0 at 24266
+NACK 0
+Just NA CK from 0 at 24440
+NACK 1
+Just NA CK from 1 at 24446
+NACK 2
+Just NA CK from 2 at 24451
+NACK 7
+Just NA CK from 7 at 24625
+NACK 4
+Just NA CK from 4 at 24630
+NACK 1
+Just NA CK from 1 at 24635
+NACK 2
+Just NA CK from 2 at 24809
+NACK 3
+Just NA CK from 3 at 24814
+NACK 4
+Just NA CK from 4 at 24819
+NACK 3
+Just NA CK from 3 at 24824
+NACK 2
+Just NA CK from 2 at 24830
+NACK 5
+Just NA CK from 5 at 24835
+NACK 0
+Just NA CK from 0 at 25009
+NACK 3
+Just NA CK from 3 at 25014
+NACK 6
+Just NA CK from 6 at 25019
+NACK 5
+Just NA CK from 5 at 25024
+NACK 4
+Just NA CK from 4 at 25198
+NACK 0
+Just NA CK from 0 at 25203
+NACK 3
+Just NA CK from 3 at 25208
+NACK 1
+Just NA CK from 1 at 25383
+NACK 5
+Just NA CK from 5 at 25388
+NACK 2
+Just NA CK from 2 at 25393
+NACK 0
+Just NA CK from 0 at 25567
+NACK 7
+Just NA CK from 7 at 25572
+NACK 3
+Just NA CK from 3 at 25577
+NACK 7
+Just NA CK from 7 at 25751
+NACK 4
+Just NA CK from 4 at 25756
+NACK 1
+Just NA CK from 1 at 25761
+NACK 1
+Just NA CK from 1 at 25936
+NACK 3
+Just NA CK from 3 at 25941
+NACK 3
+Just NA CK from 3 at 25946
+NACK 6
+Just NA CK from 6 at 26120
+NACK 3
+Just NA CK from 3 at 26125
+NACK 7
+Just NA CK from 7 at 26130
+NACK 6
+Just NA CK from 6 at 26304
+NACK 3
+Just NA CK from 3 at 26309
+NACK 6
+Just NA CK from 6 at 26314
+NACK 0
+Just NA CK from 0 at 26488
+NACK 0
+Just NA CK from 0 at 26494
+NACK 6
+Just NA CK from 6 at 26499
+NACK 1
+Just NA CK from 1 at 26673
+NACK 2
+Just NA CK from 2 at 26678
+NACK 4
+Just NA CK from 4 at 26683
+NACK 5
+Just NA CK from 5 at 26688
+NACK 6
+Just NA CK from 6 at 26693
+NACK 7
+Just NA CK from 7 at 26698
+NACK 6
+Just NA CK from 6 at 26872
+NACK 4
+Just NA CK from 4 at 26878
+NACK 5
+Just NA CK from 5 at 26883
+NACK 1
+Just NA CK from 1 at 26888
+NACK 4
+Just NA CK from 4 at 27062
+NACK 7
+Just NA CK from 7 at 27067
+NACK 4
+Just NA CK from 4 at 27072
+NACK 5
+Just NA CK from 5 at 27246
+NACK 6
+Just NA CK from 6 at 27251
+NACK 4
+Just NA CK from 4 at 27425
+NACK 1
+Just NA CK from 1 at 27431
+NACK 0
+Just NA CK from 0 at 27436
+NACK 4
+Just NA CK from 4 at 27610
+NACK 7
+Just NA CK from 7 at 27615
+NACK 5
+Just NA CK from 5 at 27620
+NACK 6
+Just NA CK from 6 at 27794
+NACK 1
+Just NA CK from 1 at 27799
+NACK 5
+Just NA CK from 5 at 27973
+NACK 6
+Just NA CK from 6 at 27978
+NACK 3
+Just NA CK from 3 at 28152
+NACK 7
+Just NA CK from 7 at 28158
+NACK 2
+Just NA CK from 2 at 28332
+NACK 7
+Just NA CK from 7 at 28337
+NACK 7
+Just NA CK from 7 at 28511
+NACK 4
+Just NA CK from 4 at 28516
+NACK 2
+Just NA CK from 2 at 28690
+NACK 1
+Just NA CK from 1 at 28695
+NACK 0
+Just NA CK from 0 at 28869
+NACK 2
+Just NA CK from 2 at 28874
+NACK 5
+Just NA CK from 5 at 28880
+NACK 7
+Just NA CK from 7 at 28885
+NACK 3
+Just NA CK from 3 at 29059
+NACK 1
+Just NA CK from 1 at 29064
+NACK 0
+Just NA CK from 0 at 29238
+NACK 2
+Just NA CK from 2 at 29412
+NACK 4
+Just NA CK from 4 at 29586
+NACK 3
+Just NA CK from 3 at 29760
+Flow Finished 0@64@0 at 66424960
+Flow uecsrc finished at 0.066425
+Flow uecsrc completion time is 0.066425
+Completion Time Flow is 66424960Running - 1 - 66424960
+Updated - Time 66424960
+..... Received a MSG -- host 64 to target 0, proc 0 - Type 1
+----------------------------    ENTERING WHILE        // ---------------------------- | 66424960 66424960 -  1 0 - 8 0 1 - 64 0 0
+OP MSGnexto[elem.host][elem.proc] 0 (64 0) - nextgr[elem.host][elem.nic] 0( 64  0) - time  66424960
+++ size is 8,  host [64] searching matching queue for src target 0 tag 0
+Compared element is -> 0 0 vs 0 0
+Searching for MATCHCurrent elem time is 66424960 while NS3 66424960
+Simulating Until Called
+Flow Finished 5@64@0 at 69297280
+Flow uecsrc finished at 0.0692973
+Flow uecsrc completion time is 0.0692973
+Completion Time Flow is 69297280Running - 1 - 69297280
+Updated - Time 69297280
+..... Received a MSG -- host 64 to target 5, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 69297280 69297280 -  1 0 - 7 0 1 - 64 5 0
+OP MSGnexto[elem.host][elem.proc] 66424960 (64 0) - nextgr[elem.host][elem.nic] 66424960( 64  0) - time  69297280
+++ size is 7,  host [64] searching matching queue for src target 5 tag 0
+Compared element is -> 1 0 vs 5 0
+Compared element is -> 2 0 vs 5 0
+Compared element is -> 3 0 vs 5 0
+Compared element is -> 4 0 vs 5 0
+Compared element is -> 5 0 vs 5 0
+Searching for MATCHCurrent elem time is 69297280 while NS3 69297280
+Simulating Until Called
+Flow Finished 4@64@0 at 73521280
+Flow uecsrc finished at 0.0735213
+Flow uecsrc completion time is 0.0735213
+Completion Time Flow is 73521280Running - 1 - 73521280
+Updated - Time 73521280
+..... Received a MSG -- host 64 to target 4, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 73521280 73521280 -  1 0 - 6 0 1 - 64 4 0
+OP MSGnexto[elem.host][elem.proc] 69297280 (64 0) - nextgr[elem.host][elem.nic] 69297280( 64  0) - time  73521280
+++ size is 6,  host [64] searching matching queue for src target 4 tag 0
+Compared element is -> 1 0 vs 4 0
+Compared element is -> 2 0 vs 4 0
+Compared element is -> 3 0 vs 4 0
+Compared element is -> 4 0 vs 4 0
+Searching for MATCHCurrent elem time is 73521280 while NS3 73521280
+Simulating Until Called
+Flow Finished 6@64@0 at 75210880
+Flow uecsrc finished at 0.0752109
+Flow uecsrc completion time is 0.0752109
+Completion Time Flow is 75210880Running - 1 - 75210880
+Updated - Time 75210880
+..... Received a MSG -- host 64 to target 6, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 75210880 75210880 -  1 0 - 5 0 1 - 64 6 0
+OP MSGnexto[elem.host][elem.proc] 73521280 (64 0) - nextgr[elem.host][elem.nic] 73521280( 64  0) - time  75210880
+++ size is 5,  host [64] searching matching queue for src target 6 tag 0
+Compared element is -> 1 0 vs 6 0
+Compared element is -> 2 0 vs 6 0
+Compared element is -> 3 0 vs 6 0
+Compared element is -> 6 0 vs 6 0
+Searching for MATCHCurrent elem time is 75210880 while NS3 75210880
+Simulating Until Called
+Flow Finished 1@64@0 at 75548800
+Flow uecsrc finished at 0.0755488
+Flow uecsrc completion time is 0.0755488
+Completion Time Flow is 75548800Running - 1 - 75548800
+Updated - Time 75548800
+..... Received a MSG -- host 64 to target 1, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 75548800 75548800 -  1 0 - 4 0 1 - 64 1 0
+OP MSGnexto[elem.host][elem.proc] 75210880 (64 0) - nextgr[elem.host][elem.nic] 75210880( 64  0) - time  75548800
+++ size is 4,  host [64] searching matching queue for src target 1 tag 0
+Compared element is -> 1 0 vs 1 0
+Searching for MATCHCurrent elem time is 75548800 while NS3 75548800
+Simulating Until Called
+Flow Finished 2@64@0 at 75717760
+Flow uecsrc finished at 0.0757178
+Flow uecsrc completion time is 0.0757178
+Completion Time Flow is 75717760Running - 1 - 75717760
+Updated - Time 75717760
+..... Received a MSG -- host 64 to target 2, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 75717760 75717760 -  1 0 - 3 0 1 - 64 2 0
+OP MSGnexto[elem.host][elem.proc] 75548800 (64 0) - nextgr[elem.host][elem.nic] 75548800( 64  0) - time  75717760
+++ size is 3,  host [64] searching matching queue for src target 2 tag 0
+Compared element is -> 2 0 vs 2 0
+Searching for MATCHCurrent elem time is 75717760 while NS3 75717760
+Simulating Until Called
+Flow Finished 3@64@0 at 78234880
+Flow uecsrc finished at 0.0782349
+Flow uecsrc completion time is 0.0782349
+Completion Time Flow is 78234880Running - 1 - 78234880
+Updated - Time 78234880
+..... Received a MSG -- host 64 to target 3, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 78234880 78234880 -  1 0 - 2 0 1 - 64 3 0
+OP MSGnexto[elem.host][elem.proc] 75717760 (64 0) - nextgr[elem.host][elem.nic] 75717760( 64  0) - time  78234880
+++ size is 2,  host [64] searching matching queue for src target 3 tag 0
+Compared element is -> 3 0 vs 3 0
+Searching for MATCHCurrent elem time is 78234880 while NS3 78234880
+Simulating Until Called
+Flow Finished 7@64@0 at 79924480
+Flow uecsrc finished at 0.0799245
+Flow uecsrc completion time is 0.0799245
+Completion Time Flow is 79924480Running - 1 - 79924480
+Updated - Time 79924480
+..... Received a MSG -- host 64 to target 7, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 79924480 79924480 -  1 0 - 1 0 1 - 64 7 0
+OP MSGnexto[elem.host][elem.proc] 78234880 (64 0) - nextgr[elem.host][elem.nic] 78234880( 64  0) - time  79924480
+++ size is 1,  host [64] searching matching queue for src target 7 tag 0
+Compared element is -> 7 0 vs 7 0
+Searching for MATCHCurrent elem time is 79924480 while NS3 79924480
+..... NOT Received a MSG
+
+
+RunTime Total LGS -> 4ms
+
+
+htsim Terminates at 79924480
+
+
+Remaining 128
+PERFORMANCE: Processes: 128 	 Events: 16 	 Time: 0 s 	 Speed: inf ev/s
+AQ is 0
+Times: 
+Host 0: 0
+Host 1: 0
+Host 2: 0
+Host 3: 0
+Host 4: 0
+Host 5: 0
+Host 6: 0
+Host 7: 0
+Host 8: 0
+Host 9: 0
+Host 10: 0
+Host 11: 0
+Host 12: 0
+Host 13: 0
+Host 14: 0
+Host 15: 0
+Host 16: 0
+Host 17: 0
+Host 18: 0
+Host 19: 0
+Host 20: 0
+Host 21: 0
+Host 22: 0
+Host 23: 0
+Host 24: 0
+Host 25: 0
+Host 26: 0
+Host 27: 0
+Host 28: 0
+Host 29: 0
+Host 30: 0
+Host 31: 0
+Host 32: 0
+Host 33: 0
+Host 34: 0
+Host 35: 0
+Host 36: 0
+Host 37: 0
+Host 38: 0
+Host 39: 0
+Host 40: 0
+Host 41: 0
+Host 42: 0
+Host 43: 0
+Host 44: 0
+Host 45: 0
+Host 46: 0
+Host 47: 0
+Host 48: 0
+Host 49: 0
+Host 50: 0
+Host 51: 0
+Host 52: 0
+Host 53: 0
+Host 54: 0
+Host 55: 0
+Host 56: 0
+Host 57: 0
+Host 58: 0
+Host 59: 0
+Host 60: 0
+Host 61: 0
+Host 62: 0
+Host 63: 0
+Host 64: 79924480
+Host 65: 0
+Host 66: 0
+Host 67: 0
+Host 68: 0
+Host 69: 0
+Host 70: 0
+Host 71: 0
+Host 72: 0
+Host 73: 0
+Host 74: 0
+Host 75: 0
+Host 76: 0
+Host 77: 0
+Host 78: 0
+Host 79: 0
+Host 80: 0
+Host 81: 0
+Host 82: 0
+Host 83: 0
+Host 84: 0
+Host 85: 0
+Host 86: 0
+Host 87: 0
+Host 88: 0
+Host 89: 0
+Host 90: 0
+Host 91: 0
+Host 92: 0
+Host 93: 0
+Host 94: 0
+Host 95: 0
+Host 96: 0
+Host 97: 0
+Host 98: 0
+Host 99: 0
+Host 100: 0
+Host 101: 0
+Host 102: 0
+Host 103: 0
+Host 104: 0
+Host 105: 0
+Host 106: 0
+Host 107: 0
+Host 108: 0
+Host 109: 0
+Host 110: 0
+Host 111: 0
+Host 112: 0
+Host 113: 0
+Host 114: 0
+Host 115: 0
+Host 116: 0
+Host 117: 0
+Host 118: 0
+Host 119: 0
+Host 120: 0
+Host 121: 0
+Host 122: 0
+Host 123: 0
+Host 124: 0
+Host 125: 0
+Host 126: 0
+Host 127: 0
+Maximum finishing time at host 64: 79924480 (0.0799245 s)
+Mean number of subflows -nan
+Done
+Path:
+queue(100000Mb/s,2048000bytes)SRC0->LS0
+pipe(0us)
+compqueue(100000Mb/s,112500bytes)LS0->DST1 id=0 0pkts 90hdrs 0acks 0nacks 0stripped
+pipe(0us)
+
+Hop 0 Count 0
+Hop 1 Count 0
+Hop 2 Count 0
+Hop 3 Count 0
+Hop 4 Count 0
+Hop 5 Count 0
+Hop 6 Count 0
+Hop 7 Count 0
+Hop 8 Count 0
+Hop 9 Count 0

@@ -87,21 +87,24 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--input_filter', dest='input_filter', type=str, help='FInput file name to use as filter')
 args = parser.parse_args()
 
-link_speeds = [100000, 400000]
+link_speeds = [100000]
 incast_degree_and_sizes = ["incast_128_8_64.bin", "incast_128_32_64.bin", "incast_128_64_64.bin", "incast_128_8_100.bin", "incast_128_32_100.bin", "incast_128_64_100.bin", "incast_128_8_512.bin", "incast_128_32_512.bin", "incast_128_64_512.bin", "incast_128_8_2000.bin", "incast_128_32_2000.bin", "incast_128_64_2000.bin"]
 incast_degree_and_sizes = ["incast_128_8_512.bin"]
-
 incast_degree_and_sizes = ["incast_128_8_100.bin","incast_128_32_100.bin","incast_128_64_100.bin","incast_128_8_512.bin", "incast_128_32_512.bin", "incast_128_64_512.bin", "incast_128_8_2000.bin", "incast_128_32_2000.bin", "incast_128_64_2000.bin"]
+
+
 incast_degree_and_sizes = ["incast_128_8_512.bin", "incast_128_32_512.bin", "incast_128_64_512.bin", "incast_128_8_2000.bin", "incast_128_32_2000.bin", "incast_128_64_2000.bin"]
 
 
-kmins = [20, 50]
+kmins = [50]
 use_fast_drops = [0, 1]
-use_fast_incs = [0, 1]
-use_exp_gains = [0, 1]
-use_jitters = [0, 1]
-delay_gain_values = [0, 2, 5]
-algorithm_names = ["standard_trimming"]
+use_fast_incs = [1]
+use_super_fast_inc = [0, 1]
+x_gain = [0.1, 0.25, 0.5]
+y_gain = [0.5, 1, 4]
+w_gain = [0.2, 0.6, 2]
+x_gain = [0.5, 1, 4]
+algorithm_names = ["delayB", "delayC"]
 cwnd_and_buffer = 112500
 filtered_out_value = []
 good_config = []

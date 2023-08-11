@@ -112,6 +112,11 @@ class UecSrc : public PacketSink, public EventSource {
         target_rtt_percentage_over_base = value;
     }
 
+    static void set_y_gain(double value) { y_gain = value; }
+    static void set_x_gain(double value) { x_gain = value; }
+    static void set_z_gain(double value) { z_gain = value; }
+    static void set_w_gain(double value) { w_gain = value; }
+
     void set_flow_over_hook(std::function<void(const Packet &)> hook) {
         f_flow_over_hook = hook;
     }
@@ -130,7 +135,9 @@ class UecSrc : public PacketSink, public EventSource {
     uint64_t _bounces_received;
     uint32_t _cwnd;
     uint32_t acked_bytes = 0;
+    uint32_t good_bytes = 0;
     uint32_t saved_acked_bytes = 0;
+    uint32_t saved_good_bytes = 0;
     uint32_t drop_amount = 0;
     uint32_t count_total_ecn = 0;
     uint32_t count_total_ack = 0;
@@ -171,6 +178,11 @@ class UecSrc : public PacketSink, public EventSource {
     static double jitter_value_med_inc;
     static double delay_gain_value_med_inc;
     static int target_rtt_percentage_over_base;
+
+    static double y_gain;
+    static double x_gain;
+    static double z_gain;
+    static double w_gain;
 
   private:
     uint32_t _unacked;

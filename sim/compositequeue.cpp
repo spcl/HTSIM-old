@@ -13,7 +13,7 @@
 CompositeQueue::CompositeQueue(linkspeed_bps bitrate, mem_b maxsize,
                                EventList &eventlist, QueueLogger *logger)
         : Queue(bitrate, maxsize, eventlist, logger) {
-    _ratio_high = 100000;
+    _ratio_high = 100;
     _ratio_low = 1;
     _crt = 0;
     _num_headers = 0;
@@ -89,7 +89,7 @@ void CompositeQueue::completeService() {
         packets_seen++;
         // printf("Queue %s - Packets %d\n", _nodename.c_str(), packets_seen);
         _queuesize_low -= pkt->size();
-        /*printf("Considering Queue1 %s - From %d - Header Only %d - Size %d - "
+        /*printf("Considering Queue %s - From %d - Header Only %d - Size %d - "
                "Arrayt Size "
                "%d\n",
                _nodename.c_str(), pkt->from, pkt->header_only(), _queuesize_low,
