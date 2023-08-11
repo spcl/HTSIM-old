@@ -423,8 +423,9 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
             // saved_acked_bytes += 1 * _mss;
             double bonus_based_on_target =
                     1 + (target_rtt_percentage_over_base / 100.0);
-            _cwnd = max((uint32_t)(saved_acked_bytes * bonus_based_on_target),
-                        saved_acked_bytes + _mss);
+            _cwnd = max(
+                    (uint32_t)(saved_acked_bytes * bonus_based_on_target * 1.1),
+                    saved_acked_bytes + _mss);
             ignore_for = get_unacked() / _mss;
             // int random_integer_wait = rand() % ignore_for;
             //  ignore_for += random_integer_wait;
@@ -1022,16 +1023,16 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
             exp_avg_route =
                     alpha_route * 1024 + (1 - alpha_route) * exp_avg_route;
 
-            if (exp_avg_route >= 512) {
-            } else {
-                printf("Not decreasing %lu\n", GLOBAL_TIME / 1000);
-                // return;
-            }
-
             if (use_fast_drop) {
                 if (count_received >= ignore_for) {
                     do_fast_drop(false);
                 }
+            }
+
+            if (exp_avg_route >= 512) {
+            } else {
+                printf("Not decreasing %lu\n", GLOBAL_TIME / 1000);
+                return;
             }
             if ((increasing ||
                  counter_consecutive_good_bytes > target_window) &&
@@ -1079,7 +1080,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                     exit(0);
                 }
                 if (count_received >= ignore_for) {
-                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss * 1);
                     printf("Case 3 from %d at %lu\n", from, GLOBAL_TIME / 1000);
                 }
                 // Case 4

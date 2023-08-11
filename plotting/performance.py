@@ -294,7 +294,7 @@ def main(args):
         fig.add_trace(
             go.Scatter(x=sub_df["Time"], y=sub_df['AckedBytes'], name="Acked " + str(i), line=dict(dash='longdashdot'), showlegend=True),
             secondary_y=True,
-        )
+        )'''
 
     # Queue
     count = 0
@@ -370,7 +370,7 @@ def main(args):
         fig.add_trace(
             go.Scatter(x=sub_df11["Time"], y=sub_df11["MediumI"], mode="markers", marker_symbol="triangle-up", name="MediumI Packet", marker=dict(size=5, color="white"), showlegend=True),
             secondary_y=False
-        )'''
+        )
 
 
     if args.name is not None:

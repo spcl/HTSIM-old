@@ -118,6 +118,7 @@ int main(int argc, char **argv) {
     double x_gain = 0.15;
     double z_gain = 1;
     double w_gain = 1;
+    bool use_super_fast_increase = false;
 
     int i = 1;
     filename << "logout.dat";
@@ -265,6 +266,11 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-fast_drop_rtt")) {
             UecSrc::set_fast_drop_rtt(atoi(argv[i + 1]));
+            i++;
+        } else if (!strcmp(argv[i], "-use_super_fast_increase")) {
+            use_super_fast_increase = atoi(argv[i + 1]);
+            UecSrc::set_use_super_fast_increase(use_super_fast_increase);
+            printf("FastIncreaseSuper: %d\n", use_super_fast_increase);
             i++;
         } else if (!strcmp(argv[i], "-goal")) {
             goal_filename = argv[i + 1];
