@@ -125,6 +125,7 @@ class UecSrc : public PacketSink, public EventSource {
 
     // should really be private, but loggers want to see:
     uint64_t _highest_sent; // seqno is in bytes
+    bool need_fast_drop = false;
     uint64_t _packets_sent;
     uint64_t _new_packets_sent;
     uint64_t _rtx_packets_sent;

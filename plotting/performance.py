@@ -230,7 +230,6 @@ def main(args):
         temp_df11 = temp_df11.assign(Node=name)
         df11 = pd.concat([df11, temp_df11])
 
-    print("Here")
     # Create figure with secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     color = ['#636EFA', '#0511a9', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880', '#FF97FF', '#FECB52']
@@ -295,7 +294,7 @@ def main(args):
         fig.add_trace(
             go.Scatter(x=sub_df["Time"], y=sub_df['AckedBytes'], name="Acked " + str(i), line=dict(dash='longdashdot'), showlegend=True),
             secondary_y=True,
-        )'''
+        )
 
     # Queue
     count = 0
@@ -308,7 +307,7 @@ def main(args):
             continue
 
         fig.add_trace(
-            go.Scatter(x=sub_df["Time"], y=sub_df['Queue'], name="Queue " + str(i),   mode="markers", marker=dict(size=2.5),line=dict(color="black", width=1.2),  showlegend=True),
+            go.Scatter(x=sub_df["Time"], y=sub_df['Queue'], name="Queue " + str(i),   mode="markers",  marker=dict(size=1.4), line=dict(dash='dash', color="black", width=3),  showlegend=True),
             secondary_y=False,
         )
         count += 1
@@ -364,7 +363,7 @@ def main(args):
         )
 
     # MediumI
-    '''mean_sent = df11["Time"].mean()
+    mean_sent = df11["Time"].mean()
     df11['MediumI'] = df11['MediumI'].multiply(y_mediumi)
     for i in df11['Node'].unique():
         sub_df11 = df11.loc[df11['Node'] == str(i)]

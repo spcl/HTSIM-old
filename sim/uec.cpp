@@ -393,24 +393,32 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
         count_trimmed_in_rtt = 0;
         count_ecn_in_rtt = 0;
         if (next_window_end == 0) {
-            next_window_end = eventlist().now() + (_base_rtt * fast_drop_rtt);
+            next_window_end = eventlist().now() + (_base_rtt * 1);
         } else {
-            next_window_end += (_base_rtt * fast_drop_rtt);
+            next_window_end += (_base_rtt * 1);
         }
         ecn_last_rtt = false;
 
         // Enable Fast Drop
-        /*printf("Using Fast Drop2 - Flow %d, Ecn %d, CWND %d, Saved "
+        printf("Using Fast Drop1 - Flow %d, Ecn %d, CWND %d, Saved "
                "Acked %d - Previous Window %lu - Next Window %lu// "
                "Time "
                "%lu\n",
                from, 1, _cwnd, saved_acked_bytes, previous_window_end / 1000,
-               next_window_end / 1000, eventlist().now() / 1000);*/
-        if (ecn_or_trimmed && _cwnd > 1.25 * saved_acked_bytes &&
-            (saved_acked_bytes > 0 &&
-             saved_good_bytes > 0 /*|| previous_window_end != 0*/) &&
-            _cwnd * 3 > _bdp) {
-            saved_acked_bytes = saved_acked_bytes / fast_drop_rtt;
+               next_window_end / 1000, eventlist().now() / 1000);
+        if ((ecn_or_trimmed || need_fast_drop) && _cwnd > saved_acked_bytes &&
+            (saved_acked_bytes > 0 && saved_good_bytes > 0 &&
+             previous_window_end != 0) &&
+            _cwnd * 8 > _bdp) {
+            saved_acked_bytes = saved_acked_bytes / 1;
+
+            printf("Using Fast Drop2 - Flow %d, Ecn %d, CWND %d, Saved "
+                   "Acked %d - Previous Window %lu - Next Window %lu// "
+                   "Time "
+                   "%lu\n",
+                   from, 1, _cwnd, saved_acked_bytes,
+                   previous_window_end / 1000, next_window_end / 1000,
+                   eventlist().now() / 1000);
             // saved_acked_bytes = 30000;
             // saved_acked_bytes += 1 * _mss;
             double bonus_based_on_target =
@@ -418,14 +426,15 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
             _cwnd = max((uint32_t)(saved_acked_bytes * bonus_based_on_target),
                         saved_acked_bytes + _mss);
             ignore_for = get_unacked() / _mss;
-            int random_integer_wait = rand() % ignore_for;
-            // ignore_for += random_integer_wait;
+            // int random_integer_wait = rand() % ignore_for;
+            //  ignore_for += random_integer_wait;
             printf("Ignoring %d for %d pkts - New Wnd %d (%d %d)\n", from,
                    ignore_for, _cwnd,
                    (uint32_t)(saved_acked_bytes * bonus_based_on_target),
                    saved_acked_bytes + _mss);
             count_received = 0;
             was_zero_before = false;
+            need_fast_drop = false;
             _list_fast_decrease.push_back(
                     std::make_pair(eventlist().now() / 1000, 1));
         }
@@ -440,6 +449,10 @@ void UecSrc::processNack(UecNack &pkt) {
     consecutive_good_medium = 0;
     acked_bytes += 64;
     exp_avg_route = 1024;
+
+    if (count_received >= ignore_for) {
+        need_fast_drop = true;
+    }
 
     printf("Just NA CK from %d at %lu\n", from, eventlist().now() / 1000);
 
@@ -952,7 +965,9 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
         } else if (algorithm_type == "delayA") {
             // printf("Name Running: UEC Version A\n");
             if (use_fast_drop) {
-                do_fast_drop(ecn);
+                if (count_received >= ignore_for) {
+                    do_fast_drop(ecn);
+                }
             }
             if ((increasing ||
                  counter_consecutive_good_bytes > target_window) &&
@@ -1014,7 +1029,9 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
             }
 
             if (use_fast_drop) {
-                do_fast_drop(ecn);
+                if (count_received >= ignore_for) {
+                    do_fast_drop(false);
+                }
             }
             if ((increasing ||
                  counter_consecutive_good_bytes > target_window) &&
@@ -1022,9 +1039,9 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 fast_increase();
                 // Case 1 RTT Based Increase
             } else if (!ecn && rtt < _target_rtt) {
-                /*_cwnd += min(uint32_t((((_target_rtt - rtt) / (double)rtt) *
+                _cwnd += min(uint32_t((((_target_rtt - rtt) / (double)rtt) *
                                        y_gain * _mss * (_mss / (double)_cwnd))),
-                             uint32_t(_mss));*/
+                             uint32_t(_mss));
                 _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
                 _list_medium_increase_event.push_back(
                         std::make_pair(eventlist().now() / 1000, 1));
@@ -1040,13 +1057,12 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                         printf("Error, unknown Target value\n");
                         exit(0);
                     }
-                    /*_cwnd -= min((w_gain *
+                    _cwnd -= min((w_gain *
                                   ((avg_rtt - (double)_target_rtt) / avg_rtt) *
-                                  _mss) + _cwnd / (double)_bdp * z_gain, // Try
-                       other constants
-                                                        // (0.5, 1, 2, 4)
-                                 (double)_mss);*/
-                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
+                                  _mss) + _cwnd / (double)_bdp * z_gain,
+                                 // (0.5, 1, 2, 4)
+                                 (double)_mss);
+                    // reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
                     printf("Case 2 from %d at %lu\n", from, GLOBAL_TIME / 1000);
                 }
                 // Case 3 Gentle Decrease (Window based)
@@ -1567,8 +1583,9 @@ void UecSink::send_nack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
 bool UecSink::already_received(UecPacket &pkt) {
     UecPacket::seq_t seqno = pkt.seqno();
 
-    if (seqno <= _cumulative_ack) { // TODO: this assumes that all data
-                                    // packets have the same size
+    if (seqno <= _cumulative_ack) { // TODO: this assumes
+                                    // that all data packets
+                                    // have the same size
         return true;
     }
     for (auto it = _received.begin(); it != _received.end(); ++it) {
@@ -1613,11 +1630,13 @@ void UecSink::receivePacket(Packet &pkt) {
     auto crt_path = random() % _paths.size();
     if (already_received(*p)) {
         // duplicate retransmit
-        if (_src->supportsTrimming()) { // we can assume that they
-                                        // have been configured
-                                        // similarly, or exchanged
-                                        // information about options
-                                        // somehow
+        if (_src->supportsTrimming()) { // we can assume
+                                        // that they have
+                                        // been configured
+                                        // similarly, or
+                                        // exchanged
+                                        // information about
+                                        // options somehow
             send_ack(ts, marked, 1, _cumulative_ack, _paths.at(crt_path),
                      pkt.get_route());
         }
@@ -1660,7 +1679,8 @@ void UecSink::receivePacket(Packet &pkt) {
         seqno = 1;
         ackno = _cumulative_ack;
     } else { // not the next expected sequence number
-        // TODO: what to do when a future packet is received?
+        // TODO: what to do when a future packet is
+        // received?
         if (_received.empty()) {
             _received.push_front(seqno);
             _drops += (1000 + seqno - _cumulative_ack - 1) /
@@ -1679,11 +1699,11 @@ void UecSink::receivePacket(Packet &pkt) {
             }
         }
     }
-    // TODO: reverse_route is likely sending the packet through the
-    // same exact links, which is not correct in Packet Spray, but
-    // there doesn't seem to be a good, quick way of doing that in
-    // htsim
-    // printf("Ack Sending From %d - %d\n", this->from,
+    // TODO: reverse_route is likely sending the packet
+    // through the same exact links, which is not correct in
+    // Packet Spray, but there doesn't seem to be a good,
+    // quick way of doing that in htsim printf("Ack Sending
+    // From %d - %d\n", this->from,
     send_ack(ts, marked, seqno, ackno, _paths.at(crt_path), pkt.get_route());
 }
 

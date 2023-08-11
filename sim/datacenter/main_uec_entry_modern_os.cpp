@@ -296,9 +296,11 @@ int main(int argc, char **argv) {
                 printf("Name Running: UEC Version A\n");
             } else if (!strcmp(argv[i + 1], "delayB")) {
                 UecSrc::set_alogirthm("delayB");
+                printf("Name Running: UEC Version B\n");
             } else if (!strcmp(argv[i + 1], "delayC")) {
                 UecSrc::set_alogirthm("delayC");
-            } else if (!strcmp(argv[i + 1], "delayD")) {
+                printf("Name Running: UEC Version A\n");
+            } else if (!strcmp(argv[i + 1], "delayC")) {
                 UecSrc::set_alogirthm("delayD");
                 printf("Name Running: STrack\n");
             } else if (!strcmp(argv[i + 1], "standard_trimming")) {
