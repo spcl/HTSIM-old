@@ -268,38 +268,6 @@ def main(args):
         if (args.num_to_show == 1):
             break
 
-
-    for i in df2['Node'].unique():
-        sub_df = df2.loc[df2['Node'] == str(i)]
-        fig.add_trace(
-            go.Scatter(x=sub_df["Time"], y=sub_df['Congestion Window'], name="CWD " + str(i), line=dict(dash='dot'), showlegend=True),
-            secondary_y=True,
-        )
-    # Trimming RTT Bytes
-    '''for i in df14['Node'].unique():
-        sub_df = df14.loc[df14['Node'] == str(i)]
-        fig.add_trace(
-            go.Scatter(x=sub_df["Time"], y=sub_df['TrimmedRTT'], name="TrimmedRTT " + str(i), line=dict(dash='longdashdot'), showlegend=True),
-            secondary_y=True,
-        )
-
-    # ECN RTT Bytes
-    for i in df13['Node'].unique():
-        sub_df = df13.loc[df13['Node'] == str(i)]
-        fig.add_trace(
-            go.Scatter(x=sub_df["Time"], y=sub_df['ECNRTT'], name="ECNRTT " + str(i), line=dict(dash='longdashdot'), showlegend=True),
-            secondary_y=True,
-        )
-    
-    # Acked Bytes
-    print(df8)
-    for i in df8['Node'].unique():
-        sub_df = df8.loc[df8['Node'] == str(i)]
-        fig.add_trace(
-            go.Scatter(x=sub_df["Time"], y=sub_df['AckedBytes'], name="Acked " + str(i), line=dict(dash='longdashdot'), showlegend=True),
-            secondary_y=True,
-        )'''
-
     # Queue
     count = 0
     df3['Queue'] = pd.to_numeric(df3['Queue'])
@@ -316,25 +284,6 @@ def main(args):
         )
         count += 1
 
-    # ECN
-    mean_ecn = df4["Time"].mean()
-    for i in df4['Node'].unique():
-        df4['ECN'] = y_ecn
-        sub_df4 = df4.loc[df4['Node'] == str(i)]
-        fig.add_trace(
-            go.Scatter(x=sub_df4["Time"], y=sub_df4['ECN'], mode="markers", marker_symbol="triangle-up", name="ECN Packet", marker=dict(size=5, color="yellow"), showlegend=True),
-            secondary_y=False
-        )
-
-    # Sent
-    mean_sent = df5["Time"].mean()
-    df5['Sent'] = df5['Sent'].multiply(y_sent)
-    for i in df5['Node'].unique():
-        sub_df5 = df5.loc[df5['Node'] == str(i)]
-        fig.add_trace(
-            go.Scatter(x=sub_df5["Time"], y=sub_df5["Sent"], mode="markers", marker_symbol="triangle-up", name="Sent Packet", marker=dict(size=5, color="green"), showlegend=True),
-            secondary_y=False
-        )
 
     # NACK
     mean_sent = df6["Time"].mean()
@@ -343,36 +292,6 @@ def main(args):
         sub_df6 = df6.loc[df6['Node'] == str(i)]
         fig.add_trace(
             go.Scatter(x=sub_df6["Time"], y=sub_df6["Nack"], mode="markers", marker_symbol="triangle-up", name="NACK Packet", marker=dict(size=5, color="grey"), showlegend=True),
-            secondary_y=False
-        )
-
-    # FastI
-    mean_sent = df9["Time"].mean()
-    df9['FastI'] = df9['FastI'].multiply(y_fasti)
-    for i in df9['Node'].unique():
-        sub_df9 = df9.loc[df9['Node'] == str(i)]
-        fig.add_trace(
-            go.Scatter(x=sub_df9["Time"], y=sub_df9["FastI"], mode="markers", marker_symbol="triangle-up", name="FastI Packet", marker=dict(size=5, color="brown"), showlegend=True),
-            secondary_y=False
-        )
-
-    # FastD
-    mean_sent = df10["Time"].mean()
-    df10['FastD'] = df10['FastD'].multiply(y_fastd)
-    for i in df10['Node'].unique():
-        sub_df10 = df10.loc[df10['Node'] == str(i)]
-        fig.add_trace(
-            go.Scatter(x=sub_df10["Time"], y=sub_df10["FastD"], mode="markers", marker_symbol="triangle-up", name="FastD Packet", marker=dict(size=5, color="black"), showlegend=True),
-            secondary_y=False
-        )
-
-    # MediumI
-    mean_sent = df11["Time"].mean()
-    df11['MediumI'] = df11['MediumI'].multiply(y_mediumi)
-    for i in df11['Node'].unique():
-        sub_df11 = df11.loc[df11['Node'] == str(i)]
-        fig.add_trace(
-            go.Scatter(x=sub_df11["Time"], y=sub_df11["MediumI"], mode="markers", marker_symbol="triangle-up", name="MediumI Packet", marker=dict(size=5, color="white"), showlegend=True),
             secondary_y=False
         )
 

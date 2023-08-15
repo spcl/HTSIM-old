@@ -25,6 +25,12 @@ DelayGainValue = 0
 TargetRTT = 0
 KMin = 0
 KMax = 0
+x_gain = 0
+y_gain = 0
+z_gain = 0
+w_gain = 0
+bonus_drop_value = 0
+buffer_drop_value = 0
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_file', dest='input_file', type=str, help='File to parse.')
@@ -122,6 +128,36 @@ with open(folder + "/" + file_name) as file:
             list_size.append(round(size_m))
             incast_size = int(result.group(1))
 
+        # X
+        result = re.search(r"XGain: (\d+)", line)
+        if result:
+            x_gain = re.findall('\d+.\d+', line )[0]
+
+        # Y
+        result = re.search(r"YGain: (\d+)", line)
+        if result:
+            y_gain = re.findall('\d+.\d+', line )[0]
+
+        # z
+        result = re.search(r"ZGain: (\d+)", line)
+        if result:
+            z_gain = re.findall('\d+.\d+', line )[0]
+
+        # W
+        result = re.search(r"WGain: (\d+)", line)
+        if result:
+            w_gain = re.findall('\d+.\d+', line )[0]
+
+        # BonusDrop
+        result = re.search(r"BonusDrop: (\d+)", line)
+        if result:
+            bonus_drop_value = re.findall('\d+.\d+', line )[0]
+
+        # BufferDrop
+        result = re.search(r"BufferDrop: (\d+)", line)
+        if result:
+            buffer_drop_value = re.findall('\d+.\d+', line )[0]
+
     # MIN BW
     max_time = max(list_fct)
     min_bw = (incast_size * 8 + (incast_size*8*0.03)) / (max_time - 8500)
@@ -209,3 +245,21 @@ with open(file_name, 'w') as f:
 
     # ComplexName
     f.write('ComplexFull: {}\n'.format(args.complex_name)) 
+
+    # X
+    f.write('XGain: {}\n'.format(x_gain)) 
+
+    # Y
+    f.write('YGain: {}\n'.format(y_gain)) 
+
+    # Z
+    f.write('ZGain: {}\n'.format(z_gain)) 
+
+    # W
+    f.write('WGain: {}\n'.format(w_gain)) 
+
+    # BonusDrop
+    f.write('BonusDrop: {}\n'.format(bonus_drop_value)) 
+
+    # BufferDrop
+    f.write('BufferDrop: {}\n'.format(buffer_drop_value)) 

@@ -116,6 +116,8 @@ class UecSrc : public PacketSink, public EventSource {
     static void set_x_gain(double value) { x_gain = value; }
     static void set_z_gain(double value) { z_gain = value; }
     static void set_w_gain(double value) { w_gain = value; }
+    static void set_bonus_drop(double value) { bonus_drop = value; }
+    static void set_buffer_drop(double value) { buffer_drop = value; }
 
     void set_flow_over_hook(std::function<void(const Packet &)> hook) {
         f_flow_over_hook = hook;
@@ -139,6 +141,7 @@ class UecSrc : public PacketSink, public EventSource {
     uint32_t good_bytes = 0;
     uint32_t saved_acked_bytes = 0;
     uint32_t saved_good_bytes = 0;
+    uint32_t saved_trimmed_bytes = 0;
     uint32_t drop_amount = 0;
     uint32_t count_total_ecn = 0;
     uint32_t count_total_ack = 0;
@@ -184,6 +187,8 @@ class UecSrc : public PacketSink, public EventSource {
     static double x_gain;
     static double z_gain;
     static double w_gain;
+    static double bonus_drop;
+    static double buffer_drop;
 
   private:
     uint32_t _unacked;

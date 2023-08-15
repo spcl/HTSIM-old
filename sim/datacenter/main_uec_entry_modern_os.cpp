@@ -118,6 +118,8 @@ int main(int argc, char **argv) {
     double x_gain = 0.15;
     double z_gain = 1;
     double w_gain = 1;
+    double bonus_drop = 1;
+    double drop_value_buffer = 1.2;
     bool use_super_fast_increase = false;
 
     int i = 1;
@@ -144,6 +146,11 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-cwnd")) {
             cwnd = atoi(argv[i + 1]);
             cout << "cwnd " << cwnd << endl;
+            i++;
+        } else if (!strcmp(argv[i], "-bonus_drop")) {
+            bonus_drop = std::stod(argv[i + 1]);
+            UecSrc::set_bonus_drop(bonus_drop);
+            printf("BonusDrop: %f\n", bonus_drop);
             i++;
         } else if (!strcmp(argv[i], "-q")) {
             queuesize = atoi(argv[i + 1]);
@@ -250,6 +257,11 @@ int main(int argc, char **argv) {
             x_gain = std::stod(argv[i + 1]);
             UecSrc::set_x_gain(x_gain);
             printf("XGain: %f\n", x_gain);
+            i++;
+        } else if (!strcmp(argv[i], "-drop_value_buffer")) {
+            drop_value_buffer = std::stod(argv[i + 1]);
+            UecSrc::set_buffer_drop(drop_value_buffer);
+            printf("BufferDrop: %f\n", drop_value_buffer);
             i++;
         } else if (!strcmp(argv[i], "-z_gain")) {
             z_gain = std::stod(argv[i + 1]);

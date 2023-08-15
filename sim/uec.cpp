@@ -30,6 +30,8 @@ double UecSrc::y_gain = 1;
 double UecSrc::x_gain = 0.15;
 double UecSrc::z_gain = 1;
 double UecSrc::w_gain = 1;
+double UecSrc::bonus_drop = 1;
+double UecSrc::buffer_drop = 1.2;
 
 UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
                EventList &eventList, uint64_t rtt, uint64_t bdp,
@@ -54,7 +56,7 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
                  (64 * 8 / LINK_SPEED_MODERN * _hop_count)) *
                 1000;
     _target_rtt =
-            _base_rtt * ((target_rtt_percentage_over_base + 2) / 100.0 + 1);
+            _base_rtt * ((target_rtt_percentage_over_base + 1) / 100.0 + 1);
 
     _rtt = _base_rtt;
     _rto = rtt + _hop_count * queueDrainTime + (rtt * 90000);
@@ -375,8 +377,6 @@ void UecSrc::reduce_unacked(uint64_t amount) {
 }
 
 void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
-    int ratio = LINK_SPEED_MODERN / 100 / 2;
-    // printf("Ratio is %d\n", ratio);
     if (eventlist().now() >= next_window_end) {
         previous_window_end = next_window_end;
         _list_acked_bytes.push_back(
@@ -401,32 +401,54 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
 
         // Enable Fast Drop
         printf("Using Fast Drop1 - Flow %d, Ecn %d, CWND %d, Saved "
-               "Acked %d - Previous Window %lu - Next Window %lu// "
+               "Acked %d (%d) - Previous Window %lu - Next Window %lu -  "
+               "get_unacked() %lu - // "
                "Time "
-               "%lu\n",
-               from, 1, _cwnd, saved_acked_bytes, previous_window_end / 1000,
-               next_window_end / 1000, eventlist().now() / 1000);
-        if ((ecn_or_trimmed || need_fast_drop) && _cwnd > saved_acked_bytes &&
-            (saved_acked_bytes > 0 && saved_good_bytes > 0 &&
-             previous_window_end != 0) &&
-            _cwnd * 8 > _bdp) {
-            saved_acked_bytes = saved_acked_bytes / 1;
+               "%lu - Ratio is %f (%lu vs %lu vs %lu) - Trimmed %d\n",
+               from, 1, _cwnd, saved_acked_bytes, saved_trimmed_bytes,
+               previous_window_end / 1000, next_window_end / 1000,
+               get_unacked(), eventlist().now() / 1000,
+               ((eventlist().now() - previous_window_end + _base_rtt) /
+                (double)_base_rtt),
+               (eventlist().now() - previous_window_end + _base_rtt) / 1000,
+               previous_window_end / 1000, _base_rtt / 1000);
+        saved_trimmed_bytes = 0;
+        if ((ecn_or_trimmed || need_fast_drop) &&
+            (saved_acked_bytes > 0 ||
+             (saved_acked_bytes == 0 && previous_window_end != 0)) &&
+            _cwnd * 8 > _bdp && previous_window_end != 0) {
+
+            /*saved_acked_bytes =
+                    saved_acked_bytes *
+                    ((double)_base_rtt /
+                     (eventlist().now() - previous_window_end + _base_rtt));*/
+
+            double bonus_based_on_target = buffer_drop;
 
             printf("Using Fast Drop2 - Flow %d, Ecn %d, CWND %d, Saved "
-                   "Acked %d - Previous Window %lu - Next Window %lu// "
+                   "Acked %d (dropping to %f - bonus1 %f 2 %f -> %f and %f) - "
+                   "Previous "
+                   "Window %lu - Next "
+                   "Window %lu// "
                    "Time "
                    "%lu\n",
                    from, 1, _cwnd, saved_acked_bytes,
+                   max((double)(saved_acked_bytes * bonus_based_on_target *
+                                bonus_drop),
+                       saved_acked_bytes * bonus_based_on_target * bonus_drop +
+                               _mss),
+                   bonus_based_on_target, bonus_drop,
+                   (saved_acked_bytes * bonus_based_on_target * bonus_drop),
+                   (saved_acked_bytes * bonus_based_on_target * bonus_drop +
+                    _mss),
                    previous_window_end / 1000, next_window_end / 1000,
                    eventlist().now() / 1000);
-            // saved_acked_bytes = 30000;
-            // saved_acked_bytes += 1 * _mss;
-            double bonus_based_on_target =
-                    1 + (target_rtt_percentage_over_base / 100.0);
-            _cwnd = max(
-                    (uint32_t)(saved_acked_bytes * bonus_based_on_target * 1.1),
-                    saved_acked_bytes + _mss);
-            ignore_for = get_unacked() / _mss;
+
+            _cwnd = max((double)(saved_acked_bytes * bonus_based_on_target *
+                                 bonus_drop),
+                        bonus_based_on_target * bonus_drop * _mss);
+
+            ignore_for = (get_unacked() / (double)_mss) * 1;
             // int random_integer_wait = rand() % ignore_for;
             //  ignore_for += random_integer_wait;
             printf("Ignoring %d for %d pkts - New Wnd %d (%d %d)\n", from,
@@ -449,6 +471,7 @@ void UecSrc::processNack(UecNack &pkt) {
     trimmed_last_rtt++;
     consecutive_good_medium = 0;
     acked_bytes += 64;
+    saved_trimmed_bytes += 64;
     exp_avg_route = 1024;
 
     if (count_received >= ignore_for) {
@@ -458,7 +481,9 @@ void UecSrc::processNack(UecNack &pkt) {
     printf("Just NA CK from %d at %lu\n", from, eventlist().now() / 1000);
 
     if (use_fast_drop) {
-        do_fast_drop(true);
+        if (count_received >= ignore_for) {
+            do_fast_drop(true);
+        }
         if (count_received > ignore_for) {
             reduce_cwnd(uint64_t(_mss * 1));
         }
@@ -850,16 +875,18 @@ uint32_t UecSrc::medium_increase(simtime_picosec rtt) {
 
 void UecSrc::fast_increase() {
     if (use_fast_drop) {
-        if (count_received >= ignore_for) {
+        if (count_received > ignore_for) {
             if (use_super_fast_increase) {
-                _cwnd = _cwnd * 3;
+                //_cwnd += ((_bdp - _cwnd) / 2) / 2;
+                _cwnd += (_bdp / 10);
             } else {
                 _cwnd += _mss;
             }
         }
     } else {
         if (use_super_fast_increase) {
-            _cwnd = _cwnd * 3;
+            //_cwnd += ((_bdp - _cwnd) / 2) / 2;
+            _cwnd += (_bdp / 10);
         } else {
             _cwnd += _mss;
         }
@@ -1032,7 +1059,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
             if (exp_avg_route >= 512) {
             } else {
                 printf("Not decreasing %lu\n", GLOBAL_TIME / 1000);
-                return;
+                // return;
             }
             if ((increasing ||
                  counter_consecutive_good_bytes > target_window) &&
@@ -1047,7 +1074,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 _list_medium_increase_event.push_back(
                         std::make_pair(eventlist().now() / 1000, 1));
                 // Case 2 Hybrid Based Decrease || RTT Decrease
-            } else if (ecn && avg_rtt > _target_rtt) {
+            } else if (ecn && rtt > _target_rtt) {
                 if (count_received >= ignore_for) {
                     double scaling;
                     if (target_rtt_percentage_over_base == 20) {
@@ -1058,13 +1085,13 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                         printf("Error, unknown Target value\n");
                         exit(0);
                     }
-                    _cwnd -= min((w_gain *
-                                  ((avg_rtt - (double)_target_rtt) / avg_rtt) *
+                    _cwnd -= min((w_gain * ((rtt - (double)_target_rtt) / rtt) *
                                   _mss) + _cwnd / (double)_bdp * z_gain,
                                  // (0.5, 1, 2, 4)
                                  (double)_mss);
                     // reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
-                    printf("Case 2 from %d at %lu\n", from, GLOBAL_TIME / 1000);
+                    // printf("Case 2 from %d at %lu\n", from, GLOBAL_TIME /
+                    // 1000);
                 }
                 // Case 3 Gentle Decrease (Window based)
             } else if (ecn && rtt < _target_rtt) {
@@ -1080,12 +1107,14 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                     exit(0);
                 }
                 if (count_received >= ignore_for) {
-                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss * 1);
-                    printf("Case 3 from %d at %lu\n", from, GLOBAL_TIME / 1000);
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss *
+                                z_gain);
+                    // printf("Case 3 from %d at %lu\n", from, GLOBAL_TIME /
+                    // 1000);
                 }
                 // Case 4
             } else if (!ecn && rtt > _target_rtt) {
-                // Do nothing
+                // Do nothing but fairness
                 _cwnd += ((double)_mss / _cwnd) * x_gain *
                          _mss; // For x 0.15, 0.5, 0.3
             }

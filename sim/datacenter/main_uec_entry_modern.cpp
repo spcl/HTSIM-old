@@ -116,6 +116,8 @@ int main(int argc, char **argv) {
     double x_gain = 0.15;
     double z_gain = 1;
     double w_gain = 1;
+    double bonus_drop = 1;
+    double drop_value_buffer = 1.2;
 
     int i = 1;
     filename << "logout.dat";
@@ -265,6 +267,16 @@ int main(int argc, char **argv) {
             w_gain = std::stod(argv[i + 1]);
             UecSrc::set_w_gain(w_gain);
             printf("WGain: %f\n", w_gain);
+            i++;
+        } else if (!strcmp(argv[i], "-bonus_drop")) {
+            bonus_drop = std::stod(argv[i + 1]);
+            UecSrc::set_bonus_drop(bonus_drop);
+            printf("BonusDrop: %f\n", bonus_drop);
+            i++;
+        } else if (!strcmp(argv[i], "-drop_value_buffer")) {
+            drop_value_buffer = std::stod(argv[i + 1]);
+            UecSrc::set_buffer_drop(drop_value_buffer);
+            printf("BufferDrop: %f\n", drop_value_buffer);
             i++;
         } else if (!strcmp(argv[i], "-goal")) {
             goal_filename = argv[i + 1];

@@ -54,7 +54,7 @@ my = sns.violinplot(x=hue_list, y=combined_data, cut=0)
 
 my.set_title('Individual Flow Completion Time')
 my.set_ylabel('FCT (us)')
-my.set_xlabel('Congestion Control Algorithm')
+my.set_xlabel('Sender Based Trimming UEC')
  
 # Make boxplot for one group only
 plt.tight_layout()
