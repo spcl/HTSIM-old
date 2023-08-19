@@ -217,7 +217,9 @@ void CompositeQueue::receivePacket(Packet &pkt) {
                 std::ofstream MyFile(file_name, std::ios_base::app);
 
                 MyFile << eventlist().now() / 1000 << ","
-                       << int(_queuesize_low * 8 / (_bitrate / 1e9))
+                       << int(_queuesize_low * 8 / (_bitrate / 1e9)) << ","
+                       << int(_ecn_minthresh * 8 / (_bitrate / 1e9)) << ","
+                       << int(_ecn_maxthresh * 8 / (_bitrate / 1e9))
                        << std::endl;
 
                 MyFile.close();

@@ -1227,6 +1227,59 @@ void create_permutation_across(gengetopt_args_info *args_info) {
     goal.Write();
 }
 
+void create_permutation_across_m(gengetopt_args_info *args_info) {
+
+    int comm_size = args_info->commsize_arg;
+    int datasize = args_info->datasize_arg;
+    int perm = 3;
+
+    Goal goal(args_info, comm_size);
+    MTRand mtrand;
+    int sending[comm_size][perm];
+    int receiving[comm_size][perm];
+
+    for (int j = 0; j < comm_size; j++) {
+        for (int k = 0; k < perm; k++) {
+            sending[j][k] = -1;
+            receiving[j][k] = -1;
+        }
+    }
+
+    for (int i = 0; i < perm; i++) {
+        for (int src_rank = 0; src_rank < comm_size / 2; src_rank++) {
+            int myrand = mtrand.randInt(comm_size - 1);
+            while (myrand == src_rank || receiving[myrand][i] != -1 ||
+                   myrand < comm_size / 2) {
+                myrand = mtrand.randInt(comm_size - 1);
+            }
+            sending[src_rank][i] = myrand;
+            receiving[myrand][i] = src_rank;
+        }
+
+        for (int src_rank = comm_size / 2; src_rank < comm_size; src_rank++) {
+            int myrand = mtrand.randInt(comm_size - 1);
+            while (myrand == src_rank || receiving[myrand][i] != -1 ||
+                   myrand >= comm_size / 2) {
+                myrand = mtrand.randInt(comm_size - 1);
+            }
+            sending[src_rank][i] = myrand;
+            receiving[myrand][i] = src_rank;
+        }
+    }
+
+    for (int src_rank = 0; src_rank < comm_size; src_rank++) {
+        goal.StartRank(src_rank);
+        for (int k = 0; k < perm; k++) {
+            goal.SetTag(k);
+            int send = goal.Send(datasize, sending[src_rank][k]);
+            int recv = goal.Recv(datasize, receiving[src_rank][k]);
+        }
+        goal.EndRank();
+    }
+
+    goal.Write();
+}
+
 // Everyone sends to last node
 void create_incast(gengetopt_args_info *args_info) {
 
@@ -1255,7 +1308,7 @@ void create_special_incast(gengetopt_args_info *args_info) {
 
     int comm_size = args_info->commsize_arg;
     int datasize = args_info->datasize_arg;
-    int active_nodes = 100;
+    int active_nodes = 4;
 
     Goal goal(args_info, comm_size);
 
@@ -1399,7 +1452,7 @@ int main(int argc, char **argv) {
         create_special_incast(&args_info);
     }
     if (strcmp(args_info.ptrn_arg, "multiple_permutation") == 0) {
-        create_multiple_permutation(&args_info);
+        create_permutation_across_m(&args_info);
     }
 
     if (strcmp(args_info.ptrn_arg, "trace") == 0) {

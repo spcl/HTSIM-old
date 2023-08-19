@@ -142,6 +142,7 @@ class UecSrc : public PacketSink, public EventSource {
     uint32_t saved_acked_bytes = 0;
     uint32_t saved_good_bytes = 0;
     uint32_t saved_trimmed_bytes = 0;
+    uint32_t last_decrease = 0;
     uint32_t drop_amount = 0;
     uint32_t count_total_ecn = 0;
     uint32_t count_total_ack = 0;
@@ -150,7 +151,7 @@ class UecSrc : public PacketSink, public EventSource {
     uint32_t _acked_packets;
     uint64_t _flow_start_time;
     uint64_t _next_check_window;
-    uint64_t next_window_end;
+    uint64_t next_window_end = 0;
     bool update_next_window = true;
     bool _start_timer_window = true;
     bool stop_decrease = false;
@@ -173,7 +174,7 @@ class UecSrc : public PacketSink, public EventSource {
     static bool use_fast_drop;
     static int fast_drop_rtt;
     bool was_zero_before = false;
-
+    double ideal_x = 0;
     static bool do_jitter;
     static bool do_exponential_gain;
     static bool use_fast_increase;
@@ -248,7 +249,9 @@ class UecSrc : public PacketSink, public EventSource {
             _received_ecn; // list of packets received
     vector<SentPacket> _sent_packets;
     unsigned _nack_rtx_pending;
-    vector<tuple<simtime_picosec, uint64_t, uint64_t, uint64_t>> _list_rtt;
+    vector<tuple<simtime_picosec, uint64_t, uint64_t, uint64_t, uint64_t,
+                 uint64_t>>
+            _list_rtt;
     vector<pair<simtime_picosec, uint64_t>> _list_cwd;
     vector<pair<simtime_picosec, uint64_t>> _list_unacked;
     vector<pair<simtime_picosec, uint64_t>> _list_acked_bytes;
@@ -275,6 +278,11 @@ class UecSrc : public PacketSink, public EventSource {
     bool _trimming_enabled;
     bool _bts_enabled = true;
     int _hop_count;
+
+    vector<pair<simtime_picosec, int>> count_case_1;
+    vector<pair<simtime_picosec, int>> count_case_2;
+    vector<pair<simtime_picosec, int>> count_case_3;
+    vector<pair<simtime_picosec, int>> count_case_4;
 
     void send_packets();
     void do_fast_drop(bool);

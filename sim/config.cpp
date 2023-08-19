@@ -121,6 +121,10 @@ void initializeLoggingFolders() {
     std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/ecn_rtt/");
     std::filesystem::remove_all(
             "/home/tommaso/csg-htsim/sim/output/trimmed_rtt/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/case1/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/case2/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/case3/");
+    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/case4/");
 
     bool ret_val = std::filesystem::create_directory(
             "/home/tommaso/csg-htsim/sim/output");
@@ -154,4 +158,12 @@ void initializeLoggingFolders() {
             "/home/tommaso/csg-htsim/sim/output/ecn_rtt");
     ret_val &= std::filesystem::create_directory(
             "/home/tommaso/csg-htsim/sim/output/trimmed_rtt");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/case1");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/case2");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/case3");
+    ret_val &= std::filesystem::create_directory(
+            "/home/tommaso/csg-htsim/sim/output/case4");
 }

@@ -44,6 +44,7 @@ folder = args.folder
 file_name = args.input_file
 
 with open(folder + "/" + file_name) as file:
+    print(file_name)
     for line in file:
         # Name
         if "Name Running: " in line:
@@ -109,6 +110,7 @@ with open(folder + "/" + file_name) as file:
         result = re.search(r"Completion Time Flow is (\d+)", line)
         if result:
             fct = int(result.group(1))
+            
             list_fct.append(round(fct / 1000))
 
         # BTS, ECN, NACK
@@ -162,7 +164,7 @@ with open(folder + "/" + file_name) as file:
     max_time = max(list_fct)
     min_bw = (incast_size * 8 + (incast_size*8*0.03)) / (max_time - 8500)
 
-        
+print(list_fct)  
 if (args.parameter_analysis is not None and int(args.parameter_analysis) == 1):
     file_name = folder + '/GeneratedReport{}.tmp'.format(args.complex_name)
 elif (args.scaling_plot is not None and int(args.scaling_plot) == 1):

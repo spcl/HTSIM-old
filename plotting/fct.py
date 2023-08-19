@@ -9,6 +9,8 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_file', dest='input_file', type=str, help='File to parse.')
 parser.add_argument('--folder', dest='folder', type=str, help='Folder to parse and save')
+parser.add_argument('--name', dest='name', type=str, help='name to save', default=None)
+
 args = parser.parse_args()
 folder = args.folder
 file_name = args.input_file
@@ -19,16 +21,19 @@ df = pd.DataFrame()
 i = 0
 
 pathlist = Path(folder).glob('**/*.tmp')
+print(folder)
 for files in sorted(pathlist):
+    print("Ciao")
     if ("GeneratedReport" not in str(files)):
         continue
     with open(files) as file:
+        
         list_fct.append([])
         for line in file:
             # Name 
             if "Name: " in line:
                 name = line.split(': ')[1]
-                list_names.append(name)
+                list_names.append("")
             # FCT
             result = re.search(r"FCT: (\d+)", line)
             if result:
@@ -38,6 +43,7 @@ for files in sorted(pathlist):
 
 # set a grey background (use sns.set_theme() if seaborn version 0.11.0 or above) 
 sns.set(style="darkgrid")
+
 combined_data = []
 hue_list = []
 
@@ -58,7 +64,10 @@ my.set_xlabel('Sender Based Trimming UEC')
  
 # Make boxplot for one group only
 plt.tight_layout()
-plt.savefig(folder + "/fct.png", bbox_inches='tight')
+if (args.name is not None):
+    plt.savefig(folder + "/{}.png".format(args.name), bbox_inches='tight')
+else:
+    plt.savefig(folder + "/fct.png", bbox_inches='tight')
 #plt.show()
 
 

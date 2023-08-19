@@ -316,6 +316,15 @@ int main(int argc, char **argv) {
             } else if (!strcmp(argv[i + 1], "standard_trimming")) {
                 UecSrc::set_alogirthm("standard_trimming");
                 printf("Name Running: UEC Version D\n");
+            } else if (!strcmp(argv[i + 1], "rtt")) {
+                UecSrc::set_alogirthm("rtt");
+                printf("Name Running: UEC RTT Only\n");
+            } else if (!strcmp(argv[i + 1], "ecn")) {
+                UecSrc::set_alogirthm("ecn");
+                printf("Name Running: UEC ECN Only\n");
+            } else if (!strcmp(argv[i + 1], "custom")) {
+                UecSrc::set_alogirthm("custom");
+                printf("Name Running: UEC Custom\n");
             }
             i++;
         } else

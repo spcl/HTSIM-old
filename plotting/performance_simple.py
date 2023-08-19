@@ -29,6 +29,10 @@ def main(args):
     os.system("rm -r /home/tommaso/csg-htsim/plotting/mediumi/")
     os.system("rm -r /home/tommaso/csg-htsim/plotting/trimmed_rtt/")
     os.system("rm -r /home/tommaso/csg-htsim/plotting/ecn_rtt/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/case1/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/case2/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/case3/")
+    os.system("rm -r /home/tommaso/csg-htsim/plotting/case4/")
 
     os.system("cp -a /home/tommaso/csg-htsim/sim/output/cwd/. /home/tommaso/csg-htsim/plotting/cwd/")
     os.system("cp -a /home/tommaso/csg-htsim/sim/output/rtt/. /home/tommaso/csg-htsim/plotting/rtt/")
@@ -42,10 +46,15 @@ def main(args):
     os.system("cp -a /home/tommaso/csg-htsim/sim/output/acked/. /home/tommaso/csg-htsim/plotting/acked/")
     os.system("cp -a /home/tommaso/csg-htsim/sim/output/trimmed_rtt/. /home/tommaso/csg-htsim/plotting/trimmed_rtt/")
     os.system("cp -a /home/tommaso/csg-htsim/sim/output/ecn_rtt/. /home/tommaso/csg-htsim/plotting/ecn_rtt/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/case1/. /home/tommaso/csg-htsim/plotting/case1/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/case2/. /home/tommaso/csg-htsim/plotting/case2/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/case3/. /home/tommaso/csg-htsim/plotting/case3/")
+    os.system("cp -a /home/tommaso/csg-htsim/sim/output/case4/. /home/tommaso/csg-htsim/plotting/case4/")
 
     # RTT Data
-    colnames=['Time', 'RTT', 'seqno', 'ackno']
-    df = pd.DataFrame(columns =['Time','RTT', 'seqno', 'ackno'])
+    colnames=['Time', 'RTT', 'seqno', 'ackno', 'base', 'target']
+    df = pd.DataFrame(columns =['Time','RTT', 'seqno', 'ackno', 'base', 'target'])
+    
     name = ['0'] * df.shape[0]
     df = df.assign(Node=name)
 
@@ -56,6 +65,15 @@ def main(args):
         name = [str(path_in_str)] * temp_df.shape[0]
         temp_df = temp_df.assign(Node=name)
         df = pd.concat([df, temp_df])
+    base_rtt = df["base"].max()
+    target_rtt = df["target"].max()
+    print("Len is {} RTT\n".format(len(df)))
+    if (len(df) > 500000):
+        print("Downscaling")
+        # DownScale
+        df = df.iloc[::5]
+        # Reset the index of the new dataframe
+        df.reset_index(drop=True, inplace=True)
 
     # Cwd Data
     colnames=['Time', 'Congestion Window'] 
@@ -74,9 +92,15 @@ def main(args):
         temp_df2 = temp_df2.assign(Node=name)
         temp_df2.drop_duplicates('Time', inplace = True)
         df2 = pd.concat([df2, temp_df2])
+    print("Len is {} CWD\n".format(len(df2)))
+    if (len(df2) > 500000):
+        # DownScale
+        df2 = df2.iloc[::5]
+        # Reset the index of the new dataframe
+        df2.reset_index(drop=True, inplace=True)
 
     # Queue Data
-    colnames=['Time', 'Queue'] 
+    colnames=['Time', 'Queue', 'KMin', 'KMax'] 
     df3= pd.DataFrame(columns =colnames)
     name = ['0'] * df3.shape[0]
     df3 = df3.assign(Node=name)
@@ -94,34 +118,205 @@ def main(args):
         temp_df3 = temp_df3.assign(Node=name)
         temp_df3.drop_duplicates('Time', inplace = True)
         df3 = pd.concat([df3, temp_df3])
+    print("Len is {} Q\n".format(len(df3)))
+    kmin = df3["KMin"].max()
+    kmax = df3["KMax"].max()
+    # DownScale
+    if (len(df3) > 500000):
+        df3 = df3.iloc[::25]
+        # Reset the index of the new dataframe
+        df3.reset_index(drop=True, inplace=True)
 
-    # ECN Data
-    colnames=['Time', 'ECN'] 
-    df4 = pd.DataFrame(columns =colnames)
-    name = ['0'] * df4.shape[0]
-    df4 = df4.assign(Node=name)
 
-    pathlist = Path('ecn').glob('**/*.txt')
-    for files in sorted(pathlist):
-        path_in_str = str(files)
-        temp_df4 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
-        name = [str(path_in_str)] * temp_df4.shape[0]
-        temp_df4 = temp_df4.assign(Node=name)
-        df4 = pd.concat([df4, temp_df4])
+    if (args.show_case):
+        # Case1 Data
+        colnames=['Time', 'Case1'] 
+        df30= pd.DataFrame(columns =colnames)
+        name = ['0'] * df30.shape[0]
+        df30 = df30.assign(Node=name)
+        df30.drop_duplicates('Time', inplace = True)
 
-    # Sent data
-    colnames=['Time', 'Sent'] 
-    df5 = pd.DataFrame(columns =colnames)
-    name = ['0'] * df5.shape[0]
-    df5 = df5.assign(Node=name)
+        pathlist = Path('case1').glob('**/*.txt')
+        for files in natsort.natsorted(pathlist,reverse=False):
+            path_in_str = str(files)
+            temp_df30 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
+            name = [str(path_in_str)] * temp_df30.shape[0]
+            temp_df30 = temp_df30.assign(Node=name)
+            temp_df30.drop_duplicates('Time', inplace = True)
+            df30 = pd.concat([df30, temp_df30])
 
-    pathlist = Path('sent').glob('*')
-    for files in sorted(pathlist):
-        path_in_str = str(files)
-        temp_df5 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
-        name = [str(path_in_str)] * temp_df5.shape[0]
-        temp_df5 = temp_df5.assign(Node=name)
-        df5 = pd.concat([df5, temp_df5])
+        df30 = df30.sort_values('Time')
+        # Define the sampling_time variable
+        sampling_time = base_rtt
+        # Initialize new lists to store the sampled times and aggregated values
+        sampled_times = []
+        aggregated_values = []
+        current_time = None
+        current_value_sum = 0
+
+        max_time_while = df30["Time"].max()
+        df30["Time"] = df30["Time"].astype(int)
+        saved_old_sum = 0
+
+        # Iterate through the rows
+        for curr_ti in range(base_rtt, max_time_while + base_rtt, base_rtt):
+            tmp_sum = 0
+            sub_df = df30.query("{} <= Time <= {}".format( curr_ti - base_rtt, curr_ti))
+            for index, row in sub_df.iterrows():
+                time = row['Time']
+                value = row['Case1']
+                tmp_sum += value
+
+            sampled_times.append(curr_ti)
+            if (args.cumulative_case):
+                aggregated_values.append(tmp_sum + saved_old_sum)
+                saved_old_sum = tmp_sum + saved_old_sum
+            else:
+                aggregated_values.append(tmp_sum)
+
+        # Create a new DataFrame from the sampled data
+        df30 = pd.DataFrame({'Time': sampled_times, 'Case1': aggregated_values})
+
+        print("Case2")
+        # Case2 Data
+        colnames=['Time', 'Case2'] 
+        df31= pd.DataFrame(columns =colnames)
+        name = ['0'] * df31.shape[0]
+        df31 = df31.assign(Node=name)
+        df31.drop_duplicates('Time', inplace = True)
+
+        pathlist = Path('case2').glob('**/*.txt')
+        for files in natsort.natsorted(pathlist,reverse=False):
+            path_in_str = str(files)
+            temp_df31 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
+            name = [str(path_in_str)] * temp_df31.shape[0]
+            temp_df31 = temp_df31.assign(Node=name)
+            temp_df31.drop_duplicates('Time', inplace = True)
+            df31 = pd.concat([df31, temp_df31])
+
+        df31 = df31.sort_values('Time')
+        # Define the sampling_time variable
+        sampling_time = base_rtt
+        # Initialize new lists to store the sampled times and aggregated values
+        sampled_times = []
+        aggregated_values = []
+        current_time = None
+        current_value_sum = 0
+        # Iterate through the rows
+        max_time_while = df31["Time"].max()
+        df31["Time"] = df31["Time"].astype(int)
+        saved_old_sum = 0
+        # Iterate through the rows
+        for curr_ti in range(base_rtt, max_time_while + base_rtt, base_rtt):
+            tmp_sum = 0
+            sub_df = df31.query("{} <= Time <= {}".format( curr_ti - base_rtt, curr_ti))
+            for index, row in sub_df.iterrows():
+                time = row['Time']
+                value = row['Case2']
+                tmp_sum += value
+            sampled_times.append(curr_ti)
+            if (args.cumulative_case):
+                aggregated_values.append(tmp_sum + saved_old_sum)
+                saved_old_sum = tmp_sum + saved_old_sum
+            else:
+                aggregated_values.append(tmp_sum)
+        # Create a new DataFrame from the sampled data
+
+        df31 = pd.DataFrame({'Time': sampled_times, 'Case2': aggregated_values})
+
+        print("Case3")
+        # Case3 Data
+        colnames=['Time', 'Case3'] 
+        df32= pd.DataFrame(columns =colnames)
+        name = ['0'] * df32.shape[0]
+        df32 = df32.assign(Node=name)
+        df32.drop_duplicates('Time', inplace = True)
+        saved_old_sum = 0
+        pathlist = Path('case3').glob('**/*.txt')
+        for files in natsort.natsorted(pathlist,reverse=False):
+            path_in_str = str(files)
+            temp_df32 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
+            name = [str(path_in_str)] * temp_df32.shape[0]
+            temp_df32 = temp_df32.assign(Node=name)
+            temp_df32.drop_duplicates('Time', inplace = True)
+            df32 = pd.concat([df32, temp_df32])
+
+        df32 = df32.sort_values('Time')
+        # Define the sampling_time variable
+        sampling_time = base_rtt
+        # Initialize new lists to store the sampled times and aggregated values
+        sampled_times = []
+        aggregated_values = []
+        current_time = None
+        current_value_sum = 0
+        # Iterate through the rows
+        max_time_while = df32["Time"].max()
+        df32["Time"] = df32["Time"].astype(int)
+        # Iterate through the rows
+        for curr_ti in range(base_rtt, max_time_while + base_rtt, base_rtt):
+            tmp_sum = 0
+
+            sub_df = df32.query("{} <= Time <= {}".format( curr_ti - base_rtt, curr_ti))
+            for index, row in sub_df.iterrows():
+                time = row['Time']
+                value = row['Case3']
+                tmp_sum += value
+            sampled_times.append(curr_ti)
+            if (args.cumulative_case):
+                aggregated_values.append(tmp_sum + saved_old_sum)
+                saved_old_sum = tmp_sum + saved_old_sum
+            else:
+                aggregated_values.append(tmp_sum)
+        # Create a new DataFrame from the sampled data
+        df32 = pd.DataFrame({'Time': sampled_times, 'Case3': aggregated_values})
+
+        print("Case4")
+        # Case4 Data
+        saved_old_sum = 0
+        colnames=['Time', 'Case4'] 
+        df33= pd.DataFrame(columns =colnames)
+        name = ['0'] * df33.shape[0]
+        df33 = df33.assign(Node=name)
+        df33.drop_duplicates('Time', inplace = True)
+
+        pathlist = Path('case4').glob('**/*.txt')
+        for files in natsort.natsorted(pathlist,reverse=False):
+            path_in_str = str(files)
+            temp_df33 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
+            name = [str(path_in_str)] * temp_df33.shape[0]
+            temp_df33 = temp_df33.assign(Node=name)
+            temp_df33.drop_duplicates('Time', inplace = True)
+            df33 = pd.concat([df33, temp_df33])
+
+        df33 = df33.sort_values('Time')
+        # Define the sampling_time variable
+        sampling_time = base_rtt
+        # Initialize new lists to store the sampled times and aggregated values
+        sampled_times = []
+        aggregated_values = []
+        current_time = None
+        current_value_sum = 0
+        # Iterate through the rows
+        max_time_while = df33["Time"].max()
+        df33["Time"] = df33["Time"].astype(int)
+        # Iterate through the rows
+        for curr_ti in range(base_rtt, max_time_while + base_rtt, base_rtt):
+            tmp_sum = 0
+
+            sub_df = df33.query("{} <= Time <= {}".format( curr_ti - base_rtt, curr_ti))
+            for index, row in sub_df.iterrows():
+                time = row['Time']
+                value = row['Case4']
+                tmp_sum += value
+            sampled_times.append(curr_ti)
+            if (args.cumulative_case):
+                aggregated_values.append(tmp_sum + saved_old_sum)
+                saved_old_sum = tmp_sum + saved_old_sum
+            else:
+                aggregated_values.append(tmp_sum)
+        # Create a new DataFrame from the sampled data
+        df33 = pd.DataFrame({'Time': sampled_times, 'Case4': aggregated_values})
+
 
     # Nack data
     colnames=['Time', 'Nack'] 
@@ -137,101 +332,12 @@ def main(args):
         name = [str(path_in_str)] * temp_df6.shape[0]
         temp_df6 = temp_df6.assign(Node=name)
         df6 = pd.concat([df6, temp_df6])
+    print("Len is {} NACK\n".format(len(df6)))
+    # DownScale
+    df6 = df6.iloc[::1]
+    # Reset the index of the new dataframe
+    df6.reset_index(drop=True, inplace=True)
 
-
-    # Acked Bytes Data
-    colnames=['Time', 'AckedBytes'] 
-    df8 = pd.DataFrame(columns =colnames)
-    name = ['0'] * df8.shape[0]
-    df8 = df8.assign(Node=name)
-    df8.drop_duplicates('Time', inplace = True)
-
-    pathlist = Path('acked').glob('**/*.txt')
-    for files in sorted(pathlist):
-        path_in_str = str(files)
-        temp_df8 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
-        name = [str(path_in_str)] * temp_df8.shape[0]
-        temp_df8 = temp_df8.assign(Node=name)
-        temp_df8.drop_duplicates('Time', inplace = True)
-        df8 = pd.concat([df8, temp_df8])
-
-    # ECN in RTT Data
-    colnames=['Time', 'ECNRTT'] 
-    df13 = pd.DataFrame(columns =colnames)
-    name = ['0'] * df13.shape[0]
-    df13 = df13.assign(Node=name)
-    df13.drop_duplicates('Time', inplace = True)
-
-    pathlist = Path('ecn_rtt').glob('**/*.txt')
-    for files in sorted(pathlist):
-        path_in_str = str(files)
-        temp_df13 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
-        name = [str(path_in_str)] * temp_df13.shape[0]
-        temp_df13 = temp_df13.assign(Node=name)
-        temp_df13.drop_duplicates('Time', inplace = True)
-        df13 = pd.concat([df13, temp_df13])
-
-    # Trimming in RTT Data
-    colnames=['Time', 'TrimmedRTT'] 
-    df14 = pd.DataFrame(columns =colnames)
-    name = ['0'] * df14.shape[0]
-    df14 = df14.assign(Node=name)
-    df14.drop_duplicates('Time', inplace = True)
-
-    pathlist = Path('trimmed_rtt').glob('**/*.txt')
-    for files in sorted(pathlist):
-        path_in_str = str(files)
-        temp_df14 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
-        name = [str(path_in_str)] * temp_df14.shape[0]
-        temp_df14 = temp_df14.assign(Node=name)
-        temp_df14.drop_duplicates('Time', inplace = True)
-        df14 = pd.concat([df14, temp_df14])
-
-
-    # FastI data
-    colnames=['Time', 'FastI'] 
-    df9 = pd.DataFrame(columns =colnames)
-    name = ['0'] * df9.shape[0]
-    df9 = df9.assign(Node=name)
-    
-
-    pathlist = Path('fasti').glob('**/*.txt')
-    for files in sorted(pathlist):
-        path_in_str = str(files)
-        temp_df9 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
-        name = [str(path_in_str)] * temp_df9.shape[0]
-        temp_df9 = temp_df9.assign(Node=name)
-        df9 = pd.concat([df9, temp_df9])
-
-    # FastD data
-    colnames=['Time', 'FastD'] 
-    df10 = pd.DataFrame(columns =colnames)
-    name = ['0'] * df10.shape[0]
-    df10 = df10.assign(Node=name)
-    
-
-    pathlist = Path('fastd').glob('**/*.txt')
-    for files in sorted(pathlist):
-        path_in_str = str(files)
-        temp_df10 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
-        name = [str(path_in_str)] * temp_df10.shape[0]
-        temp_df10 = temp_df10.assign(Node=name)
-        df10 = pd.concat([df10, temp_df10])
-
-    # MediumI data
-    colnames=['Time', 'MediumI'] 
-    df11 = pd.DataFrame(columns =colnames)
-    name = ['0'] * df11.shape[0]
-    df11 = df11.assign(Node=name)
-    
-
-    pathlist = Path('mediumi').glob('**/*.txt')
-    for files in sorted(pathlist):
-        path_in_str = str(files)
-        temp_df11 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
-        name = [str(path_in_str)] * temp_df11.shape[0]
-        temp_df11 = temp_df11.assign(Node=name)
-        df11 = pd.concat([df11, temp_df11])
 
     print("Finished Parsing")
     # Create figure with secondary y-axis
@@ -242,10 +348,11 @@ def main(args):
     max_rtt = df["RTT"].max()
     y_sent = max_rtt * 0.9
     y_ecn = max_rtt * 0.85
-    y_nack =max_rtt * 0.80
-    y_fasti =max_rtt * 0.75
-    y_fastd =max_rtt * 0.70
-    y_mediumi =max_rtt * 0.65
+    max_x = df["Time"].max()
+    y_nack = max_rtt * 0.80
+    y_fasti = max_rtt * 0.75
+    y_fastd = max_rtt * 0.70
+    y_mediumi = max_rtt * 0.65
     mean_rtt = 10000
     count = 0
     for i in df['Node'].unique():
@@ -284,7 +391,6 @@ def main(args):
         )
         count += 1
 
-
     # NACK
     mean_sent = df6["Time"].mean()
     df6['Nack'] = df6['Nack'].multiply(y_nack)
@@ -293,6 +399,28 @@ def main(args):
         fig.add_trace(
             go.Scatter(x=sub_df6["Time"], y=sub_df6["Nack"], mode="markers", marker_symbol="triangle-up", name="NACK Packet", marker=dict(size=5, color="grey"), showlegend=True),
             secondary_y=False
+        )
+
+
+    if (args.show_case):
+        fig.add_trace(
+            go.Scatter(x=df30["Time"], y=df30['Case1'], name="Case1", line=dict(dash='dot', color='violet'), showlegend=True),
+            secondary_y=True,
+        )
+
+        fig.add_trace(
+            go.Scatter(x=df31["Time"], y=df31['Case2'], name="Case2", line=dict(dash='dot', color='orange'), showlegend=True),
+            secondary_y=True,
+        )
+
+        fig.add_trace(
+            go.Scatter(x=df32["Time"], y=df32['Case3'], name="Case3", line=dict(dash='dot', color='blue'), showlegend=True),
+            secondary_y=True,
+        )
+
+        fig.add_trace(
+            go.Scatter(x=df33["Time"], y=df33['Case4'], name="Case4", line=dict(dash='dot', color='brown'), showlegend=True),
+            secondary_y=True,
         )
 
 
@@ -345,6 +473,78 @@ def main(args):
         font=dict(color=color[3], size=13),
         )
 
+    fig.add_shape(
+        type="line",
+        x0=0,  # Start x-coordinate
+        x1=max_x,  # End x-coordinate
+        y0=target_rtt,                          # Y-coordinate
+        y1=target_rtt,                          # Y-coordinate
+        line=dict(color="black", dash="dash"),
+    )
+
+    # Add a text label over the dashed line
+    fig.add_annotation(
+        x=max_x,  # You can adjust the x-coordinate as needed
+        y=target_rtt + 250,                          # Set the y-coordinate to match the dashed line's y-coordinate
+        text="Target RTT",          # The text label you want to display
+        showarrow=False,               # No arrow pointing to the label
+        font=dict(size=12, color="black"),  # Customize the font size and color
+    )
+
+    fig.add_shape(
+        type="line",
+        x0=0,  # Start x-coordinate
+        x1=max_x,  # End x-coordinate
+        y0=base_rtt,                          # Y-coordinate
+        y1=base_rtt,                          # Y-coordinate
+        line=dict(color="black", dash="dash"),
+    )
+
+    # Add a text label over the dashed line
+    fig.add_annotation(
+        x=max_x,  # You can adjust the x-coordinate as needed
+        y=base_rtt + 250,                          # Set the y-coordinate to match the dashed line's y-coordinate
+        text="Base RTT",          # The text label you want to display
+        showarrow=False,               # No arrow pointing to the label
+        font=dict(size=12, color="black"),  # Customize the font size and color
+    )
+
+    fig.add_shape(
+        type="line",
+        x0=0,  # Start x-coordinate
+        x1=max_x,  # End x-coordinate
+        y0=kmin,                          # Y-coordinate
+        y1=kmin,                          # Y-coordinate
+        line=dict(color="green", dash="dash"),
+    )
+
+    # Add a text label over the dashed line
+    fig.add_annotation(
+        x=max_x,  # You can adjust the x-coordinate as needed
+        y=kmin + 250,                          # Set the y-coordinate to match the dashed line's y-coordinate
+        text="KMin",          # The text label you want to display
+        showarrow=False,               # No arrow pointing to the label
+        font=dict(size=12, color="green"),  # Customize the font size and color
+    )
+
+    fig.add_shape(
+        type="line",
+        x0=0,  # Start x-coordinate
+        x1=max_x,  # End x-coordinate
+        y0=kmax,                          # Y-coordinate
+        y1=kmax,                          # Y-coordinate
+        line=dict(color="green", dash="dash"),
+    )
+
+    # Add a text label over the dashed line
+    fig.add_annotation(
+        x=max_x,  # You can adjust the x-coordinate as needed
+        y=kmax + 250,                          # Set the y-coordinate to match the dashed line's y-coordinate
+        text="KMax",          # The text label you want to display
+        showarrow=False,               # No arrow pointing to the label
+        font=dict(size=12, color="green"),  # Customize the font size and color
+    )
+
 
     config = {
     'toImageButtonOptions': {
@@ -384,5 +584,7 @@ if __name__ == "__main__":
     parser.add_argument("--input_file", type=str, help="InFold", default=None) 
     parser.add_argument("--name", type=str, help="Name Algo", default=None) 
     parser.add_argument("--no_show", type=int, help="Don't show plot, just save", default=None) 
-    args = parser.parse_args()
+    parser.add_argument("--show_case", type=int, help="ShowCases", default=None) 
+    parser.add_argument("--cumulative_case", type=int, help="Do it cumulative", default=None) 
+    args = parser.parse_args() 
     main(args)

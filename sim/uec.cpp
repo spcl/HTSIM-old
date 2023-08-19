@@ -102,7 +102,8 @@ UecSrc::~UecSrc() {
 
         for (const auto &p : _list_rtt) {
             MyFile << get<0>(p) << "," << get<1>(p) << "," << get<2>(p) << ","
-                   << get<3>(p) << std::endl;
+                   << get<3>(p) << "," << get<4>(p) << "," << get<5>(p)
+                   << std::endl;
         }
 
         MyFile.close();
@@ -219,6 +220,50 @@ UecSrc::~UecSrc() {
         }
 
         MyFileMediumInc.close();
+
+        // Case 1
+        file_name = "/home/tommaso/csg-htsim/sim/output/case1/case1" + _name +
+                    "_" + std::to_string(tag) + ".txt";
+        std::ofstream MyFileCase1(file_name, std::ios_base::app);
+
+        for (const auto &p : count_case_1) {
+            MyFileCase1 << p.first << "," << p.second << std::endl;
+        }
+
+        MyFileCase1.close();
+
+        // Case 2
+        file_name = "/home/tommaso/csg-htsim/sim/output/case2/case2" + _name +
+                    "_" + std::to_string(tag) + ".txt";
+        std::ofstream MyFileCase2(file_name, std::ios_base::app);
+
+        for (const auto &p : count_case_2) {
+            MyFileCase2 << p.first << "," << p.second << std::endl;
+        }
+
+        MyFileCase2.close();
+
+        // Case 3
+        file_name = "/home/tommaso/csg-htsim/sim/output/case3/case3" + _name +
+                    "_" + std::to_string(tag) + ".txt";
+        std::ofstream MyFileCase3(file_name, std::ios_base::app);
+
+        for (const auto &p : count_case_3) {
+            MyFileCase3 << p.first << "," << p.second << std::endl;
+        }
+
+        MyFileCase3.close();
+
+        // Case 4
+        file_name = "/home/tommaso/csg-htsim/sim/output/case4/case4" + _name +
+                    "_" + std::to_string(tag) + ".txt";
+        std::ofstream MyFileCase4(file_name, std::ios_base::app);
+
+        for (const auto &p : count_case_4) {
+            MyFileCase4 << p.first << "," << p.second << std::endl;
+        }
+
+        MyFileCase4.close();
 
         // US TO CS
         /*if (us_to_cs.size() > 0) {
@@ -377,6 +422,11 @@ void UecSrc::reduce_unacked(uint64_t amount) {
 }
 
 void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
+
+    if (from == 0) {
+        printf("%d@%d@%d -- Considering fast Drop -- Current %lu vs %lu\n",
+               from, to, tag, eventlist().now(), next_window_end);
+    }
     if (eventlist().now() >= next_window_end) {
         previous_window_end = next_window_end;
         _list_acked_bytes.push_back(
@@ -392,20 +442,17 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
                 eventlist().now() / 1000, count_trimmed_in_rtt * _mss));
         count_trimmed_in_rtt = 0;
         count_ecn_in_rtt = 0;
-        if (next_window_end == 0) {
-            next_window_end = eventlist().now() + (_base_rtt * 1);
-        } else {
-            next_window_end += (_base_rtt * 1);
-        }
+        next_window_end = eventlist().now() + (_target_rtt * 1);
+
         ecn_last_rtt = false;
 
         // Enable Fast Drop
-        printf("Using Fast Drop1 - Flow %d, Ecn %d, CWND %d, Saved "
+        printf("Using Fast Drop1 - Flow %d@%d@%d, Ecn %d, CWND %d, Saved "
                "Acked %d (%d) - Previous Window %lu - Next Window %lu -  "
                "get_unacked() %lu - // "
                "Time "
                "%lu - Ratio is %f (%lu vs %lu vs %lu) - Trimmed %d\n",
-               from, 1, _cwnd, saved_acked_bytes, saved_trimmed_bytes,
+               from, to, tag, 1, _cwnd, saved_acked_bytes, saved_trimmed_bytes,
                previous_window_end / 1000, next_window_end / 1000,
                get_unacked(), eventlist().now() / 1000,
                ((eventlist().now() - previous_window_end + _base_rtt) /
@@ -416,7 +463,7 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
         if ((ecn_or_trimmed || need_fast_drop) &&
             (saved_acked_bytes > 0 ||
              (saved_acked_bytes == 0 && previous_window_end != 0)) &&
-            _cwnd * 8 > _bdp && previous_window_end != 0) {
+            previous_window_end != 0) {
 
             /*saved_acked_bytes =
                     saved_acked_bytes *
@@ -425,14 +472,14 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
 
             double bonus_based_on_target = buffer_drop;
 
-            printf("Using Fast Drop2 - Flow %d, Ecn %d, CWND %d, Saved "
+            printf("Using Fast Drop2 - Flow %d@%d%d, Ecn %d, CWND %d, Saved "
                    "Acked %d (dropping to %f - bonus1 %f 2 %f -> %f and %f) - "
                    "Previous "
                    "Window %lu - Next "
                    "Window %lu// "
                    "Time "
                    "%lu\n",
-                   from, 1, _cwnd, saved_acked_bytes,
+                   from, to, tag, 1, _cwnd, saved_acked_bytes,
                    max((double)(saved_acked_bytes * bonus_based_on_target *
                                 bonus_drop),
                        saved_acked_bytes * bonus_based_on_target * bonus_drop +
@@ -448,7 +495,8 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
                                  bonus_drop),
                         bonus_based_on_target * bonus_drop * _mss);
 
-            ignore_for = (get_unacked() / (double)_mss) * 1;
+            //_cwnd = 40000;
+            ignore_for = (get_unacked() / (double)_mss) * 1.25;
             // int random_integer_wait = rand() % ignore_for;
             //  ignore_for += random_integer_wait;
             printf("Ignoring %d for %d pkts - New Wnd %d (%d %d)\n", from,
@@ -460,6 +508,17 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
             need_fast_drop = false;
             _list_fast_decrease.push_back(
                     std::make_pair(eventlist().now() / 1000, 1));
+
+            // Set x_gain
+            printf("Starting Search, XGain is %f\n", ideal_x);
+            for (int search_x = _bdp; search_x >= _mss;
+                 search_x = search_x / 4) {
+                if (_cwnd > search_x) {
+                    printf("%d - Using XGAIN %f\n", from, ideal_x);
+                    break;
+                }
+                ideal_x *= 0.5;
+            }
         }
     }
 }
@@ -472,7 +531,7 @@ void UecSrc::processNack(UecNack &pkt) {
     consecutive_good_medium = 0;
     acked_bytes += 64;
     saved_trimmed_bytes += 64;
-    exp_avg_route = 1024;
+    // exp_avg_route = 1024;
 
     if (count_received >= ignore_for) {
         need_fast_drop = true;
@@ -715,7 +774,8 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
     // %s - ECN %d\n",(long long)eventlist().now(), (long long)newRtt, (long
     // long) ts, _name.c_str(), marked);
     _list_rtt.push_back(std::make_tuple(eventlist().now() / 1000, newRtt / 1000,
-                                        pkt.seqno(), pkt.ackno()));
+                                        pkt.seqno(), pkt.ackno(),
+                                        _base_rtt / 1000, _target_rtt / 1000));
 
     // printf("Received Good Ack %lu vs %lu || %lu\n", seqno, _flow_size,
     //        _last_acked);
@@ -730,7 +790,7 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
         cout << "Flow " << nodename() << " completion time is "
              << timeAsMs(eventlist().now() - _flow_start_time) << endl;
 
-        printf("Completion Time Flow is %lu",
+        printf("Completion Time Flow is %lu\n",
                eventlist().now() - _flow_start_time);
     }
 
@@ -804,7 +864,7 @@ void UecSrc::receivePacket(Packet &pkt) {
         pkt.free();
         break;
     case UECNACK:
-        printf("NACK %d\n", from);
+        printf("NACK %d@%d@%d\n", from, to, tag);
         if (_trimming_enabled) {
             count_received++;
             processNack(dynamic_cast<UecNack &>(pkt));
@@ -876,17 +936,20 @@ uint32_t UecSrc::medium_increase(simtime_picosec rtt) {
 void UecSrc::fast_increase() {
     if (use_fast_drop) {
         if (count_received > ignore_for) {
+            // counter_consecutive_good_bytes = counter_consecutive_good_bytes /
+            // 2;
             if (use_super_fast_increase) {
-                //_cwnd += ((_bdp - _cwnd) / 2) / 2;
-                _cwnd += (_bdp / 10);
+                _cwnd += 2 * _mss * (LINK_SPEED_MODERN / 100);
+                //_cwnd *= 2;
             } else {
                 _cwnd += _mss;
             }
         }
     } else {
+        // counter_consecutive_good_bytes = counter_consecutive_good_bytes / 2;
         if (use_super_fast_increase) {
-            //_cwnd += ((_bdp - _cwnd) / 2) / 2;
-            _cwnd += (_bdp / 10);
+            _cwnd += 2 * _mss * (LINK_SPEED_MODERN / 100);
+            //_cwnd *= 2;
         } else {
             _cwnd += _mss;
         }
@@ -971,8 +1034,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                     reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
                 }
                 // Fast Increase
-            } else if ((increasing ||
-                        counter_consecutive_good_bytes > target_window) &&
+            } else if ((counter_consecutive_good_bytes > target_window) &&
                        use_fast_increase) {
                 fast_increase();
             } else if (rtt < _target_rtt) {
@@ -997,8 +1059,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                     do_fast_drop(ecn);
                 }
             }
-            if ((increasing ||
-                 counter_consecutive_good_bytes > target_window) &&
+            if ((counter_consecutive_good_bytes > target_window) &&
                 use_fast_increase) {
                 fast_increase();
                 // Case 1
@@ -1047,8 +1108,14 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
             // Delay Logic, Version B Logic
         } else if (algorithm_type == "delayB") {
 
-            exp_avg_route =
-                    alpha_route * 1024 + (1 - alpha_route) * exp_avg_route;
+            bool can_decrease = true;
+
+            if (ecn) {
+                exp_avg_route =
+                        alpha_route * 1024 + (1 - alpha_route) * exp_avg_route;
+            } else {
+                exp_avg_route = (1 - alpha_route) * exp_avg_route;
+            }
 
             if (use_fast_drop) {
                 if (count_received >= ignore_for) {
@@ -1056,11 +1123,14 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 }
             }
 
-            if (exp_avg_route >= 512) {
+            if (exp_avg_route >= 200) {
             } else {
-                printf("Not decreasing %lu\n", GLOBAL_TIME / 1000);
-                // return;
+                // printf("Not decreasing %lu\n", GLOBAL_TIME / 1000);
+                //  can_decrease = false;
             }
+
+            ideal_x = x_gain;
+
             if ((increasing ||
                  counter_consecutive_good_bytes > target_window) &&
                 use_fast_increase) {
@@ -1070,12 +1140,21 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 _cwnd += min(uint32_t((((_target_rtt - rtt) / (double)rtt) *
                                        y_gain * _mss * (_mss / (double)_cwnd))),
                              uint32_t(_mss));
-                _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
+
+                _cwnd += ((double)_mss / _cwnd) * ideal_x * _mss;
+
+                /*_cwnd += min(((((double)_mss / _cwnd) * _mss) +
+                              (_cwnd / _bdp * _mss)) *
+                                     x_gain,
+                             x_gain * _mss);*/
+
                 _list_medium_increase_event.push_back(
+                        std::make_pair(eventlist().now() / 1000, 1));
+                count_case_1.push_back(
                         std::make_pair(eventlist().now() / 1000, 1));
                 // Case 2 Hybrid Based Decrease || RTT Decrease
             } else if (ecn && rtt > _target_rtt) {
-                if (count_received >= ignore_for) {
+                if (count_received >= ignore_for && can_decrease) {
                     double scaling;
                     if (target_rtt_percentage_over_base == 20) {
                         scaling = 2.5;
@@ -1085,10 +1164,14 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                         printf("Error, unknown Target value\n");
                         exit(0);
                     }
-                    _cwnd -= min((w_gain * ((rtt - (double)_target_rtt) / rtt) *
-                                  _mss) + _cwnd / (double)_bdp * z_gain,
-                                 // (0.5, 1, 2, 4)
-                                 (double)_mss);
+                    last_decrease =
+                            min((w_gain * ((rtt - (double)_target_rtt) / rtt) *
+                                 _mss) + _cwnd / (double)_bdp * z_gain * _mss,
+                                (double)_mss);
+                    _cwnd -= last_decrease;
+                    count_case_2.push_back(
+                            std::make_pair(eventlist().now() / 1000, 1));
+
                     // reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
                     // printf("Case 2 from %d at %lu\n", from, GLOBAL_TIME /
                     // 1000);
@@ -1106,17 +1189,36 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                     printf("Error, unknown Target value\n");
                     exit(0);
                 }
-                if (count_received >= ignore_for) {
+                if (count_received >= ignore_for && can_decrease) {
                     reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss *
                                 z_gain);
+                    count_case_3.push_back(
+                            std::make_pair(eventlist().now() / 1000, 1));
                     // printf("Case 3 from %d at %lu\n", from, GLOBAL_TIME /
                     // 1000);
                 }
                 // Case 4
             } else if (!ecn && rtt > _target_rtt) {
                 // Do nothing but fairness
-                _cwnd += ((double)_mss / _cwnd) * x_gain *
-                         _mss; // For x 0.15, 0.5, 0.3
+                if (count_received >= ignore_for) {
+                    if (last_decrease != 0 && false) {
+                        _cwnd += min(((double)_mss / _cwnd) * ideal_x * _mss,
+                                     last_decrease / 2.0);
+                    } else {
+                        //_cwnd += ((double)_mss / _cwnd) * _mss;
+                        //_cwnd = min(((double)_mss / _cwnd) * _mss * x_gain,
+                        //           ((double)_cwnd / (4.0 * _mss)) * _mss);
+                        //_cwnd += ((double)_mss / _cwnd) * _mss * ideal_x;
+                        /*_cwnd += min(((((double)_mss / _cwnd) * _mss) +
+                                      (_cwnd / _bdp * _mss)) *
+                                             x_gain,
+                                     x_gain * _mss);*/
+                        // ideal_x = ideal_x * 0.5;
+                        _cwnd += ((double)_mss / _cwnd) * ideal_x * _mss;
+                    }
+                    count_case_4.push_back(
+                            std::make_pair(eventlist().now() / 1000, 1));
+                }
             }
 
             // Delay Logic, Version C Logic
@@ -1125,8 +1227,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
             if (use_fast_drop) {
                 do_fast_drop(ecn);
             }
-            if ((increasing ||
-                 counter_consecutive_good_bytes > target_window) &&
+            if ((counter_consecutive_good_bytes > target_window) &&
                 use_fast_increase) {
                 fast_increase();
                 // Case 1
@@ -1261,6 +1362,117 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 _cwnd = _cwnd + (y / _mss);
                 t_last_fairness = eventlist().now();
             }
+        } else if (algorithm_type == "rtt") {
+            printf("Name Running: RTT Only\n");
+            int b = 5;
+            uint64_t custom_target_delay =
+                    _base_rtt * (1 + (target_rtt_percentage_over_base / 100.0));
+            double scaling_a = _bdp / LINK_SPEED_MODERN * (_base_rtt / 1000);
+            double scaling_b = double(_base_rtt) / custom_target_delay;
+            double alpha_d = 8.0 * scaling_a * scaling_b / (_base_rtt / 1000);
+            double ewma = 0.15;
+            double y = 0.15 * scaling_a;
+            printf("Alpha D is %lu %f %f %f\n", _bdp, scaling_a, scaling_b,
+                   alpha_d);
+
+            if (t_last_decrease == 0) {
+                t_last_decrease = eventlist().now();
+            }
+            if (t_last_clear_byte == 0) {
+                t_last_clear_byte = eventlist().now();
+            }
+            if (t_last_fairness == 0) {
+                t_last_fairness = eventlist().now();
+            }
+
+            can_fairness = (eventlist().now() - t_last_fairness) > _base_rtt;
+            can_decrease = (eventlist().now() - t_last_decrease) > _base_rtt;
+            can_clear_byte =
+                    (eventlist().now() - t_last_clear_byte) > _base_rtt;
+            rx_count += _mss;
+
+            if (use_fast_drop) {
+                if (count_received >= ignore_for) {
+                    do_fast_drop(false);
+                }
+            }
+
+            if (rtt < _target_rtt) {
+                _cwnd += min(uint32_t((((_target_rtt - rtt) / (double)rtt) *
+                                       y_gain * _mss * (_mss / (double)_cwnd))),
+                             uint32_t(_mss));
+            } else if (can_decrease && rtt > custom_target_delay) {
+                if (count_received >= ignore_for) {
+                    _cwnd = _cwnd *
+                            max(0.5, 1 - ((rtt - _target_rtt) / (double)rtt));
+                    t_last_decrease = eventlist().now();
+                }
+            }
+        } else if (algorithm_type == "ecn") {
+            printf("Name Running: ECN Only\n");
+
+            if (use_fast_drop) {
+                if (count_received >= ignore_for) {
+                    do_fast_drop(false);
+                }
+            }
+
+            if ((counter_consecutive_good_bytes > target_window) &&
+                use_fast_increase) {
+                fast_increase();
+            } else if (!ecn) {
+                _cwnd += ((double)_mss / _cwnd) * _mss;
+            } else if (ecn) {
+                if (count_received >= ignore_for) {
+                    reduce_cwnd(static_cast<double>(_mss) * 0.5);
+                }
+            }
+        } else if (algorithm_type == "custom") {
+
+            if (use_fast_drop) {
+                if (count_received >= ignore_for) {
+                    do_fast_drop(false);
+                }
+            }
+
+            uint32_t increase_by = 0;
+            uint32_t decrease_by = 0;
+
+            if ((counter_consecutive_good_bytes > target_window) &&
+                use_fast_increase) {
+                fast_increase();
+            } else if (rtt < _target_rtt) {
+                if (count_received >= ignore_for) {
+                    increase_by = min(
+                            uint32_t((((_target_rtt - rtt) / (double)rtt) *
+                                      y_gain * _mss * (_mss / (double)_cwnd))),
+                            uint32_t(_mss));
+                    _cwnd += increase_by +
+                             (increase_by * 0 * (_mss / (double)_cwnd));
+                    count_case_1.push_back(
+                            std::make_pair(eventlist().now() / 1000, 1));
+                }
+            } else if (rtt > _target_rtt) {
+                if (count_received >= ignore_for) {
+                    decrease_by =
+                            min((w_gain * ((rtt - (double)_target_rtt) / rtt) *
+                                 _mss) + _cwnd / (double)_bdp * z_gain,
+                                (double)_mss);
+                    _cwnd -= decrease_by +
+                             (decrease_by * 0 * (_cwnd / (double)_bdp));
+                    count_case_2.push_back(
+                            std::make_pair(eventlist().now() / 1000, 1));
+                }
+            }
+            if (count_received >= ignore_for) {
+                if (decrease_by != 0) {
+                    _cwnd += max(((double)_mss / _cwnd) * x_gain * _mss,
+                                 decrease_by * x_gain);
+                } else if (increase_by != 0) {
+                    _cwnd += max(((double)_mss / _cwnd) * x_gain * _mss,
+                                 increase_by * x_gain);
+                }
+            }
         }
     }
 
@@ -1340,6 +1552,8 @@ void UecSrc::connect(const Route &routeout, const Route &routeback,
 }
 
 void UecSrc::startflow() {
+    ideal_x = x_gain;
+    printf("My Starting XGain %f\n", ideal_x);
     _flow_start_time = eventlist().now();
     send_packets();
 }

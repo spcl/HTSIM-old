@@ -713,7 +713,7 @@ void NdpSrc::processAck(const NdpAck &ack) {
              << timeAsUs(eventlist().now()) << " total bytes " << cum_ackno
              << endl;
 
-        printf("Completion Time Flow is %lu",
+        printf("Completion Time Flow is %lu\n",
                eventlist().now() - _flow_start_time);
         if (_end_trigger) {
             _end_trigger->activate();
