@@ -39,9 +39,6 @@ class UecSrc : public PacketSink, public EventSource {
   public:
     UecSrc(UecLogger *logger, TrafficLogger *pktLogger, EventList &eventList,
            uint64_t rtt, uint64_t bdp, uint64_t queueDrainTime, int hops);
-    // UecSrc(UecLogger *logger, TrafficLogger* pktLogger, EventList& eventList,
-    // uint64_t rtt=timeFromUs(5.25), uint64_t bdp=63000);
-    ~UecSrc();
 
     virtual void doNextEvent() override;
 
@@ -249,19 +246,7 @@ class UecSrc : public PacketSink, public EventSource {
             _received_ecn; // list of packets received
     vector<SentPacket> _sent_packets;
     unsigned _nack_rtx_pending;
-    vector<tuple<simtime_picosec, uint64_t, uint64_t, uint64_t, uint64_t,
-                 uint64_t>>
-            _list_rtt;
-    vector<pair<simtime_picosec, uint64_t>> _list_cwd;
-    vector<pair<simtime_picosec, uint64_t>> _list_unacked;
-    vector<pair<simtime_picosec, uint64_t>> _list_acked_bytes;
-    vector<pair<simtime_picosec, uint64_t>> _list_ecn_rtt;
-    vector<pair<simtime_picosec, uint64_t>> _list_trimmed_rtt;
-    vector<pair<simtime_picosec, uint64_t>> _list_nack;
-    vector<pair<simtime_picosec, uint64_t>> _list_bts;
-    vector<pair<simtime_picosec, uint64_t>> _list_fast_increase_event;
-    vector<pair<simtime_picosec, uint64_t>> _list_medium_increase_event;
-    vector<pair<simtime_picosec, uint64_t>> _list_fast_decrease;
+
     vector<pair<simtime_picosec, int>> us_to_cs;
     vector<pair<simtime_picosec, int>> ls_to_us;
 
