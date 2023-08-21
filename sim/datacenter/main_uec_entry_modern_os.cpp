@@ -314,6 +314,7 @@ int main(int argc, char **argv) {
                 printf("Name Running: UEC Version A\n");
             } else if (!strcmp(argv[i + 1], "delayB")) {
                 UecSrc::set_alogirthm("delayB");
+                printf("Name Running: UEC\n");
             } else if (!strcmp(argv[i + 1], "delayC")) {
                 UecSrc::set_alogirthm("delayC");
                 printf("Name Running: UEC Version A\n");
@@ -330,6 +331,8 @@ int main(int argc, char **argv) {
 
         i++;
     }
+
+    SINGLE_PKT_TRASMISSION_TIME_MODERN = packet_size * 8 / (LINK_SPEED_MODERN);
 
     // Initialize Seed, Logging and Other variables
     if (seed != -1) {

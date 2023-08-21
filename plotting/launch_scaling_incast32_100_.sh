@@ -8,18 +8,11 @@ echo ${CMD}
 eval ${CMD}
 
 
-for Item in incast_128_32_2.bin incast_128_32_4.bin incast_128_32_8.bin incast_128_32_16.bin incast_128_32_24.bin incast_128_32_28.bin incast_128_32_32.bin incast_128_32_36.bin incast_128_32_48.bin incast_128_32_64.bin incast_128_32_128.bin incast_128_32_256.bin incast_128_32_512.bin;
+for Item in incast_128_32_2.bin incast_128_32_8.bin  incast_128_32_32.bin  incast_128_32_128.bin incast_128_32_512.bin incast_128_32_2000.bin incast_128_32_8000.bin incast_128_32_32000.bin;
   do
     echo $Item
     FILE_NAME="uecComposite.tmp"
-    CMD="../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 512 -seed 45 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal ${Item} -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > ${RES_FOLDER}/${FILE_NAME}"
-    echo ${CMD}
-    eval ${CMD}
-    CMD="python3 generate_report.py --scaling_plot=1 --input_file=${FILE_NAME} --folder=${RES_FOLDER}"
-    echo ${CMD}
-    eval ${CMD}
-    FILE_NAME="uecCompositeBTS.tmp"
-    CMD="../sim/datacenter/htsim_uec_entry_modern -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -kmax 80 -linkspeed 100000 -mtu 512 -seed 45 -queue_type composite_bts -hop_latency 700 -switch_latency 0 -reuse_entropy 0 -goal ${Item} -ignore_ecn_data 1 -ignore_ecn_ack 1 -number_entropies -1 > ${RES_FOLDER}/${FILE_NAME}"
+    CMD="../sim/datacenter/htsim_uec_entry_modern -bonus_drop 0.75 -o uec_entry -nodes 128 -q 118500 -strat perm -kmin 20 -target_rtt_percentage_over_base 50 -kmax 80 -linkspeed 100000 -mtu 2048 -seed 44 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal ${Item} -number_entropies -1 -fast_drop 1 -algorithm delayB -x_gain 0.2 -y_gain 1.25 -w_gain 2 -z_gain 0.8 -use_fast_increase 1 -use_super_fast_increase 1 > ${RES_FOLDER}/${FILE_NAME}"
     echo ${CMD}
     eval ${CMD}
     CMD="python3 generate_report.py --scaling_plot=1 --input_file=${FILE_NAME} --folder=${RES_FOLDER}"
@@ -34,6 +27,6 @@ for Item in incast_128_32_2.bin incast_128_32_4.bin incast_128_32_8.bin incast_1
     eval ${CMD}
   done
 
-CMD="python3 scaling.py --bdp=118000 --folder=${RES_FOLDER} --incast_degree=32"
+CMD="python3 scaling_normalized.py --bdp=118000 --folder=${RES_FOLDER} --incast_degree=32 --latency=700 --link_speed=100"
 echo ${CMD}
 eval ${CMD}

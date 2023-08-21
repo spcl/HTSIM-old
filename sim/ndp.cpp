@@ -9,6 +9,7 @@
 #include <math.h>
 #include <stdio.h>
 using namespace std;
+#define ACKSIZE 64
 
 ////////////////////////////////////////////////////////////////
 //  NDP SOURCE
@@ -91,6 +92,7 @@ NdpSrc::NdpSrc(NdpLogger *logger, TrafficLogger *pktlogger,
     _drops = 0;
     _flow_size = ((uint64_t)1) << 63;
     _last_pull = 0;
+    _max_pull = 0;
     _pull_window = 0;
 
     _crt_path = 0; // used for SCATTER_PERMUTE route strategy
@@ -111,7 +113,6 @@ NdpSrc::NdpSrc(NdpLogger *logger, TrafficLogger *pktlogger,
 
     // debugging hack
     _log_me = false;
-    f_flow_over_hook = nullptr;
 }
 
 // Add deconstructor and save data once we are done.
@@ -269,8 +270,7 @@ void NdpSrc::set_paths(vector<const Route *> *rt_list) {
         _path_counts_rto.resize(no_of_paths);
 #endif
 
-        // generate a randomize sequence of 0 /home/tommaso/csg-htsim/sim size
-        // of rt_list - 1
+        // generate a randomize sequence of 0 .. size of rt_list - 1
         vector<int> randseq(rt_list->size());
         if (_route_strategy == SCATTER_ECMP) {
             // randsec may have duplicates, as with ECMP
@@ -314,13 +314,13 @@ void NdpSrc::startflow() {
          << " at " << timeAsUs(eventlist().now()) << endl;
     _highest_sent = 0;
     _last_acked = 0;
-    _flow_start_time = eventlist().now();
 
     _acked_packets = 0;
     _packets_sent = 0;
     _rtx_timeout_pending = false;
     _rtx_timeout = timeInf;
     _pull_window = 0;
+    _flow_start_time = eventlist().now();
 
     _flight_size = 0;
     _first_window_count = 0;
@@ -497,7 +497,7 @@ bool NdpSrc::is_bad_path() {
 /* Process a return-to-sender packet */
 void NdpSrc::processRTS(NdpPacket &pkt) {
     assert(pkt.bounced());
-    pkt.unbounce(ndp_acksize + _mss);
+    pkt.unbounce(ACKSIZE + _mss);
 
     _sent_times.erase(pkt.seqno());
     // resend from front of RTX
@@ -553,7 +553,6 @@ void NdpSrc::processNack(const NdpNack &nack) {
         else
             printf("Receive NACK (----)\n");
     */
-    // printf("NACK \n");
 
     bool last_packet = (nack.ackno() + _mss - 1) >= _flow_size;
     _sent_times.erase(nack.ackno());
@@ -610,8 +609,9 @@ void NdpSrc::processNack(const NdpNack &nack) {
     p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATE);
     _rtx_queue[seqno] = p;
 
-    if (nack.pull()) {
-        _implicit_pulls++;
+    if (nack.pull() || _last_pull < _max_pull) {
+        if (nack.pull())
+            _implicit_pulls++;
         pull_packets(nack.pullno(), nack.pacerno());
     }
 }
@@ -665,6 +665,7 @@ void NdpSrc::processAck(const NdpAck &ack) {
     // Compute rtt.  This comes originally from TCP, and may not be optimal for
     // NDP */
     uint64_t m = eventlist().now() - ts;
+    _list_rtt.push_back(std::make_pair(eventlist().now() / 1000, m / 1000));
 
     if (m != 0) {
         if (_rtt > 0) {
@@ -688,8 +689,6 @@ void NdpSrc::processAck(const NdpAck &ack) {
             _base_rtt = m;
     }
 
-    _list_rtt.push_back(std::make_pair(eventlist().now() / 1000, m / 1000));
-
     if (_rto < _min_rto)
         _rto = _min_rto * ((drand() * 0.5) + 0.75);
 
@@ -706,15 +705,18 @@ void NdpSrc::processAck(const NdpAck &ack) {
     assert(_flight_size >= 0);
 
     if (cum_ackno >= _flow_size) {
+
         if (f_flow_over_hook) {
             f_flow_over_hook(ack);
         }
+
         cout << "Flow " << _name << " flow_id " << flow_id() << " finished at "
              << timeAsUs(eventlist().now()) << " total bytes " << cum_ackno
              << endl;
 
         printf("Completion Time Flow is %lu\n",
                eventlist().now() - _flow_start_time);
+
         if (_end_trigger) {
             _end_trigger->activate();
         }
@@ -755,7 +757,6 @@ void NdpSrc::receivePacket(Packet &pkt) {
         } else {
             printf("NACK\n");
         }*/
-
         _list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
         processNack((const NdpNack &)pkt);
         pkt.free();
@@ -790,7 +791,6 @@ void NdpSrc::receivePacket(Packet &pkt) {
         _acks_received++;
         _pull_window++;
         _first_window_count--;
-        printf("NORMALACK, %d\n", pkt.from);
         processAck((const NdpAck &)pkt);
         pkt.free();
         return;
@@ -917,23 +917,29 @@ void NdpSrc::pull_packets(NdpPull::seq_t pull_no, NdpPull::seq_t pacer_no) {
     // Pull number is cumulative both to allow for lost pulls and to
     // reduce reverse-path RTT - if one pull is delayed on one path, a
     // pull that gets there faster on another path can supercede it
-    // cout << "Last pull " << _last_pull << " pull no " << pull_no << endl;
-    while (_last_pull < pull_no) {
-        send_packet(pacer_no);
-        // cout << "Sending packet out" << endl;
-        _last_pull++;
+    // cout << "Last pull " << _last_pull << " pull no " << pull_no << " max
+    // pull " << _max_pull << endl;
+    if (pull_no > _max_pull)
+        _max_pull = pull_no;
+    while (_last_pull < _max_pull) {
+        int sent = send_packet(pacer_no);
+        // cout << "Sending packet out, sent=" << sent << " last=" << _last_pull
+        // << " max=" << _max_pull << endl;
+        _last_pull += sent;
+        if (sent == 0) {
+            break;
+        }
     }
 }
 
 // Note: the data sequence number is the number of Byte1 of the packet, not the
 // last byte.
-void NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
+int NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
     NdpPacket *p = NULL;
+    int packets_sent = 0;
     if (!_rtx_queue.empty()) {
         // There are packets in the RTX queue for us to send
 
-        // p = _rtx_queue.front();
-        //_rtx_queue.pop_front();
         p = _rtx_queue.begin()->second;
         _rtx_queue.erase(_rtx_queue.begin());
         p->flow().logTraffic(*p, *this, TrafficLogger::PKT_SEND);
@@ -970,6 +976,7 @@ void NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
 #endif
         }
         PacketSink *sink = p->sendOn();
+        packets_sent++;
         HostQueue *q = dynamic_cast<HostQueue *>(sink);
         assert(q);
         // Figure out how long before the feeder queue sends this
@@ -994,7 +1001,7 @@ void NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
                 /* we've sent enough new data. */
                 /* xxx should really make the last packet sent be the right size
                  * if _flow_size is not a multiple of _mss */
-                return;
+                return packets_sent;
             }
             if (_highest_sent + _mss >= _flow_size) {
                 last_packet = true;
@@ -1059,7 +1066,7 @@ void NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
         p->tag = this->tag;
 
         PacketSink *sink = p->sendOn();
-
+        packets_sent++;
         HostQueue *q = dynamic_cast<HostQueue *>(sink);
         assert(q);
         // Figure out how long before the feeder queue sends this
@@ -1077,6 +1084,7 @@ void NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
             _rtx_timeout = eventlist().now() + _rto;
         }
     }
+    return packets_sent;
 }
 
 void NdpSrc::update_rtx_time() {
@@ -1190,9 +1198,6 @@ void NdpSrc::retransmit_packet() {
 #ifdef DEBUG_PATH_STATS
         _path_counts_rto[p->path_id()]++;
 #endif
-        p->from = this->from;
-        p->to = this->to;
-        p->tag = this->tag;
         p->sendOn();
         _packets_sent++;
         _rtx_packets_sent++;
@@ -1537,7 +1542,6 @@ void NdpSink::receivePacket(Packet &pkt) {
         return;
     case NDPACK:
     case NDPNACK:
-        // printf("NACK \n");
     case NDPPULL:
         // Is there anything we should do here?  Generally won't happen unless
         // the topolgy is very asymmetric.
@@ -1559,7 +1563,7 @@ void NdpSink::receivePacket(Packet &pkt) {
     bool pull = true;
     bool marked = (p->flags() & ECN_CE) != 0; // ECN for load balancing
 
-    simtime_picosec ts = pkt.ts();
+    simtime_picosec ts = p->ts();
     bool last_packet = ((NdpPacket *)&pkt)->last_packet();
 
     update_path_history(*p);
@@ -1613,8 +1617,8 @@ void NdpSink::receivePacket(Packet &pkt) {
     _path_lens[pkt.path_len()]++;
 #endif
 
-    int size = p->size() - ndp_acksize; // TODO: the following code assumes all
-                                        // packets are the same size
+    int size = p->size() - ACKSIZE; // TODO: the following code assumes all
+                                    // packets are the same size
 
     if (last_packet) {
         // we've seen the last packet of this flow, but may not have
@@ -1920,7 +1924,7 @@ NdpPullPacer::NdpPullPacer(EventList &event, linkspeed_bps linkspeed,
                            double pull_rate_modifier)
         : EventSource(event, "ndp_pacer"), _last_pull(0) {
     _packet_drain_time =
-            (simtime_picosec)((Packet::data_packet_size() + ndp_acksize) *
+            (simtime_picosec)((Packet::data_packet_size() + ACKSIZE) *
                               (pow(10.0, 12.0) * 8) / linkspeed) /
             pull_rate_modifier;
     // cout << "Packet drain time " << timeAsUs(_packet_drain_time) << "us" <<
@@ -2192,8 +2196,8 @@ NdpRTSPacer::NdpRTSPacer(EventList &event, linkspeed_bps linkspeed,
     _last_rts = 0;
     _first = true;
     _packet_drain_time =
-            (simtime_picosec)((Packet::data_packet_size() + ndp_acksize) *
-                              (pow(10.0, 12.0) * 8) / (linkspeed / 1)) /
+            (simtime_picosec)((Packet::data_packet_size() + ACKSIZE) *
+                              (pow(10.0, 12.0) * 8) / linkspeed) /
             pull_rate_modifier;
 }
 

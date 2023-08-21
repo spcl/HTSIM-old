@@ -1308,7 +1308,7 @@ void create_special_incast(gengetopt_args_info *args_info) {
 
     int comm_size = args_info->commsize_arg;
     int datasize = args_info->datasize_arg;
-    int active_nodes = 4;
+    int active_nodes = 32;
 
     Goal goal(args_info, comm_size);
 
@@ -1327,6 +1327,67 @@ void create_special_incast(gengetopt_args_info *args_info) {
     goal.EndRank();
 
     for (int src_rank = comm_size / 2 + 1; src_rank < comm_size; src_rank++) {
+        goal.StartRank(src_rank);
+        goal.EndRank();
+    }
+
+    goal.Write();
+}
+
+// Everyone sends to last node
+void create_outcast_incast(gengetopt_args_info *args_info) {
+
+    int comm_size = args_info->commsize_arg;
+    int datasize = args_info->datasize_arg;
+    int active_nodes = 8;
+
+    Goal goal(args_info, comm_size);
+
+    for (int src_rank = 0; src_rank < active_nodes; src_rank++) {
+        goal.StartRank(src_rank);
+        for (int j = 0; j < active_nodes; j++) {
+            int send = goal.Send(datasize, comm_size / 2 + j);
+        }
+        goal.EndRank();
+    }
+
+    /*for (int src_rank = active_nodes; src_rank < comm_size / 2; src_rank++) {
+        goal.StartRank(src_rank);
+        goal.EndRank();
+    }*/
+
+    int update_every = (comm_size / 2 - active_nodes) / active_nodes;
+    int start_from = 0;
+    int index_2 = 0;
+    for (int src_rank = active_nodes; src_rank < comm_size / 2; src_rank++) {
+        goal.StartRank(src_rank);
+        if (start_from >= update_every) {
+            start_from = 0;
+            index_2++;
+        }
+        int send = goal.Send(datasize, comm_size / 2 + index_2);
+        start_from++;
+        goal.EndRank();
+    }
+
+    update_every = (comm_size / 2 - active_nodes) / active_nodes;
+    start_from = 0;
+    index_2 = 0;
+    for (int src_rank = 0; src_rank < active_nodes; src_rank++) {
+        goal.StartRank(comm_size / 2 + src_rank);
+        // Outcast ones
+        for (int j = 0; j < active_nodes; j++) {
+            int recv = goal.Recv(datasize, 0 + j);
+        }
+        // Others
+        for (int j = active_nodes; j < active_nodes + update_every; j++) {
+            int recv = goal.Recv(datasize, j + (src_rank * update_every));
+        }
+        goal.EndRank();
+    }
+
+    for (int src_rank = comm_size / 2 + active_nodes; src_rank < comm_size;
+         src_rank++) {
         goal.StartRank(src_rank);
         goal.EndRank();
     }
@@ -1453,6 +1514,9 @@ int main(int argc, char **argv) {
     }
     if (strcmp(args_info.ptrn_arg, "multiple_permutation") == 0) {
         create_permutation_across_m(&args_info);
+    }
+    if (strcmp(args_info.ptrn_arg, "outcast_incast") == 0) {
+        create_outcast_incast(&args_info);
     }
 
     if (strcmp(args_info.ptrn_arg, "trace") == 0) {

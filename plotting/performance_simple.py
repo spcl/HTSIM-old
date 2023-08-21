@@ -71,7 +71,8 @@ def main(args):
     if (len(df) > 500000):
         print("Downscaling")
         # DownScale
-        df = df.iloc[::5]
+        ratio = int(len(df) / 50000)
+        df = df.iloc[::ratio]
         # Reset the index of the new dataframe
         df.reset_index(drop=True, inplace=True)
 
@@ -95,7 +96,8 @@ def main(args):
     print("Len is {} CWD\n".format(len(df2)))
     if (len(df2) > 500000):
         # DownScale
-        df2 = df2.iloc[::5]
+        ratio = int(len(df2) / 50000)
+        df2 = df2.iloc[::ratio]
         # Reset the index of the new dataframe
         df2.reset_index(drop=True, inplace=True)
 
@@ -123,7 +125,8 @@ def main(args):
     kmax = df3["KMax"].max()
     # DownScale
     if (len(df3) > 500000):
-        df3 = df3.iloc[::25]
+        ratio = int(len(df3) / 50000)
+        df3 = df3.iloc[::ratio]
         # Reset the index of the new dataframe
         df3.reset_index(drop=True, inplace=True)
 
@@ -334,9 +337,13 @@ def main(args):
         df6 = pd.concat([df6, temp_df6])
     print("Len is {} NACK\n".format(len(df6)))
     # DownScale
-    df6 = df6.iloc[::1]
+    if (len(df6) > 30000):
+        df6 = df6.iloc[::25]
+        # Reset the index of the new dataframe
+        df6.reset_index(drop=True, inplace=True)
     # Reset the index of the new dataframe
     df6.reset_index(drop=True, inplace=True)
+    print(len(df6))
 
 
     print("Finished Parsing")
@@ -392,6 +399,7 @@ def main(args):
         count += 1
 
     # NACK
+    print("Plotting NACK")
     mean_sent = df6["Time"].mean()
     df6['Nack'] = df6['Nack'].multiply(y_nack)
     for i in df6['Node'].unique():
@@ -423,7 +431,7 @@ def main(args):
             secondary_y=True,
         )
 
-
+    print("Displaying Plot")
     if args.name is not None:
         my_title=args.name
     else:

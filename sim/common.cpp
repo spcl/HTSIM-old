@@ -12,7 +12,7 @@ uint64_t INFINITE_BUFFER_SIZE = 1000000000; // Assume infinite buffer space
 // Values for "modern" networking simulations
 int PKT_SIZE_MODERN = 2048;       // Bytes
 uint64_t LINK_SPEED_MODERN = 400; // Gb/s
-int SINGLE_PKT_TRASMISSION_TIME_MODERN =
+uint64_t SINGLE_PKT_TRASMISSION_TIME_MODERN =
         PKT_SIZE_MODERN * 8 / LINK_SPEED_MODERN;
 int LINK_DELAY_MODERN = 400; // ns
 uint64_t BASE_RTT_MODERN =

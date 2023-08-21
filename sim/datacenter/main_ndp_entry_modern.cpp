@@ -91,6 +91,8 @@ int main(int argc, char **argv) {
     simtime_picosec switch_latency = timeFromNs((uint32_t)0);
     int packet_size = 2048;
     int seed = -1;
+    bool collect_data = false;
+    COLLECT_DATA = collect_data;
 
     int i = 1;
     filename << "logout.dat";
@@ -129,6 +131,10 @@ int main(int argc, char **argv) {
             printf("Speed is %lu\n", LINK_SPEED_MODERN);
             LINK_SPEED_MODERN = LINK_SPEED_MODERN / 1000;
             // Saving this for UEC reference, Gbps
+            i++;
+        } else if (!strcmp(argv[i], "-collect_data")) {
+            collect_data = atoi(argv[i + 1]);
+            COLLECT_DATA = collect_data;
             i++;
         } else if (!strcmp(argv[i], "-mtu")) {
             packet_size = atoi(argv[i + 1]);

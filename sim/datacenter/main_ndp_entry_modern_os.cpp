@@ -91,6 +91,8 @@ int main(int argc, char **argv) {
     int packet_size = 2048;
     int seed = -1;
     int fat_tree_k = 4; // 64 Nodes by default
+    bool collect_data = false;
+    COLLECT_DATA = collect_data;
 
     int i = 1;
     filename << "logout.dat";
@@ -113,6 +115,10 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-nodes")) {
             no_of_nodes = atoi(argv[i + 1]);
             cout << "no_of_nodes " << no_of_nodes << endl;
+            i++;
+        } else if (!strcmp(argv[i], "-collect_data")) {
+            collect_data = atoi(argv[i + 1]);
+            COLLECT_DATA = collect_data;
             i++;
         } else if (!strcmp(argv[i], "-cwnd")) {
             cwnd = atoi(argv[i + 1]);

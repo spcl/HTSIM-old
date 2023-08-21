@@ -86,8 +86,6 @@ def main(args):
     for files in sorted(pathlist):
         path_in_str = str(files)
         temp_df2 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
-        if (temp_df2.shape[0] < 20):
-            continue
         name = [str(path_in_str)] * temp_df2.shape[0]
         temp_df2 = temp_df2.assign(Node=name)
         temp_df2.drop_duplicates('Time', inplace = True)
@@ -98,6 +96,7 @@ def main(args):
         df2 = df2.iloc[::int(ratio)]
         # Reset the index of the new dataframe
         df2.reset_index(drop=True, inplace=True)
+    
 
     # Queue Data
     colnames=['Time', 'Queue', 'KMin', 'KMax'] 

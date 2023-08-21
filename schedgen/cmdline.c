@@ -76,7 +76,7 @@ cmdline_parser_internal (int argc, char **argv, struct gengetopt_args_info *args
                         struct cmdline_parser_params *params, const char *additional_error);
 
 
-const char *cmdline_parser_ptrn_values[] = {"binomialtreereduce", "binarytreebcast", "binomialtreebcast", "nwaydissemination", "pipelinedring", "pipelinedringdep", "doublering", "gather", "scatter", "linbarrier", "trace", "dissemination", "random_bisect", "random_bisect_fd_sym", "linear_alltoall", "linear_alltoallv", "allreduce_recdoub", "allreduce_ring", "resnet152", "chained_dissem", "permutation", "permutation_across", "incast", "special_incast", "multiple_permutation", 0}; /*< Possible values for ptrn. */
+const char *cmdline_parser_ptrn_values[] = {"binomialtreereduce", "binarytreebcast", "binomialtreebcast", "nwaydissemination", "pipelinedring", "pipelinedringdep", "doublering", "gather", "scatter", "linbarrier", "trace", "dissemination", "random_bisect", "random_bisect_fd_sym", "linear_alltoall", "linear_alltoallv", "allreduce_recdoub", "allreduce_ring", "resnet152", "chained_dissem", "permutation", "permutation_across", "incast", "special_incast", "outcast_incast", "multiple_permutation", 0}; /*< Possible values for ptrn. */
 
 static char *
 gengetopt_strdup (const char *s);

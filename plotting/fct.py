@@ -23,7 +23,6 @@ i = 0
 pathlist = Path(folder).glob('**/*.tmp')
 print(folder)
 for files in sorted(pathlist):
-    print("Ciao")
     if ("GeneratedReport" not in str(files)):
         continue
     with open(files) as file:
@@ -46,7 +45,7 @@ sns.set(style="darkgrid")
 
 combined_data = []
 hue_list = []
-
+print(list_fct)
 for idx, names in enumerate(list_names):
     combined_data += list_fct[idx]
     hue_list += [list_names[idx]] * len(list_fct[idx])

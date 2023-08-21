@@ -21,6 +21,11 @@ parser.add_argument('--input_file', dest='input_file', type=str, help='File to p
 parser.add_argument('--folder', dest='folder', type=str, help='Folder to parse and save')
 parser.add_argument('--bdp', dest='bdp', type=int, help='BDP Value', default=0)
 parser.add_argument('--incast_degree', dest='incast_degree', type=int, help='BDP Value', default=1)
+parser.add_argument('--link_speed', dest='link_speed', type=int, help='In Gbps', default=1)
+parser.add_argument('--latency', dest='latency', type=int, help='Latency in NS', default=1)
+parser.add_argument('--name', dest='name', type=int, help='Name', default=1)
+
+
 
 
 args = parser.parse_args()
@@ -44,9 +49,13 @@ for files in sorted(pathlist):
             # Size
             result = re.search(r"Incast Size: (\d+)", line)
             if result:
-                size_incast = int(result.group(1)) / 1000
+                size_incast = int(result.group(1))
                 # Theoretical BW
-                theoretical_bw = ((((size_incast * 1000 * 0.02) + size_incast * 1000) * 8) * args.incast_degree / 100) + 6699 + (2048*8*16/100)
+                latency = args.latency
+                #size_incast = round(size_incast / 2048) * 2048
+                #theoretical_bw = ((((size_incast * 0.03125) + size_incast ) * 8) * args.incast_degree / args.link_speed) + (latency * 12) + (64*8*12/args.link_speed) + (2048*8*(args.incast_degree-1)/args.link_speed)
+                theoretical_bw = ((((size_incast * 0.03125) + size_incast ) * 8) * args.incast_degree / args.link_speed) + (latency * 6) + (2112*8*6/args.link_speed) + (latency * 6) +  (64*8*6/args.link_speed)
+                #theoretical_bw = ((((size_incast * 0.031) + size_incast ) * 8) * args.incast_degree / 100) + (latency * 12) + (64*8*12/100)
             # BW
             result = re.search(r"Max FCT: (\d+.\d+)", line)
             if result:
@@ -56,18 +65,20 @@ for files in sorted(pathlist):
                 print(theoretical_bw)
                 print()
                 bw_1 = 1 /(bw_1 / theoretical_bw)
+                if (bw_1 > 1):
+                    bw_1 = 1
                 if ("NDP" in str(files)):
-                    bw_ndp[size_incast] = bw_1
+                    bw_ndp[size_incast / 1000] = bw_1
                 elif ("BTS" in str(files)):
-                    bw_bts[size_incast] = bw_1
-                elif ("Trimming" in str(files)):
-                    bw_trimming[size_incast] = bw_1
+                    bw_bts[size_incast / 1000] = bw_1
+                elif ("UEC" in str(files)):
+                    bw_trimming[size_incast / 1000] = bw_1
         
 
 bw_bts = dict(sorted(bw_bts.items()))
 bw_trimming = dict(sorted(bw_trimming.items()))
 bw_ndp = dict(sorted(bw_ndp.items()))
-print(bw_bts)
+print(bw_ndp)
 print(bw_trimming)
 
 # Calculate percentage difference between Line 2 and Line 1
@@ -82,7 +93,6 @@ plt.figure(figsize=(10, 6))
 # Plot Line 1
 x1 = list(bw_bts.keys())
 y1 = list(bw_bts.values())
-plt.plot(x1, y1, marker='o', label='UEC BTS')
 
 # Plot Line 2
 x2 = list(bw_trimming.keys())
@@ -112,21 +122,9 @@ plt.xscale('log', base=2)
 # Set plot labels and title
 plt.xlabel('Message Size (KiB)')
 plt.ylabel('Normalized Performance to Theoretical Best')
-plt.title('Scaling During Incast')
+plt.title('Scaling During {}:1 Incast - Link Speed {}Gbps - 2048B MTU'.format(args.incast_degree, args.link_speed))
 plt.legend()
 
-# Add text annotation "BDP" next to the vertical line
-#plt.text(x_vertical_line + 0.1, min(y2) + (max(y2) - min(y2)) / 2, "BDP", color='gray', fontsize=10,
-#         ha='left', va='center')
-
-# Annotate the plot with percentage differences between Line 2 and Line 1
-#for i in range(len(x2)):
-#    plt.annotate(f'{percentage_diff[i]:.2f}%', xy=(x2[i], y1[i] + 0.03), xytext=(5, 5),
-#                 textcoords='offset points', ha='left', va='bottom', fontsize=9.5)
- 
-#my.set_title('Average Effective Bandwidth Plot - Sender Completion') 
-#my.set_ylabel('Effective Bandwidth (Gb/s)')
-#my.set_xlabel('Congestion Control Algorithm')
  
 # Make boxplot for one group only
 plt.tight_layout()

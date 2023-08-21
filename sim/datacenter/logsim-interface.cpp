@@ -143,7 +143,7 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
                                              std::placeholders::_1));
         if (_puller_map.count(to) == 0) {
             _puller_map[to] = new NdpPullPacer(
-                    *_eventlist, speedFromMbps(LINK_SPEED_MODERN * 1000), 1);
+                    *_eventlist, speedFromMbps(LINK_SPEED_MODERN * 1000), 0.99);
         }
         NdpSink *ndpSnk = new NdpSink(_puller_map[to]);
         ndpSrc->from = from;

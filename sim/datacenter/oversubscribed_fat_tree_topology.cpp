@@ -211,7 +211,7 @@ void OversubscribedFatTreeTopology::init_network() {
             logfile->addLogger(*queueLogger);
 
             if (true) {
-                queues_nlp_nup[j][k] = alloc_queue(queueLogger, _linkspeed / 1);
+                queues_nlp_nup[j][k] = alloc_queue(queueLogger, _linkspeed / 2);
             } else {
                 queues_nlp_nup[j][k] = alloc_queue(queueLogger, _linkspeed);
             }

@@ -53,7 +53,7 @@ for files in sorted(pathlist):
                     bw_ndp[size_incast] = bw_1
                 elif ("BTS" in str(files)):
                     bw_bts[size_incast] = bw_1
-                elif ("Trimming" in str(files)):
+                elif ("UEC" in str(files)):
                     bw_trimming[size_incast] = bw_1
         
 
@@ -113,9 +113,6 @@ plt.text(x_vertical_line + 0.1, min(y2) + (max(y2) - min(y2)) / 2, "BDP", color=
          ha='left', va='center')
 
 # Annotate the plot with percentage differences between Line 2 and Line 1
-for i in range(len(x2)):
-    plt.annotate(f'{percentage_diff[i]:.2f}%', xy=(x2[i], y1[i] + 0.03), xytext=(5, 5),
-                 textcoords='offset points', ha='left', va='bottom', fontsize=9.5)
  
 #my.set_title('Average Effective Bandwidth Plot - Sender Completion') 
 #my.set_ylabel('Effective Bandwidth (Gb/s)')

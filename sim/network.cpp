@@ -73,8 +73,10 @@ PacketSink *Packet::sendOn() {
             assert(_nexthop < _route->size());
 
             if (_nexthop == 1 && (type() == UEC || type() == NDP)) {
-                /*printf("ID %d - Hop %d - Previous time %lu - New time %lu\n",
-                       id(), _nexthop, ts(), GLOBAL_TIME);*/
+                /*printf("ID %d - Hop %d - Previous time %lu - New time %lu - "
+                       "%lu\n",
+                       id(), _nexthop, ts(), GLOBAL_TIME,
+                       SINGLE_PKT_TRASMISSION_TIME_MODERN);*/
                 set_ts(GLOBAL_TIME -
                        (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000));
 
