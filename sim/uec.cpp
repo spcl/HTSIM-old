@@ -1164,7 +1164,6 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                         scaling = 4;
                     } else {
                         printf("Error, unknown Target value\n");
-                        exit(0);
                     }
                     last_decrease =
                             min((w_gain * ((rtt - (double)_target_rtt) / rtt) *
@@ -1189,7 +1188,6 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                     rtt = 1.65 * _base_rtt;
                 } else {
                     printf("Error, unknown Target value\n");
-                    exit(0);
                 }
                 if (count_received >= ignore_for && can_decrease) {
                     reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss *
@@ -1251,7 +1249,6 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                         scaling = 4;
                     } else {
                         printf("Error, unknown Target value\n");
-                        exit(0);
                     }
                     _cwnd -=
                             min(w_gain * (rtt - _target_rtt) / rtt, 1.0) * _mss;
@@ -1268,7 +1265,6 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                         scaling = 4;
                     } else {
                         printf("Error, unknown Target value\n");
-                        exit(0);
                     }
                     _cwnd -= min(scaling * 2 * (rtt - _target_rtt) / rtt, 1.0) *
                              _mss;

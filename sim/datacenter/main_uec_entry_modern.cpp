@@ -117,7 +117,7 @@ int main(int argc, char **argv) {
     double z_gain = 1;
     double w_gain = 1;
     double bonus_drop = 1;
-    double drop_value_buffer = 1.2;
+    double drop_value_buffer = 1;
 
     int i = 1;
     filename << "logout.dat";
