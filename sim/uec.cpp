@@ -74,8 +74,8 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
            "Target RTT is %lu - BDP/CWDN %lu\n",
            LINK_DELAY_MODERN, LINK_SPEED_MODERN, PKT_SIZE_MODERN, _base_rtt,
            _target_rtt, _bdp);
-    _maxcwnd = _bdp;
-    _cwnd = _bdp;
+    _maxcwnd = _bdp * 1.5;
+    _cwnd = _bdp * 1.5;
     _consecutive_low_rtt = 0;
 
     _target_based_received = true;

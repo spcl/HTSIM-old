@@ -93,6 +93,7 @@ int main(int argc, char **argv) {
     int fat_tree_k = 4; // 64 Nodes by default
     bool collect_data = false;
     COLLECT_DATA = collect_data;
+    bool oversubscribed_congestion_control = false;
 
     int i = 1;
     filename << "logout.dat";
@@ -105,6 +106,9 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-sub")) {
             subflow_count = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-oversubscribed_cc")) {
+            oversubscribed_congestion_control = true;
             i++;
         } else if (!strcmp(argv[i], "-conns")) {
             no_of_conns = atoi(argv[i + 1]);
@@ -166,6 +170,9 @@ int main(int argc, char **argv) {
                 route_strategy = PULL_BASED;
             } else if (!strcmp(argv[i + 1], "single")) {
                 route_strategy = SINGLE_PATH;
+            } else if (!strcmp(argv[i + 1], "ecmp_host")) {
+                route_strategy = ECMP_FIB;
+                FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
             }
             i++;
         } else
@@ -223,6 +230,11 @@ int main(int argc, char **argv) {
     NdpSrc::setMinRTO(1000); // increase RTO to avoid spurious retransmits
     NdpSrc::setRouteStrategy(route_strategy);
     NdpSink::setRouteStrategy(route_strategy);
+    NdpSink::_oversubscribed_congestion_control =
+            oversubscribed_congestion_control;
+
+    if (oversubscribed_congestion_control)
+        cout << "Using oversubscribed congestion control " << endl;
 
     // NdpSrc *ndpSrc;
     // NdpSink *ndpSnk;
