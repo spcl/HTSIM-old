@@ -30,17 +30,6 @@
                          // trimmed on - mostly useful for BCube
 
 #define DEBUG_PATH_STATS
-enum RouteStrategy {
-    NOT_SET,
-    SINGLE_PATH,
-    SCATTER_PERMUTE,
-    SCATTER_RANDOM,
-    PULL_BASED,
-    SCATTER_ECMP,
-    ECMP_FIB,
-    ECMP_FIB_ECN,
-    REACTIVE_ECN
-};
 
 class NdpSink;
 class NdpRTSPacer;
@@ -127,6 +116,8 @@ class NdpSrc : public PacketSink, public EventSource, public TriggerTarget {
     uint32_t _flight_size;
     uint32_t _acked_packets;
     uint64_t _flow_start_time;
+    int count_received = 0;
+    int count_nack_num = 0;
 
     // the following are used with SCATTER_PERMUTE, SCATTER_RANDOM and
     // PULL_BASED route strategies

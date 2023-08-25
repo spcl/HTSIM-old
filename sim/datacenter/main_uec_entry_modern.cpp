@@ -110,6 +110,7 @@ int main(int argc, char **argv) {
     double delay_gain_value_med_inc = 5;
     int target_rtt_percentage_over_base = 50;
     bool collect_data = false;
+    int fat_tree_k = 1; // 1:1 default
     COLLECT_DATA = collect_data;
     bool use_super_fast_increase = false;
     double y_gain = 1;
@@ -159,6 +160,9 @@ int main(int argc, char **argv) {
             // kmin as percentage of queue size (0..100)
             kmin = atoi(argv[i + 1]);
             printf("KMin: %d\n", atoi(argv[i + 1]));
+            i++;
+        } else if (!strcmp(argv[i], "-k")) {
+            fat_tree_k = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-kmax")) {
             // kmin as percentage of queue size (0..100)
@@ -290,6 +294,10 @@ int main(int argc, char **argv) {
                 route_strategy = PULL_BASED;
             } else if (!strcmp(argv[i + 1], "single")) {
                 route_strategy = SINGLE_PATH;
+            } else if (!strcmp(argv[i + 1], "ecmp_host")) {
+                route_strategy = ECMP_FIB;
+                printf("Setting RIght Strat");
+                FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
             }
             i++;
         } else if (!strcmp(argv[i], "-queue_type")) {
@@ -351,6 +359,12 @@ int main(int argc, char **argv) {
         initializeLoggingFolders();
     }
 
+    // Routing
+    // float ar_sticky_delta = 10;
+    // FatTreeSwitch::sticky_choices ar_sticky = FatTreeSwitch::PER_PACKET;
+    // atTreeSwitch::_ar_sticky = ar_sticky;
+    // FatTreeSwitch::_sticky_delta = timeFromUs(ar_sticky_delta);
+
     if (route_strategy == NOT_SET) {
         fprintf(stderr, "Route Strategy not set.  Use the -strat param.  "
                         "\nValid values are perm, rand, pull, rg and single\n");
@@ -390,6 +404,9 @@ int main(int argc, char **argv) {
     // UecSrc *uecSrc;
     // UecSink *uecSink;
 
+    UecSrc::setRouteStrategy(route_strategy);
+    UecSink::setRouteStrategy(route_strategy);
+
     // Route *routeout, *routein;
     // double extrastarttime;
 
@@ -403,6 +420,7 @@ int main(int argc, char **argv) {
 
 #ifdef FAT_TREE
     FatTreeTopology::set_tiers(3);
+    FatTreeTopology::set_os(fat_tree_k);
     FatTreeTopology::set_ecn_thresholds_as_queue_percentage(kmin, kmax);
     FatTreeTopology::set_bts_threshold(bts_threshold);
     FatTreeTopology::set_ignore_data_ecn(ignore_ecn_data);
@@ -492,6 +510,7 @@ int main(int argc, char **argv) {
     lgs->setNumberEntropies(number_entropies);
     lgs->setIgnoreEcnAck(ignore_ecn_ack);
     lgs->setIgnoreEcnData(ignore_ecn_data);
+    lgs->setNumberPaths(number_entropies);
     start_lgs(goal_filename, *lgs);
 
     for (int src = 0; src < dest; ++src) {

@@ -23,6 +23,7 @@ string itoa(uint64_t n);
 // default to 3-tier topology.  Change this with set_tiers() before calling the
 // constructor.
 uint32_t FatTreeTopology::_tiers = 3;
+uint32_t FatTreeTopology::_os = 1;
 int FatTreeTopology::kmin = -1;
 int FatTreeTopology::kmax = -1;
 int FatTreeTopology::bts_trigger = -1;
@@ -144,7 +145,7 @@ void FatTreeTopology::set_params(uint32_t no_of_nodes) {
         NTOR = NK;
         NAGG = NK;
         NPOD = K;
-        NCORE = (K * K / 4);
+        NCORE = (K * K / 4) / _os;
     } else if (_tiers == 2) {
         // We want a leaf-spine topology
         while (_no_of_nodes < no_of_nodes) {
@@ -159,7 +160,7 @@ void FatTreeTopology::set_params(uint32_t no_of_nodes) {
         int NK = K;
         NSRV = K * K / 2;
         NTOR = NK;
-        NAGG = NK / 2;
+        NAGG = NK / 2 / _os;
         NPOD = 1;
         NCORE = 0;
     } else {
@@ -511,9 +512,10 @@ void FatTreeTopology::init_network() {
     // Upper layer in pod to core!
     if (_tiers == 3) {
         for (uint32_t agg = 0; agg < NAGG; agg++) {
+            uint32_t up_n = (K / 2) / _os;
             uint32_t podpos = agg % (K / 2);
-            for (uint32_t l = 0; l < K / 2; l++) {
-                uint32_t core = podpos * K / 2 + l;
+            for (uint32_t l = 0; l < up_n; l++) {
+                uint32_t core = podpos * up_n + l;
                 // Downlink
                 if (_logger_factory) {
                     queueLogger = _logger_factory->createQueueLogger();

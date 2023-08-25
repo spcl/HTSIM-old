@@ -26,12 +26,15 @@ class NdpPacket : public Packet {
     // must be filled in later
     inline static NdpPacket *newpkt(PacketFlow &flow,
 
-                                    seq_t seqno, seq_t pacerno, int size, bool retransmitted, bool last_packet,
+                                    seq_t seqno, seq_t pacerno, int size,
+                                    bool retransmitted, bool last_packet,
                                     uint32_t destination = UINT32_MAX) {
         NdpPacket *p = _packetdb.allocPacket();
-        p->set_attrs(flow, size + ndp_acksize,
-                     seqno + size - 1); // The NDP sequence number is the first byte of the
-                                        // packet; I will ID the packet by its last byte.
+        p->set_attrs(
+                flow, size + ndp_acksize,
+                seqno + size -
+                        1); // The NDP sequence number is the first byte of the
+                            // packet; I will ID the packet by its last byte.
         p->_type = NDP;
         p->_is_header = false;
         p->_bounced = false;
@@ -47,13 +50,17 @@ class NdpPacket : public Packet {
         return p;
     }
 
-    inline static NdpPacket *newpkt(PacketFlow &flow, const Route &route, seq_t seqno, seq_t pacerno, int size,
-                                    bool retransmitted, int32_t no_of_paths, bool last_packet,
+    inline static NdpPacket *newpkt(PacketFlow &flow, const Route &route,
+                                    seq_t seqno, seq_t pacerno, int size,
+                                    bool retransmitted, int32_t no_of_paths,
+                                    bool last_packet,
                                     uint32_t destination = UINT32_MAX) {
         NdpPacket *p = _packetdb.allocPacket();
-        p->set_route(flow, route, size + ndp_acksize,
-                     seqno + size - 1); // The NDP sequence number is the first byte of the
-                                        // packet; I will ID the packet by its last byte.
+        p->set_route(
+                flow, route, size + ndp_acksize,
+                seqno + size -
+                        1); // The NDP sequence number is the first byte of the
+                            // packet; I will ID the packet by its last byte.
         p->_type = NDP;
         p->_is_header = false;
         p->_bounced = false;
@@ -126,8 +133,11 @@ class NdpAck : public Packet {
   public:
     typedef NdpPacket::seq_t seq_t;
 
-    inline static NdpAck *newpkt(PacketFlow &flow, const Route &route, seq_t pacerno, seq_t ackno, seq_t cumulative_ack,
-                                 seq_t pullno, int32_t path_id, uint32_t destination = UINT32_MAX) {
+    inline static NdpAck *newpkt(PacketFlow &flow, const Route &route,
+                                 seq_t pacerno, seq_t ackno,
+                                 seq_t cumulative_ack, seq_t pullno,
+                                 int32_t path_id,
+                                 uint32_t destination = UINT32_MAX) {
         NdpAck *p = _packetdb.allocPacket();
         p->set_route(flow, route, ndp_acksize, ackno);
         p->_type = NDPACK;
@@ -182,8 +192,10 @@ class NdpNack : public Packet {
   public:
     typedef NdpPacket::seq_t seq_t;
 
-    inline static NdpNack *newpkt(PacketFlow &flow, const Route &route, seq_t pacerno, seq_t ackno,
-                                  seq_t cumulative_ack, seq_t pullno, int32_t path_id,
+    inline static NdpNack *newpkt(PacketFlow &flow, const Route &route,
+                                  seq_t pacerno, seq_t ackno,
+                                  seq_t cumulative_ack, seq_t pullno,
+                                  int32_t path_id,
                                   uint32_t destination = UINT32_MAX) {
         NdpNack *p = _packetdb.allocPacket();
         p->set_route(flow, route, ndp_acksize, ackno);
@@ -239,9 +251,12 @@ class NdpRTS : public Packet {
   public:
     typedef NdpPacket::seq_t seq_t;
 
-    inline static NdpRTS *newpkt(PacketFlow &flow, int grants, uint32_t destination = UINT32_MAX) {
+    inline static NdpRTS *newpkt(PacketFlow &flow, int grants,
+                                 uint32_t destination = UINT32_MAX) {
         NdpRTS *p = _packetdb.allocPacket();
 
+        printf("Destination is %d\n\n", destination);
+        fflush(stdout);
         p->set_attrs(flow, ndp_acksize, 0);
         p->_type = NDPRTS;
         p->_is_header = true;
@@ -253,7 +268,8 @@ class NdpRTS : public Packet {
         return p;
     }
 
-    inline static NdpRTS *newpkt(PacketFlow &flow, const route_t &route, int grants,
+    inline static NdpRTS *newpkt(PacketFlow &flow, const route_t &route,
+                                 int grants,
                                  uint32_t destination = UINT32_MAX) {
         NdpRTS *p = _packetdb.allocPacket();
         p->set_route(flow, route, ndp_acksize, 0);
@@ -311,7 +327,8 @@ class NdpPull : public Packet {
     inline static NdpPull *newpkt(NdpNack *nack) {
         NdpPull *p = _packetdb.allocPacket();
         assert(nack->route());
-        p->set_route(nack->flow(), *(nack->route()), ndp_acksize, nack->ackno());
+        p->set_route(nack->flow(), *(nack->route()), ndp_acksize,
+                     nack->ackno());
 
         assert(p->route());
 
@@ -346,7 +363,8 @@ class NdpPull : public Packet {
         return p;
     }
 
-    inline static NdpPull *newpkt(NdpRTS *rts, const route_t &route, seq_t cumack, seq_t pullno,
+    inline static NdpPull *newpkt(NdpRTS *rts, const route_t &route,
+                                  seq_t cumack, seq_t pullno,
                                   uint32_t destination = UINT32_MAX) {
         NdpPull *p = _packetdb.allocPacket();
         p->set_route(rts->flow(), route, ndp_acksize, 0);
@@ -369,7 +387,8 @@ class NdpPull : public Packet {
         return p;
     }
 
-    inline static NdpPull *newpkt(PacketFlow &flow, const route_t &route, seq_t cumack, seq_t pullno,
+    inline static NdpPull *newpkt(PacketFlow &flow, const route_t &route,
+                                  seq_t cumack, seq_t pullno,
                                   uint32_t destination = UINT32_MAX) {
         NdpPull *p = _packetdb.allocPacket();
         p->set_route(flow, route, ndp_acksize, 0);

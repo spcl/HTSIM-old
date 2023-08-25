@@ -1,1 +1,145 @@
-Usage ../sim/datacenter/htsim_ndp_entry_modern [UNCOUPLED(DEFAULT)|COUPLED_INC|FULLY_COUPLED|COUPLED_EPSILON] [epsilon][COUPLED_SCALABLE_TCP
+no_of_nodes 16
+cwnd 118500
+Speed is 100000
+Using subflow count 1
+Logging to uec_entry
+Logging path choices to uec_entry.paths
+Name Running: NDP
+Fat Tree topology with 0.7us links and 0us switching latency.
+Set params 16
+QueueSize 1018500
+_no_of_nodes 16
+K 4
+Queue type 3
+Starting LGS InterfaceCurrent working directory: "/home/tommaso/csg-htsim/plotting"
+LogGP network backend; size: 16 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O=0, P=16, S=65535
+Starting 16
+----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 2 - 0 15 0
+sink tag is 0
+Scheduling Event (0@15@0) of size 6000 from 0 to 15 tag 0 start_tiem 112 - Time is 0
+ ++ size is 0,  host [15] searching matching queue for src target 0 tag 0
+Current elem time is 0 while NS3 0
+Simulating Until Called
+startflow NDP_0_15 CWND 118500 rts 0 at 0
+ID 8192 - Hop 1 - queue(100000Mb/s,8192000bytes)SRC0->LS0
+ID 8192 - Hop 2 - pipe(0us)
+ID 8192 - Hop 3 - Switch_LowerPod_0
+ID 8192 - Hop 1 - Previous time 0 - New time 1360 - 40 - Name Switch_LowerPod_0
+Packet Destination is 3 15
+Here2 8256 15 - Hops Size 2 - IdxID 0 - Inc ID 0 - Direction 1 - MyId 20 Switch_LowerPod_0
+ID 8192 - Hop 1 - Previous time 1320480 - New time 1360 - 40 - Name Switch_LowerPod_0
+Packet Destination is 3 15
+ID 8192 - Hop 1 - compqueue(100000Mb/s,1018500bytes)LS0->US0
+ID 8192 - Hop 2 - pipe(0us)
+ID 8192 - Hop 3 - Switch_UpperPod_0
+Packet Destination is 3 15
+Dest 15 - FTK 4 - k 0 - HOSTPOD 3 - 8256
+ID 0 - K 0- Next Upper 6
+Dest 15 - FTK 4 - k 1 - HOSTPOD 3 - 8256
+ID 0 - K 1- Next Upper 6
+Here2 8256 15 - Hops Size 2 - IdxID 0 - Inc ID 0 - Direction 1 - MyId 20 Switch_UpperPod_0
+Packet Destination is 3 15
+ID 8192 - Hop 1 - compqueue(100000Mb/s,1018500bytes)US0->CS1
+ID 8192 - Hop 2 - pipe(0us)
+ID 8192 - Hop 3 - Switch_Core_1
+Packet Destination is 3 15
+Here2 8256 15 - Hops Size 1 - IdxID 0 - Inc ID 0 - Direction 2 - MyId 20 Switch_Core_1
+Packet Destination is 3 15
+ID 8192 - Hop 1 - compqueue(100000Mb/s,1018500bytes)CS1->US6
+ID 8192 - Hop 2 - pipe(0us)
+ID 8192 - Hop 3 - Switch_UpperPod_6
+Packet Destination is 3 15
+Here2 8256 15 - Hops Size 1 - IdxID 0 - Inc ID 0 - Direction 2 - MyId 20 Switch_UpperPod_6
+Packet Destination is 3 15
+ID 8192 - Hop 1 - compqueue(100000Mb/s,1018500bytes)US6->LS_7
+ID 8192 - Hop 2 - pipe(0us)
+ID 8192 - Hop 3 - Switch_LowerPod_7
+ID 8192 - Hop 1 - Previous time 1320480 - New time 6802 - 40 - Name Switch_LowerPod_7
+Packet Destination is 3 15
+Here 8256 15
+ID 8192 - Hop 1 - Previous time 6762400 - New time 6802 - 40 - Name Switch_LowerPod_7
+Packet Destination is 3 15
+ID 8192 - Hop 1 - compqueue(100000Mb/s,1018500bytes)LS7->DST15
+ID 8192 - Hop 2 - pipe(0us)
+ID 8192 - Hop 3 - ndpsink
+Sending ACk FlowID 1000000000 - SrcAddr 0
+ID 1 - Hop 1 - queue(100000Mb/s,8192000bytes)SRC15->LS7
+ID 1 - Hop 2 - pipe(0us)
+ID 1 - Hop 3 - Switch_LowerPod_7
+Packet Destination is 3 0
+Here2 64 0 - Hops Size 2 - IdxID 0 - Inc ID 1 - Direction 1 - MyId 20 Switch_LowerPod_7
+Packet Destination is 3 0
+ID 1 - Hop 1 - compqueue(100000Mb/s,1018500bytes)LS7->US7
+ID 1 - Hop 2 - pipe(0us)
+ID 1 - Hop 3 - Switch_UpperPod_7
+Packet Destination is 3 0
+Dest 0 - FTK 4 - k 2 - HOSTPOD 0 - 64
+ID 7 - K 2- Next Upper 1
+Dest 0 - FTK 4 - k 3 - HOSTPOD 0 - 64
+ID 7 - K 3- Next Upper 1
+Here2 64 0 - Hops Size 2 - IdxID 0 - Inc ID 1 - Direction 1 - MyId 20 Switch_UpperPod_7
+Packet Destination is 3 0
+ID 1 - Hop 1 - compqueue(100000Mb/s,1018500bytes)US7->CS3
+ID 1 - Hop 2 - pipe(0us)
+ID 1 - Hop 3 - Switch_Core_3
+Packet Destination is 3 0
+Here2 64 0 - Hops Size 1 - IdxID 0 - Inc ID 1 - Direction 2 - MyId 20 Switch_Core_3
+Packet Destination is 3 0
+ID 1 - Hop 1 - compqueue(100000Mb/s,1018500bytes)CS3->US1
+ID 1 - Hop 2 - pipe(0us)
+ID 1 - Hop 3 - Switch_UpperPod_1
+Packet Destination is 3 0
+Here2 64 0 - Hops Size 1 - IdxID 0 - Inc ID 1 - Direction 2 - MyId 20 Switch_UpperPod_1
+Packet Destination is 3 0
+ID 1 - Hop 1 - compqueue(100000Mb/s,1018500bytes)US1->LS_0
+ID 1 - Hop 2 - pipe(0us)
+ID 1 - Hop 3 - Switch_LowerPod_0
+Packet Destination is 3 0
+Here 64 0
+Packet Destination is 3 0
+ID 1 - Hop 1 - compqueue(100000Mb/s,1018500bytes)LS0->DST0
+ID 1 - Hop 2 - pipe(0us)
+ID 1 - Hop 3 - ndpsrc 0
+Flow Finished 0@15@0 at 12393600
+Flow NDP_0_15 flow_id 1000000000 finished at 12.3936 total bytes 8192
+Completion Time Flow is 12393600
+Total NACK Flow is 0
+Running - 1 - 12393600
+Updated - Time 12393600
+..... Received a MSG -- host 15 to target 0, proc 0 - Type 1
+----------------------------    ENTERING WHILE        // ---------------------------- | 12393600 12393600 -  1 0 - 1 0 1 - 15 0 0
+OP MSGnexto[elem.host][elem.proc] 0 (15 0) - nextgr[elem.host][elem.nic] 0( 15  0) - time  12393600
+++ size is 1,  host [15] searching matching queue for src target 0 tag 0
+Compared element is -> 0 0 vs 0 0
+Searching for MATCHCurrent elem time is 12393600 while NS3 12393600
+..... NOT Received a MSG
+
+
+RunTime Total LGS -> 0ms
+
+
+htsim Terminates at 12393600
+
+
+Remaining 16
+PERFORMANCE: Processes: 16 	 Events: 2 	 Time: 0 s 	 Speed: inf ev/s
+AQ is 0
+Times: 
+Host 0: 0
+Host 1: 0
+Host 2: 0
+Host 3: 0
+Host 4: 0
+Host 5: 0
+Host 6: 0
+Host 7: 0
+Host 8: 0
+Host 9: 0
+Host 10: 0
+Host 11: 0
+Host 12: 0
+Host 13: 0
+Host 14: 0
+Host 15: 12393600
+Maximum finishing time at host 15: 12393600 (0.0123936 s)
+Mean number of subflows -nan

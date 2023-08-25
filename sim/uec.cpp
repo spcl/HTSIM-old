@@ -33,6 +33,9 @@ double UecSrc::w_gain = 1;
 double UecSrc::bonus_drop = 1;
 double UecSrc::buffer_drop = 1.2;
 
+RouteStrategy UecSrc::_route_strategy = NOT_SET;
+RouteStrategy UecSink::_route_strategy = NOT_SET;
+
 UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
                EventList &eventList, uint64_t rtt, uint64_t bdp,
                uint64_t queueDrainTime, int hops)
@@ -68,14 +71,15 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     _flow_size = _mss * 934;
     _trimming_enabled = true;
     target_window = _cwnd;
+    _next_pathid = 1;
 
     _bdp = (_base_rtt * LINK_SPEED_MODERN / 8) / 1000;
     printf("Link Delay %lu - Link Speed %lu - Pkt Size %d - Base RTT %lu - "
-           "Target RTT is %lu - BDP/CWDN %lu\n",
+           "Target RTT is %lu - BDP/CWDN %lu - Hops %d\n",
            LINK_DELAY_MODERN, LINK_SPEED_MODERN, PKT_SIZE_MODERN, _base_rtt,
-           _target_rtt, _bdp);
-    _maxcwnd = _bdp * 1.5;
-    _cwnd = _bdp * 1.5;
+           _target_rtt, _bdp, _hop_count);
+    _maxcwnd = _bdp * 1;
+    _cwnd = _bdp * 1;
     _consecutive_low_rtt = 0;
 
     _target_based_received = true;
@@ -512,11 +516,11 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
                     std::make_pair(eventlist().now() / 1000, 1));
 
             // Set x_gain
-            printf("Starting Search, XGain is %f\n", ideal_x);
+            // printf("Starting Search, XGain is %f\n", ideal_x);
             for (int search_x = _bdp; search_x >= _mss;
                  search_x = search_x / 4) {
                 if (_cwnd > search_x) {
-                    printf("%d - Using XGAIN %f\n", from, ideal_x);
+                    // printf("%d - Using XGAIN %f\n", from, ideal_x);
                     break;
                 }
                 ideal_x *= 0.5;
@@ -587,6 +591,118 @@ void UecSrc::processNack(UecNack &pkt) {
     if (!_rtx_pending && !success) {
         _rtx_pending = true;
     }
+}
+/* Choose a route for a particular packet */
+int UecSrc::choose_route() {
+    switch (_route_strategy) {
+    case PULL_BASED: {
+        /* this case is basically SCATTER_PERMUTE, but avoiding bad paths. */
+
+        assert(_paths.size() > 0);
+        if (_paths.size() == 1) {
+            // special case - no choice
+            return 0;
+        }
+        // otherwise we've got a choice
+        _crt_path++;
+        if (_crt_path == _paths.size()) {
+            // permute_paths();
+            _crt_path = 0;
+        }
+        uint32_t path_id = _path_ids[_crt_path];
+        _avoid_score[path_id] = _avoid_ratio[path_id];
+        int ctr = 0;
+        while (_avoid_score[path_id] > 0 /* && ctr < 2*/) {
+            printf("as[%d]: %d\n", path_id, _avoid_score[path_id]);
+            _avoid_score[path_id]--;
+            ctr++;
+            // re-choosing path
+            cout << "re-choosing path " << path_id << endl;
+            _crt_path++;
+            if (_crt_path == _paths.size()) {
+                // permute_paths();
+                _crt_path = 0;
+            }
+            path_id = _path_ids[_crt_path];
+            _avoid_score[path_id] = _avoid_ratio[path_id];
+        }
+        // cout << "AS: " << _avoid_score[path_id] << " AR: " <<
+        // _avoid_ratio[path_id] << endl;
+        assert(_avoid_score[path_id] == 0);
+        break;
+    }
+    case SCATTER_RANDOM:
+        // ECMP
+        assert(_paths.size() > 0);
+        _crt_path = random() % _paths.size();
+        break;
+    case SCATTER_PERMUTE:
+    case SCATTER_ECMP:
+        // Cycle through a permutation.  Generally gets better load balancing
+        // than SCATTER_RANDOM.
+        _crt_path++;
+        assert(_paths.size() > 0);
+        if (_crt_path / 1 == _paths.size()) {
+            // permute_paths();
+            _crt_path = 0;
+        }
+        break;
+    case ECMP_FIB:
+        // Cycle through a permutation.  Generally gets better load balancing
+        // than SCATTER_RANDOM.
+        _crt_path++;
+        if (_crt_path == _paths.size()) {
+            // permute_paths();
+            _crt_path = 0;
+        }
+        break;
+    case ECMP_FIB_ECN: {
+        // Cycle through a permutation, but use ECN to skip paths
+        while (1) {
+            _crt_path++;
+            if (_crt_path == _paths.size()) {
+                // permute_paths();
+                _crt_path = 0;
+            }
+            if (_path_ecns[_path_ids[_crt_path]] > 0) {
+                _path_ecns[_path_ids[_crt_path]]--;
+                /*
+                if (_log_me) {
+                    cout << eventlist().now() << " skipped " <<
+                _path_ids[_crt_path] << " " << _path_ecns[_path_ids[_crt_path]]
+                << endl;
+                }
+                */
+            } else {
+                // eventually we'll find one that's zero
+                break;
+            }
+        }
+        break;
+    }
+    case SINGLE_PATH:
+        abort(); // not sure if this can ever happen - if it can, remove this
+                 // line
+    case REACTIVE_ECN:
+        return _crt_path;
+    case NOT_SET:
+        abort(); // shouldn't be here at all
+    }
+
+    return _crt_path / 1;
+}
+
+int UecSrc::next_route() {
+    // used for reactive ECN.
+    // Just move on to the next path blindly
+    assert(_route_strategy == REACTIVE_ECN);
+    _crt_path++;
+    assert(_paths.size() > 0);
+    if (_crt_path == _paths.size()) {
+        // permute_paths();
+        _crt_path = 0;
+    }
+    return _crt_path;
 }
 
 /*void btsReduce() {
@@ -712,46 +828,6 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
             newRtt)); // TODO: assuming same size for all packets
     mark_received(pkt);
 
-    /*if (update_next_window) {
-        next_window_end = eventlist().now() + _base_rtt;
-        update_next_window = false;
-        printf("Scheduling Next Check %d is %d at %lu for %lu\n", from,
-               saved_acked_bytes, eventlist().now() / 1000,
-               next_window_end / 1000);
-    }*/
-
-    /*if (eventlist().now() >= next_window_end) {
-        previous_window_end = next_window_end;
-        if (next_window_end == 0) {
-            next_window_end = eventlist().now() + (_base_rtt * fast_drop_rtt);
-        } else {
-            next_window_end += (_base_rtt * fast_drop_rtt);
-        }
-        _list_acked_bytes.push_back(
-                std::make_pair(eventlist().now() / 1000, acked_bytes));
-        if (count_total_ecn * 2 >= count_total_ack) {
-            fast_drop = true;
-            drop_amount = acked_bytes;
-        } else {
-            fast_drop = false;
-        }
-
-        ecn_last_rtt = false;
-        count_total_ack = 0;
-        count_total_ecn = 0;
-        saved_acked_bytes = acked_bytes;
-        _list_ecn_rtt.push_back(std::make_pair(eventlist().now() / 1000,
-                                               count_ecn_in_rtt * _mss));
-        _list_trimmed_rtt.push_back(std::make_pair(
-                eventlist().now() / 1000, count_trimmed_in_rtt * _mss));
-        count_trimmed_in_rtt = 0;
-        count_ecn_in_rtt = 0;
-        printf("Saved Acked %d is %d at %lu\n", from, saved_acked_bytes,
-               eventlist().now() / 1000);
-        acked_bytes = 0;
-        trimmed_last_rtt = 0;
-    }*/
-
     count_total_ack++;
     if (marked) {
         count_total_ecn++;
@@ -759,7 +835,7 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
     }
 
     if (!marked) {
-        add_ack_path(pkt.inRoute);
+        // add_ack_path(pkt.inRoute);
         _consecutive_no_ecn += _mss;
         // printf("Not Marked!\n");
     } else {
@@ -859,14 +935,15 @@ void UecSrc::receivePacket(Packet &pkt) {
         }
         break;
     case UECACK:
-        // printf("NORMALACK, %d\n", pkt.from);
+        // printf("NORMALACK, %d at %lu\n", pkt.from, GLOBAL_TIME);
+        fflush(stdout);
         count_received++;
-
         processAck(dynamic_cast<UecAck &>(pkt), false);
         pkt.free();
         break;
     case UECNACK:
         printf("NACK %d@%d@%d\n", from, to, tag);
+        fflush(stdout);
         if (_trimming_enabled) {
             count_received++;
             processNack(dynamic_cast<UecNack &>(pkt));
@@ -909,8 +986,8 @@ uint32_t UecSrc::medium_increase(simtime_picosec rtt) {
         exp_gain_value_med_inc = (_mss / (double)_cwnd);
     }
 
-    // Delay Gain Automated (1 / (target_ratio - 1)) vs manually set at 0 (put
-    // close to target_rtt)
+    // Delay Gain Automated (1 / (target_ratio - 1)) vs manually set at 0
+    // (put close to target_rtt)
 
     if (consecutive_good_medium < _cwnd && do_jitter) {
         return 0;
@@ -938,8 +1015,8 @@ uint32_t UecSrc::medium_increase(simtime_picosec rtt) {
 void UecSrc::fast_increase() {
     if (use_fast_drop) {
         if (count_received > ignore_for) {
-            // counter_consecutive_good_bytes = counter_consecutive_good_bytes /
-            // 2;
+            // counter_consecutive_good_bytes =
+            // counter_consecutive_good_bytes / 2;
             if (use_super_fast_increase) {
                 _cwnd += 4 * _mss * (LINK_SPEED_MODERN / 100);
                 //_cwnd *= 2;
@@ -948,7 +1025,8 @@ void UecSrc::fast_increase() {
             }
         }
     } else {
-        // counter_consecutive_good_bytes = counter_consecutive_good_bytes / 2;
+        // counter_consecutive_good_bytes = counter_consecutive_good_bytes /
+        // 2;
         if (use_super_fast_increase) {
             _cwnd += 4 * _mss * (LINK_SPEED_MODERN / 100);
             //_cwnd *= 2;
@@ -1048,8 +1126,8 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                     _cwnd += medium_increase(rtt);
                 }
             } else if (rtt >= _target_rtt) {
-                // We don't do anything in this case. Before we did the thing
-                // below
+                // We don't do anything in this case. Before we did the
+                // thing below
                 //_cwnd += ((double)_mss / _cwnd) * 1 * _mss;
             }
 
@@ -1097,7 +1175,8 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 if (ecn_last_rtt) {
                     if (use_fast_drop) {
                         if (count_received >= ignore_for) {
-                            // reduce_cwnd(static_cast<double>(_cwnd) / _bdp *
+                            // reduce_cwnd(static_cast<double>(_cwnd) / _bdp
+                            // *
                             //             _mss);
                         }
                     } else {
@@ -1173,9 +1252,9 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                     count_case_2.push_back(
                             std::make_pair(eventlist().now() / 1000, 1));
 
-                    // reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss);
-                    // printf("Case 2 from %d at %lu\n", from, GLOBAL_TIME /
-                    // 1000);
+                    // reduce_cwnd(static_cast<double>(_cwnd) / _bdp *
+                    // _mss); printf("Case 2 from %d at %lu\n", from,
+                    // GLOBAL_TIME / 1000);
                 }
                 // Case 3 Gentle Decrease (Window based)
             } else if (ecn && rtt < _target_rtt) {
@@ -1206,7 +1285,8 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                                      last_decrease / 2.0);
                     } else {
                         //_cwnd += ((double)_mss / _cwnd) * _mss;
-                        //_cwnd = min(((double)_mss / _cwnd) * _mss * x_gain,
+                        //_cwnd = min(((double)_mss / _cwnd) * _mss *
+                        // x_gain,
                         //           ((double)_cwnd / (4.0 * _mss)) * _mss);
                         //_cwnd += ((double)_mss / _cwnd) * _mss * ideal_x;
                         /*_cwnd += min(((((double)_mss / _cwnd) * _mss) +
@@ -1538,20 +1618,27 @@ bool UecSrc::ecn_congestion() {
 
 const string &UecSrc::nodename() { return _nodename; }
 
-void UecSrc::connect(const Route &routeout, const Route &routeback,
-                     UecSink &sink, simtime_picosec startTime) {
-    _route = &routeout;
+void UecSrc::connect(Route *routeout, Route *routeback, UecSink &sink,
+                     simtime_picosec starttime) {
+    if (_route_strategy == SINGLE_PATH || _route_strategy == ECMP_FIB ||
+        _route_strategy == ECMP_FIB_ECN || _route_strategy == REACTIVE_ECN) {
+        assert(routeout);
+        _route = routeout;
+    }
 
-    assert(_route);
     _sink = &sink;
+    _flow.set_id(get_id()); // identify the packet flow with the NDP source
+                            // that generated it
+    _flow._name = _name;
     _sink->connect(*this, routeback);
 
-    eventlist().sourceIsPending(*this, startTime);
+    if (starttime != -1) {
+        eventlist().sourceIsPending(*this, starttime);
+    }
 }
 
 void UecSrc::startflow() {
     ideal_x = x_gain;
-    printf("My Starting XGain %f\n", ideal_x);
     _flow_start_time = eventlist().now();
     send_packets();
 }
@@ -1607,21 +1694,48 @@ void UecSrc::send_packets() {
             get_unacked() + _mss <= c && _highest_sent <= _flow_size + 1) {
         uint64_t data_seq = 0;
 
-        // choose path
-        const Route *rt = get_path();
-
         // create packet
-        UecPacket *p = UecPacket::newpkt(_flow, *rt, _highest_sent + 1,
-                                         data_seq, _mss);
+        // printf("Dest 1 is %d\n", _dstaddr);
+        // fflush(stdout);
+        UecPacket *p = UecPacket::newpkt(_flow, *_route, _highest_sent + 1,
+                                         data_seq, _mss, false, _dstaddr);
+        p->set_pathid(_path_ids[choose_route()]);
         p->from = this->from;
         p->to = this->to;
         p->tag = this->tag;
-        // printf("Sending packet %d %d %d - Name %s - Time %ld\n",
-        // this->from, this->to, this->tag, _name.c_str(), (long
-        // long)GLOBAL_TIME//);
+        p->my_idx = data_count_idx++;
+
+        switch (_route_strategy) {
+        case SINGLE_PATH:
+            p->set_route(*_route);
+            break;
+        case ECMP_FIB:
+        case ECMP_FIB_ECN:
+        case REACTIVE_ECN: {
+            p->set_route(*_route);
+            int crt = choose_route();
+            p->set_pathid(_path_ids[crt]);
+            break;
+        }
+        default:
+            const Route *rt = _paths.at(choose_route());
+            p->set_route(*rt);
+        }
 
         p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATESEND);
         p->set_ts(eventlist().now());
+
+        if (COLLECT_DATA) {
+            // Sent
+            std::string file_name =
+                    "/home/tommaso/csg-htsim/sim/output/sent/s" +
+                    std::to_string(this->from) + ".txt ";
+            std::ofstream MyFile(file_name, std::ios_base::app);
+
+            MyFile << (GLOBAL_TIME) / 1000 << "," << 1 << std::endl;
+
+            MyFile.close();
+        }
 
         // send packet
         _highest_sent += _mss; // XX beware wrapping
@@ -1638,40 +1752,6 @@ void UecSrc::send_packets() {
                 SentPacket(eventlist().now() + service_time + _rto, p->seqno(),
                            false, false, false));
         if (COLLECT_DATA) {
-            for (size_t i = 0; i < rt->size(); i++) {
-                if (i == 4) { // Intercept US TO CSf
-                    PacketSink *sink = rt->at(i);
-                    if (sink->nodename().find("US_0") != std::string::npos) {
-                        std::regex pattern("CS_(\\d+)");
-                        std::smatch matches;
-                        if (std::regex_search(sink->nodename(), matches,
-                                              pattern)) {
-                            std::string numberStr = matches[1].str();
-                            int number = std::stoi(numberStr);
-                            us_to_cs.push_back(std::make_pair(
-                                    eventlist().now() / 1000 +
-                                            (service_time / 1000),
-                                    number));
-                        }
-                    }
-                }
-                if (i == 2) { // Intercept US TO CS
-                    PacketSink *sink = rt->at(i);
-                    if (sink->nodename().find("LS_0") != std::string::npos) {
-                        std::regex pattern("US_(\\d+)");
-                        std::smatch matches;
-                        if (std::regex_search(sink->nodename(), matches,
-                                              pattern)) {
-                            std::string numberStr = matches[1].str();
-                            int number = std::stoi(numberStr);
-                            ls_to_us.push_back(std::make_pair(
-                                    eventlist().now() / 1000 +
-                                            (service_time / 1000),
-                                    number));
-                        }
-                    }
-                }
-            }
         }
 
         if (_rtx_timeout == timeInf) {
@@ -1680,15 +1760,107 @@ void UecSrc::send_packets() {
     }
 }
 
-void UecSrc::set_paths(vector<const Route *> *rt) {
-    _paths.clear();
-
-    for (const Route *route : *rt) {
-        Route *t = new Route(*route, *_sink);
-        t->add_endpoints(this, _sink);
-        _paths.push_back(t);
+void UecSrc::set_paths(uint32_t no_of_paths) {
+    if (_route_strategy != ECMP_FIB && _route_strategy != ECMP_FIB_ECN &&
+        _route_strategy != ECMP_FIB2_ECN && _route_strategy != REACTIVE_ECN &&
+        _route_strategy != ECMP_RANDOM_ECN &&
+        _route_strategy != ECMP_RANDOM2_ECN) {
+        cout << "Set paths (path_count) called with wrong route strategy"
+             << endl;
+        abort();
     }
-    map_entropies();
+
+    _path_ids.resize(no_of_paths);
+    // permute_sequence(_path_ids);
+
+    _paths.resize(no_of_paths);
+    _original_paths.resize(no_of_paths);
+    _path_acks.resize(no_of_paths);
+    _path_ecns.resize(no_of_paths);
+    _path_nacks.resize(no_of_paths);
+    _bad_path.resize(no_of_paths);
+    _avoid_ratio.resize(no_of_paths);
+    _avoid_score.resize(no_of_paths);
+
+    for (size_t i = 0; i < no_of_paths; i++) {
+        _paths[i] = NULL;
+        _original_paths[i] = NULL;
+        _path_acks[i] = 0;
+        _path_ecns[i] = 0;
+        _path_nacks[i] = 0;
+        _avoid_ratio[i] = 0;
+        _avoid_score[i] = 0;
+        _bad_path[i] = false;
+    }
+}
+
+void UecSrc::set_paths(vector<const Route *> *rt_list) {
+    uint32_t no_of_paths = rt_list->size();
+    switch (_route_strategy) {
+    case NOT_SET:
+    case SINGLE_PATH:
+    case ECMP_FIB:
+    case ECMP_FIB_ECN:
+    case REACTIVE_ECN:
+        // shouldn't call this with these strategies
+        abort();
+    case SCATTER_PERMUTE:
+    case SCATTER_RANDOM:
+    case PULL_BASED:
+    case SCATTER_ECMP:
+        no_of_paths = min(_num_entropies, (int)no_of_paths);
+        _path_ids.resize(no_of_paths);
+        _paths.resize(no_of_paths);
+        _original_paths.resize(no_of_paths);
+        _path_acks.resize(no_of_paths);
+        _path_ecns.resize(no_of_paths);
+        _path_nacks.resize(no_of_paths);
+        _bad_path.resize(no_of_paths);
+        _avoid_ratio.resize(no_of_paths);
+        _avoid_score.resize(no_of_paths);
+#ifdef DEBUG_PATH_STATS
+        _path_counts_new.resize(no_of_paths);
+        _path_counts_rtx.resize(no_of_paths);
+        _path_counts_rto.resize(no_of_paths);
+#endif
+
+        // generate a randomize sequence of 0 .. size of rt_list - 1
+        vector<int> randseq(rt_list->size());
+        if (_route_strategy == SCATTER_ECMP) {
+            // randsec may have duplicates, as with ECMP
+            // randomize_sequence(randseq);
+        } else {
+            // randsec will have no duplicates
+            // permute_sequence(randseq);
+        }
+
+        for (size_t i = 0; i < no_of_paths; i++) {
+            // we need to copy the route before adding endpoints, as
+            // it may be used in the reverse direction too.
+            // Pick a random route from the available ones
+            Route *tmp = new Route(*(rt_list->at(randseq[i])), *_sink);
+            // Route* tmp = new Route(*(rt_list->at(i)));
+            tmp->add_endpoints(this, _sink);
+            tmp->set_path_id(i, rt_list->size());
+            _paths[i] = tmp;
+            _path_ids[i] = i;
+            _original_paths[i] = tmp;
+#ifdef DEBUG_PATH_STATS
+            _path_counts_new[i] = 0;
+            _path_counts_rtx[i] = 0;
+            _path_counts_rto[i] = 0;
+#endif
+            _path_acks[i] = 0;
+            _path_ecns[i] = 0;
+            _path_nacks[i] = 0;
+            _avoid_ratio[i] = 0;
+            _avoid_score[i] = 0;
+            _bad_path[i] = false;
+        }
+        _crt_path = 0;
+        // permute_paths();
+        break;
+    }
 }
 
 void UecSrc::apply_timeout_penalty() {
@@ -1757,12 +1929,13 @@ bool UecSrc::resend_packet(std::size_t idx) {
     //     ++_next_good_entropy;
     //     _next_good_entropy %= _good_entropies.size();
     // } else {
-    rt = get_path();
     // }
     // Getting time until packet is really sent
     _unacked += _mss;
-    UecPacket *p = UecPacket::newpkt(_flow, *rt, _sent_packets[idx].seqno, 0,
-                                     _mss, true);
+    UecPacket *p = UecPacket::newpkt(_flow, *_route, _sent_packets[idx].seqno,
+                                     0, _mss, true, _dstaddr);
+    p->set_pathid(_path_ids[choose_route()]);
+
     p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATE);
     PacketSink *sink = p->sendOn();
     HostQueue *q = dynamic_cast<HostQueue *>(sink);
@@ -1809,7 +1982,16 @@ UecSink::UecSink() : DataReceiver("sink"), _cumulative_ack{0}, _drops{0} {
 void UecSink::send_nack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
                         UecAck::seq_t ackno, const Route *rt) {
 
-    UecNack *nack = UecNack::newpkt(_src->_flow, *rt, seqno, ackno, 0);
+    UecNack *nack =
+            UecNack::newpkt(_src->_flow, *_route, seqno, ackno, 0, _srcaddr);
+
+    // printf("Sending NACK\n");
+    nack->set_pathid(_path_ids[_crt_path]);
+    _crt_path++;
+    if (_crt_path == _paths.size()) {
+        _crt_path = 0;
+    }
+
     nack->is_ack = false;
     nack->flow().logTraffic(*nack, *this, TrafficLogger::PKT_CREATESEND);
     nack->set_ts(ts);
@@ -1879,8 +2061,9 @@ void UecSink::receivePacket(Packet &pkt) {
                                         // exchanged
                                         // information about
                                         // options somehow
+            int32_t path_id = p->pathid();
             send_ack(ts, marked, 1, _cumulative_ack, _paths.at(crt_path),
-                     pkt.get_route());
+                     pkt.get_route(), path_id);
         }
         return;
     }
@@ -1946,32 +2129,62 @@ void UecSink::receivePacket(Packet &pkt) {
     // Packet Spray, but there doesn't seem to be a good,
     // quick way of doing that in htsim printf("Ack Sending
     // From %d - %d\n", this->from,
-    send_ack(ts, marked, seqno, ackno, _paths.at(crt_path), pkt.get_route());
+    int32_t path_id = p->pathid();
+    send_ack(ts, marked, seqno, ackno, _paths.at(crt_path), pkt.get_route(),
+             path_id);
 }
 
 void UecSink::send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
                        UecAck::seq_t ackno, const Route *rt,
-                       const Route *inRoute) {
+                       const Route *inRoute, int path_id) {
 
-    UecAck *ack = UecAck::newpkt(_src->_flow, *rt, seqno, ackno, 0);
-    ack->inRoute = inRoute;
-    ack->is_ack = true;
-    ack->flow().logTraffic(*ack, *this, TrafficLogger::PKT_CREATESEND);
-    ack->set_ts(ts);
+    UecAck *ack = 0;
 
-    // printf("Sending ACK at %lu\n", GLOBAL_TIME / 1000);
+    switch (_route_strategy) {
+    case ECMP_FIB:
+    case ECMP_FIB_ECN:
+    case REACTIVE_ECN:
+        ack = UecAck::newpkt(_src->_flow, *_route, seqno, ackno, 0, _srcaddr);
 
-    if (marked) {
-        // printf("ACK - ECN\n");
-        ack->set_flags(ECN_ECHO);
-    } else {
-        // printf("ACK - NO ECN\n");
-        ack->set_flags(0);
+        ack->set_pathid(_path_ids[_crt_path]);
+        _crt_path++;
+        if (_crt_path == _paths.size()) {
+            _crt_path = 0;
+        }
+        ack->inc_id++;
+        ack->my_idx = ack_count_idx++;
+
+        // set ECN echo only if that is selected strategy
+        if (marked) {
+            // printf("ACK - ECN\n");
+            ack->set_flags(ECN_ECHO);
+        } else {
+            // printf("ACK - NO ECN\n");
+            ack->set_flags(0);
+        }
+
+        /*printf("Sending ACk FlowID %d - SrcAddr %d - Id %d -------- TIme now "
+               "%lu vs %lu\n",
+               _src->_flow.flow_id(), _srcaddr, ack->inc_id, GLOBAL_TIME / 1000,
+               ts / 1000);*/
+        break;
+    case NOT_SET:
+        abort();
+    default:
+        break;
     }
+    assert(ack);
+    ack->pathid_echo = path_id;
 
+    // ack->inRoute = inRoute;
+    ack->is_ack = true;
+    ack->flow().logTraffic(*ack, *this, TrafficLogger::PKT_CREATE);
+    ack->set_ts(ts);
+    printf("Setting TS to %lu at %lu\n", ts / 1000, GLOBAL_TIME / 1000);
     ack->from = this->from;
     ack->to = this->to;
     ack->tag = this->tag;
+
     ack->sendOn();
 }
 
@@ -1981,20 +2194,53 @@ uint64_t UecSink::cumulative_ack() { return _cumulative_ack; }
 
 uint32_t UecSink::drops() { return _drops; }
 
-void UecSink::connect(UecSrc &src, const Route &route) {
+void UecSink::connect(UecSrc &src, const Route *route) {
     _src = &src;
-    _route = &route;
+    switch (_route_strategy) {
+    case SINGLE_PATH:
+    case ECMP_FIB:
+    case ECMP_FIB_ECN:
+    case REACTIVE_ECN:
+        assert(route);
+        //("Setting route\n");
+        _route = route;
+        break;
+    default:
+        // do nothing we shouldn't be using this route - call
+        // set_paths() to set routing information
+        _route = NULL;
+        break;
+    }
+
     _cumulative_ack = 0;
     _drops = 0;
 }
 
-void UecSink::set_paths(vector<const Route *> *rt) {
-    _paths.clear();
+void UecSink::set_paths(uint32_t no_of_paths) {
+    switch (_route_strategy) {
+    case SCATTER_PERMUTE:
+    case SCATTER_RANDOM:
+    case PULL_BASED:
+    case SCATTER_ECMP:
+    case SINGLE_PATH:
+    case NOT_SET:
+        abort();
 
-    for (const Route *route : *rt) {
-        Route *t = new Route(*route, *_src);
-        t->add_endpoints(this, _src);
-        _paths.push_back(t);
+    case ECMP_FIB:
+    case ECMP_FIB_ECN:
+    case REACTIVE_ECN:
+        assert(_paths.size() == 0);
+        _paths.resize(no_of_paths);
+        _path_ids.resize(no_of_paths);
+        for (unsigned int i = 0; i < no_of_paths; i++) {
+            _paths[i] = NULL;
+            _path_ids[i] = i;
+        }
+        _crt_path = 0;
+        // permute_paths();
+        break;
+    default:
+        break;
     }
 }
 

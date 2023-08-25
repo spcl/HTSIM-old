@@ -24,8 +24,8 @@
 
 // Fat Tree topology was modified to work with this script, others won't work
 // correctly
-//#include "fat_tree_topology.h"
-#include "oversubscribed_fat_tree_topology.h"
+#include "fat_tree_topology.h"
+//#include "oversubscribed_fat_tree_topology.h"
 //#include "oversubscribed_fat_tree_topology.h"
 //#include "multihomed_fat_tree_topology.h"
 //#include "star_topology.h"
@@ -296,6 +296,9 @@ int main(int argc, char **argv) {
                 route_strategy = PULL_BASED;
             } else if (!strcmp(argv[i + 1], "single")) {
                 route_strategy = SINGLE_PATH;
+            } else if (!strcmp(argv[i + 1], "ecmp_host")) {
+                route_strategy = ECMP_FIB;
+                FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
             }
             i++;
         } else if (!strcmp(argv[i], "-queue_type")) {
@@ -397,14 +400,11 @@ int main(int argc, char **argv) {
     }
 #endif
 
-#ifdef OV_FAT_TREE
-    OversubscribedFatTreeTopology::set_ecn_thresholds_as_queue_percentage(kmin,
-                                                                          kmax);
-    OversubscribedFatTreeTopology::set_bts_threshold(bts_threshold);
-    OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(
-            queuesize, linkspeed, &logfile, &eventlist, ff, queue_choice,
-            hop_latency, switch_latency, fat_tree_k);
-#endif
+    FatTreeTopology::set_ecn_thresholds_as_queue_percentage(kmin, kmax);
+    FatTreeTopology::set_bts_threshold(bts_threshold);
+    FatTreeTopology *top = new FatTreeTopology(
+            no_of_nodes, linkspeed, queuesize, NULL, &eventlist, ff,
+            queue_choice, hop_latency, switch_latency);
 
 #ifdef MH_FAT_TREE
     MultihomedFatTreeTopology *top =

@@ -22,8 +22,8 @@
 #include "topology.h"
 //#include "vl2_topology.h"
 
-//#include "fat_tree_topology.h"
-#include "oversubscribed_fat_tree_topology.h"
+#include "fat_tree_topology.h"
+//#include "oversubscribed_fat_tree_topology.h"
 //#include "multihomed_fat_tree_topology.h"
 //#include "star_topology.h"
 //#include "bcube_topology.h"
@@ -253,12 +253,10 @@ int main(int argc, char **argv) {
     }
 #endif
 
-#ifdef OV_FAT_TREE
-    OversubscribedFatTreeTopology *top = new OversubscribedFatTreeTopology(
-            queuesize, linkspeed, &logfile, &eventlist, ff, COMPOSITE,
-            hop_latency, switch_latency, fat_tree_k);
-
-#endif
+    FatTreeTopology::set_tiers(3);
+    FatTreeTopology *top = new FatTreeTopology(
+            no_of_nodes, linkspeed, queuesize, NULL, &eventlist, ff, COMPOSITE,
+            hop_latency, switch_latency);
 
 #ifdef MH_FAT_TREE
     MultihomedFatTreeTopology *top =

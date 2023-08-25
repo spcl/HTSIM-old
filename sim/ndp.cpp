@@ -210,7 +210,9 @@ void permute_sequence(vector<int> &seq) {
 
 void NdpSrc::set_paths(uint32_t no_of_paths) {
     if (_route_strategy != ECMP_FIB && _route_strategy != ECMP_FIB_ECN &&
-        _route_strategy != REACTIVE_ECN) {
+        _route_strategy != ECMP_FIB2_ECN && _route_strategy != REACTIVE_ECN &&
+        _route_strategy != ECMP_RANDOM_ECN &&
+        _route_strategy != ECMP_RANDOM2_ECN) {
         cout << "Set paths (path_count) called with wrong route strategy"
              << endl;
         abort();
@@ -717,6 +719,8 @@ void NdpSrc::processAck(const NdpAck &ack) {
         printf("Completion Time Flow is %lu\n",
                eventlist().now() - _flow_start_time);
 
+        printf("Total NACK Flow is %d\n", count_nack_num);
+
         if (_end_trigger) {
             _end_trigger->activate();
         }
@@ -734,7 +738,6 @@ void NdpSrc::processAck(const NdpAck &ack) {
 
 void NdpSrc::receivePacket(Packet &pkt) {
     pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_RCVDESTROY);
-
     if (_stop_time && eventlist().now() >= _stop_time) {
         // stop sending new data, but allow us to finish any retransmissions
         _flow_size = _highest_sent + _mss;
@@ -757,6 +760,7 @@ void NdpSrc::receivePacket(Packet &pkt) {
         } else {
             printf("NACK\n");
         }*/
+        count_nack_num++;
         _list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
         processNack((const NdpNack &)pkt);
         pkt.free();
@@ -788,6 +792,13 @@ void NdpSrc::receivePacket(Packet &pkt) {
         return;
     }
     case NDPACK: {
+        if (from == 0) {
+            count_received++;
+            if (count_received % 10 == 0) {
+                printf("Currently2 at %d\n", count_received);
+                fflush(stdout);
+            }
+        }
         _acks_received++;
         _pull_window++;
         _first_window_count--;
@@ -1014,6 +1025,8 @@ int NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
         case SCATTER_ECMP: {
             assert(_paths.size() > 0);
             const Route *rt = _paths.at(choose_route());
+
+            fflush(stdout);
             p = NdpPacket::newpkt(_flow, *rt, _highest_sent + 1, pacer_no, _mss,
                                   false, _paths.size() > 0 ? _paths.size() : 1,
                                   last_packet, _dstaddr);
@@ -1045,6 +1058,9 @@ int NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
             break;
         case NOT_SET:
             abort();
+        default:
+            abort();
+            break;
         }
         assert(p);
         p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATESEND);
@@ -1455,6 +1471,8 @@ void NdpSink::set_paths(uint32_t no_of_paths) {
         _crt_path = 0;
         permute_paths();
         break;
+    default:
+        break;
     }
 }
 
@@ -1806,12 +1824,15 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno,
             permute_paths();
             _crt_path = 0;
         }
+        ack->inc_id++;
         // set ECN echo only if that is selected strategy
         ack->set_ecn_echo(ecn_marked && (_route_strategy == ECMP_FIB_ECN ||
                                          _route_strategy == REACTIVE_ECN));
         if (ecn_marked && (_route_strategy == ECMP_FIB_ECN ||
                            _route_strategy == REACTIVE_ECN))
             cout << "setting ECE\n";
+        printf("Sending ACk FlowID %d - SrcAddr %d\n", _src->_flow.flow_id(),
+               _srcaddr);
         break;
     case SINGLE_PATH:
         ack = NdpAck::newpkt(
@@ -1820,6 +1841,8 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno,
         break;
     case NOT_SET:
         abort();
+    default:
+        break;
     }
     assert(ack);
     ack->flow().logTraffic(*ack, *this, TrafficLogger::PKT_CREATE);

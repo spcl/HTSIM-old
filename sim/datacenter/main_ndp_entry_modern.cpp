@@ -77,20 +77,22 @@ void print_path(std::ofstream &paths, const Route *rt) {
 }
 
 int main(int argc, char **argv) {
-    Packet::set_packet_size(PKT_SIZE_MODERN);
+    Packet::set_packet_size(8192);
     eventlist.setEndtime(timeFromSec(10));
     Clock c(timeFromSec(5 / 100.), eventlist);
     mem_b queuesize = memFromPkt(INFINITE_BUFFER_SIZE);
     int no_of_conns = 0, cwnd = 40, no_of_nodes = DEFAULT_NODES,
         flowsize = Packet::data_packet_size() * 50;
     stringstream filename(ios_base::out);
-    RouteStrategy route_strategy = NOT_SET;
+    RouteStrategy route_strategy = ECMP_FIB;
     std::string goal_filename;
     linkspeed_bps linkspeed = speedFromMbps((double)HOST_NIC);
     simtime_picosec hop_latency = timeFromNs((uint32_t)RTT);
     simtime_picosec switch_latency = timeFromNs((uint32_t)0);
     int packet_size = 2048;
     int seed = -1;
+    int number_entropies = 256;
+    int fat_tree_k = 1; // 1:1 default
     bool collect_data = false;
     COLLECT_DATA = collect_data;
 
@@ -116,6 +118,10 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-goal")) {
             goal_filename = argv[i + 1];
             i++;
+
+        } else if (!strcmp(argv[i], "-number_entropies")) {
+            number_entropies = atoi(argv[i + 1]);
+            i++;
         } else if (!strcmp(argv[i], "-cwnd")) {
             cwnd = atoi(argv[i + 1]);
             cout << "cwnd " << cwnd << endl;
@@ -131,6 +137,9 @@ int main(int argc, char **argv) {
             printf("Speed is %lu\n", LINK_SPEED_MODERN);
             LINK_SPEED_MODERN = LINK_SPEED_MODERN / 1000;
             // Saving this for UEC reference, Gbps
+            i++;
+        } else if (!strcmp(argv[i], "-k")) {
+            fat_tree_k = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-collect_data")) {
             collect_data = atoi(argv[i + 1]);
@@ -164,6 +173,9 @@ int main(int argc, char **argv) {
                 route_strategy = PULL_BASED;
             } else if (!strcmp(argv[i + 1], "single")) {
                 route_strategy = SINGLE_PATH;
+            } else if (!strcmp(argv[i + 1], "ecmp_host")) {
+                route_strategy = ECMP_FIB;
+                FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
             }
             i++;
         } else
@@ -240,6 +252,7 @@ int main(int argc, char **argv) {
 
 #ifdef FAT_TREE
     FatTreeTopology::set_tiers(3);
+    FatTreeTopology::set_os(fat_tree_k);
     FatTreeTopology *top = new FatTreeTopology(
             no_of_nodes, linkspeed, queuesize, NULL, &eventlist, ff, COMPOSITE,
             hop_latency, switch_latency);
@@ -313,6 +326,7 @@ int main(int argc, char **argv) {
 
     lgs->set_protocol(NDP_PROTOCOL);
     lgs->set_cwd(cwnd);
+    lgs->setNumberPaths(number_entropies);
     start_lgs(goal_filename, *lgs);
 
     cout << "Mean number of subflows " << ntoa((double)tot_subs / cnt_con)

@@ -2,7 +2,6 @@
 
 #ifndef NDP_H
 #define NDP_H
-enum RouteStrategy { NOT_SET, SINGLE_PATH, SCATTER_PERMUTE, SCATTER_RANDOM, PULL_BASED };
 
 #endif
 
@@ -36,14 +35,22 @@ class NdpTunnelSrc : public PacketSink, public EventSource {
     friend class NdpTunnelSink;
 
   public:
-    NdpTunnelSrc(NdpTunnelLogger *logger, TrafficLogger *pktlogger, EventList &eventlist);
-    virtual void connect(Route &routeout, Route &routeback, NdpTunnelSink &sink, simtime_picosec startTime);
+    NdpTunnelSrc(NdpTunnelLogger *logger, TrafficLogger *pktlogger,
+                 EventList &eventlist);
+    virtual void connect(Route &routeout, Route &routeback, NdpTunnelSink &sink,
+                         simtime_picosec startTime);
     void set_traffic_logger(TrafficLogger *pktlogger);
     void startflow();
     void setCwnd(uint32_t cwnd) { _cwnd = cwnd; }
-    static void setMinRTO(uint32_t min_rto_in_us) { _min_rto = timeFromUs((uint32_t)min_rto_in_us); }
-    static void setRouteStrategy(RouteStrategy strat) { _route_strategy = strat; }
-    void set_flowsize(uint64_t flow_size_in_bytes) { _flow_size = flow_size_in_bytes; }
+    static void setMinRTO(uint32_t min_rto_in_us) {
+        _min_rto = timeFromUs((uint32_t)min_rto_in_us);
+    }
+    static void setRouteStrategy(RouteStrategy strat) {
+        _route_strategy = strat;
+    }
+    void set_flowsize(uint64_t flow_size_in_bytes) {
+        _flow_size = flow_size_in_bytes;
+    }
 
     virtual void doNextEvent();
     virtual void receivePacket(Packet &pkt);
@@ -153,7 +160,8 @@ class NdpTunnelSrc : public PacketSink, public EventSource {
     uint32_t _qs, _maxqs;
     list<Packet *> _queue;
     list<NdpTunnelPacket *> _inflight;
-    list<NdpTunnelPacket *> _rtx_queue; // Packets queued for (hopefuly) imminent retransmission
+    list<NdpTunnelPacket *>
+            _rtx_queue; // Packets queued for (hopefuly) imminent retransmission
 };
 
 class NdpTunnelPullPacer;
@@ -162,20 +170,26 @@ class NdpTunnelSink : public PacketSink, public DataReceiver {
     friend class NdpTunnelSrc;
 
   public:
-    NdpTunnelSink(EventList &ev, linkspeed_bps linkspeed, double pull_rate_modifier);
+    NdpTunnelSink(EventList &ev, linkspeed_bps linkspeed,
+                  double pull_rate_modifier);
     NdpTunnelSink(NdpTunnelPullPacer *pacer);
 
     void receivePacket(Packet &pkt);
     NdpAck::seq_t _cumulative_ack; // the packet we have cumulatively acked
     uint32_t _drops;
-    uint64_t cumulative_ack() { return _cumulative_ack + _received.size() * 9000; }
+    uint64_t cumulative_ack() {
+        return _cumulative_ack + _received.size() * 9000;
+    }
     uint64_t total_received() const { return _total_received; }
     uint32_t drops() { return _src->_drops; }
     virtual const string &nodename() { return _nodename; }
     void increase_window() { _pull_no++; }
-    static void setRouteStrategy(RouteStrategy strat) { _route_strategy = strat; }
+    static void setRouteStrategy(RouteStrategy strat) {
+        _route_strategy = strat;
+    }
 
-    list<NdpTunnelPacket *> _received; // list of packets above a hole, that we've received
+    list<NdpTunnelPacket *>
+            _received; // list of packets above a hole, that we've received
 
     NdpTunnelSrc *_src;
 
@@ -206,28 +220,33 @@ class NdpTunnelSink : public PacketSink, public DataReceiver {
     string _nodename;
 
     NdpTunnelPullPacer *_pacer;
-    NdpPull::seq_t _pull_no;                   // pull sequence number (local to connection)
-    NdpTunnelPacket::seq_t _last_packet_seqno; // sequence number of the last
-                                               // packet in the connection (or 0 if not known)
+    NdpPull::seq_t _pull_no; // pull sequence number (local to connection)
+    NdpTunnelPacket::seq_t
+            _last_packet_seqno; // sequence number of the last
+                                // packet in the connection (or 0 if not known)
     uint64_t _total_received;
 
     int _priority;
 
     // Mechanism
-    void send_ack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno, NdpTunnelPacket::seq_t pacer_no);
-    void send_nack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno, NdpTunnelPacket::seq_t pacer_no);
+    void send_ack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno,
+                  NdpTunnelPacket::seq_t pacer_no);
+    void send_nack(simtime_picosec ts, NdpTunnelPacket::seq_t ackno,
+                   NdpTunnelPacket::seq_t pacer_no);
     void permute_paths();
 };
 
 class NdpTunnelPullPacer : public EventSource {
   public:
-    NdpTunnelPullPacer(EventList &ev, linkspeed_bps linkspeed, double pull_rate_modifier);
+    NdpTunnelPullPacer(EventList &ev, linkspeed_bps linkspeed,
+                       double pull_rate_modifier);
     NdpTunnelPullPacer(EventList &ev, char *fn);
     // pull_rate_modifier is the multiplier of link speed used when
     // determining pull rate.  Generally 1 for FatTree, probable 2 for BCube
     // as there are two distinct paths between each node pair.
 
-    void sendPacket(Packet *p, NdpTunnelPacket::seq_t pacerno, NdpTunnelSink *receiver);
+    void sendPacket(Packet *p, NdpTunnelPacket::seq_t pacerno,
+                    NdpTunnelSink *receiver);
     virtual void doNextEvent();
     void release_pulls(uint32_t flow_id);
 

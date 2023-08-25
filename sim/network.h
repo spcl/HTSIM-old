@@ -43,6 +43,21 @@ class PacketFlow : public Logged {
     TrafficLogger *_logger;
 };
 
+enum RouteStrategy {
+    NOT_SET,
+    SINGLE_PATH,
+    SCATTER_PERMUTE,
+    SCATTER_RANDOM,
+    PULL_BASED,
+    SCATTER_ECMP,
+    ECMP_FIB,
+    ECMP_FIB_ECN,
+    REACTIVE_ECN,
+    ECMP_FIB2_ECN,
+    ECMP_RANDOM2_ECN,
+    ECMP_RANDOM_ECN
+};
+
 typedef enum {
     IP,
     TCP,
@@ -157,6 +172,8 @@ class Packet {
     inline uint32_t dst() const { return _dst; }
     inline void set_dst(uint32_t dst) { _dst = dst; }
     inline uint32_t pathid() { return _pathid; }
+    int inc_id = 0;
+    int hop_count = 0;
 
     inline void set_pathid(uint32_t p) { _pathid = p; }
     const Route *route() const { return _route; }
@@ -192,6 +209,11 @@ class Packet {
         else {
             cout << "Current direction is " << _direction
                  << " trying to change it to " << d << endl;
+            printf("Wrong Direction %d vs %d is Size %d -  isAck %d - "
+                   "Destination %d "
+                   "%d - ID %d\n",
+                   d, _direction, size(), is_ack, to, dst(), my_idx);
+            fflush(stdout);
             abort();
         }
     }
@@ -230,8 +252,9 @@ class Packet {
 
     // logsim extensions
     bool is_ack = false;
+    int pathid_echo = 0;
 
-    uint32_t from, to, tag;
+    uint32_t from, to, tag, my_idx;
     int previous_queue_bts = 0;
     const Route *get_route() { return _route; };
     bool _queue_full; // Queue is full, BTS indicates packet drop
@@ -249,7 +272,7 @@ class Packet {
     static bool _packet_size_fixed; // prevent foot-shooting
 
     packet_type _type;
-    simtime_picosec _ts;
+    simtime_picosec _ts = 0;
 
     uint16_t _size, _oldsize;
 

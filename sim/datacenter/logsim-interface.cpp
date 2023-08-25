@@ -31,7 +31,7 @@ static bool print = false;
 LogSimInterface::LogSimInterface() {}
 
 LogSimInterface::LogSimInterface(UecLogger *logger, TrafficLogger *pktLogger,
-                                 EventList &eventList, Topology *topo,
+                                 EventList &eventList, FatTreeTopology *topo,
                                  std::vector<const Route *> ***routes) {
     _logger = logger;
     _flow = pktLogger;
@@ -73,6 +73,8 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
 
     // Create UEC Src and Dest
     if (_protocolName == UEC_PROTOCOL) {
+        printf("Starting1 UEC LGS Setup\n");
+        fflush(stdout);
         // This is updated inside UEC if it doesn't fit the default values
         uint64_t rtt = BASE_RTT_MODERN * 1000;
         uint64_t bdp = BDP_MODERN_UEC;
@@ -90,14 +92,13 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
 
         // Choose Path from possible routes
         printf("Options are %d\n", _netPaths[from][to]->size());
+        fflush(stdout);
         int choice = rand() % _netPaths[from][to]->size();
 
-        // Store info
-        Route *routeout = new Route(*(_netPaths[from][to]->at(choice)));
         Route *routein = new Route(*_topo->get_paths(to, from)->at(choice));
-
         UecSrc *uecSrc = new UecSrc(_logger, _flow, *_eventlist, rtt, bdp,
                                     queueDrainTime, routein->hop_count());
+
         uecSrc->setFlowSize(size);
         uecSrc->setReuse(_use_good_entropies);
         uecSrc->setIgnoreEcnAck(_ignore_ecn_ack);
@@ -122,22 +123,54 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         uecSink->to = to;
         uecSink->tag = tag;
 
-        routein->push_back(uecSrc);
-        routeout->push_back(uecSink);
+        printf("Checkpoint2\n");
+        fflush(stdout);
+
+        uecSrc->set_dst(to);
+        uecSink->set_src(from);
+
+        Route *srctotor = new Route();
+        srctotor->push_back(
+                _topo->queues_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]);
+        srctotor->push_back(
+                _topo->pipes_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]);
+        srctotor->push_back(
+                _topo->queues_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]
+                        ->getRemoteEndpoint());
+
+        Route *dsttotor = new Route();
+        dsttotor->push_back(
+                _topo->queues_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]);
+        dsttotor->push_back(
+                _topo->pipes_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]);
+        dsttotor->push_back(_topo->queues_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]
+                                    ->getRemoteEndpoint());
+
+        uecSrc->connect(srctotor, dsttotor, *uecSink, GLOBAL_TIME);
+        uecSrc->set_paths(path_entropy_size);
+        uecSink->set_paths(path_entropy_size);
+
+        // register src and snk to receive packets from their respective TORs.
+        assert(_topo->switches_lp[_topo->HOST_POD_SWITCH(from)]);
+        assert(_topo->switches_lp[_topo->HOST_POD_SWITCH(to)]);
+        _topo->switches_lp[_topo->HOST_POD_SWITCH(from)]->addHostPort(
+                from, uecSrc->flow_id(), uecSrc);
+        _topo->switches_lp[_topo->HOST_POD_SWITCH(to)]->addHostPort(
+                to, uecSrc->flow_id(), uecSink);
 
         // Actually connect src and dest
         _uecRtxScanner->registerUec(*uecSrc);
-        uecSrc->connect(*routeout, *routein, *uecSink, GLOBAL_TIME);
-        uecSrc->set_paths(_netPaths[from][to]);
-        uecSink->set_paths(_netPaths[to][from]);
+        printf("Finished UEC LGS Setup\n");
+        fflush(stdout);
     } else if (_protocolName == NDP_PROTOCOL) {
 
-        NdpSrc::setRouteStrategy(SCATTER_RANDOM);
-        NdpSink::setRouteStrategy(SCATTER_RANDOM);
+        // NdpSrc::setRouteStrategy(SCATTER_RANDOM);
+        // NdpSink::setRouteStrategy(SCATTER_RANDOM);
 
         NdpSrc *ndpSrc = new NdpSrc(NULL, NULL, *_eventlist);
         _ndpSrcVector.push_back(ndpSrc);
         ndpSrc->setCwnd(_cwd);
+        ndpSrc->set_dst(to);
         ndpSrc->set_flowsize(size);
         ndpSrc->set_flow_over_hook(std::bind(&LogSimInterface::flow_over, this,
                                              std::placeholders::_1));
@@ -150,34 +183,41 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         ndpSrc->to = to;
         ndpSrc->tag = tag;
         printf("sink tag is %d\n", ndpSnk->tag);
+        ndpSnk->set_src(from);
 
         ndpSrc->setName("NDP_" + std::to_string(from) + "_" +
                         std::to_string(to));
         ndpSnk->setName("NDP_Sink");
         _ndpRtxScanner->registerNdp(*ndpSrc);
 
-        if (!_netPaths[from][to]) {
-            vector<const Route *> *paths = _topo->get_paths(from, to);
-            _netPaths[from][to] = paths;
-        }
-        if (!_netPaths[to][from]) {
-            vector<const Route *> *paths = _topo->get_paths(to, from);
-            _netPaths[to][from] = paths;
-        }
+        Route *srctotor = new Route();
+        srctotor->push_back(
+                _topo->queues_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]);
+        srctotor->push_back(
+                _topo->pipes_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]);
+        srctotor->push_back(
+                _topo->queues_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]
+                        ->getRemoteEndpoint());
 
-        // Choose Path from possible routes
-        int choice = rand() % _netPaths[from][to]->size();
+        Route *dsttotor = new Route();
+        dsttotor->push_back(
+                _topo->queues_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]);
+        dsttotor->push_back(
+                _topo->pipes_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]);
+        dsttotor->push_back(_topo->queues_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]
+                                    ->getRemoteEndpoint());
 
-        Route *routeout = new Route(*(_netPaths[from][to]->at(choice)));
-        routeout->add_endpoints(ndpSrc, ndpSnk);
+        ndpSrc->connect(srctotor, dsttotor, *ndpSnk, GLOBAL_TIME);
+        ndpSrc->set_paths(path_entropy_size);
+        ndpSnk->set_paths(path_entropy_size);
 
-        Route *routein = new Route(*_topo->get_paths(to, from)->at(choice));
-        routein->add_endpoints(ndpSnk, ndpSrc);
-
-        ndpSrc->connect(routeout, routein, *ndpSnk, GLOBAL_TIME);
-
-        ndpSrc->set_paths(_netPaths[from][to]);
-        ndpSnk->set_paths(_netPaths[to][from]);
+        // register src and snk to receive packets from their respective TORs.
+        assert(_topo->switches_lp[_topo->HOST_POD_SWITCH(from)]);
+        assert(_topo->switches_lp[_topo->HOST_POD_SWITCH(to)]);
+        _topo->switches_lp[_topo->HOST_POD_SWITCH(from)]->addHostPort(
+                from, ndpSrc->flow_id(), ndpSrc);
+        _topo->switches_lp[_topo->HOST_POD_SWITCH(to)]->addHostPort(
+                to, ndpSrc->flow_id(), ndpSnk);
     }
 }
 
@@ -843,7 +883,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
     }
 
     if (ok) {
-        if (p <= 1024 && !0) { // print all hosts
+        if (p <= 10000 && !0) { // print all hosts
             printf("Times: \n");
             host = 0;
             for (uint i = 0; i < p; ++i) {

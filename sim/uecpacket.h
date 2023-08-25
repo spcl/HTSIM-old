@@ -13,12 +13,14 @@
 class UecPacket : public Packet {
   public:
     typedef uint64_t seq_t;
+    packet_direction _trim_direction;
 
     UecPacket() : Packet(){};
 
     inline static UecPacket *newpkt(PacketFlow &flow, const Route &route,
                                     seq_t seqno, seq_t dataseqno, int size,
-                                    bool retransmitted = false) {
+                                    bool retransmitted = false,
+                                    uint32_t destination = 99) {
         UecPacket *p = _packetdb.allocPacket();
         p->set_route(
                 flow, route, size + acksize,
@@ -33,6 +35,10 @@ class UecPacket : public Packet {
         p->_syn = false;
         p->_retransmitted = retransmitted;
         p->_flags = 0;
+        p->_direction = NONE;
+        p->_trim_direction = NONE;
+        p->set_dst(destination);
+        // printf("Destination5 is %d\n", destination);
         return p;
     }
 
@@ -54,6 +60,9 @@ class UecPacket : public Packet {
         p->to = source.to;
         p->tag = source.tag;
         p->_nexthop = source._nexthop;
+        p->set_dst(source.to);
+        p->_direction = NONE;
+        p->_trim_direction = NONE;
         return p;
     }
 
@@ -98,7 +107,8 @@ class UecAck : public Packet {
     UecAck() : Packet(){};
 
     inline static UecAck *newpkt(PacketFlow &flow, const Route &route,
-                                 seq_t seqno, seq_t ackno, seq_t dackno) {
+                                 seq_t seqno, seq_t ackno, seq_t dackno,
+                                 uint32_t destination = UINT32_MAX) {
         UecAck *p = _packetdb.allocPacket();
         p->set_route(flow, route, acksize, ackno);
         p->_bounced = false;
@@ -108,7 +118,9 @@ class UecAck : public Packet {
         p->_data_ackno = dackno;
         p->_is_header = true;
         p->_flags = 0;
-
+        // printf("Ack Destination %d\n", destination);
+        p->set_dst(destination);
+        p->_direction = NONE;
         return p;
     }
 
@@ -148,7 +160,8 @@ class UecNack : public Packet {
     UecNack() : Packet(){};
 
     inline static UecNack *newpkt(PacketFlow &flow, const Route &route,
-                                  seq_t seqno, seq_t ackno, seq_t dackno) {
+                                  seq_t seqno, seq_t ackno, seq_t dackno,
+                                  uint32_t destination = UINT32_MAX) {
         UecNack *p = _packetdb.allocPacket();
         p->set_route(flow, route, acksize, ackno);
         p->_bounced = false;
@@ -157,8 +170,9 @@ class UecNack : public Packet {
         p->_ackno = ackno;
         p->_data_ackno = dackno;
         p->_is_header = true;
+        p->_direction = NONE;
         p->_flags = 0;
-
+        p->set_dst(destination);
         return p;
     }
 

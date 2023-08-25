@@ -58,8 +58,12 @@ def main(args):
     name = ['0'] * df.shape[0]
     df = df.assign(Node=name)
 
+    print("Processing RTT")
+    i = 0
     pathlist = Path('rtt').glob('**/*.txt')
     for files in sorted(pathlist):
+        print(i)
+        i += 1
         path_in_str = str(files)
         temp_df = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
         name = [str(path_in_str)] * temp_df.shape[0]
@@ -77,6 +81,7 @@ def main(args):
         df.reset_index(drop=True, inplace=True)
 
     # Cwd Data
+    print("Processing CWD")
     colnames=['Time', 'Congestion Window'] 
     df2 = pd.DataFrame(columns =colnames)
     name = ['0'] * df2.shape[0]

@@ -3,6 +3,7 @@
 #define LOGSIM_INTERFACE
 
 #include "eventlist.h"
+#include "fat_tree_topology.h"
 #include "lgs/logsim.h"
 #include "uec.h"
 #include <string>
@@ -33,7 +34,7 @@ class LogSimInterface {
   public:
     LogSimInterface();
     LogSimInterface(UecLogger *logger, TrafficLogger *pktLogger,
-                    EventList &eventList, Topology *,
+                    EventList &eventList, FatTreeTopology *,
                     std::vector<const Route *> ***);
     std::unordered_map<std::string, MsgInfo> active_sends;
     std::unordered_map<std::string, UecSrc *> connection_log;
@@ -52,6 +53,8 @@ class LogSimInterface {
     void setNumberEntropies(int num_entropies) {
         _num_entropies = num_entropies;
     };
+    void setNumberPaths(int num_paths) { path_entropy_size = num_paths; };
+
     void set_queue_size(int queue_size) { _queuesize = queue_size; };
     std::unordered_map<std::string, MsgInfo> get_active_sends();
     void update_active_map(std::string, int);
@@ -67,7 +70,7 @@ class LogSimInterface {
     TrafficLogger *_flow;
     UecLogger *_logger;
     EventList *_eventlist;
-    Topology *_topo;
+    FatTreeTopology *_topo;
     std::vector<const Route *> ***_netPaths;
     int _cwd;
     graph_node_properties *_latest_recv;
@@ -83,6 +86,7 @@ class LogSimInterface {
     bool _ignore_ecn_ack;
     bool _ignore_ecn_data;
     int _num_entropies;
+    int path_entropy_size = 256;
 };
 
 int start_lgs(std::string, LogSimInterface &);

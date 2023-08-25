@@ -1,7 +1,7 @@
 // -*- c-basic-offset: 4; tab-width: 8; indent-tabs-mode: t -*-
-#include "uec.h"
 #include "ecn.h"
 #include "queue.h"
+#include "uec.h"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -1540,7 +1540,7 @@ bool UecSrc::ecn_congestion() {
 
 const string &UecSrc::nodename() { return _nodename; }
 
-void UecSrc::connect(const Route &routeout, const Route &routeback,
+void UecSrc::connect(const Route *routeout, const Route *routeback,
                      UecSink &sink, simtime_picosec startTime) {
     _route = &routeout;
 

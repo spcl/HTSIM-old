@@ -90,6 +90,7 @@ class FatTreeTopology : public Topology {
     BaseQueue *alloc_queue(QueueLogger *q, uint64_t speed, mem_b queuesize,
                            link_direction dir, bool tor);
     static void set_tiers(uint32_t tiers) { _tiers = tiers; }
+    static void set_os(uint32_t os) { _os = os; }
     static uint32_t get_tiers() { return _tiers; }
 
     void count_queue(Queue *);
@@ -154,6 +155,7 @@ class FatTreeTopology : public Topology {
     void set_params(uint32_t no_of_nodes);
     uint32_t K, NCORE, NAGG, NTOR, NSRV, NPOD;
     static uint32_t _tiers;
+    static uint32_t _os;
     uint32_t _no_of_nodes;
     mem_b _queuesize;
     linkspeed_bps _linkspeed;

@@ -48,11 +48,20 @@ class UecSrc : public PacketSink, public EventSource {
     void receivePacket(Packet &pkt) override;
     const string &nodename() override;
 
-    virtual void connect(const Route &routeout, const Route &routeback,
-                         UecSink &sink, simtime_picosec startTime);
+    virtual void connect(Route *routeout, Route *routeback, UecSink &sink,
+                         simtime_picosec startTime);
     void startflow();
     void set_paths(vector<const Route *> *rt);
+    void set_paths(uint32_t no_of_paths);
     void map_entropies();
+
+    void set_dst(uint32_t dst) {
+        printf("First Dest %d\n", dst);
+        _dstaddr = dst;
+    }
+
+    inline void set_flowid(flowid_t flow_id) { _flow.set_flowid(flow_id); }
+    inline flowid_t flow_id() const { return _flow.flow_id(); }
 
     void setCwnd(uint64_t cwnd) { _cwnd = cwnd; };
     void setReuse(bool reuse) { _use_good_entropies = reuse; };
@@ -84,6 +93,9 @@ class UecSrc : public PacketSink, public EventSource {
     uint32_t getRto() { return _rto; }
     bool supportsTrimming() { return _trimming_enabled; }
     std::size_t getEcnInTargetRtt();
+
+    int choose_route();
+    int next_route();
 
     void set_traffic_logger(TrafficLogger *pktlogger);
     static void set_queue_type(std::string value) { queue_type = value; }
@@ -118,6 +130,10 @@ class UecSrc : public PacketSink, public EventSource {
     static void set_w_gain(double value) { w_gain = value; }
     static void set_bonus_drop(double value) { bonus_drop = value; }
     static void set_buffer_drop(double value) { buffer_drop = value; }
+    static void setRouteStrategy(RouteStrategy strat) {
+        printf("Set Strategy Num %d\n", _route_strategy);
+        _route_strategy = strat;
+    }
 
     void set_flow_over_hook(std::function<void(const Packet &)> hook) {
         f_flow_over_hook = hook;
@@ -148,6 +164,7 @@ class UecSrc : public PacketSink, public EventSource {
     uint32_t count_total_ack = 0;
     uint64_t _last_acked;
     uint32_t _flight_size;
+    uint32_t _dstaddr;
     uint32_t _acked_packets;
     uint64_t _flow_start_time;
     uint64_t _next_check_window;
@@ -190,6 +207,7 @@ class UecSrc : public PacketSink, public EventSource {
     static double w_gain;
     static double bonus_drop;
     static double buffer_drop;
+    static RouteStrategy _route_strategy;
 
   private:
     uint32_t _unacked;
@@ -238,8 +256,20 @@ class UecSrc : public PacketSink, public EventSource {
     UecLogger *_logger;
     UecSink *_sink;
 
+    uint16_t _crt_direction;
+    vector<int> _path_ids;                 // path IDs to be used for ECMP FIB.
+    vector<const Route *> _paths;          // paths in current permutation order
+    vector<const Route *> _original_paths; // paths in original permutation
+                                           // order
     const Route *_route;
-    vector<const Route *> _paths;
+    // order
+    vector<int16_t> _path_acks;   // keeps path scores
+    vector<int16_t> _path_ecns;   // keeps path scores
+    vector<int16_t> _path_nacks;  // keeps path scores
+    vector<int16_t> _avoid_ratio; // keeps path scores
+    vector<int16_t> _avoid_score; // keeps path scores
+    vector<bool> _bad_path;       // keeps path scores
+
     PacketFlow _flow;
 
     string _nodename;
@@ -277,7 +307,9 @@ class UecSrc : public PacketSink, public EventSource {
     bool _enableDistanceBasedRtx;
     bool _trimming_enabled;
     bool _bts_enabled = true;
+    int _next_pathid;
     int _hop_count;
+    int data_count_idx = 0;
 
     vector<pair<simtime_picosec, int>> count_case_1;
     vector<pair<simtime_picosec, int>> count_case_2;
@@ -322,23 +354,35 @@ class UecSink : public PacketSink, public DataReceiver {
 
     uint64_t cumulative_ack() override;
     uint32_t drops() override;
-    void connect(UecSrc &src, const Route &route);
-    void set_paths(vector<const Route *> *rt);
+    void connect(UecSrc &src, const Route *route);
+    void set_paths(uint32_t num_paths);
+    void set_src(uint32_t s) { _srcaddr = s; }
     uint32_t from, to, tag;
+    static void setRouteStrategy(RouteStrategy strat) {
+        _route_strategy = strat;
+        printf("Set Strategy Num %d\n", _route_strategy);
+    }
+    static RouteStrategy _route_strategy;
 
   private:
     UecAck::seq_t _cumulative_ack;
     uint64_t _packets;
+    uint32_t _srcaddr;
     uint32_t _drops;
+    int ack_count_idx = 0;
     string _nodename;
     list<UecAck::seq_t> _received; // list of packets received OOO
     uint16_t _crt_path;
     const Route *_route;
     vector<const Route *> _paths;
+    vector<int> _path_ids;                 // path IDs to be used for ECMP FIB.
+    vector<const Route *> _original_paths; // paths in original permutation
+                                           // order
     UecSrc *_src;
 
     void send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
-                  UecAck::seq_t ackno, const Route *rt, const Route *inRoute);
+                  UecAck::seq_t ackno, const Route *rt, const Route *inRoute,
+                  int path_id);
     void send_nack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
                    UecAck::seq_t ackno, const Route *rt);
     bool already_received(UecPacket &pkt);

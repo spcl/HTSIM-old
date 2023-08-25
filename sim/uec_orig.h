@@ -48,7 +48,7 @@ class UecSrc : public PacketSink, public EventSource {
     void receivePacket(Packet &pkt) override;
     const string &nodename() override;
 
-    virtual void connect(const Route &routeout, const Route &routeback,
+    virtual void connect(const Route *routeout, const Route *routeback,
                          UecSink &sink, simtime_picosec startTime);
     void startflow();
     void set_paths(vector<const Route *> *rt);

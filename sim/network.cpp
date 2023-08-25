@@ -68,37 +68,22 @@ PacketSink *Packet::sendOn() {
             assert(_nexthop < _route->reverse()->size());
             // assert(_route->size() == _route->reverse()->size());
             nextsink = _route->reverse()->at(_nexthop);
+            // printf("Bounced\n");
             _nexthop++;
         } else {
             assert(_nexthop < _route->size());
 
-            if (_nexthop == 1 && (type() == UEC || type() == NDP)) {
-                /*printf("ID %d - Hop %d - Previous time %lu - New time %lu - "
-                       "%lu\n",
-                       id(), _nexthop, ts(), GLOBAL_TIME,
-                       SINGLE_PKT_TRASMISSION_TIME_MODERN);*/
-                set_ts(GLOBAL_TIME -
-                       (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000));
-
-                if (COLLECT_DATA) {
-                    _list_sent.push_back(std::make_pair(GLOBAL_TIME / 1000, 1));
-                    // Sent
-                    std::string file_name =
-                            "/home/tommaso/csg-htsim/sim/output/sent/s" +
-                            std::to_string(this->from) + ".txt ";
-                    std::ofstream MyFile(file_name, std::ios_base::app);
-
-                    MyFile << GLOBAL_TIME / 1000 << "," << 1 << std::endl;
-
-                    MyFile.close();
-                }
-            }
-
             nextsink = _route->at(_nexthop);
             _nexthop++;
+
+            /*printf("ID %d - Hop %d - %s\n", id(), _nexthop,
+                   nextsink->nodename().c_str());*/
         }
-    } else if (_next_routed_hop)
+    } else if (_next_routed_hop) {
         nextsink = _next_routed_hop;
+        // printf("Test\n");
+    }
+
     else {
         assert(0);
     }
@@ -110,6 +95,7 @@ PacketSink *Packet::sendOn() {
 PacketSink *Packet::sendOn2(VirtualQueue *crtSink) {
     PacketSink *nextsink;
     if (_route) {
+        // printf("Here");
         if (_bounced) {
             assert(_nexthop > 0);
             assert(_nexthop < _route->size());
