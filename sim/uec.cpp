@@ -70,7 +70,7 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     _crt_path = 0;
     _flow_size = _mss * 934;
     _trimming_enabled = true;
-    target_window = _cwnd;
+
     _next_pathid = 1;
 
     _bdp = (_base_rtt * LINK_SPEED_MODERN / 8) / 1000;
@@ -81,7 +81,7 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     _maxcwnd = _bdp * 1;
     _cwnd = _bdp * 1;
     _consecutive_low_rtt = 0;
-
+    target_window = _cwnd;
     _target_based_received = true;
 
     _max_good_entropies = 10; // TODO: experimental value
@@ -935,7 +935,7 @@ void UecSrc::receivePacket(Packet &pkt) {
         }
         break;
     case UECACK:
-        // printf("NORMALACK, %d at %lu\n", pkt.from, GLOBAL_TIME);
+
         fflush(stdout);
         count_received++;
         processAck(dynamic_cast<UecAck &>(pkt), false);
@@ -1714,6 +1714,8 @@ void UecSrc::send_packets() {
         case REACTIVE_ECN: {
             p->set_route(*_route);
             int crt = choose_route();
+            crt = random() % _paths.size();
+
             p->set_pathid(_path_ids[crt]);
             break;
         }
@@ -2180,7 +2182,8 @@ void UecSink::send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
     ack->is_ack = true;
     ack->flow().logTraffic(*ack, *this, TrafficLogger::PKT_CREATE);
     ack->set_ts(ts);
-    printf("Setting TS to %lu at %lu\n", ts / 1000, GLOBAL_TIME / 1000);
+    printf("NORMALACK, %d at %lu\n", this->from, GLOBAL_TIME);
+    // printf("Setting TS to %lu at %lu\n", ts / 1000, GLOBAL_TIME / 1000);
     ack->from = this->from;
     ack->to = this->to;
     ack->tag = this->tag;

@@ -63,21 +63,29 @@ void FatTreeSwitch::receivePacket(Packet &pkt) {
 
         pkt.hop_count++;
 
-        printf("At %s - Hop %d - Time %lu\n", nodename().c_str(), pkt.hop_count,
-               GLOBAL_TIME);
+        // printf("At %s - Hop %d - Time %lu\n", nodename().c_str(),
+        // pkt.hop_count,
+        //        GLOBAL_TIME);
 
         if ((pkt.hop_count == 1) && (pkt.type() == UEC || pkt.type() == NDP)) {
             pkt.set_ts(GLOBAL_TIME -
                        (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000) -
                        (LINK_DELAY_MODERN * 1000));
 
-            printf("ID %d - Hop %d - Previous time %lu - New time %lu - "
+            /*printf("ID %d - Hop %d - Previous time %lu - New time %lu - "
                    "%lu %lu - Name %s\n",
                    pkt.id(), 1, 0, GLOBAL_TIME,
                    SINGLE_PKT_TRASMISSION_TIME_MODERN,
                    GLOBAL_TIME - (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000) -
                            (LINK_DELAY_MODERN * 1000),
-                   nodename().c_str());
+                   nodename().c_str());*/
+            printf("From %d - Switch %s - Hop %d - %d\n", pkt.from,
+                   nodename().c_str(), pkt.hop_count, GLOBAL_TIME / 1000);
+        }
+
+        if ((pkt.hop_count == 2) && (pkt.type() == UEC || pkt.type() == NDP)) {
+            printf("From %d - Switch %s - Hop %d - %d\n", pkt.from,
+                   nodename().c_str(), pkt.hop_count, GLOBAL_TIME / 1000);
         }
 
         pkt.sendOn();

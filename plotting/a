@@ -1,128 +1,495 @@
-no_of_nodes 16
-cwnd 118500
-Speed is 100000
+no_of_nodes 128
+cwnd 888500
+Speed is 800000
 Using subflow count 1
 Logging to uec_entry
 Logging path choices to uec_entry.paths
 Name Running: NDP
 Fat Tree topology with 0.7us links and 0us switching latency.
-Set params 16
-QueueSize 1018500
-_no_of_nodes 16
-K 4
+Set params 128
+QueueSize 880500
+_no_of_nodes 128
+K 8
 Queue type 3
 Starting LGS InterfaceCurrent working directory: "/home/tommaso/csg-htsim/plotting"
-LogGP network backend; size: 16 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O=0, P=16, S=65535
-Starting 16
-----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 2 - 0 15 0
-sink tag is 0
-Scheduling Event (0@15@0) of size 6000 from 0 to 15 tag 0 start_tiem 112 - Time is 0
- ++ size is 0,  host [15] searching matching queue for src target 0 tag 0
+LogGP network backend; size: 128 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O=0, P=128, S=65535
+Starting 128
+----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 16 - 0 64 0
+sink tag is 695050552
+Scheduling Event (0@64@0) of size 100000 from 0 to 64 tag 0 start_tiem 80 - Time is 0
+ sink tag is 0
+Scheduling Event (1@64@0) of size 100000 from 1 to 64 tag 0 start_tiem 80 - Time is 0
+ sink tag is 0
+Scheduling Event (2@64@0) of size 100000 from 2 to 64 tag 0 start_tiem 80 - Time is 0
+ sink tag is 0
+Scheduling Event (3@64@0) of size 100000 from 3 to 64 tag 0 start_tiem 80 - Time is 0
+ sink tag is 0
+Scheduling Event (4@64@0) of size 100000 from 4 to 64 tag 0 start_tiem 80 - Time is 0
+ sink tag is 0
+Scheduling Event (5@64@0) of size 100000 from 5 to 64 tag 0 start_tiem 80 - Time is 0
+ sink tag is 0
+Scheduling Event (6@64@0) of size 100000 from 6 to 64 tag 0 start_tiem 80 - Time is 0
+ sink tag is 0
+Scheduling Event (7@64@0) of size 100000 from 7 to 64 tag 0 start_tiem 80 - Time is 0
+ ++ size is 0,  host [64] searching matching queue for src target 0 tag 0
+++ size is 0,  host [64] searching matching queue for src target 1 tag 0
+++ size is 0,  host [64] searching matching queue for src target 2 tag 0
+++ size is 0,  host [64] searching matching queue for src target 3 tag 0
+++ size is 0,  host [64] searching matching queue for src target 4 tag 0
+++ size is 0,  host [64] searching matching queue for src target 5 tag 0
+++ size is 0,  host [64] searching matching queue for src target 6 tag 0
+++ size is 0,  host [64] searching matching queue for src target 7 tag 0
 Current elem time is 0 while NS3 0
 Simulating Until Called
-startflow NDP_0_15 CWND 118500 rts 0 at 0
-ID 8192 - Hop 1 - queue(100000Mb/s,8192000bytes)SRC0->LS0
-ID 8192 - Hop 2 - pipe(0us)
-ID 8192 - Hop 3 - Switch_LowerPod_0
-ID 8192 - Hop 1 - Previous time 0 - New time 1360 - 40 - Name Switch_LowerPod_0
-Packet Destination is 3 15
-Here2 8256 15 - Hops Size 2 - IdxID 0 - Inc ID 0 - Direction 1 - MyId 20 Switch_LowerPod_0
-ID 8192 - Hop 1 - Previous time 1320480 - New time 1360 - 40 - Name Switch_LowerPod_0
-Packet Destination is 3 15
-ID 8192 - Hop 1 - compqueue(100000Mb/s,1018500bytes)LS0->US0
-ID 8192 - Hop 2 - pipe(0us)
-ID 8192 - Hop 3 - Switch_UpperPod_0
-Packet Destination is 3 15
-Dest 15 - FTK 4 - k 0 - HOSTPOD 3 - 8256
-ID 0 - K 0- Next Upper 6
-Dest 15 - FTK 4 - k 1 - HOSTPOD 3 - 8256
-ID 0 - K 1- Next Upper 6
-Here2 8256 15 - Hops Size 2 - IdxID 0 - Inc ID 0 - Direction 1 - MyId 20 Switch_UpperPod_0
-Packet Destination is 3 15
-ID 8192 - Hop 1 - compqueue(100000Mb/s,1018500bytes)US0->CS1
-ID 8192 - Hop 2 - pipe(0us)
-ID 8192 - Hop 3 - Switch_Core_1
-Packet Destination is 3 15
-Here2 8256 15 - Hops Size 1 - IdxID 0 - Inc ID 0 - Direction 2 - MyId 20 Switch_Core_1
-Packet Destination is 3 15
-ID 8192 - Hop 1 - compqueue(100000Mb/s,1018500bytes)CS1->US6
-ID 8192 - Hop 2 - pipe(0us)
-ID 8192 - Hop 3 - Switch_UpperPod_6
-Packet Destination is 3 15
-Here2 8256 15 - Hops Size 1 - IdxID 0 - Inc ID 0 - Direction 2 - MyId 20 Switch_UpperPod_6
-Packet Destination is 3 15
-ID 8192 - Hop 1 - compqueue(100000Mb/s,1018500bytes)US6->LS_7
-ID 8192 - Hop 2 - pipe(0us)
-ID 8192 - Hop 3 - Switch_LowerPod_7
-ID 8192 - Hop 1 - Previous time 1320480 - New time 6802 - 40 - Name Switch_LowerPod_7
-Packet Destination is 3 15
-Here 8256 15
-ID 8192 - Hop 1 - Previous time 6762400 - New time 6802 - 40 - Name Switch_LowerPod_7
-Packet Destination is 3 15
-ID 8192 - Hop 1 - compqueue(100000Mb/s,1018500bytes)LS7->DST15
-ID 8192 - Hop 2 - pipe(0us)
-ID 8192 - Hop 3 - ndpsink
+startflow NDP_0_64 CWND 888500 rts 0 at 0
+startflow NDP_1_64 CWND 888500 rts 0 at 0
+startflow NDP_2_64 CWND 888500 rts 0 at 0
+startflow NDP_3_64 CWND 888500 rts 0 at 0
+startflow NDP_4_64 CWND 888500 rts 0 at 0
+startflow NDP_5_64 CWND 888500 rts 0 at 0
+startflow NDP_6_64 CWND 888500 rts 0 at 0
+startflow NDP_7_64 CWND 888500 rts 0 at 0
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 782
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 782
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 782
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 782
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 782
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 782
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 782
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 782
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 865
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 865
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 865
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 865
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 865
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 865
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 865
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 865
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 947
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 947
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 947
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 947
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 947
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 947
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 947
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 947
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 1030
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 1030
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 1030
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 1030
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 1030
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 1030
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 1030
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 1030
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 1112
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 1112
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 1112
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 1112
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 1112
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 1112
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 1112
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 1112
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 1195
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 1195
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 1195
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 1195
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 1195
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 1195
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 1195
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 1195
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 1277
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 1277
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 1277
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 1277
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 1277
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 1277
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 1277
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 1277
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 1360
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 1360
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 1360
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 1360
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 1360
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 1360
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 1360
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 1360
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 1443
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 1443
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 1443
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 1443
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 1443
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 1443
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 1443
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 1443
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 1525
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 1525
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 1525
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 1525
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 1525
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 1525
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 1525
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 1525
+From 0 - Switch Switch_UpperPod_2 - Hop 2 - 1565
+From 4 - Switch Switch_UpperPod_0 - Hop 2 - 1565
+From 5 - Switch Switch_UpperPod_1 - Hop 2 - 1565
+From 7 - Switch Switch_UpperPod_3 - Hop 2 - 1565
+From 2 - Switch Switch_UpperPod_0 - Hop 2 - 1565
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 1608
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 1608
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 1608
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 1608
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 1608
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 1608
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 1608
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 1608
+From 0 - Switch Switch_UpperPod_3 - Hop 2 - 1647
+From 1 - Switch Switch_UpperPod_1 - Hop 2 - 1647
+From 1 - Switch Switch_UpperPod_2 - Hop 2 - 1647
+From 6 - Switch Switch_UpperPod_0 - Hop 2 - 1647
+From 6 - Switch Switch_UpperPod_3 - Hop 2 - 1647
+From 5 - Switch Switch_UpperPod_1 - Hop 2 - 1647
+From 3 - Switch Switch_UpperPod_0 - Hop 2 - 1647
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 1690
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 1690
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 1690
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 1690
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 1690
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 1690
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 1690
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 1690
+From 7 - Switch Switch_UpperPod_2 - Hop 2 - 1730
+From 3 - Switch Switch_UpperPod_1 - Hop 2 - 1730
+From 4 - Switch Switch_UpperPod_0 - Hop 2 - 1730
+From 4 - Switch Switch_UpperPod_3 - Hop 2 - 1730
+From 3 - Switch Switch_UpperPod_2 - Hop 2 - 1730
+From 7 - Switch Switch_UpperPod_1 - Hop 2 - 1730
+From 2 - Switch Switch_UpperPod_0 - Hop 2 - 1730
+From 0 - Switch Switch_LowerPod_0 - Hop 1 - 1773
+From 4 - Switch Switch_LowerPod_1 - Hop 1 - 1773
+From 1 - Switch Switch_LowerPod_0 - Hop 1 - 1773
+From 5 - Switch Switch_LowerPod_1 - Hop 1 - 1773
+From 2 - Switch Switch_LowerPod_0 - Hop 1 - 1773
+From 6 - Switch Switch_LowerPod_1 - Hop 1 - 1773
+From 3 - Switch Switch_LowerPod_0 - Hop 1 - 1773
+From 7 - Switch Switch_LowerPod_1 - Hop 1 - 1773
+From 1 - Switch Switch_UpperPod_3 - Hop 2 - 1812
+From 0 - Switch Switch_UpperPod_1 - Hop 2 - 1812
+From 0 - Switch Switch_UpperPod_2 - Hop 2 - 1812
+From 4 - Switch Switch_UpperPod_0 - Hop 2 - 1812
+From 5 - Switch Switch_UpperPod_1 - Hop 2 - 1812
+From 2 - Switch Switch_UpperPod_0 - Hop 2 - 1812
+From 6 - Switch Switch_UpperPod_2 - Hop 2 - 1895
+From 2 - Switch Switch_UpperPod_3 - Hop 2 - 1895
+From 6 - Switch Switch_UpperPod_0 - Hop 2 - 1895
+From 6 - Switch Switch_UpperPod_1 - Hop 2 - 1895
+From 1 - Switch Switch_UpperPod_2 - Hop 2 - 1895
+From 1 - Switch Switch_UpperPod_0 - Hop 2 - 1895
+From 7 - Switch Switch_UpperPod_3 - Hop 2 - 1977
+From 3 - Switch Switch_UpperPod_1 - Hop 2 - 1977
+From 2 - Switch Switch_UpperPod_2 - Hop 2 - 1977
+From 4 - Switch Switch_UpperPod_0 - Hop 2 - 1977
+From 1 - Switch Switch_UpperPod_3 - Hop 2 - 1977
+From 5 - Switch Switch_UpperPod_1 - Hop 2 - 1977
+From 0 - Switch Switch_UpperPod_0 - Hop 2 - 1977
+From 4 - Switch Switch_UpperPod_2 - Hop 2 - 2060
+From 6 - Switch Switch_UpperPod_3 - Hop 2 - 2060
+From 0 - Switch Switch_UpperPod_1 - Hop 2 - 2060
+From 5 - Switch Switch_UpperPod_0 - Hop 2 - 2060
+From 3 - Switch Switch_UpperPod_2 - Hop 2 - 2060
+From 2 - Switch Switch_UpperPod_3 - Hop 2 - 2060
+From 7 - Switch Switch_UpperPod_1 - Hop 2 - 2060
+From 2 - Switch Switch_UpperPod_0 - Hop 2 - 2060
+From 5 - Switch Switch_UpperPod_2 - Hop 2 - 2143
+From 4 - Switch Switch_UpperPod_3 - Hop 2 - 2143
+From 1 - Switch Switch_UpperPod_1 - Hop 2 - 2143
+From 6 - Switch Switch_UpperPod_0 - Hop 2 - 2143
+From 0 - Switch Switch_UpperPod_2 - Hop 2 - 2143
+From 3 - Switch Switch_UpperPod_3 - Hop 2 - 2143
+From 7 - Switch Switch_UpperPod_1 - Hop 2 - 2143
+From 1 - Switch Switch_UpperPod_0 - Hop 2 - 2143
+From 7 - Switch Switch_UpperPod_2 - Hop 2 - 2225
+From 7 - Switch Switch_UpperPod_3 - Hop 2 - 2225
+From 3 - Switch Switch_UpperPod_1 - Hop 2 - 2225
+From 5 - Switch Switch_UpperPod_0 - Hop 2 - 2225
+From 3 - Switch Switch_UpperPod_2 - Hop 2 - 2225
+From 1 - Switch Switch_UpperPod_3 - Hop 2 - 2225
+From 4 - Switch Switch_UpperPod_1 - Hop 2 - 2225
+From 2 - Switch Switch_UpperPod_0 - Hop 2 - 2225
+From 5 - Switch Switch_UpperPod_3 - Hop 2 - 2308
+From 0 - Switch Switch_UpperPod_1 - Hop 2 - 2308
+From 3 - Switch Switch_UpperPod_2 - Hop 2 - 2308
+From 6 - Switch Switch_UpperPod_0 - Hop 2 - 2308
+From 5 - Switch Switch_UpperPod_1 - Hop 2 - 2308
+From 0 - Switch Switch_UpperPod_0 - Hop 2 - 2308
+From 4 - Switch Switch_UpperPod_2 - Hop 2 - 2390
+From 7 - Switch Switch_UpperPod_3 - Hop 2 - 2390
+From 3 - Switch Switch_UpperPod_1 - Hop 2 - 2390
+From 4 - Switch Switch_UpperPod_0 - Hop 2 - 2390
+From 2 - Switch Switch_UpperPod_2 - Hop 2 - 2390
+From 7 - Switch Switch_UpperPod_1 - Hop 2 - 2390
+From 2 - Switch Switch_UpperPod_0 - Hop 2 - 2390
+From 0 - Switch Switch_UpperPod_3 - Hop 2 - 2473
+From 6 - Switch Switch_UpperPod_2 - Hop 2 - 2473
+From 0 - Switch Switch_UpperPod_1 - Hop 2 - 2473
+From 5 - Switch Switch_UpperPod_0 - Hop 2 - 2473
+From 5 - Switch Switch_UpperPod_3 - Hop 2 - 2473
+From 3 - Switch Switch_UpperPod_2 - Hop 2 - 2473
+From 6 - Switch Switch_UpperPod_1 - Hop 2 - 2473
+From 0 - Switch Switch_UpperPod_0 - Hop 2 - 2473
+From 0 - Switch Switch_UpperPod_3 - Hop 2 - 2555
+From 7 - Switch Switch_UpperPod_2 - Hop 2 - 2555
+From 1 - Switch Switch_UpperPod_1 - Hop 2 - 2555
+From 4 - Switch Switch_UpperPod_0 - Hop 2 - 2555
+From 4 - Switch Switch_UpperPod_3 - Hop 2 - 2555
+From 2 - Switch Switch_UpperPod_2 - Hop 2 - 2555
+From 7 - Switch Switch_UpperPod_1 - Hop 2 - 2555
+From 3 - Switch Switch_UpperPod_0 - Hop 2 - 2555
+From 1 - Switch Switch_UpperPod_3 - Hop 2 - 2638
+From 6 - Switch Switch_UpperPod_2 - Hop 2 - 2638
+From 2 - Switch Switch_UpperPod_1 - Hop 2 - 2638
+From 6 - Switch Switch_UpperPod_0 - Hop 2 - 2638
+From 5 - Switch Switch_UpperPod_3 - Hop 2 - 2638
+From 6 - Switch Switch_UpperPod_1 - Hop 2 - 2638
+From 5 - Switch Switch_UpperPod_3 - Hop 2 - 2720
+From 1 - Switch Switch_UpperPod_1 - Hop 2 - 2720
+From 4 - Switch Switch_UpperPod_0 - Hop 2 - 2720
+From 3 - Switch Switch_UpperPod_1 - Hop 2 - 2803
+From 7 - Switch Switch_UpperPod_0 - Hop 2 - 2803
+From 1 - Switch Switch_UpperPod_1 - Hop 2 - 2886
+From 2 - Switch Switch_UpperPod_1 - Hop 2 - 2968
 Sending ACk FlowID 1000000000 - SrcAddr 0
-ID 1 - Hop 1 - queue(100000Mb/s,8192000bytes)SRC15->LS7
-ID 1 - Hop 2 - pipe(0us)
-ID 1 - Hop 3 - Switch_LowerPod_7
-Packet Destination is 3 0
-Here2 64 0 - Hops Size 2 - IdxID 0 - Inc ID 1 - Direction 1 - MyId 20 Switch_LowerPod_7
-Packet Destination is 3 0
-ID 1 - Hop 1 - compqueue(100000Mb/s,1018500bytes)LS7->US7
-ID 1 - Hop 2 - pipe(0us)
-ID 1 - Hop 3 - Switch_UpperPod_7
-Packet Destination is 3 0
-Dest 0 - FTK 4 - k 2 - HOSTPOD 0 - 64
-ID 7 - K 2- Next Upper 1
-Dest 0 - FTK 4 - k 3 - HOSTPOD 0 - 64
-ID 7 - K 3- Next Upper 1
-Here2 64 0 - Hops Size 2 - IdxID 0 - Inc ID 1 - Direction 1 - MyId 20 Switch_UpperPod_7
-Packet Destination is 3 0
-ID 1 - Hop 1 - compqueue(100000Mb/s,1018500bytes)US7->CS3
-ID 1 - Hop 2 - pipe(0us)
-ID 1 - Hop 3 - Switch_Core_3
-Packet Destination is 3 0
-Here2 64 0 - Hops Size 1 - IdxID 0 - Inc ID 1 - Direction 2 - MyId 20 Switch_Core_3
-Packet Destination is 3 0
-ID 1 - Hop 1 - compqueue(100000Mb/s,1018500bytes)CS3->US1
-ID 1 - Hop 2 - pipe(0us)
-ID 1 - Hop 3 - Switch_UpperPod_1
-Packet Destination is 3 0
-Here2 64 0 - Hops Size 1 - IdxID 0 - Inc ID 1 - Direction 2 - MyId 20 Switch_UpperPod_1
-Packet Destination is 3 0
-ID 1 - Hop 1 - compqueue(100000Mb/s,1018500bytes)US1->LS_0
-ID 1 - Hop 2 - pipe(0us)
-ID 1 - Hop 3 - Switch_LowerPod_0
-Packet Destination is 3 0
-Here 64 0
-Packet Destination is 3 0
-ID 1 - Hop 1 - compqueue(100000Mb/s,1018500bytes)LS0->DST0
-ID 1 - Hop 2 - pipe(0us)
-ID 1 - Hop 3 - ndpsrc 0
-Flow Finished 0@15@0 at 12393600
-Flow NDP_0_15 flow_id 1000000000 finished at 12.3936 total bytes 8192
-Completion Time Flow is 12393600
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000000 - SrcAddr 0
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000005 - SrcAddr 5
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000004 - SrcAddr 4
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000006 - SrcAddr 6
+Sending ACk FlowID 1000000003 - SrcAddr 3
+Sending ACk FlowID 1000000007 - SrcAddr 7
+Sending ACk FlowID 1000000001 - SrcAddr 1
+Sending ACk FlowID 1000000002 - SrcAddr 2
+Currently2 at 10
+Flow Finished 0@64@0 at 16164480
+Flow NDP_0_64 flow_id 1000000000 finished at 16.1645 total bytes 106496
+Completion Time Flow is 16164480
 Total NACK Flow is 0
-Running - 1 - 12393600
-Updated - Time 12393600
-..... Received a MSG -- host 15 to target 0, proc 0 - Type 1
-----------------------------    ENTERING WHILE        // ---------------------------- | 12393600 12393600 -  1 0 - 1 0 1 - 15 0 0
-OP MSGnexto[elem.host][elem.proc] 0 (15 0) - nextgr[elem.host][elem.nic] 0( 15  0) - time  12393600
-++ size is 1,  host [15] searching matching queue for src target 0 tag 0
+Running - 1 - 16164480
+Updated - Time 16164480
+..... Received a MSG -- host 64 to target 0, proc 0 - Type 1
+----------------------------    ENTERING WHILE        // ---------------------------- | 16164480 16164480 -  1 0 - 8 0 1 - 64 0 0
+OP MSGnexto[elem.host][elem.proc] 0 (64 0) - nextgr[elem.host][elem.nic] 0( 64  0) - time  16164480
+++ size is 8,  host [64] searching matching queue for src target 0 tag 0
 Compared element is -> 0 0 vs 0 0
-Searching for MATCHCurrent elem time is 12393600 while NS3 12393600
+Searching for MATCHCurrent elem time is 16164480 while NS3 16164480
+Simulating Until Called
+Flow Finished 5@64@0 at 16329600
+Flow NDP_5_64 flow_id 1000000005 finished at 16.3296 total bytes 106496
+Completion Time Flow is 16329600
+Total NACK Flow is 0
+Running - 1 - 16329600
+Updated - Time 16329600
+..... Received a MSG -- host 64 to target 5, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 16329600 16329600 -  1 0 - 7 0 1 - 64 5 0
+OP MSGnexto[elem.host][elem.proc] 16164480 (64 0) - nextgr[elem.host][elem.nic] 16164480( 64  0) - time  16329600
+++ size is 7,  host [64] searching matching queue for src target 5 tag 0
+Compared element is -> 1 0 vs 5 0
+Compared element is -> 2 0 vs 5 0
+Compared element is -> 3 0 vs 5 0
+Compared element is -> 4 0 vs 5 0
+Compared element is -> 5 0 vs 5 0
+Searching for MATCHCurrent elem time is 16329600 while NS3 16329600
+Simulating Until Called
+Flow Finished 4@64@0 at 16907520
+Flow NDP_4_64 flow_id 1000000004 finished at 16.9075 total bytes 106496
+Completion Time Flow is 16907520
+Total NACK Flow is 0
+Running - 1 - 16907520
+Updated - Time 16907520
+..... Received a MSG -- host 64 to target 4, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 16907520 16907520 -  1 0 - 6 0 1 - 64 4 0
+OP MSGnexto[elem.host][elem.proc] 16329600 (64 0) - nextgr[elem.host][elem.nic] 16329600( 64  0) - time  16907520
+++ size is 6,  host [64] searching matching queue for src target 4 tag 0
+Compared element is -> 1 0 vs 4 0
+Compared element is -> 2 0 vs 4 0
+Compared element is -> 3 0 vs 4 0
+Compared element is -> 4 0 vs 4 0
+Searching for MATCHCurrent elem time is 16907520 while NS3 16907520
+Simulating Until Called
+Flow Finished 6@64@0 at 17072640
+Flow NDP_6_64 flow_id 1000000006 finished at 17.0726 total bytes 106496
+Completion Time Flow is 17072640
+Total NACK Flow is 0
+Running - 1 - 17072640
+Updated - Time 17072640
+..... Received a MSG -- host 64 to target 6, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 17072640 17072640 -  1 0 - 5 0 1 - 64 6 0
+OP MSGnexto[elem.host][elem.proc] 16907520 (64 0) - nextgr[elem.host][elem.nic] 16907520( 64  0) - time  17072640
+++ size is 5,  host [64] searching matching queue for src target 6 tag 0
+Compared element is -> 1 0 vs 6 0
+Compared element is -> 2 0 vs 6 0
+Compared element is -> 3 0 vs 6 0
+Compared element is -> 6 0 vs 6 0
+Searching for MATCHCurrent elem time is 17072640 while NS3 17072640
+Simulating Until Called
+Flow Finished 3@64@0 at 17155200
+Flow NDP_3_64 flow_id 1000000003 finished at 17.1552 total bytes 106496
+Completion Time Flow is 17155200
+Total NACK Flow is 0
+Running - 1 - 17155200
+Updated - Time 17155200
+..... Received a MSG -- host 64 to target 3, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 17155200 17155200 -  1 0 - 4 0 1 - 64 3 0
+OP MSGnexto[elem.host][elem.proc] 17072640 (64 0) - nextgr[elem.host][elem.nic] 17072640( 64  0) - time  17155200
+++ size is 4,  host [64] searching matching queue for src target 3 tag 0
+Compared element is -> 1 0 vs 3 0
+Compared element is -> 2 0 vs 3 0
+Compared element is -> 3 0 vs 3 0
+Searching for MATCHCurrent elem time is 17155200 while NS3 17155200
+Simulating Until Called
+Flow Finished 7@64@0 at 17237760
+Flow NDP_7_64 flow_id 1000000007 finished at 17.2378 total bytes 106496
+Completion Time Flow is 17237760
+Total NACK Flow is 0
+Running - 1 - 17237760
+Updated - Time 17237760
+..... Received a MSG -- host 64 to target 7, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 17237760 17237760 -  1 0 - 3 0 1 - 64 7 0
+OP MSGnexto[elem.host][elem.proc] 17155200 (64 0) - nextgr[elem.host][elem.nic] 17155200( 64  0) - time  17237760
+++ size is 3,  host [64] searching matching queue for src target 7 tag 0
+Compared element is -> 1 0 vs 7 0
+Compared element is -> 2 0 vs 7 0
+Compared element is -> 7 0 vs 7 0
+Searching for MATCHCurrent elem time is 17237760 while NS3 17237760
+Simulating Until Called
+Flow Finished 1@64@0 at 17320320
+Flow NDP_1_64 flow_id 1000000001 finished at 17.3203 total bytes 106496
+Completion Time Flow is 17320320
+Total NACK Flow is 0
+Running - 1 - 17320320
+Updated - Time 17320320
+..... Received a MSG -- host 64 to target 1, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 17320320 17320320 -  1 0 - 2 0 1 - 64 1 0
+OP MSGnexto[elem.host][elem.proc] 17237760 (64 0) - nextgr[elem.host][elem.nic] 17237760( 64  0) - time  17320320
+++ size is 2,  host [64] searching matching queue for src target 1 tag 0
+Compared element is -> 1 0 vs 1 0
+Searching for MATCHCurrent elem time is 17320320 while NS3 17320320
+Simulating Until Called
+Flow Finished 2@64@0 at 17402880
+Flow NDP_2_64 flow_id 1000000002 finished at 17.4029 total bytes 106496
+Completion Time Flow is 17402880
+Total NACK Flow is 0
+Running - 1 - 17402880
+Updated - Time 17402880
+..... Received a MSG -- host 64 to target 2, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 17402880 17402880 -  1 0 - 1 0 1 - 64 2 0
+OP MSGnexto[elem.host][elem.proc] 17320320 (64 0) - nextgr[elem.host][elem.nic] 17320320( 64  0) - time  17402880
+++ size is 1,  host [64] searching matching queue for src target 2 tag 0
+Compared element is -> 2 0 vs 2 0
+Searching for MATCHCurrent elem time is 17402880 while NS3 17402880
 ..... NOT Received a MSG
 
 
-RunTime Total LGS -> 0ms
+RunTime Total LGS -> 3ms
 
 
-htsim Terminates at 12393600
+htsim Terminates at 17402880
 
 
-Remaining 16
-PERFORMANCE: Processes: 16 	 Events: 2 	 Time: 0 s 	 Speed: inf ev/s
+Remaining 128
+PERFORMANCE: Processes: 128 	 Events: 16 	 Time: 0 s 	 Speed: inf ev/s
 AQ is 0
 Times: 
 Host 0: 0
@@ -140,6 +507,118 @@ Host 11: 0
 Host 12: 0
 Host 13: 0
 Host 14: 0
-Host 15: 12393600
-Maximum finishing time at host 15: 12393600 (0.0123936 s)
+Host 15: 0
+Host 16: 0
+Host 17: 0
+Host 18: 0
+Host 19: 0
+Host 20: 0
+Host 21: 0
+Host 22: 0
+Host 23: 0
+Host 24: 0
+Host 25: 0
+Host 26: 0
+Host 27: 0
+Host 28: 0
+Host 29: 0
+Host 30: 0
+Host 31: 0
+Host 32: 0
+Host 33: 0
+Host 34: 0
+Host 35: 0
+Host 36: 0
+Host 37: 0
+Host 38: 0
+Host 39: 0
+Host 40: 0
+Host 41: 0
+Host 42: 0
+Host 43: 0
+Host 44: 0
+Host 45: 0
+Host 46: 0
+Host 47: 0
+Host 48: 0
+Host 49: 0
+Host 50: 0
+Host 51: 0
+Host 52: 0
+Host 53: 0
+Host 54: 0
+Host 55: 0
+Host 56: 0
+Host 57: 0
+Host 58: 0
+Host 59: 0
+Host 60: 0
+Host 61: 0
+Host 62: 0
+Host 63: 0
+Host 64: 17402880
+Host 65: 0
+Host 66: 0
+Host 67: 0
+Host 68: 0
+Host 69: 0
+Host 70: 0
+Host 71: 0
+Host 72: 0
+Host 73: 0
+Host 74: 0
+Host 75: 0
+Host 76: 0
+Host 77: 0
+Host 78: 0
+Host 79: 0
+Host 80: 0
+Host 81: 0
+Host 82: 0
+Host 83: 0
+Host 84: 0
+Host 85: 0
+Host 86: 0
+Host 87: 0
+Host 88: 0
+Host 89: 0
+Host 90: 0
+Host 91: 0
+Host 92: 0
+Host 93: 0
+Host 94: 0
+Host 95: 0
+Host 96: 0
+Host 97: 0
+Host 98: 0
+Host 99: 0
+Host 100: 0
+Host 101: 0
+Host 102: 0
+Host 103: 0
+Host 104: 0
+Host 105: 0
+Host 106: 0
+Host 107: 0
+Host 108: 0
+Host 109: 0
+Host 110: 0
+Host 111: 0
+Host 112: 0
+Host 113: 0
+Host 114: 0
+Host 115: 0
+Host 116: 0
+Host 117: 0
+Host 118: 0
+Host 119: 0
+Host 120: 0
+Host 121: 0
+Host 122: 0
+Host 123: 0
+Host 124: 0
+Host 125: 0
+Host 126: 0
+Host 127: 0
+Maximum finishing time at host 64: 17402880 (0.0174029 s)
 Mean number of subflows -nan

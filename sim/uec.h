@@ -177,7 +177,7 @@ class UecSrc : public PacketSink, public EventSource {
     int count_received = 0;
     int count_ecn_in_rtt = 0;
     int count_trimmed_in_rtt = 0;
-    int counter_consecutive_good_bytes;
+    int counter_consecutive_good_bytes = 0;
     bool increasing = false;
     int total_routes;
     int routes_changed = 0;
