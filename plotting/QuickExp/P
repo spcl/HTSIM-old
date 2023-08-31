@@ -1482,7 +1482,7 @@ NACK 6@64@0
 NACK 15@64@0
 NACK 2@64@0
 NACK 8@64@0
-Using Fast Drop2 - Flow 8@640, Ecn 1, CWND 60673, Saved Acked 5874 (dropping to 6747.200000 - bonus1 1.000000 2 0.800000 -> 4699.200000 and 6747.200000) - Previous Window 23819 - Next Window 38058// Time 23852
+Using Fast Drop2 - Flow 8@640, Ecn 1, CWND 60672, Saved Acked 5874 (dropping to 6747.200000 - bonus1 1.000000 2 0.800000 -> 4699.200000 and 6747.200000) - Previous Window 23819 - Next Window 38058// Time 23852
 Ignoring 8 for 37 pkts - New Wnd 4699 (5874 7922)
 NACK 4@64@0
 NACK 28@64@0
@@ -1778,7 +1778,7 @@ NACK 5@64@0
 NACK 10@64@0
 NACK 28@64@0
 NACK 31@64@0
-Using Fast Drop2 - Flow 31@640, Ecn 1, CWND 37927, Saved Acked 4477 (dropping to 5629.600000 - bonus1 1.000000 2 0.800000 -> 3581.600000 and 5629.600000) - Previous Window 26717 - Next Window 40930// Time 26724
+Using Fast Drop2 - Flow 31@640, Ecn 1, CWND 37926, Saved Acked 4477 (dropping to 5629.600000 - bonus1 1.000000 2 0.800000 -> 3581.600000 and 5629.600000) - Previous Window 26717 - Next Window 40930// Time 26724
 Ignoring 31 for 23 pkts - New Wnd 3581 (4477 6525)
 NACK 6@64@0
 NACK 5@64@0
@@ -1796,7 +1796,7 @@ NACK 5@64@0
 NACK 1@64@0
 NACK 5@64@0
 NACK 30@64@0
-Using Fast Drop2 - Flow 30@640, Ecn 1, CWND 30328, Saved Acked 6675 (dropping to 7388.000000 - bonus1 1.000000 2 0.800000 -> 5340.000000 and 7388.000000) - Previous Window 26860 - Next Window 41160// Time 26954
+Using Fast Drop2 - Flow 30@640, Ecn 1, CWND 30327, Saved Acked 6675 (dropping to 7388.000000 - bonus1 1.000000 2 0.800000 -> 5340.000000 and 7388.000000) - Previous Window 26860 - Next Window 41160// Time 26954
 Ignoring 30 for 18 pkts - New Wnd 5340 (6675 8723)
 NACK 12@64@0
 NACK 15@64@0
@@ -1806,7 +1806,7 @@ NACK 4@64@0
 NACK 9@64@0
 NACK 19@64@0
 NACK 21@64@0
-Using Fast Drop2 - Flow 21@640, Ecn 1, CWND 29898, Saved Acked 6623 (dropping to 7346.400000 - bonus1 1.000000 2 0.800000 -> 5298.400000 and 7346.400000) - Previous Window 26789 - Next Window 41201// Time 26995
+Using Fast Drop2 - Flow 21@640, Ecn 1, CWND 29897, Saved Acked 6623 (dropping to 7346.400000 - bonus1 1.000000 2 0.800000 -> 5298.400000 and 7346.400000) - Previous Window 26789 - Next Window 41201// Time 26995
 Ignoring 21 for 18 pkts - New Wnd 5298 (6623 8671)
 NACK 27@64@0
 NACK 12@64@0
@@ -1820,14 +1820,14 @@ NACK 16@64@0
 NACK 4@64@0
 NACK 8@64@0
 NACK 13@64@0
-Using Fast Drop2 - Flow 13@640, Ecn 1, CWND 34103, Saved Acked 4461 (dropping to 5616.800000 - bonus1 1.000000 2 0.800000 -> 3568.800000 and 5616.800000) - Previous Window 26748 - Next Window 41422// Time 27216
+Using Fast Drop2 - Flow 13@640, Ecn 1, CWND 34102, Saved Acked 4461 (dropping to 5616.800000 - bonus1 1.000000 2 0.800000 -> 3568.800000 and 5616.800000) - Previous Window 26748 - Next Window 41422// Time 27216
 Ignoring 13 for 21 pkts - New Wnd 3568 (4461 6509)
 NACK 3@64@0
 NACK 28@64@0
 NACK 20@64@0
 NACK 12@64@0
 NACK 23@64@0
-Using Fast Drop2 - Flow 23@640, Ecn 1, CWND 27674, Saved Acked 6712 (dropping to 7417.600000 - bonus1 1.000000 2 0.800000 -> 5369.600000 and 7417.600000) - Previous Window 27091 - Next Window 41447// Time 27241
+Using Fast Drop2 - Flow 23@640, Ecn 1, CWND 27673, Saved Acked 6712 (dropping to 7417.600000 - bonus1 1.000000 2 0.800000 -> 5369.600000 and 7417.600000) - Previous Window 27091 - Next Window 41447// Time 27241
 Ignoring 23 for 17 pkts - New Wnd 5369 (6712 8760)
 NACK 31@64@0
 NACK 2@64@0
@@ -1849,20 +1849,20 @@ NACK 25@64@0
 Using Fast Drop2 - Flow 25@640, Ecn 1, CWND 21344, Saved Acked 6734 (dropping to 7435.200000 - bonus1 1.000000 2 0.800000 -> 5387.200000 and 7435.200000) - Previous Window 26799 - Next Window 41514// Time 27308
 Ignoring 25 for 13 pkts - New Wnd 5387 (6734 8782)
 NACK 27@64@0
-Using Fast Drop2 - Flow 27@640, Ecn 1, CWND 27522, Saved Acked 4724 (dropping to 5827.200000 - bonus1 1.000000 2 0.800000 -> 3779.200000 and 5827.200000) - Previous Window 27086 - Next Window 41519// Time 27313
+Using Fast Drop2 - Flow 27@640, Ecn 1, CWND 27521, Saved Acked 4724 (dropping to 5827.200000 - bonus1 1.000000 2 0.800000 -> 3779.200000 and 5827.200000) - Previous Window 27086 - Next Window 41519// Time 27313
 Ignoring 27 for 17 pkts - New Wnd 3779 (4724 6772)
 NACK 1@64@0
 NACK 1@64@0
 NACK 15@64@0
 NACK 16@64@0
 NACK 17@64@0
-Using Fast Drop2 - Flow 17@640, Ecn 1, CWND 26733, Saved Acked 8711 (dropping to 9016.800000 - bonus1 1.000000 2 0.800000 -> 6968.800000 and 9016.800000) - Previous Window 27142 - Next Window 41544// Time 27338
+Using Fast Drop2 - Flow 17@640, Ecn 1, CWND 26731, Saved Acked 8711 (dropping to 9016.800000 - bonus1 1.000000 2 0.800000 -> 6968.800000 and 9016.800000) - Previous Window 27142 - Next Window 41544// Time 27338
 Ignoring 17 for 17 pkts - New Wnd 6968 (8711 10759)
 NACK 30@64@0
 NACK 20@64@0
 NACK 21@64@0
 NACK 14@64@0
-Using Fast Drop2 - Flow 14@640, Ecn 1, CWND 21482, Saved Acked 6592 (dropping to 7321.600000 - bonus1 1.000000 2 0.800000 -> 5273.600000 and 7321.600000) - Previous Window 26702 - Next Window 41734// Time 27528
+Using Fast Drop2 - Flow 14@640, Ecn 1, CWND 21481, Saved Acked 6592 (dropping to 7321.600000 - bonus1 1.000000 2 0.800000 -> 5273.600000 and 7321.600000) - Previous Window 26702 - Next Window 41734// Time 27528
 Ignoring 14 for 13 pkts - New Wnd 5273 (6592 8640)
 NACK 13@64@0
 NACK 12@64@0
@@ -1897,7 +1897,7 @@ NACK 31@64@0
 NACK 2@64@0
 NACK 27@64@0
 NACK 18@64@0
-Using Fast Drop2 - Flow 18@640, Ecn 1, CWND 23712, Saved Acked 6420 (dropping to 7184.000000 - bonus1 1.000000 2 0.800000 -> 5136.000000 and 7184.000000) - Previous Window 26768 - Next Window 42062// Time 27856
+Using Fast Drop2 - Flow 18@640, Ecn 1, CWND 23710, Saved Acked 6420 (dropping to 7184.000000 - bonus1 1.000000 2 0.800000 -> 5136.000000 and 7184.000000) - Previous Window 26768 - Next Window 42062// Time 27856
 Ignoring 18 for 15 pkts - New Wnd 5136 (6420 8468)
 NACK 22@64@0
 NACK 27@64@0
@@ -2246,170 +2246,16 @@ Currently at Pkt 870
 Currently at Pkt 880
 Currently at Pkt 890
 Currently at Pkt 900
-Currently at Pkt 910
-Flow Finished 10@64@0 at 4599370880
-Flow uecsrc finished at 4.59937
-Flow uecsrc completion time is 4.59937
-Completion Time Flow is 4599370880
-Running - 1 - 4599370880
-Updated - Time 4599370880
-..... Received a MSG -- host 64 to target 10, proc 0 - Type 1
-----------------------------    ENTERING WHILE        // ---------------------------- | 4599370880 4599370880 -  1 0 - 32 0 1 - 64 10 0
-OP MSGnexto[elem.host][elem.proc] 0 (64 0) - nextgr[elem.host][elem.nic] 0( 64  0) - time  4599370880
-++ size is 32,  host [64] searching matching queue for src target 10 tag 0
-Compared element is -> 16 0 vs 10 0
-Compared element is -> 31 0 vs 10 0
-Compared element is -> 30 0 vs 10 0
-Compared element is -> 29 0 vs 10 0
-Compared element is -> 28 0 vs 10 0
-Compared element is -> 27 0 vs 10 0
-Compared element is -> 26 0 vs 10 0
-Compared element is -> 25 0 vs 10 0
-Compared element is -> 24 0 vs 10 0
-Compared element is -> 23 0 vs 10 0
-Compared element is -> 22 0 vs 10 0
-Compared element is -> 21 0 vs 10 0
-Compared element is -> 20 0 vs 10 0
-Compared element is -> 19 0 vs 10 0
-Compared element is -> 18 0 vs 10 0
-Compared element is -> 17 0 vs 10 0
-Compared element is -> 0 0 vs 10 0
-Compared element is -> 15 0 vs 10 0
-Compared element is -> 14 0 vs 10 0
-Compared element is -> 13 0 vs 10 0
-Compared element is -> 12 0 vs 10 0
-Compared element is -> 11 0 vs 10 0
-Compared element is -> 10 0 vs 10 0
-Searching for MATCHCurrent elem time is 4599370880 while NS3 4599370880
-Simulating Until Called
-Currently at Pkt 920
-Currently at Pkt 930
-Currently at Pkt 940
-Currently at Pkt 950
-Flow Finished 1@64@0 at 4834563200
-Flow uecsrc finished at 4.83456
-Flow uecsrc completion time is 4.83456
-Completion Time Flow is 4834563200
-Running - 1 - 4834563200
-Updated - Time 4834563200
-..... Received a MSG -- host 64 to target 1, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 4834563200 4834563200 -  1 0 - 31 0 1 - 64 1 0
-OP MSGnexto[elem.host][elem.proc] 4599370880 (64 0) - nextgr[elem.host][elem.nic] 4599370880( 64  0) - time  4834563200
-++ size is 31,  host [64] searching matching queue for src target 1 tag 0
-Compared element is -> 16 0 vs 1 0
-Compared element is -> 31 0 vs 1 0
-Compared element is -> 30 0 vs 1 0
-Compared element is -> 29 0 vs 1 0
-Compared element is -> 28 0 vs 1 0
-Compared element is -> 27 0 vs 1 0
-Compared element is -> 26 0 vs 1 0
-Compared element is -> 25 0 vs 1 0
-Compared element is -> 24 0 vs 1 0
-Compared element is -> 23 0 vs 1 0
-Compared element is -> 22 0 vs 1 0
-Compared element is -> 21 0 vs 1 0
-Compared element is -> 20 0 vs 1 0
-Compared element is -> 19 0 vs 1 0
-Compared element is -> 18 0 vs 1 0
-Compared element is -> 17 0 vs 1 0
-Compared element is -> 0 0 vs 1 0
-Compared element is -> 15 0 vs 1 0
-Compared element is -> 14 0 vs 1 0
-Compared element is -> 13 0 vs 1 0
-Compared element is -> 12 0 vs 1 0
-Compared element is -> 11 0 vs 1 0
-Compared element is -> 9 0 vs 1 0
-Compared element is -> 8 0 vs 1 0
-Compared element is -> 7 0 vs 1 0
-Compared element is -> 6 0 vs 1 0
-Compared element is -> 5 0 vs 1 0
-Compared element is -> 4 0 vs 1 0
-Compared element is -> 3 0 vs 1 0
-Compared element is -> 2 0 vs 1 0
-Compared element is -> 1 0 vs 1 0
-Searching for MATCHCurrent elem time is 4834563200 while NS3 4834563200
-Simulating Until Called
-Currently at Pkt 960
-Currently at Pkt 970
-Flow Finished 0@64@0 at 4938642560
-Flow uecsrc finished at 4.93864
-Flow uecsrc completion time is 4.93864
-Completion Time Flow is 4938642560
-Running - 1 - 4938642560
-Updated - Time 4938642560
-..... Received a MSG -- host 64 to target 0, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 4938642560 4938642560 -  1 0 - 30 0 1 - 64 0 0
-OP MSGnexto[elem.host][elem.proc] 4834563200 (64 0) - nextgr[elem.host][elem.nic] 4834563200( 64  0) - time  4938642560
-++ size is 30,  host [64] searching matching queue for src target 0 tag 0
-Compared element is -> 16 0 vs 0 0
-Compared element is -> 31 0 vs 0 0
-Compared element is -> 30 0 vs 0 0
-Compared element is -> 29 0 vs 0 0
-Compared element is -> 28 0 vs 0 0
-Compared element is -> 27 0 vs 0 0
-Compared element is -> 26 0 vs 0 0
-Compared element is -> 25 0 vs 0 0
-Compared element is -> 24 0 vs 0 0
-Compared element is -> 23 0 vs 0 0
-Compared element is -> 22 0 vs 0 0
-Compared element is -> 21 0 vs 0 0
-Compared element is -> 20 0 vs 0 0
-Compared element is -> 19 0 vs 0 0
-Compared element is -> 18 0 vs 0 0
-Compared element is -> 17 0 vs 0 0
-Compared element is -> 0 0 vs 0 0
-Searching for MATCHCurrent elem time is 4938642560 while NS3 4938642560
-Simulating Until Called
-Flow Finished 3@64@0 at 4965338240
-Flow uecsrc finished at 4.96534
-Flow uecsrc completion time is 4.96534
-Completion Time Flow is 4965338240
-Running - 1 - 4965338240
-Updated - Time 4965338240
-..... Received a MSG -- host 64 to target 3, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 4965338240 4965338240 -  1 0 - 29 0 1 - 64 3 0
-OP MSGnexto[elem.host][elem.proc] 4938642560 (64 0) - nextgr[elem.host][elem.nic] 4938642560( 64  0) - time  4965338240
-++ size is 29,  host [64] searching matching queue for src target 3 tag 0
-Compared element is -> 16 0 vs 3 0
-Compared element is -> 31 0 vs 3 0
-Compared element is -> 30 0 vs 3 0
-Compared element is -> 29 0 vs 3 0
-Compared element is -> 28 0 vs 3 0
-Compared element is -> 27 0 vs 3 0
-Compared element is -> 26 0 vs 3 0
-Compared element is -> 25 0 vs 3 0
-Compared element is -> 24 0 vs 3 0
-Compared element is -> 23 0 vs 3 0
-Compared element is -> 22 0 vs 3 0
-Compared element is -> 21 0 vs 3 0
-Compared element is -> 20 0 vs 3 0
-Compared element is -> 19 0 vs 3 0
-Compared element is -> 18 0 vs 3 0
-Compared element is -> 17 0 vs 3 0
-Compared element is -> 15 0 vs 3 0
-Compared element is -> 14 0 vs 3 0
-Compared element is -> 13 0 vs 3 0
-Compared element is -> 12 0 vs 3 0
-Compared element is -> 11 0 vs 3 0
-Compared element is -> 9 0 vs 3 0
-Compared element is -> 8 0 vs 3 0
-Compared element is -> 7 0 vs 3 0
-Compared element is -> 6 0 vs 3 0
-Compared element is -> 5 0 vs 3 0
-Compared element is -> 4 0 vs 3 0
-Compared element is -> 3 0 vs 3 0
-Searching for MATCHCurrent elem time is 4965338240 while NS3 4965338240
-Simulating Until Called
-Flow Finished 17@64@0 at 4965845120
-Flow uecsrc finished at 4.96585
-Flow uecsrc completion time is 4.96585
-Completion Time Flow is 4965845120
-Running - 1 - 4965845120
-Updated - Time 4965845120
-..... Received a MSG -- host 64 to target 17, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 4965845120 4965845120 -  1 0 - 28 0 1 - 64 17 0
-OP MSGnexto[elem.host][elem.proc] 4965338240 (64 0) - nextgr[elem.host][elem.nic] 4965338240( 64  0) - time  4965845120
-++ size is 28,  host [64] searching matching queue for src target 17 tag 0
+Flow Finished 17@64@0 at 4741297280
+Flow uecsrc finished at 4.7413
+Flow uecsrc completion time is 4.7413
+Completion Time Flow is 4741297280
+Running - 1 - 4741297280
+Updated - Time 4741297280
+..... Received a MSG -- host 64 to target 17, proc 0 - Type 1
+----------------------------    ENTERING WHILE        // ---------------------------- | 4741297280 4741297280 -  1 0 - 32 0 1 - 64 17 0
+OP MSGnexto[elem.host][elem.proc] 0 (64 0) - nextgr[elem.host][elem.nic] 0( 64  0) - time  4741297280
+++ size is 32,  host [64] searching matching queue for src target 17 tag 0
 Compared element is -> 16 0 vs 17 0
 Compared element is -> 31 0 vs 17 0
 Compared element is -> 30 0 vs 17 0
@@ -2426,18 +2272,60 @@ Compared element is -> 20 0 vs 17 0
 Compared element is -> 19 0 vs 17 0
 Compared element is -> 18 0 vs 17 0
 Compared element is -> 17 0 vs 17 0
-Searching for MATCHCurrent elem time is 4965845120 while NS3 4965845120
+Searching for MATCHCurrent elem time is 4741297280 while NS3 4741297280
 Simulating Until Called
-Flow Finished 14@64@0 at 4988316800
-Flow uecsrc finished at 4.98832
-Flow uecsrc completion time is 4.98832
-Completion Time Flow is 4988316800
-Running - 1 - 4988316800
-Updated - Time 4988316800
+Currently at Pkt 910
+Flow Finished 4@64@0 at 4786747520
+Flow uecsrc finished at 4.78675
+Flow uecsrc completion time is 4.78675
+Completion Time Flow is 4786747520
+Running - 1 - 4786747520
+Updated - Time 4786747520
+..... Received a MSG -- host 64 to target 4, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 4786747520 4786747520 -  1 0 - 31 0 1 - 64 4 0
+OP MSGnexto[elem.host][elem.proc] 4741297280 (64 0) - nextgr[elem.host][elem.nic] 4741297280( 64  0) - time  4786747520
+++ size is 31,  host [64] searching matching queue for src target 4 tag 0
+Compared element is -> 16 0 vs 4 0
+Compared element is -> 31 0 vs 4 0
+Compared element is -> 30 0 vs 4 0
+Compared element is -> 29 0 vs 4 0
+Compared element is -> 28 0 vs 4 0
+Compared element is -> 27 0 vs 4 0
+Compared element is -> 26 0 vs 4 0
+Compared element is -> 25 0 vs 4 0
+Compared element is -> 24 0 vs 4 0
+Compared element is -> 23 0 vs 4 0
+Compared element is -> 22 0 vs 4 0
+Compared element is -> 21 0 vs 4 0
+Compared element is -> 20 0 vs 4 0
+Compared element is -> 19 0 vs 4 0
+Compared element is -> 18 0 vs 4 0
+Compared element is -> 0 0 vs 4 0
+Compared element is -> 15 0 vs 4 0
+Compared element is -> 14 0 vs 4 0
+Compared element is -> 13 0 vs 4 0
+Compared element is -> 12 0 vs 4 0
+Compared element is -> 11 0 vs 4 0
+Compared element is -> 10 0 vs 4 0
+Compared element is -> 9 0 vs 4 0
+Compared element is -> 8 0 vs 4 0
+Compared element is -> 7 0 vs 4 0
+Compared element is -> 6 0 vs 4 0
+Compared element is -> 5 0 vs 4 0
+Compared element is -> 4 0 vs 4 0
+Searching for MATCHCurrent elem time is 4786747520 while NS3 4786747520
+Simulating Until Called
+Currently at Pkt 920
+Flow Finished 14@64@0 at 4840645760
+Flow uecsrc finished at 4.84065
+Flow uecsrc completion time is 4.84065
+Completion Time Flow is 4840645760
+Running - 1 - 4840645760
+Updated - Time 4840645760
 ..... Received a MSG -- host 64 to target 14, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 4988316800 4988316800 -  1 0 - 27 0 1 - 64 14 0
-OP MSGnexto[elem.host][elem.proc] 4965845120 (64 0) - nextgr[elem.host][elem.nic] 4965845120( 64  0) - time  4988316800
-++ size is 27,  host [64] searching matching queue for src target 14 tag 0
+----------------------------    ENTERING WHILE        // ---------------------------- | 4840645760 4840645760 -  1 0 - 30 0 1 - 64 14 0
+OP MSGnexto[elem.host][elem.proc] 4786747520 (64 0) - nextgr[elem.host][elem.nic] 4786747520( 64  0) - time  4840645760
+++ size is 30,  host [64] searching matching queue for src target 14 tag 0
 Compared element is -> 16 0 vs 14 0
 Compared element is -> 31 0 vs 14 0
 Compared element is -> 30 0 vs 14 0
@@ -2453,507 +2341,573 @@ Compared element is -> 21 0 vs 14 0
 Compared element is -> 20 0 vs 14 0
 Compared element is -> 19 0 vs 14 0
 Compared element is -> 18 0 vs 14 0
+Compared element is -> 0 0 vs 14 0
 Compared element is -> 15 0 vs 14 0
 Compared element is -> 14 0 vs 14 0
-Searching for MATCHCurrent elem time is 4988316800 while NS3 4988316800
+Searching for MATCHCurrent elem time is 4840645760 while NS3 4840645760
 Simulating Until Called
-Flow Finished 26@64@0 at 5013322880
-Flow uecsrc finished at 5.01332
-Flow uecsrc completion time is 5.01332
-Completion Time Flow is 5013322880
-Running - 1 - 5013322880
-Updated - Time 5013322880
-..... Received a MSG -- host 64 to target 26, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5013322880 5013322880 -  1 0 - 26 0 1 - 64 26 0
-OP MSGnexto[elem.host][elem.proc] 4988316800 (64 0) - nextgr[elem.host][elem.nic] 4988316800( 64  0) - time  5013322880
-++ size is 26,  host [64] searching matching queue for src target 26 tag 0
-Compared element is -> 16 0 vs 26 0
-Compared element is -> 31 0 vs 26 0
-Compared element is -> 30 0 vs 26 0
-Compared element is -> 29 0 vs 26 0
-Compared element is -> 28 0 vs 26 0
-Compared element is -> 27 0 vs 26 0
-Compared element is -> 26 0 vs 26 0
-Searching for MATCHCurrent elem time is 5013322880 while NS3 5013322880
+Currently at Pkt 930
+Flow Finished 30@64@0 at 4898261120
+Flow uecsrc finished at 4.89826
+Flow uecsrc completion time is 4.89826
+Completion Time Flow is 4898261120
+Running - 1 - 4898261120
+Updated - Time 4898261120
+..... Received a MSG -- host 64 to target 30, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 4898261120 4898261120 -  1 0 - 29 0 1 - 64 30 0
+OP MSGnexto[elem.host][elem.proc] 4840645760 (64 0) - nextgr[elem.host][elem.nic] 4840645760( 64  0) - time  4898261120
+++ size is 29,  host [64] searching matching queue for src target 30 tag 0
+Compared element is -> 16 0 vs 30 0
+Compared element is -> 31 0 vs 30 0
+Compared element is -> 30 0 vs 30 0
+Searching for MATCHCurrent elem time is 4898261120 while NS3 4898261120
 Simulating Until Called
-Flow Finished 18@64@0 at 5069586560
-Flow uecsrc finished at 5.06959
-Flow uecsrc completion time is 5.06959
-Completion Time Flow is 5069586560
-Running - 1 - 5069586560
-Updated - Time 5069586560
-..... Received a MSG -- host 64 to target 18, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5069586560 5069586560 -  1 0 - 25 0 1 - 64 18 0
-OP MSGnexto[elem.host][elem.proc] 5013322880 (64 0) - nextgr[elem.host][elem.nic] 5013322880( 64  0) - time  5069586560
-++ size is 25,  host [64] searching matching queue for src target 18 tag 0
-Compared element is -> 16 0 vs 18 0
-Compared element is -> 31 0 vs 18 0
-Compared element is -> 30 0 vs 18 0
-Compared element is -> 29 0 vs 18 0
-Compared element is -> 28 0 vs 18 0
-Compared element is -> 27 0 vs 18 0
-Compared element is -> 25 0 vs 18 0
-Compared element is -> 24 0 vs 18 0
-Compared element is -> 23 0 vs 18 0
-Compared element is -> 22 0 vs 18 0
-Compared element is -> 21 0 vs 18 0
-Compared element is -> 20 0 vs 18 0
-Compared element is -> 19 0 vs 18 0
-Compared element is -> 18 0 vs 18 0
-Searching for MATCHCurrent elem time is 5069586560 while NS3 5069586560
+Currently at Pkt 940
+Flow Finished 12@64@0 at 4924449920
+Flow uecsrc finished at 4.92445
+Flow uecsrc completion time is 4.92445
+Completion Time Flow is 4924449920
+Running - 1 - 4924449920
+Updated - Time 4924449920
+..... Received a MSG -- host 64 to target 12, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 4924449920 4924449920 -  1 0 - 28 0 1 - 64 12 0
+OP MSGnexto[elem.host][elem.proc] 4898261120 (64 0) - nextgr[elem.host][elem.nic] 4898261120( 64  0) - time  4924449920
+++ size is 28,  host [64] searching matching queue for src target 12 tag 0
+Compared element is -> 16 0 vs 12 0
+Compared element is -> 31 0 vs 12 0
+Compared element is -> 29 0 vs 12 0
+Compared element is -> 28 0 vs 12 0
+Compared element is -> 27 0 vs 12 0
+Compared element is -> 26 0 vs 12 0
+Compared element is -> 25 0 vs 12 0
+Compared element is -> 24 0 vs 12 0
+Compared element is -> 23 0 vs 12 0
+Compared element is -> 22 0 vs 12 0
+Compared element is -> 21 0 vs 12 0
+Compared element is -> 20 0 vs 12 0
+Compared element is -> 19 0 vs 12 0
+Compared element is -> 18 0 vs 12 0
+Compared element is -> 0 0 vs 12 0
+Compared element is -> 15 0 vs 12 0
+Compared element is -> 13 0 vs 12 0
+Compared element is -> 12 0 vs 12 0
+Searching for MATCHCurrent elem time is 4924449920 while NS3 4924449920
 Simulating Until Called
-Flow Finished 20@64@0 at 5075162240
-Flow uecsrc finished at 5.07516
-Flow uecsrc completion time is 5.07516
-Completion Time Flow is 5075162240
-Running - 1 - 5075162240
-Updated - Time 5075162240
-..... Received a MSG -- host 64 to target 20, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5075162240 5075162240 -  1 0 - 24 0 1 - 64 20 0
-OP MSGnexto[elem.host][elem.proc] 5069586560 (64 0) - nextgr[elem.host][elem.nic] 5069586560( 64  0) - time  5075162240
-++ size is 24,  host [64] searching matching queue for src target 20 tag 0
-Compared element is -> 16 0 vs 20 0
-Compared element is -> 31 0 vs 20 0
-Compared element is -> 30 0 vs 20 0
-Compared element is -> 29 0 vs 20 0
-Compared element is -> 28 0 vs 20 0
-Compared element is -> 27 0 vs 20 0
-Compared element is -> 25 0 vs 20 0
-Compared element is -> 24 0 vs 20 0
-Compared element is -> 23 0 vs 20 0
-Compared element is -> 22 0 vs 20 0
-Compared element is -> 21 0 vs 20 0
-Compared element is -> 20 0 vs 20 0
-Searching for MATCHCurrent elem time is 5075162240 while NS3 5075162240
+Flow Finished 16@64@0 at 4963479680
+Flow uecsrc finished at 4.96348
+Flow uecsrc completion time is 4.96348
+Completion Time Flow is 4963479680
+Running - 1 - 4963479680
+Updated - Time 4963479680
+..... Received a MSG -- host 64 to target 16, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 4963479680 4963479680 -  1 0 - 27 0 1 - 64 16 0
+OP MSGnexto[elem.host][elem.proc] 4924449920 (64 0) - nextgr[elem.host][elem.nic] 4924449920( 64  0) - time  4963479680
+++ size is 27,  host [64] searching matching queue for src target 16 tag 0
+Compared element is -> 16 0 vs 16 0
+Searching for MATCHCurrent elem time is 4963479680 while NS3 4963479680
 Simulating Until Called
-Flow Finished 19@64@0 at 5092227200
-Flow uecsrc finished at 5.09223
-Flow uecsrc completion time is 5.09223
-Completion Time Flow is 5092227200
-Running - 1 - 5092227200
-Updated - Time 5092227200
-..... Received a MSG -- host 64 to target 19, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5092227200 5092227200 -  1 0 - 23 0 1 - 64 19 0
-OP MSGnexto[elem.host][elem.proc] 5075162240 (64 0) - nextgr[elem.host][elem.nic] 5075162240( 64  0) - time  5092227200
-++ size is 23,  host [64] searching matching queue for src target 19 tag 0
-Compared element is -> 16 0 vs 19 0
-Compared element is -> 31 0 vs 19 0
-Compared element is -> 30 0 vs 19 0
-Compared element is -> 29 0 vs 19 0
-Compared element is -> 28 0 vs 19 0
-Compared element is -> 27 0 vs 19 0
-Compared element is -> 25 0 vs 19 0
-Compared element is -> 24 0 vs 19 0
-Compared element is -> 23 0 vs 19 0
-Compared element is -> 22 0 vs 19 0
-Compared element is -> 21 0 vs 19 0
-Compared element is -> 19 0 vs 19 0
-Searching for MATCHCurrent elem time is 5092227200 while NS3 5092227200
-Simulating Until Called
-Flow Finished 22@64@0 at 5102871680
-Flow uecsrc finished at 5.10287
-Flow uecsrc completion time is 5.10287
-Completion Time Flow is 5102871680
-Running - 1 - 5102871680
-Updated - Time 5102871680
+Currently at Pkt 950
+Flow Finished 22@64@0 at 4969224320
+Flow uecsrc finished at 4.96922
+Flow uecsrc completion time is 4.96922
+Completion Time Flow is 4969224320
+Running - 1 - 4969224320
+Updated - Time 4969224320
 ..... Received a MSG -- host 64 to target 22, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5102871680 5102871680 -  1 0 - 22 0 1 - 64 22 0
-OP MSGnexto[elem.host][elem.proc] 5092227200 (64 0) - nextgr[elem.host][elem.nic] 5092227200( 64  0) - time  5102871680
-++ size is 22,  host [64] searching matching queue for src target 22 tag 0
-Compared element is -> 16 0 vs 22 0
+----------------------------    ENTERING WHILE        // ---------------------------- | 4969224320 4969224320 -  1 0 - 26 0 1 - 64 22 0
+OP MSGnexto[elem.host][elem.proc] 4963479680 (64 0) - nextgr[elem.host][elem.nic] 4963479680( 64  0) - time  4969224320
+++ size is 26,  host [64] searching matching queue for src target 22 tag 0
 Compared element is -> 31 0 vs 22 0
-Compared element is -> 30 0 vs 22 0
 Compared element is -> 29 0 vs 22 0
 Compared element is -> 28 0 vs 22 0
 Compared element is -> 27 0 vs 22 0
+Compared element is -> 26 0 vs 22 0
 Compared element is -> 25 0 vs 22 0
 Compared element is -> 24 0 vs 22 0
 Compared element is -> 23 0 vs 22 0
 Compared element is -> 22 0 vs 22 0
-Searching for MATCHCurrent elem time is 5102871680 while NS3 5102871680
+Searching for MATCHCurrent elem time is 4969224320 while NS3 4969224320
 Simulating Until Called
-Flow Finished 13@64@0 at 5104899200
-Flow uecsrc finished at 5.1049
-Flow uecsrc completion time is 5.1049
-Completion Time Flow is 5104899200
-Running - 1 - 5104899200
-Updated - Time 5104899200
-..... Received a MSG -- host 64 to target 13, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5104899200 5104899200 -  1 0 - 21 0 1 - 64 13 0
-OP MSGnexto[elem.host][elem.proc] 5102871680 (64 0) - nextgr[elem.host][elem.nic] 5102871680( 64  0) - time  5104899200
-++ size is 21,  host [64] searching matching queue for src target 13 tag 0
-Compared element is -> 16 0 vs 13 0
-Compared element is -> 31 0 vs 13 0
-Compared element is -> 30 0 vs 13 0
-Compared element is -> 29 0 vs 13 0
-Compared element is -> 28 0 vs 13 0
-Compared element is -> 27 0 vs 13 0
-Compared element is -> 25 0 vs 13 0
-Compared element is -> 24 0 vs 13 0
-Compared element is -> 23 0 vs 13 0
-Compared element is -> 21 0 vs 13 0
-Compared element is -> 15 0 vs 13 0
-Compared element is -> 13 0 vs 13 0
-Searching for MATCHCurrent elem time is 5104899200 while NS3 5104899200
-Simulating Until Called
-Flow Finished 25@64@0 at 5105237120
-Flow uecsrc finished at 5.10524
-Flow uecsrc completion time is 5.10524
-Completion Time Flow is 5105237120
-Running - 1 - 5105237120
-Updated - Time 5105237120
+Flow Finished 25@64@0 at 4986120320
+Flow uecsrc finished at 4.98612
+Flow uecsrc completion time is 4.98612
+Completion Time Flow is 4986120320
+Running - 1 - 4986120320
+Updated - Time 4986120320
 ..... Received a MSG -- host 64 to target 25, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5105237120 5105237120 -  1 0 - 20 0 1 - 64 25 0
-OP MSGnexto[elem.host][elem.proc] 5104899200 (64 0) - nextgr[elem.host][elem.nic] 5104899200( 64  0) - time  5105237120
-++ size is 20,  host [64] searching matching queue for src target 25 tag 0
-Compared element is -> 16 0 vs 25 0
+----------------------------    ENTERING WHILE        // ---------------------------- | 4986120320 4986120320 -  1 0 - 25 0 1 - 64 25 0
+OP MSGnexto[elem.host][elem.proc] 4969224320 (64 0) - nextgr[elem.host][elem.nic] 4969224320( 64  0) - time  4986120320
+++ size is 25,  host [64] searching matching queue for src target 25 tag 0
 Compared element is -> 31 0 vs 25 0
-Compared element is -> 30 0 vs 25 0
 Compared element is -> 29 0 vs 25 0
 Compared element is -> 28 0 vs 25 0
 Compared element is -> 27 0 vs 25 0
+Compared element is -> 26 0 vs 25 0
 Compared element is -> 25 0 vs 25 0
-Searching for MATCHCurrent elem time is 5105237120 while NS3 5105237120
+Searching for MATCHCurrent elem time is 4986120320 while NS3 4986120320
 Simulating Until Called
-Flow Finished 29@64@0 at 5133284480
-Flow uecsrc finished at 5.13328
-Flow uecsrc completion time is 5.13328
-Completion Time Flow is 5133284480
-Running - 1 - 5133284480
-Updated - Time 5133284480
+Flow Finished 2@64@0 at 4986796160
+Flow uecsrc finished at 4.9868
+Flow uecsrc completion time is 4.9868
+Completion Time Flow is 4986796160
+Running - 1 - 4986796160
+Updated - Time 4986796160
+..... Received a MSG -- host 64 to target 2, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 4986796160 4986796160 -  1 0 - 24 0 1 - 64 2 0
+OP MSGnexto[elem.host][elem.proc] 4986120320 (64 0) - nextgr[elem.host][elem.nic] 4986120320( 64  0) - time  4986796160
+++ size is 24,  host [64] searching matching queue for src target 2 tag 0
+Compared element is -> 31 0 vs 2 0
+Compared element is -> 29 0 vs 2 0
+Compared element is -> 28 0 vs 2 0
+Compared element is -> 27 0 vs 2 0
+Compared element is -> 26 0 vs 2 0
+Compared element is -> 24 0 vs 2 0
+Compared element is -> 23 0 vs 2 0
+Compared element is -> 21 0 vs 2 0
+Compared element is -> 20 0 vs 2 0
+Compared element is -> 19 0 vs 2 0
+Compared element is -> 18 0 vs 2 0
+Compared element is -> 0 0 vs 2 0
+Compared element is -> 15 0 vs 2 0
+Compared element is -> 13 0 vs 2 0
+Compared element is -> 11 0 vs 2 0
+Compared element is -> 10 0 vs 2 0
+Compared element is -> 9 0 vs 2 0
+Compared element is -> 8 0 vs 2 0
+Compared element is -> 7 0 vs 2 0
+Compared element is -> 6 0 vs 2 0
+Compared element is -> 5 0 vs 2 0
+Compared element is -> 3 0 vs 2 0
+Compared element is -> 2 0 vs 2 0
+Searching for MATCHCurrent elem time is 4986796160 while NS3 4986796160
+Simulating Until Called
+Flow Finished 29@64@0 at 4997778560
+Flow uecsrc finished at 4.99778
+Flow uecsrc completion time is 4.99778
+Completion Time Flow is 4997778560
+Running - 1 - 4997778560
+Updated - Time 4997778560
 ..... Received a MSG -- host 64 to target 29, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5133284480 5133284480 -  1 0 - 19 0 1 - 64 29 0
-OP MSGnexto[elem.host][elem.proc] 5105237120 (64 0) - nextgr[elem.host][elem.nic] 5105237120( 64  0) - time  5133284480
-++ size is 19,  host [64] searching matching queue for src target 29 tag 0
-Compared element is -> 16 0 vs 29 0
+----------------------------    ENTERING WHILE        // ---------------------------- | 4997778560 4997778560 -  1 0 - 23 0 1 - 64 29 0
+OP MSGnexto[elem.host][elem.proc] 4986796160 (64 0) - nextgr[elem.host][elem.nic] 4986796160( 64  0) - time  4997778560
+++ size is 23,  host [64] searching matching queue for src target 29 tag 0
 Compared element is -> 31 0 vs 29 0
-Compared element is -> 30 0 vs 29 0
 Compared element is -> 29 0 vs 29 0
-Searching for MATCHCurrent elem time is 5133284480 while NS3 5133284480
+Searching for MATCHCurrent elem time is 4997778560 while NS3 4997778560
 Simulating Until Called
-Flow Finished 23@64@0 at 5134974080
-Flow uecsrc finished at 5.13497
-Flow uecsrc completion time is 5.13497
-Completion Time Flow is 5134974080
-Running - 1 - 5134974080
-Updated - Time 5134974080
+Currently at Pkt 960
+Currently at Pkt 970
+Flow Finished 11@64@0 at 5054211200
+Flow uecsrc finished at 5.05421
+Flow uecsrc completion time is 5.05421
+Completion Time Flow is 5054211200
+Running - 1 - 5054211200
+Updated - Time 5054211200
+..... Received a MSG -- host 64 to target 11, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5054211200 5054211200 -  1 0 - 22 0 1 - 64 11 0
+OP MSGnexto[elem.host][elem.proc] 4997778560 (64 0) - nextgr[elem.host][elem.nic] 4997778560( 64  0) - time  5054211200
+++ size is 22,  host [64] searching matching queue for src target 11 tag 0
+Compared element is -> 31 0 vs 11 0
+Compared element is -> 28 0 vs 11 0
+Compared element is -> 27 0 vs 11 0
+Compared element is -> 26 0 vs 11 0
+Compared element is -> 24 0 vs 11 0
+Compared element is -> 23 0 vs 11 0
+Compared element is -> 21 0 vs 11 0
+Compared element is -> 20 0 vs 11 0
+Compared element is -> 19 0 vs 11 0
+Compared element is -> 18 0 vs 11 0
+Compared element is -> 0 0 vs 11 0
+Compared element is -> 15 0 vs 11 0
+Compared element is -> 13 0 vs 11 0
+Compared element is -> 11 0 vs 11 0
+Searching for MATCHCurrent elem time is 5054211200 while NS3 5054211200
+Simulating Until Called
+Flow Finished 0@64@0 at 5058266240
+Flow uecsrc finished at 5.05827
+Flow uecsrc completion time is 5.05827
+Completion Time Flow is 5058266240
+Running - 1 - 5058266240
+Updated - Time 5058266240
+..... Received a MSG -- host 64 to target 0, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5058266240 5058266240 -  1 0 - 21 0 1 - 64 0 0
+OP MSGnexto[elem.host][elem.proc] 5054211200 (64 0) - nextgr[elem.host][elem.nic] 5054211200( 64  0) - time  5058266240
+++ size is 21,  host [64] searching matching queue for src target 0 tag 0
+Compared element is -> 31 0 vs 0 0
+Compared element is -> 28 0 vs 0 0
+Compared element is -> 27 0 vs 0 0
+Compared element is -> 26 0 vs 0 0
+Compared element is -> 24 0 vs 0 0
+Compared element is -> 23 0 vs 0 0
+Compared element is -> 21 0 vs 0 0
+Compared element is -> 20 0 vs 0 0
+Compared element is -> 19 0 vs 0 0
+Compared element is -> 18 0 vs 0 0
+Compared element is -> 0 0 vs 0 0
+Searching for MATCHCurrent elem time is 5058266240 while NS3 5058266240
+Simulating Until Called
+Flow Finished 19@64@0 at 5070600320
+Flow uecsrc finished at 5.0706
+Flow uecsrc completion time is 5.0706
+Completion Time Flow is 5070600320
+Running - 1 - 5070600320
+Updated - Time 5070600320
+..... Received a MSG -- host 64 to target 19, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5070600320 5070600320 -  1 0 - 20 0 1 - 64 19 0
+OP MSGnexto[elem.host][elem.proc] 5058266240 (64 0) - nextgr[elem.host][elem.nic] 5058266240( 64  0) - time  5070600320
+++ size is 20,  host [64] searching matching queue for src target 19 tag 0
+Compared element is -> 31 0 vs 19 0
+Compared element is -> 28 0 vs 19 0
+Compared element is -> 27 0 vs 19 0
+Compared element is -> 26 0 vs 19 0
+Compared element is -> 24 0 vs 19 0
+Compared element is -> 23 0 vs 19 0
+Compared element is -> 21 0 vs 19 0
+Compared element is -> 20 0 vs 19 0
+Compared element is -> 19 0 vs 19 0
+Searching for MATCHCurrent elem time is 5070600320 while NS3 5070600320
+Simulating Until Called
+Flow Finished 13@64@0 at 5077696640
+Flow uecsrc finished at 5.0777
+Flow uecsrc completion time is 5.0777
+Completion Time Flow is 5077696640
+Running - 1 - 5077696640
+Updated - Time 5077696640
+..... Received a MSG -- host 64 to target 13, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5077696640 5077696640 -  1 0 - 19 0 1 - 64 13 0
+OP MSGnexto[elem.host][elem.proc] 5070600320 (64 0) - nextgr[elem.host][elem.nic] 5070600320( 64  0) - time  5077696640
+++ size is 19,  host [64] searching matching queue for src target 13 tag 0
+Compared element is -> 31 0 vs 13 0
+Compared element is -> 28 0 vs 13 0
+Compared element is -> 27 0 vs 13 0
+Compared element is -> 26 0 vs 13 0
+Compared element is -> 24 0 vs 13 0
+Compared element is -> 23 0 vs 13 0
+Compared element is -> 21 0 vs 13 0
+Compared element is -> 20 0 vs 13 0
+Compared element is -> 18 0 vs 13 0
+Compared element is -> 15 0 vs 13 0
+Compared element is -> 13 0 vs 13 0
+Searching for MATCHCurrent elem time is 5077696640 while NS3 5077696640
+Simulating Until Called
+Flow Finished 26@64@0 at 5118416000
+Flow uecsrc finished at 5.11842
+Flow uecsrc completion time is 5.11842
+Completion Time Flow is 5118416000
+Running - 1 - 5118416000
+Updated - Time 5118416000
+..... Received a MSG -- host 64 to target 26, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5118416000 5118416000 -  1 0 - 18 0 1 - 64 26 0
+OP MSGnexto[elem.host][elem.proc] 5077696640 (64 0) - nextgr[elem.host][elem.nic] 5077696640( 64  0) - time  5118416000
+++ size is 18,  host [64] searching matching queue for src target 26 tag 0
+Compared element is -> 31 0 vs 26 0
+Compared element is -> 28 0 vs 26 0
+Compared element is -> 27 0 vs 26 0
+Compared element is -> 26 0 vs 26 0
+Searching for MATCHCurrent elem time is 5118416000 while NS3 5118416000
+Simulating Until Called
+Flow Finished 6@64@0 at 5120274560
+Flow uecsrc finished at 5.12027
+Flow uecsrc completion time is 5.12027
+Completion Time Flow is 5120274560
+Running - 1 - 5120274560
+Updated - Time 5120274560
+..... Received a MSG -- host 64 to target 6, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5120274560 5120274560 -  1 0 - 17 0 1 - 64 6 0
+OP MSGnexto[elem.host][elem.proc] 5118416000 (64 0) - nextgr[elem.host][elem.nic] 5118416000( 64  0) - time  5120274560
+++ size is 17,  host [64] searching matching queue for src target 6 tag 0
+Compared element is -> 31 0 vs 6 0
+Compared element is -> 28 0 vs 6 0
+Compared element is -> 27 0 vs 6 0
+Compared element is -> 24 0 vs 6 0
+Compared element is -> 23 0 vs 6 0
+Compared element is -> 21 0 vs 6 0
+Compared element is -> 20 0 vs 6 0
+Compared element is -> 18 0 vs 6 0
+Compared element is -> 15 0 vs 6 0
+Compared element is -> 10 0 vs 6 0
+Compared element is -> 9 0 vs 6 0
+Compared element is -> 8 0 vs 6 0
+Compared element is -> 7 0 vs 6 0
+Compared element is -> 6 0 vs 6 0
+Searching for MATCHCurrent elem time is 5120274560 while NS3 5120274560
+Simulating Until Called
+Flow Finished 10@64@0 at 5128384640
+Flow uecsrc finished at 5.12838
+Flow uecsrc completion time is 5.12838
+Completion Time Flow is 5128384640
+Running - 1 - 5128384640
+Updated - Time 5128384640
+..... Received a MSG -- host 64 to target 10, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5128384640 5128384640 -  1 0 - 16 0 1 - 64 10 0
+OP MSGnexto[elem.host][elem.proc] 5120274560 (64 0) - nextgr[elem.host][elem.nic] 5120274560( 64  0) - time  5128384640
+++ size is 16,  host [64] searching matching queue for src target 10 tag 0
+Compared element is -> 31 0 vs 10 0
+Compared element is -> 28 0 vs 10 0
+Compared element is -> 27 0 vs 10 0
+Compared element is -> 24 0 vs 10 0
+Compared element is -> 23 0 vs 10 0
+Compared element is -> 21 0 vs 10 0
+Compared element is -> 20 0 vs 10 0
+Compared element is -> 18 0 vs 10 0
+Compared element is -> 15 0 vs 10 0
+Compared element is -> 10 0 vs 10 0
+Searching for MATCHCurrent elem time is 5128384640 while NS3 5128384640
+Simulating Until Called
+Flow Finished 23@64@0 at 5131088000
+Flow uecsrc finished at 5.13109
+Flow uecsrc completion time is 5.13109
+Completion Time Flow is 5131088000
+Running - 1 - 5131088000
+Updated - Time 5131088000
 ..... Received a MSG -- host 64 to target 23, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5134974080 5134974080 -  1 0 - 18 0 1 - 64 23 0
-OP MSGnexto[elem.host][elem.proc] 5133284480 (64 0) - nextgr[elem.host][elem.nic] 5133284480( 64  0) - time  5134974080
-++ size is 18,  host [64] searching matching queue for src target 23 tag 0
-Compared element is -> 16 0 vs 23 0
+----------------------------    ENTERING WHILE        // ---------------------------- | 5131088000 5131088000 -  1 0 - 15 0 1 - 64 23 0
+OP MSGnexto[elem.host][elem.proc] 5128384640 (64 0) - nextgr[elem.host][elem.nic] 5128384640( 64  0) - time  5131088000
+++ size is 15,  host [64] searching matching queue for src target 23 tag 0
 Compared element is -> 31 0 vs 23 0
-Compared element is -> 30 0 vs 23 0
 Compared element is -> 28 0 vs 23 0
 Compared element is -> 27 0 vs 23 0
 Compared element is -> 24 0 vs 23 0
 Compared element is -> 23 0 vs 23 0
-Searching for MATCHCurrent elem time is 5134974080 while NS3 5134974080
+Searching for MATCHCurrent elem time is 5131088000 while NS3 5131088000
 Simulating Until Called
-Flow Finished 9@64@0 at 5141732480
-Flow uecsrc finished at 5.14173
-Flow uecsrc completion time is 5.14173
-Completion Time Flow is 5141732480
-Running - 1 - 5141732480
-Updated - Time 5141732480
-..... Received a MSG -- host 64 to target 9, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5141732480 5141732480 -  1 0 - 17 0 1 - 64 9 0
-OP MSGnexto[elem.host][elem.proc] 5134974080 (64 0) - nextgr[elem.host][elem.nic] 5134974080( 64  0) - time  5141732480
-++ size is 17,  host [64] searching matching queue for src target 9 tag 0
-Compared element is -> 16 0 vs 9 0
-Compared element is -> 31 0 vs 9 0
-Compared element is -> 30 0 vs 9 0
-Compared element is -> 28 0 vs 9 0
-Compared element is -> 27 0 vs 9 0
-Compared element is -> 24 0 vs 9 0
-Compared element is -> 21 0 vs 9 0
-Compared element is -> 15 0 vs 9 0
-Compared element is -> 12 0 vs 9 0
-Compared element is -> 11 0 vs 9 0
-Compared element is -> 9 0 vs 9 0
-Searching for MATCHCurrent elem time is 5141732480 while NS3 5141732480
+Flow Finished 1@64@0 at 5170117760
+Flow uecsrc finished at 5.17012
+Flow uecsrc completion time is 5.17012
+Completion Time Flow is 5170117760
+Running - 1 - 5170117760
+Updated - Time 5170117760
+..... Received a MSG -- host 64 to target 1, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5170117760 5170117760 -  1 0 - 14 0 1 - 64 1 0
+OP MSGnexto[elem.host][elem.proc] 5131088000 (64 0) - nextgr[elem.host][elem.nic] 5131088000( 64  0) - time  5170117760
+++ size is 14,  host [64] searching matching queue for src target 1 tag 0
+Compared element is -> 31 0 vs 1 0
+Compared element is -> 28 0 vs 1 0
+Compared element is -> 27 0 vs 1 0
+Compared element is -> 24 0 vs 1 0
+Compared element is -> 21 0 vs 1 0
+Compared element is -> 20 0 vs 1 0
+Compared element is -> 18 0 vs 1 0
+Compared element is -> 15 0 vs 1 0
+Compared element is -> 9 0 vs 1 0
+Compared element is -> 8 0 vs 1 0
+Compared element is -> 7 0 vs 1 0
+Compared element is -> 5 0 vs 1 0
+Compared element is -> 3 0 vs 1 0
+Compared element is -> 1 0 vs 1 0
+Searching for MATCHCurrent elem time is 5170117760 while NS3 5170117760
 Simulating Until Called
-Flow Finished 8@64@0 at 5166062720
-Flow uecsrc finished at 5.16606
-Flow uecsrc completion time is 5.16606
-Completion Time Flow is 5166062720
-Running - 1 - 5166062720
-Updated - Time 5166062720
-..... Received a MSG -- host 64 to target 8, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5166062720 5166062720 -  1 0 - 16 0 1 - 64 8 0
-OP MSGnexto[elem.host][elem.proc] 5141732480 (64 0) - nextgr[elem.host][elem.nic] 5141732480( 64  0) - time  5166062720
-++ size is 16,  host [64] searching matching queue for src target 8 tag 0
-Compared element is -> 16 0 vs 8 0
-Compared element is -> 31 0 vs 8 0
-Compared element is -> 30 0 vs 8 0
-Compared element is -> 28 0 vs 8 0
-Compared element is -> 27 0 vs 8 0
-Compared element is -> 24 0 vs 8 0
-Compared element is -> 21 0 vs 8 0
-Compared element is -> 15 0 vs 8 0
-Compared element is -> 12 0 vs 8 0
-Compared element is -> 11 0 vs 8 0
-Compared element is -> 8 0 vs 8 0
-Searching for MATCHCurrent elem time is 5166062720 while NS3 5166062720
+Flow Finished 31@64@0 at 5173496960
+Flow uecsrc finished at 5.1735
+Flow uecsrc completion time is 5.1735
+Completion Time Flow is 5173496960
+Running - 1 - 5173496960
+Updated - Time 5173496960
+..... Received a MSG -- host 64 to target 31, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5173496960 5173496960 -  1 0 - 13 0 1 - 64 31 0
+OP MSGnexto[elem.host][elem.proc] 5170117760 (64 0) - nextgr[elem.host][elem.nic] 5170117760( 64  0) - time  5173496960
+++ size is 13,  host [64] searching matching queue for src target 31 tag 0
+Compared element is -> 31 0 vs 31 0
+Searching for MATCHCurrent elem time is 5173496960 while NS3 5173496960
 Simulating Until Called
-Flow Finished 24@64@0 at 5176876160
-Flow uecsrc finished at 5.17688
-Flow uecsrc completion time is 5.17688
-Completion Time Flow is 5176876160
-Running - 1 - 5176876160
-Updated - Time 5176876160
+Flow Finished 21@64@0 at 5194954880
+Flow uecsrc finished at 5.19495
+Flow uecsrc completion time is 5.19495
+Completion Time Flow is 5194954880
+Running - 1 - 5194954880
+Updated - Time 5194954880
+..... Received a MSG -- host 64 to target 21, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5194954880 5194954880 -  1 0 - 12 0 1 - 64 21 0
+OP MSGnexto[elem.host][elem.proc] 5173496960 (64 0) - nextgr[elem.host][elem.nic] 5173496960( 64  0) - time  5194954880
+++ size is 12,  host [64] searching matching queue for src target 21 tag 0
+Compared element is -> 28 0 vs 21 0
+Compared element is -> 27 0 vs 21 0
+Compared element is -> 24 0 vs 21 0
+Compared element is -> 21 0 vs 21 0
+Searching for MATCHCurrent elem time is 5194954880 while NS3 5194954880
+Simulating Until Called
+Flow Finished 7@64@0 at 5197827200
+Flow uecsrc finished at 5.19783
+Flow uecsrc completion time is 5.19783
+Completion Time Flow is 5197827200
+Running - 1 - 5197827200
+Updated - Time 5197827200
+..... Received a MSG -- host 64 to target 7, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5197827200 5197827200 -  1 0 - 11 0 1 - 64 7 0
+OP MSGnexto[elem.host][elem.proc] 5194954880 (64 0) - nextgr[elem.host][elem.nic] 5194954880( 64  0) - time  5197827200
+++ size is 11,  host [64] searching matching queue for src target 7 tag 0
+Compared element is -> 28 0 vs 7 0
+Compared element is -> 27 0 vs 7 0
+Compared element is -> 24 0 vs 7 0
+Compared element is -> 20 0 vs 7 0
+Compared element is -> 18 0 vs 7 0
+Compared element is -> 15 0 vs 7 0
+Compared element is -> 9 0 vs 7 0
+Compared element is -> 8 0 vs 7 0
+Compared element is -> 7 0 vs 7 0
+Searching for MATCHCurrent elem time is 5197827200 while NS3 5197827200
+Simulating Until Called
+Flow Finished 15@64@0 at 5215061120
+Flow uecsrc finished at 5.21506
+Flow uecsrc completion time is 5.21506
+Completion Time Flow is 5215061120
+Running - 1 - 5215061120
+Updated - Time 5215061120
+..... Received a MSG -- host 64 to target 15, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5215061120 5215061120 -  1 0 - 10 0 1 - 64 15 0
+OP MSGnexto[elem.host][elem.proc] 5197827200 (64 0) - nextgr[elem.host][elem.nic] 5197827200( 64  0) - time  5215061120
+++ size is 10,  host [64] searching matching queue for src target 15 tag 0
+Compared element is -> 28 0 vs 15 0
+Compared element is -> 27 0 vs 15 0
+Compared element is -> 24 0 vs 15 0
+Compared element is -> 20 0 vs 15 0
+Compared element is -> 18 0 vs 15 0
+Compared element is -> 15 0 vs 15 0
+Searching for MATCHCurrent elem time is 5215061120 while NS3 5215061120
+Simulating Until Called
+Flow Finished 18@64@0 at 5238715520
+Flow uecsrc finished at 5.23872
+Flow uecsrc completion time is 5.23872
+Completion Time Flow is 5238715520
+Running - 1 - 5238715520
+Updated - Time 5238715520
+..... Received a MSG -- host 64 to target 18, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5238715520 5238715520 -  1 0 - 9 0 1 - 64 18 0
+OP MSGnexto[elem.host][elem.proc] 5215061120 (64 0) - nextgr[elem.host][elem.nic] 5215061120( 64  0) - time  5238715520
+++ size is 9,  host [64] searching matching queue for src target 18 tag 0
+Compared element is -> 28 0 vs 18 0
+Compared element is -> 27 0 vs 18 0
+Compared element is -> 24 0 vs 18 0
+Compared element is -> 20 0 vs 18 0
+Compared element is -> 18 0 vs 18 0
+Searching for MATCHCurrent elem time is 5238715520 while NS3 5238715520
+Simulating Until Called
+Flow Finished 3@64@0 at 5249360000
+Flow uecsrc finished at 5.24936
+Flow uecsrc completion time is 5.24936
+Completion Time Flow is 5249360000
+Running - 1 - 5249360000
+Updated - Time 5249360000
+..... Received a MSG -- host 64 to target 3, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5249360000 5249360000 -  1 0 - 8 0 1 - 64 3 0
+OP MSGnexto[elem.host][elem.proc] 5238715520 (64 0) - nextgr[elem.host][elem.nic] 5238715520( 64  0) - time  5249360000
+++ size is 8,  host [64] searching matching queue for src target 3 tag 0
+Compared element is -> 28 0 vs 3 0
+Compared element is -> 27 0 vs 3 0
+Compared element is -> 24 0 vs 3 0
+Compared element is -> 20 0 vs 3 0
+Compared element is -> 9 0 vs 3 0
+Compared element is -> 8 0 vs 3 0
+Compared element is -> 5 0 vs 3 0
+Compared element is -> 3 0 vs 3 0
+Searching for MATCHCurrent elem time is 5249360000 while NS3 5249360000
+Simulating Until Called
+Flow Finished 24@64@0 at 5272000640
+Flow uecsrc finished at 5.272
+Flow uecsrc completion time is 5.272
+Completion Time Flow is 5272000640
+Running - 1 - 5272000640
+Updated - Time 5272000640
 ..... Received a MSG -- host 64 to target 24, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5176876160 5176876160 -  1 0 - 15 0 1 - 64 24 0
-OP MSGnexto[elem.host][elem.proc] 5166062720 (64 0) - nextgr[elem.host][elem.nic] 5166062720( 64  0) - time  5176876160
-++ size is 15,  host [64] searching matching queue for src target 24 tag 0
-Compared element is -> 16 0 vs 24 0
-Compared element is -> 31 0 vs 24 0
-Compared element is -> 30 0 vs 24 0
+----------------------------    ENTERING WHILE        // ---------------------------- | 5272000640 5272000640 -  1 0 - 7 0 1 - 64 24 0
+OP MSGnexto[elem.host][elem.proc] 5249360000 (64 0) - nextgr[elem.host][elem.nic] 5249360000( 64  0) - time  5272000640
+++ size is 7,  host [64] searching matching queue for src target 24 tag 0
 Compared element is -> 28 0 vs 24 0
 Compared element is -> 27 0 vs 24 0
 Compared element is -> 24 0 vs 24 0
-Searching for MATCHCurrent elem time is 5176876160 while NS3 5176876160
+Searching for MATCHCurrent elem time is 5272000640 while NS3 5272000640
 Simulating Until Called
-Flow Finished 31@64@0 at 5182113920
-Flow uecsrc finished at 5.18211
-Flow uecsrc completion time is 5.18211
-Completion Time Flow is 5182113920
-Running - 1 - 5182113920
-Updated - Time 5182113920
-..... Received a MSG -- host 64 to target 31, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5182113920 5182113920 -  1 0 - 14 0 1 - 64 31 0
-OP MSGnexto[elem.host][elem.proc] 5176876160 (64 0) - nextgr[elem.host][elem.nic] 5176876160( 64  0) - time  5182113920
-++ size is 14,  host [64] searching matching queue for src target 31 tag 0
-Compared element is -> 16 0 vs 31 0
-Compared element is -> 31 0 vs 31 0
-Searching for MATCHCurrent elem time is 5182113920 while NS3 5182113920
+Flow Finished 8@64@0 at 5272169600
+Flow uecsrc finished at 5.27217
+Flow uecsrc completion time is 5.27217
+Completion Time Flow is 5272169600
+Running - 1 - 5272169600
+Updated - Time 5272169600
+..... Received a MSG -- host 64 to target 8, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5272169600 5272169600 -  1 0 - 6 0 1 - 64 8 0
+OP MSGnexto[elem.host][elem.proc] 5272000640 (64 0) - nextgr[elem.host][elem.nic] 5272000640( 64  0) - time  5272169600
+++ size is 6,  host [64] searching matching queue for src target 8 tag 0
+Compared element is -> 28 0 vs 8 0
+Compared element is -> 27 0 vs 8 0
+Compared element is -> 20 0 vs 8 0
+Compared element is -> 9 0 vs 8 0
+Compared element is -> 8 0 vs 8 0
+Searching for MATCHCurrent elem time is 5272169600 while NS3 5272169600
 Simulating Until Called
-Flow Finished 7@64@0 at 5188872320
-Flow uecsrc finished at 5.18887
-Flow uecsrc completion time is 5.18887
-Completion Time Flow is 5188872320
-Running - 1 - 5188872320
-Updated - Time 5188872320
-..... Received a MSG -- host 64 to target 7, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5188872320 5188872320 -  1 0 - 13 0 1 - 64 7 0
-OP MSGnexto[elem.host][elem.proc] 5182113920 (64 0) - nextgr[elem.host][elem.nic] 5182113920( 64  0) - time  5188872320
-++ size is 13,  host [64] searching matching queue for src target 7 tag 0
-Compared element is -> 16 0 vs 7 0
-Compared element is -> 30 0 vs 7 0
-Compared element is -> 28 0 vs 7 0
-Compared element is -> 27 0 vs 7 0
-Compared element is -> 21 0 vs 7 0
-Compared element is -> 15 0 vs 7 0
-Compared element is -> 12 0 vs 7 0
-Compared element is -> 11 0 vs 7 0
-Compared element is -> 7 0 vs 7 0
-Searching for MATCHCurrent elem time is 5188872320 while NS3 5188872320
-Simulating Until Called
-Flow Finished 6@64@0 at 5200023680
-Flow uecsrc finished at 5.20002
-Flow uecsrc completion time is 5.20002
-Completion Time Flow is 5200023680
-Running - 1 - 5200023680
-Updated - Time 5200023680
-..... Received a MSG -- host 64 to target 6, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5200023680 5200023680 -  1 0 - 12 0 1 - 64 6 0
-OP MSGnexto[elem.host][elem.proc] 5188872320 (64 0) - nextgr[elem.host][elem.nic] 5188872320( 64  0) - time  5200023680
-++ size is 12,  host [64] searching matching queue for src target 6 tag 0
-Compared element is -> 16 0 vs 6 0
-Compared element is -> 30 0 vs 6 0
-Compared element is -> 28 0 vs 6 0
-Compared element is -> 27 0 vs 6 0
-Compared element is -> 21 0 vs 6 0
-Compared element is -> 15 0 vs 6 0
-Compared element is -> 12 0 vs 6 0
-Compared element is -> 11 0 vs 6 0
-Compared element is -> 6 0 vs 6 0
-Searching for MATCHCurrent elem time is 5200023680 while NS3 5200023680
-Simulating Until Called
-Flow Finished 11@64@0 at 5218440320
-Flow uecsrc finished at 5.21844
-Flow uecsrc completion time is 5.21844
-Completion Time Flow is 5218440320
-Running - 1 - 5218440320
-Updated - Time 5218440320
-..... Received a MSG -- host 64 to target 11, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5218440320 5218440320 -  1 0 - 11 0 1 - 64 11 0
-OP MSGnexto[elem.host][elem.proc] 5200023680 (64 0) - nextgr[elem.host][elem.nic] 5200023680( 64  0) - time  5218440320
-++ size is 11,  host [64] searching matching queue for src target 11 tag 0
-Compared element is -> 16 0 vs 11 0
-Compared element is -> 30 0 vs 11 0
-Compared element is -> 28 0 vs 11 0
-Compared element is -> 27 0 vs 11 0
-Compared element is -> 21 0 vs 11 0
-Compared element is -> 15 0 vs 11 0
-Compared element is -> 12 0 vs 11 0
-Compared element is -> 11 0 vs 11 0
-Searching for MATCHCurrent elem time is 5218440320 while NS3 5218440320
-Simulating Until Called
-Flow Finished 12@64@0 at 5230943360
-Flow uecsrc finished at 5.23094
-Flow uecsrc completion time is 5.23094
-Completion Time Flow is 5230943360
-Running - 1 - 5230943360
-Updated - Time 5230943360
-..... Received a MSG -- host 64 to target 12, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5230943360 5230943360 -  1 0 - 10 0 1 - 64 12 0
-OP MSGnexto[elem.host][elem.proc] 5218440320 (64 0) - nextgr[elem.host][elem.nic] 5218440320( 64  0) - time  5230943360
-++ size is 10,  host [64] searching matching queue for src target 12 tag 0
-Compared element is -> 16 0 vs 12 0
-Compared element is -> 30 0 vs 12 0
-Compared element is -> 28 0 vs 12 0
-Compared element is -> 27 0 vs 12 0
-Compared element is -> 21 0 vs 12 0
-Compared element is -> 15 0 vs 12 0
-Compared element is -> 12 0 vs 12 0
-Searching for MATCHCurrent elem time is 5230943360 while NS3 5230943360
-Simulating Until Called
-Flow Finished 5@64@0 at 5256118400
-Flow uecsrc finished at 5.25612
-Flow uecsrc completion time is 5.25612
-Completion Time Flow is 5256118400
-Running - 1 - 5256118400
-Updated - Time 5256118400
-..... Received a MSG -- host 64 to target 5, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5256118400 5256118400 -  1 0 - 9 0 1 - 64 5 0
-OP MSGnexto[elem.host][elem.proc] 5230943360 (64 0) - nextgr[elem.host][elem.nic] 5230943360( 64  0) - time  5256118400
-++ size is 9,  host [64] searching matching queue for src target 5 tag 0
-Compared element is -> 16 0 vs 5 0
-Compared element is -> 30 0 vs 5 0
-Compared element is -> 28 0 vs 5 0
-Compared element is -> 27 0 vs 5 0
-Compared element is -> 21 0 vs 5 0
-Compared element is -> 15 0 vs 5 0
-Compared element is -> 5 0 vs 5 0
-Searching for MATCHCurrent elem time is 5256118400 while NS3 5256118400
-Simulating Until Called
-Flow Finished 21@64@0 at 5271662720
-Flow uecsrc finished at 5.27166
-Flow uecsrc completion time is 5.27166
-Completion Time Flow is 5271662720
-Running - 1 - 5271662720
-Updated - Time 5271662720
-..... Received a MSG -- host 64 to target 21, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5271662720 5271662720 -  1 0 - 8 0 1 - 64 21 0
-OP MSGnexto[elem.host][elem.proc] 5256118400 (64 0) - nextgr[elem.host][elem.nic] 5256118400( 64  0) - time  5271662720
-++ size is 8,  host [64] searching matching queue for src target 21 tag 0
-Compared element is -> 16 0 vs 21 0
-Compared element is -> 30 0 vs 21 0
-Compared element is -> 28 0 vs 21 0
-Compared element is -> 27 0 vs 21 0
-Compared element is -> 21 0 vs 21 0
-Searching for MATCHCurrent elem time is 5271662720 while NS3 5271662720
-Simulating Until Called
-Flow Finished 28@64@0 at 5274366080
-Flow uecsrc finished at 5.27437
-Flow uecsrc completion time is 5.27437
-Completion Time Flow is 5274366080
-Running - 1 - 5274366080
-Updated - Time 5274366080
+Flow Finished 28@64@0 at 5278928000
+Flow uecsrc finished at 5.27893
+Flow uecsrc completion time is 5.27893
+Completion Time Flow is 5278928000
+Running - 1 - 5278928000
+Updated - Time 5278928000
 ..... Received a MSG -- host 64 to target 28, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5274366080 5274366080 -  1 0 - 7 0 1 - 64 28 0
-OP MSGnexto[elem.host][elem.proc] 5271662720 (64 0) - nextgr[elem.host][elem.nic] 5271662720( 64  0) - time  5274366080
-++ size is 7,  host [64] searching matching queue for src target 28 tag 0
-Compared element is -> 16 0 vs 28 0
-Compared element is -> 30 0 vs 28 0
+----------------------------    ENTERING WHILE        // ---------------------------- | 5278928000 5278928000 -  1 0 - 5 0 1 - 64 28 0
+OP MSGnexto[elem.host][elem.proc] 5272169600 (64 0) - nextgr[elem.host][elem.nic] 5272169600( 64  0) - time  5278928000
+++ size is 5,  host [64] searching matching queue for src target 28 tag 0
 Compared element is -> 28 0 vs 28 0
-Searching for MATCHCurrent elem time is 5274366080 while NS3 5274366080
+Searching for MATCHCurrent elem time is 5278928000 while NS3 5278928000
 Simulating Until Called
-Flow Finished 4@64@0 at 5279603840
-Flow uecsrc finished at 5.2796
-Flow uecsrc completion time is 5.2796
-Completion Time Flow is 5279603840
-Running - 1 - 5279603840
-Updated - Time 5279603840
-..... Received a MSG -- host 64 to target 4, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5279603840 5279603840 -  1 0 - 6 0 1 - 64 4 0
-OP MSGnexto[elem.host][elem.proc] 5274366080 (64 0) - nextgr[elem.host][elem.nic] 5274366080( 64  0) - time  5279603840
-++ size is 6,  host [64] searching matching queue for src target 4 tag 0
-Compared element is -> 16 0 vs 4 0
-Compared element is -> 30 0 vs 4 0
-Compared element is -> 27 0 vs 4 0
-Compared element is -> 15 0 vs 4 0
-Compared element is -> 4 0 vs 4 0
-Searching for MATCHCurrent elem time is 5279603840 while NS3 5279603840
-Simulating Until Called
-Flow Finished 27@64@0 at 5282458880
-Flow uecsrc finished at 5.28246
-Flow uecsrc completion time is 5.28246
-Completion Time Flow is 5282458880
-Running - 1 - 5282458880
-Updated - Time 5282458880
+Flow Finished 27@64@0 at 5300013440
+Flow uecsrc finished at 5.30001
+Flow uecsrc completion time is 5.30001
+Completion Time Flow is 5300013440
+Running - 1 - 5300013440
+Updated - Time 5300013440
 ..... Received a MSG -- host 64 to target 27, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5282458880 5282458880 -  1 0 - 5 0 1 - 64 27 0
-OP MSGnexto[elem.host][elem.proc] 5279603840 (64 0) - nextgr[elem.host][elem.nic] 5279603840( 64  0) - time  5282458880
-++ size is 5,  host [64] searching matching queue for src target 27 tag 0
-Compared element is -> 16 0 vs 27 0
-Compared element is -> 30 0 vs 27 0
+----------------------------    ENTERING WHILE        // ---------------------------- | 5300013440 5300013440 -  1 0 - 4 0 1 - 64 27 0
+OP MSGnexto[elem.host][elem.proc] 5278928000 (64 0) - nextgr[elem.host][elem.nic] 5278928000( 64  0) - time  5300013440
+++ size is 4,  host [64] searching matching queue for src target 27 tag 0
 Compared element is -> 27 0 vs 27 0
-Searching for MATCHCurrent elem time is 5282458880 while NS3 5282458880
+Searching for MATCHCurrent elem time is 5300013440 while NS3 5300013440
 Simulating Until Called
-Flow Finished 30@64@0 at 5298492800
-Flow uecsrc finished at 5.29849
-Flow uecsrc completion time is 5.29849
-Completion Time Flow is 5298492800
-Running - 1 - 5298492800
-Updated - Time 5298492800
-..... Received a MSG -- host 64 to target 30, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5298492800 5298492800 -  1 0 - 4 0 1 - 64 30 0
-OP MSGnexto[elem.host][elem.proc] 5282458880 (64 0) - nextgr[elem.host][elem.nic] 5282458880( 64  0) - time  5298492800
-++ size is 4,  host [64] searching matching queue for src target 30 tag 0
-Compared element is -> 16 0 vs 30 0
-Compared element is -> 30 0 vs 30 0
-Searching for MATCHCurrent elem time is 5298492800 while NS3 5298492800
+Flow Finished 5@64@0 at 5300689280
+Flow uecsrc finished at 5.30069
+Flow uecsrc completion time is 5.30069
+Completion Time Flow is 5300689280
+Running - 1 - 5300689280
+Updated - Time 5300689280
+..... Received a MSG -- host 64 to target 5, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5300689280 5300689280 -  1 0 - 3 0 1 - 64 5 0
+OP MSGnexto[elem.host][elem.proc] 5300013440 (64 0) - nextgr[elem.host][elem.nic] 5300013440( 64  0) - time  5300689280
+++ size is 3,  host [64] searching matching queue for src target 5 tag 0
+Compared element is -> 20 0 vs 5 0
+Compared element is -> 9 0 vs 5 0
+Compared element is -> 5 0 vs 5 0
+Searching for MATCHCurrent elem time is 5300689280 while NS3 5300689280
 Simulating Until Called
-Flow Finished 2@64@0 at 5299844480
-Flow uecsrc finished at 5.29984
-Flow uecsrc completion time is 5.29984
-Completion Time Flow is 5299844480
-Running - 1 - 5299844480
-Updated - Time 5299844480
-..... Received a MSG -- host 64 to target 2, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5299844480 5299844480 -  1 0 - 3 0 1 - 64 2 0
-OP MSGnexto[elem.host][elem.proc] 5298492800 (64 0) - nextgr[elem.host][elem.nic] 5298492800( 64  0) - time  5299844480
-++ size is 3,  host [64] searching matching queue for src target 2 tag 0
-Compared element is -> 16 0 vs 2 0
-Compared element is -> 15 0 vs 2 0
-Compared element is -> 2 0 vs 2 0
-Searching for MATCHCurrent elem time is 5299844480 while NS3 5299844480
+Flow Finished 9@64@0 at 5303054720
+Flow uecsrc finished at 5.30305
+Flow uecsrc completion time is 5.30305
+Completion Time Flow is 5303054720
+Running - 1 - 5303054720
+Updated - Time 5303054720
+..... Received a MSG -- host 64 to target 9, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5303054720 5303054720 -  1 0 - 2 0 1 - 64 9 0
+OP MSGnexto[elem.host][elem.proc] 5300689280 (64 0) - nextgr[elem.host][elem.nic] 5300689280( 64  0) - time  5303054720
+++ size is 2,  host [64] searching matching queue for src target 9 tag 0
+Compared element is -> 20 0 vs 9 0
+Compared element is -> 9 0 vs 9 0
+Searching for MATCHCurrent elem time is 5303054720 while NS3 5303054720
 Simulating Until Called
-Flow Finished 15@64@0 at 5306585600
-Flow uecsrc finished at 5.30659
-Flow uecsrc completion time is 5.30659
-Completion Time Flow is 5306585600
-Running - 1 - 5306585600
-Updated - Time 5306585600
-..... Received a MSG -- host 64 to target 15, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5306585600 5306585600 -  1 0 - 2 0 1 - 64 15 0
-OP MSGnexto[elem.host][elem.proc] 5299844480 (64 0) - nextgr[elem.host][elem.nic] 5299844480( 64  0) - time  5306585600
-++ size is 2,  host [64] searching matching queue for src target 15 tag 0
-Compared element is -> 16 0 vs 15 0
-Compared element is -> 15 0 vs 15 0
-Searching for MATCHCurrent elem time is 5306585600 while NS3 5306585600
-Simulating Until Called
-Flow Finished 16@64@0 at 5308275200
-Flow uecsrc finished at 5.30828
-Flow uecsrc completion time is 5.30828
-Completion Time Flow is 5308275200
-Running - 1 - 5308275200
-Updated - Time 5308275200
-..... Received a MSG -- host 64 to target 16, proc 0 - Type 5
-----------------------------    ENTERING WHILE        // ---------------------------- | 5308275200 5308275200 -  1 0 - 1 0 1 - 64 16 0
-OP MSGnexto[elem.host][elem.proc] 5306585600 (64 0) - nextgr[elem.host][elem.nic] 5306585600( 64  0) - time  5308275200
-++ size is 1,  host [64] searching matching queue for src target 16 tag 0
-Compared element is -> 16 0 vs 16 0
-Searching for MATCHCurrent elem time is 5308275200 while NS3 5308275200
+Flow Finished 20@64@0 at 5304575360
+Flow uecsrc finished at 5.30458
+Flow uecsrc completion time is 5.30458
+Completion Time Flow is 5304575360
+Running - 1 - 5304575360
+Updated - Time 5304575360
+..... Received a MSG -- host 64 to target 20, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 5304575360 5304575360 -  1 0 - 1 0 1 - 64 20 0
+OP MSGnexto[elem.host][elem.proc] 5303054720 (64 0) - nextgr[elem.host][elem.nic] 5303054720( 64  0) - time  5304575360
+++ size is 1,  host [64] searching matching queue for src target 20 tag 0
+Compared element is -> 20 0 vs 20 0
+Searching for MATCHCurrent elem time is 5304575360 while NS3 5304575360
 ..... NOT Received a MSG
 
 
-RunTime Total LGS -> 916ms
+RunTime Total LGS -> 904ms
 
 
-htsim Terminates at 5308275200
+htsim Terminates at 5304575360
 
 
 Remaining 128
@@ -3024,7 +2978,7 @@ Host 60: 0
 Host 61: 0
 Host 62: 0
 Host 63: 0
-Host 64: 5308275200
+Host 64: 5304575360
 Host 65: 0
 Host 66: 0
 Host 67: 0
@@ -3088,7 +3042,7 @@ Host 124: 0
 Host 125: 0
 Host 126: 0
 Host 127: 0
-Maximum finishing time at host 64: 5308275200 (5.30828 s)
+Maximum finishing time at host 64: 5304575360 (5.30458 s)
 Mean number of subflows -nan
 Done
 Path:

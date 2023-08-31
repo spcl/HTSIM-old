@@ -370,9 +370,7 @@ int main(int argc, char **argv) {
         srandom(time(NULL));
     }
     Packet::set_packet_size(packet_size);
-    if (COLLECT_DATA) {
-        initializeLoggingFolders();
-    }
+    initializeLoggingFolders();
 
     // Routing
     // float ar_sticky_delta = 10;
