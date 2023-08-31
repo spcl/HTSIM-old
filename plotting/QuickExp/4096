@@ -160,7 +160,6 @@ LogGP network backend; size: 128 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O
 Starting 128
 ----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 256 - 0 106 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 0 To 106
 Setting 0 106 0
@@ -170,7 +169,6 @@ Finished UEC LGS Setup
 Scheduling Event (0@106@0) of size 4000000 from 0 to 106 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [0] searching matching queue for src target 68 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 1 To 123
 Setting 1 123 0
@@ -180,7 +178,6 @@ Finished UEC LGS Setup
 Scheduling Event (1@123@0) of size 4000000 from 1 to 123 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [1] searching matching queue for src target 126 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 2 To 91
 Setting 2 91 0
@@ -190,7 +187,6 @@ Finished UEC LGS Setup
 Scheduling Event (2@91@0) of size 4000000 from 2 to 91 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [2] searching matching queue for src target 93 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 3 To 104
 Setting 3 104 0
@@ -200,7 +196,6 @@ Finished UEC LGS Setup
 Scheduling Event (3@104@0) of size 4000000 from 3 to 104 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [3] searching matching queue for src target 89 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 4 To 120
 Setting 4 120 0
@@ -210,7 +205,6 @@ Finished UEC LGS Setup
 Scheduling Event (4@120@0) of size 4000000 from 4 to 120 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [4] searching matching queue for src target 102 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 5 To 119
 Setting 5 119 0
@@ -220,7 +214,6 @@ Finished UEC LGS Setup
 Scheduling Event (5@119@0) of size 4000000 from 5 to 119 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [5] searching matching queue for src target 78 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 6 To 76
 Setting 6 76 0
@@ -230,7 +223,6 @@ Finished UEC LGS Setup
 Scheduling Event (6@76@0) of size 4000000 from 6 to 76 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [6] searching matching queue for src target 120 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 7 To 111
 Setting 7 111 0
@@ -240,7 +232,6 @@ Finished UEC LGS Setup
 Scheduling Event (7@111@0) of size 4000000 from 7 to 111 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [7] searching matching queue for src target 121 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 8 To 114
 Setting 8 114 0
@@ -250,7 +241,6 @@ Finished UEC LGS Setup
 Scheduling Event (8@114@0) of size 4000000 from 8 to 114 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [8] searching matching queue for src target 112 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 9 To 70
 Setting 9 70 0
@@ -260,7 +250,6 @@ Finished UEC LGS Setup
 Scheduling Event (9@70@0) of size 4000000 from 9 to 70 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [9] searching matching queue for src target 117 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 10 To 72
 Setting 10 72 0
@@ -270,7 +259,6 @@ Finished UEC LGS Setup
 Scheduling Event (10@72@0) of size 4000000 from 10 to 72 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [10] searching matching queue for src target 99 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 11 To 66
 Setting 11 66 0
@@ -280,7 +268,6 @@ Finished UEC LGS Setup
 Scheduling Event (11@66@0) of size 4000000 from 11 to 66 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [11] searching matching queue for src target 75 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 12 To 127
 Setting 12 127 0
@@ -290,7 +277,6 @@ Finished UEC LGS Setup
 Scheduling Event (12@127@0) of size 4000000 from 12 to 127 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [12] searching matching queue for src target 72 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 13 To 68
 Setting 13 68 0
@@ -300,7 +286,6 @@ Finished UEC LGS Setup
 Scheduling Event (13@68@0) of size 4000000 from 13 to 68 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [13] searching matching queue for src target 124 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 14 To 99
 Setting 14 99 0
@@ -310,7 +295,6 @@ Finished UEC LGS Setup
 Scheduling Event (14@99@0) of size 4000000 from 14 to 99 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [14] searching matching queue for src target 125 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 15 To 118
 Setting 15 118 0
@@ -320,7 +304,6 @@ Finished UEC LGS Setup
 Scheduling Event (15@118@0) of size 4000000 from 15 to 118 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [15] searching matching queue for src target 71 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 16 To 74
 Setting 16 74 0
@@ -330,7 +313,6 @@ Finished UEC LGS Setup
 Scheduling Event (16@74@0) of size 4000000 from 16 to 74 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [16] searching matching queue for src target 74 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 17 To 107
 Setting 17 107 0
@@ -340,7 +322,6 @@ Finished UEC LGS Setup
 Scheduling Event (17@107@0) of size 4000000 from 17 to 107 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [17] searching matching queue for src target 108 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 18 To 124
 Setting 18 124 0
@@ -350,7 +331,6 @@ Finished UEC LGS Setup
 Scheduling Event (18@124@0) of size 4000000 from 18 to 124 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [18] searching matching queue for src target 70 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 19 To 97
 Setting 19 97 0
@@ -360,7 +340,6 @@ Finished UEC LGS Setup
 Scheduling Event (19@97@0) of size 4000000 from 19 to 97 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [19] searching matching queue for src target 79 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 20 To 88
 Setting 20 88 0
@@ -370,7 +349,6 @@ Finished UEC LGS Setup
 Scheduling Event (20@88@0) of size 4000000 from 20 to 88 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [20] searching matching queue for src target 91 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 21 To 103
 Setting 21 103 0
@@ -380,7 +358,6 @@ Finished UEC LGS Setup
 Scheduling Event (21@103@0) of size 4000000 from 21 to 103 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [21] searching matching queue for src target 87 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 22 To 101
 Setting 22 101 0
@@ -390,7 +367,6 @@ Finished UEC LGS Setup
 Scheduling Event (22@101@0) of size 4000000 from 22 to 101 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [22] searching matching queue for src target 101 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 23 To 105
 Setting 23 105 0
@@ -400,7 +376,6 @@ Finished UEC LGS Setup
 Scheduling Event (23@105@0) of size 4000000 from 23 to 105 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [23] searching matching queue for src target 76 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 24 To 78
 Setting 24 78 0
@@ -410,7 +385,6 @@ Finished UEC LGS Setup
 Scheduling Event (24@78@0) of size 4000000 from 24 to 78 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [24] searching matching queue for src target 122 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 25 To 83
 Setting 25 83 0
@@ -420,7 +394,6 @@ Finished UEC LGS Setup
 Scheduling Event (25@83@0) of size 4000000 from 25 to 83 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [25] searching matching queue for src target 114 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 26 To 116
 Setting 26 116 0
@@ -430,7 +403,6 @@ Finished UEC LGS Setup
 Scheduling Event (26@116@0) of size 4000000 from 26 to 116 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [26] searching matching queue for src target 116 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 27 To 89
 Setting 27 89 0
@@ -440,7 +412,6 @@ Finished UEC LGS Setup
 Scheduling Event (27@89@0) of size 4000000 from 27 to 89 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [27] searching matching queue for src target 106 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 28 To 121
 Setting 28 121 0
@@ -450,7 +421,6 @@ Finished UEC LGS Setup
 Scheduling Event (28@121@0) of size 4000000 from 28 to 121 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [28] searching matching queue for src target 97 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 29 To 109
 Setting 29 109 0
@@ -460,7 +430,6 @@ Finished UEC LGS Setup
 Scheduling Event (29@109@0) of size 4000000 from 29 to 109 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [29] searching matching queue for src target 110 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 30 To 98
 Setting 30 98 0
@@ -470,7 +439,6 @@ Finished UEC LGS Setup
 Scheduling Event (30@98@0) of size 4000000 from 30 to 98 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [30] searching matching queue for src target 82 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 31 To 80
 Setting 31 80 0
@@ -480,7 +448,6 @@ Finished UEC LGS Setup
 Scheduling Event (31@80@0) of size 4000000 from 31 to 80 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [31] searching matching queue for src target 103 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 32 To 87
 Setting 32 87 0
@@ -490,7 +457,6 @@ Finished UEC LGS Setup
 Scheduling Event (32@87@0) of size 4000000 from 32 to 87 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [32] searching matching queue for src target 84 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 33 To 113
 Setting 33 113 0
@@ -500,7 +466,6 @@ Finished UEC LGS Setup
 Scheduling Event (33@113@0) of size 4000000 from 33 to 113 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [33] searching matching queue for src target 115 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 34 To 75
 Setting 34 75 0
@@ -510,7 +475,6 @@ Finished UEC LGS Setup
 Scheduling Event (34@75@0) of size 4000000 from 34 to 75 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [34] searching matching queue for src target 77 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 35 To 82
 Setting 35 82 0
@@ -520,7 +484,6 @@ Finished UEC LGS Setup
 Scheduling Event (35@82@0) of size 4000000 from 35 to 82 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [35] searching matching queue for src target 90 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 36 To 94
 Setting 36 94 0
@@ -530,7 +493,6 @@ Finished UEC LGS Setup
 Scheduling Event (36@94@0) of size 4000000 from 36 to 94 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [36] searching matching queue for src target 88 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 37 To 112
 Setting 37 112 0
@@ -540,7 +502,6 @@ Finished UEC LGS Setup
 Scheduling Event (37@112@0) of size 4000000 from 37 to 112 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [37] searching matching queue for src target 94 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 38 To 93
 Setting 38 93 0
@@ -550,7 +511,6 @@ Finished UEC LGS Setup
 Scheduling Event (38@93@0) of size 4000000 from 38 to 93 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [38] searching matching queue for src target 81 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 39 To 90
 Setting 39 90 0
@@ -560,7 +520,6 @@ Finished UEC LGS Setup
 Scheduling Event (39@90@0) of size 4000000 from 39 to 90 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [39] searching matching queue for src target 107 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 40 To 100
 Setting 40 100 0
@@ -570,7 +529,6 @@ Finished UEC LGS Setup
 Scheduling Event (40@100@0) of size 4000000 from 40 to 100 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [40] searching matching queue for src target 85 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 41 To 71
 Setting 41 71 0
@@ -580,7 +538,6 @@ Finished UEC LGS Setup
 Scheduling Event (41@71@0) of size 4000000 from 41 to 71 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [41] searching matching queue for src target 65 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 42 To 110
 Setting 42 110 0
@@ -590,7 +547,6 @@ Finished UEC LGS Setup
 Scheduling Event (42@110@0) of size 4000000 from 42 to 110 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [42] searching matching queue for src target 111 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 43 To 65
 Setting 43 65 0
@@ -600,7 +556,6 @@ Finished UEC LGS Setup
 Scheduling Event (43@65@0) of size 4000000 from 43 to 65 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [43] searching matching queue for src target 66 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 44 To 115
 Setting 44 115 0
@@ -610,7 +565,6 @@ Finished UEC LGS Setup
 Scheduling Event (44@115@0) of size 4000000 from 44 to 115 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [44] searching matching queue for src target 119 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 45 To 67
 Setting 45 67 0
@@ -620,7 +574,6 @@ Finished UEC LGS Setup
 Scheduling Event (45@67@0) of size 4000000 from 45 to 67 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [45] searching matching queue for src target 98 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 46 To 96
 Setting 46 96 0
@@ -630,7 +583,6 @@ Finished UEC LGS Setup
 Scheduling Event (46@96@0) of size 4000000 from 46 to 96 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [46] searching matching queue for src target 113 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 47 To 95
 Setting 47 95 0
@@ -640,7 +592,6 @@ Finished UEC LGS Setup
 Scheduling Event (47@95@0) of size 4000000 from 47 to 95 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [47] searching matching queue for src target 67 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 48 To 86
 Setting 48 86 0
@@ -650,7 +601,6 @@ Finished UEC LGS Setup
 Scheduling Event (48@86@0) of size 4000000 from 48 to 86 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [48] searching matching queue for src target 123 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 49 To 108
 Setting 49 108 0
@@ -660,7 +610,6 @@ Finished UEC LGS Setup
 Scheduling Event (49@108@0) of size 4000000 from 49 to 108 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [49] searching matching queue for src target 86 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 50 To 92
 Setting 50 92 0
@@ -670,7 +619,6 @@ Finished UEC LGS Setup
 Scheduling Event (50@92@0) of size 4000000 from 50 to 92 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [50] searching matching queue for src target 109 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 51 To 81
 Setting 51 81 0
@@ -680,7 +628,6 @@ Finished UEC LGS Setup
 Scheduling Event (51@81@0) of size 4000000 from 51 to 81 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [51] searching matching queue for src target 69 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 52 To 125
 Setting 52 125 0
@@ -690,7 +637,6 @@ Finished UEC LGS Setup
 Scheduling Event (52@125@0) of size 4000000 from 52 to 125 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [52] searching matching queue for src target 83 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 53 To 122
 Setting 53 122 0
@@ -700,7 +646,6 @@ Finished UEC LGS Setup
 Scheduling Event (53@122@0) of size 4000000 from 53 to 122 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [53] searching matching queue for src target 73 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 54 To 102
 Setting 54 102 0
@@ -710,7 +655,6 @@ Finished UEC LGS Setup
 Scheduling Event (54@102@0) of size 4000000 from 54 to 102 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [54] searching matching queue for src target 118 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 55 To 79
 Setting 55 79 0
@@ -720,7 +664,6 @@ Finished UEC LGS Setup
 Scheduling Event (55@79@0) of size 4000000 from 55 to 79 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [55] searching matching queue for src target 127 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 56 To 117
 Setting 56 117 0
@@ -730,7 +673,6 @@ Finished UEC LGS Setup
 Scheduling Event (56@117@0) of size 4000000 from 56 to 117 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [56] searching matching queue for src target 92 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 57 To 85
 Setting 57 85 0
@@ -740,7 +682,6 @@ Finished UEC LGS Setup
 Scheduling Event (57@85@0) of size 4000000 from 57 to 85 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [57] searching matching queue for src target 104 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 58 To 73
 Setting 58 73 0
@@ -750,7 +691,6 @@ Finished UEC LGS Setup
 Scheduling Event (58@73@0) of size 4000000 from 58 to 73 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [58] searching matching queue for src target 80 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 59 To 64
 Setting 59 64 0
@@ -760,7 +700,6 @@ Finished UEC LGS Setup
 Scheduling Event (59@64@0) of size 4000000 from 59 to 64 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [59] searching matching queue for src target 95 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 60 To 77
 Setting 60 77 0
@@ -770,7 +709,6 @@ Finished UEC LGS Setup
 Scheduling Event (60@77@0) of size 4000000 from 60 to 77 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [60] searching matching queue for src target 100 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 61 To 126
 Setting 61 126 0
@@ -780,7 +718,6 @@ Finished UEC LGS Setup
 Scheduling Event (61@126@0) of size 4000000 from 61 to 126 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [61] searching matching queue for src target 96 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 62 To 69
 Setting 62 69 0
@@ -790,7 +727,6 @@ Finished UEC LGS Setup
 Scheduling Event (62@69@0) of size 4000000 from 62 to 69 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [62] searching matching queue for src target 105 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 63 To 84
 Setting 63 84 0
@@ -800,7 +736,6 @@ Finished UEC LGS Setup
 Scheduling Event (63@84@0) of size 4000000 from 63 to 84 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [63] searching matching queue for src target 64 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 64 To 63
 Setting 64 63 0
@@ -810,7 +745,6 @@ Finished UEC LGS Setup
 Scheduling Event (64@63@0) of size 4000000 from 64 to 63 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [64] searching matching queue for src target 59 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 65 To 41
 Setting 65 41 0
@@ -820,7 +754,6 @@ Finished UEC LGS Setup
 Scheduling Event (65@41@0) of size 4000000 from 65 to 41 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [65] searching matching queue for src target 43 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 66 To 43
 Setting 66 43 0
@@ -830,7 +763,6 @@ Finished UEC LGS Setup
 Scheduling Event (66@43@0) of size 4000000 from 66 to 43 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [66] searching matching queue for src target 11 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 67 To 47
 Setting 67 47 0
@@ -840,7 +772,6 @@ Finished UEC LGS Setup
 Scheduling Event (67@47@0) of size 4000000 from 67 to 47 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [67] searching matching queue for src target 45 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 68 To 0
 Setting 68 0 0
@@ -850,7 +781,6 @@ Finished UEC LGS Setup
 Scheduling Event (68@0@0) of size 4000000 from 68 to 0 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [68] searching matching queue for src target 13 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 69 To 51
 Setting 69 51 0
@@ -860,7 +790,6 @@ Finished UEC LGS Setup
 Scheduling Event (69@51@0) of size 4000000 from 69 to 51 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [69] searching matching queue for src target 62 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 70 To 18
 Setting 70 18 0
@@ -870,7 +799,6 @@ Finished UEC LGS Setup
 Scheduling Event (70@18@0) of size 4000000 from 70 to 18 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [70] searching matching queue for src target 9 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 71 To 15
 Setting 71 15 0
@@ -880,7 +808,6 @@ Finished UEC LGS Setup
 Scheduling Event (71@15@0) of size 4000000 from 71 to 15 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [71] searching matching queue for src target 41 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 72 To 12
 Setting 72 12 0
@@ -890,7 +817,6 @@ Finished UEC LGS Setup
 Scheduling Event (72@12@0) of size 4000000 from 72 to 12 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [72] searching matching queue for src target 10 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 73 To 53
 Setting 73 53 0
@@ -900,7 +826,6 @@ Finished UEC LGS Setup
 Scheduling Event (73@53@0) of size 4000000 from 73 to 53 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [73] searching matching queue for src target 58 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 74 To 16
 Setting 74 16 0
@@ -910,7 +835,6 @@ Finished UEC LGS Setup
 Scheduling Event (74@16@0) of size 4000000 from 74 to 16 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [74] searching matching queue for src target 16 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 75 To 11
 Setting 75 11 0
@@ -920,7 +844,6 @@ Finished UEC LGS Setup
 Scheduling Event (75@11@0) of size 4000000 from 75 to 11 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [75] searching matching queue for src target 34 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 76 To 23
 Setting 76 23 0
@@ -930,7 +853,6 @@ Finished UEC LGS Setup
 Scheduling Event (76@23@0) of size 4000000 from 76 to 23 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [76] searching matching queue for src target 6 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 77 To 34
 Setting 77 34 0
@@ -940,7 +862,6 @@ Finished UEC LGS Setup
 Scheduling Event (77@34@0) of size 4000000 from 77 to 34 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [77] searching matching queue for src target 60 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 78 To 5
 Setting 78 5 0
@@ -950,7 +871,6 @@ Finished UEC LGS Setup
 Scheduling Event (78@5@0) of size 4000000 from 78 to 5 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [78] searching matching queue for src target 24 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 79 To 19
 Setting 79 19 0
@@ -960,7 +880,6 @@ Finished UEC LGS Setup
 Scheduling Event (79@19@0) of size 4000000 from 79 to 19 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [79] searching matching queue for src target 55 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 80 To 58
 Setting 80 58 0
@@ -970,7 +889,6 @@ Finished UEC LGS Setup
 Scheduling Event (80@58@0) of size 4000000 from 80 to 58 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [80] searching matching queue for src target 31 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 81 To 38
 Setting 81 38 0
@@ -980,7 +898,6 @@ Finished UEC LGS Setup
 Scheduling Event (81@38@0) of size 4000000 from 81 to 38 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [81] searching matching queue for src target 51 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 82 To 30
 Setting 82 30 0
@@ -990,7 +907,6 @@ Finished UEC LGS Setup
 Scheduling Event (82@30@0) of size 4000000 from 82 to 30 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [82] searching matching queue for src target 35 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 83 To 52
 Setting 83 52 0
@@ -1000,7 +916,6 @@ Finished UEC LGS Setup
 Scheduling Event (83@52@0) of size 4000000 from 83 to 52 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [83] searching matching queue for src target 25 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 84 To 32
 Setting 84 32 0
@@ -1010,7 +925,6 @@ Finished UEC LGS Setup
 Scheduling Event (84@32@0) of size 4000000 from 84 to 32 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [84] searching matching queue for src target 63 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 85 To 40
 Setting 85 40 0
@@ -1020,7 +934,6 @@ Finished UEC LGS Setup
 Scheduling Event (85@40@0) of size 4000000 from 85 to 40 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [85] searching matching queue for src target 57 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 86 To 49
 Setting 86 49 0
@@ -1030,7 +943,6 @@ Finished UEC LGS Setup
 Scheduling Event (86@49@0) of size 4000000 from 86 to 49 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [86] searching matching queue for src target 48 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 87 To 21
 Setting 87 21 0
@@ -1040,7 +952,6 @@ Finished UEC LGS Setup
 Scheduling Event (87@21@0) of size 4000000 from 87 to 21 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [87] searching matching queue for src target 32 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 88 To 36
 Setting 88 36 0
@@ -1050,7 +961,6 @@ Finished UEC LGS Setup
 Scheduling Event (88@36@0) of size 4000000 from 88 to 36 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [88] searching matching queue for src target 20 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 89 To 3
 Setting 89 3 0
@@ -1060,7 +970,6 @@ Finished UEC LGS Setup
 Scheduling Event (89@3@0) of size 4000000 from 89 to 3 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [89] searching matching queue for src target 27 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 90 To 35
 Setting 90 35 0
@@ -1070,7 +979,6 @@ Finished UEC LGS Setup
 Scheduling Event (90@35@0) of size 4000000 from 90 to 35 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [90] searching matching queue for src target 39 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 91 To 20
 Setting 91 20 0
@@ -1080,7 +988,6 @@ Finished UEC LGS Setup
 Scheduling Event (91@20@0) of size 4000000 from 91 to 20 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [91] searching matching queue for src target 2 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 92 To 56
 Setting 92 56 0
@@ -1090,7 +997,6 @@ Finished UEC LGS Setup
 Scheduling Event (92@56@0) of size 4000000 from 92 to 56 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [92] searching matching queue for src target 50 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 93 To 2
 Setting 93 2 0
@@ -1100,7 +1006,6 @@ Finished UEC LGS Setup
 Scheduling Event (93@2@0) of size 4000000 from 93 to 2 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [93] searching matching queue for src target 38 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 94 To 37
 Setting 94 37 0
@@ -1110,7 +1015,6 @@ Finished UEC LGS Setup
 Scheduling Event (94@37@0) of size 4000000 from 94 to 37 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [94] searching matching queue for src target 36 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 95 To 59
 Setting 95 59 0
@@ -1120,7 +1024,6 @@ Finished UEC LGS Setup
 Scheduling Event (95@59@0) of size 4000000 from 95 to 59 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [95] searching matching queue for src target 47 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 96 To 61
 Setting 96 61 0
@@ -1130,7 +1033,6 @@ Finished UEC LGS Setup
 Scheduling Event (96@61@0) of size 4000000 from 96 to 61 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [96] searching matching queue for src target 46 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 97 To 28
 Setting 97 28 0
@@ -1140,7 +1042,6 @@ Finished UEC LGS Setup
 Scheduling Event (97@28@0) of size 4000000 from 97 to 28 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [97] searching matching queue for src target 19 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 98 To 45
 Setting 98 45 0
@@ -1150,7 +1051,6 @@ Finished UEC LGS Setup
 Scheduling Event (98@45@0) of size 4000000 from 98 to 45 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [98] searching matching queue for src target 30 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 99 To 10
 Setting 99 10 0
@@ -1160,7 +1060,6 @@ Finished UEC LGS Setup
 Scheduling Event (99@10@0) of size 4000000 from 99 to 10 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [99] searching matching queue for src target 14 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 100 To 60
 Setting 100 60 0
@@ -1170,7 +1069,6 @@ Finished UEC LGS Setup
 Scheduling Event (100@60@0) of size 4000000 from 100 to 60 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [100] searching matching queue for src target 40 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 101 To 22
 Setting 101 22 0
@@ -1180,7 +1078,6 @@ Finished UEC LGS Setup
 Scheduling Event (101@22@0) of size 4000000 from 101 to 22 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [101] searching matching queue for src target 22 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 102 To 4
 Setting 102 4 0
@@ -1190,7 +1087,6 @@ Finished UEC LGS Setup
 Scheduling Event (102@4@0) of size 4000000 from 102 to 4 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [102] searching matching queue for src target 54 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 103 To 31
 Setting 103 31 0
@@ -1200,7 +1096,6 @@ Finished UEC LGS Setup
 Scheduling Event (103@31@0) of size 4000000 from 103 to 31 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [103] searching matching queue for src target 21 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 104 To 57
 Setting 104 57 0
@@ -1210,7 +1105,6 @@ Finished UEC LGS Setup
 Scheduling Event (104@57@0) of size 4000000 from 104 to 57 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [104] searching matching queue for src target 3 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 105 To 62
 Setting 105 62 0
@@ -1220,7 +1114,6 @@ Finished UEC LGS Setup
 Scheduling Event (105@62@0) of size 4000000 from 105 to 62 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [105] searching matching queue for src target 23 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 106 To 27
 Setting 106 27 0
@@ -1230,7 +1123,6 @@ Finished UEC LGS Setup
 Scheduling Event (106@27@0) of size 4000000 from 106 to 27 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [106] searching matching queue for src target 0 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 107 To 39
 Setting 107 39 0
@@ -1240,7 +1132,6 @@ Finished UEC LGS Setup
 Scheduling Event (107@39@0) of size 4000000 from 107 to 39 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [107] searching matching queue for src target 17 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 108 To 17
 Setting 108 17 0
@@ -1250,7 +1141,6 @@ Finished UEC LGS Setup
 Scheduling Event (108@17@0) of size 4000000 from 108 to 17 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [108] searching matching queue for src target 49 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 109 To 50
 Setting 109 50 0
@@ -1260,7 +1150,6 @@ Finished UEC LGS Setup
 Scheduling Event (109@50@0) of size 4000000 from 109 to 50 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [109] searching matching queue for src target 29 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 110 To 29
 Setting 110 29 0
@@ -1270,7 +1159,6 @@ Finished UEC LGS Setup
 Scheduling Event (110@29@0) of size 4000000 from 110 to 29 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [110] searching matching queue for src target 42 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 111 To 42
 Setting 111 42 0
@@ -1280,7 +1168,6 @@ Finished UEC LGS Setup
 Scheduling Event (111@42@0) of size 4000000 from 111 to 42 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [111] searching matching queue for src target 7 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 112 To 8
 Setting 112 8 0
@@ -1290,7 +1177,6 @@ Finished UEC LGS Setup
 Scheduling Event (112@8@0) of size 4000000 from 112 to 8 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [112] searching matching queue for src target 37 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 113 To 46
 Setting 113 46 0
@@ -1300,7 +1186,6 @@ Finished UEC LGS Setup
 Scheduling Event (113@46@0) of size 4000000 from 113 to 46 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [113] searching matching queue for src target 33 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 114 To 25
 Setting 114 25 0
@@ -1310,7 +1195,6 @@ Finished UEC LGS Setup
 Scheduling Event (114@25@0) of size 4000000 from 114 to 25 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [114] searching matching queue for src target 8 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 115 To 33
 Setting 115 33 0
@@ -1320,7 +1204,6 @@ Finished UEC LGS Setup
 Scheduling Event (115@33@0) of size 4000000 from 115 to 33 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [115] searching matching queue for src target 44 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 116 To 26
 Setting 116 26 0
@@ -1330,7 +1213,6 @@ Finished UEC LGS Setup
 Scheduling Event (116@26@0) of size 4000000 from 116 to 26 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [116] searching matching queue for src target 26 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 117 To 9
 Setting 117 9 0
@@ -1340,7 +1222,6 @@ Finished UEC LGS Setup
 Scheduling Event (117@9@0) of size 4000000 from 117 to 9 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [117] searching matching queue for src target 56 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 118 To 54
 Setting 118 54 0
@@ -1350,7 +1231,6 @@ Finished UEC LGS Setup
 Scheduling Event (118@54@0) of size 4000000 from 118 to 54 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [118] searching matching queue for src target 15 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 119 To 44
 Setting 119 44 0
@@ -1360,7 +1240,6 @@ Finished UEC LGS Setup
 Scheduling Event (119@44@0) of size 4000000 from 119 to 44 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [119] searching matching queue for src target 5 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 120 To 6
 Setting 120 6 0
@@ -1370,7 +1249,6 @@ Finished UEC LGS Setup
 Scheduling Event (120@6@0) of size 4000000 from 120 to 6 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [120] searching matching queue for src target 4 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 121 To 7
 Setting 121 7 0
@@ -1380,7 +1258,6 @@ Finished UEC LGS Setup
 Scheduling Event (121@7@0) of size 4000000 from 121 to 7 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [121] searching matching queue for src target 28 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 122 To 24
 Setting 122 24 0
@@ -1390,7 +1267,6 @@ Finished UEC LGS Setup
 Scheduling Event (122@24@0) of size 4000000 from 122 to 24 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [122] searching matching queue for src target 53 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 123 To 48
 Setting 123 48 0
@@ -1400,7 +1276,6 @@ Finished UEC LGS Setup
 Scheduling Event (123@48@0) of size 4000000 from 123 to 48 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [123] searching matching queue for src target 1 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 124 To 13
 Setting 124 13 0
@@ -1410,7 +1285,6 @@ Finished UEC LGS Setup
 Scheduling Event (124@13@0) of size 4000000 from 124 to 13 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [124] searching matching queue for src target 18 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 125 To 14
 Setting 125 14 0
@@ -1420,7 +1294,6 @@ Finished UEC LGS Setup
 Scheduling Event (125@14@0) of size 4000000 from 125 to 14 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [125] searching matching queue for src target 52 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 126 To 1
 Setting 126 1 0
@@ -1430,7 +1303,6 @@ Finished UEC LGS Setup
 Scheduling Event (126@1@0) of size 4000000 from 126 to 1 tag 0 start_tiem 18446744073709551504 - Time is 0
  ++ size is 0,  host [126] searching matching queue for src target 61 tag 0
 Starting1 UEC LGS Setup
-Options are 16
 Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
 CWD Start 176400 - From 127 To 55
 Setting 127 55 0
@@ -3302,7 +3174,7 @@ Searching for MATCHCurrent elem time is 467166400 while NS3 467166400
 ..... NOT Received a MSG
 
 
-RunTime Total LGS -> 3563ms
+RunTime Total LGS -> 3726ms
 
 
 htsim Terminates at 467166400

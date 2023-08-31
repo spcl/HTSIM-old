@@ -342,6 +342,7 @@ class UecSrc : public PacketSink, public EventSource {
     void processNack(UecNack &nack);
     void processBts(UecPacket *nack);
     void reduce_unacked(uint64_t amount);
+    void check_limits_cwnd();
     void apply_timeout_penalty();
 };
 

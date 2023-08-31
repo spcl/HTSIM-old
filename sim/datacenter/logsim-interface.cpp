@@ -122,9 +122,6 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         uecSink->to = to;
         uecSink->tag = tag;
 
-        printf("Checkpoint2\n");
-        fflush(stdout);
-
         uecSrc->set_dst(to);
         uecSink->set_src(from);
 

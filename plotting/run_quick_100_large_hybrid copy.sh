@@ -64,3 +64,30 @@ eval ${CMD}
 CMD="python3 fct.py --input_file=P --folder=QuickExp --name=100G_32_1"
 echo ${CMD}
 eval ${CMD}
+CMD="../sim/datacenter/htsim_uec_entry_modern_os -k 4 -o uec_entry -nodes 64 -q 118500 -strat ecmp_host_random2_ecn -number_entropies 256 -kmin 20 -target_rtt_percentage_over_base 50 -kmax 80  -linkspeed 100000 -mtu 2048 -seed 919 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal ecmp_host_random2_ecn -number_entropies 256utation_64_2000.bin  -fast_drop 1 -k 1 -algorithm delayB -x_gain ${X_GAIN} -y_gain ${Y_GAIN} -w_gain ${W_GAIN} -z_gain ${Z_GAIN} -bonus_drop 0.8 -collect_data 1 -use_fast_increase 1 -use_super_fast_increase 1 > QuickExp/P"
+echo ${CMD}
+eval ${CMD}
+CMD="python3 performance_complete.py --name=100G_ecmp_host_random2_ecn -number_entropies 256utation_Small"
+echo ${CMD}
+eval ${CMD}
+CMD="python3 performance_simple.py --name=100G_ecmp_host_random2_ecn -number_entropies 256utation_Small"
+echo ${CMD}
+eval ${CMD}
+CMD="python3 generate_report.py --input_file=P --folder=QuickExp"
+echo ${CMD}
+eval ${CMD}
+CMD="python3 fct.py --input_file=P --folder=QuickExp --name=100G_ecmp_host_random2_ecn -number_entropies 256_Small"
+echo ${CMD}
+eval ${CMD}
+CMD="../sim/datacenter/htsim_uec_entry_modern_os -k 4 -o uec_entry -nodes 64 -q 118500 -strat ecmp_host_random2_ecn -number_entropies 256 -kmin 20 -target_rtt_percentage_over_base 50 -kmax 80  -linkspeed 100000 -mtu 2048 -seed 919 -queue_type composite -hop_latency 700 -switch_latency 0 -reuse_entropy 1 -goal ecmp_host_random2_ecn -number_entropies 256utation_64_20000.bin  -fast_drop 1 -k 1 -algorithm delayB -x_gain ${X_GAIN} -y_gain ${Y_GAIN} -w_gain ${W_GAIN} -z_gain ${Z_GAIN} -bonus_drop 0.8 -collect_data 1 -use_fast_increase 1 -use_super_fast_increase 1 > QuickExp/P"
+echo ${CMD}
+eval ${CMD}
+CMD="python3 performance_simple.py --name=100G_ecmp_host_random2_ecn -number_entropies 256utation_Large"
+echo ${CMD}
+eval ${CMD}
+CMD="python3 generate_report.py --input_file=P --folder=QuickExp"
+echo ${CMD}
+eval ${CMD}
+CMD="python3 fct.py --input_file=P --folder=QuickExp --name=100G_ecmp_host_random2_ecn -number_entropies 256_Large"
+echo ${CMD}
+eval ${CMD}
