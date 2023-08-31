@@ -1831,8 +1831,8 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno,
         if (ecn_marked && (_route_strategy == ECMP_FIB_ECN ||
                            _route_strategy == REACTIVE_ECN))
             cout << "setting ECE\n";
-        printf("Sending ACk FlowID %d - SrcAddr %d\n", _src->_flow.flow_id(),
-               _srcaddr);
+        // printf("Sending ACk FlowID %d - SrcAddr %d\n", _src->_flow.flow_id(),
+        //        _srcaddr);
         break;
     case SINGLE_PATH:
         ack = NdpAck::newpkt(

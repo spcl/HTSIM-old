@@ -97,7 +97,7 @@ int main(int argc, char **argv) {
     int bts_threshold = -1;
     int seed = -1;
     bool reuse_entropy = false;
-    int number_entropies = 2048;
+    int number_entropies = 256;
     queue_type queue_choice = COMPOSITE;
     bool ignore_ecn_data = true;
     bool ignore_ecn_ack = true;
@@ -119,6 +119,8 @@ int main(int argc, char **argv) {
     double w_gain = 1;
     double bonus_drop = 1;
     double drop_value_buffer = 1;
+    double starting_cwnd_ratio = 0;
+    double queue_size_ratio = 0;
 
     int i = 1;
     filename << "logout.dat";
@@ -272,6 +274,14 @@ int main(int argc, char **argv) {
             UecSrc::set_w_gain(w_gain);
             printf("WGain: %f\n", w_gain);
             i++;
+        } else if (!strcmp(argv[i], "-starting_cwnd_ratio")) {
+            starting_cwnd_ratio = std::stod(argv[i + 1]);
+            printf("StartingWindowRatio: %f\n", starting_cwnd_ratio);
+            i++;
+        } else if (!strcmp(argv[i], "-queue_size_ratio")) {
+            queue_size_ratio = std::stod(argv[i + 1]);
+            printf("QueueSizeRatio: %f\n", queue_size_ratio);
+            i++;
         } else if (!strcmp(argv[i], "-bonus_drop")) {
             bonus_drop = std::stod(argv[i + 1]);
             UecSrc::set_bonus_drop(bonus_drop);
@@ -296,7 +306,12 @@ int main(int argc, char **argv) {
                 route_strategy = SINGLE_PATH;
             } else if (!strcmp(argv[i + 1], "ecmp_host")) {
                 route_strategy = ECMP_FIB;
-                printf("Setting RIght Strat");
+                FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
+            } else if (!strcmp(argv[i + 1], "ecmp_host_random_ecn")) {
+                route_strategy = ECMP_RANDOM_ECN;
+                FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
+            } else if (!strcmp(argv[i + 1], "ecmp_host_random2_ecn")) {
+                route_strategy = ECMP_RANDOM2_ECN;
                 FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
             }
             i++;
@@ -370,6 +385,30 @@ int main(int argc, char **argv) {
                         "\nValid values are perm, rand, pull, rg and single\n");
         exit(1);
     }
+
+    // Calculate Network Info
+    int hops = 6; // hardcoded for now
+    uint64_t actual_starting_cwnd = 0;
+    uint64_t base_rtt_max_hops =
+            (hops * LINK_DELAY_MODERN) +
+            (PKT_SIZE_MODERN * 8 / LINK_SPEED_MODERN * hops) +
+            (hops * LINK_DELAY_MODERN) + (64 * 8 / LINK_SPEED_MODERN * hops);
+    uint64_t bdp_local = base_rtt_max_hops * LINK_SPEED_MODERN / 8;
+
+    if (starting_cwnd_ratio == 0) {
+        actual_starting_cwnd = bdp_local; // Equal to BDP if not other info
+    } else {
+        actual_starting_cwnd = bdp_local * starting_cwnd_ratio;
+    }
+    if (queue_size_ratio == 0) {
+        queuesize = bdp_local; // Equal to BDP if not other info
+    } else {
+        queuesize = bdp_local * queue_size_ratio;
+    }
+    UecSrc::set_starting_cwnd(actual_starting_cwnd);
+
+    printf("Using BDP of %d - Queue is %d - Starting Window is %d\n", bdp_local,
+           queuesize, actual_starting_cwnd);
 
     cout << "Using subflow count " << subflow_count << endl;
 
@@ -507,7 +546,7 @@ int main(int argc, char **argv) {
     lgs->set_cwd(cwnd);
     lgs->set_queue_size(queuesize);
     lgs->setReuse(reuse_entropy);
-    lgs->setNumberEntropies(number_entropies);
+    // lgs->setNumberEntropies(number_entropies);
     lgs->setIgnoreEcnAck(ignore_ecn_ack);
     lgs->setIgnoreEcnData(ignore_ecn_data);
     lgs->setNumberPaths(number_entropies);

@@ -120,14 +120,14 @@ class FatTreeTopology : public Topology {
     uint32_t HOST_POD_SWITCH(uint32_t src) { return 2 * src / K; }
     uint32_t HOST_POD_ID(uint32_t src) {
         if (_tiers == 3)
-            return src % NCORE;
+            return src % (K * K / 4);
         else
             // only one pod in leaf-spine
             return src;
     }
     uint32_t HOST_POD(uint32_t src) {
         if (_tiers == 3)
-            return src / NCORE;
+            return src / (K * K / 4);
         else
             // only one pod in leaf-spine
             return 0;

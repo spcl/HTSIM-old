@@ -9,7 +9,9 @@
 
 Route::Route() : _hop_count(0), _reverse(NULL){};
 
-Route::Route(int size) : _hop_count(0), _reverse(NULL) { _sinklist.reserve(size); };
+Route::Route(int size) : _hop_count(0), _reverse(NULL) {
+    _sinklist.reserve(size);
+};
 
 Route::Route(const Route &orig, PacketSink &dst) : _sinklist(orig.size() + 1) {
     //_sinklist.resize(orig.size()+1);
@@ -71,8 +73,11 @@ void check_non_null(Route *rt) {
         if (rt->at(i) == NULL) {
             fail = 1;
             break;
+        } else {
+            // printf("We are at %s - ", rt->at(i)->nodename().c_str());
+            // fflush(stdout);
         }
-
+    // printf("\n");
     if (fail) {
         //    cout <<"Null queue in route"<<endl;
         for (size_t i = 1; i < rt->size() - 1; i++)

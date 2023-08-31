@@ -1,0 +1,3461 @@
+no_of_nodes 128
+KMin: 20
+TargetRTT: 50
+KMax: 80
+Speed is 100000
+FastDrop: 1
+Name Running: UEC
+XGain: 0.200000
+YGain: 2.000000
+WGain: 1.000000
+ZGain: 0.750000
+FastIncrease: 1
+FastIncreaseSuper: 1
+BonusDrop: 0.800000
+StartingWindowRatio: 1.500000
+Test 1.000000 50 -- 163
+Using BDP of 117600 - Queue is 117600 - Starting Window is 176400
+Using subflow count 1
+Logging to uec_entry
+Set Strategy Num 0
+Set Strategy Num 10
+Fat Tree topology with 0.7us links and 0us switching latency.
+Set params 128
+QueueSize 117600
+_no_of_nodes 128
+K 8
+Queue type 3
+total switches: ToR 32 NAGG 32 NCORE 16 srv_per_tor 4
+US0->CS0
+US0->CS1
+US0->CS2
+US0->CS3
+US1->CS4
+US1->CS5
+US1->CS6
+US1->CS7
+US2->CS8
+US2->CS9
+US2->CS10
+US2->CS11
+US3->CS12
+US3->CS13
+US3->CS14
+US3->CS15
+US4->CS0
+US4->CS1
+US4->CS2
+US4->CS3
+US5->CS4
+US5->CS5
+US5->CS6
+US5->CS7
+US6->CS8
+US6->CS9
+US6->CS10
+US6->CS11
+US7->CS12
+US7->CS13
+US7->CS14
+US7->CS15
+US8->CS0
+US8->CS1
+US8->CS2
+US8->CS3
+US9->CS4
+US9->CS5
+US9->CS6
+US9->CS7
+US10->CS8
+US10->CS9
+US10->CS10
+US10->CS11
+US11->CS12
+US11->CS13
+US11->CS14
+US11->CS15
+US12->CS0
+US12->CS1
+US12->CS2
+US12->CS3
+US13->CS4
+US13->CS5
+US13->CS6
+US13->CS7
+US14->CS8
+US14->CS9
+US14->CS10
+US14->CS11
+US15->CS12
+US15->CS13
+US15->CS14
+US15->CS15
+US16->CS0
+US16->CS1
+US16->CS2
+US16->CS3
+US17->CS4
+US17->CS5
+US17->CS6
+US17->CS7
+US18->CS8
+US18->CS9
+US18->CS10
+US18->CS11
+US19->CS12
+US19->CS13
+US19->CS14
+US19->CS15
+US20->CS0
+US20->CS1
+US20->CS2
+US20->CS3
+US21->CS4
+US21->CS5
+US21->CS6
+US21->CS7
+US22->CS8
+US22->CS9
+US22->CS10
+US22->CS11
+US23->CS12
+US23->CS13
+US23->CS14
+US23->CS15
+US24->CS0
+US24->CS1
+US24->CS2
+US24->CS3
+US25->CS4
+US25->CS5
+US25->CS6
+US25->CS7
+US26->CS8
+US26->CS9
+US26->CS10
+US26->CS11
+US27->CS12
+US27->CS13
+US27->CS14
+US27->CS15
+US28->CS0
+US28->CS1
+US28->CS2
+US28->CS3
+US29->CS4
+US29->CS5
+US29->CS6
+US29->CS7
+US30->CS8
+US30->CS9
+US30->CS10
+US30->CS11
+US31->CS12
+US31->CS13
+US31->CS14
+US31->CS15
+Running incastt with 0 connections
+Starting LGS InterfaceCurrent working directory: "/home/tommaso/csg-htsim/plotting"
+LogGP network backend; size: 128 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O=0, P=128, S=65535
+Starting 128
+----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 256 - 0 106 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 0 To 106
+Setting 0 106 0
+Checkpoint2
+First Dest 106
+Finished UEC LGS Setup
+Scheduling Event (0@106@0) of size 4000000 from 0 to 106 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [0] searching matching queue for src target 68 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 1 To 123
+Setting 1 123 0
+Checkpoint2
+First Dest 123
+Finished UEC LGS Setup
+Scheduling Event (1@123@0) of size 4000000 from 1 to 123 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [1] searching matching queue for src target 126 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 2 To 91
+Setting 2 91 0
+Checkpoint2
+First Dest 91
+Finished UEC LGS Setup
+Scheduling Event (2@91@0) of size 4000000 from 2 to 91 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [2] searching matching queue for src target 93 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 3 To 104
+Setting 3 104 0
+Checkpoint2
+First Dest 104
+Finished UEC LGS Setup
+Scheduling Event (3@104@0) of size 4000000 from 3 to 104 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [3] searching matching queue for src target 89 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 4 To 120
+Setting 4 120 0
+Checkpoint2
+First Dest 120
+Finished UEC LGS Setup
+Scheduling Event (4@120@0) of size 4000000 from 4 to 120 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [4] searching matching queue for src target 102 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 5 To 119
+Setting 5 119 0
+Checkpoint2
+First Dest 119
+Finished UEC LGS Setup
+Scheduling Event (5@119@0) of size 4000000 from 5 to 119 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [5] searching matching queue for src target 78 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 6 To 76
+Setting 6 76 0
+Checkpoint2
+First Dest 76
+Finished UEC LGS Setup
+Scheduling Event (6@76@0) of size 4000000 from 6 to 76 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [6] searching matching queue for src target 120 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 7 To 111
+Setting 7 111 0
+Checkpoint2
+First Dest 111
+Finished UEC LGS Setup
+Scheduling Event (7@111@0) of size 4000000 from 7 to 111 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [7] searching matching queue for src target 121 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 8 To 114
+Setting 8 114 0
+Checkpoint2
+First Dest 114
+Finished UEC LGS Setup
+Scheduling Event (8@114@0) of size 4000000 from 8 to 114 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [8] searching matching queue for src target 112 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 9 To 70
+Setting 9 70 0
+Checkpoint2
+First Dest 70
+Finished UEC LGS Setup
+Scheduling Event (9@70@0) of size 4000000 from 9 to 70 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [9] searching matching queue for src target 117 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 10 To 72
+Setting 10 72 0
+Checkpoint2
+First Dest 72
+Finished UEC LGS Setup
+Scheduling Event (10@72@0) of size 4000000 from 10 to 72 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [10] searching matching queue for src target 99 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 11 To 66
+Setting 11 66 0
+Checkpoint2
+First Dest 66
+Finished UEC LGS Setup
+Scheduling Event (11@66@0) of size 4000000 from 11 to 66 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [11] searching matching queue for src target 75 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 12 To 127
+Setting 12 127 0
+Checkpoint2
+First Dest 127
+Finished UEC LGS Setup
+Scheduling Event (12@127@0) of size 4000000 from 12 to 127 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [12] searching matching queue for src target 72 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 13 To 68
+Setting 13 68 0
+Checkpoint2
+First Dest 68
+Finished UEC LGS Setup
+Scheduling Event (13@68@0) of size 4000000 from 13 to 68 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [13] searching matching queue for src target 124 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 14 To 99
+Setting 14 99 0
+Checkpoint2
+First Dest 99
+Finished UEC LGS Setup
+Scheduling Event (14@99@0) of size 4000000 from 14 to 99 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [14] searching matching queue for src target 125 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 15 To 118
+Setting 15 118 0
+Checkpoint2
+First Dest 118
+Finished UEC LGS Setup
+Scheduling Event (15@118@0) of size 4000000 from 15 to 118 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [15] searching matching queue for src target 71 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 16 To 74
+Setting 16 74 0
+Checkpoint2
+First Dest 74
+Finished UEC LGS Setup
+Scheduling Event (16@74@0) of size 4000000 from 16 to 74 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [16] searching matching queue for src target 74 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 17 To 107
+Setting 17 107 0
+Checkpoint2
+First Dest 107
+Finished UEC LGS Setup
+Scheduling Event (17@107@0) of size 4000000 from 17 to 107 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [17] searching matching queue for src target 108 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 18 To 124
+Setting 18 124 0
+Checkpoint2
+First Dest 124
+Finished UEC LGS Setup
+Scheduling Event (18@124@0) of size 4000000 from 18 to 124 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [18] searching matching queue for src target 70 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 19 To 97
+Setting 19 97 0
+Checkpoint2
+First Dest 97
+Finished UEC LGS Setup
+Scheduling Event (19@97@0) of size 4000000 from 19 to 97 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [19] searching matching queue for src target 79 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 20 To 88
+Setting 20 88 0
+Checkpoint2
+First Dest 88
+Finished UEC LGS Setup
+Scheduling Event (20@88@0) of size 4000000 from 20 to 88 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [20] searching matching queue for src target 91 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 21 To 103
+Setting 21 103 0
+Checkpoint2
+First Dest 103
+Finished UEC LGS Setup
+Scheduling Event (21@103@0) of size 4000000 from 21 to 103 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [21] searching matching queue for src target 87 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 22 To 101
+Setting 22 101 0
+Checkpoint2
+First Dest 101
+Finished UEC LGS Setup
+Scheduling Event (22@101@0) of size 4000000 from 22 to 101 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [22] searching matching queue for src target 101 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 23 To 105
+Setting 23 105 0
+Checkpoint2
+First Dest 105
+Finished UEC LGS Setup
+Scheduling Event (23@105@0) of size 4000000 from 23 to 105 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [23] searching matching queue for src target 76 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 24 To 78
+Setting 24 78 0
+Checkpoint2
+First Dest 78
+Finished UEC LGS Setup
+Scheduling Event (24@78@0) of size 4000000 from 24 to 78 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [24] searching matching queue for src target 122 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 25 To 83
+Setting 25 83 0
+Checkpoint2
+First Dest 83
+Finished UEC LGS Setup
+Scheduling Event (25@83@0) of size 4000000 from 25 to 83 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [25] searching matching queue for src target 114 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 26 To 116
+Setting 26 116 0
+Checkpoint2
+First Dest 116
+Finished UEC LGS Setup
+Scheduling Event (26@116@0) of size 4000000 from 26 to 116 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [26] searching matching queue for src target 116 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 27 To 89
+Setting 27 89 0
+Checkpoint2
+First Dest 89
+Finished UEC LGS Setup
+Scheduling Event (27@89@0) of size 4000000 from 27 to 89 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [27] searching matching queue for src target 106 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 28 To 121
+Setting 28 121 0
+Checkpoint2
+First Dest 121
+Finished UEC LGS Setup
+Scheduling Event (28@121@0) of size 4000000 from 28 to 121 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [28] searching matching queue for src target 97 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 29 To 109
+Setting 29 109 0
+Checkpoint2
+First Dest 109
+Finished UEC LGS Setup
+Scheduling Event (29@109@0) of size 4000000 from 29 to 109 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [29] searching matching queue for src target 110 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 30 To 98
+Setting 30 98 0
+Checkpoint2
+First Dest 98
+Finished UEC LGS Setup
+Scheduling Event (30@98@0) of size 4000000 from 30 to 98 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [30] searching matching queue for src target 82 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 31 To 80
+Setting 31 80 0
+Checkpoint2
+First Dest 80
+Finished UEC LGS Setup
+Scheduling Event (31@80@0) of size 4000000 from 31 to 80 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [31] searching matching queue for src target 103 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 32 To 87
+Setting 32 87 0
+Checkpoint2
+First Dest 87
+Finished UEC LGS Setup
+Scheduling Event (32@87@0) of size 4000000 from 32 to 87 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [32] searching matching queue for src target 84 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 33 To 113
+Setting 33 113 0
+Checkpoint2
+First Dest 113
+Finished UEC LGS Setup
+Scheduling Event (33@113@0) of size 4000000 from 33 to 113 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [33] searching matching queue for src target 115 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 34 To 75
+Setting 34 75 0
+Checkpoint2
+First Dest 75
+Finished UEC LGS Setup
+Scheduling Event (34@75@0) of size 4000000 from 34 to 75 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [34] searching matching queue for src target 77 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 35 To 82
+Setting 35 82 0
+Checkpoint2
+First Dest 82
+Finished UEC LGS Setup
+Scheduling Event (35@82@0) of size 4000000 from 35 to 82 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [35] searching matching queue for src target 90 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 36 To 94
+Setting 36 94 0
+Checkpoint2
+First Dest 94
+Finished UEC LGS Setup
+Scheduling Event (36@94@0) of size 4000000 from 36 to 94 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [36] searching matching queue for src target 88 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 37 To 112
+Setting 37 112 0
+Checkpoint2
+First Dest 112
+Finished UEC LGS Setup
+Scheduling Event (37@112@0) of size 4000000 from 37 to 112 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [37] searching matching queue for src target 94 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 38 To 93
+Setting 38 93 0
+Checkpoint2
+First Dest 93
+Finished UEC LGS Setup
+Scheduling Event (38@93@0) of size 4000000 from 38 to 93 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [38] searching matching queue for src target 81 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 39 To 90
+Setting 39 90 0
+Checkpoint2
+First Dest 90
+Finished UEC LGS Setup
+Scheduling Event (39@90@0) of size 4000000 from 39 to 90 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [39] searching matching queue for src target 107 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 40 To 100
+Setting 40 100 0
+Checkpoint2
+First Dest 100
+Finished UEC LGS Setup
+Scheduling Event (40@100@0) of size 4000000 from 40 to 100 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [40] searching matching queue for src target 85 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 41 To 71
+Setting 41 71 0
+Checkpoint2
+First Dest 71
+Finished UEC LGS Setup
+Scheduling Event (41@71@0) of size 4000000 from 41 to 71 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [41] searching matching queue for src target 65 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 42 To 110
+Setting 42 110 0
+Checkpoint2
+First Dest 110
+Finished UEC LGS Setup
+Scheduling Event (42@110@0) of size 4000000 from 42 to 110 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [42] searching matching queue for src target 111 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 43 To 65
+Setting 43 65 0
+Checkpoint2
+First Dest 65
+Finished UEC LGS Setup
+Scheduling Event (43@65@0) of size 4000000 from 43 to 65 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [43] searching matching queue for src target 66 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 44 To 115
+Setting 44 115 0
+Checkpoint2
+First Dest 115
+Finished UEC LGS Setup
+Scheduling Event (44@115@0) of size 4000000 from 44 to 115 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [44] searching matching queue for src target 119 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 45 To 67
+Setting 45 67 0
+Checkpoint2
+First Dest 67
+Finished UEC LGS Setup
+Scheduling Event (45@67@0) of size 4000000 from 45 to 67 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [45] searching matching queue for src target 98 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 46 To 96
+Setting 46 96 0
+Checkpoint2
+First Dest 96
+Finished UEC LGS Setup
+Scheduling Event (46@96@0) of size 4000000 from 46 to 96 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [46] searching matching queue for src target 113 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 47 To 95
+Setting 47 95 0
+Checkpoint2
+First Dest 95
+Finished UEC LGS Setup
+Scheduling Event (47@95@0) of size 4000000 from 47 to 95 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [47] searching matching queue for src target 67 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 48 To 86
+Setting 48 86 0
+Checkpoint2
+First Dest 86
+Finished UEC LGS Setup
+Scheduling Event (48@86@0) of size 4000000 from 48 to 86 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [48] searching matching queue for src target 123 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 49 To 108
+Setting 49 108 0
+Checkpoint2
+First Dest 108
+Finished UEC LGS Setup
+Scheduling Event (49@108@0) of size 4000000 from 49 to 108 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [49] searching matching queue for src target 86 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 50 To 92
+Setting 50 92 0
+Checkpoint2
+First Dest 92
+Finished UEC LGS Setup
+Scheduling Event (50@92@0) of size 4000000 from 50 to 92 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [50] searching matching queue for src target 109 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 51 To 81
+Setting 51 81 0
+Checkpoint2
+First Dest 81
+Finished UEC LGS Setup
+Scheduling Event (51@81@0) of size 4000000 from 51 to 81 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [51] searching matching queue for src target 69 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 52 To 125
+Setting 52 125 0
+Checkpoint2
+First Dest 125
+Finished UEC LGS Setup
+Scheduling Event (52@125@0) of size 4000000 from 52 to 125 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [52] searching matching queue for src target 83 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 53 To 122
+Setting 53 122 0
+Checkpoint2
+First Dest 122
+Finished UEC LGS Setup
+Scheduling Event (53@122@0) of size 4000000 from 53 to 122 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [53] searching matching queue for src target 73 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 54 To 102
+Setting 54 102 0
+Checkpoint2
+First Dest 102
+Finished UEC LGS Setup
+Scheduling Event (54@102@0) of size 4000000 from 54 to 102 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [54] searching matching queue for src target 118 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 55 To 79
+Setting 55 79 0
+Checkpoint2
+First Dest 79
+Finished UEC LGS Setup
+Scheduling Event (55@79@0) of size 4000000 from 55 to 79 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [55] searching matching queue for src target 127 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 56 To 117
+Setting 56 117 0
+Checkpoint2
+First Dest 117
+Finished UEC LGS Setup
+Scheduling Event (56@117@0) of size 4000000 from 56 to 117 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [56] searching matching queue for src target 92 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 57 To 85
+Setting 57 85 0
+Checkpoint2
+First Dest 85
+Finished UEC LGS Setup
+Scheduling Event (57@85@0) of size 4000000 from 57 to 85 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [57] searching matching queue for src target 104 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 58 To 73
+Setting 58 73 0
+Checkpoint2
+First Dest 73
+Finished UEC LGS Setup
+Scheduling Event (58@73@0) of size 4000000 from 58 to 73 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [58] searching matching queue for src target 80 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 59 To 64
+Setting 59 64 0
+Checkpoint2
+First Dest 64
+Finished UEC LGS Setup
+Scheduling Event (59@64@0) of size 4000000 from 59 to 64 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [59] searching matching queue for src target 95 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 60 To 77
+Setting 60 77 0
+Checkpoint2
+First Dest 77
+Finished UEC LGS Setup
+Scheduling Event (60@77@0) of size 4000000 from 60 to 77 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [60] searching matching queue for src target 100 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 61 To 126
+Setting 61 126 0
+Checkpoint2
+First Dest 126
+Finished UEC LGS Setup
+Scheduling Event (61@126@0) of size 4000000 from 61 to 126 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [61] searching matching queue for src target 96 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 62 To 69
+Setting 62 69 0
+Checkpoint2
+First Dest 69
+Finished UEC LGS Setup
+Scheduling Event (62@69@0) of size 4000000 from 62 to 69 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [62] searching matching queue for src target 105 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 63 To 84
+Setting 63 84 0
+Checkpoint2
+First Dest 84
+Finished UEC LGS Setup
+Scheduling Event (63@84@0) of size 4000000 from 63 to 84 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [63] searching matching queue for src target 64 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 64 To 63
+Setting 64 63 0
+Checkpoint2
+First Dest 63
+Finished UEC LGS Setup
+Scheduling Event (64@63@0) of size 4000000 from 64 to 63 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [64] searching matching queue for src target 59 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 65 To 41
+Setting 65 41 0
+Checkpoint2
+First Dest 41
+Finished UEC LGS Setup
+Scheduling Event (65@41@0) of size 4000000 from 65 to 41 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [65] searching matching queue for src target 43 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 66 To 43
+Setting 66 43 0
+Checkpoint2
+First Dest 43
+Finished UEC LGS Setup
+Scheduling Event (66@43@0) of size 4000000 from 66 to 43 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [66] searching matching queue for src target 11 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 67 To 47
+Setting 67 47 0
+Checkpoint2
+First Dest 47
+Finished UEC LGS Setup
+Scheduling Event (67@47@0) of size 4000000 from 67 to 47 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [67] searching matching queue for src target 45 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 68 To 0
+Setting 68 0 0
+Checkpoint2
+First Dest 0
+Finished UEC LGS Setup
+Scheduling Event (68@0@0) of size 4000000 from 68 to 0 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [68] searching matching queue for src target 13 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 69 To 51
+Setting 69 51 0
+Checkpoint2
+First Dest 51
+Finished UEC LGS Setup
+Scheduling Event (69@51@0) of size 4000000 from 69 to 51 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [69] searching matching queue for src target 62 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 70 To 18
+Setting 70 18 0
+Checkpoint2
+First Dest 18
+Finished UEC LGS Setup
+Scheduling Event (70@18@0) of size 4000000 from 70 to 18 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [70] searching matching queue for src target 9 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 71 To 15
+Setting 71 15 0
+Checkpoint2
+First Dest 15
+Finished UEC LGS Setup
+Scheduling Event (71@15@0) of size 4000000 from 71 to 15 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [71] searching matching queue for src target 41 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 72 To 12
+Setting 72 12 0
+Checkpoint2
+First Dest 12
+Finished UEC LGS Setup
+Scheduling Event (72@12@0) of size 4000000 from 72 to 12 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [72] searching matching queue for src target 10 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 73 To 53
+Setting 73 53 0
+Checkpoint2
+First Dest 53
+Finished UEC LGS Setup
+Scheduling Event (73@53@0) of size 4000000 from 73 to 53 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [73] searching matching queue for src target 58 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 74 To 16
+Setting 74 16 0
+Checkpoint2
+First Dest 16
+Finished UEC LGS Setup
+Scheduling Event (74@16@0) of size 4000000 from 74 to 16 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [74] searching matching queue for src target 16 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 75 To 11
+Setting 75 11 0
+Checkpoint2
+First Dest 11
+Finished UEC LGS Setup
+Scheduling Event (75@11@0) of size 4000000 from 75 to 11 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [75] searching matching queue for src target 34 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 76 To 23
+Setting 76 23 0
+Checkpoint2
+First Dest 23
+Finished UEC LGS Setup
+Scheduling Event (76@23@0) of size 4000000 from 76 to 23 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [76] searching matching queue for src target 6 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 77 To 34
+Setting 77 34 0
+Checkpoint2
+First Dest 34
+Finished UEC LGS Setup
+Scheduling Event (77@34@0) of size 4000000 from 77 to 34 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [77] searching matching queue for src target 60 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 78 To 5
+Setting 78 5 0
+Checkpoint2
+First Dest 5
+Finished UEC LGS Setup
+Scheduling Event (78@5@0) of size 4000000 from 78 to 5 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [78] searching matching queue for src target 24 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 79 To 19
+Setting 79 19 0
+Checkpoint2
+First Dest 19
+Finished UEC LGS Setup
+Scheduling Event (79@19@0) of size 4000000 from 79 to 19 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [79] searching matching queue for src target 55 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 80 To 58
+Setting 80 58 0
+Checkpoint2
+First Dest 58
+Finished UEC LGS Setup
+Scheduling Event (80@58@0) of size 4000000 from 80 to 58 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [80] searching matching queue for src target 31 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 81 To 38
+Setting 81 38 0
+Checkpoint2
+First Dest 38
+Finished UEC LGS Setup
+Scheduling Event (81@38@0) of size 4000000 from 81 to 38 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [81] searching matching queue for src target 51 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 82 To 30
+Setting 82 30 0
+Checkpoint2
+First Dest 30
+Finished UEC LGS Setup
+Scheduling Event (82@30@0) of size 4000000 from 82 to 30 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [82] searching matching queue for src target 35 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 83 To 52
+Setting 83 52 0
+Checkpoint2
+First Dest 52
+Finished UEC LGS Setup
+Scheduling Event (83@52@0) of size 4000000 from 83 to 52 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [83] searching matching queue for src target 25 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 84 To 32
+Setting 84 32 0
+Checkpoint2
+First Dest 32
+Finished UEC LGS Setup
+Scheduling Event (84@32@0) of size 4000000 from 84 to 32 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [84] searching matching queue for src target 63 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 85 To 40
+Setting 85 40 0
+Checkpoint2
+First Dest 40
+Finished UEC LGS Setup
+Scheduling Event (85@40@0) of size 4000000 from 85 to 40 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [85] searching matching queue for src target 57 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 86 To 49
+Setting 86 49 0
+Checkpoint2
+First Dest 49
+Finished UEC LGS Setup
+Scheduling Event (86@49@0) of size 4000000 from 86 to 49 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [86] searching matching queue for src target 48 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 87 To 21
+Setting 87 21 0
+Checkpoint2
+First Dest 21
+Finished UEC LGS Setup
+Scheduling Event (87@21@0) of size 4000000 from 87 to 21 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [87] searching matching queue for src target 32 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 88 To 36
+Setting 88 36 0
+Checkpoint2
+First Dest 36
+Finished UEC LGS Setup
+Scheduling Event (88@36@0) of size 4000000 from 88 to 36 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [88] searching matching queue for src target 20 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 89 To 3
+Setting 89 3 0
+Checkpoint2
+First Dest 3
+Finished UEC LGS Setup
+Scheduling Event (89@3@0) of size 4000000 from 89 to 3 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [89] searching matching queue for src target 27 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 90 To 35
+Setting 90 35 0
+Checkpoint2
+First Dest 35
+Finished UEC LGS Setup
+Scheduling Event (90@35@0) of size 4000000 from 90 to 35 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [90] searching matching queue for src target 39 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 91 To 20
+Setting 91 20 0
+Checkpoint2
+First Dest 20
+Finished UEC LGS Setup
+Scheduling Event (91@20@0) of size 4000000 from 91 to 20 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [91] searching matching queue for src target 2 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 92 To 56
+Setting 92 56 0
+Checkpoint2
+First Dest 56
+Finished UEC LGS Setup
+Scheduling Event (92@56@0) of size 4000000 from 92 to 56 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [92] searching matching queue for src target 50 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 93 To 2
+Setting 93 2 0
+Checkpoint2
+First Dest 2
+Finished UEC LGS Setup
+Scheduling Event (93@2@0) of size 4000000 from 93 to 2 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [93] searching matching queue for src target 38 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 94 To 37
+Setting 94 37 0
+Checkpoint2
+First Dest 37
+Finished UEC LGS Setup
+Scheduling Event (94@37@0) of size 4000000 from 94 to 37 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [94] searching matching queue for src target 36 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 95 To 59
+Setting 95 59 0
+Checkpoint2
+First Dest 59
+Finished UEC LGS Setup
+Scheduling Event (95@59@0) of size 4000000 from 95 to 59 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [95] searching matching queue for src target 47 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 96 To 61
+Setting 96 61 0
+Checkpoint2
+First Dest 61
+Finished UEC LGS Setup
+Scheduling Event (96@61@0) of size 4000000 from 96 to 61 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [96] searching matching queue for src target 46 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 97 To 28
+Setting 97 28 0
+Checkpoint2
+First Dest 28
+Finished UEC LGS Setup
+Scheduling Event (97@28@0) of size 4000000 from 97 to 28 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [97] searching matching queue for src target 19 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 98 To 45
+Setting 98 45 0
+Checkpoint2
+First Dest 45
+Finished UEC LGS Setup
+Scheduling Event (98@45@0) of size 4000000 from 98 to 45 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [98] searching matching queue for src target 30 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 99 To 10
+Setting 99 10 0
+Checkpoint2
+First Dest 10
+Finished UEC LGS Setup
+Scheduling Event (99@10@0) of size 4000000 from 99 to 10 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [99] searching matching queue for src target 14 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 100 To 60
+Setting 100 60 0
+Checkpoint2
+First Dest 60
+Finished UEC LGS Setup
+Scheduling Event (100@60@0) of size 4000000 from 100 to 60 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [100] searching matching queue for src target 40 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 101 To 22
+Setting 101 22 0
+Checkpoint2
+First Dest 22
+Finished UEC LGS Setup
+Scheduling Event (101@22@0) of size 4000000 from 101 to 22 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [101] searching matching queue for src target 22 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 102 To 4
+Setting 102 4 0
+Checkpoint2
+First Dest 4
+Finished UEC LGS Setup
+Scheduling Event (102@4@0) of size 4000000 from 102 to 4 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [102] searching matching queue for src target 54 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 103 To 31
+Setting 103 31 0
+Checkpoint2
+First Dest 31
+Finished UEC LGS Setup
+Scheduling Event (103@31@0) of size 4000000 from 103 to 31 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [103] searching matching queue for src target 21 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 104 To 57
+Setting 104 57 0
+Checkpoint2
+First Dest 57
+Finished UEC LGS Setup
+Scheduling Event (104@57@0) of size 4000000 from 104 to 57 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [104] searching matching queue for src target 3 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 105 To 62
+Setting 105 62 0
+Checkpoint2
+First Dest 62
+Finished UEC LGS Setup
+Scheduling Event (105@62@0) of size 4000000 from 105 to 62 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [105] searching matching queue for src target 23 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 106 To 27
+Setting 106 27 0
+Checkpoint2
+First Dest 27
+Finished UEC LGS Setup
+Scheduling Event (106@27@0) of size 4000000 from 106 to 27 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [106] searching matching queue for src target 0 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 107 To 39
+Setting 107 39 0
+Checkpoint2
+First Dest 39
+Finished UEC LGS Setup
+Scheduling Event (107@39@0) of size 4000000 from 107 to 39 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [107] searching matching queue for src target 17 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 108 To 17
+Setting 108 17 0
+Checkpoint2
+First Dest 17
+Finished UEC LGS Setup
+Scheduling Event (108@17@0) of size 4000000 from 108 to 17 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [108] searching matching queue for src target 49 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 109 To 50
+Setting 109 50 0
+Checkpoint2
+First Dest 50
+Finished UEC LGS Setup
+Scheduling Event (109@50@0) of size 4000000 from 109 to 50 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [109] searching matching queue for src target 29 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 110 To 29
+Setting 110 29 0
+Checkpoint2
+First Dest 29
+Finished UEC LGS Setup
+Scheduling Event (110@29@0) of size 4000000 from 110 to 29 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [110] searching matching queue for src target 42 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 111 To 42
+Setting 111 42 0
+Checkpoint2
+First Dest 42
+Finished UEC LGS Setup
+Scheduling Event (111@42@0) of size 4000000 from 111 to 42 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [111] searching matching queue for src target 7 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 112 To 8
+Setting 112 8 0
+Checkpoint2
+First Dest 8
+Finished UEC LGS Setup
+Scheduling Event (112@8@0) of size 4000000 from 112 to 8 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [112] searching matching queue for src target 37 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 113 To 46
+Setting 113 46 0
+Checkpoint2
+First Dest 46
+Finished UEC LGS Setup
+Scheduling Event (113@46@0) of size 4000000 from 113 to 46 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [113] searching matching queue for src target 33 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 114 To 25
+Setting 114 25 0
+Checkpoint2
+First Dest 25
+Finished UEC LGS Setup
+Scheduling Event (114@25@0) of size 4000000 from 114 to 25 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [114] searching matching queue for src target 8 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 115 To 33
+Setting 115 33 0
+Checkpoint2
+First Dest 33
+Finished UEC LGS Setup
+Scheduling Event (115@33@0) of size 4000000 from 115 to 33 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [115] searching matching queue for src target 44 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 116 To 26
+Setting 116 26 0
+Checkpoint2
+First Dest 26
+Finished UEC LGS Setup
+Scheduling Event (116@26@0) of size 4000000 from 116 to 26 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [116] searching matching queue for src target 26 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 117 To 9
+Setting 117 9 0
+Checkpoint2
+First Dest 9
+Finished UEC LGS Setup
+Scheduling Event (117@9@0) of size 4000000 from 117 to 9 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [117] searching matching queue for src target 56 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 118 To 54
+Setting 118 54 0
+Checkpoint2
+First Dest 54
+Finished UEC LGS Setup
+Scheduling Event (118@54@0) of size 4000000 from 118 to 54 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [118] searching matching queue for src target 15 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 119 To 44
+Setting 119 44 0
+Checkpoint2
+First Dest 44
+Finished UEC LGS Setup
+Scheduling Event (119@44@0) of size 4000000 from 119 to 44 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [119] searching matching queue for src target 5 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 120 To 6
+Setting 120 6 0
+Checkpoint2
+First Dest 6
+Finished UEC LGS Setup
+Scheduling Event (120@6@0) of size 4000000 from 120 to 6 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [120] searching matching queue for src target 4 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 121 To 7
+Setting 121 7 0
+Checkpoint2
+First Dest 7
+Finished UEC LGS Setup
+Scheduling Event (121@7@0) of size 4000000 from 121 to 7 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [121] searching matching queue for src target 28 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 122 To 24
+Setting 122 24 0
+Checkpoint2
+First Dest 24
+Finished UEC LGS Setup
+Scheduling Event (122@24@0) of size 4000000 from 122 to 24 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [122] searching matching queue for src target 53 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 123 To 48
+Setting 123 48 0
+Checkpoint2
+First Dest 48
+Finished UEC LGS Setup
+Scheduling Event (123@48@0) of size 4000000 from 123 to 48 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [123] searching matching queue for src target 1 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 124 To 13
+Setting 124 13 0
+Checkpoint2
+First Dest 13
+Finished UEC LGS Setup
+Scheduling Event (124@13@0) of size 4000000 from 124 to 13 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [124] searching matching queue for src target 18 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 125 To 14
+Setting 125 14 0
+Checkpoint2
+First Dest 14
+Finished UEC LGS Setup
+Scheduling Event (125@14@0) of size 4000000 from 125 to 14 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [125] searching matching queue for src target 52 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 126 To 1
+Setting 126 1 0
+Checkpoint2
+First Dest 1
+Finished UEC LGS Setup
+Scheduling Event (126@1@0) of size 4000000 from 126 to 1 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [126] searching matching queue for src target 61 tag 0
+Starting1 UEC LGS Setup
+Options are 16
+Link Delay 700 - Link Speed 100 - Pkt Size 2048 - Base RTT 9408000 - Target RTT is 14206080 - BDP 117600 - CWND 176400 - Hops 6
+CWD Start 176400 - From 127 To 55
+Setting 127 55 0
+Checkpoint2
+First Dest 55
+Finished UEC LGS Setup
+Scheduling Event (127@55@0) of size 4000000 from 127 to 55 tag 0 start_tiem 18446744073709551504 - Time is 0
+ ++ size is 0,  host [127] searching matching queue for src target 12 tag 0
+Current elem time is 0 while NS3 0
+Simulating Until Called
+Currently at Pkt 10
+Currently at Pkt 20
+Currently at Pkt 30
+Currently at Pkt 40
+Currently at Pkt 50
+Currently at Pkt 60
+Currently at Pkt 70
+Currently at Pkt 80
+Currently at Pkt 90
+Currently at Pkt 100
+Currently at Pkt 110
+Currently at Pkt 120
+Currently at Pkt 130
+Currently at Pkt 140
+Currently at Pkt 150
+Currently at Pkt 160
+Currently at Pkt 170
+Currently at Pkt 180
+Currently at Pkt 190
+Currently at Pkt 200
+Currently at Pkt 210
+Currently at Pkt 220
+Currently at Pkt 230
+Currently at Pkt 240
+Currently at Pkt 250
+Currently at Pkt 260
+Currently at Pkt 270
+Currently at Pkt 280
+Currently at Pkt 290
+Currently at Pkt 300
+Currently at Pkt 310
+Currently at Pkt 320
+Currently at Pkt 330
+Currently at Pkt 340
+Currently at Pkt 350
+Currently at Pkt 360
+Currently at Pkt 370
+Currently at Pkt 380
+Currently at Pkt 390
+Currently at Pkt 400
+Currently at Pkt 410
+Currently at Pkt 420
+Currently at Pkt 430
+Currently at Pkt 440
+Currently at Pkt 450
+Currently at Pkt 460
+Currently at Pkt 470
+Currently at Pkt 480
+Currently at Pkt 490
+Currently at Pkt 500
+Currently at Pkt 510
+Currently at Pkt 520
+Currently at Pkt 530
+Currently at Pkt 540
+Currently at Pkt 550
+Currently at Pkt 560
+Currently at Pkt 570
+Currently at Pkt 580
+Currently at Pkt 590
+Currently at Pkt 600
+Currently at Pkt 610
+Currently at Pkt 620
+Currently at Pkt 630
+Currently at Pkt 640
+Currently at Pkt 650
+Currently at Pkt 660
+Currently at Pkt 670
+Currently at Pkt 680
+Currently at Pkt 690
+Currently at Pkt 700
+Currently at Pkt 710
+Currently at Pkt 720
+Currently at Pkt 730
+Currently at Pkt 740
+Currently at Pkt 750
+Currently at Pkt 760
+Currently at Pkt 770
+Currently at Pkt 780
+Currently at Pkt 790
+Currently at Pkt 800
+Currently at Pkt 810
+Currently at Pkt 820
+Currently at Pkt 830
+Currently at Pkt 840
+Currently at Pkt 850
+Currently at Pkt 860
+Currently at Pkt 870
+Currently at Pkt 880
+Currently at Pkt 890
+Currently at Pkt 900
+Currently at Pkt 910
+Currently at Pkt 920
+Currently at Pkt 930
+Currently at Pkt 940
+Currently at Pkt 950
+Currently at Pkt 960
+Currently at Pkt 970
+Currently at Pkt 980
+Currently at Pkt 990
+Currently at Pkt 1000
+Currently at Pkt 1010
+Currently at Pkt 1020
+Currently at Pkt 1030
+Currently at Pkt 1040
+Currently at Pkt 1050
+Currently at Pkt 1060
+Currently at Pkt 1070
+Currently at Pkt 1080
+Currently at Pkt 1090
+Currently at Pkt 1100
+Currently at Pkt 1110
+Currently at Pkt 1120
+Currently at Pkt 1130
+Currently at Pkt 1140
+Currently at Pkt 1150
+Currently at Pkt 1160
+Currently at Pkt 1170
+Currently at Pkt 1180
+Currently at Pkt 1190
+Currently at Pkt 1200
+Currently at Pkt 1210
+Currently at Pkt 1220
+Currently at Pkt 1230
+Currently at Pkt 1240
+Currently at Pkt 1250
+Currently at Pkt 1260
+Currently at Pkt 1270
+Currently at Pkt 1280
+Currently at Pkt 1290
+Currently at Pkt 1300
+Currently at Pkt 1310
+Currently at Pkt 1320
+Currently at Pkt 1330
+Currently at Pkt 1340
+Currently at Pkt 1350
+Currently at Pkt 1360
+Currently at Pkt 1370
+Currently at Pkt 1380
+Currently at Pkt 1390
+Currently at Pkt 1400
+Currently at Pkt 1410
+Currently at Pkt 1420
+Currently at Pkt 1430
+Currently at Pkt 1440
+Currently at Pkt 1450
+Currently at Pkt 1460
+Currently at Pkt 1470
+Currently at Pkt 1480
+Currently at Pkt 1490
+Currently at Pkt 1500
+Currently at Pkt 1510
+Currently at Pkt 1520
+Currently at Pkt 1530
+Currently at Pkt 1540
+Currently at Pkt 1550
+Currently at Pkt 1560
+Currently at Pkt 1570
+Currently at Pkt 1580
+Currently at Pkt 1590
+Currently at Pkt 1600
+Currently at Pkt 1610
+Currently at Pkt 1620
+Currently at Pkt 1630
+Currently at Pkt 1640
+Currently at Pkt 1650
+Currently at Pkt 1660
+Currently at Pkt 1670
+Currently at Pkt 1680
+Currently at Pkt 1690
+Currently at Pkt 1700
+Flow Finished 91@20@0 at 351965760
+Flow uecsrc finished at 0.351966
+Flow uecsrc completion time is 0.351966
+Completion Time Flow is 351965760
+Running - 1 - 351965760
+Updated - Time 351965760
+..... Received a MSG -- host 20 to target 91, proc 0 - Type 1
+----------------------------    ENTERING WHILE        // ---------------------------- | 351965760 351965760 -  1 0 - 1 0 1 - 20 91 0
+OP MSGnexto[elem.host][elem.proc] 0 (20 0) - nextgr[elem.host][elem.nic] 0( 20  0) - time  351965760
+++ size is 1,  host [20] searching matching queue for src target 91 tag 0
+Compared element is -> 91 0 vs 91 0
+Searching for MATCHCurrent elem time is 351965760 while NS3 351965760
+Simulating Until Called
+Currently at Pkt 1710
+Currently at Pkt 1720
+Flow Finished 23@105@0 at 355558080
+Flow uecsrc finished at 0.355558
+Flow uecsrc completion time is 0.355558
+Completion Time Flow is 355558080
+Running - 1 - 355558080
+Updated - Time 355558080
+..... Received a MSG -- host 105 to target 23, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 355558080 355558080 -  1 0 - 1 0 1 - 105 23 0
+OP MSGnexto[elem.host][elem.proc] 0 (105 0) - nextgr[elem.host][elem.nic] 0( 105  0) - time  355558080
+++ size is 1,  host [105] searching matching queue for src target 23 tag 0
+Compared element is -> 23 0 vs 23 0
+Searching for MATCHCurrent elem time is 355558080 while NS3 355558080
+Simulating Until Called
+Flow Finished 57@85@0 at 355926720
+Flow uecsrc finished at 0.355927
+Flow uecsrc completion time is 0.355927
+Completion Time Flow is 355926720
+Running - 1 - 355926720
+Updated - Time 355926720
+..... Received a MSG -- host 85 to target 57, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 355926720 355926720 -  1 0 - 1 0 1 - 85 57 0
+OP MSGnexto[elem.host][elem.proc] 0 (85 0) - nextgr[elem.host][elem.nic] 0( 85  0) - time  355926720
+++ size is 1,  host [85] searching matching queue for src target 57 tag 0
+Compared element is -> 57 0 vs 57 0
+Searching for MATCHCurrent elem time is 355926720 while NS3 355926720
+Simulating Until Called
+Flow Finished 127@55@0 at 356176000
+Flow uecsrc finished at 0.356176
+Flow uecsrc completion time is 0.356176
+Completion Time Flow is 356176000
+Running - 1 - 356176000
+Updated - Time 356176000
+..... Received a MSG -- host 55 to target 127, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 356176000 356176000 -  1 0 - 1 0 1 - 55 127 0
+OP MSGnexto[elem.host][elem.proc] 0 (55 0) - nextgr[elem.host][elem.nic] 0( 55  0) - time  356176000
+++ size is 1,  host [55] searching matching queue for src target 127 tag 0
+Compared element is -> 127 0 vs 127 0
+Searching for MATCHCurrent elem time is 356176000 while NS3 356176000
+Simulating Until Called
+Flow Finished 58@73@0 at 356616320
+Flow uecsrc finished at 0.356616
+Flow uecsrc completion time is 0.356616
+Completion Time Flow is 356616320
+Running - 1 - 356616320
+Updated - Time 356616320
+..... Received a MSG -- host 73 to target 58, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 356616320 356616320 -  1 0 - 1 0 1 - 73 58 0
+OP MSGnexto[elem.host][elem.proc] 0 (73 0) - nextgr[elem.host][elem.nic] 0( 73  0) - time  356616320
+++ size is 1,  host [73] searching matching queue for src target 58 tag 0
+Compared element is -> 58 0 vs 58 0
+Searching for MATCHCurrent elem time is 356616320 while NS3 356616320
+Simulating Until Called
+Currently at Pkt 1730
+Flow Finished 42@110@0 at 356955840
+Flow uecsrc finished at 0.356956
+Flow uecsrc completion time is 0.356956
+Completion Time Flow is 356955840
+Running - 1 - 356955840
+Updated - Time 356955840
+..... Received a MSG -- host 110 to target 42, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 356955840 356955840 -  1 0 - 1 0 1 - 110 42 0
+OP MSGnexto[elem.host][elem.proc] 0 (110 0) - nextgr[elem.host][elem.nic] 0( 110  0) - time  356955840
+++ size is 1,  host [110] searching matching queue for src target 42 tag 0
+Compared element is -> 42 0 vs 42 0
+Searching for MATCHCurrent elem time is 356955840 while NS3 356955840
+Simulating Until Called
+Flow Finished 121@7@0 at 357616320
+Flow uecsrc finished at 0.357616
+Flow uecsrc completion time is 0.357616
+Completion Time Flow is 357616320
+Running - 1 - 357616320
+Updated - Time 357616320
+..... Received a MSG -- host 7 to target 121, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 357616320 357616320 -  1 0 - 1 0 1 - 7 121 0
+OP MSGnexto[elem.host][elem.proc] 0 (7 0) - nextgr[elem.host][elem.nic] 0( 7  0) - time  357616320
+++ size is 1,  host [7] searching matching queue for src target 121 tag 0
+Compared element is -> 121 0 vs 121 0
+Searching for MATCHCurrent elem time is 357616320 while NS3 357616320
+Simulating Until Called
+Flow Finished 123@48@0 at 357845120
+Flow uecsrc finished at 0.357845
+Flow uecsrc completion time is 0.357845
+Completion Time Flow is 357845120
+Running - 1 - 357845120
+Updated - Time 357845120
+..... Received a MSG -- host 48 to target 123, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 357845120 357845120 -  1 0 - 1 0 1 - 48 123 0
+OP MSGnexto[elem.host][elem.proc] 0 (48 0) - nextgr[elem.host][elem.nic] 0( 48  0) - time  357845120
+++ size is 1,  host [48] searching matching queue for src target 123 tag 0
+Compared element is -> 123 0 vs 123 0
+Searching for MATCHCurrent elem time is 357845120 while NS3 357845120
+Simulating Until Called
+Flow Finished 126@1@0 at 358148480
+Flow uecsrc finished at 0.358148
+Flow uecsrc completion time is 0.358148
+Completion Time Flow is 358148480
+Running - 1 - 358148480
+Updated - Time 358148480
+..... Received a MSG -- host 1 to target 126, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 358148480 358148480 -  1 0 - 1 0 1 - 1 126 0
+OP MSGnexto[elem.host][elem.proc] 0 (1 0) - nextgr[elem.host][elem.nic] 0( 1  0) - time  358148480
+++ size is 1,  host [1] searching matching queue for src target 126 tag 0
+Compared element is -> 126 0 vs 126 0
+Searching for MATCHCurrent elem time is 358148480 while NS3 358148480
+Simulating Until Called
+Flow Finished 122@24@0 at 358183040
+Flow uecsrc finished at 0.358183
+Flow uecsrc completion time is 0.358183
+Completion Time Flow is 358183040
+Running - 1 - 358183040
+Updated - Time 358183040
+..... Received a MSG -- host 24 to target 122, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 358183040 358183040 -  1 0 - 1 0 1 - 24 122 0
+OP MSGnexto[elem.host][elem.proc] 0 (24 0) - nextgr[elem.host][elem.nic] 0( 24  0) - time  358183040
+++ size is 1,  host [24] searching matching queue for src target 122 tag 0
+Compared element is -> 122 0 vs 122 0
+Searching for MATCHCurrent elem time is 358183040 while NS3 358183040
+Simulating Until Called
+Flow Finished 69@51@0 at 358502080
+Flow uecsrc finished at 0.358502
+Flow uecsrc completion time is 0.358502
+Completion Time Flow is 358502080
+Running - 1 - 358502080
+Updated - Time 358502080
+..... Received a MSG -- host 51 to target 69, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 358502080 358502080 -  1 0 - 1 0 1 - 51 69 0
+OP MSGnexto[elem.host][elem.proc] 0 (51 0) - nextgr[elem.host][elem.nic] 0( 51  0) - time  358502080
+++ size is 1,  host [51] searching matching queue for src target 69 tag 0
+Compared element is -> 69 0 vs 69 0
+Searching for MATCHCurrent elem time is 358502080 while NS3 358502080
+Simulating Until Called
+Currently at Pkt 1740
+Flow Finished 49@108@0 at 359157440
+Flow uecsrc finished at 0.359157
+Flow uecsrc completion time is 0.359157
+Completion Time Flow is 359157440
+Running - 1 - 359157440
+Updated - Time 359157440
+..... Received a MSG -- host 108 to target 49, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 359157440 359157440 -  1 0 - 1 0 1 - 108 49 0
+OP MSGnexto[elem.host][elem.proc] 0 (108 0) - nextgr[elem.host][elem.nic] 0( 108  0) - time  359157440
+++ size is 1,  host [108] searching matching queue for src target 49 tag 0
+Compared element is -> 49 0 vs 49 0
+Searching for MATCHCurrent elem time is 359157440 while NS3 359157440
+Simulating Until Called
+Flow Finished 70@18@0 at 359904960
+Flow uecsrc finished at 0.359905
+Flow uecsrc completion time is 0.359905
+Completion Time Flow is 359904960
+Running - 1 - 359904960
+Updated - Time 359904960
+..... Received a MSG -- host 18 to target 70, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 359904960 359904960 -  1 0 - 1 0 1 - 18 70 0
+OP MSGnexto[elem.host][elem.proc] 0 (18 0) - nextgr[elem.host][elem.nic] 0( 18  0) - time  359904960
+++ size is 1,  host [18] searching matching queue for src target 70 tag 0
+Compared element is -> 70 0 vs 70 0
+Searching for MATCHCurrent elem time is 359904960 while NS3 359904960
+Simulating Until Called
+Flow Finished 111@42@0 at 359986880
+Flow uecsrc finished at 0.359987
+Flow uecsrc completion time is 0.359987
+Completion Time Flow is 359986880
+Running - 1 - 359986880
+Updated - Time 359986880
+..... Received a MSG -- host 42 to target 111, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 359986880 359986880 -  1 0 - 1 0 1 - 42 111 0
+OP MSGnexto[elem.host][elem.proc] 0 (42 0) - nextgr[elem.host][elem.nic] 0( 42  0) - time  359986880
+++ size is 1,  host [42] searching matching queue for src target 111 tag 0
+Compared element is -> 111 0 vs 111 0
+Searching for MATCHCurrent elem time is 359986880 while NS3 359986880
+Simulating Until Called
+Flow Finished 90@35@0 at 360060160
+Flow uecsrc finished at 0.36006
+Flow uecsrc completion time is 0.36006
+Completion Time Flow is 360060160
+Running - 1 - 360060160
+Updated - Time 360060160
+..... Received a MSG -- host 35 to target 90, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 360060160 360060160 -  1 0 - 1 0 1 - 35 90 0
+OP MSGnexto[elem.host][elem.proc] 0 (35 0) - nextgr[elem.host][elem.nic] 0( 35  0) - time  360060160
+++ size is 1,  host [35] searching matching queue for src target 90 tag 0
+Compared element is -> 90 0 vs 90 0
+Searching for MATCHCurrent elem time is 360060160 while NS3 360060160
+Simulating Until Called
+Flow Finished 119@44@0 at 360118400
+Flow uecsrc finished at 0.360118
+Flow uecsrc completion time is 0.360118
+Completion Time Flow is 360118400
+Running - 1 - 360118400
+Updated - Time 360118400
+..... Received a MSG -- host 44 to target 119, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 360118400 360118400 -  1 0 - 1 0 1 - 44 119 0
+OP MSGnexto[elem.host][elem.proc] 0 (44 0) - nextgr[elem.host][elem.nic] 0( 44  0) - time  360118400
+++ size is 1,  host [44] searching matching queue for src target 119 tag 0
+Compared element is -> 119 0 vs 119 0
+Searching for MATCHCurrent elem time is 360118400 while NS3 360118400
+Simulating Until Called
+Flow Finished 48@86@0 at 360171200
+Flow uecsrc finished at 0.360171
+Flow uecsrc completion time is 0.360171
+Completion Time Flow is 360171200
+Running - 1 - 360171200
+Updated - Time 360171200
+..... Received a MSG -- host 86 to target 48, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 360171200 360171200 -  1 0 - 1 0 1 - 86 48 0
+OP MSGnexto[elem.host][elem.proc] 0 (86 0) - nextgr[elem.host][elem.nic] 0( 86  0) - time  360171200
+++ size is 1,  host [86] searching matching queue for src target 48 tag 0
+Compared element is -> 48 0 vs 48 0
+Searching for MATCHCurrent elem time is 360171200 while NS3 360171200
+Simulating Until Called
+Flow Finished 120@6@0 at 360299200
+Flow uecsrc finished at 0.360299
+Flow uecsrc completion time is 0.360299
+Completion Time Flow is 360299200
+Running - 1 - 360299200
+Updated - Time 360299200
+..... Received a MSG -- host 6 to target 120, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 360299200 360299200 -  1 0 - 1 0 1 - 6 120 0
+OP MSGnexto[elem.host][elem.proc] 0 (6 0) - nextgr[elem.host][elem.nic] 0( 6  0) - time  360299200
+++ size is 1,  host [6] searching matching queue for src target 120 tag 0
+Compared element is -> 120 0 vs 120 0
+Searching for MATCHCurrent elem time is 360299200 while NS3 360299200
+Simulating Until Called
+Flow Finished 46@96@0 at 360585920
+Flow uecsrc finished at 0.360586
+Flow uecsrc completion time is 0.360586
+Completion Time Flow is 360585920
+Running - 1 - 360585920
+Updated - Time 360585920
+..... Received a MSG -- host 96 to target 46, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 360585920 360585920 -  1 0 - 1 0 1 - 96 46 0
+OP MSGnexto[elem.host][elem.proc] 0 (96 0) - nextgr[elem.host][elem.nic] 0( 96  0) - time  360585920
+++ size is 1,  host [96] searching matching queue for src target 46 tag 0
+Compared element is -> 46 0 vs 46 0
+Searching for MATCHCurrent elem time is 360585920 while NS3 360585920
+Simulating Until Called
+Flow Finished 52@125@0 at 360983680
+Flow uecsrc finished at 0.360984
+Flow uecsrc completion time is 0.360984
+Completion Time Flow is 360983680
+Running - 1 - 360983680
+Updated - Time 360983680
+..... Received a MSG -- host 125 to target 52, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 360983680 360983680 -  1 0 - 1 0 1 - 125 52 0
+OP MSGnexto[elem.host][elem.proc] 0 (125 0) - nextgr[elem.host][elem.nic] 0( 125  0) - time  360983680
+++ size is 1,  host [125] searching matching queue for src target 52 tag 0
+Compared element is -> 52 0 vs 52 0
+Searching for MATCHCurrent elem time is 360983680 while NS3 360983680
+Simulating Until Called
+Currently at Pkt 1750
+Flow Finished 25@83@0 at 361027840
+Flow uecsrc finished at 0.361028
+Flow uecsrc completion time is 0.361028
+Completion Time Flow is 361027840
+Running - 1 - 361027840
+Updated - Time 361027840
+..... Received a MSG -- host 83 to target 25, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 361027840 361027840 -  1 0 - 1 0 1 - 83 25 0
+OP MSGnexto[elem.host][elem.proc] 0 (83 0) - nextgr[elem.host][elem.nic] 0( 83  0) - time  361027840
+++ size is 1,  host [83] searching matching queue for src target 25 tag 0
+Compared element is -> 25 0 vs 25 0
+Searching for MATCHCurrent elem time is 361027840 while NS3 361027840
+Simulating Until Called
+Flow Finished 24@78@0 at 361050240
+Flow uecsrc finished at 0.36105
+Flow uecsrc completion time is 0.36105
+Completion Time Flow is 361050240
+Running - 1 - 361050240
+Updated - Time 361050240
+..... Received a MSG -- host 78 to target 24, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 361050240 361050240 -  1 0 - 1 0 1 - 78 24 0
+OP MSGnexto[elem.host][elem.proc] 0 (78 0) - nextgr[elem.host][elem.nic] 0( 78  0) - time  361050240
+++ size is 1,  host [78] searching matching queue for src target 24 tag 0
+Compared element is -> 24 0 vs 24 0
+Searching for MATCHCurrent elem time is 361050240 while NS3 361050240
+Simulating Until Called
+Flow Finished 83@52@0 at 361072320
+Flow uecsrc finished at 0.361072
+Flow uecsrc completion time is 0.361072
+Completion Time Flow is 361072320
+Running - 1 - 361072320
+Updated - Time 361072320
+..... Received a MSG -- host 52 to target 83, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 361072320 361072320 -  1 0 - 1 0 1 - 52 83 0
+OP MSGnexto[elem.host][elem.proc] 0 (52 0) - nextgr[elem.host][elem.nic] 0( 52  0) - time  361072320
+++ size is 1,  host [52] searching matching queue for src target 83 tag 0
+Compared element is -> 83 0 vs 83 0
+Searching for MATCHCurrent elem time is 361072320 while NS3 361072320
+Simulating Until Called
+Flow Finished 95@59@0 at 361272000
+Flow uecsrc finished at 0.361272
+Flow uecsrc completion time is 0.361272
+Completion Time Flow is 361272000
+Running - 1 - 361272000
+Updated - Time 361272000
+..... Received a MSG -- host 59 to target 95, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 361272000 361272000 -  1 0 - 1 0 1 - 59 95 0
+OP MSGnexto[elem.host][elem.proc] 0 (59 0) - nextgr[elem.host][elem.nic] 0( 59  0) - time  361272000
+++ size is 1,  host [59] searching matching queue for src target 95 tag 0
+Compared element is -> 95 0 vs 95 0
+Searching for MATCHCurrent elem time is 361272000 while NS3 361272000
+Simulating Until Called
+Flow Finished 47@95@0 at 362074240
+Flow uecsrc finished at 0.362074
+Flow uecsrc completion time is 0.362074
+Completion Time Flow is 362074240
+Running - 1 - 362074240
+Updated - Time 362074240
+..... Received a MSG -- host 95 to target 47, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 362074240 362074240 -  1 0 - 1 0 1 - 95 47 0
+OP MSGnexto[elem.host][elem.proc] 0 (95 0) - nextgr[elem.host][elem.nic] 0( 95  0) - time  362074240
+++ size is 1,  host [95] searching matching queue for src target 47 tag 0
+Compared element is -> 47 0 vs 47 0
+Searching for MATCHCurrent elem time is 362074240 while NS3 362074240
+Simulating Until Called
+Currently at Pkt 1760
+Flow Finished 68@0@0 at 362821760
+Flow uecsrc finished at 0.362822
+Flow uecsrc completion time is 0.362822
+Completion Time Flow is 362821760
+Running - 1 - 362821760
+Updated - Time 362821760
+..... Received a MSG -- host 0 to target 68, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 362821760 362821760 -  1 0 - 1 0 1 - 0 68 0
+OP MSGnexto[elem.host][elem.proc] 0 (0 0) - nextgr[elem.host][elem.nic] 0( 0  0) - time  362821760
+++ size is 1,  host [0] searching matching queue for src target 68 tag 0
+Compared element is -> 68 0 vs 68 0
+Searching for MATCHCurrent elem time is 362821760 while NS3 362821760
+Simulating Until Called
+Flow Finished 41@71@0 at 363492480
+Flow uecsrc finished at 0.363492
+Flow uecsrc completion time is 0.363492
+Completion Time Flow is 363492480
+Running - 1 - 363492480
+Updated - Time 363492480
+..... Received a MSG -- host 71 to target 41, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 363492480 363492480 -  1 0 - 1 0 1 - 71 41 0
+OP MSGnexto[elem.host][elem.proc] 0 (71 0) - nextgr[elem.host][elem.nic] 0( 71  0) - time  363492480
+++ size is 1,  host [71] searching matching queue for src target 41 tag 0
+Compared element is -> 41 0 vs 41 0
+Searching for MATCHCurrent elem time is 363492480 while NS3 363492480
+Simulating Until Called
+Flow Finished 87@21@0 at 363557120
+Flow uecsrc finished at 0.363557
+Flow uecsrc completion time is 0.363557
+Completion Time Flow is 363557120
+Running - 1 - 363557120
+Updated - Time 363557120
+..... Received a MSG -- host 21 to target 87, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 363557120 363557120 -  1 0 - 1 0 1 - 21 87 0
+OP MSGnexto[elem.host][elem.proc] 0 (21 0) - nextgr[elem.host][elem.nic] 0( 21  0) - time  363557120
+++ size is 1,  host [21] searching matching queue for src target 87 tag 0
+Compared element is -> 87 0 vs 87 0
+Searching for MATCHCurrent elem time is 363557120 while NS3 363557120
+Simulating Until Called
+Flow Finished 50@92@0 at 363898240
+Flow uecsrc finished at 0.363898
+Flow uecsrc completion time is 0.363898
+Completion Time Flow is 363898240
+Running - 1 - 363898240
+Updated - Time 363898240
+..... Received a MSG -- host 92 to target 50, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 363898240 363898240 -  1 0 - 1 0 1 - 92 50 0
+OP MSGnexto[elem.host][elem.proc] 0 (92 0) - nextgr[elem.host][elem.nic] 0( 92  0) - time  363898240
+++ size is 1,  host [92] searching matching queue for src target 50 tag 0
+Compared element is -> 50 0 vs 50 0
+Searching for MATCHCurrent elem time is 363898240 while NS3 363898240
+Simulating Until Called
+Flow Finished 115@33@0 at 363970240
+Flow uecsrc finished at 0.36397
+Flow uecsrc completion time is 0.36397
+Completion Time Flow is 363970240
+Running - 1 - 363970240
+Updated - Time 363970240
+..... Received a MSG -- host 33 to target 115, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 363970240 363970240 -  1 0 - 1 0 1 - 33 115 0
+OP MSGnexto[elem.host][elem.proc] 0 (33 0) - nextgr[elem.host][elem.nic] 0( 33  0) - time  363970240
+++ size is 1,  host [33] searching matching queue for src target 115 tag 0
+Compared element is -> 115 0 vs 115 0
+Searching for MATCHCurrent elem time is 363970240 while NS3 363970240
+Simulating Until Called
+Flow Finished 117@9@0 at 364139200
+Flow uecsrc finished at 0.364139
+Flow uecsrc completion time is 0.364139
+Completion Time Flow is 364139200
+Running - 1 - 364139200
+Updated - Time 364139200
+..... Received a MSG -- host 9 to target 117, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 364139200 364139200 -  1 0 - 1 0 1 - 9 117 0
+OP MSGnexto[elem.host][elem.proc] 0 (9 0) - nextgr[elem.host][elem.nic] 0( 9  0) - time  364139200
+++ size is 1,  host [9] searching matching queue for src target 117 tag 0
+Compared element is -> 117 0 vs 117 0
+Searching for MATCHCurrent elem time is 364139200 while NS3 364139200
+Simulating Until Called
+Flow Finished 44@115@0 at 364145920
+Flow uecsrc finished at 0.364146
+Flow uecsrc completion time is 0.364146
+Completion Time Flow is 364145920
+Running - 1 - 364145920
+Updated - Time 364145920
+..... Received a MSG -- host 115 to target 44, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 364145920 364145920 -  1 0 - 1 0 1 - 115 44 0
+OP MSGnexto[elem.host][elem.proc] 0 (115 0) - nextgr[elem.host][elem.nic] 0( 115  0) - time  364145920
+++ size is 1,  host [115] searching matching queue for src target 44 tag 0
+Compared element is -> 44 0 vs 44 0
+Searching for MATCHCurrent elem time is 364145920 while NS3 364145920
+Simulating Until Called
+Flow Finished 106@27@0 at 364709120
+Flow uecsrc finished at 0.364709
+Flow uecsrc completion time is 0.364709
+Completion Time Flow is 364709120
+Running - 1 - 364709120
+Updated - Time 364709120
+..... Received a MSG -- host 27 to target 106, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 364709120 364709120 -  1 0 - 1 0 1 - 27 106 0
+OP MSGnexto[elem.host][elem.proc] 0 (27 0) - nextgr[elem.host][elem.nic] 0( 27  0) - time  364709120
+++ size is 1,  host [27] searching matching queue for src target 106 tag 0
+Compared element is -> 106 0 vs 106 0
+Searching for MATCHCurrent elem time is 364709120 while NS3 364709120
+Simulating Until Called
+Currently at Pkt 1770
+Flow Finished 17@107@0 at 364992640
+Flow uecsrc finished at 0.364993
+Flow uecsrc completion time is 0.364993
+Completion Time Flow is 364992640
+Running - 1 - 364992640
+Updated - Time 364992640
+..... Received a MSG -- host 107 to target 17, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 364992640 364992640 -  1 0 - 1 0 1 - 107 17 0
+OP MSGnexto[elem.host][elem.proc] 0 (107 0) - nextgr[elem.host][elem.nic] 0( 107  0) - time  364992640
+++ size is 1,  host [107] searching matching queue for src target 17 tag 0
+Compared element is -> 17 0 vs 17 0
+Searching for MATCHCurrent elem time is 364992640 while NS3 364992640
+Simulating Until Called
+Flow Finished 65@41@0 at 365307840
+Flow uecsrc finished at 0.365308
+Flow uecsrc completion time is 0.365308
+Completion Time Flow is 365307840
+Running - 1 - 365307840
+Updated - Time 365307840
+..... Received a MSG -- host 41 to target 65, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 365307840 365307840 -  1 0 - 1 0 1 - 41 65 0
+OP MSGnexto[elem.host][elem.proc] 0 (41 0) - nextgr[elem.host][elem.nic] 0( 41  0) - time  365307840
+++ size is 1,  host [41] searching matching queue for src target 65 tag 0
+Compared element is -> 65 0 vs 65 0
+Searching for MATCHCurrent elem time is 365307840 while NS3 365307840
+Simulating Until Called
+Flow Finished 107@39@0 at 365354240
+Flow uecsrc finished at 0.365354
+Flow uecsrc completion time is 0.365354
+Completion Time Flow is 365354240
+Running - 1 - 365354240
+Updated - Time 365354240
+..... Received a MSG -- host 39 to target 107, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 365354240 365354240 -  1 0 - 1 0 1 - 39 107 0
+OP MSGnexto[elem.host][elem.proc] 0 (39 0) - nextgr[elem.host][elem.nic] 0( 39  0) - time  365354240
+++ size is 1,  host [39] searching matching queue for src target 107 tag 0
+Compared element is -> 107 0 vs 107 0
+Searching for MATCHCurrent elem time is 365354240 while NS3 365354240
+Simulating Until Called
+Currently at Pkt 1780
+Flow Finished 43@65@0 at 367015040
+Flow uecsrc finished at 0.367015
+Flow uecsrc completion time is 0.367015
+Completion Time Flow is 367015040
+Running - 1 - 367015040
+Updated - Time 367015040
+..... Received a MSG -- host 65 to target 43, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 367015040 367015040 -  1 0 - 1 0 1 - 65 43 0
+OP MSGnexto[elem.host][elem.proc] 0 (65 0) - nextgr[elem.host][elem.nic] 0( 65  0) - time  367015040
+++ size is 1,  host [65] searching matching queue for src target 43 tag 0
+Compared element is -> 43 0 vs 43 0
+Searching for MATCHCurrent elem time is 367015040 while NS3 367015040
+Simulating Until Called
+Flow Finished 89@3@0 at 367416000
+Flow uecsrc finished at 0.367416
+Flow uecsrc completion time is 0.367416
+Completion Time Flow is 367416000
+Running - 1 - 367416000
+Updated - Time 367416000
+..... Received a MSG -- host 3 to target 89, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 367416000 367416000 -  1 0 - 1 0 1 - 3 89 0
+OP MSGnexto[elem.host][elem.proc] 0 (3 0) - nextgr[elem.host][elem.nic] 0( 3  0) - time  367416000
+++ size is 1,  host [3] searching matching queue for src target 89 tag 0
+Compared element is -> 89 0 vs 89 0
+Searching for MATCHCurrent elem time is 367416000 while NS3 367416000
+Simulating Until Called
+Flow Finished 30@98@0 at 367450240
+Flow uecsrc finished at 0.36745
+Flow uecsrc completion time is 0.36745
+Completion Time Flow is 367450240
+Running - 1 - 367450240
+Updated - Time 367450240
+..... Received a MSG -- host 98 to target 30, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 367450240 367450240 -  1 0 - 1 0 1 - 98 30 0
+OP MSGnexto[elem.host][elem.proc] 0 (98 0) - nextgr[elem.host][elem.nic] 0( 98  0) - time  367450240
+++ size is 1,  host [98] searching matching queue for src target 30 tag 0
+Compared element is -> 30 0 vs 30 0
+Searching for MATCHCurrent elem time is 367450240 while NS3 367450240
+Simulating Until Called
+Flow Finished 105@62@0 at 367895360
+Flow uecsrc finished at 0.367895
+Flow uecsrc completion time is 0.367895
+Completion Time Flow is 367895360
+Running - 1 - 367895360
+Updated - Time 367895360
+..... Received a MSG -- host 62 to target 105, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 367895360 367895360 -  1 0 - 1 0 1 - 62 105 0
+OP MSGnexto[elem.host][elem.proc] 0 (62 0) - nextgr[elem.host][elem.nic] 0( 62  0) - time  367895360
+++ size is 1,  host [62] searching matching queue for src target 105 tag 0
+Compared element is -> 105 0 vs 105 0
+Searching for MATCHCurrent elem time is 367895360 while NS3 367895360
+Simulating Until Called
+Flow Finished 9@70@0 at 367963840
+Flow uecsrc finished at 0.367964
+Flow uecsrc completion time is 0.367964
+Completion Time Flow is 367963840
+Running - 1 - 367963840
+Updated - Time 367963840
+..... Received a MSG -- host 70 to target 9, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 367963840 367963840 -  1 0 - 1 0 1 - 70 9 0
+OP MSGnexto[elem.host][elem.proc] 0 (70 0) - nextgr[elem.host][elem.nic] 0( 70  0) - time  367963840
+++ size is 1,  host [70] searching matching queue for src target 9 tag 0
+Compared element is -> 9 0 vs 9 0
+Searching for MATCHCurrent elem time is 367963840 while NS3 367963840
+Simulating Until Called
+Currently at Pkt 1790
+Currently at Pkt 1800
+Flow Finished 88@36@0 at 369970880
+Flow uecsrc finished at 0.369971
+Flow uecsrc completion time is 0.369971
+Completion Time Flow is 369970880
+Running - 1 - 369970880
+Updated - Time 369970880
+..... Received a MSG -- host 36 to target 88, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 369970880 369970880 -  1 0 - 1 0 1 - 36 88 0
+OP MSGnexto[elem.host][elem.proc] 0 (36 0) - nextgr[elem.host][elem.nic] 0( 36  0) - time  369970880
+++ size is 1,  host [36] searching matching queue for src target 88 tag 0
+Compared element is -> 88 0 vs 88 0
+Searching for MATCHCurrent elem time is 369970880 while NS3 369970880
+Simulating Until Called
+Flow Finished 97@28@0 at 369992960
+Flow uecsrc finished at 0.369993
+Flow uecsrc completion time is 0.369993
+Completion Time Flow is 369992960
+Running - 1 - 369992960
+Updated - Time 369992960
+..... Received a MSG -- host 28 to target 97, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 369992960 369992960 -  1 0 - 1 0 1 - 28 97 0
+OP MSGnexto[elem.host][elem.proc] 0 (28 0) - nextgr[elem.host][elem.nic] 0( 28  0) - time  369992960
+++ size is 1,  host [28] searching matching queue for src target 97 tag 0
+Compared element is -> 97 0 vs 97 0
+Searching for MATCHCurrent elem time is 369992960 while NS3 369992960
+Simulating Until Called
+Flow Finished 40@100@0 at 370182400
+Flow uecsrc finished at 0.370182
+Flow uecsrc completion time is 0.370182
+Completion Time Flow is 370182400
+Running - 1 - 370182400
+Updated - Time 370182400
+..... Received a MSG -- host 100 to target 40, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 370182400 370182400 -  1 0 - 1 0 1 - 100 40 0
+OP MSGnexto[elem.host][elem.proc] 0 (100 0) - nextgr[elem.host][elem.nic] 0( 100  0) - time  370182400
+++ size is 1,  host [100] searching matching queue for src target 40 tag 0
+Compared element is -> 40 0 vs 40 0
+Searching for MATCHCurrent elem time is 370182400 while NS3 370182400
+Simulating Until Called
+Flow Finished 3@104@0 at 370840960
+Flow uecsrc finished at 0.370841
+Flow uecsrc completion time is 0.370841
+Completion Time Flow is 370840960
+Running - 1 - 370840960
+Updated - Time 370840960
+..... Received a MSG -- host 104 to target 3, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 370840960 370840960 -  1 0 - 1 0 1 - 104 3 0
+OP MSGnexto[elem.host][elem.proc] 0 (104 0) - nextgr[elem.host][elem.nic] 0( 104  0) - time  370840960
+++ size is 1,  host [104] searching matching queue for src target 3 tag 0
+Compared element is -> 3 0 vs 3 0
+Searching for MATCHCurrent elem time is 370840960 while NS3 370840960
+Simulating Until Called
+Flow Finished 13@68@0 at 370919360
+Flow uecsrc finished at 0.370919
+Flow uecsrc completion time is 0.370919
+Completion Time Flow is 370919360
+Running - 1 - 370919360
+Updated - Time 370919360
+..... Received a MSG -- host 68 to target 13, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 370919360 370919360 -  1 0 - 1 0 1 - 68 13 0
+OP MSGnexto[elem.host][elem.proc] 0 (68 0) - nextgr[elem.host][elem.nic] 0( 68  0) - time  370919360
+++ size is 1,  host [68] searching matching queue for src target 13 tag 0
+Compared element is -> 13 0 vs 13 0
+Searching for MATCHCurrent elem time is 370919360 while NS3 370919360
+Simulating Until Called
+Flow Finished 94@37@0 at 370955520
+Flow uecsrc finished at 0.370956
+Flow uecsrc completion time is 0.370956
+Completion Time Flow is 370955520
+Running - 1 - 370955520
+Updated - Time 370955520
+..... Received a MSG -- host 37 to target 94, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 370955520 370955520 -  1 0 - 1 0 1 - 37 94 0
+OP MSGnexto[elem.host][elem.proc] 0 (37 0) - nextgr[elem.host][elem.nic] 0( 37  0) - time  370955520
+++ size is 1,  host [37] searching matching queue for src target 94 tag 0
+Compared element is -> 94 0 vs 94 0
+Searching for MATCHCurrent elem time is 370955520 while NS3 370955520
+Simulating Until Called
+Flow Finished 18@124@0 at 371790080
+Flow uecsrc finished at 0.37179
+Flow uecsrc completion time is 0.37179
+Completion Time Flow is 371790080
+Running - 1 - 371790080
+Updated - Time 371790080
+..... Received a MSG -- host 124 to target 18, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 371790080 371790080 -  1 0 - 1 0 1 - 124 18 0
+OP MSGnexto[elem.host][elem.proc] 0 (124 0) - nextgr[elem.host][elem.nic] 0( 124  0) - time  371790080
+++ size is 1,  host [124] searching matching queue for src target 18 tag 0
+Compared element is -> 18 0 vs 18 0
+Searching for MATCHCurrent elem time is 371790080 while NS3 371790080
+Simulating Until Called
+Flow Finished 84@32@0 at 371942080
+Flow uecsrc finished at 0.371942
+Flow uecsrc completion time is 0.371942
+Completion Time Flow is 371942080
+Running - 1 - 371942080
+Updated - Time 371942080
+..... Received a MSG -- host 32 to target 84, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 371942080 371942080 -  1 0 - 1 0 1 - 32 84 0
+OP MSGnexto[elem.host][elem.proc] 0 (32 0) - nextgr[elem.host][elem.nic] 0( 32  0) - time  371942080
+++ size is 1,  host [32] searching matching queue for src target 84 tag 0
+Compared element is -> 84 0 vs 84 0
+Searching for MATCHCurrent elem time is 371942080 while NS3 371942080
+Simulating Until Called
+Currently at Pkt 1810
+Flow Finished 110@29@0 at 372498240
+Flow uecsrc finished at 0.372498
+Flow uecsrc completion time is 0.372498
+Completion Time Flow is 372498240
+Running - 1 - 372498240
+Updated - Time 372498240
+..... Received a MSG -- host 29 to target 110, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 372498240 372498240 -  1 0 - 1 0 1 - 29 110 0
+OP MSGnexto[elem.host][elem.proc] 0 (29 0) - nextgr[elem.host][elem.nic] 0( 29  0) - time  372498240
+++ size is 1,  host [29] searching matching queue for src target 110 tag 0
+Compared element is -> 110 0 vs 110 0
+Searching for MATCHCurrent elem time is 372498240 while NS3 372498240
+Simulating Until Called
+Flow Finished 104@57@0 at 372692800
+Flow uecsrc finished at 0.372693
+Flow uecsrc completion time is 0.372693
+Completion Time Flow is 372692800
+Running - 1 - 372692800
+Updated - Time 372692800
+..... Received a MSG -- host 57 to target 104, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 372692800 372692800 -  1 0 - 1 0 1 - 57 104 0
+OP MSGnexto[elem.host][elem.proc] 0 (57 0) - nextgr[elem.host][elem.nic] 0( 57  0) - time  372692800
+++ size is 1,  host [57] searching matching queue for src target 104 tag 0
+Compared element is -> 104 0 vs 104 0
+Searching for MATCHCurrent elem time is 372692800 while NS3 372692800
+Simulating Until Called
+Flow Finished 103@31@0 at 373041280
+Flow uecsrc finished at 0.373041
+Flow uecsrc completion time is 0.373041
+Completion Time Flow is 373041280
+Running - 1 - 373041280
+Updated - Time 373041280
+..... Received a MSG -- host 31 to target 103, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 373041280 373041280 -  1 0 - 1 0 1 - 31 103 0
+OP MSGnexto[elem.host][elem.proc] 0 (31 0) - nextgr[elem.host][elem.nic] 0( 31  0) - time  373041280
+++ size is 1,  host [31] searching matching queue for src target 103 tag 0
+Compared element is -> 103 0 vs 103 0
+Searching for MATCHCurrent elem time is 373041280 while NS3 373041280
+Simulating Until Called
+Flow Finished 51@81@0 at 373300480
+Flow uecsrc finished at 0.3733
+Flow uecsrc completion time is 0.3733
+Completion Time Flow is 373300480
+Running - 1 - 373300480
+Updated - Time 373300480
+..... Received a MSG -- host 81 to target 51, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 373300480 373300480 -  1 0 - 1 0 1 - 81 51 0
+OP MSGnexto[elem.host][elem.proc] 0 (81 0) - nextgr[elem.host][elem.nic] 0( 81  0) - time  373300480
+++ size is 1,  host [81] searching matching queue for src target 51 tag 0
+Compared element is -> 51 0 vs 51 0
+Searching for MATCHCurrent elem time is 373300480 while NS3 373300480
+Simulating Until Called
+Flow Finished 74@16@0 at 373358720
+Flow uecsrc finished at 0.373359
+Flow uecsrc completion time is 0.373359
+Completion Time Flow is 373358720
+Running - 1 - 373358720
+Updated - Time 373358720
+..... Received a MSG -- host 16 to target 74, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 373358720 373358720 -  1 0 - 1 0 1 - 16 74 0
+OP MSGnexto[elem.host][elem.proc] 0 (16 0) - nextgr[elem.host][elem.nic] 0( 16  0) - time  373358720
+++ size is 1,  host [16] searching matching queue for src target 74 tag 0
+Compared element is -> 74 0 vs 74 0
+Searching for MATCHCurrent elem time is 373358720 while NS3 373358720
+Simulating Until Called
+Currently at Pkt 1820
+Flow Finished 112@8@0 at 373771520
+Flow uecsrc finished at 0.373772
+Flow uecsrc completion time is 0.373772
+Completion Time Flow is 373771520
+Running - 1 - 373771520
+Updated - Time 373771520
+..... Received a MSG -- host 8 to target 112, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 373771520 373771520 -  1 0 - 1 0 1 - 8 112 0
+OP MSGnexto[elem.host][elem.proc] 0 (8 0) - nextgr[elem.host][elem.nic] 0( 8  0) - time  373771520
+++ size is 1,  host [8] searching matching queue for src target 112 tag 0
+Compared element is -> 112 0 vs 112 0
+Searching for MATCHCurrent elem time is 373771520 while NS3 373771520
+Simulating Until Called
+Flow Finished 108@17@0 at 373903040
+Flow uecsrc finished at 0.373903
+Flow uecsrc completion time is 0.373903
+Completion Time Flow is 373903040
+Running - 1 - 373903040
+Updated - Time 373903040
+..... Received a MSG -- host 17 to target 108, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 373903040 373903040 -  1 0 - 1 0 1 - 17 108 0
+OP MSGnexto[elem.host][elem.proc] 0 (17 0) - nextgr[elem.host][elem.nic] 0( 17  0) - time  373903040
+++ size is 1,  host [17] searching matching queue for src target 108 tag 0
+Compared element is -> 108 0 vs 108 0
+Searching for MATCHCurrent elem time is 373903040 while NS3 373903040
+Simulating Until Called
+Flow Finished 4@120@0 at 374584000
+Flow uecsrc finished at 0.374584
+Flow uecsrc completion time is 0.374584
+Completion Time Flow is 374584000
+Running - 1 - 374584000
+Updated - Time 374584000
+..... Received a MSG -- host 120 to target 4, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 374584000 374584000 -  1 0 - 1 0 1 - 120 4 0
+OP MSGnexto[elem.host][elem.proc] 0 (120 0) - nextgr[elem.host][elem.nic] 0( 120  0) - time  374584000
+++ size is 1,  host [120] searching matching queue for src target 4 tag 0
+Compared element is -> 4 0 vs 4 0
+Searching for MATCHCurrent elem time is 374584000 while NS3 374584000
+Simulating Until Called
+Flow Finished 12@127@0 at 374614720
+Flow uecsrc finished at 0.374615
+Flow uecsrc completion time is 0.374615
+Completion Time Flow is 374614720
+Running - 1 - 374614720
+Updated - Time 374614720
+..... Received a MSG -- host 127 to target 12, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 374614720 374614720 -  1 0 - 1 0 1 - 127 12 0
+OP MSGnexto[elem.host][elem.proc] 0 (127 0) - nextgr[elem.host][elem.nic] 0( 127  0) - time  374614720
+++ size is 1,  host [127] searching matching queue for src target 12 tag 0
+Compared element is -> 12 0 vs 12 0
+Searching for MATCHCurrent elem time is 374614720 while NS3 374614720
+Simulating Until Called
+Flow Finished 73@53@0 at 375029440
+Flow uecsrc finished at 0.375029
+Flow uecsrc completion time is 0.375029
+Completion Time Flow is 375029440
+Running - 1 - 375029440
+Updated - Time 375029440
+..... Received a MSG -- host 53 to target 73, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 375029440 375029440 -  1 0 - 1 0 1 - 53 73 0
+OP MSGnexto[elem.host][elem.proc] 0 (53 0) - nextgr[elem.host][elem.nic] 0( 53  0) - time  375029440
+++ size is 1,  host [53] searching matching queue for src target 73 tag 0
+Compared element is -> 73 0 vs 73 0
+Searching for MATCHCurrent elem time is 375029440 while NS3 375029440
+Simulating Until Called
+Currently at Pkt 1830
+Currently at Pkt 1840
+Flow Finished 35@82@0 at 377405120
+Flow uecsrc finished at 0.377405
+Flow uecsrc completion time is 0.377405
+Completion Time Flow is 377405120
+Running - 1 - 377405120
+Updated - Time 377405120
+..... Received a MSG -- host 82 to target 35, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 377405120 377405120 -  1 0 - 1 0 1 - 82 35 0
+OP MSGnexto[elem.host][elem.proc] 0 (82 0) - nextgr[elem.host][elem.nic] 0( 82  0) - time  377405120
+++ size is 1,  host [82] searching matching queue for src target 35 tag 0
+Compared element is -> 35 0 vs 35 0
+Searching for MATCHCurrent elem time is 377405120 while NS3 377405120
+Simulating Until Called
+Flow Finished 109@50@0 at 378440640
+Flow uecsrc finished at 0.378441
+Flow uecsrc completion time is 0.378441
+Completion Time Flow is 378440640
+Running - 1 - 378440640
+Updated - Time 378440640
+..... Received a MSG -- host 50 to target 109, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 378440640 378440640 -  1 0 - 1 0 1 - 50 109 0
+OP MSGnexto[elem.host][elem.proc] 0 (50 0) - nextgr[elem.host][elem.nic] 0( 50  0) - time  378440640
+++ size is 1,  host [50] searching matching queue for src target 109 tag 0
+Compared element is -> 109 0 vs 109 0
+Searching for MATCHCurrent elem time is 378440640 while NS3 378440640
+Simulating Until Called
+Currently at Pkt 1850
+Flow Finished 82@30@0 at 379435520
+Flow uecsrc finished at 0.379436
+Flow uecsrc completion time is 0.379436
+Completion Time Flow is 379435520
+Running - 1 - 379435520
+Updated - Time 379435520
+..... Received a MSG -- host 30 to target 82, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 379435520 379435520 -  1 0 - 1 0 1 - 30 82 0
+OP MSGnexto[elem.host][elem.proc] 0 (30 0) - nextgr[elem.host][elem.nic] 0( 30  0) - time  379435520
+++ size is 1,  host [30] searching matching queue for src target 82 tag 0
+Compared element is -> 82 0 vs 82 0
+Searching for MATCHCurrent elem time is 379435520 while NS3 379435520
+Simulating Until Called
+Flow Finished 81@38@0 at 379783680
+Flow uecsrc finished at 0.379784
+Flow uecsrc completion time is 0.379784
+Completion Time Flow is 379783680
+Running - 1 - 379783680
+Updated - Time 379783680
+..... Received a MSG -- host 38 to target 81, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 379783680 379783680 -  1 0 - 1 0 1 - 38 81 0
+OP MSGnexto[elem.host][elem.proc] 0 (38 0) - nextgr[elem.host][elem.nic] 0( 38  0) - time  379783680
+++ size is 1,  host [38] searching matching queue for src target 81 tag 0
+Compared element is -> 81 0 vs 81 0
+Searching for MATCHCurrent elem time is 379783680 while NS3 379783680
+Simulating Until Called
+Flow Finished 75@11@0 at 380004480
+Flow uecsrc finished at 0.380004
+Flow uecsrc completion time is 0.380004
+Completion Time Flow is 380004480
+Running - 1 - 380004480
+Updated - Time 380004480
+..... Received a MSG -- host 11 to target 75, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 380004480 380004480 -  1 0 - 1 0 1 - 11 75 0
+OP MSGnexto[elem.host][elem.proc] 0 (11 0) - nextgr[elem.host][elem.nic] 0( 11  0) - time  380004480
+++ size is 1,  host [11] searching matching queue for src target 75 tag 0
+Compared element is -> 75 0 vs 75 0
+Searching for MATCHCurrent elem time is 380004480 while NS3 380004480
+Simulating Until Called
+Flow Finished 93@2@0 at 380121920
+Flow uecsrc finished at 0.380122
+Flow uecsrc completion time is 0.380122
+Completion Time Flow is 380121920
+Running - 1 - 380121920
+Updated - Time 380121920
+..... Received a MSG -- host 2 to target 93, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 380121920 380121920 -  1 0 - 1 0 1 - 2 93 0
+OP MSGnexto[elem.host][elem.proc] 0 (2 0) - nextgr[elem.host][elem.nic] 0( 2  0) - time  380121920
+++ size is 1,  host [2] searching matching queue for src target 93 tag 0
+Compared element is -> 93 0 vs 93 0
+Searching for MATCHCurrent elem time is 380121920 while NS3 380121920
+Simulating Until Called
+Currently at Pkt 1860
+Flow Finished 64@63@0 at 380843840
+Flow uecsrc finished at 0.380844
+Flow uecsrc completion time is 0.380844
+Completion Time Flow is 380843840
+Running - 1 - 380843840
+Updated - Time 380843840
+..... Received a MSG -- host 63 to target 64, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 380843840 380843840 -  1 0 - 1 0 1 - 63 64 0
+OP MSGnexto[elem.host][elem.proc] 0 (63 0) - nextgr[elem.host][elem.nic] 0( 63  0) - time  380843840
+++ size is 1,  host [63] searching matching queue for src target 64 tag 0
+Compared element is -> 64 0 vs 64 0
+Searching for MATCHCurrent elem time is 380843840 while NS3 380843840
+Simulating Until Called
+Flow Finished 26@116@0 at 380883200
+Flow uecsrc finished at 0.380883
+Flow uecsrc completion time is 0.380883
+Completion Time Flow is 380883200
+Running - 1 - 380883200
+Updated - Time 380883200
+..... Received a MSG -- host 116 to target 26, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 380883200 380883200 -  1 0 - 1 0 1 - 116 26 0
+OP MSGnexto[elem.host][elem.proc] 0 (116 0) - nextgr[elem.host][elem.nic] 0( 116  0) - time  380883200
+++ size is 1,  host [116] searching matching queue for src target 26 tag 0
+Compared element is -> 26 0 vs 26 0
+Searching for MATCHCurrent elem time is 380883200 while NS3 380883200
+Simulating Until Called
+Flow Finished 16@74@0 at 380968640
+Flow uecsrc finished at 0.380969
+Flow uecsrc completion time is 0.380969
+Completion Time Flow is 380968640
+Running - 1 - 380968640
+Updated - Time 380968640
+..... Received a MSG -- host 74 to target 16, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 380968640 380968640 -  1 0 - 1 0 1 - 74 16 0
+OP MSGnexto[elem.host][elem.proc] 0 (74 0) - nextgr[elem.host][elem.nic] 0( 74  0) - time  380968640
+++ size is 1,  host [74] searching matching queue for src target 16 tag 0
+Compared element is -> 16 0 vs 16 0
+Searching for MATCHCurrent elem time is 380968640 while NS3 380968640
+Simulating Until Called
+Flow Finished 86@49@0 at 381096640
+Flow uecsrc finished at 0.381097
+Flow uecsrc completion time is 0.381097
+Completion Time Flow is 381096640
+Running - 1 - 381096640
+Updated - Time 381096640
+..... Received a MSG -- host 49 to target 86, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 381096640 381096640 -  1 0 - 1 0 1 - 49 86 0
+OP MSGnexto[elem.host][elem.proc] 0 (49 0) - nextgr[elem.host][elem.nic] 0( 49  0) - time  381096640
+++ size is 1,  host [49] searching matching queue for src target 86 tag 0
+Compared element is -> 86 0 vs 86 0
+Searching for MATCHCurrent elem time is 381096640 while NS3 381096640
+Simulating Until Called
+Flow Finished 32@87@0 at 381548480
+Flow uecsrc finished at 0.381548
+Flow uecsrc completion time is 0.381548
+Completion Time Flow is 381548480
+Running - 1 - 381548480
+Updated - Time 381548480
+..... Received a MSG -- host 87 to target 32, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 381548480 381548480 -  1 0 - 1 0 1 - 87 32 0
+OP MSGnexto[elem.host][elem.proc] 0 (87 0) - nextgr[elem.host][elem.nic] 0( 87  0) - time  381548480
+++ size is 1,  host [87] searching matching queue for src target 32 tag 0
+Compared element is -> 32 0 vs 32 0
+Searching for MATCHCurrent elem time is 381548480 while NS3 381548480
+Simulating Until Called
+Flow Finished 36@94@0 at 381606720
+Flow uecsrc finished at 0.381607
+Flow uecsrc completion time is 0.381607
+Completion Time Flow is 381606720
+Running - 1 - 381606720
+Updated - Time 381606720
+..... Received a MSG -- host 94 to target 36, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 381606720 381606720 -  1 0 - 1 0 1 - 94 36 0
+OP MSGnexto[elem.host][elem.proc] 0 (94 0) - nextgr[elem.host][elem.nic] 0( 94  0) - time  381606720
+++ size is 1,  host [94] searching matching queue for src target 36 tag 0
+Compared element is -> 36 0 vs 36 0
+Searching for MATCHCurrent elem time is 381606720 while NS3 381606720
+Simulating Until Called
+Flow Finished 29@109@0 at 381644480
+Flow uecsrc finished at 0.381644
+Flow uecsrc completion time is 0.381644
+Completion Time Flow is 381644480
+Running - 1 - 381644480
+Updated - Time 381644480
+..... Received a MSG -- host 109 to target 29, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 381644480 381644480 -  1 0 - 1 0 1 - 109 29 0
+OP MSGnexto[elem.host][elem.proc] 0 (109 0) - nextgr[elem.host][elem.nic] 0( 109  0) - time  381644480
+++ size is 1,  host [109] searching matching queue for src target 29 tag 0
+Compared element is -> 29 0 vs 29 0
+Searching for MATCHCurrent elem time is 381644480 while NS3 381644480
+Simulating Until Called
+Flow Finished 125@14@0 at 381713920
+Flow uecsrc finished at 0.381714
+Flow uecsrc completion time is 0.381714
+Completion Time Flow is 381713920
+Running - 1 - 381713920
+Updated - Time 381713920
+..... Received a MSG -- host 14 to target 125, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 381713920 381713920 -  1 0 - 1 0 1 - 14 125 0
+OP MSGnexto[elem.host][elem.proc] 0 (14 0) - nextgr[elem.host][elem.nic] 0( 14  0) - time  381713920
+++ size is 1,  host [14] searching matching queue for src target 125 tag 0
+Compared element is -> 125 0 vs 125 0
+Searching for MATCHCurrent elem time is 381713920 while NS3 381713920
+Simulating Until Called
+Flow Finished 116@26@0 at 381731520
+Flow uecsrc finished at 0.381732
+Flow uecsrc completion time is 0.381732
+Completion Time Flow is 381731520
+Running - 1 - 381731520
+Updated - Time 381731520
+..... Received a MSG -- host 26 to target 116, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 381731520 381731520 -  1 0 - 1 0 1 - 26 116 0
+OP MSGnexto[elem.host][elem.proc] 0 (26 0) - nextgr[elem.host][elem.nic] 0( 26  0) - time  381731520
+++ size is 1,  host [26] searching matching queue for src target 116 tag 0
+Compared element is -> 116 0 vs 116 0
+Searching for MATCHCurrent elem time is 381731520 while NS3 381731520
+Simulating Until Called
+Currently at Pkt 1870
+Flow Finished 21@103@0 at 382171840
+Flow uecsrc finished at 0.382172
+Flow uecsrc completion time is 0.382172
+Completion Time Flow is 382171840
+Running - 1 - 382171840
+Updated - Time 382171840
+..... Received a MSG -- host 103 to target 21, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 382171840 382171840 -  1 0 - 1 0 1 - 103 21 0
+OP MSGnexto[elem.host][elem.proc] 0 (103 0) - nextgr[elem.host][elem.nic] 0( 103  0) - time  382171840
+++ size is 1,  host [103] searching matching queue for src target 21 tag 0
+Compared element is -> 21 0 vs 21 0
+Searching for MATCHCurrent elem time is 382171840 while NS3 382171840
+Simulating Until Called
+Flow Finished 92@56@0 at 382525120
+Flow uecsrc finished at 0.382525
+Flow uecsrc completion time is 0.382525
+Completion Time Flow is 382525120
+Running - 1 - 382525120
+Updated - Time 382525120
+..... Received a MSG -- host 56 to target 92, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 382525120 382525120 -  1 0 - 1 0 1 - 56 92 0
+OP MSGnexto[elem.host][elem.proc] 0 (56 0) - nextgr[elem.host][elem.nic] 0( 56  0) - time  382525120
+++ size is 1,  host [56] searching matching queue for src target 92 tag 0
+Compared element is -> 92 0 vs 92 0
+Searching for MATCHCurrent elem time is 382525120 while NS3 382525120
+Simulating Until Called
+Flow Finished 10@72@0 at 383325440
+Flow uecsrc finished at 0.383325
+Flow uecsrc completion time is 0.383325
+Completion Time Flow is 383325440
+Running - 1 - 383325440
+Updated - Time 383325440
+..... Received a MSG -- host 72 to target 10, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 383325440 383325440 -  1 0 - 1 0 1 - 72 10 0
+OP MSGnexto[elem.host][elem.proc] 0 (72 0) - nextgr[elem.host][elem.nic] 0( 72  0) - time  383325440
+++ size is 1,  host [72] searching matching queue for src target 10 tag 0
+Compared element is -> 10 0 vs 10 0
+Searching for MATCHCurrent elem time is 383325440 while NS3 383325440
+Simulating Until Called
+Currently at Pkt 1880
+Flow Finished 85@40@0 at 384212800
+Flow uecsrc finished at 0.384213
+Flow uecsrc completion time is 0.384213
+Completion Time Flow is 384212800
+Running - 1 - 384212800
+Updated - Time 384212800
+..... Received a MSG -- host 40 to target 85, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 384212800 384212800 -  1 0 - 1 0 1 - 40 85 0
+OP MSGnexto[elem.host][elem.proc] 0 (40 0) - nextgr[elem.host][elem.nic] 0( 40  0) - time  384212800
+++ size is 1,  host [40] searching matching queue for src target 85 tag 0
+Compared element is -> 85 0 vs 85 0
+Searching for MATCHCurrent elem time is 384212800 while NS3 384212800
+Simulating Until Called
+Flow Finished 118@54@0 at 384769280
+Flow uecsrc finished at 0.384769
+Flow uecsrc completion time is 0.384769
+Completion Time Flow is 384769280
+Running - 1 - 384769280
+Updated - Time 384769280
+..... Received a MSG -- host 54 to target 118, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 384769280 384769280 -  1 0 - 1 0 1 - 54 118 0
+OP MSGnexto[elem.host][elem.proc] 0 (54 0) - nextgr[elem.host][elem.nic] 0( 54  0) - time  384769280
+++ size is 1,  host [54] searching matching queue for src target 118 tag 0
+Compared element is -> 118 0 vs 118 0
+Searching for MATCHCurrent elem time is 384769280 while NS3 384769280
+Simulating Until Called
+Currently at Pkt 1890
+Flow Finished 101@22@0 at 387059840
+Flow uecsrc finished at 0.38706
+Flow uecsrc completion time is 0.38706
+Completion Time Flow is 387059840
+Running - 1 - 387059840
+Updated - Time 387059840
+..... Received a MSG -- host 22 to target 101, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 387059840 387059840 -  1 0 - 1 0 1 - 22 101 0
+OP MSGnexto[elem.host][elem.proc] 0 (22 0) - nextgr[elem.host][elem.nic] 0( 22  0) - time  387059840
+++ size is 1,  host [22] searching matching queue for src target 101 tag 0
+Compared element is -> 101 0 vs 101 0
+Searching for MATCHCurrent elem time is 387059840 while NS3 387059840
+Simulating Until Called
+Currently at Pkt 1900
+Flow Finished 37@112@0 at 387216640
+Flow uecsrc finished at 0.387217
+Flow uecsrc completion time is 0.387217
+Completion Time Flow is 387216640
+Running - 1 - 387216640
+Updated - Time 387216640
+..... Received a MSG -- host 112 to target 37, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 387216640 387216640 -  1 0 - 1 0 1 - 112 37 0
+OP MSGnexto[elem.host][elem.proc] 0 (112 0) - nextgr[elem.host][elem.nic] 0( 112  0) - time  387216640
+++ size is 1,  host [112] searching matching queue for src target 37 tag 0
+Compared element is -> 37 0 vs 37 0
+Searching for MATCHCurrent elem time is 387216640 while NS3 387216640
+Simulating Until Called
+Flow Finished 39@90@0 at 387987840
+Flow uecsrc finished at 0.387988
+Flow uecsrc completion time is 0.387988
+Completion Time Flow is 387987840
+Running - 1 - 387987840
+Updated - Time 387987840
+..... Received a MSG -- host 90 to target 39, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 387987840 387987840 -  1 0 - 1 0 1 - 90 39 0
+OP MSGnexto[elem.host][elem.proc] 0 (90 0) - nextgr[elem.host][elem.nic] 0( 90  0) - time  387987840
+++ size is 1,  host [90] searching matching queue for src target 39 tag 0
+Compared element is -> 39 0 vs 39 0
+Searching for MATCHCurrent elem time is 387987840 while NS3 387987840
+Simulating Until Called
+Flow Finished 113@46@0 at 388032320
+Flow uecsrc finished at 0.388032
+Flow uecsrc completion time is 0.388032
+Completion Time Flow is 388032320
+Running - 1 - 388032320
+Updated - Time 388032320
+..... Received a MSG -- host 46 to target 113, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 388032320 388032320 -  1 0 - 1 0 1 - 46 113 0
+OP MSGnexto[elem.host][elem.proc] 0 (46 0) - nextgr[elem.host][elem.nic] 0( 46  0) - time  388032320
+++ size is 1,  host [46] searching matching queue for src target 113 tag 0
+Compared element is -> 113 0 vs 113 0
+Searching for MATCHCurrent elem time is 388032320 while NS3 388032320
+Simulating Until Called
+Flow Finished 102@4@0 at 388925120
+Flow uecsrc finished at 0.388925
+Flow uecsrc completion time is 0.388925
+Completion Time Flow is 388925120
+Running - 1 - 388925120
+Updated - Time 388925120
+..... Received a MSG -- host 4 to target 102, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 388925120 388925120 -  1 0 - 1 0 1 - 4 102 0
+OP MSGnexto[elem.host][elem.proc] 0 (4 0) - nextgr[elem.host][elem.nic] 0( 4  0) - time  388925120
+++ size is 1,  host [4] searching matching queue for src target 102 tag 0
+Compared element is -> 102 0 vs 102 0
+Searching for MATCHCurrent elem time is 388925120 while NS3 388925120
+Simulating Until Called
+Currently at Pkt 1910
+Flow Finished 38@93@0 at 389093760
+Flow uecsrc finished at 0.389094
+Flow uecsrc completion time is 0.389094
+Completion Time Flow is 389093760
+Running - 1 - 389093760
+Updated - Time 389093760
+..... Received a MSG -- host 93 to target 38, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 389093760 389093760 -  1 0 - 1 0 1 - 93 38 0
+OP MSGnexto[elem.host][elem.proc] 0 (93 0) - nextgr[elem.host][elem.nic] 0( 93  0) - time  389093760
+++ size is 1,  host [93] searching matching queue for src target 38 tag 0
+Compared element is -> 38 0 vs 38 0
+Searching for MATCHCurrent elem time is 389093760 while NS3 389093760
+Simulating Until Called
+Flow Finished 14@99@0 at 389195840
+Flow uecsrc finished at 0.389196
+Flow uecsrc completion time is 0.389196
+Completion Time Flow is 389195840
+Running - 1 - 389195840
+Updated - Time 389195840
+..... Received a MSG -- host 99 to target 14, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 389195840 389195840 -  1 0 - 1 0 1 - 99 14 0
+OP MSGnexto[elem.host][elem.proc] 0 (99 0) - nextgr[elem.host][elem.nic] 0( 99  0) - time  389195840
+++ size is 1,  host [99] searching matching queue for src target 14 tag 0
+Compared element is -> 14 0 vs 14 0
+Searching for MATCHCurrent elem time is 389195840 while NS3 389195840
+Simulating Until Called
+Flow Finished 53@122@0 at 389790400
+Flow uecsrc finished at 0.38979
+Flow uecsrc completion time is 0.38979
+Completion Time Flow is 389790400
+Running - 1 - 389790400
+Updated - Time 389790400
+..... Received a MSG -- host 122 to target 53, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 389790400 389790400 -  1 0 - 1 0 1 - 122 53 0
+OP MSGnexto[elem.host][elem.proc] 0 (122 0) - nextgr[elem.host][elem.nic] 0( 122  0) - time  389790400
+++ size is 1,  host [122] searching matching queue for src target 53 tag 0
+Compared element is -> 53 0 vs 53 0
+Searching for MATCHCurrent elem time is 389790400 while NS3 389790400
+Simulating Until Called
+Currently at Pkt 1920
+Flow Finished 33@113@0 at 390821120
+Flow uecsrc finished at 0.390821
+Flow uecsrc completion time is 0.390821
+Completion Time Flow is 390821120
+Running - 1 - 390821120
+Updated - Time 390821120
+..... Received a MSG -- host 113 to target 33, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 390821120 390821120 -  1 0 - 1 0 1 - 113 33 0
+OP MSGnexto[elem.host][elem.proc] 0 (113 0) - nextgr[elem.host][elem.nic] 0( 113  0) - time  390821120
+++ size is 1,  host [113] searching matching queue for src target 33 tag 0
+Compared element is -> 33 0 vs 33 0
+Searching for MATCHCurrent elem time is 390821120 while NS3 390821120
+Simulating Until Called
+Flow Finished 67@47@0 at 391754880
+Flow uecsrc finished at 0.391755
+Flow uecsrc completion time is 0.391755
+Completion Time Flow is 391754880
+Running - 1 - 391754880
+Updated - Time 391754880
+..... Received a MSG -- host 47 to target 67, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 391754880 391754880 -  1 0 - 1 0 1 - 47 67 0
+OP MSGnexto[elem.host][elem.proc] 0 (47 0) - nextgr[elem.host][elem.nic] 0( 47  0) - time  391754880
+++ size is 1,  host [47] searching matching queue for src target 67 tag 0
+Compared element is -> 67 0 vs 67 0
+Searching for MATCHCurrent elem time is 391754880 while NS3 391754880
+Simulating Until Called
+Currently at Pkt 1930
+Flow Finished 28@121@0 at 392537920
+Flow uecsrc finished at 0.392538
+Flow uecsrc completion time is 0.392538
+Completion Time Flow is 392537920
+Running - 1 - 392537920
+Updated - Time 392537920
+..... Received a MSG -- host 121 to target 28, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 392537920 392537920 -  1 0 - 1 0 1 - 121 28 0
+OP MSGnexto[elem.host][elem.proc] 0 (121 0) - nextgr[elem.host][elem.nic] 0( 121  0) - time  392537920
+++ size is 1,  host [121] searching matching queue for src target 28 tag 0
+Compared element is -> 28 0 vs 28 0
+Searching for MATCHCurrent elem time is 392537920 while NS3 392537920
+Simulating Until Called
+Flow Finished 6@76@0 at 393043200
+Flow uecsrc finished at 0.393043
+Flow uecsrc completion time is 0.393043
+Completion Time Flow is 393043200
+Running - 1 - 393043200
+Updated - Time 393043200
+..... Received a MSG -- host 76 to target 6, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 393043200 393043200 -  1 0 - 1 0 1 - 76 6 0
+OP MSGnexto[elem.host][elem.proc] 0 (76 0) - nextgr[elem.host][elem.nic] 0( 76  0) - time  393043200
+++ size is 1,  host [76] searching matching queue for src target 6 tag 0
+Compared element is -> 6 0 vs 6 0
+Searching for MATCHCurrent elem time is 393043200 while NS3 393043200
+Simulating Until Called
+Currently at Pkt 1940
+Flow Finished 15@118@0 at 394246400
+Flow uecsrc finished at 0.394246
+Flow uecsrc completion time is 0.394246
+Completion Time Flow is 394246400
+Running - 1 - 394246400
+Updated - Time 394246400
+..... Received a MSG -- host 118 to target 15, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 394246400 394246400 -  1 0 - 1 0 1 - 118 15 0
+OP MSGnexto[elem.host][elem.proc] 0 (118 0) - nextgr[elem.host][elem.nic] 0( 118  0) - time  394246400
+++ size is 1,  host [118] searching matching queue for src target 15 tag 0
+Compared element is -> 15 0 vs 15 0
+Searching for MATCHCurrent elem time is 394246400 while NS3 394246400
+Simulating Until Called
+Flow Finished 98@45@0 at 394749760
+Flow uecsrc finished at 0.39475
+Flow uecsrc completion time is 0.39475
+Completion Time Flow is 394749760
+Running - 1 - 394749760
+Updated - Time 394749760
+..... Received a MSG -- host 45 to target 98, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 394749760 394749760 -  1 0 - 1 0 1 - 45 98 0
+OP MSGnexto[elem.host][elem.proc] 0 (45 0) - nextgr[elem.host][elem.nic] 0( 45  0) - time  394749760
+++ size is 1,  host [45] searching matching queue for src target 98 tag 0
+Compared element is -> 98 0 vs 98 0
+Searching for MATCHCurrent elem time is 394749760 while NS3 394749760
+Simulating Until Called
+Flow Finished 19@97@0 at 394767040
+Flow uecsrc finished at 0.394767
+Flow uecsrc completion time is 0.394767
+Completion Time Flow is 394767040
+Running - 1 - 394767040
+Updated - Time 394767040
+..... Received a MSG -- host 97 to target 19, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 394767040 394767040 -  1 0 - 1 0 1 - 97 19 0
+OP MSGnexto[elem.host][elem.proc] 0 (97 0) - nextgr[elem.host][elem.nic] 0( 97  0) - time  394767040
+++ size is 1,  host [97] searching matching queue for src target 19 tag 0
+Compared element is -> 19 0 vs 19 0
+Searching for MATCHCurrent elem time is 394767040 while NS3 394767040
+Simulating Until Called
+Flow Finished 66@43@0 at 395033280
+Flow uecsrc finished at 0.395033
+Flow uecsrc completion time is 0.395033
+Completion Time Flow is 395033280
+Running - 1 - 395033280
+Updated - Time 395033280
+..... Received a MSG -- host 43 to target 66, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 395033280 395033280 -  1 0 - 1 0 1 - 43 66 0
+OP MSGnexto[elem.host][elem.proc] 0 (43 0) - nextgr[elem.host][elem.nic] 0( 43  0) - time  395033280
+++ size is 1,  host [43] searching matching queue for src target 66 tag 0
+Compared element is -> 66 0 vs 66 0
+Searching for MATCHCurrent elem time is 395033280 while NS3 395033280
+Simulating Until Called
+Flow Finished 1@123@0 at 395056960
+Flow uecsrc finished at 0.395057
+Flow uecsrc completion time is 0.395057
+Completion Time Flow is 395056960
+Running - 1 - 395056960
+Updated - Time 395056960
+..... Received a MSG -- host 123 to target 1, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 395056960 395056960 -  1 0 - 1 0 1 - 123 1 0
+OP MSGnexto[elem.host][elem.proc] 0 (123 0) - nextgr[elem.host][elem.nic] 0( 123  0) - time  395056960
+++ size is 1,  host [123] searching matching queue for src target 1 tag 0
+Compared element is -> 1 0 vs 1 0
+Searching for MATCHCurrent elem time is 395056960 while NS3 395056960
+Simulating Until Called
+Flow Finished 55@79@0 at 395297600
+Flow uecsrc finished at 0.395298
+Flow uecsrc completion time is 0.395298
+Completion Time Flow is 395297600
+Running - 1 - 395297600
+Updated - Time 395297600
+..... Received a MSG -- host 79 to target 55, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 395297600 395297600 -  1 0 - 1 0 1 - 79 55 0
+OP MSGnexto[elem.host][elem.proc] 0 (79 0) - nextgr[elem.host][elem.nic] 0( 79  0) - time  395297600
+++ size is 1,  host [79] searching matching queue for src target 55 tag 0
+Compared element is -> 55 0 vs 55 0
+Searching for MATCHCurrent elem time is 395297600 while NS3 395297600
+Simulating Until Called
+Currently at Pkt 1950
+Flow Finished 34@75@0 at 396185280
+Flow uecsrc finished at 0.396185
+Flow uecsrc completion time is 0.396185
+Completion Time Flow is 396185280
+Running - 1 - 396185280
+Updated - Time 396185280
+..... Received a MSG -- host 75 to target 34, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 396185280 396185280 -  1 0 - 1 0 1 - 75 34 0
+OP MSGnexto[elem.host][elem.proc] 0 (75 0) - nextgr[elem.host][elem.nic] 0( 75  0) - time  396185280
+++ size is 1,  host [75] searching matching queue for src target 34 tag 0
+Compared element is -> 34 0 vs 34 0
+Searching for MATCHCurrent elem time is 396185280 while NS3 396185280
+Simulating Until Called
+Flow Finished 0@106@0 at 396364160
+Flow uecsrc finished at 0.396364
+Flow uecsrc completion time is 0.396364
+Completion Time Flow is 396364160
+Running - 1 - 396364160
+Updated - Time 396364160
+..... Received a MSG -- host 106 to target 0, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 396364160 396364160 -  1 0 - 1 0 1 - 106 0 0
+OP MSGnexto[elem.host][elem.proc] 0 (106 0) - nextgr[elem.host][elem.nic] 0( 106  0) - time  396364160
+++ size is 1,  host [106] searching matching queue for src target 0 tag 0
+Compared element is -> 0 0 vs 0 0
+Searching for MATCHCurrent elem time is 396364160 while NS3 396364160
+Simulating Until Called
+Flow Finished 22@101@0 at 397542080
+Flow uecsrc finished at 0.397542
+Flow uecsrc completion time is 0.397542
+Completion Time Flow is 397542080
+Running - 1 - 397542080
+Updated - Time 397542080
+..... Received a MSG -- host 101 to target 22, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 397542080 397542080 -  1 0 - 1 0 1 - 101 22 0
+OP MSGnexto[elem.host][elem.proc] 0 (101 0) - nextgr[elem.host][elem.nic] 0( 101  0) - time  397542080
+++ size is 1,  host [101] searching matching queue for src target 22 tag 0
+Compared element is -> 22 0 vs 22 0
+Searching for MATCHCurrent elem time is 397542080 while NS3 397542080
+Simulating Until Called
+Flow Finished 124@13@0 at 397878080
+Flow uecsrc finished at 0.397878
+Flow uecsrc completion time is 0.397878
+Completion Time Flow is 397878080
+Running - 1 - 397878080
+Updated - Time 397878080
+..... Received a MSG -- host 13 to target 124, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 397878080 397878080 -  1 0 - 1 0 1 - 13 124 0
+OP MSGnexto[elem.host][elem.proc] 0 (13 0) - nextgr[elem.host][elem.nic] 0( 13  0) - time  397878080
+++ size is 1,  host [13] searching matching queue for src target 124 tag 0
+Compared element is -> 124 0 vs 124 0
+Searching for MATCHCurrent elem time is 397878080 while NS3 397878080
+Simulating Until Called
+Flow Finished 99@10@0 at 398707520
+Flow uecsrc finished at 0.398708
+Flow uecsrc completion time is 0.398708
+Completion Time Flow is 398707520
+Running - 1 - 398707520
+Updated - Time 398707520
+..... Received a MSG -- host 10 to target 99, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 398707520 398707520 -  1 0 - 1 0 1 - 10 99 0
+OP MSGnexto[elem.host][elem.proc] 0 (10 0) - nextgr[elem.host][elem.nic] 0( 10  0) - time  398707520
+++ size is 1,  host [10] searching matching queue for src target 99 tag 0
+Compared element is -> 99 0 vs 99 0
+Searching for MATCHCurrent elem time is 398707520 while NS3 398707520
+Simulating Until Called
+Flow Finished 100@60@0 at 399683200
+Flow uecsrc finished at 0.399683
+Flow uecsrc completion time is 0.399683
+Completion Time Flow is 399683200
+Running - 1 - 399683200
+Updated - Time 399683200
+..... Received a MSG -- host 60 to target 100, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 399683200 399683200 -  1 0 - 1 0 1 - 60 100 0
+OP MSGnexto[elem.host][elem.proc] 0 (60 0) - nextgr[elem.host][elem.nic] 0( 60  0) - time  399683200
+++ size is 1,  host [60] searching matching queue for src target 100 tag 0
+Compared element is -> 100 0 vs 100 0
+Searching for MATCHCurrent elem time is 399683200 while NS3 399683200
+Simulating Until Called
+Flow Finished 78@5@0 at 400062720
+Flow uecsrc finished at 0.400063
+Flow uecsrc completion time is 0.400063
+Completion Time Flow is 400062720
+Running - 1 - 400062720
+Updated - Time 400062720
+..... Received a MSG -- host 5 to target 78, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 400062720 400062720 -  1 0 - 1 0 1 - 5 78 0
+OP MSGnexto[elem.host][elem.proc] 0 (5 0) - nextgr[elem.host][elem.nic] 0( 5  0) - time  400062720
+++ size is 1,  host [5] searching matching queue for src target 78 tag 0
+Compared element is -> 78 0 vs 78 0
+Searching for MATCHCurrent elem time is 400062720 while NS3 400062720
+Simulating Until Called
+Flow Finished 45@67@0 at 400187200
+Flow uecsrc finished at 0.400187
+Flow uecsrc completion time is 0.400187
+Completion Time Flow is 400187200
+Running - 1 - 400187200
+Updated - Time 400187200
+..... Received a MSG -- host 67 to target 45, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 400187200 400187200 -  1 0 - 1 0 1 - 67 45 0
+OP MSGnexto[elem.host][elem.proc] 0 (67 0) - nextgr[elem.host][elem.nic] 0( 67  0) - time  400187200
+++ size is 1,  host [67] searching matching queue for src target 45 tag 0
+Compared element is -> 45 0 vs 45 0
+Searching for MATCHCurrent elem time is 400187200 while NS3 400187200
+Simulating Until Called
+Flow Finished 76@23@0 at 400764160
+Flow uecsrc finished at 0.400764
+Flow uecsrc completion time is 0.400764
+Completion Time Flow is 400764160
+Running - 1 - 400764160
+Updated - Time 400764160
+..... Received a MSG -- host 23 to target 76, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 400764160 400764160 -  1 0 - 1 0 1 - 23 76 0
+OP MSGnexto[elem.host][elem.proc] 0 (23 0) - nextgr[elem.host][elem.nic] 0( 23  0) - time  400764160
+++ size is 1,  host [23] searching matching queue for src target 76 tag 0
+Compared element is -> 76 0 vs 76 0
+Searching for MATCHCurrent elem time is 400764160 while NS3 400764160
+Simulating Until Called
+Flow Finished 59@64@0 at 400972160
+Flow uecsrc finished at 0.400972
+Flow uecsrc completion time is 0.400972
+Completion Time Flow is 400972160
+Running - 1 - 400972160
+Updated - Time 400972160
+..... Received a MSG -- host 64 to target 59, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 400972160 400972160 -  1 0 - 1 0 1 - 64 59 0
+OP MSGnexto[elem.host][elem.proc] 0 (64 0) - nextgr[elem.host][elem.nic] 0( 64  0) - time  400972160
+++ size is 1,  host [64] searching matching queue for src target 59 tag 0
+Compared element is -> 59 0 vs 59 0
+Searching for MATCHCurrent elem time is 400972160 while NS3 400972160
+Simulating Until Called
+Flow Finished 61@126@0 at 402136320
+Flow uecsrc finished at 0.402136
+Flow uecsrc completion time is 0.402136
+Completion Time Flow is 402136320
+Running - 1 - 402136320
+Updated - Time 402136320
+..... Received a MSG -- host 126 to target 61, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 402136320 402136320 -  1 0 - 1 0 1 - 126 61 0
+OP MSGnexto[elem.host][elem.proc] 0 (126 0) - nextgr[elem.host][elem.nic] 0( 126  0) - time  402136320
+++ size is 1,  host [126] searching matching queue for src target 61 tag 0
+Compared element is -> 61 0 vs 61 0
+Searching for MATCHCurrent elem time is 402136320 while NS3 402136320
+Simulating Until Called
+Flow Finished 60@77@0 at 402197760
+Flow uecsrc finished at 0.402198
+Flow uecsrc completion time is 0.402198
+Completion Time Flow is 402197760
+Running - 1 - 402197760
+Updated - Time 402197760
+..... Received a MSG -- host 77 to target 60, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 402197760 402197760 -  1 0 - 1 0 1 - 77 60 0
+OP MSGnexto[elem.host][elem.proc] 0 (77 0) - nextgr[elem.host][elem.nic] 0( 77  0) - time  402197760
+++ size is 1,  host [77] searching matching queue for src target 60 tag 0
+Compared element is -> 60 0 vs 60 0
+Searching for MATCHCurrent elem time is 402197760 while NS3 402197760
+Simulating Until Called
+Flow Finished 31@80@0 at 402295040
+Flow uecsrc finished at 0.402295
+Flow uecsrc completion time is 0.402295
+Completion Time Flow is 402295040
+Running - 1 - 402295040
+Updated - Time 402295040
+..... Received a MSG -- host 80 to target 31, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 402295040 402295040 -  1 0 - 1 0 1 - 80 31 0
+OP MSGnexto[elem.host][elem.proc] 0 (80 0) - nextgr[elem.host][elem.nic] 0( 80  0) - time  402295040
+++ size is 1,  host [80] searching matching queue for src target 31 tag 0
+Compared element is -> 31 0 vs 31 0
+Searching for MATCHCurrent elem time is 402295040 while NS3 402295040
+Simulating Until Called
+Flow Finished 96@61@0 at 404060800
+Flow uecsrc finished at 0.404061
+Flow uecsrc completion time is 0.404061
+Completion Time Flow is 404060800
+Running - 1 - 404060800
+Updated - Time 404060800
+..... Received a MSG -- host 61 to target 96, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 404060800 404060800 -  1 0 - 1 0 1 - 61 96 0
+OP MSGnexto[elem.host][elem.proc] 0 (61 0) - nextgr[elem.host][elem.nic] 0( 61  0) - time  404060800
+++ size is 1,  host [61] searching matching queue for src target 96 tag 0
+Compared element is -> 96 0 vs 96 0
+Searching for MATCHCurrent elem time is 404060800 while NS3 404060800
+Simulating Until Called
+Flow Finished 72@12@0 at 405517120
+Flow uecsrc finished at 0.405517
+Flow uecsrc completion time is 0.405517
+Completion Time Flow is 405517120
+Running - 1 - 405517120
+Updated - Time 405517120
+..... Received a MSG -- host 12 to target 72, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 405517120 405517120 -  1 0 - 1 0 1 - 12 72 0
+OP MSGnexto[elem.host][elem.proc] 0 (12 0) - nextgr[elem.host][elem.nic] 0( 12  0) - time  405517120
+++ size is 1,  host [12] searching matching queue for src target 72 tag 0
+Compared element is -> 72 0 vs 72 0
+Searching for MATCHCurrent elem time is 405517120 while NS3 405517120
+Simulating Until Called
+Flow Finished 62@69@0 at 405931840
+Flow uecsrc finished at 0.405932
+Flow uecsrc completion time is 0.405932
+Completion Time Flow is 405931840
+Running - 1 - 405931840
+Updated - Time 405931840
+..... Received a MSG -- host 69 to target 62, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 405931840 405931840 -  1 0 - 1 0 1 - 69 62 0
+OP MSGnexto[elem.host][elem.proc] 0 (69 0) - nextgr[elem.host][elem.nic] 0( 69  0) - time  405931840
+++ size is 1,  host [69] searching matching queue for src target 62 tag 0
+Compared element is -> 62 0 vs 62 0
+Searching for MATCHCurrent elem time is 405931840 while NS3 405931840
+Simulating Until Called
+Flow Finished 77@34@0 at 407368640
+Flow uecsrc finished at 0.407369
+Flow uecsrc completion time is 0.407369
+Completion Time Flow is 407368640
+Running - 1 - 407368640
+Updated - Time 407368640
+..... Received a MSG -- host 34 to target 77, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 407368640 407368640 -  1 0 - 1 0 1 - 34 77 0
+OP MSGnexto[elem.host][elem.proc] 0 (34 0) - nextgr[elem.host][elem.nic] 0( 34  0) - time  407368640
+++ size is 1,  host [34] searching matching queue for src target 77 tag 0
+Compared element is -> 77 0 vs 77 0
+Searching for MATCHCurrent elem time is 407368640 while NS3 407368640
+Simulating Until Called
+Flow Finished 27@89@0 at 407611200
+Flow uecsrc finished at 0.407611
+Flow uecsrc completion time is 0.407611
+Completion Time Flow is 407611200
+Running - 1 - 407611200
+Updated - Time 407611200
+..... Received a MSG -- host 89 to target 27, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 407611200 407611200 -  1 0 - 1 0 1 - 89 27 0
+OP MSGnexto[elem.host][elem.proc] 0 (89 0) - nextgr[elem.host][elem.nic] 0( 89  0) - time  407611200
+++ size is 1,  host [89] searching matching queue for src target 27 tag 0
+Compared element is -> 27 0 vs 27 0
+Searching for MATCHCurrent elem time is 407611200 while NS3 407611200
+Simulating Until Called
+Flow Finished 80@58@0 at 408800640
+Flow uecsrc finished at 0.408801
+Flow uecsrc completion time is 0.408801
+Completion Time Flow is 408800640
+Running - 1 - 408800640
+Updated - Time 408800640
+..... Received a MSG -- host 58 to target 80, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 408800640 408800640 -  1 0 - 1 0 1 - 58 80 0
+OP MSGnexto[elem.host][elem.proc] 0 (58 0) - nextgr[elem.host][elem.nic] 0( 58  0) - time  408800640
+++ size is 1,  host [58] searching matching queue for src target 80 tag 0
+Compared element is -> 80 0 vs 80 0
+Searching for MATCHCurrent elem time is 408800640 while NS3 408800640
+Simulating Until Called
+Flow Finished 79@19@0 at 410487040
+Flow uecsrc finished at 0.410487
+Flow uecsrc completion time is 0.410487
+Completion Time Flow is 410487040
+Running - 1 - 410487040
+Updated - Time 410487040
+..... Received a MSG -- host 19 to target 79, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 410487040 410487040 -  1 0 - 1 0 1 - 19 79 0
+OP MSGnexto[elem.host][elem.proc] 0 (19 0) - nextgr[elem.host][elem.nic] 0( 19  0) - time  410487040
+++ size is 1,  host [19] searching matching queue for src target 79 tag 0
+Compared element is -> 79 0 vs 79 0
+Searching for MATCHCurrent elem time is 410487040 while NS3 410487040
+Simulating Until Called
+Flow Finished 54@102@0 at 415965440
+Flow uecsrc finished at 0.415965
+Flow uecsrc completion time is 0.415965
+Completion Time Flow is 415965440
+Running - 1 - 415965440
+Updated - Time 415965440
+..... Received a MSG -- host 102 to target 54, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 415965440 415965440 -  1 0 - 1 0 1 - 102 54 0
+OP MSGnexto[elem.host][elem.proc] 0 (102 0) - nextgr[elem.host][elem.nic] 0( 102  0) - time  415965440
+++ size is 1,  host [102] searching matching queue for src target 54 tag 0
+Compared element is -> 54 0 vs 54 0
+Searching for MATCHCurrent elem time is 415965440 while NS3 415965440
+Simulating Until Called
+Flow Finished 114@25@0 at 417134400
+Flow uecsrc finished at 0.417134
+Flow uecsrc completion time is 0.417134
+Completion Time Flow is 417134400
+Running - 1 - 417134400
+Updated - Time 417134400
+..... Received a MSG -- host 25 to target 114, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 417134400 417134400 -  1 0 - 1 0 1 - 25 114 0
+OP MSGnexto[elem.host][elem.proc] 0 (25 0) - nextgr[elem.host][elem.nic] 0( 25  0) - time  417134400
+++ size is 1,  host [25] searching matching queue for src target 114 tag 0
+Compared element is -> 114 0 vs 114 0
+Searching for MATCHCurrent elem time is 417134400 while NS3 417134400
+Simulating Until Called
+Flow Finished 7@111@0 at 419544320
+Flow uecsrc finished at 0.419544
+Flow uecsrc completion time is 0.419544
+Completion Time Flow is 419544320
+Running - 1 - 419544320
+Updated - Time 419544320
+..... Received a MSG -- host 111 to target 7, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 419544320 419544320 -  1 0 - 1 0 1 - 111 7 0
+OP MSGnexto[elem.host][elem.proc] 0 (111 0) - nextgr[elem.host][elem.nic] 0( 111  0) - time  419544320
+++ size is 1,  host [111] searching matching queue for src target 7 tag 0
+Compared element is -> 7 0 vs 7 0
+Searching for MATCHCurrent elem time is 419544320 while NS3 419544320
+Simulating Until Called
+Flow Finished 8@114@0 at 422209920
+Flow uecsrc finished at 0.42221
+Flow uecsrc completion time is 0.42221
+Completion Time Flow is 422209920
+Running - 1 - 422209920
+Updated - Time 422209920
+..... Received a MSG -- host 114 to target 8, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 422209920 422209920 -  1 0 - 1 0 1 - 114 8 0
+OP MSGnexto[elem.host][elem.proc] 0 (114 0) - nextgr[elem.host][elem.nic] 0( 114  0) - time  422209920
+++ size is 1,  host [114] searching matching queue for src target 8 tag 0
+Compared element is -> 8 0 vs 8 0
+Searching for MATCHCurrent elem time is 422209920 while NS3 422209920
+Simulating Until Called
+Flow Finished 71@15@0 at 422469440
+Flow uecsrc finished at 0.422469
+Flow uecsrc completion time is 0.422469
+Completion Time Flow is 422469440
+Running - 1 - 422469440
+Updated - Time 422469440
+..... Received a MSG -- host 15 to target 71, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 422469440 422469440 -  1 0 - 1 0 1 - 15 71 0
+OP MSGnexto[elem.host][elem.proc] 0 (15 0) - nextgr[elem.host][elem.nic] 0( 15  0) - time  422469440
+++ size is 1,  host [15] searching matching queue for src target 71 tag 0
+Compared element is -> 71 0 vs 71 0
+Searching for MATCHCurrent elem time is 422469440 while NS3 422469440
+Simulating Until Called
+Flow Finished 63@84@0 at 422863040
+Flow uecsrc finished at 0.422863
+Flow uecsrc completion time is 0.422863
+Completion Time Flow is 422863040
+Running - 1 - 422863040
+Updated - Time 422863040
+..... Received a MSG -- host 84 to target 63, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 422863040 422863040 -  1 0 - 1 0 1 - 84 63 0
+OP MSGnexto[elem.host][elem.proc] 0 (84 0) - nextgr[elem.host][elem.nic] 0( 84  0) - time  422863040
+++ size is 1,  host [84] searching matching queue for src target 63 tag 0
+Compared element is -> 63 0 vs 63 0
+Searching for MATCHCurrent elem time is 422863040 while NS3 422863040
+Simulating Until Called
+Flow Finished 11@66@0 at 428156160
+Flow uecsrc finished at 0.428156
+Flow uecsrc completion time is 0.428156
+Completion Time Flow is 428156160
+Running - 1 - 428156160
+Updated - Time 428156160
+..... Received a MSG -- host 66 to target 11, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 428156160 428156160 -  1 0 - 1 0 1 - 66 11 0
+OP MSGnexto[elem.host][elem.proc] 0 (66 0) - nextgr[elem.host][elem.nic] 0( 66  0) - time  428156160
+++ size is 1,  host [66] searching matching queue for src target 11 tag 0
+Compared element is -> 11 0 vs 11 0
+Searching for MATCHCurrent elem time is 428156160 while NS3 428156160
+Simulating Until Called
+Flow Finished 20@88@0 at 430350400
+Flow uecsrc finished at 0.43035
+Flow uecsrc completion time is 0.43035
+Completion Time Flow is 430350400
+Running - 1 - 430350400
+Updated - Time 430350400
+..... Received a MSG -- host 88 to target 20, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 430350400 430350400 -  1 0 - 1 0 1 - 88 20 0
+OP MSGnexto[elem.host][elem.proc] 0 (88 0) - nextgr[elem.host][elem.nic] 0( 88  0) - time  430350400
+++ size is 1,  host [88] searching matching queue for src target 20 tag 0
+Compared element is -> 20 0 vs 20 0
+Searching for MATCHCurrent elem time is 430350400 while NS3 430350400
+Simulating Until Called
+Flow Finished 5@119@0 at 433156480
+Flow uecsrc finished at 0.433156
+Flow uecsrc completion time is 0.433156
+Completion Time Flow is 433156480
+Running - 1 - 433156480
+Updated - Time 433156480
+..... Received a MSG -- host 119 to target 5, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 433156480 433156480 -  1 0 - 1 0 1 - 119 5 0
+OP MSGnexto[elem.host][elem.proc] 0 (119 0) - nextgr[elem.host][elem.nic] 0( 119  0) - time  433156480
+++ size is 1,  host [119] searching matching queue for src target 5 tag 0
+Compared element is -> 5 0 vs 5 0
+Searching for MATCHCurrent elem time is 433156480 while NS3 433156480
+Simulating Until Called
+Flow Finished 56@117@0 at 445811200
+Flow uecsrc finished at 0.445811
+Flow uecsrc completion time is 0.445811
+Completion Time Flow is 445811200
+Running - 1 - 445811200
+Updated - Time 445811200
+..... Received a MSG -- host 117 to target 56, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 445811200 445811200 -  1 0 - 1 0 1 - 117 56 0
+OP MSGnexto[elem.host][elem.proc] 0 (117 0) - nextgr[elem.host][elem.nic] 0( 117  0) - time  445811200
+++ size is 1,  host [117] searching matching queue for src target 56 tag 0
+Compared element is -> 56 0 vs 56 0
+Searching for MATCHCurrent elem time is 445811200 while NS3 445811200
+Simulating Until Called
+Flow Finished 2@91@0 at 467166400
+Flow uecsrc finished at 0.467166
+Flow uecsrc completion time is 0.467166
+Completion Time Flow is 467166400
+Running - 1 - 467166400
+Updated - Time 467166400
+..... Received a MSG -- host 91 to target 2, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 467166400 467166400 -  1 0 - 1 0 1 - 91 2 0
+OP MSGnexto[elem.host][elem.proc] 0 (91 0) - nextgr[elem.host][elem.nic] 0( 91  0) - time  467166400
+++ size is 1,  host [91] searching matching queue for src target 2 tag 0
+Compared element is -> 2 0 vs 2 0
+Searching for MATCHCurrent elem time is 467166400 while NS3 467166400
+..... NOT Received a MSG
+
+
+RunTime Total LGS -> 3563ms
+
+
+htsim Terminates at 467166400
+
+
+Remaining 128
+PERFORMANCE: Processes: 128 	 Events: 256 	 Time: 4 s 	 Speed: 64.00 ev/s
+AQ is 0
+Times: 
+Host 0: 362821760
+Host 1: 358148480
+Host 2: 380121920
+Host 3: 367416000
+Host 4: 388925120
+Host 5: 400062720
+Host 6: 360299200
+Host 7: 357616320
+Host 8: 373771520
+Host 9: 364139200
+Host 10: 398707520
+Host 11: 380004480
+Host 12: 405517120
+Host 13: 397878080
+Host 14: 381713920
+Host 15: 422469440
+Host 16: 373358720
+Host 17: 373903040
+Host 18: 359904960
+Host 19: 410487040
+Host 20: 351965760
+Host 21: 363557120
+Host 22: 387059840
+Host 23: 400764160
+Host 24: 358183040
+Host 25: 417134400
+Host 26: 381731520
+Host 27: 364709120
+Host 28: 369992960
+Host 29: 372498240
+Host 30: 379435520
+Host 31: 373041280
+Host 32: 371942080
+Host 33: 363970240
+Host 34: 407368640
+Host 35: 360060160
+Host 36: 369970880
+Host 37: 370955520
+Host 38: 379783680
+Host 39: 365354240
+Host 40: 384212800
+Host 41: 365307840
+Host 42: 359986880
+Host 43: 395033280
+Host 44: 360118400
+Host 45: 394749760
+Host 46: 388032320
+Host 47: 391754880
+Host 48: 357845120
+Host 49: 381096640
+Host 50: 378440640
+Host 51: 358502080
+Host 52: 361072320
+Host 53: 375029440
+Host 54: 384769280
+Host 55: 356176000
+Host 56: 382525120
+Host 57: 372692800
+Host 58: 408800640
+Host 59: 361272000
+Host 60: 399683200
+Host 61: 404060800
+Host 62: 367895360
+Host 63: 380843840
+Host 64: 400972160
+Host 65: 367015040
+Host 66: 428156160
+Host 67: 400187200
+Host 68: 370919360
+Host 69: 405931840
+Host 70: 367963840
+Host 71: 363492480
+Host 72: 383325440
+Host 73: 356616320
+Host 74: 380968640
+Host 75: 396185280
+Host 76: 393043200
+Host 77: 402197760
+Host 78: 361050240
+Host 79: 395297600
+Host 80: 402295040
+Host 81: 373300480
+Host 82: 377405120
+Host 83: 361027840
+Host 84: 422863040
+Host 85: 355926720
+Host 86: 360171200
+Host 87: 381548480
+Host 88: 430350400
+Host 89: 407611200
+Host 90: 387987840
+Host 91: 467166400
+Host 92: 363898240
+Host 93: 389093760
+Host 94: 381606720
+Host 95: 362074240
+Host 96: 360585920
+Host 97: 394767040
+Host 98: 367450240
+Host 99: 389195840
+Host 100: 370182400
+Host 101: 397542080
+Host 102: 415965440
+Host 103: 382171840
+Host 104: 370840960
+Host 105: 355558080
+Host 106: 396364160
+Host 107: 364992640
+Host 108: 359157440
+Host 109: 381644480
+Host 110: 356955840
+Host 111: 419544320
+Host 112: 387216640
+Host 113: 390821120
+Host 114: 422209920
+Host 115: 364145920
+Host 116: 380883200
+Host 117: 445811200
+Host 118: 394246400
+Host 119: 433156480
+Host 120: 374584000
+Host 121: 392537920
+Host 122: 389790400
+Host 123: 395056960
+Host 124: 371790080
+Host 125: 360983680
+Host 126: 402136320
+Host 127: 374614720
+Maximum finishing time at host 91: 467166400 (0.467166 s)
+Mean number of subflows -nan
+Done
+Path:
+queue(100000Mb/s,2048000bytes)SRC0->LS0
+pipe(0us)
+compqueue(100000Mb/s,117600bytes)LS0->DST1 id=0 1954pkts 1954hdrs 0acks 0nacks 0stripped
+pipe(0us)
+
+Hop 0 Count 0
+Hop 1 Count 0
+Hop 2 Count 0
+Hop 3 Count 0
+Hop 4 Count 0
+Hop 5 Count 0
+Hop 6 Count 0
+Hop 7 Count 0
+Hop 8 Count 0
+Hop 9 Count 0

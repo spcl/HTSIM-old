@@ -91,7 +91,6 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         _netPaths[to][from] = paths2;
 
         // Choose Path from possible routes
-        printf("Options are %d\n", _netPaths[from][to]->size());
         fflush(stdout);
         int choice = rand() % _netPaths[from][to]->size();
 

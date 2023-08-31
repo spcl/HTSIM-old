@@ -32,7 +32,7 @@ for files in sorted(pathlist):
             # Name 
             if "Name: " in line:
                 name = line.split(': ')[1]
-                list_names.append("")
+                list_names.append(name)
             # FCT
             result = re.search(r"FCT: (\d+)", line)
             if result:
@@ -43,9 +43,10 @@ for files in sorted(pathlist):
 # set a grey background (use sns.set_theme() if seaborn version 0.11.0 or above) 
 sns.set(style="darkgrid")
 
+print(list_names)
+
 combined_data = []
 hue_list = []
-print(list_fct)
 for idx, names in enumerate(list_names):
     combined_data += list_fct[idx]
     hue_list += [list_names[idx]] * len(list_fct[idx])
@@ -56,6 +57,12 @@ for idx, names in enumerate(list_names):
 
 # Create the violin plot
 my = sns.violinplot(x=hue_list, y=combined_data, cut=0)
+
+yticks, ylabels = plt.yticks()
+xticks, xlabels = plt.xticks()
+
+# set the x-axis ticklabel size
+my.set_xticklabels(xlabels, size=9)
 
 my.set_title('Individual Flow Completion Time')
 my.set_ylabel('FCT (us)')

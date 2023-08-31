@@ -253,6 +253,7 @@ class Packet {
     // logsim extensions
     bool is_ack = false;
     int pathid_echo = 0;
+    int pathid_sender = 0;
 
     uint32_t from, to, tag, my_idx;
     int previous_queue_bts = 0;

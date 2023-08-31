@@ -30,6 +30,7 @@ double UecSrc::y_gain = 1;
 double UecSrc::x_gain = 0.15;
 double UecSrc::z_gain = 1;
 double UecSrc::w_gain = 1;
+double UecSrc::starting_cwnd = 1;
 double UecSrc::bonus_drop = 1;
 double UecSrc::buffer_drop = 1.2;
 
@@ -74,15 +75,17 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     _next_pathid = 1;
 
     _bdp = (_base_rtt * LINK_SPEED_MODERN / 8) / 1000;
-    printf("Link Delay %lu - Link Speed %lu - Pkt Size %d - Base RTT %lu - "
-           "Target RTT is %lu - BDP/CWDN %lu - Hops %d\n",
-           LINK_DELAY_MODERN, LINK_SPEED_MODERN, PKT_SIZE_MODERN, _base_rtt,
-           _target_rtt, _bdp, _hop_count);
-    _maxcwnd = _bdp * 1;
-    _cwnd = _bdp * 1;
+
+    _maxcwnd = starting_cwnd;
+    _cwnd = starting_cwnd;
     _consecutive_low_rtt = 0;
     target_window = _cwnd;
     _target_based_received = true;
+
+    printf("Link Delay %lu - Link Speed %lu - Pkt Size %d - Base RTT %lu - "
+           "Target RTT is %lu - BDP %lu - CWND %lu - Hops %d\n",
+           LINK_DELAY_MODERN, LINK_SPEED_MODERN, PKT_SIZE_MODERN, _base_rtt,
+           _target_rtt, _bdp, _cwnd, _hop_count);
 
     _max_good_entropies = 10; // TODO: experimental value
     _enableDistanceBasedRtx = false;
@@ -427,10 +430,10 @@ void UecSrc::reduce_unacked(uint64_t amount) {
 
 void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
 
-    if (from == 0) {
+    /*if (from == 0) {
         printf("%d@%d@%d -- Considering fast Drop -- Current %lu vs %lu\n",
                from, to, tag, eventlist().now(), next_window_end);
-    }
+    }*/
 
     if (eventlist().now() >= next_window_end) {
         uint64_t old_wind = next_window_end;
@@ -453,7 +456,7 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
         ecn_last_rtt = false;
 
         // Enable Fast Drop
-        printf("Using Fast Drop1 - Flow %d@%d@%d, Ecn %d, CWND %d, Saved "
+        /*printf("Using Fast Drop1 - Flow %d@%d@%d, Ecn %d, CWND %d, Saved "
                "Acked %d (%d) - Previous Window %lu - Next Window %lu -  "
                "get_unacked() %lu - // "
                "Time "
@@ -464,7 +467,7 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
                ((eventlist().now() - previous_window_end + _base_rtt) /
                 (double)_base_rtt),
                (eventlist().now() - previous_window_end + _base_rtt) / 1000,
-               previous_window_end / 1000, _base_rtt / 1000);
+               previous_window_end / 1000, _base_rtt / 1000);*/
         saved_trimmed_bytes = 0;
         if ((ecn_or_trimmed || need_fast_drop) &&
             (saved_acked_bytes > 0 ||
@@ -543,7 +546,7 @@ void UecSrc::processNack(UecNack &pkt) {
         need_fast_drop = true;
     }
 
-    printf("Just NA CK from %d at %lu\n", from, eventlist().now() / 1000);
+    // printf("Just NA CK from %d at %lu\n", from, eventlist().now() / 1000);
 
     if (use_fast_drop) {
         if (count_received >= ignore_for) {
@@ -594,6 +597,9 @@ void UecSrc::processNack(UecNack &pkt) {
 }
 /* Choose a route for a particular packet */
 int UecSrc::choose_route() {
+
+    // printf("Total Paths %d\n", _paths.size());
+
     switch (_route_strategy) {
     case PULL_BASED: {
         /* this case is basically SCATTER_PERMUTE, but avoiding bad paths. */
@@ -656,6 +662,44 @@ int UecSrc::choose_route() {
             _crt_path = 0;
         }
         break;
+    case ECMP_RANDOM2_ECN: {
+        uint64_t allpathssizes = _mss * _paths.size();
+        if (_highest_sent < max(_maxcwnd, allpathssizes)) {
+            _crt_path++;
+            // printf("Trying this for %d\n", from);
+            if (_crt_path == _paths.size()) {
+                // permute_paths();
+                _crt_path = 0;
+            }
+        } else {
+            if (_next_pathid == -1) {
+                assert(_paths.size() > 0);
+                _crt_path = random() % _paths.size();
+                // printf("New Path %d is %d\n", from, _crt_path);
+            } else {
+                // printf("Recycling Path %d is %d\n", from, _next_pathid);
+                _crt_path = _next_pathid;
+            }
+        }
+        break;
+    }
+    case ECMP_RANDOM_ECN: {
+        if (_highest_sent < _maxcwnd) { //_mss*_paths.size()
+            _crt_path++;
+            if (_crt_path == _paths.size()) {
+                // permute_paths();
+                _crt_path = 0;
+            }
+        } else {
+            if (_next_pathid == -1) {
+                assert(_paths.size() > 0);
+                _crt_path = random() % _paths.size();
+            } else {
+                _crt_path = _next_pathid;
+            }
+        }
+        break;
+    }
     case ECMP_FIB_ECN: {
         // Cycle through a permutation, but use ECN to skip paths
         while (1) {
@@ -834,11 +878,19 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
         consecutive_good_medium = 0;
     }
 
+    if (from == 0 && count_total_ack % 10 == 0) {
+        printf("Currently at Pkt %d\n", count_total_ack);
+        fflush(stdout);
+    }
+
     if (!marked) {
-        // add_ack_path(pkt.inRoute);
         _consecutive_no_ecn += _mss;
-        // printf("Not Marked!\n");
+        _next_pathid = pkt.pathid_echo;
     } else {
+        // printf("1Packet %d pkt.pathid_echo %d ECN %d\n", from,
+        // pkt.pathid_echo,
+        //        marked);
+        _next_pathid = -1;
         ecn_last_rtt = true;
         _consecutive_no_ecn = 0;
     }
@@ -945,6 +997,7 @@ void UecSrc::receivePacket(Packet &pkt) {
         printf("NACK %d@%d@%d\n", from, to, tag);
         fflush(stdout);
         if (_trimming_enabled) {
+            _next_pathid = -1;
             count_received++;
             processNack(dynamic_cast<UecNack &>(pkt));
             pkt.free();
@@ -1621,7 +1674,9 @@ const string &UecSrc::nodename() { return _nodename; }
 void UecSrc::connect(Route *routeout, Route *routeback, UecSink &sink,
                      simtime_picosec starttime) {
     if (_route_strategy == SINGLE_PATH || _route_strategy == ECMP_FIB ||
-        _route_strategy == ECMP_FIB_ECN || _route_strategy == REACTIVE_ECN) {
+        _route_strategy == ECMP_FIB_ECN || _route_strategy == REACTIVE_ECN ||
+        _route_strategy == ECMP_RANDOM2_ECN ||
+        _route_strategy == ECMP_RANDOM_ECN) {
         assert(routeout);
         _route = routeout;
     }
@@ -1699,30 +1754,26 @@ void UecSrc::send_packets() {
         // fflush(stdout);
         UecPacket *p = UecPacket::newpkt(_flow, *_route, _highest_sent + 1,
                                          data_seq, _mss, false, _dstaddr);
-        p->set_pathid(_path_ids[choose_route()]);
+
+        // p->set_route(*_route);
+        // int path_chosen = choose_route();
+        // printf("Path Chosen %d - Size %d\n", path_chosen, _path_ids.size());
+        // p->set_pathid(_path_ids[path_chosen]);
+
+        p->set_route(*_route);
+        int crt = choose_route();
+        // crt = random() % _paths.size();
+
+        p->set_pathid(_path_ids[crt]);
+
+        /*printf("From %d - CRT %d - PathID %d - Size %d\n", from, crt,
+               _path_ids[crt], _path_ids.size());
+        fflush(stdout);*/
+
         p->from = this->from;
         p->to = this->to;
         p->tag = this->tag;
         p->my_idx = data_count_idx++;
-
-        switch (_route_strategy) {
-        case SINGLE_PATH:
-            p->set_route(*_route);
-            break;
-        case ECMP_FIB:
-        case ECMP_FIB_ECN:
-        case REACTIVE_ECN: {
-            p->set_route(*_route);
-            int crt = choose_route();
-            crt = random() % _paths.size();
-
-            p->set_pathid(_path_ids[crt]);
-            break;
-        }
-        default:
-            const Route *rt = _paths.at(choose_route());
-            p->set_route(*rt);
-        }
 
         p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATESEND);
         p->set_ts(eventlist().now());
@@ -1762,6 +1813,19 @@ void UecSrc::send_packets() {
     }
 }
 
+void permute_sequence_uec(vector<int> &seq) {
+    size_t len = seq.size();
+    for (uint32_t i = 0; i < len; i++) {
+        seq[i] = i;
+    }
+    for (uint32_t i = 0; i < len; i++) {
+        int ix = random() % (len - i);
+        int tmpval = seq[ix];
+        seq[ix] = seq[len - 1 - i];
+        seq[len - 1 - i] = tmpval;
+    }
+}
+
 void UecSrc::set_paths(uint32_t no_of_paths) {
     if (_route_strategy != ECMP_FIB && _route_strategy != ECMP_FIB_ECN &&
         _route_strategy != ECMP_FIB2_ECN && _route_strategy != REACTIVE_ECN &&
@@ -1773,7 +1837,7 @@ void UecSrc::set_paths(uint32_t no_of_paths) {
     }
 
     _path_ids.resize(no_of_paths);
-    // permute_sequence(_path_ids);
+    permute_sequence_uec(_path_ids);
 
     _paths.resize(no_of_paths);
     _original_paths.resize(no_of_paths);
@@ -1784,6 +1848,11 @@ void UecSrc::set_paths(uint32_t no_of_paths) {
     _avoid_ratio.resize(no_of_paths);
     _avoid_score.resize(no_of_paths);
 
+    _path_ids.resize(no_of_paths);
+    // permute_sequence(_path_ids);
+    _paths.resize(no_of_paths);
+    _path_ecns.resize(no_of_paths);
+
     for (size_t i = 0; i < no_of_paths; i++) {
         _paths[i] = NULL;
         _original_paths[i] = NULL;
@@ -1793,6 +1862,7 @@ void UecSrc::set_paths(uint32_t no_of_paths) {
         _avoid_ratio[i] = 0;
         _avoid_score[i] = 0;
         _bad_path[i] = false;
+        _path_ids[i] = i;
     }
 }
 
@@ -1936,7 +2006,13 @@ bool UecSrc::resend_packet(std::size_t idx) {
     _unacked += _mss;
     UecPacket *p = UecPacket::newpkt(_flow, *_route, _sent_packets[idx].seqno,
                                      0, _mss, true, _dstaddr);
-    p->set_pathid(_path_ids[choose_route()]);
+    p->set_ts(eventlist().now());
+
+    p->set_route(*_route);
+    int crt = choose_route();
+    // crt = random() % _paths.size();
+
+    p->set_pathid(_path_ids[crt]);
 
     p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATE);
     PacketSink *sink = p->sendOn();
@@ -2023,6 +2099,8 @@ bool UecSink::already_received(UecPacket &pkt) {
 }
 
 void UecSink::receivePacket(Packet &pkt) {
+    // printf("Sink Received\n");
+    fflush(stdout);
     switch (pkt.type()) {
     case UECACK:
     case UECNACK:
@@ -2050,7 +2128,14 @@ void UecSink::receivePacket(Packet &pkt) {
     UecPacket::seq_t ackno = p->seqno() + p->data_packet_size() - 1;
     simtime_picosec ts = p->ts();
 
+    if (p->type() == UEC) {
+        /*printf("NORMALACK, %d at %lu - Time %lu - ID %d\n", this->from,
+               GLOBAL_TIME, (GLOBAL_TIME - ts) / 1000, p->id());*/
+    }
+
     bool marked = p->flags() & ECN_CE;
+
+    // printf("Packet %d ECN %d\n", from, marked);
 
     // TODO: consider different ways to select paths
     auto crt_path = random() % _paths.size();
@@ -2146,6 +2231,8 @@ void UecSink::send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
     case ECMP_FIB:
     case ECMP_FIB_ECN:
     case REACTIVE_ECN:
+    case ECMP_RANDOM2_ECN:
+    case ECMP_RANDOM_ECN:
         ack = UecAck::newpkt(_src->_flow, *_route, seqno, ackno, 0, _srcaddr);
 
         ack->set_pathid(_path_ids[_crt_path]);
@@ -2158,7 +2245,7 @@ void UecSink::send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
 
         // set ECN echo only if that is selected strategy
         if (marked) {
-            // printf("ACK - ECN\n");
+            // printf("ACK - ECN %d - From %d\n", path_id, from);
             ack->set_flags(ECN_ECHO);
         } else {
             // printf("ACK - NO ECN\n");
@@ -2182,7 +2269,7 @@ void UecSink::send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
     ack->is_ack = true;
     ack->flow().logTraffic(*ack, *this, TrafficLogger::PKT_CREATE);
     ack->set_ts(ts);
-    printf("NORMALACK, %d at %lu\n", this->from, GLOBAL_TIME);
+
     // printf("Setting TS to %lu at %lu\n", ts / 1000, GLOBAL_TIME / 1000);
     ack->from = this->from;
     ack->to = this->to;
@@ -2204,6 +2291,8 @@ void UecSink::connect(UecSrc &src, const Route *route) {
     case ECMP_FIB:
     case ECMP_FIB_ECN:
     case REACTIVE_ECN:
+    case ECMP_RANDOM2_ECN:
+    case ECMP_RANDOM_ECN:
         assert(route);
         //("Setting route\n");
         _route = route;
@@ -2231,6 +2320,8 @@ void UecSink::set_paths(uint32_t no_of_paths) {
 
     case ECMP_FIB:
     case ECMP_FIB_ECN:
+    case ECMP_RANDOM_ECN:
+    case ECMP_RANDOM2_ECN:
     case REACTIVE_ECN:
         assert(_paths.size() == 0);
         _paths.resize(no_of_paths);

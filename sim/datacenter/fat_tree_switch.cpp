@@ -79,14 +79,14 @@ void FatTreeSwitch::receivePacket(Packet &pkt) {
                    GLOBAL_TIME - (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000) -
                            (LINK_DELAY_MODERN * 1000),
                    nodename().c_str());*/
-            printf("From %d - Switch %s - Hop %d - %d\n", pkt.from,
-                   nodename().c_str(), pkt.hop_count, GLOBAL_TIME / 1000);
+            /*printf("From %d - Switch %s - Hop %d - %d\n", pkt.from,
+                   nodename().c_str(), pkt.hop_count, GLOBAL_TIME / 1000);*/
         }
 
-        if ((pkt.hop_count == 2) && (pkt.type() == UEC || pkt.type() == NDP)) {
-            printf("From %d - Switch %s - Hop %d - %d\n", pkt.from,
+        /*if ((pkt.hop_count == 2) && (pkt.type() == UEC || pkt.type() == NDP))
+        { printf("From %d - Switch %s - Hop %d - %d\n", pkt.from,
                    nodename().c_str(), pkt.hop_count, GLOBAL_TIME / 1000);
-        }
+        }*/
 
         pkt.sendOn();
     }
@@ -328,6 +328,8 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
             case NIX:
                 abort();
             case ECMP:
+                // printf("Pkt Flow ID %d - Path Id %d\n", pkt.flow_id(),
+                //        pkt.pathid());
                 ecmp_choice =
                         freeBSDHash(pkt.flow_id(), pkt.pathid(), _hash_salt) %
                         available_hops->size();

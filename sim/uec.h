@@ -128,6 +128,7 @@ class UecSrc : public PacketSink, public EventSource {
     static void set_x_gain(double value) { x_gain = value; }
     static void set_z_gain(double value) { z_gain = value; }
     static void set_w_gain(double value) { w_gain = value; }
+    static void set_starting_cwnd(double value) { starting_cwnd = value; }
     static void set_bonus_drop(double value) { bonus_drop = value; }
     static void set_buffer_drop(double value) { buffer_drop = value; }
     static void setRouteStrategy(RouteStrategy strat) {
@@ -205,6 +206,7 @@ class UecSrc : public PacketSink, public EventSource {
     static double x_gain;
     static double z_gain;
     static double w_gain;
+    static double starting_cwnd;
     static double bonus_drop;
     static double buffer_drop;
     static RouteStrategy _route_strategy;
@@ -219,7 +221,7 @@ class UecSrc : public PacketSink, public EventSource {
     uint64_t _rto_margin;
     uint64_t _rtx_timeout;
     uint64_t _maxcwnd;
-    uint16_t _crt_path;
+    uint16_t _crt_path = 0;
     uint64_t target_window;
     // LogSimInterface *_lgs;
     bool _flow_finished = false;
