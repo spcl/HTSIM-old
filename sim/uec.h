@@ -128,6 +128,7 @@ class UecSrc : public PacketSink, public EventSource {
     static void set_x_gain(double value) { x_gain = value; }
     static void set_z_gain(double value) { z_gain = value; }
     static void set_w_gain(double value) { w_gain = value; }
+    static void set_disable_case_3(double value) { disable_case_3 = value; }
     static void set_starting_cwnd(double value) { starting_cwnd = value; }
     static void set_bonus_drop(double value) { bonus_drop = value; }
     static void set_buffer_drop(double value) { buffer_drop = value; }
@@ -204,8 +205,10 @@ class UecSrc : public PacketSink, public EventSource {
 
     static double y_gain;
     static double x_gain;
+    double initial_x_gain = 0;
     static double z_gain;
     static double w_gain;
+    static bool disable_case_3;
     static double starting_cwnd;
     static double bonus_drop;
     static double buffer_drop;
@@ -233,6 +236,7 @@ class UecSrc : public PacketSink, public EventSource {
     uint64_t _target_rtt;
     uint64_t _base_rtt;
     uint64_t _bdp;
+    uint64_t _queue_size;
     uint32_t _consecutive_low_rtt;
     uint32_t _consecutive_no_ecn;
     uint64_t _ignore_ecn_until = 0;

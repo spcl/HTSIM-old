@@ -29,6 +29,7 @@ x_gain = 0
 y_gain = 0
 z_gain = 0
 w_gain = 0
+DisableCase3 = 0
 bonus_drop_value = 0
 buffer_drop_value = 0
 
@@ -69,6 +70,11 @@ with open(folder + "/" + file_name) as file:
         result = re.search(r"FastDrop: (\d+)", line)
         if result:
             FastDrop = int(result.group(1))
+
+        # DisableCase3
+        result = re.search(r"DisableCase3: (\d+)", line)
+        if result:
+            DisableCase3 = int(result.group(1))
 
         # KMin
         result = re.search(r"KMin: (\d+)", line)
@@ -165,6 +171,9 @@ with open(folder + "/" + file_name) as file:
     min_bw = (incast_size * 8 + (incast_size*8*0.03)) / (max_time - 8500)
 
 print(list_fct)  
+if (DisableCase3 == 1):
+        name = name.rstrip()
+        name += " No Case 3"
 if (args.parameter_analysis is not None and int(args.parameter_analysis) == 1):
     file_name = folder + '/GeneratedReport{}.tmp'.format(args.complex_name)
 elif (args.scaling_plot is not None and int(args.scaling_plot) == 1):
@@ -173,7 +182,7 @@ else:
     file_name = folder + '/GeneratedReport{}.tmp'.format(name.rstrip())
 
 with open(file_name, 'w') as f:
-    # Name
+    # Nam
     f.write('Name: {}\n'.format(name)) 
 
     # BW

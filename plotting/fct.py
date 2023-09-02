@@ -10,6 +10,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--input_file', dest='input_file', type=str, help='File to parse.')
 parser.add_argument('--folder', dest='folder', type=str, help='Folder to parse and save')
 parser.add_argument('--name', dest='name', type=str, help='name to save', default=None)
+parser.add_argument('--best_time', dest='best_time', type=float, help='Best Possible Time', default=None)
+
 
 args = parser.parse_args()
 folder = args.folder
@@ -63,6 +65,9 @@ xticks, xlabels = plt.xticks()
 
 # set the x-axis ticklabel size
 my.set_xticklabels(xlabels, size=9)
+
+my.axhline(args.best_time, ls='--', color='black', linewidth=1.5, alpha=.6)
+
 
 my.set_title('Individual Flow Completion Time')
 my.set_ylabel('FCT (us)')

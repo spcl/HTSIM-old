@@ -121,6 +121,8 @@ int main(int argc, char **argv) {
     double drop_value_buffer = 1;
     double starting_cwnd_ratio = 0;
     double queue_size_ratio = 0;
+    bool disable_case_3 = false;
+    int ratio_os_stage_1 = 1;
 
     int i = 1;
     filename << "logout.dat";
@@ -166,6 +168,9 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-k")) {
             fat_tree_k = atoi(argv[i + 1]);
             i++;
+        } else if (!strcmp(argv[i], "-ratio_os_stage_1")) {
+            ratio_os_stage_1 = atoi(argv[i + 1]);
+            i++;
         } else if (!strcmp(argv[i], "-kmax")) {
             // kmin as percentage of queue size (0..100)
             kmax = atoi(argv[i + 1]);
@@ -181,6 +186,11 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-reuse_entropy")) {
             reuse_entropy = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-disable_case_3")) {
+            disable_case_3 = atoi(argv[i + 1]);
+            UecSrc::set_disable_case_3(disable_case_3);
+            printf("DisableCase3: %d\n", disable_case_3);
             i++;
         } else if (!strcmp(argv[i], "-number_entropies")) {
             number_entropies = atoi(argv[i + 1]);
@@ -331,7 +341,7 @@ int main(int argc, char **argv) {
                 printf("Name Running: UEC Version A\n");
             } else if (!strcmp(argv[i + 1], "delayB")) {
                 UecSrc::set_alogirthm("delayB");
-                printf("Name Running: UEC\n");
+                printf("Name Running: SMaRTT\n");
             } else if (!strcmp(argv[i + 1], "delayC")) {
                 UecSrc::set_alogirthm("delayC");
             } else if (!strcmp(argv[i + 1], "delayD")) {
@@ -342,10 +352,10 @@ int main(int argc, char **argv) {
                 printf("Name Running: UEC Version D\n");
             } else if (!strcmp(argv[i + 1], "rtt")) {
                 UecSrc::set_alogirthm("rtt");
-                printf("Name Running: UEC RTT Only\n");
+                printf("Name Running: SMaRTT RTT Only\n");
             } else if (!strcmp(argv[i + 1], "ecn")) {
                 UecSrc::set_alogirthm("ecn");
-                printf("Name Running: UEC ECN Only\n");
+                printf("Name Running: SMaRTT ECN Only\n");
             } else if (!strcmp(argv[i + 1], "custom")) {
                 UecSrc::set_alogirthm("custom");
                 printf("Name Running: UEC Custom\n");
@@ -457,7 +467,8 @@ int main(int argc, char **argv) {
 
 #ifdef FAT_TREE
     FatTreeTopology::set_tiers(3);
-    FatTreeTopology::set_os(fat_tree_k);
+    FatTreeTopology::set_os_stage_2(fat_tree_k);
+    FatTreeTopology::set_os_stage_1(ratio_os_stage_1);
     FatTreeTopology::set_ecn_thresholds_as_queue_percentage(kmin, kmax);
     FatTreeTopology::set_bts_threshold(bts_threshold);
     FatTreeTopology::set_ignore_data_ecn(ignore_ecn_data);

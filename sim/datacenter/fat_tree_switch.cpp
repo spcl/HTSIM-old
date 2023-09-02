@@ -489,20 +489,22 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
             else {
                 uint32_t podpos = _id % (_ft->getK() / 2);
 
-                for (uint32_t l = 0; l < _ft->getK() / 2; l++) {
-                    uint32_t k = podpos * _ft->getK() / 2 + l;
+                for (uint32_t l = 0; l < _ft->getK() / 2 / _ft->getOS(); l++) {
+                    uint32_t k = (podpos * _ft->getK() / 2 + l) / _ft->getOS();
 
                     uint32_t next_upper_pod =
                             _ft->MIN_POD_ID(_ft->HOST_POD(pkt.dst())) +
-                            2 * k / (_ft->getK());
+                            2 * k / (_ft->getK() / _ft->getOS());
 
-                    /*printf("Dest %d - FTK %d - k %d - HOSTPOD %d - %d\n",
+                    printf("Dest %d - FTK %d - k %d - HOSTPOD %d - %d - ID %d  "
+                           "- PoDPos %d -------- %d -> %d\n",
                            pkt.dst(), _ft->getK(), k, _ft->HOST_POD(pkt.dst()),
-                           pkt.size());
+                           pkt.size(), _id, podpos, (_ft->HOST_POD(pkt.dst())),
+                           _ft->MIN_POD_ID(_ft->HOST_POD(pkt.dst())));
+                    printf("1) ID %d - K %d  2) k %d Next Upper %d\n\n", _id, k,
+                           k, next_upper_pod);
+                    fflush(stdout);
 
-                    printf("ID %d - K %d- Next Upper %d\n", _id, k,
-                           next_upper_pod);
-                    fflush(stdout);*/
                     if (_ft->queues_nup_nc[_id][k] == NULL ||
                         _ft->queues_nc_nup[k][next_upper_pod] == NULL) {
                         // failed link, continue to next one. !
@@ -517,8 +519,6 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
                              << endl;
                         continue;
                     }
-                    /*printf("ID2 %d - K %d\n", _id, k);
-                    fflush(stdout);*/
 
                     Route *r = new Route();
                     r->push_back(_ft->queues_nup_nc[_id][k]);
@@ -543,10 +543,13 @@ Route *FatTreeSwitch::getNextHop(Packet &pkt, BaseQueue *ingress_port) {
         }
     } else if (_type == CORE) {
         uint32_t nup = _ft->MIN_POD_ID(_ft->HOST_POD(pkt.dst())) +
-                       2 * _id / (_ft->getK());
+                       2 * _id / (_ft->getK() / _ft->getOS());
         Route *r = new Route();
         // cout << "CORE switch " << _id << " adding route to " << pkt.dst() <<
         // " via AGG " << nup << endl;
+
+        printf("Core -> Upper: _id %d - NUP %d\n", _id, nup);
+        fflush(stdout);
 
         assert(_ft->queues_nc_nup[_id][nup]);
         r->push_back(_ft->queues_nc_nup[_id][nup]);

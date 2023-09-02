@@ -24,6 +24,7 @@ string itoa(uint64_t n);
 // constructor.
 uint32_t FatTreeTopology::_tiers = 3;
 uint32_t FatTreeTopology::_os = 1;
+uint32_t FatTreeTopology::_os_ratio_stage_1 = 1;
 int FatTreeTopology::kmin = -1;
 int FatTreeTopology::kmax = -1;
 int FatTreeTopology::bts_trigger = -1;
@@ -506,11 +507,12 @@ void FatTreeTopology::init_network() {
 
                 if (agg == 0 && core == 0) {
                     queues_nup_nc[agg][core] =
-                            alloc_queue(queueLogger, _linkspeed / 1, _queuesize,
+                            alloc_queue(queueLogger, _linkspeed * 1, _queuesize,
                                         UPLINK, false);
                 } else {
                     queues_nup_nc[agg][core] =
-                            alloc_queue(queueLogger, _queuesize, UPLINK);
+                            alloc_queue(queueLogger, _linkspeed * 1, _queuesize,
+                                        UPLINK, false);
                 }
 
                 queues_nup_nc[agg][core]->setName("US" + ntoa(agg) + "->CS" +

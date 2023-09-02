@@ -30,6 +30,7 @@ double UecSrc::y_gain = 1;
 double UecSrc::x_gain = 0.15;
 double UecSrc::z_gain = 1;
 double UecSrc::w_gain = 1;
+bool UecSrc::disable_case_3 = false;
 double UecSrc::starting_cwnd = 1;
 double UecSrc::bonus_drop = 1;
 double UecSrc::buffer_drop = 1.2;
@@ -75,6 +76,8 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     _next_pathid = 1;
 
     _bdp = (_base_rtt * LINK_SPEED_MODERN / 8) / 1000;
+    _queue_size = _bdp; // Temporary
+    initial_x_gain = x_gain;
 
     _maxcwnd = starting_cwnd;
     _cwnd = starting_cwnd;
@@ -490,6 +493,11 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
             need_fast_drop = false;
             _list_fast_decrease.push_back(
                     std::make_pair(eventlist().now() / 1000, 1));
+            check_limits_cwnd();
+
+            // Update XGAIN
+            x_gain = min(initial_x_gain,
+                         (_queue_size / 5.0) / (_mss * ((double)_bdp / _cwnd)));
         }
     }
 }
@@ -1209,10 +1217,13 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 }
                 // Case 3 Gentle Decrease (Window based)
             } else if (ecn && rtt < _target_rtt) {
-                reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss * z_gain);
-                if (COLLECT_DATA) {
-                    count_case_3.push_back(
-                            std::make_pair(eventlist().now() / 1000, 1));
+                if (!disable_case_3) {
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss *
+                                z_gain);
+                    if (COLLECT_DATA) {
+                        count_case_3.push_back(
+                                std::make_pair(eventlist().now() / 1000, 1));
+                    }
                 }
                 // Case 4
             } else if (!ecn && rtt > _target_rtt) {
@@ -1364,7 +1375,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 t_last_fairness = eventlist().now();
             }
         } else if (algorithm_type == "rtt") {
-            printf("Name Running: RTT Only\n");
+            printf("Name Running: SMaRTT RTT Only\n");
             int b = 5;
             uint64_t custom_target_delay =
                     _base_rtt * (1 + (target_rtt_percentage_over_base / 100.0));
@@ -1410,7 +1421,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 }
             }
         } else if (algorithm_type == "ecn") {
-            printf("Name Running: ECN Only\n");
+            printf("Name Running: SMaRTT ECN Only\n");
 
             if (use_fast_drop) {
                 if (count_received >= ignore_for) {
