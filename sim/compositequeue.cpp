@@ -215,11 +215,17 @@ void CompositeQueue::receivePacket(Packet &pkt) {
                         "/home/tommaso/csg-htsim/sim/output/queue/queue" +
                         _nodename.substr(_nodename.find(")") + 1) + ".txt";
                 std::ofstream MyFile(file_name, std::ios_base::app);
-
+                printf("Bit rate is %lu\n", _bitrate);
+                fflush(stdout);
                 MyFile << eventlist().now() / 1000 << ","
-                       << int(_queuesize_low * 8 / (_bitrate / 1e9)) << ","
-                       << int(_ecn_minthresh * 8 / (_bitrate / 1e9)) << ","
-                       << int(_ecn_maxthresh * 8 / (_bitrate / 1e9))
+                       << int(_queuesize_low * 8 / (_bitrate / 1e9)) /
+                                  (LINK_SPEED_MODERN / (_bitrate / 1e9))
+                       << ","
+                       << int(_ecn_minthresh * 8 / (_bitrate / 1e9)) /
+                                  (LINK_SPEED_MODERN / (_bitrate / 1e9))
+                       << ","
+                       << int(_ecn_maxthresh * 8 / (_bitrate / 1e9)) /
+                                  (LINK_SPEED_MODERN / (_bitrate / 1e9))
                        << std::endl;
 
                 MyFile.close();
@@ -233,6 +239,7 @@ void CompositeQueue::receivePacket(Packet &pkt) {
             // enqueued packet to trim
 
             if (_queuesize_low + pkt.size() > _maxsize) {
+                printf("Trimming at %s %d\n", _nodename.c_str(), _bitrate);
                 // we're going to drop an existing packet from the queue
                 if (_enqueued_low.empty()) {
                     // cout << "QUeuesize " << _queuesize_low << "
@@ -328,6 +335,7 @@ void CompositeQueue::receivePacket(Packet &pkt) {
             // strip packet the arriving packet - low priority queue is full
             // cout << "B [ " << _enqueued_low.size() << " " <<
             // _enqueued_high.size() << " ] STRIP" << endl;
+            printf("Trimming at %s\n", _nodename.c_str());
             pkt.strip_payload();
             _num_stripped++;
             pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_TRIM);

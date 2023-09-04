@@ -91,7 +91,6 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         _netPaths[to][from] = paths2;
 
         // Choose Path from possible routes
-        fflush(stdout);
         int choice = rand() % _netPaths[from][to]->size();
 
         Route *routein = new Route(*_topo->get_paths(to, from)->at(choice));
