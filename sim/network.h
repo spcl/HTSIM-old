@@ -86,7 +86,13 @@ typedef enum {
     HPCCNACK,
     UEC,
     UECACK,
-    UECNACK
+    UECNACK,
+    UEC_DROP,
+    UECACK_DROP,
+    UECNACK_DROP,
+    SWIFTTRIMMING,
+    SWIFTTRIMMINGACK,
+    SWIFTTRIMMINGNACK
 } packet_type;
 
 typedef enum { NONE, UP, DOWN } packet_direction;

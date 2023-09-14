@@ -19,6 +19,7 @@
 #include "shortflows.h"
 #include "topology.h"
 #include "uec.h"
+#include <filesystem>
 //#include "vl2_topology.h"
 
 // Fat Tree topology was modified to work with this script, others won't work
@@ -170,6 +171,7 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-ratio_os_stage_1")) {
             ratio_os_stage_1 = atoi(argv[i + 1]);
+            UecSrc::set_os_ratio_stage_1(ratio_os_stage_1);
             i++;
         } else if (!strcmp(argv[i], "-kmax")) {
             // kmin as percentage of queue size (0..100)
@@ -355,10 +357,10 @@ int main(int argc, char **argv) {
                 printf("Name Running: SMaRTT RTT Only\n");
             } else if (!strcmp(argv[i + 1], "ecn")) {
                 UecSrc::set_alogirthm("ecn");
-                printf("Name Running: SMaRTT ECN Only\n");
+                printf("Name Running: SMaRTT ECN Only Constant\n");
             } else if (!strcmp(argv[i + 1], "custom")) {
                 UecSrc::set_alogirthm("custom");
-                printf("Name Running: UEC Custom\n");
+                printf("Name Running: SMaRTT ECN Only Variable\n");
             }
             i++;
         } else
@@ -414,6 +416,7 @@ int main(int argc, char **argv) {
         queuesize = bdp_local * queue_size_ratio;
     }
     UecSrc::set_starting_cwnd(actual_starting_cwnd);
+    printf("Setting CWND to %d\n", actual_starting_cwnd);
 
     printf("Using BDP of %d - Queue is %d - Starting Window is %d\n", bdp_local,
            queuesize, actual_starting_cwnd);

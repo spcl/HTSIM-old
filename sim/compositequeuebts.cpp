@@ -121,9 +121,10 @@ void CompositeQueueBts::completeService() {
                 if (std::regex_search(_nodename, matches, pattern)) {
                     std::string numberStr = matches[1].str();
                     int number = std::stoi(numberStr);
-                    std::string file_name = "/home/tommaso/csg-htsim/sim/"
-                                            "output/us_to_cs/us_to_cs" +
-                                            _name + ".txt";
+                    std::string file_name =
+                            PROJECT_ROOT_PATH / ("sim/"
+                                                 "output/us_to_cs/us_to_cs" +
+                                                 _name + ".txt");
                     std::ofstream MyFileUsToCs(file_name, std::ios_base::app);
 
                     MyFileUsToCs << eventlist().now() / 1000 << "," << number
@@ -141,9 +142,10 @@ void CompositeQueueBts::completeService() {
                 if (std::regex_search(_nodename, matches, pattern)) {
                     std::string numberStr = matches[1].str();
                     int number = std::stoi(numberStr);
-                    std::string file_name = "/home/tommaso/csg-htsim/sim/"
-                                            "output/ls_to_us/ls_to_us" +
-                                            _name + ".txt";
+                    std::string file_name =
+                            PROJECT_ROOT_PATH / ("sim/"
+                                                 "output/ls_to_us/ls_to_us" +
+                                                 _name + ".txt");
                     std::ofstream MyFileUsToCs(file_name, std::ios_base::app);
 
                     MyFileUsToCs << eventlist().now() / 1000 << "," << number
@@ -218,8 +220,9 @@ void CompositeQueueBts::receivePacket(Packet &pkt) {
         if (COLLECT_DATA) {
             if (_queuesize_low != 0) {
                 std::string file_name =
-                        "/home/tommaso/csg-htsim/sim/output/queue/queue" +
-                        _nodename.substr(_nodename.find(")") + 1) + ".txt";
+                        PROJECT_ROOT_PATH /
+                        ("sim/output/queue/queue" +
+                         _nodename.substr(_nodename.find(")") + 1) + ".txt");
                 std::ofstream MyFile(file_name, std::ios_base::app);
 
                 MyFile << eventlist().now() / 1000 << ","

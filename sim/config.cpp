@@ -1,7 +1,6 @@
 // -*- c-basic-offset: 4; indent-tabs-mode: nil -*-
 #include "config.h"
 #include "tcppacket.h"
-#include <filesystem>
 #include <math.h>
 
 double drand() {
@@ -104,66 +103,103 @@ double speedAsPktps(linkspeed_bps bps) {
 mem_pkts memFromPkts(double pkts) { return (int)(ceil(pkts)); }
 
 void initializeLoggingFolders() {
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/rtt/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/ecn/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/cwd/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/queue/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/acked/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/sent/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/nack/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/bts/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/ls_to_us/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/us_to_cs/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/fasti/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/fastd/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/mediumi/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/ecn_rtt/");
-    std::filesystem::remove_all(
-            "/home/tommaso/csg-htsim/sim/output/trimmed_rtt/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/case1/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/case2/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/case3/");
-    std::filesystem::remove_all("/home/tommaso/csg-htsim/sim/output/case4/");
 
-    bool ret_val = std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/rtt");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/ecn");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/cwd");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/queue");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/acked");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/sent");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/nack");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/bts");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/ls_to_us");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/us_to_cs");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/fastd");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/fasti");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/mediumi");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/ecn_rtt");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/trimmed_rtt");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/case1");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/case2");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/case3");
-    ret_val &= std::filesystem::create_directory(
-            "/home/tommaso/csg-htsim/sim/output/case4");
+    // Setup Paths and initialize folders
+    std::string desiredRootDirectoryName =
+            "csg-htsim"; // Change this to the desired folder name.
+    std::filesystem::path rootPath = findRootPath(desiredRootDirectoryName);
+
+    if (!rootPath.empty()) {
+        std::filesystem::path dataPath = rootPath;
+        PROJECT_ROOT_PATH = dataPath;
+        std::cout << "Project Path " << PROJECT_ROOT_PATH << std::endl;
+    } else {
+        std::cout << "Root directory '" << desiredRootDirectoryName
+                  << "' not found." << std::endl;
+        abort();
+    }
+
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/rtt/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/ecn/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/cwd/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/queue/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/acked/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/sent/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/nack/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/bts/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/ls_to_us/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/us_to_cs/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/fasti/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/fastd/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/mediumi/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/ecn_rtt/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/trimmed_rtt/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/case1/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/case2/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/case3/");
+    std::filesystem::remove_all(PROJECT_ROOT_PATH / "sim/output/case4/");
+
+    bool ret_val =
+            std::filesystem::create_directory(PROJECT_ROOT_PATH / "sim/output");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/rtt");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/ecn");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/cwd");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/queue");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/acked");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/sent");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/nack");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/bts");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/ls_to_us");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/us_to_cs");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/fastd");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/fasti");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/mediumi");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/ecn_rtt");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/trimmed_rtt");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/case1");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/case2");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/case3");
+    ret_val &= std::filesystem::create_directory(PROJECT_ROOT_PATH /
+                                                 "sim/output/case4");
+}
+
+// Path
+std::filesystem::path findRootPath(const std::string &rootDirectoryName) {
+    std::filesystem::path currentPath =
+            std::filesystem::current_path(); // Get the current working
+                                             // directory.
+
+    // Iterate up the directory hierarchy until we find a directory with the
+    // desired name.
+    while (!currentPath.empty() &&
+           !std::filesystem::exists(currentPath / rootDirectoryName)) {
+        currentPath = currentPath.parent_path();
+    }
+
+    if (!currentPath.empty()) {
+        return currentPath / rootDirectoryName; // Found the root directory with
+                                                // the desired name.
+    } else {
+        printf("Error");
+        abort();
+    }
 }

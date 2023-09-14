@@ -66,7 +66,7 @@ xticks, xlabels = plt.xticks()
 # set the x-axis ticklabel size
 my.set_xticklabels(xlabels, size=9)
 
-my.axhline(args.best_time, ls='--', color='black', linewidth=1.5, alpha=.6)
+#my.axhline(args.best_time, ls='--', color='black', linewidth=1.5, alpha=.6)
 
 
 my.set_title('Individual Flow Completion Time')

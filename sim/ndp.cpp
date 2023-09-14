@@ -121,7 +121,7 @@ NdpSrc::~NdpSrc() {
     if (COLLECT_DATA) {
         // RTT
         std::string file_name =
-                "/home/tommaso/csg-htsim/sim/output/rtt/rtt" + _name + ".txt";
+                PROJECT_ROOT_PATH / ("sim/output/rtt/rtt" + _name + ".txt");
         std::ofstream MyFile(file_name, std::ios_base::app);
 
         for (const auto &p : _list_rtt) {
@@ -131,8 +131,7 @@ NdpSrc::~NdpSrc() {
         MyFile.close();
 
         // CWD
-        file_name =
-                "/home/tommaso/csg-htsim/sim/output/cwd/cwd" + _name + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/cwd/cwd" + _name + ".txt");
         std::ofstream MyFileCWD(file_name, std::ios_base::app);
 
         for (const auto &p : _list_cwd) {
@@ -143,7 +142,7 @@ NdpSrc::~NdpSrc() {
 
         // NACK
         file_name =
-                "/home/tommaso/csg-htsim/sim/output/nack/nack" + _name + ".txt";
+                PROJECT_ROOT_PATH / ("sim/output/nack/nack" + _name + ".txt");
         std::ofstream MyFileNack(file_name, std::ios_base::app);
 
         for (const auto &p : _list_nack) {
@@ -213,8 +212,8 @@ void NdpSrc::set_paths(uint32_t no_of_paths) {
         _route_strategy != ECMP_FIB2_ECN && _route_strategy != REACTIVE_ECN &&
         _route_strategy != ECMP_RANDOM_ECN &&
         _route_strategy != ECMP_RANDOM2_ECN) {
-        cout << "Set paths (path_count) called with wrong route strategy"
-             << endl;
+        cout << "Set paths (path_count) called with wrong route strategy "
+             << _route_strategy << endl;
         abort();
     }
 
@@ -239,6 +238,7 @@ void NdpSrc::set_paths(uint32_t no_of_paths) {
         _avoid_ratio[i] = 0;
         _avoid_score[i] = 0;
         _bad_path[i] = false;
+        _path_ids[i] = i;
     }
 }
 
@@ -373,7 +373,9 @@ void NdpSrc::startflow() {
 void NdpSrc::connect(Route *routeout, Route *routeback, NdpSink &sink,
                      simtime_picosec starttime) {
     if (_route_strategy == SINGLE_PATH || _route_strategy == ECMP_FIB ||
-        _route_strategy == ECMP_FIB_ECN || _route_strategy == REACTIVE_ECN) {
+        _route_strategy == ECMP_FIB_ECN || _route_strategy == REACTIVE_ECN ||
+        _route_strategy == ECMP_RANDOM2_ECN ||
+        _route_strategy == ECMP_RANDOM_ECN) {
         assert(routeout);
         _route = routeout;
     }
@@ -563,6 +565,8 @@ void NdpSrc::processNack(const NdpNack &nack) {
     if (nack.ecn_echo()) {
         count_ecn(nack.path_id());
     }
+
+    // printf("Nack from %d PathID %d\n", from, nack.pathid_echo);
     /*
     if (_log_me) {
         if (nack.ecn_echo()) {
@@ -582,6 +586,12 @@ void NdpSrc::processNack(const NdpNack &nack) {
         break;
     case ECMP_FIB:
     case ECMP_FIB_ECN:
+        p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true,
+                              _path_ids.size(), last_packet, _dstaddr);
+        p->set_pathid(_path_ids[choose_route()]);
+        break;
+    case ECMP_RANDOM2_ECN:
+        _next_pathid = -1;
         p = NdpPacket::newpkt(_flow, *_route, seqno, 0, _mss, true,
                               _path_ids.size(), last_packet, _dstaddr);
         p->set_pathid(_path_ids[choose_route()]);
@@ -645,6 +655,13 @@ void NdpSrc::processAck(const NdpAck &ack) {
     log_rtt(_first_sent_times[ackno]);
     _first_sent_times.erase(ackno);
     _sent_times.erase(ackno);
+
+    bool marked = ack.flags() & ECN_ECHO;
+    if (!marked) {
+        _next_pathid = ack.pathid_echo;
+    } else {
+        _next_pathid = -1;
+    }
 
     count_ack(path_id);
     if (ack.ecn_echo()) {
@@ -866,6 +883,30 @@ int NdpSrc::choose_route() {
             _crt_path = 0;
         }
         break;
+    case ECMP_RANDOM2_ECN: {
+        uint64_t allpathssizes = _mss * _paths.size();
+        if (_highest_sent < max(_maxcwnd, allpathssizes)) {
+            _crt_path++;
+            /*printf("Trying this for %d // Highest Sent %d - cwnd %d - "
+                   "allpathsize %d (%d %d)\n",
+                   from, _highest_sent, _maxcwnd, allpathssizes, _mss,
+                   _paths.size());*/
+            if (_crt_path == _paths.size()) {
+                // permute_paths();
+                _crt_path = 0;
+            }
+        } else {
+            if (_next_pathid == -1) {
+                assert(_paths.size() > 0);
+                _crt_path = random() % _paths.size();
+                // printf("New Path %d is %d\n", from, _crt_path);
+            } else {
+                // printf("Recycling Path %d is %d\n", from, _next_pathid);
+                _crt_path = _next_pathid;
+            }
+        }
+        break;
+    }
     case ECMP_FIB:
         // Cycle through a permutation.  Generally gets better load balancing
         // than SCATTER_RANDOM.
@@ -967,6 +1008,7 @@ int NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
             break;
         case ECMP_FIB:
         case ECMP_FIB_ECN:
+        case ECMP_RANDOM2_ECN:
         case REACTIVE_ECN: {
             p->set_route(*_route);
             int crt = choose_route();
@@ -1038,11 +1080,15 @@ int NdpSrc::send_packet(NdpPull::seq_t pacer_no) {
         }
         case ECMP_FIB:
         case ECMP_FIB_ECN:
+        case ECMP_RANDOM2_ECN:
         case REACTIVE_ECN: {
             p = NdpPacket::newpkt(_flow, *_route, _highest_sent + 1, pacer_no,
                                   _mss, false, _path_ids.size(), last_packet,
                                   _dstaddr);
+            p->set_route(*_route);
             int crt = choose_route();
+            // crt = random() % _paths.size();
+
             p->set_pathid(_path_ids[crt]);
             /*
             if (_log_me) {
@@ -1396,6 +1442,7 @@ void NdpSink::connect(NdpSrc &src, Route *route) {
     case SINGLE_PATH:
     case ECMP_FIB:
     case ECMP_FIB_ECN:
+    case ECMP_RANDOM2_ECN:
     case REACTIVE_ECN:
         assert(route);
         _route = route;
@@ -1459,6 +1506,7 @@ void NdpSink::set_paths(uint32_t no_of_paths) {
         abort();
 
     case ECMP_FIB:
+    case ECMP_RANDOM2_ECN:
     case ECMP_FIB_ECN:
     case REACTIVE_ECN:
         assert(_paths.size() == 0);
@@ -1577,9 +1625,10 @@ void NdpSink::receivePacket(Packet &pkt) {
     this->_from = pkt.from;
     this->_to = pkt.to;
     this->_tag = pkt.tag;
+    int my_path_echo = pkt.pathid();
 
     bool pull = true;
-    bool marked = (p->flags() & ECN_CE) != 0; // ECN for load balancing
+    bool marked = p->flags() & ECN_CE;
 
     simtime_picosec ts = p->ts();
     bool last_packet = ((NdpPacket *)&pkt)->last_packet();
@@ -1595,13 +1644,13 @@ void NdpSink::receivePacket(Packet &pkt) {
             ((p->nexthop() - p->trim_hop()) > 2) &&
             ((_parked_cwnd + 2 * Packet::data_packet_size()) < _src->_cwnd)) {
 
-            send_nack(ts, p->seqno(), pacer_no, false, marked);
+            send_nack(ts, p->seqno(), pacer_no, false, marked, my_path_echo);
             receiver_core_trim(p);
 
             // do additive increase too.
             receiver_increase(p);
         } else {
-            send_nack(ts, p->seqno(), pacer_no, true, marked);
+            send_nack(ts, p->seqno(), pacer_no, true, marked, my_path_echo);
         }
 
         pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_RCVDESTROY);
@@ -1702,7 +1751,9 @@ void NdpSink::receivePacket(Packet &pkt) {
         if (_ooo < _received.size())
             _ooo = _received.size();
     }
-    send_ack(ts, seqno, pacer_no, marked, pull);
+    int32_t path_id = p->pathid();
+
+    send_ack(ts, marked, seqno, pacer_no, marked, pull, path_id);
 
     // do additive increase if needed.
     if (NdpSink::_oversubscribed_congestion_control && _parked_cwnd > 0)
@@ -1781,9 +1832,9 @@ void NdpSink::update_path_history(const NdpPacket &p) {
     }
 }
 
-void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno,
+void NdpSink::send_ack(simtime_picosec ts, bool marked, NdpPacket::seq_t ackno,
                        NdpPacket::seq_t pacer_no, bool ecn_marked,
-                       bool enqueue_pull) {
+                       bool enqueue_pull, int path_id) {
     NdpAck *ack = 0;
     // if (ecn_marked)
     //     cout << "ECN marked\n";
@@ -1814,6 +1865,8 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno,
     case ECMP_FIB:
     case ECMP_FIB_ECN:
     case REACTIVE_ECN:
+    case ECMP_RANDOM2_ECN:
+    case ECMP_RANDOM_ECN:
         ack = NdpAck::newpkt(
                 _src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no,
                 _path_history[_path_hist_index].path_id(), _srcaddr);
@@ -1824,6 +1877,16 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno,
             permute_paths();
             _crt_path = 0;
         }
+
+        // set ECN echo only if that is selected strategy
+        if (marked) {
+            // printf("ACK - ECN %d - From %d\n", path_id, from);
+            ack->set_flags(ECN_ECHO);
+        } else {
+            // printf("ACK - NO ECN\n");
+            ack->set_flags(0);
+        }
+
         ack->inc_id++;
         // set ECN echo only if that is selected strategy
         ack->set_ecn_echo(ecn_marked && (_route_strategy == ECMP_FIB_ECN ||
@@ -1847,6 +1910,8 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno,
     assert(ack);
     ack->flow().logTraffic(*ack, *this, TrafficLogger::PKT_CREATE);
     ack->set_ts(ts);
+    ack->pathid_echo = path_id;
+    // printf("Sending ACK, ECN %d, PATH %d\n", marked, path_id);
     ack->from = _from;
     ack->to = _to;
     ack->tag = _tag;
@@ -1861,7 +1926,7 @@ void NdpSink::send_ack(simtime_picosec ts, NdpPacket::seq_t ackno,
 
 void NdpSink::send_nack(simtime_picosec ts, NdpPacket::seq_t ackno,
                         NdpPacket::seq_t pacer_no, bool enqueue_pull,
-                        bool ecn_marked) {
+                        bool ecn_marked, int path_id) {
     NdpNack *nack = NULL;
 
     if (enqueue_pull)
@@ -1888,6 +1953,7 @@ void NdpSink::send_nack(simtime_picosec ts, NdpPacket::seq_t ackno,
         break;
     case ECMP_FIB:
     case ECMP_FIB_ECN:
+    case ECMP_RANDOM2_ECN:
     case REACTIVE_ECN:
         nack = NdpNack::newpkt(
                 _src->_flow, *_route, 0, ackno, _cumulative_ack, _pull_no,
@@ -1912,6 +1978,7 @@ void NdpSink::send_nack(simtime_picosec ts, NdpPacket::seq_t ackno,
         abort();
     }
     assert(nack);
+    nack->pathid_echo = path_id;
     nack->flow().logTraffic(*nack, *this, TrafficLogger::PKT_CREATE);
     nack->set_ts(ts);
 
@@ -2055,6 +2122,8 @@ void NdpPullPacer::sendPacket(Packet *ack, NdpPacket::seq_t rcvd_pacer_no,
                 }
             */
             set_pacerno(ack, _pacer_no++);
+            // printf("Ack Path ID %d and %d\n", ack->pathid(),
+            // ack->pathid_echo); fflush(stdout);
             ack->sendOn();
             _last_pull = eventlist().now();
             return;

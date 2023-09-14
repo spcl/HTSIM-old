@@ -3,6 +3,7 @@
 #define CONFIG_H
 
 #include <assert.h>
+#include <filesystem>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,6 +45,7 @@ extern uint64_t MAX_CWD_MODERN_NDP;
 extern uint64_t BDP_OLD_NDP;
 extern uint64_t MAX_CWD_OLD_NDP;
 extern uint64_t ENABLE_FAST_DROP;
+extern std::filesystem::path PROJECT_ROOT_PATH;
 
 int pareto(int xm, int mean);
 double exponential(double lambda);
@@ -69,6 +71,9 @@ linkspeed_bps speedFromPktps(double packetsPerSec);
 double speedAsPktps(linkspeed_bps bps);
 typedef int mem_pkts;
 void initializeLoggingFolders();
+std::filesystem::path findRootPath(const std::string &rootDirectoryName);
+std::filesystem::path resolvePath(const std::string &root,
+                                  const std::string &relativePath);
 
 typedef uint32_t addr_t;
 typedef uint16_t port_t;

@@ -9,8 +9,10 @@
 #include "lgs/cmdline.h"
 #include "main.h"
 #include "ndp.h"
+#include "swifttrimming.h"
 #include "topology.h"
 #include "uec.h"
+#include "uec_drop.h"
 #include <chrono>
 #include <filesystem>
 #include <fstream>
@@ -43,6 +45,10 @@ LogSimInterface::LogSimInterface(UecLogger *logger, TrafficLogger *pktLogger,
             new NdpRtxTimerScanner(timeFromUs((uint32_t)1000), *_eventlist);
     _uecRtxScanner =
             new UecRtxTimerScanner(BASE_RTT_MODERN * 1000, *_eventlist);
+    _uecDropRtxScanner =
+            new UecDropRtxTimerScanner(BASE_RTT_MODERN * 1000, *_eventlist);
+    _swiftTrimmingRtxScanner = new SwiftTrimmingRtxTimerScanner(
+            BASE_RTT_MODERN * 1000, *_eventlist);
 }
 
 void LogSimInterface::set_cwd(int cwd) { _cwd = cwd; }
@@ -157,6 +163,179 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         _uecRtxScanner->registerUec(*uecSrc);
         printf("Finished UEC LGS Setup\n");
         fflush(stdout);
+    } else if (_protocolName == UEC_DROP_PROTOCOL) {
+        printf("Starting1 UEC LGS Setup\n");
+        fflush(stdout);
+        // This is updated inside UEC if it doesn't fit the default values
+        uint64_t rtt = BASE_RTT_MODERN * 1000;
+        uint64_t bdp = BDP_MODERN_UEC;
+        uint64_t queueDrainTime =
+                _queuesize * 8 * 1000 /
+                (LINK_SPEED_MODERN); // convert queuesize to bits, then divide
+                                     // by link speed converted from Mbps to
+                                     // bpps
+
+        // Create Routes from/to Src and Dest
+        vector<const Route *> *paths = _topo->get_paths(from, to);
+        _netPaths[from][to] = paths;
+        vector<const Route *> *paths2 = _topo->get_paths(to, from);
+        _netPaths[to][from] = paths2;
+
+        // Choose Path from possible routes
+        int choice = rand() % _netPaths[from][to]->size();
+
+        Route *routein = new Route(*_topo->get_paths(to, from)->at(choice));
+        UecDropSrc *uecSrc =
+                new UecDropSrc(NULL, _flow, *_eventlist, rtt, bdp,
+                               queueDrainTime, routein->hop_count());
+
+        uecSrc->setFlowSize(size);
+        uecSrc->setReuse(_use_good_entropies);
+        uecSrc->setIgnoreEcnAck(_ignore_ecn_ack);
+        uecSrc->setIgnoreEcnData(_ignore_ecn_data);
+        uecSrc->setNumberEntropies(_num_entropies);
+        printf("CWD Start %d - From %d To %d\n", uecSrc->_cwnd, from, to);
+        uecSrc->setName("uec_" + std::to_string(from) + "_" +
+                        std::to_string(to));
+        uecSrc->set_flow_over_hook(std::bind(&LogSimInterface::flow_over, this,
+                                             std::placeholders::_1));
+        uecSrc->from = from;
+        uecSrc->to = to;
+        uecSrc->tag = tag;
+        printf("Setting %d %d %d\n", from, to, tag);
+        std::string to_hash = std::to_string(from) + "@" + std::to_string(to) +
+                              "@" + std::to_string(tag);
+        _uecDropSrcVector.push_back(uecSrc);
+        UecDropSink *uecSink = new UecDropSink();
+        uecSink->setName("uec_sink_Rand");
+        uecSink->from = from;
+        uecSink->to = to;
+        uecSink->tag = tag;
+
+        uecSrc->set_dst(to);
+        uecSink->set_src(from);
+
+        Route *srctotor = new Route();
+        srctotor->push_back(
+                _topo->queues_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]);
+        srctotor->push_back(
+                _topo->pipes_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]);
+        srctotor->push_back(
+                _topo->queues_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]
+                        ->getRemoteEndpoint());
+
+        Route *dsttotor = new Route();
+        dsttotor->push_back(
+                _topo->queues_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]);
+        dsttotor->push_back(
+                _topo->pipes_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]);
+        dsttotor->push_back(_topo->queues_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]
+                                    ->getRemoteEndpoint());
+
+        uecSrc->connect(srctotor, dsttotor, *uecSink, GLOBAL_TIME);
+        uecSrc->set_paths(path_entropy_size);
+        uecSink->set_paths(path_entropy_size);
+
+        // register src and snk to receive packets from their respective TORs.
+        assert(_topo->switches_lp[_topo->HOST_POD_SWITCH(from)]);
+        assert(_topo->switches_lp[_topo->HOST_POD_SWITCH(to)]);
+        _topo->switches_lp[_topo->HOST_POD_SWITCH(from)]->addHostPort(
+                from, uecSrc->flow_id(), uecSrc);
+        _topo->switches_lp[_topo->HOST_POD_SWITCH(to)]->addHostPort(
+                to, uecSrc->flow_id(), uecSink);
+
+        // Actually connect src and dest
+        _uecDropRtxScanner->registerUecDrop(*uecSrc);
+        printf("Finished UEC LGS Setup\n");
+        fflush(stdout);
+    } else if (_protocolName == SWIFT_PROTOCOL) {
+        printf("Starting1 Swift LGS Setup\n");
+        fflush(stdout);
+        // This is updated inside UEC if it doesn't fit the default values
+        uint64_t rtt = BASE_RTT_MODERN * 1000;
+        uint64_t bdp = BDP_MODERN_UEC;
+        uint64_t queueDrainTime =
+                _queuesize * 8 * 1000 /
+                (LINK_SPEED_MODERN); // convert queuesize to bits, then divide
+                                     // by link speed converted from Mbps to
+                                     // bpps
+
+        // Create Routes from/to Src and Dest
+        vector<const Route *> *paths = _topo->get_paths(from, to);
+        _netPaths[from][to] = paths;
+        vector<const Route *> *paths2 = _topo->get_paths(to, from);
+        _netPaths[to][from] = paths2;
+
+        // Choose Path from possible routes
+        int choice = rand() % _netPaths[from][to]->size();
+
+        Route *routein = new Route(*_topo->get_paths(to, from)->at(choice));
+        SwiftTrimmingSrc *swiftTrimmingSrc =
+                new SwiftTrimmingSrc(NULL, _flow, *_eventlist, rtt, bdp,
+                                     queueDrainTime, routein->hop_count());
+
+        swiftTrimmingSrc->setFlowSize(size);
+        swiftTrimmingSrc->setReuse(_use_good_entropies);
+        swiftTrimmingSrc->setIgnoreEcnAck(_ignore_ecn_ack);
+        swiftTrimmingSrc->setIgnoreEcnData(_ignore_ecn_data);
+        swiftTrimmingSrc->setNumberEntropies(_num_entropies);
+        printf("CWD Start %d - From %d To %d\n", swiftTrimmingSrc->_cwnd, from,
+               to);
+        swiftTrimmingSrc->setName("swiftTrimming_" + std::to_string(from) +
+                                  "_" + std::to_string(to));
+        swiftTrimmingSrc->set_flow_over_hook(std::bind(
+                &LogSimInterface::flow_over, this, std::placeholders::_1));
+        swiftTrimmingSrc->from = from;
+        swiftTrimmingSrc->to = to;
+        swiftTrimmingSrc->tag = tag;
+        printf("Setting %d %d %d\n", from, to, tag);
+        std::string to_hash = std::to_string(from) + "@" + std::to_string(to) +
+                              "@" + std::to_string(tag);
+        _swiftTrimmingSrcVector.push_back(swiftTrimmingSrc);
+        SwiftTrimmingSink *swiftTrimmingSink = new SwiftTrimmingSink();
+        swiftTrimmingSink->setName("swiftTrimming_sink_Rand");
+        swiftTrimmingSink->from = from;
+        swiftTrimmingSink->to = to;
+        swiftTrimmingSink->tag = tag;
+
+        swiftTrimmingSrc->set_dst(to);
+        swiftTrimmingSink->set_src(from);
+
+        Route *srctotor = new Route();
+        srctotor->push_back(
+                _topo->queues_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]);
+        srctotor->push_back(
+                _topo->pipes_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]);
+        srctotor->push_back(
+                _topo->queues_ns_nlp[from][_topo->HOST_POD_SWITCH(from)]
+                        ->getRemoteEndpoint());
+
+        Route *dsttotor = new Route();
+        dsttotor->push_back(
+                _topo->queues_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]);
+        dsttotor->push_back(
+                _topo->pipes_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]);
+        dsttotor->push_back(_topo->queues_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]
+                                    ->getRemoteEndpoint());
+
+        swiftTrimmingSrc->connect(srctotor, dsttotor, *swiftTrimmingSink,
+                                  GLOBAL_TIME);
+        swiftTrimmingSrc->set_paths(path_entropy_size);
+        swiftTrimmingSink->set_paths(path_entropy_size);
+
+        // register src and snk to receive packets from their respective TORs.
+        assert(_topo->switches_lp[_topo->HOST_POD_SWITCH(from)]);
+        assert(_topo->switches_lp[_topo->HOST_POD_SWITCH(to)]);
+        _topo->switches_lp[_topo->HOST_POD_SWITCH(from)]->addHostPort(
+                from, swiftTrimmingSrc->flow_id(), swiftTrimmingSrc);
+        _topo->switches_lp[_topo->HOST_POD_SWITCH(to)]->addHostPort(
+                to, swiftTrimmingSrc->flow_id(), swiftTrimmingSink);
+
+        // Actually connect src and dest
+        connection_log_swift[to_hash] = swiftTrimmingSrc;
+        _swiftTrimmingRtxScanner->registerSwiftTrimming(*swiftTrimmingSrc);
+        printf("Finished UEC LGS Setup\n");
+        fflush(stdout);
     } else if (_protocolName == NDP_PROTOCOL) {
 
         // NdpSrc::setRouteStrategy(SCATTER_RANDOM);
@@ -256,18 +435,31 @@ void LogSimInterface::flow_over(const Packet &p) {
     _latest_recv->nic = 0;
 
     active_sends.erase(to_hash);
-    connection_log.erase(to_hash);
+    if (_protocolName == SWIFT_PROTOCOL) {
+        connection_log_swift.erase(to_hash);
+    } else if (_protocolName == NDP_PROTOCOL) {
+        // connection_log.erase(to_hash);
+    } else if (_protocolName == UEC_PROTOCOL) {
+        connection_log.erase(to_hash);
+    }
     return;
 }
 
 void LogSimInterface::reset_latest_receive() { _latest_recv->updated = false; }
 
 void LogSimInterface::terminate_sim() {
-    for (std::size_t i = 0; i < _ndpSrcVector.size(); ++i) {
-        delete _ndpSrcVector[i];
-    }
-    for (std::size_t i = 0; i < _uecSrcVector.size(); ++i) {
-        delete _uecSrcVector[i];
+    if (_protocolName == SWIFT_PROTOCOL) {
+        for (std::size_t i = 0; i < _swiftTrimmingSrcVector.size(); ++i) {
+            delete _swiftTrimmingSrcVector[i];
+        }
+    } else if (_protocolName == NDP_PROTOCOL) {
+        for (std::size_t i = 0; i < _ndpSrcVector.size(); ++i) {
+            delete _ndpSrcVector[i];
+        }
+    } else if (_protocolName == UEC_PROTOCOL) {
+        for (std::size_t i = 0; i < _uecSrcVector.size(); ++i) {
+            delete _uecSrcVector[i];
+        }
     }
 }
 
@@ -293,15 +485,7 @@ graph_node_properties LogSimInterface::htsim_simulate_until(u_int64_t until) {
 int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
     LogSimInterface *lgs_interface = &lgs;
 
-    if (true) {
-        // Temp Only
-        filename_goal =
-                "/home/tommaso/csg-htsim/sim/lgs/input/" + filename_goal;
-        std::cout << "Current working directory: "
-                  << std::filesystem::current_path() << std::endl;
-
-        // return 1;
-    }
+    filename_goal = PROJECT_ROOT_PATH / ("sim/lgs/input/" + filename_goal);
 
     // Time Inside LGS
     using std::chrono::duration;
@@ -470,9 +654,9 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 
     while (!aq.empty() || (size_queue(rq, p) > 0) || (size_queue(uq, p) > 0)/* ||
            !lgs_interface->all_sends_delivered()*/) {
-        if (cycles > 100000) {
-            // printf("\nERROR: We are in some sort of loop in the main WHILE.
-            // Breaking after 100k cycles\n\n");
+        if (cycles > 1000000) {
+            printf("\nERROR: We are in some sort of loop in the main WHILE. "
+                   "Breaking after 100k cycles\n\n");
             break;
         }
         printf("----------------------------    ENTERING WHILE        // "
@@ -484,7 +668,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 
         graph_node_properties temp_elem = aq.top();
         while (!aq.empty() && aq.top().time <= htsim_time) {
-            if (cycles > 100000) {
+            if (cycles > 1000000) {
                 printf("\nERROR: We are in some sort of loop in the main "
                        "WHILE. Breaking after 100k cycles\n\n");
                 exit(0);

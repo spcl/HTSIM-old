@@ -128,6 +128,7 @@ class UecSrc : public PacketSink, public EventSource {
     static void set_x_gain(double value) { x_gain = value; }
     static void set_z_gain(double value) { z_gain = value; }
     static void set_w_gain(double value) { w_gain = value; }
+    static void set_os_ratio_stage_1(double value) { ratio_os_stage_1 = value; }
     static void set_disable_case_3(double value) { disable_case_3 = value; }
     static void set_starting_cwnd(double value) { starting_cwnd = value; }
     static void set_bonus_drop(double value) { bonus_drop = value; }
@@ -202,6 +203,7 @@ class UecSrc : public PacketSink, public EventSource {
     static double jitter_value_med_inc;
     static double delay_gain_value_med_inc;
     static int target_rtt_percentage_over_base;
+    static int ratio_os_stage_1;
 
     static double y_gain;
     static double x_gain;
@@ -391,7 +393,7 @@ class UecSink : public PacketSink, public DataReceiver {
                   UecAck::seq_t ackno, const Route *rt, const Route *inRoute,
                   int path_id);
     void send_nack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
-                   UecAck::seq_t ackno, const Route *rt);
+                   UecAck::seq_t ackno, const Route *rt, int);
     bool already_received(UecPacket &pkt);
 };
 

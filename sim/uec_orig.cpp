@@ -92,12 +92,14 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
 }
 
 // Add deconstructor and save data once we are done.
+// Add deconstructor and save data once we are done.
 UecSrc::~UecSrc() {
     // If we are collecting specific logs
     if (COLLECT_DATA) {
         // RTT
-        std::string file_name = "/home/tommaso/csg-htsim/sim/output/rtt/rtt" +
-                                _name + "_" + std::to_string(tag) + ".txt";
+        std::string file_name =
+                PROJECT_ROOT_PATH / ("sim/output/rtt/rtt" + _name + "_" +
+                                     std::to_string(tag) + ".txt");
         std::ofstream MyFile(file_name, std::ios_base::app);
 
         for (const auto &p : _list_rtt) {
@@ -109,8 +111,8 @@ UecSrc::~UecSrc() {
         MyFile.close();
 
         // CWD
-        file_name = "/home/tommaso/csg-htsim/sim/output/cwd/cwd" + _name + "_" +
-                    std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/cwd/cwd" + _name + "_" +
+                                         std::to_string(tag) + ".txt");
         std::ofstream MyFileCWD(file_name, std::ios_base::app);
 
         for (const auto &p : _list_cwd) {
@@ -120,8 +122,8 @@ UecSrc::~UecSrc() {
         MyFileCWD.close();
 
         // Unacked
-        file_name = "/home/tommaso/csg-htsim/sim/output/unacked/unacked" +
-                    _name + "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/unacked/unacked" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileUnack(file_name, std::ios_base::app);
 
         for (const auto &p : _list_unacked) {
@@ -131,8 +133,8 @@ UecSrc::~UecSrc() {
         MyFileUnack.close();
 
         // NACK
-        file_name = "/home/tommaso/csg-htsim/sim/output/nack/nack" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/nack/nack" + _name + "_" +
+                                         std::to_string(tag) + ".txt");
         std::ofstream MyFileNack(file_name, std::ios_base::app);
 
         for (const auto &p : _list_nack) {
@@ -143,8 +145,9 @@ UecSrc::~UecSrc() {
 
         // BTS
         if (_list_bts.size() > 0) {
-            file_name = "/home/tommaso/csg-htsim/sim/output/bts/bts" + _name +
-                        "_" + std::to_string(tag) + ".txt";
+            file_name =
+                    PROJECT_ROOT_PATH / ("sim/output/bts/bts" + _name + "_" +
+                                         std::to_string(tag) + ".txt");
             std::ofstream MyFileBTS(file_name, std::ios_base::app);
 
             for (const auto &p : _list_bts) {
@@ -155,8 +158,8 @@ UecSrc::~UecSrc() {
         }
 
         // Acked Bytes
-        file_name = "/home/tommaso/csg-htsim/sim/output/acked/acked" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/acked/acked" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileAcked(file_name, std::ios_base::app);
 
         for (const auto &p : _list_acked_bytes) {
@@ -166,8 +169,8 @@ UecSrc::~UecSrc() {
         MyFileAcked.close();
 
         // Acked ECN
-        file_name = "/home/tommaso/csg-htsim/sim/output/ecn_rtt/ecn_rtt" +
-                    _name + "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/ecn_rtt/ecn_rtt" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileEcnRTT(file_name, std::ios_base::app);
 
         for (const auto &p : _list_ecn_rtt) {
@@ -177,9 +180,9 @@ UecSrc::~UecSrc() {
         MyFileEcnRTT.close();
 
         // Acked Trimmed
-        file_name =
-                "/home/tommaso/csg-htsim/sim/output/trimmed_rtt/trimmed_rtt" +
-                _name + "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH /
+                    ("sim/output/trimmed_rtt/trimmed_rtt" + _name + "_" +
+                     std::to_string(tag) + ".txt");
         std::ofstream MyFileTrimmedRTT(file_name, std::ios_base::app);
 
         for (const auto &p : _list_trimmed_rtt) {
@@ -189,8 +192,8 @@ UecSrc::~UecSrc() {
         MyFileTrimmedRTT.close();
 
         // Fast Increase
-        file_name = "/home/tommaso/csg-htsim/sim/output/fasti/fasti" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/fasti/fasti" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileFastInc(file_name, std::ios_base::app);
 
         for (const auto &p : _list_fast_increase_event) {
@@ -200,8 +203,8 @@ UecSrc::~UecSrc() {
         MyFileFastInc.close();
 
         // Fast Decrease
-        file_name = "/home/tommaso/csg-htsim/sim/output/fastd/fastd" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/fastd/fastd" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileFastDec(file_name, std::ios_base::app);
 
         for (const auto &p : _list_fast_decrease) {
@@ -211,8 +214,8 @@ UecSrc::~UecSrc() {
         MyFileFastDec.close();
 
         // Medium Increase
-        file_name = "/home/tommaso/csg-htsim/sim/output/mediumi/mediumi" +
-                    _name + "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/mediumi/mediumi" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileMediumInc(file_name, std::ios_base::app);
 
         for (const auto &p : _list_medium_increase_event) {
@@ -222,8 +225,8 @@ UecSrc::~UecSrc() {
         MyFileMediumInc.close();
 
         // Case 1
-        file_name = "/home/tommaso/csg-htsim/sim/output/case1/case1" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/case1/case1" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileCase1(file_name, std::ios_base::app);
 
         for (const auto &p : count_case_1) {
@@ -233,8 +236,8 @@ UecSrc::~UecSrc() {
         MyFileCase1.close();
 
         // Case 2
-        file_name = "/home/tommaso/csg-htsim/sim/output/case2/case2" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/case2/case2" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileCase2(file_name, std::ios_base::app);
 
         for (const auto &p : count_case_2) {
@@ -244,8 +247,8 @@ UecSrc::~UecSrc() {
         MyFileCase2.close();
 
         // Case 3
-        file_name = "/home/tommaso/csg-htsim/sim/output/case3/case3" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/case3/case3" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileCase3(file_name, std::ios_base::app);
 
         for (const auto &p : count_case_3) {
@@ -255,8 +258,8 @@ UecSrc::~UecSrc() {
         MyFileCase3.close();
 
         // Case 4
-        file_name = "/home/tommaso/csg-htsim/sim/output/case4/case4" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/case4/case4" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileCase4(file_name, std::ios_base::app);
 
         for (const auto &p : count_case_4) {
@@ -264,32 +267,6 @@ UecSrc::~UecSrc() {
         }
 
         MyFileCase4.close();
-
-        // US TO CS
-        /*if (us_to_cs.size() > 0) {
-            file_name = "/home/tommaso/csg-htsim/sim/output/us_to_cs/us_to_cs" +
-        _name + ".txt"; std::ofstream MyFileUsToCs(file_name,
-        std::ios_base::app);
-
-            for (const auto &p : us_to_cs) {
-                MyFileUsToCs << p.first << "," << p.second << std::endl;
-            }
-
-            MyFileUsToCs.close();
-        }
-
-        // LS TO US
-        if (ls_to_us.size() > 0) {
-            file_name = "/home/tommaso/csg-htsim/sim/output/ls_to_us/ls_to_us" +
-        _name + ".txt"; std::ofstream MyFileLsToUs(file_name,
-        std::ios_base::app);
-
-            for (const auto &p : ls_to_us) {
-                MyFileLsToUs << p.first << "," << p.second << std::endl;
-            }
-
-            MyFileLsToUs.close();
-        }*/
     }
 }
 

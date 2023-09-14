@@ -45,7 +45,6 @@ folder = args.folder
 file_name = args.input_file
 
 with open(folder + "/" + file_name) as file:
-    print(file_name)
     for line in file:
         # Name
         if "Name Running: " in line:
@@ -170,7 +169,7 @@ with open(folder + "/" + file_name) as file:
     max_time = max(list_fct)
     min_bw = (incast_size * 8 + (incast_size*8*0.03)) / (max_time - 8500)
 
-print(list_fct)  
+
 if (DisableCase3 == 1):
         name = name.rstrip()
         name += " No Case 3"

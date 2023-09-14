@@ -34,6 +34,7 @@ bool UecSrc::disable_case_3 = false;
 double UecSrc::starting_cwnd = 1;
 double UecSrc::bonus_drop = 1;
 double UecSrc::buffer_drop = 1.2;
+int UecSrc::ratio_os_stage_1 = 1;
 
 RouteStrategy UecSrc::_route_strategy = NOT_SET;
 RouteStrategy UecSink::_route_strategy = NOT_SET;
@@ -56,9 +57,12 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     // new CC variables
     _hop_count = hops;
     _base_rtt = ((_hop_count * LINK_DELAY_MODERN) +
-                 (PKT_SIZE_MODERN * 8 / LINK_SPEED_MODERN * _hop_count) +
+                 (PKT_SIZE_MODERN * 8 / LINK_SPEED_MODERN * 1) +
+                 (PKT_SIZE_MODERN * 8 / (LINK_SPEED_MODERN / ratio_os_stage_1) *
+                  2) +
                  (_hop_count * LINK_DELAY_MODERN) +
-                 (64 * 8 / LINK_SPEED_MODERN * _hop_count)) *
+                 (64 * 8 / LINK_SPEED_MODERN * 1) +
+                 (64 * 8 / (LINK_SPEED_MODERN / ratio_os_stage_1) * 2)) *
                 1000;
     _target_rtt =
             _base_rtt * ((target_rtt_percentage_over_base + 1) / 100.0 + 1);
@@ -106,8 +110,9 @@ UecSrc::~UecSrc() {
     // If we are collecting specific logs
     if (COLLECT_DATA) {
         // RTT
-        std::string file_name = "/home/tommaso/csg-htsim/sim/output/rtt/rtt" +
-                                _name + "_" + std::to_string(tag) + ".txt";
+        std::string file_name =
+                PROJECT_ROOT_PATH / ("sim/output/rtt/rtt" + _name + "_" +
+                                     std::to_string(tag) + ".txt");
         std::ofstream MyFile(file_name, std::ios_base::app);
 
         for (const auto &p : _list_rtt) {
@@ -119,8 +124,8 @@ UecSrc::~UecSrc() {
         MyFile.close();
 
         // CWD
-        file_name = "/home/tommaso/csg-htsim/sim/output/cwd/cwd" + _name + "_" +
-                    std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/cwd/cwd" + _name + "_" +
+                                         std::to_string(tag) + ".txt");
         std::ofstream MyFileCWD(file_name, std::ios_base::app);
 
         for (const auto &p : _list_cwd) {
@@ -130,8 +135,8 @@ UecSrc::~UecSrc() {
         MyFileCWD.close();
 
         // Unacked
-        file_name = "/home/tommaso/csg-htsim/sim/output/unacked/unacked" +
-                    _name + "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/unacked/unacked" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileUnack(file_name, std::ios_base::app);
 
         for (const auto &p : _list_unacked) {
@@ -141,8 +146,8 @@ UecSrc::~UecSrc() {
         MyFileUnack.close();
 
         // NACK
-        file_name = "/home/tommaso/csg-htsim/sim/output/nack/nack" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/nack/nack" + _name + "_" +
+                                         std::to_string(tag) + ".txt");
         std::ofstream MyFileNack(file_name, std::ios_base::app);
 
         for (const auto &p : _list_nack) {
@@ -153,8 +158,9 @@ UecSrc::~UecSrc() {
 
         // BTS
         if (_list_bts.size() > 0) {
-            file_name = "/home/tommaso/csg-htsim/sim/output/bts/bts" + _name +
-                        "_" + std::to_string(tag) + ".txt";
+            file_name =
+                    PROJECT_ROOT_PATH / ("sim/output/bts/bts" + _name + "_" +
+                                         std::to_string(tag) + ".txt");
             std::ofstream MyFileBTS(file_name, std::ios_base::app);
 
             for (const auto &p : _list_bts) {
@@ -165,8 +171,8 @@ UecSrc::~UecSrc() {
         }
 
         // Acked Bytes
-        file_name = "/home/tommaso/csg-htsim/sim/output/acked/acked" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/acked/acked" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileAcked(file_name, std::ios_base::app);
 
         for (const auto &p : _list_acked_bytes) {
@@ -176,8 +182,8 @@ UecSrc::~UecSrc() {
         MyFileAcked.close();
 
         // Acked ECN
-        file_name = "/home/tommaso/csg-htsim/sim/output/ecn_rtt/ecn_rtt" +
-                    _name + "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/ecn_rtt/ecn_rtt" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileEcnRTT(file_name, std::ios_base::app);
 
         for (const auto &p : _list_ecn_rtt) {
@@ -187,9 +193,9 @@ UecSrc::~UecSrc() {
         MyFileEcnRTT.close();
 
         // Acked Trimmed
-        file_name =
-                "/home/tommaso/csg-htsim/sim/output/trimmed_rtt/trimmed_rtt" +
-                _name + "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH /
+                    ("sim/output/trimmed_rtt/trimmed_rtt" + _name + "_" +
+                     std::to_string(tag) + ".txt");
         std::ofstream MyFileTrimmedRTT(file_name, std::ios_base::app);
 
         for (const auto &p : _list_trimmed_rtt) {
@@ -199,8 +205,8 @@ UecSrc::~UecSrc() {
         MyFileTrimmedRTT.close();
 
         // Fast Increase
-        file_name = "/home/tommaso/csg-htsim/sim/output/fasti/fasti" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/fasti/fasti" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileFastInc(file_name, std::ios_base::app);
 
         for (const auto &p : _list_fast_increase_event) {
@@ -210,8 +216,8 @@ UecSrc::~UecSrc() {
         MyFileFastInc.close();
 
         // Fast Decrease
-        file_name = "/home/tommaso/csg-htsim/sim/output/fastd/fastd" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/fastd/fastd" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileFastDec(file_name, std::ios_base::app);
 
         for (const auto &p : _list_fast_decrease) {
@@ -221,8 +227,8 @@ UecSrc::~UecSrc() {
         MyFileFastDec.close();
 
         // Medium Increase
-        file_name = "/home/tommaso/csg-htsim/sim/output/mediumi/mediumi" +
-                    _name + "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/mediumi/mediumi" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileMediumInc(file_name, std::ios_base::app);
 
         for (const auto &p : _list_medium_increase_event) {
@@ -232,8 +238,8 @@ UecSrc::~UecSrc() {
         MyFileMediumInc.close();
 
         // Case 1
-        file_name = "/home/tommaso/csg-htsim/sim/output/case1/case1" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/case1/case1" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileCase1(file_name, std::ios_base::app);
 
         for (const auto &p : count_case_1) {
@@ -243,8 +249,8 @@ UecSrc::~UecSrc() {
         MyFileCase1.close();
 
         // Case 2
-        file_name = "/home/tommaso/csg-htsim/sim/output/case2/case2" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/case2/case2" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileCase2(file_name, std::ios_base::app);
 
         for (const auto &p : count_case_2) {
@@ -254,8 +260,8 @@ UecSrc::~UecSrc() {
         MyFileCase2.close();
 
         // Case 3
-        file_name = "/home/tommaso/csg-htsim/sim/output/case3/case3" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/case3/case3" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileCase3(file_name, std::ios_base::app);
 
         for (const auto &p : count_case_3) {
@@ -265,8 +271,8 @@ UecSrc::~UecSrc() {
         MyFileCase3.close();
 
         // Case 4
-        file_name = "/home/tommaso/csg-htsim/sim/output/case4/case4" + _name +
-                    "_" + std::to_string(tag) + ".txt";
+        file_name = PROJECT_ROOT_PATH / ("sim/output/case4/case4" + _name +
+                                         "_" + std::to_string(tag) + ".txt");
         std::ofstream MyFileCase4(file_name, std::ios_base::app);
 
         for (const auto &p : count_case_4) {
@@ -504,6 +510,7 @@ void UecSrc::do_fast_drop(bool ecn_or_trimmed) {
 
 void UecSrc::processNack(UecNack &pkt) {
 
+    printf("Nack from %d - ECN 1, Path %d\n", from, pkt.pathid_echo);
     count_trimmed_in_rtt++;
     consecutive_nack++;
     trimmed_last_rtt++;
@@ -623,6 +630,9 @@ int UecSrc::choose_route() {
     case ECMP_RANDOM2_ECN: {
         uint64_t allpathssizes = _mss * _paths.size();
         if (_highest_sent < max(_maxcwnd, allpathssizes)) {
+            /*printf("Trying this for %d // Highest Sent %d - cwnd %d - "
+                   "allpathsize %d\n",
+                   from, _highest_sent, _maxcwnd, allpathssizes);*/
             _crt_path++;
             // printf("Trying this for %d\n", from);
             if (_crt_path == _paths.size()) {
@@ -835,14 +845,12 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
         _consecutive_no_ecn += _mss;
         _next_pathid = pkt.pathid_echo;
     } else {
+        // printf("Ack %d - ECN 1, Path %d\n", from, pkt.pathid_echo);
         _next_pathid = -1;
         ecn_last_rtt = true;
         _consecutive_no_ecn = 0;
     }
 
-    // printf("Current Time %lu - New RTT is %lu - Sent Time %lu - FlowName
-    // %s - ECN %d\n",(long long)eventlist().now(), (long long)newRtt, (long
-    // long) ts, _name.c_str(), marked);
     if (COLLECT_DATA) {
         _received_ecn.push_back(
                 std::make_tuple(eventlist().now(), marked, _mss, newRtt));
@@ -1292,7 +1300,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
 
             // Delay Logic, Version D Logic
         } else if (algorithm_type == "delayD") {
-            printf("Name Running: STrack\n");
+            // printf("Name Running: STrack\n");
             int b = 5;
             uint64_t custom_target_delay =
                     _base_rtt * (1 + (target_rtt_percentage_over_base / 100.0));
@@ -1375,7 +1383,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 t_last_fairness = eventlist().now();
             }
         } else if (algorithm_type == "rtt") {
-            printf("Name Running: SMaRTT RTT Only\n");
+            // printf("Name Running: SMaRTT RTT Only\n");
             int b = 5;
             uint64_t custom_target_delay =
                     _base_rtt * (1 + (target_rtt_percentage_over_base / 100.0));
@@ -1384,8 +1392,8 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
             double alpha_d = 8.0 * scaling_a * scaling_b / (_base_rtt / 1000);
             double ewma = 0.15;
             double y = 0.15 * scaling_a;
-            printf("Alpha D is %lu %f %f %f\n", _bdp, scaling_a, scaling_b,
-                   alpha_d);
+            /*printf("Alpha D is %lu %f %f %f\n", _bdp, scaling_a, scaling_b,
+                   alpha_d);*/
 
             if (t_last_decrease == 0) {
                 t_last_decrease = eventlist().now();
@@ -1421,8 +1429,7 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 }
             }
         } else if (algorithm_type == "ecn") {
-            printf("Name Running: SMaRTT ECN Only\n");
-
+            // printf("Name Running: SMaRTT ECN Only\n");
             if (use_fast_drop) {
                 if (count_received >= ignore_for) {
                     do_fast_drop(false);
@@ -1439,50 +1446,24 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                     reduce_cwnd(static_cast<double>(_mss) * 0.5);
                 }
             }
-        } else if (algorithm_type == "custom") {
+        } else if (algorithm_type == "ecn_variable") {
 
+            // printf("Name Running: SMaRTT ECN Only\n");
             if (use_fast_drop) {
                 if (count_received >= ignore_for) {
                     do_fast_drop(false);
                 }
             }
 
-            uint32_t increase_by = 0;
-            uint32_t decrease_by = 0;
-
             if ((counter_consecutive_good_bytes > target_window) &&
                 use_fast_increase) {
                 fast_increase();
-            } else if (rtt < _target_rtt) {
+            } else if (!ecn) {
+                _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
+            } else if (ecn) {
                 if (count_received >= ignore_for) {
-                    increase_by = min(
-                            uint32_t((((_target_rtt - rtt) / (double)rtt) *
-                                      y_gain * _mss * (_mss / (double)_cwnd))),
-                            uint32_t(_mss));
-                    _cwnd += increase_by +
-                             (increase_by * 0 * (_mss / (double)_cwnd));
-                    count_case_1.push_back(
-                            std::make_pair(eventlist().now() / 1000, 1));
-                }
-            } else if (rtt > _target_rtt) {
-                if (count_received >= ignore_for) {
-                    decrease_by =
-                            min((w_gain * ((rtt - (double)_target_rtt) / rtt) *
-                                 _mss) + _cwnd / (double)_bdp * z_gain,
-                                (double)_mss);
-                    _cwnd -= decrease_by +
-                             (decrease_by * 0 * (_cwnd / (double)_bdp));
-                    count_case_2.push_back(
-                            std::make_pair(eventlist().now() / 1000, 1));
-                }
-            }
-            if (count_received >= ignore_for) {
-                if (decrease_by != 0) {
-                    _cwnd += max(((double)_mss / _cwnd) * x_gain * _mss,
-                                 decrease_by * x_gain);
-                } else if (increase_by != 0) {
-                    _cwnd += max(((double)_mss / _cwnd) * x_gain * _mss,
-                                 increase_by * x_gain);
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss *
+                                z_gain);
                 }
             }
         }
@@ -1622,7 +1603,7 @@ void UecSrc::send_packets() {
     unsigned c = _cwnd;
 
     while ( //_last_acked + c >= _highest_sent + _mss &&
-            get_unacked() + _mss <= c && _highest_sent <= _flow_size + 1) {
+            get_unacked() + _mss <= c && _highest_sent < _flow_size) {
         uint64_t data_seq = 0;
 
         // create packet
@@ -1657,8 +1638,8 @@ void UecSrc::send_packets() {
         if (COLLECT_DATA) {
             // Sent
             std::string file_name =
-                    "/home/tommaso/csg-htsim/sim/output/sent/s" +
-                    std::to_string(this->from) + ".txt ";
+                    PROJECT_ROOT_PATH / ("sim/output/sent/s" +
+                                         std::to_string(this->from) + ".txt ");
             std::ofstream MyFile(file_name, std::ios_base::app);
 
             MyFile << (GLOBAL_TIME) / 1000 << "," << 1 << std::endl;
@@ -1932,7 +1913,7 @@ UecSink::UecSink() : DataReceiver("sink"), _cumulative_ack{0}, _drops{0} {
 }
 
 void UecSink::send_nack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
-                        UecAck::seq_t ackno, const Route *rt) {
+                        UecAck::seq_t ackno, const Route *rt, int path_id) {
 
     UecNack *nack =
             UecNack::newpkt(_src->_flow, *_route, seqno, ackno, 0, _srcaddr);
@@ -1944,6 +1925,7 @@ void UecSink::send_nack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
         _crt_path = 0;
     }
 
+    nack->pathid_echo = path_id;
     nack->is_ack = false;
     nack->flow().logTraffic(*nack, *this, TrafficLogger::PKT_CREATESEND);
     nack->set_ts(ts);
@@ -2031,7 +2013,7 @@ void UecSink::receivePacket(Packet &pkt) {
 
     // packet was trimmed
     if (pkt.header_only()) {
-        send_nack(ts, marked, seqno, ackno, _paths.at(crt_path));
+        send_nack(ts, marked, seqno, ackno, _paths.at(crt_path), pkt.pathid());
         pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_RCVDESTROY);
         p->free();
         // printf("Free6\n");

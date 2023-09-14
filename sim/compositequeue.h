@@ -52,10 +52,14 @@ class CompositeQueue : public Queue {
         _bts_triggering = bts_triggers_at;
     }
 
+    static void set_drop_when_full(bool do_drop_full) {
+        _drop_when_full = do_drop_full;
+    }
+
     /*void set_os_link_ratio(int os_link_ratio) {
         _os_link_ratio = os_link_ratio;
     }*/
-
+    static bool _drop_when_full;
     int _num_packets;
     int _num_headers; // only includes data packets stripped to headers, not
                       // acks or nacks

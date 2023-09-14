@@ -63,11 +63,12 @@ void FatTreeSwitch::receivePacket(Packet &pkt) {
 
         pkt.hop_count++;
 
-        // printf("At %s - Hop %d - Time %lu\n", nodename().c_str(),
-        // pkt.hop_count,
-        //        GLOBAL_TIME);
+        /*printf("At %s - Hop %d - Time %lu\n", nodename().c_str(),
+           pkt.hop_count, GLOBAL_TIME);*/
 
-        if ((pkt.hop_count == 1) && (pkt.type() == UEC || pkt.type() == NDP)) {
+        if ((pkt.hop_count == 1) &&
+            (pkt.type() == UEC || pkt.type() == NDP ||
+             pkt.type() == SWIFTTRIMMING || pkt.type() == UEC_DROP)) {
             pkt.set_ts(GLOBAL_TIME -
                        (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000) -
                        (LINK_DELAY_MODERN * 1000));

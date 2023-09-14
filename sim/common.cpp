@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <stdint.h>
 #include <sys/types.h>
 
@@ -55,3 +56,4 @@ uint64_t BUFFER_SIZE_OLD = 8 * PKT_SIZE_OLD;                     // 8 Pkts
 // NDP Specific Values
 uint64_t BDP_OLD_NDP = BASE_RTT_OLD * LINK_SPEED_OLD / 8; // BDP
 uint64_t MAX_CWD_OLD_NDP = BDP_OLD_NDP * 3;               // BDP * 1.2
+std::filesystem::path PROJECT_ROOT_PATH;

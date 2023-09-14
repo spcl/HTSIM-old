@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <utility>
 
+bool CompositeQueue::_drop_when_full = false;
+
 CompositeQueue::CompositeQueue(linkspeed_bps bitrate, mem_b maxsize,
                                EventList &eventlist, QueueLogger *logger)
         : Queue(bitrate, maxsize, eventlist, logger) {
@@ -100,9 +102,9 @@ void CompositeQueue::completeService() {
             pkt->set_flags(pkt->flags() | ECN_CE);
             if (COLLECT_DATA) {
                 std::string file_name =
-                        "/home/tommaso/csg-htsim/sim/output/ecn/ecn" +
-                        std::to_string(pkt->from) + "_" +
-                        std::to_string(pkt->to) + ".txt";
+                        PROJECT_ROOT_PATH /
+                        ("sim/output/ecn/ecn" + std::to_string(pkt->from) +
+                         "_" + std::to_string(pkt->to) + ".txt");
                 std::ofstream MyFile(file_name, std::ios_base::app);
 
                 MyFile << eventlist().now() / 1000 << "," << 1 << std::endl;
@@ -119,9 +121,10 @@ void CompositeQueue::completeService() {
                 if (std::regex_search(_nodename, matches, pattern)) {
                     std::string numberStr = matches[1].str();
                     int number = std::stoi(numberStr);
-                    std::string file_name = "/home/tommaso/csg-htsim/sim/"
-                                            "output/us_to_cs/us_to_cs" +
-                                            _name + ".txt";
+                    std::string file_name =
+                            PROJECT_ROOT_PATH / ("sim/"
+                                                 "output/us_to_cs/us_to_cs" +
+                                                 _name + ".txt");
                     std::ofstream MyFileUsToCs(file_name, std::ios_base::app);
 
                     MyFileUsToCs << eventlist().now() / 1000 << "," << number
@@ -139,9 +142,10 @@ void CompositeQueue::completeService() {
                 if (std::regex_search(_nodename, matches, pattern)) {
                     std::string numberStr = matches[1].str();
                     int number = std::stoi(numberStr);
-                    std::string file_name = "/home/tommaso/csg-htsim/sim/"
-                                            "output/ls_to_us/ls_to_us" +
-                                            _name + ".txt";
+                    std::string file_name =
+                            PROJECT_ROOT_PATH / ("sim/"
+                                                 "output/ls_to_us/ls_to_us" +
+                                                 _name + ".txt");
                     std::ofstream MyFileUsToCs(file_name, std::ios_base::app);
 
                     MyFileUsToCs << eventlist().now() / 1000 << "," << number
@@ -212,20 +216,18 @@ void CompositeQueue::receivePacket(Packet &pkt) {
         if (COLLECT_DATA) {
             if (_queuesize_low != 0) {
                 std::string file_name =
-                        "/home/tommaso/csg-htsim/sim/output/queue/queue" +
-                        _nodename.substr(_nodename.find(")") + 1) + ".txt";
+                        PROJECT_ROOT_PATH /
+                        ("sim/output/queue/queue" +
+                         _nodename.substr(_nodename.find(")") + 1) + ".txt");
                 std::ofstream MyFile(file_name, std::ios_base::app);
-                printf("Bit rate is %lu\n", _bitrate);
-                fflush(stdout);
+                /*printf("Bit rate is %lu\n", _bitrate);
+                fflush(stdout);*/
                 MyFile << eventlist().now() / 1000 << ","
-                       << int(_queuesize_low * 8 / (_bitrate / 1e9)) /
-                                  (LINK_SPEED_MODERN / (_bitrate / 1e9))
+                       << int(_queuesize_low * 8 / (_bitrate / 1e9)) / (1)
                        << ","
-                       << int(_ecn_minthresh * 8 / (_bitrate / 1e9)) /
-                                  (LINK_SPEED_MODERN / (_bitrate / 1e9))
+                       << int(_ecn_minthresh * 8 / (_bitrate / 1e9)) / (1)
                        << ","
-                       << int(_ecn_maxthresh * 8 / (_bitrate / 1e9)) /
-                                  (LINK_SPEED_MODERN / (_bitrate / 1e9))
+                       << int(_ecn_maxthresh * 8 / (_bitrate / 1e9)) / (1)
                        << std::endl;
 
                 MyFile.close();
@@ -239,13 +241,20 @@ void CompositeQueue::receivePacket(Packet &pkt) {
             // enqueued packet to trim
 
             if (_queuesize_low + pkt.size() > _maxsize) {
-                printf("Trimming at %s %d\n", _nodename.c_str(), _bitrate);
-                // we're going to drop an existing packet from the queue
+                /*printf("Trimming at %s - Packet from %d PathID %d\n",
+                       _nodename.c_str(), pkt.from, pkt.pathid());*/
+                //  we're going to drop an existing packet from the queue
                 if (_enqueued_low.empty()) {
                     // cout << "QUeuesize " << _queuesize_low << "
                     // packetsize "
                     // << pkt.size() << " maxsize " << _maxsize << endl;
                     assert(0);
+                }
+
+                if (_drop_when_full) {
+                    // Dropping Packet and returning
+                    pkt.free();
+                    return;
                 }
                 // take last packet from low prio queue, make it a header
                 // and place it in the high prio queue
@@ -335,7 +344,13 @@ void CompositeQueue::receivePacket(Packet &pkt) {
             // strip packet the arriving packet - low priority queue is full
             // cout << "B [ " << _enqueued_low.size() << " " <<
             // _enqueued_high.size() << " ] STRIP" << endl;
-            printf("Trimming at %s\n", _nodename.c_str());
+            /* printf("Trimming at %s - Packet PathID %d\n", _nodename.c_str(),
+                    pkt.pathid());*/
+            if (_drop_when_full) {
+                // Dropping Packet and returning
+                pkt.free();
+                return;
+            }
             pkt.strip_payload();
             _num_stripped++;
             pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_TRIM);

@@ -1097,7 +1097,7 @@ void create_multiple_permutation(gengetopt_args_info *args_info) {
 
     int comm_size = args_info->commsize_arg;
     int datasize = args_info->datasize_arg;
-    int num_perms = 3;
+    int num_perms = 6;
 
     Goal goal(args_info, comm_size);
     MTRand mtrand;
@@ -1395,6 +1395,27 @@ void create_outcast_incast(gengetopt_args_info *args_info) {
     goal.Write();
 }
 
+// Everyone sends to last node
+void create_single_flow(gengetopt_args_info *args_info) {
+
+    int comm_size = args_info->commsize_arg;
+    int datasize = args_info->datasize_arg;
+
+    Goal goal(args_info, comm_size);
+
+    for (int i = 0; i < comm_size; i++) {
+        goal.StartRank(i);
+        if (i == 0) {
+            int send = goal.Send(datasize, comm_size / 2);
+        } else if (i == comm_size / 2) {
+            int recv = goal.Recv(datasize, 0);
+        }
+        goal.EndRank();
+    }
+
+    goal.Write();
+}
+
 void create_chained_dissem(gengetopt_args_info *args_info) {
 
     int collsbase = 100000; // needed to create tag, must be higher than the
@@ -1517,6 +1538,9 @@ int main(int argc, char **argv) {
     }
     if (strcmp(args_info.ptrn_arg, "outcast_incast") == 0) {
         create_outcast_incast(&args_info);
+    }
+    if (strcmp(args_info.ptrn_arg, "single_flow") == 0) {
+        create_single_flow(&args_info);
     }
 
     if (strcmp(args_info.ptrn_arg, "trace") == 0) {

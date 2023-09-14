@@ -7,6 +7,8 @@ class Packet;
 class TcpSrc;
 class NdpSrc;
 class UecSrc;
+class UecDropSrc;
+class SwiftTrimmingSrc;
 class SwiftSrc;
 class SwiftSubflowSrc;
 class STrackSrc;
@@ -349,6 +351,33 @@ class UecLogger : public Logger {
     enum UecMemoryRecord { MEMORY = 0 };
     virtual void logUec(UecSrc &src, UecEvent ev) = 0;
     virtual ~UecLogger(){};
+};
+
+class UecDropLogger : public Logger {
+  public:
+    enum UecDropEvent { UEC_RCV = 0, UEC_TIMEOUT = 1 }; // TODO: add more events
+    enum UecDropState { UECSTATE_CNTRL = 0, UECSTATE_SEQ = 1 };
+    enum UecDropRecord { AVE_CWND = 0 };
+    enum UecDropMemoryRecord { MEMORY = 0 };
+    virtual void logUecDrop(UecDropSrc &src, UecDropEvent ev) = 0;
+    virtual ~UecDropLogger(){};
+};
+
+class SwiftTrimmingLogger : public Logger {
+  public:
+    enum SwiftTrimmingEvent {
+        SWIFTTRIMMING_RCV = 0,
+        SWIFTTRIMMING_TIMEOUT = 1
+    }; // TODO: add more events
+    enum SwiftTrimmingState {
+        SWIFTTRIMMINGSTATE_CNTRL = 0,
+        SWIFTTRIMMINGSTATE_SEQ = 1
+    };
+    enum SwiftTrimmingRecord { AVE_CWND = 0 };
+    enum SwiftTrimmingMemoryRecord { MEMORY = 0 };
+    virtual void logSwiftTrimming(SwiftTrimmingSrc &src,
+                                  SwiftTrimmingEvent ev) = 0;
+    virtual ~SwiftTrimmingLogger(){};
 };
 
 #endif

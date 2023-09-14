@@ -100,9 +100,9 @@ void UecQueue::completeService() {
             !marked) {
             // We mark the packet depending on the probability of ECN marking
             pkt->set_flags(pkt->flags() | ECN_CE);
-            std::string file_name =
-                    "/home/tommaso/csg-htsim/sim/output/ecn/ecn" +
-                    _nodename.substr(_nodename.find(")") + 1) + ".txt";
+            std::string file_name = PROJECT_ROOT_PATH / "sim/output/ecn/ecn" +
+                                    _nodename.substr(_nodename.find(")") + 1) +
+                                    ".txt";
             std::ofstream MyFile(file_name, std::ios_base::app);
 
             MyFile << eventlist().now() / 1000 << "," << 1 << std::endl;
@@ -134,7 +134,7 @@ void UecQueue::receivePacket(Packet &pkt) {
         // Queue
         if (_queuesize_low != 0) {
             std::string file_name =
-                    "/home/tommaso/csg-htsim/sim/output/queue/queue" +
+                    PROJECT_ROOT_PATH / "sim/output/queue/queue" +
                     _nodename.substr(_nodename.find(")") + 1) + ".txt";
             std::ofstream MyFile(file_name, std::ios_base::app);
 

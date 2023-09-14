@@ -77,12 +77,11 @@ void print_path(std::ofstream &paths, const Route *rt) {
 }
 
 int main(int argc, char **argv) {
-    Packet::set_packet_size(8192);
+    Packet::set_packet_size(PKT_SIZE_MODERN);
     eventlist.setEndtime(timeFromSec(10));
     Clock c(timeFromSec(5 / 100.), eventlist);
-    mem_b queuesize = memFromPkt(INFINITE_BUFFER_SIZE);
-    int no_of_conns = 0, cwnd = 40, no_of_nodes = DEFAULT_NODES,
-        flowsize = Packet::data_packet_size() * 50;
+    mem_b queuesize = INFINITE_BUFFER_SIZE;
+    int no_of_conns = 0, cwnd = 40, no_of_nodes = DEFAULT_NODES;
     stringstream filename(ios_base::out);
     RouteStrategy route_strategy = ECMP_FIB;
     std::string goal_filename;
@@ -95,6 +94,10 @@ int main(int argc, char **argv) {
     int fat_tree_k = 1; // 1:1 default
     bool collect_data = false;
     COLLECT_DATA = collect_data;
+    int kmin = -1;
+    int kmax = -1;
+    int ratio_os_stage_1 = 1;
+    int flowsize = -1;
 
     int i = 1;
     filename << "logout.dat";
@@ -122,6 +125,16 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-number_entropies")) {
             number_entropies = atoi(argv[i + 1]);
             i++;
+        } else if (!strcmp(argv[i], "-kmax")) {
+            // kmin as percentage of queue size (0..100)
+            kmax = atoi(argv[i + 1]);
+            printf("KMax: %d\n", atoi(argv[i + 1]));
+            i++;
+        } else if (!strcmp(argv[i], "-kmin")) {
+            // kmin as percentage of queue size (0..100)
+            kmin = atoi(argv[i + 1]);
+            printf("KMin: %d\n", atoi(argv[i + 1]));
+            i++;
         } else if (!strcmp(argv[i], "-cwnd")) {
             cwnd = atoi(argv[i + 1]);
             cout << "cwnd " << cwnd << endl;
@@ -129,6 +142,9 @@ int main(int argc, char **argv) {
         } else if (!strcmp(argv[i], "-flowsize")) {
             flowsize = atoi(argv[i + 1]);
             cout << "flowsize " << flowsize << endl;
+            i++;
+        } else if (!strcmp(argv[i], "-ratio_os_stage_1")) {
+            ratio_os_stage_1 = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-linkspeed")) {
             // linkspeed specified is in Mbps
@@ -176,6 +192,12 @@ int main(int argc, char **argv) {
             } else if (!strcmp(argv[i + 1], "ecmp_host")) {
                 route_strategy = ECMP_FIB;
                 FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
+            } else if (!strcmp(argv[i + 1], "ecmp_host_random_ecn")) {
+                route_strategy = ECMP_RANDOM_ECN;
+                FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
+            } else if (!strcmp(argv[i + 1], "ecmp_host_random2_ecn")) {
+                route_strategy = ECMP_RANDOM2_ECN;
+                FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
             }
             i++;
         } else
@@ -183,6 +205,8 @@ int main(int argc, char **argv) {
 
         i++;
     }
+
+    Packet::set_packet_size(packet_size);
     if (seed != -1) {
         srand(seed);
         srandom(seed);
@@ -190,9 +214,7 @@ int main(int argc, char **argv) {
         srand(time(NULL));
         srandom(time(NULL));
     }
-    if (COLLECT_DATA) {
-        initializeLoggingFolders();
-    }
+    initializeLoggingFolders();
 
     if (route_strategy == NOT_SET) {
         fprintf(stderr, "Route Strategy not set.  Use the -strat param.  "
@@ -253,6 +275,10 @@ int main(int argc, char **argv) {
 #ifdef FAT_TREE
     FatTreeTopology::set_tiers(3);
     FatTreeTopology::set_os_stage_2(fat_tree_k);
+    FatTreeTopology::set_os_stage_1(ratio_os_stage_1);
+    if (kmin != -1 && kmax != -1) {
+        FatTreeTopology::set_ecn_thresholds_as_queue_percentage(kmin, kmax);
+    }
     FatTreeTopology *top = new FatTreeTopology(
             no_of_nodes, linkspeed, queuesize, NULL, &eventlist, ff, COMPOSITE,
             hop_latency, switch_latency);

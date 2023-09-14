@@ -446,9 +446,9 @@ void FatTreeTopology::init_network() {
                 queueLogger = NULL;
             }
 
-            queues_nup_nlp[agg][tor] =
-                    alloc_queue(queueLogger, _linkspeed / _os_ratio_stage_1,
-                                _queuesize, DOWNLINK, false);
+            queues_nup_nlp[agg][tor] = alloc_queue(
+                    queueLogger, _linkspeed / _os_ratio_stage_1,
+                    _queuesize / _os_ratio_stage_1, DOWNLINK, false);
 
             queues_nup_nlp[agg][tor]->setName("US" + ntoa(agg) + "->LS_" +
                                               ntoa(tor));
@@ -467,7 +467,7 @@ void FatTreeTopology::init_network() {
             }
             queues_nlp_nup[tor][agg] =
                     alloc_queue(queueLogger, _linkspeed / _os_ratio_stage_1,
-                                _queuesize, UPLINK, true);
+                                _queuesize / _os_ratio_stage_1, UPLINK, true);
             queues_nlp_nup[tor][agg]->setName("LS" + ntoa(tor) + "->US" +
                                               ntoa(agg));
             cout << queues_nlp_nup[tor][agg]->str() << endl;
@@ -526,13 +526,13 @@ void FatTreeTopology::init_network() {
                         alloc_queue(queueLogger, _queuesize, UPLINK);*/
 
                 if (agg == 0 && core == 0) {
-                    queues_nup_nc[agg][core] =
-                            alloc_queue(queueLogger, _linkspeed * 1, _queuesize,
-                                        UPLINK, false);
+                    queues_nup_nc[agg][core] = alloc_queue(
+                            queueLogger, _linkspeed / _os_ratio_stage_1,
+                            _queuesize / _os_ratio_stage_1, UPLINK, false);
                 } else {
-                    queues_nup_nc[agg][core] =
-                            alloc_queue(queueLogger, _linkspeed * 1, _queuesize,
-                                        UPLINK, false);
+                    queues_nup_nc[agg][core] = alloc_queue(
+                            queueLogger, _linkspeed / _os_ratio_stage_1,
+                            _queuesize / _os_ratio_stage_1, UPLINK, false);
                 }
 
                 queues_nup_nc[agg][core]->setName("US" + ntoa(agg) + "->CS" +
@@ -560,8 +560,9 @@ void FatTreeTopology::init_network() {
                          << " l " << ntoa(l) << endl;
                 } else {
 
-                    queues_nc_nup[core][agg] =
-                            alloc_queue(queueLogger, _queuesize, DOWNLINK);
+                    queues_nc_nup[core][agg] = alloc_queue(
+                            queueLogger, _linkspeed / _os_ratio_stage_1,
+                            _queuesize / _os_ratio_stage_1, DOWNLINK, false);
                 }
 
                 queues_nc_nup[core][agg]->setName("CS" + ntoa(core) + "->US" +
@@ -1064,8 +1065,8 @@ FatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
                 // upper is nup
 
                 routeout = new Route();
-                printf("Upper is --> %d\n", upper);
-                // routeout->push_back(pqueue);
+                // printf("Upper is --> %d\n", upper);
+                //  routeout->push_back(pqueue);
 
                 /*printf("1) src %d - HOST_POD_SWITCH(src) %d -- "
                        "queues_ns_nlp[src] %d -- "
@@ -1091,12 +1092,12 @@ FatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
                             queues_nlp_nup[HOST_POD_SWITCH(src)][upper]
                                     ->getRemoteEndpoint());
 
-                printf("2) upper %d - core(src) %d -- "
+                /*printf("2) upper %d - core(src) %d -- "
                        "queues_ns_nlp[src] %d -- "
                        "pipes_ns_nlp[src] %d\n",
                        upper, core, queues_nup_nc[upper].size(),
                        pipes_nup_nc[upper].size());
-                fflush(stdout);
+                fflush(stdout);*/
 
                 routeout->push_back(queues_nup_nc[upper][core]);
                 routeout->push_back(pipes_nup_nc[upper][core]);
@@ -1109,9 +1110,9 @@ FatTreeTopology::get_bidir_paths(uint32_t src, uint32_t dest, bool reverse) {
                 // now take the only link down to the destination server!
 
                 uint32_t upper2 = (HOST_POD(dest) * K / 2 + 2 * core / K);
-                printf("K %d HOST_POD(%d) %d core %d upper2 %d\n", K, dest,
+                /*printf("K %d HOST_POD(%d) %d core %d upper2 %d\n", K, dest,
                        HOST_POD(dest), core, upper2);
-                fflush(stdout);
+                fflush(stdout);*/
 
                 routeout->push_back(queues_nc_nup[core][upper2]);
                 routeout->push_back(pipes_nc_nup[core][upper2]);

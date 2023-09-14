@@ -1,0 +1,796 @@
+no_of_nodes 128
+KMin: 20
+KMax: 80
+cwnd 448500
+Speed is 400000
+Using subflow count 1
+Logging to uec_entry
+Logging path choices to uec_entry.paths
+Name Running: NDP
+Fat Tree topology with 0.7us links and 0us switching latency.
+Set params 128
+QueueSize 448500
+_no_of_nodes 128
+K 8
+Queue type 3
+total switches: ToR 32 NAGG 32 NCORE 4 srv_per_tor 4
+SRC0->LS0
+SRC1->LS0
+SRC2->LS0
+SRC3->LS0
+SRC4->LS1
+SRC5->LS1
+SRC6->LS1
+SRC7->LS1
+SRC8->LS2
+SRC9->LS2
+SRC10->LS2
+SRC11->LS2
+SRC12->LS3
+SRC13->LS3
+SRC14->LS3
+SRC15->LS3
+SRC16->LS4
+SRC17->LS4
+SRC18->LS4
+SRC19->LS4
+SRC20->LS5
+SRC21->LS5
+SRC22->LS5
+SRC23->LS5
+SRC24->LS6
+SRC25->LS6
+SRC26->LS6
+SRC27->LS6
+SRC28->LS7
+SRC29->LS7
+SRC30->LS7
+SRC31->LS7
+SRC32->LS8
+SRC33->LS8
+SRC34->LS8
+SRC35->LS8
+SRC36->LS9
+SRC37->LS9
+SRC38->LS9
+SRC39->LS9
+SRC40->LS10
+SRC41->LS10
+SRC42->LS10
+SRC43->LS10
+SRC44->LS11
+SRC45->LS11
+SRC46->LS11
+SRC47->LS11
+SRC48->LS12
+SRC49->LS12
+SRC50->LS12
+SRC51->LS12
+SRC52->LS13
+SRC53->LS13
+SRC54->LS13
+SRC55->LS13
+SRC56->LS14
+SRC57->LS14
+SRC58->LS14
+SRC59->LS14
+SRC60->LS15
+SRC61->LS15
+SRC62->LS15
+SRC63->LS15
+SRC64->LS16
+SRC65->LS16
+SRC66->LS16
+SRC67->LS16
+SRC68->LS17
+SRC69->LS17
+SRC70->LS17
+SRC71->LS17
+SRC72->LS18
+SRC73->LS18
+SRC74->LS18
+SRC75->LS18
+SRC76->LS19
+SRC77->LS19
+SRC78->LS19
+SRC79->LS19
+SRC80->LS20
+SRC81->LS20
+SRC82->LS20
+SRC83->LS20
+SRC84->LS21
+SRC85->LS21
+SRC86->LS21
+SRC87->LS21
+SRC88->LS22
+SRC89->LS22
+SRC90->LS22
+SRC91->LS22
+SRC92->LS23
+SRC93->LS23
+SRC94->LS23
+SRC95->LS23
+SRC96->LS24
+SRC97->LS24
+SRC98->LS24
+SRC99->LS24
+SRC100->LS25
+SRC101->LS25
+SRC102->LS25
+SRC103->LS25
+SRC104->LS26
+SRC105->LS26
+SRC106->LS26
+SRC107->LS26
+SRC108->LS27
+SRC109->LS27
+SRC110->LS27
+SRC111->LS27
+SRC112->LS28
+SRC113->LS28
+SRC114->LS28
+SRC115->LS28
+SRC116->LS29
+SRC117->LS29
+SRC118->LS29
+SRC119->LS29
+SRC120->LS30
+SRC121->LS30
+SRC122->LS30
+SRC123->LS30
+SRC124->LS31
+SRC125->LS31
+SRC126->LS31
+SRC127->LS31
+LS0->US0
+LS0->US1
+LS0->US2
+LS0->US3
+LS1->US0
+LS1->US1
+LS1->US2
+LS1->US3
+LS2->US0
+LS2->US1
+LS2->US2
+LS2->US3
+LS3->US0
+LS3->US1
+LS3->US2
+LS3->US3
+LS4->US4
+LS4->US5
+LS4->US6
+LS4->US7
+LS5->US4
+LS5->US5
+LS5->US6
+LS5->US7
+LS6->US4
+LS6->US5
+LS6->US6
+LS6->US7
+LS7->US4
+LS7->US5
+LS7->US6
+LS7->US7
+LS8->US8
+LS8->US9
+LS8->US10
+LS8->US11
+LS9->US8
+LS9->US9
+LS9->US10
+LS9->US11
+LS10->US8
+LS10->US9
+LS10->US10
+LS10->US11
+LS11->US8
+LS11->US9
+LS11->US10
+LS11->US11
+LS12->US12
+LS12->US13
+LS12->US14
+LS12->US15
+LS13->US12
+LS13->US13
+LS13->US14
+LS13->US15
+LS14->US12
+LS14->US13
+LS14->US14
+LS14->US15
+LS15->US12
+LS15->US13
+LS15->US14
+LS15->US15
+LS16->US16
+LS16->US17
+LS16->US18
+LS16->US19
+LS17->US16
+LS17->US17
+LS17->US18
+LS17->US19
+LS18->US16
+LS18->US17
+LS18->US18
+LS18->US19
+LS19->US16
+LS19->US17
+LS19->US18
+LS19->US19
+LS20->US20
+LS20->US21
+LS20->US22
+LS20->US23
+LS21->US20
+LS21->US21
+LS21->US22
+LS21->US23
+LS22->US20
+LS22->US21
+LS22->US22
+LS22->US23
+LS23->US20
+LS23->US21
+LS23->US22
+LS23->US23
+LS24->US24
+LS24->US25
+LS24->US26
+LS24->US27
+LS25->US24
+LS25->US25
+LS25->US26
+LS25->US27
+LS26->US24
+LS26->US25
+LS26->US26
+LS26->US27
+LS27->US24
+LS27->US25
+LS27->US26
+LS27->US27
+LS28->US28
+LS28->US29
+LS28->US30
+LS28->US31
+LS29->US28
+LS29->US29
+LS29->US30
+LS29->US31
+LS30->US28
+LS30->US29
+LS30->US30
+LS30->US31
+LS31->US28
+LS31->US29
+LS31->US30
+LS31->US31
+US0->CS0
+US1->CS1
+US2->CS2
+US3->CS3
+US4->CS0
+US5->CS1
+US6->CS2
+US7->CS3
+US8->CS0
+US9->CS1
+US10->CS2
+US11->CS3
+US12->CS0
+US13->CS1
+US14->CS2
+US15->CS3
+US16->CS0
+US17->CS1
+US18->CS2
+US19->CS3
+US20->CS0
+US21->CS1
+US22->CS2
+US23->CS3
+US24->CS0
+US25->CS1
+US26->CS2
+US27->CS3
+US28->CS0
+US29->CS1
+US30->CS2
+US31->CS3
+Starting LGS InterfaceCurrent working directory: "/home/tommaso/csg-htsim/plotting"
+LogGP network backend; size: 128 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O=0, P=128, S=65535
+Starting 128
+----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 16 - 0 64 0
+sink tag is 0
+Scheduling Event (0@64@0) of size 2000000 from 0 to 64 tag 0 start_tiem 94753892429816 - Time is 0
+ sink tag is 0
+Scheduling Event (1@64@0) of size 2000000 from 1 to 64 tag 0 start_tiem 94753892429816 - Time is 0
+ sink tag is 0
+Scheduling Event (2@64@0) of size 2000000 from 2 to 64 tag 0 start_tiem 94753892429816 - Time is 0
+ sink tag is 0
+Scheduling Event (3@64@0) of size 2000000 from 3 to 64 tag 0 start_tiem 94753892429816 - Time is 0
+ sink tag is 0
+Scheduling Event (4@64@0) of size 2000000 from 4 to 64 tag 0 start_tiem 94753892429816 - Time is 0
+ sink tag is 0
+Scheduling Event (5@64@0) of size 2000000 from 5 to 64 tag 0 start_tiem 94753892429816 - Time is 0
+ sink tag is 0
+Scheduling Event (6@64@0) of size 2000000 from 6 to 64 tag 0 start_tiem 94753892429816 - Time is 0
+ sink tag is 0
+Scheduling Event (7@64@0) of size 2000000 from 7 to 64 tag 0 start_tiem 94753892429816 - Time is 0
+ ++ size is 0,  host [64] searching matching queue for src target 0 tag 0
+++ size is 0,  host [64] searching matching queue for src target 1 tag 0
+++ size is 0,  host [64] searching matching queue for src target 2 tag 0
+++ size is 0,  host [64] searching matching queue for src target 3 tag 0
+++ size is 0,  host [64] searching matching queue for src target 4 tag 0
+++ size is 0,  host [64] searching matching queue for src target 5 tag 0
+++ size is 0,  host [64] searching matching queue for src target 6 tag 0
+++ size is 0,  host [64] searching matching queue for src target 7 tag 0
+Current elem time is 0 while NS3 0
+Simulating Until Called
+startflow NDP_0_64 CWND 448500 rts 0 at 0
+startflow NDP_1_64 CWND 448500 rts 0 at 0
+startflow NDP_2_64 CWND 448500 rts 0 at 0
+startflow NDP_3_64 CWND 448500 rts 0 at 0
+startflow NDP_4_64 CWND 448500 rts 0 at 0
+startflow NDP_5_64 CWND 448500 rts 0 at 0
+startflow NDP_6_64 CWND 448500 rts 0 at 0
+startflow NDP_7_64 CWND 448500 rts 0 at 0
+Dest 64 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 3  - PoDPos 3 -------- 4 -> 16
+1) ID 3 - K 3  2) k 3 Next Upper 19
+
+Dest 64 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 1  - PoDPos 1 -------- 4 -> 16
+1) ID 1 - K 1  2) k 1 Next Upper 17
+
+Dest 64 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 0  - PoDPos 0 -------- 4 -> 16
+1) ID 0 - K 0  2) k 0 Next Upper 16
+
+Dest 64 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 2  - PoDPos 2 -------- 4 -> 16
+1) ID 2 - K 2  2) k 2 Next Upper 18
+
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 2 - NUP 18
+Dest 0 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 4 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 4 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Dest 1 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 1 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 1  2) k 1 Next Upper 1
+
+Dest 2 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Dest 2 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 1  2) k 1 Next Upper 1
+
+Dest 4 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 1  2) k 1 Next Upper 1
+
+Dest 3 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 6 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 6 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Dest 7 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Dest 1 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Core -> Upper: _id 0 - NUP 0
+Dest 5 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 2 - NUP 2
+Dest 0 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Dest 0 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 1 - NUP 1
+Dest 7 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 2 - NUP 2
+Dest 3 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Core -> Upper: _id 3 - NUP 3
+Dest 5 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 1  2) k 1 Next Upper 1
+
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 3 - NUP 3
+Dest 4 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Core -> Upper: _id 3 - NUP 3
+Dest 6 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Core -> Upper: _id 1 - NUP 1
+Dest 5 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Dest 3 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 1  2) k 1 Next Upper 1
+
+Dest 1 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Core -> Upper: _id 3 - NUP 3
+Dest 7 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 2
+Dest 2 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Dest 5 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Dest 2 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Core -> Upper: _id 1 - NUP 1
+Dest 3 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Core -> Upper: _id 2 - NUP 2
+Dest 7 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 1  2) k 1 Next Upper 1
+
+Core -> Upper: _id 0 - NUP 0
+Dest 6 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 1  2) k 1 Next Upper 1
+
+Dest 0 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 1  2) k 1 Next Upper 1
+
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 1 - NUP 1
+Currently2 at 10
+Currently2 at 20
+Currently2 at 30
+Currently2 at 40
+Currently2 at 50
+Currently2 at 60
+Currently2 at 70
+Currently2 at 80
+Currently2 at 90
+Currently2 at 100
+Currently2 at 110
+Currently2 at 120
+Currently2 at 130
+Currently2 at 140
+Currently2 at 150
+Currently2 at 160
+Currently2 at 170
+Currently2 at 180
+Currently2 at 190
+Currently2 at 200
+Currently2 at 210
+Currently2 at 220
+Currently2 at 230
+Currently2 at 240
+Currently2 at 250
+Currently2 at 260
+Currently2 at 270
+Currently2 at 280
+Currently2 at 290
+Currently2 at 300
+Currently2 at 310
+Currently2 at 320
+Currently2 at 330
+Currently2 at 340
+Currently2 at 350
+Currently2 at 360
+Currently2 at 370
+Currently2 at 380
+Currently2 at 390
+Currently2 at 400
+Currently2 at 410
+Currently2 at 420
+Currently2 at 430
+Currently2 at 440
+Currently2 at 450
+Currently2 at 460
+Currently2 at 470
+Flow Finished 4@64@0 at 328760960
+Flow NDP_4_64 flow_id 1000000004 finished at 328.761 total bytes 2002944
+Completion Time Flow is 328760960
+Total NACK Flow is 76
+Running - 1 - 328760960
+Updated - Time 328760960
+..... Received a MSG -- host 64 to target 4, proc 0 - Type 1
+----------------------------    ENTERING WHILE        // ---------------------------- | 328760960 328760960 -  1 0 - 8 0 1 - 64 4 0
+OP MSGnexto[elem.host][elem.proc] 0 (64 0) - nextgr[elem.host][elem.nic] 0( 64  0) - time  328760960
+++ size is 8,  host [64] searching matching queue for src target 4 tag 0
+Compared element is -> 0 0 vs 4 0
+Compared element is -> 1 0 vs 4 0
+Compared element is -> 2 0 vs 4 0
+Compared element is -> 3 0 vs 4 0
+Compared element is -> 4 0 vs 4 0
+Searching for MATCHCurrent elem time is 328760960 while NS3 328760960
+Simulating Until Called
+Flow Finished 5@64@0 at 329426560
+Flow NDP_5_64 flow_id 1000000005 finished at 329.427 total bytes 2002944
+Completion Time Flow is 329426560
+Total NACK Flow is 75
+Running - 1 - 329426560
+Updated - Time 329426560
+..... Received a MSG -- host 64 to target 5, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 329426560 329426560 -  1 0 - 7 0 1 - 64 5 0
+OP MSGnexto[elem.host][elem.proc] 328760960 (64 0) - nextgr[elem.host][elem.nic] 328760960( 64  0) - time  329426560
+++ size is 7,  host [64] searching matching queue for src target 5 tag 0
+Compared element is -> 0 0 vs 5 0
+Compared element is -> 1 0 vs 5 0
+Compared element is -> 2 0 vs 5 0
+Compared element is -> 3 0 vs 5 0
+Compared element is -> 5 0 vs 5 0
+Searching for MATCHCurrent elem time is 329426560 while NS3 329426560
+Simulating Until Called
+Flow Finished 2@64@0 at 331340160
+Flow NDP_2_64 flow_id 1000000002 finished at 331.34 total bytes 2002944
+Completion Time Flow is 331340160
+Total NACK Flow is 80
+Running - 1 - 331340160
+Updated - Time 331340160
+..... Received a MSG -- host 64 to target 2, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 331340160 331340160 -  1 0 - 6 0 1 - 64 2 0
+OP MSGnexto[elem.host][elem.proc] 329426560 (64 0) - nextgr[elem.host][elem.nic] 329426560( 64  0) - time  331340160
+++ size is 6,  host [64] searching matching queue for src target 2 tag 0
+Compared element is -> 0 0 vs 2 0
+Compared element is -> 1 0 vs 2 0
+Compared element is -> 2 0 vs 2 0
+Searching for MATCHCurrent elem time is 331340160 while NS3 331340160
+Simulating Until Called
+Currently2 at 480
+Flow Finished 1@64@0 at 334252160
+Flow NDP_1_64 flow_id 1000000001 finished at 334.252 total bytes 2002944
+Completion Time Flow is 334252160
+Total NACK Flow is 88
+Running - 1 - 334252160
+Updated - Time 334252160
+..... Received a MSG -- host 64 to target 1, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 334252160 334252160 -  1 0 - 5 0 1 - 64 1 0
+OP MSGnexto[elem.host][elem.proc] 331340160 (64 0) - nextgr[elem.host][elem.nic] 331340160( 64  0) - time  334252160
+++ size is 5,  host [64] searching matching queue for src target 1 tag 0
+Compared element is -> 0 0 vs 1 0
+Compared element is -> 1 0 vs 1 0
+Searching for MATCHCurrent elem time is 334252160 while NS3 334252160
+Simulating Until Called
+Flow Finished 6@64@0 at 334418560
+Flow NDP_6_64 flow_id 1000000006 finished at 334.419 total bytes 2002944
+Completion Time Flow is 334418560
+Total NACK Flow is 88
+Running - 1 - 334418560
+Updated - Time 334418560
+..... Received a MSG -- host 64 to target 6, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 334418560 334418560 -  1 0 - 4 0 1 - 64 6 0
+OP MSGnexto[elem.host][elem.proc] 334252160 (64 0) - nextgr[elem.host][elem.nic] 334252160( 64  0) - time  334418560
+++ size is 4,  host [64] searching matching queue for src target 6 tag 0
+Compared element is -> 0 0 vs 6 0
+Compared element is -> 3 0 vs 6 0
+Compared element is -> 6 0 vs 6 0
+Searching for MATCHCurrent elem time is 334418560 while NS3 334418560
+Simulating Until Called
+Flow Finished 7@64@0 at 334751360
+Flow NDP_7_64 flow_id 1000000007 finished at 334.751 total bytes 2002944
+Completion Time Flow is 334751360
+Total NACK Flow is 88
+Running - 1 - 334751360
+Updated - Time 334751360
+..... Received a MSG -- host 64 to target 7, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 334751360 334751360 -  1 0 - 3 0 1 - 64 7 0
+OP MSGnexto[elem.host][elem.proc] 334418560 (64 0) - nextgr[elem.host][elem.nic] 334418560( 64  0) - time  334751360
+++ size is 3,  host [64] searching matching queue for src target 7 tag 0
+Compared element is -> 0 0 vs 7 0
+Compared element is -> 3 0 vs 7 0
+Compared element is -> 7 0 vs 7 0
+Searching for MATCHCurrent elem time is 334751360 while NS3 334751360
+Simulating Until Called
+Flow Finished 3@64@0 at 335084160
+Flow NDP_3_64 flow_id 1000000003 finished at 335.084 total bytes 2002944
+Completion Time Flow is 335084160
+Total NACK Flow is 90
+Running - 1 - 335084160
+Updated - Time 335084160
+..... Received a MSG -- host 64 to target 3, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 335084160 335084160 -  1 0 - 2 0 1 - 64 3 0
+OP MSGnexto[elem.host][elem.proc] 334751360 (64 0) - nextgr[elem.host][elem.nic] 334751360( 64  0) - time  335084160
+++ size is 2,  host [64] searching matching queue for src target 3 tag 0
+Compared element is -> 0 0 vs 3 0
+Compared element is -> 3 0 vs 3 0
+Searching for MATCHCurrent elem time is 335084160 while NS3 335084160
+Simulating Until Called
+Flow Finished 0@64@0 at 335167360
+Flow NDP_0_64 flow_id 1000000000 finished at 335.167 total bytes 2002944
+Completion Time Flow is 335167360
+Total NACK Flow is 91
+Running - 1 - 335167360
+Updated - Time 335167360
+..... Received a MSG -- host 64 to target 0, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 335167360 335167360 -  1 0 - 1 0 1 - 64 0 0
+OP MSGnexto[elem.host][elem.proc] 335084160 (64 0) - nextgr[elem.host][elem.nic] 335084160( 64  0) - time  335167360
+++ size is 1,  host [64] searching matching queue for src target 0 tag 0
+Compared element is -> 0 0 vs 0 0
+Searching for MATCHCurrent elem time is 335167360 while NS3 335167360
+..... NOT Received a MSG
+
+
+RunTime Total LGS -> 25ms
+
+
+htsim Terminates at 335167360
+
+
+Remaining 128
+PERFORMANCE: Processes: 128 	 Events: 16 	 Time: 0 s 	 Speed: inf ev/s
+AQ is 0
+Times: 
+Host 0: 0
+Host 1: 0
+Host 2: 0
+Host 3: 0
+Host 4: 0
+Host 5: 0
+Host 6: 0
+Host 7: 0
+Host 8: 0
+Host 9: 0
+Host 10: 0
+Host 11: 0
+Host 12: 0
+Host 13: 0
+Host 14: 0
+Host 15: 0
+Host 16: 0
+Host 17: 0
+Host 18: 0
+Host 19: 0
+Host 20: 0
+Host 21: 0
+Host 22: 0
+Host 23: 0
+Host 24: 0
+Host 25: 0
+Host 26: 0
+Host 27: 0
+Host 28: 0
+Host 29: 0
+Host 30: 0
+Host 31: 0
+Host 32: 0
+Host 33: 0
+Host 34: 0
+Host 35: 0
+Host 36: 0
+Host 37: 0
+Host 38: 0
+Host 39: 0
+Host 40: 0
+Host 41: 0
+Host 42: 0
+Host 43: 0
+Host 44: 0
+Host 45: 0
+Host 46: 0
+Host 47: 0
+Host 48: 0
+Host 49: 0
+Host 50: 0
+Host 51: 0
+Host 52: 0
+Host 53: 0
+Host 54: 0
+Host 55: 0
+Host 56: 0
+Host 57: 0
+Host 58: 0
+Host 59: 0
+Host 60: 0
+Host 61: 0
+Host 62: 0
+Host 63: 0
+Host 64: 335167360
+Host 65: 0
+Host 66: 0
+Host 67: 0
+Host 68: 0
+Host 69: 0
+Host 70: 0
+Host 71: 0
+Host 72: 0
+Host 73: 0
+Host 74: 0
+Host 75: 0
+Host 76: 0
+Host 77: 0
+Host 78: 0
+Host 79: 0
+Host 80: 0
+Host 81: 0
+Host 82: 0
+Host 83: 0
+Host 84: 0
+Host 85: 0
+Host 86: 0
+Host 87: 0
+Host 88: 0
+Host 89: 0
+Host 90: 0
+Host 91: 0
+Host 92: 0
+Host 93: 0
+Host 94: 0
+Host 95: 0
+Host 96: 0
+Host 97: 0
+Host 98: 0
+Host 99: 0
+Host 100: 0
+Host 101: 0
+Host 102: 0
+Host 103: 0
+Host 104: 0
+Host 105: 0
+Host 106: 0
+Host 107: 0
+Host 108: 0
+Host 109: 0
+Host 110: 0
+Host 111: 0
+Host 112: 0
+Host 113: 0
+Host 114: 0
+Host 115: 0
+Host 116: 0
+Host 117: 0
+Host 118: 0
+Host 119: 0
+Host 120: 0
+Host 121: 0
+Host 122: 0
+Host 123: 0
+Host 124: 0
+Host 125: 0
+Host 126: 0
+Host 127: 0
+Maximum finishing time at host 64: 335167360 (0.335167 s)
+Mean number of subflows -nan

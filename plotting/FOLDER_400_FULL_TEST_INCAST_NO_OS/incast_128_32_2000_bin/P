@@ -1,0 +1,3560 @@
+no_of_nodes 128
+KMin: 20
+KMax: 80
+cwnd 448500
+Speed is 400000
+Using subflow count 1
+Logging to uec_entry
+Logging path choices to uec_entry.paths
+Name Running: NDP
+Fat Tree topology with 0.7us links and 0us switching latency.
+Set params 128
+QueueSize 448500
+_no_of_nodes 128
+K 8
+Queue type 3
+total switches: ToR 32 NAGG 32 NCORE 16 srv_per_tor 4
+SRC0->LS0
+SRC1->LS0
+SRC2->LS0
+SRC3->LS0
+SRC4->LS1
+SRC5->LS1
+SRC6->LS1
+SRC7->LS1
+SRC8->LS2
+SRC9->LS2
+SRC10->LS2
+SRC11->LS2
+SRC12->LS3
+SRC13->LS3
+SRC14->LS3
+SRC15->LS3
+SRC16->LS4
+SRC17->LS4
+SRC18->LS4
+SRC19->LS4
+SRC20->LS5
+SRC21->LS5
+SRC22->LS5
+SRC23->LS5
+SRC24->LS6
+SRC25->LS6
+SRC26->LS6
+SRC27->LS6
+SRC28->LS7
+SRC29->LS7
+SRC30->LS7
+SRC31->LS7
+SRC32->LS8
+SRC33->LS8
+SRC34->LS8
+SRC35->LS8
+SRC36->LS9
+SRC37->LS9
+SRC38->LS9
+SRC39->LS9
+SRC40->LS10
+SRC41->LS10
+SRC42->LS10
+SRC43->LS10
+SRC44->LS11
+SRC45->LS11
+SRC46->LS11
+SRC47->LS11
+SRC48->LS12
+SRC49->LS12
+SRC50->LS12
+SRC51->LS12
+SRC52->LS13
+SRC53->LS13
+SRC54->LS13
+SRC55->LS13
+SRC56->LS14
+SRC57->LS14
+SRC58->LS14
+SRC59->LS14
+SRC60->LS15
+SRC61->LS15
+SRC62->LS15
+SRC63->LS15
+SRC64->LS16
+SRC65->LS16
+SRC66->LS16
+SRC67->LS16
+SRC68->LS17
+SRC69->LS17
+SRC70->LS17
+SRC71->LS17
+SRC72->LS18
+SRC73->LS18
+SRC74->LS18
+SRC75->LS18
+SRC76->LS19
+SRC77->LS19
+SRC78->LS19
+SRC79->LS19
+SRC80->LS20
+SRC81->LS20
+SRC82->LS20
+SRC83->LS20
+SRC84->LS21
+SRC85->LS21
+SRC86->LS21
+SRC87->LS21
+SRC88->LS22
+SRC89->LS22
+SRC90->LS22
+SRC91->LS22
+SRC92->LS23
+SRC93->LS23
+SRC94->LS23
+SRC95->LS23
+SRC96->LS24
+SRC97->LS24
+SRC98->LS24
+SRC99->LS24
+SRC100->LS25
+SRC101->LS25
+SRC102->LS25
+SRC103->LS25
+SRC104->LS26
+SRC105->LS26
+SRC106->LS26
+SRC107->LS26
+SRC108->LS27
+SRC109->LS27
+SRC110->LS27
+SRC111->LS27
+SRC112->LS28
+SRC113->LS28
+SRC114->LS28
+SRC115->LS28
+SRC116->LS29
+SRC117->LS29
+SRC118->LS29
+SRC119->LS29
+SRC120->LS30
+SRC121->LS30
+SRC122->LS30
+SRC123->LS30
+SRC124->LS31
+SRC125->LS31
+SRC126->LS31
+SRC127->LS31
+LS0->US0
+LS0->US1
+LS0->US2
+LS0->US3
+LS1->US0
+LS1->US1
+LS1->US2
+LS1->US3
+LS2->US0
+LS2->US1
+LS2->US2
+LS2->US3
+LS3->US0
+LS3->US1
+LS3->US2
+LS3->US3
+LS4->US4
+LS4->US5
+LS4->US6
+LS4->US7
+LS5->US4
+LS5->US5
+LS5->US6
+LS5->US7
+LS6->US4
+LS6->US5
+LS6->US6
+LS6->US7
+LS7->US4
+LS7->US5
+LS7->US6
+LS7->US7
+LS8->US8
+LS8->US9
+LS8->US10
+LS8->US11
+LS9->US8
+LS9->US9
+LS9->US10
+LS9->US11
+LS10->US8
+LS10->US9
+LS10->US10
+LS10->US11
+LS11->US8
+LS11->US9
+LS11->US10
+LS11->US11
+LS12->US12
+LS12->US13
+LS12->US14
+LS12->US15
+LS13->US12
+LS13->US13
+LS13->US14
+LS13->US15
+LS14->US12
+LS14->US13
+LS14->US14
+LS14->US15
+LS15->US12
+LS15->US13
+LS15->US14
+LS15->US15
+LS16->US16
+LS16->US17
+LS16->US18
+LS16->US19
+LS17->US16
+LS17->US17
+LS17->US18
+LS17->US19
+LS18->US16
+LS18->US17
+LS18->US18
+LS18->US19
+LS19->US16
+LS19->US17
+LS19->US18
+LS19->US19
+LS20->US20
+LS20->US21
+LS20->US22
+LS20->US23
+LS21->US20
+LS21->US21
+LS21->US22
+LS21->US23
+LS22->US20
+LS22->US21
+LS22->US22
+LS22->US23
+LS23->US20
+LS23->US21
+LS23->US22
+LS23->US23
+LS24->US24
+LS24->US25
+LS24->US26
+LS24->US27
+LS25->US24
+LS25->US25
+LS25->US26
+LS25->US27
+LS26->US24
+LS26->US25
+LS26->US26
+LS26->US27
+LS27->US24
+LS27->US25
+LS27->US26
+LS27->US27
+LS28->US28
+LS28->US29
+LS28->US30
+LS28->US31
+LS29->US28
+LS29->US29
+LS29->US30
+LS29->US31
+LS30->US28
+LS30->US29
+LS30->US30
+LS30->US31
+LS31->US28
+LS31->US29
+LS31->US30
+LS31->US31
+US0->CS0
+US0->CS1
+US0->CS2
+US0->CS3
+US1->CS4
+US1->CS5
+US1->CS6
+US1->CS7
+US2->CS8
+US2->CS9
+US2->CS10
+US2->CS11
+US3->CS12
+US3->CS13
+US3->CS14
+US3->CS15
+US4->CS0
+US4->CS1
+US4->CS2
+US4->CS3
+US5->CS4
+US5->CS5
+US5->CS6
+US5->CS7
+US6->CS8
+US6->CS9
+US6->CS10
+US6->CS11
+US7->CS12
+US7->CS13
+US7->CS14
+US7->CS15
+US8->CS0
+US8->CS1
+US8->CS2
+US8->CS3
+US9->CS4
+US9->CS5
+US9->CS6
+US9->CS7
+US10->CS8
+US10->CS9
+US10->CS10
+US10->CS11
+US11->CS12
+US11->CS13
+US11->CS14
+US11->CS15
+US12->CS0
+US12->CS1
+US12->CS2
+US12->CS3
+US13->CS4
+US13->CS5
+US13->CS6
+US13->CS7
+US14->CS8
+US14->CS9
+US14->CS10
+US14->CS11
+US15->CS12
+US15->CS13
+US15->CS14
+US15->CS15
+US16->CS0
+US16->CS1
+US16->CS2
+US16->CS3
+US17->CS4
+US17->CS5
+US17->CS6
+US17->CS7
+US18->CS8
+US18->CS9
+US18->CS10
+US18->CS11
+US19->CS12
+US19->CS13
+US19->CS14
+US19->CS15
+US20->CS0
+US20->CS1
+US20->CS2
+US20->CS3
+US21->CS4
+US21->CS5
+US21->CS6
+US21->CS7
+US22->CS8
+US22->CS9
+US22->CS10
+US22->CS11
+US23->CS12
+US23->CS13
+US23->CS14
+US23->CS15
+US24->CS0
+US24->CS1
+US24->CS2
+US24->CS3
+US25->CS4
+US25->CS5
+US25->CS6
+US25->CS7
+US26->CS8
+US26->CS9
+US26->CS10
+US26->CS11
+US27->CS12
+US27->CS13
+US27->CS14
+US27->CS15
+US28->CS0
+US28->CS1
+US28->CS2
+US28->CS3
+US29->CS4
+US29->CS5
+US29->CS6
+US29->CS7
+US30->CS8
+US30->CS9
+US30->CS10
+US30->CS11
+US31->CS12
+US31->CS13
+US31->CS14
+US31->CS15
+Starting LGS InterfaceCurrent working directory: "/home/tommaso/csg-htsim/plotting"
+LogGP network backend; size: 128 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O=0, P=128, S=65535
+Starting 128
+----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 64 - 0 64 0
+sink tag is 0
+Scheduling Event (0@64@0) of size 2000000 from 0 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (1@64@0) of size 2000000 from 1 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (2@64@0) of size 2000000 from 2 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (3@64@0) of size 2000000 from 3 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (4@64@0) of size 2000000 from 4 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (5@64@0) of size 2000000 from 5 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (6@64@0) of size 2000000 from 6 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (7@64@0) of size 2000000 from 7 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (8@64@0) of size 2000000 from 8 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (9@64@0) of size 2000000 from 9 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (10@64@0) of size 2000000 from 10 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (11@64@0) of size 2000000 from 11 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (12@64@0) of size 2000000 from 12 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (13@64@0) of size 2000000 from 13 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (14@64@0) of size 2000000 from 14 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (15@64@0) of size 2000000 from 15 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (16@64@0) of size 2000000 from 16 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (17@64@0) of size 2000000 from 17 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (18@64@0) of size 2000000 from 18 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (19@64@0) of size 2000000 from 19 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (20@64@0) of size 2000000 from 20 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (21@64@0) of size 2000000 from 21 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (22@64@0) of size 2000000 from 22 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (23@64@0) of size 2000000 from 23 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (24@64@0) of size 2000000 from 24 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (25@64@0) of size 2000000 from 25 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (26@64@0) of size 2000000 from 26 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (27@64@0) of size 2000000 from 27 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (28@64@0) of size 2000000 from 28 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (29@64@0) of size 2000000 from 29 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (30@64@0) of size 2000000 from 30 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ sink tag is 0
+Scheduling Event (31@64@0) of size 2000000 from 31 to 64 tag 0 start_tiem 94847698818536 - Time is 0
+ ++ size is 0,  host [64] searching matching queue for src target 16 tag 0
+++ size is 0,  host [64] searching matching queue for src target 31 tag 0
+++ size is 0,  host [64] searching matching queue for src target 30 tag 0
+++ size is 0,  host [64] searching matching queue for src target 29 tag 0
+++ size is 0,  host [64] searching matching queue for src target 28 tag 0
+++ size is 0,  host [64] searching matching queue for src target 27 tag 0
+++ size is 0,  host [64] searching matching queue for src target 26 tag 0
+++ size is 0,  host [64] searching matching queue for src target 25 tag 0
+++ size is 0,  host [64] searching matching queue for src target 24 tag 0
+++ size is 0,  host [64] searching matching queue for src target 23 tag 0
+++ size is 0,  host [64] searching matching queue for src target 22 tag 0
+++ size is 0,  host [64] searching matching queue for src target 21 tag 0
+++ size is 0,  host [64] searching matching queue for src target 20 tag 0
+++ size is 0,  host [64] searching matching queue for src target 19 tag 0
+++ size is 0,  host [64] searching matching queue for src target 18 tag 0
+++ size is 0,  host [64] searching matching queue for src target 17 tag 0
+++ size is 0,  host [64] searching matching queue for src target 0 tag 0
+++ size is 0,  host [64] searching matching queue for src target 15 tag 0
+++ size is 0,  host [64] searching matching queue for src target 14 tag 0
+++ size is 0,  host [64] searching matching queue for src target 13 tag 0
+++ size is 0,  host [64] searching matching queue for src target 12 tag 0
+++ size is 0,  host [64] searching matching queue for src target 11 tag 0
+++ size is 0,  host [64] searching matching queue for src target 10 tag 0
+++ size is 0,  host [64] searching matching queue for src target 9 tag 0
+++ size is 0,  host [64] searching matching queue for src target 8 tag 0
+++ size is 0,  host [64] searching matching queue for src target 7 tag 0
+++ size is 0,  host [64] searching matching queue for src target 6 tag 0
+++ size is 0,  host [64] searching matching queue for src target 5 tag 0
+++ size is 0,  host [64] searching matching queue for src target 4 tag 0
+++ size is 0,  host [64] searching matching queue for src target 3 tag 0
+++ size is 0,  host [64] searching matching queue for src target 2 tag 0
+++ size is 0,  host [64] searching matching queue for src target 1 tag 0
+Current elem time is 0 while NS3 0
+Simulating Until Called
+startflow NDP_0_64 CWND 448500 rts 0 at 0
+startflow NDP_1_64 CWND 448500 rts 0 at 0
+startflow NDP_2_64 CWND 448500 rts 0 at 0
+startflow NDP_3_64 CWND 448500 rts 0 at 0
+startflow NDP_4_64 CWND 448500 rts 0 at 0
+startflow NDP_5_64 CWND 448500 rts 0 at 0
+startflow NDP_6_64 CWND 448500 rts 0 at 0
+startflow NDP_7_64 CWND 448500 rts 0 at 0
+startflow NDP_8_64 CWND 448500 rts 0 at 0
+startflow NDP_9_64 CWND 448500 rts 0 at 0
+startflow NDP_10_64 CWND 448500 rts 0 at 0
+startflow NDP_11_64 CWND 448500 rts 0 at 0
+startflow NDP_12_64 CWND 448500 rts 0 at 0
+startflow NDP_13_64 CWND 448500 rts 0 at 0
+startflow NDP_14_64 CWND 448500 rts 0 at 0
+startflow NDP_15_64 CWND 448500 rts 0 at 0
+startflow NDP_16_64 CWND 448500 rts 0 at 0
+startflow NDP_17_64 CWND 448500 rts 0 at 0
+startflow NDP_18_64 CWND 448500 rts 0 at 0
+startflow NDP_19_64 CWND 448500 rts 0 at 0
+startflow NDP_20_64 CWND 448500 rts 0 at 0
+startflow NDP_21_64 CWND 448500 rts 0 at 0
+startflow NDP_22_64 CWND 448500 rts 0 at 0
+startflow NDP_23_64 CWND 448500 rts 0 at 0
+startflow NDP_24_64 CWND 448500 rts 0 at 0
+startflow NDP_25_64 CWND 448500 rts 0 at 0
+startflow NDP_26_64 CWND 448500 rts 0 at 0
+startflow NDP_27_64 CWND 448500 rts 0 at 0
+startflow NDP_28_64 CWND 448500 rts 0 at 0
+startflow NDP_29_64 CWND 448500 rts 0 at 0
+startflow NDP_30_64 CWND 448500 rts 0 at 0
+startflow NDP_31_64 CWND 448500 rts 0 at 0
+Dest 64 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 0  - PoDPos 0 -------- 4 -> 16
+1) ID 0 - K 0  2) k 0 Next Upper 16
+
+Dest 64 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 0  - PoDPos 0 -------- 4 -> 16
+1) ID 0 - K 1  2) k 1 Next Upper 16
+
+Dest 64 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 0  - PoDPos 0 -------- 4 -> 16
+1) ID 0 - K 2  2) k 2 Next Upper 16
+
+Dest 64 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 0  - PoDPos 0 -------- 4 -> 16
+1) ID 0 - K 3  2) k 3 Next Upper 16
+
+Dest 64 - FTK 8 - k 12 - HOSTPOD 4 - 4160 - ID 3  - PoDPos 3 -------- 4 -> 16
+1) ID 3 - K 12  2) k 12 Next Upper 19
+
+Dest 64 - FTK 8 - k 13 - HOSTPOD 4 - 4160 - ID 3  - PoDPos 3 -------- 4 -> 16
+1) ID 3 - K 13  2) k 13 Next Upper 19
+
+Dest 64 - FTK 8 - k 14 - HOSTPOD 4 - 4160 - ID 3  - PoDPos 3 -------- 4 -> 16
+1) ID 3 - K 14  2) k 14 Next Upper 19
+
+Dest 64 - FTK 8 - k 15 - HOSTPOD 4 - 4160 - ID 3  - PoDPos 3 -------- 4 -> 16
+1) ID 3 - K 15  2) k 15 Next Upper 19
+
+Dest 64 - FTK 8 - k 4 - HOSTPOD 4 - 4160 - ID 1  - PoDPos 1 -------- 4 -> 16
+1) ID 1 - K 4  2) k 4 Next Upper 17
+
+Dest 64 - FTK 8 - k 5 - HOSTPOD 4 - 4160 - ID 1  - PoDPos 1 -------- 4 -> 16
+1) ID 1 - K 5  2) k 5 Next Upper 17
+
+Dest 64 - FTK 8 - k 6 - HOSTPOD 4 - 4160 - ID 1  - PoDPos 1 -------- 4 -> 16
+1) ID 1 - K 6  2) k 6 Next Upper 17
+
+Dest 64 - FTK 8 - k 7 - HOSTPOD 4 - 4160 - ID 1  - PoDPos 1 -------- 4 -> 16
+1) ID 1 - K 7  2) k 7 Next Upper 17
+
+Dest 64 - FTK 8 - k 4 - HOSTPOD 4 - 4160 - ID 5  - PoDPos 1 -------- 4 -> 16
+1) ID 5 - K 4  2) k 4 Next Upper 17
+
+Dest 64 - FTK 8 - k 5 - HOSTPOD 4 - 4160 - ID 5  - PoDPos 1 -------- 4 -> 16
+1) ID 5 - K 5  2) k 5 Next Upper 17
+
+Dest 64 - FTK 8 - k 6 - HOSTPOD 4 - 4160 - ID 5  - PoDPos 1 -------- 4 -> 16
+1) ID 5 - K 6  2) k 6 Next Upper 17
+
+Dest 64 - FTK 8 - k 7 - HOSTPOD 4 - 4160 - ID 5  - PoDPos 1 -------- 4 -> 16
+1) ID 5 - K 7  2) k 7 Next Upper 17
+
+Dest 64 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 0  2) k 0 Next Upper 16
+
+Dest 64 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 1  2) k 1 Next Upper 16
+
+Dest 64 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 2  2) k 2 Next Upper 16
+
+Dest 64 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 3  2) k 3 Next Upper 16
+
+Dest 64 - FTK 8 - k 8 - HOSTPOD 4 - 4160 - ID 2  - PoDPos 2 -------- 4 -> 16
+1) ID 2 - K 8  2) k 8 Next Upper 18
+
+Dest 64 - FTK 8 - k 9 - HOSTPOD 4 - 4160 - ID 2  - PoDPos 2 -------- 4 -> 16
+1) ID 2 - K 9  2) k 9 Next Upper 18
+
+Dest 64 - FTK 8 - k 10 - HOSTPOD 4 - 4160 - ID 2  - PoDPos 2 -------- 4 -> 16
+1) ID 2 - K 10  2) k 10 Next Upper 18
+
+Dest 64 - FTK 8 - k 11 - HOSTPOD 4 - 4160 - ID 2  - PoDPos 2 -------- 4 -> 16
+1) ID 2 - K 11  2) k 11 Next Upper 18
+
+Dest 64 - FTK 8 - k 12 - HOSTPOD 4 - 4160 - ID 7  - PoDPos 3 -------- 4 -> 16
+1) ID 7 - K 12  2) k 12 Next Upper 19
+
+Dest 64 - FTK 8 - k 13 - HOSTPOD 4 - 4160 - ID 7  - PoDPos 3 -------- 4 -> 16
+1) ID 7 - K 13  2) k 13 Next Upper 19
+
+Dest 64 - FTK 8 - k 14 - HOSTPOD 4 - 4160 - ID 7  - PoDPos 3 -------- 4 -> 16
+1) ID 7 - K 14  2) k 14 Next Upper 19
+
+Dest 64 - FTK 8 - k 15 - HOSTPOD 4 - 4160 - ID 7  - PoDPos 3 -------- 4 -> 16
+1) ID 7 - K 15  2) k 15 Next Upper 19
+
+Dest 64 - FTK 8 - k 8 - HOSTPOD 4 - 4160 - ID 6  - PoDPos 2 -------- 4 -> 16
+1) ID 6 - K 8  2) k 8 Next Upper 18
+
+Dest 64 - FTK 8 - k 9 - HOSTPOD 4 - 4160 - ID 6  - PoDPos 2 -------- 4 -> 16
+1) ID 6 - K 9  2) k 9 Next Upper 18
+
+Dest 64 - FTK 8 - k 10 - HOSTPOD 4 - 4160 - ID 6  - PoDPos 2 -------- 4 -> 16
+1) ID 6 - K 10  2) k 10 Next Upper 18
+
+Dest 64 - FTK 8 - k 11 - HOSTPOD 4 - 4160 - ID 6  - PoDPos 2 -------- 4 -> 16
+1) ID 6 - K 11  2) k 11 Next Upper 18
+
+Core -> Upper: _id 1 - NUP 16
+Core -> Upper: _id 15 - NUP 19
+Core -> Upper: _id 5 - NUP 17
+Core -> Upper: _id 6 - NUP 17
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 11 - NUP 18
+Core -> Upper: _id 14 - NUP 19
+Core -> Upper: _id 8 - NUP 18
+Core -> Upper: _id 12 - NUP 19
+Core -> Upper: _id 3 - NUP 16
+Core -> Upper: _id 4 - NUP 17
+Core -> Upper: _id 7 - NUP 17
+Core -> Upper: _id 2 - NUP 16
+Core -> Upper: _id 13 - NUP 19
+Core -> Upper: _id 9 - NUP 18
+Core -> Upper: _id 10 - NUP 18
+Dest 0 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 0 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 0 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 0 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 4 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 4 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 4 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 4 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 4 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 4 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 4 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 4 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Dest 8 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 8 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 8 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 8 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 13 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 13 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 13 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 13 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Dest 20 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 20 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 20 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 20 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Dest 20 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 20 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 20 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 20 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Dest 21 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 21 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 21 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 21 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Dest 21 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 21 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 21 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 21 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Dest 16 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 16 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 16 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 16 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Dest 16 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 16 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 16 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 16 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Dest 23 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 23 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 23 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 23 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Dest 23 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 23 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 23 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 23 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Dest 28 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 28 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 28 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 28 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Dest 28 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 28 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 28 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 28 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Core -> Upper: _id 6 - NUP 1
+Dest 1 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 1 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 1 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 1 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 1 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 1 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 1 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 1 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 9 - NUP 2
+Dest 6 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 6 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 6 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 6 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 5 - NUP 1
+Dest 9 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 9 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 9 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 9 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 9 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 9 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 9 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 9 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 15 - NUP 3
+Dest 14 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 14 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 14 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 14 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 5 - NUP 5
+Dest 31 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 31 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 31 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 31 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Dest 31 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 31 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 31 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 31 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 14 - NUP 7
+Dest 17 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 17 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 17 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 17 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Dest 17 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 17 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 17 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 17 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 3 - NUP 4
+Dest 17 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 17 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 17 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 17 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 11 - NUP 6
+Dest 7 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 7 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 7 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 7 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Dest 7 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 7 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 7 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 7 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 11 - NUP 6
+Dest 29 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 29 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 29 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 29 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Dest 29 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 29 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 29 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 29 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 13 - NUP 3
+Dest 24 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 24 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 24 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 24 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Dest 24 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 24 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 24 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 24 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 8 - NUP 2
+Dest 10 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 10 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 10 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 10 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 10 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 10 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 10 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 10 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 3 - NUP 0
+Dest 15 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 15 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 15 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 15 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Core -> Upper: _id 1 - NUP 0
+Dest 26 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 26 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 26 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 26 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Dest 26 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 26 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 26 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 26 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 3 - NUP 4
+Dest 3 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 3 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 3 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 3 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Dest 3 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 3 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 3 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 3 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 15 - NUP 7
+Dest 20 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 20 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 20 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 20 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Core -> Upper: _id 5 - NUP 5
+Dest 1 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 1 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 1 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 1 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 10 - NUP 2
+Dest 22 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 22 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 22 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 22 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Dest 22 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 22 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 22 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 22 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 10 - NUP 6
+Dest 25 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 25 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 25 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 25 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Dest 25 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 25 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 25 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 25 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 11 - NUP 2
+Dest 19 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 19 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 19 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 19 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Dest 19 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 19 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 19 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 19 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 7 - NUP 5
+Dest 12 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 12 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 12 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 12 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 4 - NUP 1
+Dest 2 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 2 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 2 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 2 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 2 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 2 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 2 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 2 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Core -> Upper: _id 10 - NUP 6
+Dest 8 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 8 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 8 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 8 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Core -> Upper: _id 10 - NUP 2
+Dest 8 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 8 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 8 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 8 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 15 - NUP 7
+Dest 30 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 30 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 30 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 30 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Dest 5 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 5 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 5 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 5 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 8 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 8 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 8 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 8 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 18 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 18 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 18 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 18 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Dest 24 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 24 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 24 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 24 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Dest 18 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 18 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 18 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 18 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Dest 14 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 14 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 14 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 14 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Dest 12 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 12 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 12 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 12 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Dest 5 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 5 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 5 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 5 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Core -> Upper: _id 5 - NUP 5
+Dest 3 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 3 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 3 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 3 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Dest 23 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 23 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 23 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 23 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Dest 26 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 26 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 26 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 26 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Core -> Upper: _id 4 - NUP 5
+Dest 6 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 6 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 6 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 6 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 9 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 9 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 9 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 9 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Dest 15 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 15 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 15 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 15 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 13 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 13 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 13 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 13 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Dest 10 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 10 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 10 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 10 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 4 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 4 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 4 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 4 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 29 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 29 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 29 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 29 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Dest 24 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 24 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 24 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 24 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 9 - NUP 6
+Dest 27 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 27 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 27 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 27 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Dest 11 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 11 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 11 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 11 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 21 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 21 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 21 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 21 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Dest 11 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 11 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 11 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 11 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 13 - NUP 3
+Dest 22 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 22 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 22 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 22 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Dest 16 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 16 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 16 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 16 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Dest 15 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 15 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 15 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 15 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 3 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 3 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 3 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 3 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 30 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 30 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 30 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 30 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Dest 11 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 11 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 11 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 11 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 15 - NUP 3
+Dest 12 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 12 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 12 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 12 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 2 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 2 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 2 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 2 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Dest 17 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 17 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 17 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 17 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Dest 25 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 25 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 25 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 25 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Dest 31 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 31 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 31 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 31 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Dest 0 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 0 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 0 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 0 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Dest 19 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 19 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 19 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 19 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Dest 31 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 31 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 31 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 31 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Dest 20 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 20 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 20 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 20 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Core -> Upper: _id 8 - NUP 2
+Dest 12 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 12 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 12 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 12 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 25 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 25 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 25 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 25 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Dest 18 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 18 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 18 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 18 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Core -> Upper: _id 15 - NUP 3
+Dest 27 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 27 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 27 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 27 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Dest 28 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 28 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 28 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 28 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Dest 18 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 18 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 18 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 18 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Dest 13 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 13 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 13 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 13 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 7 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 7 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 7 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 7 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 7 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 7 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 7 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 7 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Dest 30 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 30 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 30 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 30 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 4 - NUP 1
+Dest 19 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 19 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 19 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 19 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Dest 5 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 5 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 5 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 5 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Dest 27 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 27 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 27 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 27 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Dest 6 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 6 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 6 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 6 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 5 - NUP 5
+Dest 0 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 0 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 0 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 0 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Dest 15 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 15 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 15 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 15 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Dest 0 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 0 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 0 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 0 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 2 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 2 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 2 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 2 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 21 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 21 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 21 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 21 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 15 - NUP 3
+Dest 22 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 22 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 22 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 22 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 4 - NUP 1
+Dest 26 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 26 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 26 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 26 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Dest 16 - FTK 8 - k 12 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 12  2) k 12 Next Upper 7
+
+Dest 16 - FTK 8 - k 13 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 13  2) k 13 Next Upper 7
+
+Dest 16 - FTK 8 - k 14 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 14  2) k 14 Next Upper 7
+
+Dest 16 - FTK 8 - k 15 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 15  2) k 15 Next Upper 7
+
+Dest 14 - FTK 8 - k 4 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 4  2) k 4 Next Upper 1
+
+Dest 14 - FTK 8 - k 5 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 5  2) k 5 Next Upper 1
+
+Dest 14 - FTK 8 - k 6 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 6  2) k 6 Next Upper 1
+
+Dest 14 - FTK 8 - k 7 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 7  2) k 7 Next Upper 1
+
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 8 - NUP 6
+Dest 4 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 4 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 4 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 4 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Dest 27 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 27 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 27 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 27 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 0 - NUP 0
+Dest 14 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 14 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 14 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 14 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Dest 13 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 13 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 13 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 13 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Dest 5 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 5 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 5 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 5 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 4 - NUP 1
+Dest 9 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 9 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 9 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 9 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Dest 23 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 23 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 23 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 23 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 7 - NUP 1
+Dest 29 - FTK 8 - k 4 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 4  2) k 4 Next Upper 5
+
+Dest 29 - FTK 8 - k 5 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 5  2) k 5 Next Upper 5
+
+Dest 29 - FTK 8 - k 6 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 6  2) k 6 Next Upper 5
+
+Dest 29 - FTK 8 - k 7 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 7  2) k 7 Next Upper 5
+
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 3 - NUP 0
+Dest 6 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 6 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 6 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 6 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 0 - NUP 0
+Dest 1 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 1 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 1  2) k 1 Next Upper 0
+
+Dest 1 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 2  2) k 2 Next Upper 0
+
+Dest 1 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 3  2) k 3 Next Upper 0
+
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 6 - NUP 1
+Dest 30 - FTK 8 - k 8 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 8  2) k 8 Next Upper 6
+
+Dest 30 - FTK 8 - k 9 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 9  2) k 9 Next Upper 6
+
+Dest 30 - FTK 8 - k 10 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 10  2) k 10 Next Upper 6
+
+Dest 30 - FTK 8 - k 11 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 11  2) k 11 Next Upper 6
+
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 7 - NUP 5
+Dest 28 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 28 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 1  2) k 1 Next Upper 4
+
+Dest 28 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 2  2) k 2 Next Upper 4
+
+Dest 28 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 3  2) k 3 Next Upper 4
+
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 12 - NUP 7
+Dest 10 - FTK 8 - k 12 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 12  2) k 12 Next Upper 3
+
+Dest 10 - FTK 8 - k 13 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 13  2) k 13 Next Upper 3
+
+Dest 10 - FTK 8 - k 14 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 14  2) k 14 Next Upper 3
+
+Dest 10 - FTK 8 - k 15 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 15  2) k 15 Next Upper 3
+
+Dest 11 - FTK 8 - k 8 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 8  2) k 8 Next Upper 2
+
+Dest 11 - FTK 8 - k 9 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 9  2) k 9 Next Upper 2
+
+Dest 11 - FTK 8 - k 10 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 10  2) k 10 Next Upper 2
+
+Dest 11 - FTK 8 - k 11 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 11  2) k 11 Next Upper 2
+
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 15 - NUP 7
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 2 - NUP 0
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 11 - NUP 6
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 3 - NUP 0
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 2 - NUP 4
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 4 - NUP 5
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 5 - NUP 1
+Core -> Upper: _id 6 - NUP 1
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 3 - NUP 4
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 13 - NUP 7
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 8 - NUP 6
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 10 - NUP 2
+Core -> Upper: _id 7 - NUP 5
+Core -> Upper: _id 8 - NUP 2
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 14 - NUP 7
+Core -> Upper: _id 14 - NUP 3
+Core -> Upper: _id 13 - NUP 3
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 9 - NUP 6
+Core -> Upper: _id 4 - NUP 1
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 10 - NUP 6
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 7 - NUP 1
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 1 - NUP 4
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 1 - NUP 0
+Core -> Upper: _id 6 - NUP 5
+Core -> Upper: _id 9 - NUP 2
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 12 - NUP 7
+Core -> Upper: _id 11 - NUP 2
+Core -> Upper: _id 12 - NUP 3
+Core -> Upper: _id 15 - NUP 3
+Core -> Upper: _id 5 - NUP 5
+Core -> Upper: _id 9 - NUP 2
+Currently2 at 10
+Currently2 at 20
+Currently2 at 30
+Currently2 at 40
+Currently2 at 50
+Currently2 at 60
+Currently2 at 70
+Currently2 at 80
+Currently2 at 90
+Currently2 at 100
+Currently2 at 110
+Currently2 at 120
+Currently2 at 130
+Currently2 at 140
+Currently2 at 150
+Currently2 at 160
+Currently2 at 170
+Currently2 at 180
+Currently2 at 190
+Currently2 at 200
+Currently2 at 210
+Currently2 at 220
+Currently2 at 230
+Currently2 at 240
+Currently2 at 250
+Currently2 at 260
+Currently2 at 270
+Currently2 at 280
+Currently2 at 290
+Currently2 at 300
+Currently2 at 310
+Currently2 at 320
+Currently2 at 330
+Currently2 at 340
+Currently2 at 350
+Currently2 at 360
+Currently2 at 370
+Currently2 at 380
+Currently2 at 390
+Currently2 at 400
+Currently2 at 410
+Currently2 at 420
+Currently2 at 430
+Currently2 at 440
+Currently2 at 450
+Currently2 at 460
+Currently2 at 470
+Currently2 at 480
+Flow Finished 17@64@0 at 1299003560
+Flow NDP_17_64 flow_id 1000000017 finished at 1299 total bytes 2002944
+Completion Time Flow is 1299003560
+Total NACK Flow is 99
+Running - 1 - 1299003560
+Updated - Time 1299003560
+..... Received a MSG -- host 64 to target 17, proc 0 - Type 1
+----------------------------    ENTERING WHILE        // ---------------------------- | 1299003560 1299003560 -  1 0 - 32 0 1 - 64 17 0
+OP MSGnexto[elem.host][elem.proc] 0 (64 0) - nextgr[elem.host][elem.nic] 0( 64  0) - time  1299003560
+++ size is 32,  host [64] searching matching queue for src target 17 tag 0
+Compared element is -> 16 0 vs 17 0
+Compared element is -> 31 0 vs 17 0
+Compared element is -> 30 0 vs 17 0
+Compared element is -> 29 0 vs 17 0
+Compared element is -> 28 0 vs 17 0
+Compared element is -> 27 0 vs 17 0
+Compared element is -> 26 0 vs 17 0
+Compared element is -> 25 0 vs 17 0
+Compared element is -> 24 0 vs 17 0
+Compared element is -> 23 0 vs 17 0
+Compared element is -> 22 0 vs 17 0
+Compared element is -> 21 0 vs 17 0
+Compared element is -> 20 0 vs 17 0
+Compared element is -> 19 0 vs 17 0
+Compared element is -> 18 0 vs 17 0
+Compared element is -> 17 0 vs 17 0
+Searching for MATCHCurrent elem time is 1299003560 while NS3 1299003560
+Simulating Until Called
+Flow Finished 0@64@0 at 1302953440
+Flow NDP_0_64 flow_id 1000000000 finished at 1302.95 total bytes 2002944
+Completion Time Flow is 1302953440
+Total NACK Flow is 99
+Running - 1 - 1302953440
+Updated - Time 1302953440
+..... Received a MSG -- host 64 to target 0, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1302953440 1302953440 -  1 0 - 31 0 1 - 64 0 0
+OP MSGnexto[elem.host][elem.proc] 1299003560 (64 0) - nextgr[elem.host][elem.nic] 1299003560( 64  0) - time  1302953440
+++ size is 31,  host [64] searching matching queue for src target 0 tag 0
+Compared element is -> 16 0 vs 0 0
+Compared element is -> 31 0 vs 0 0
+Compared element is -> 30 0 vs 0 0
+Compared element is -> 29 0 vs 0 0
+Compared element is -> 28 0 vs 0 0
+Compared element is -> 27 0 vs 0 0
+Compared element is -> 26 0 vs 0 0
+Compared element is -> 25 0 vs 0 0
+Compared element is -> 24 0 vs 0 0
+Compared element is -> 23 0 vs 0 0
+Compared element is -> 22 0 vs 0 0
+Compared element is -> 21 0 vs 0 0
+Compared element is -> 20 0 vs 0 0
+Compared element is -> 19 0 vs 0 0
+Compared element is -> 18 0 vs 0 0
+Compared element is -> 0 0 vs 0 0
+Searching for MATCHCurrent elem time is 1302953440 while NS3 1302953440
+Simulating Until Called
+Flow Finished 4@64@0 at 1303289600
+Flow NDP_4_64 flow_id 1000000004 finished at 1303.29 total bytes 2002944
+Completion Time Flow is 1303289600
+Total NACK Flow is 99
+Running - 1 - 1303289600
+Updated - Time 1303289600
+..... Received a MSG -- host 64 to target 4, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1303289600 1303289600 -  1 0 - 30 0 1 - 64 4 0
+OP MSGnexto[elem.host][elem.proc] 1302953440 (64 0) - nextgr[elem.host][elem.nic] 1302953440( 64  0) - time  1303289600
+++ size is 30,  host [64] searching matching queue for src target 4 tag 0
+Compared element is -> 16 0 vs 4 0
+Compared element is -> 31 0 vs 4 0
+Compared element is -> 30 0 vs 4 0
+Compared element is -> 29 0 vs 4 0
+Compared element is -> 28 0 vs 4 0
+Compared element is -> 27 0 vs 4 0
+Compared element is -> 26 0 vs 4 0
+Compared element is -> 25 0 vs 4 0
+Compared element is -> 24 0 vs 4 0
+Compared element is -> 23 0 vs 4 0
+Compared element is -> 22 0 vs 4 0
+Compared element is -> 21 0 vs 4 0
+Compared element is -> 20 0 vs 4 0
+Compared element is -> 19 0 vs 4 0
+Compared element is -> 18 0 vs 4 0
+Compared element is -> 15 0 vs 4 0
+Compared element is -> 14 0 vs 4 0
+Compared element is -> 13 0 vs 4 0
+Compared element is -> 12 0 vs 4 0
+Compared element is -> 11 0 vs 4 0
+Compared element is -> 10 0 vs 4 0
+Compared element is -> 9 0 vs 4 0
+Compared element is -> 8 0 vs 4 0
+Compared element is -> 7 0 vs 4 0
+Compared element is -> 6 0 vs 4 0
+Compared element is -> 5 0 vs 4 0
+Compared element is -> 4 0 vs 4 0
+Searching for MATCHCurrent elem time is 1303289600 while NS3 1303289600
+Simulating Until Called
+Flow Finished 16@64@0 at 1304298080
+Flow NDP_16_64 flow_id 1000000016 finished at 1304.3 total bytes 2002944
+Completion Time Flow is 1304298080
+Total NACK Flow is 101
+Running - 1 - 1304298080
+Updated - Time 1304298080
+..... Received a MSG -- host 64 to target 16, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1304298080 1304298080 -  1 0 - 29 0 1 - 64 16 0
+OP MSGnexto[elem.host][elem.proc] 1303289600 (64 0) - nextgr[elem.host][elem.nic] 1303289600( 64  0) - time  1304298080
+++ size is 29,  host [64] searching matching queue for src target 16 tag 0
+Compared element is -> 16 0 vs 16 0
+Searching for MATCHCurrent elem time is 1304298080 while NS3 1304298080
+Simulating Until Called
+Flow Finished 8@64@0 at 1309004320
+Flow NDP_8_64 flow_id 1000000008 finished at 1309 total bytes 2002944
+Completion Time Flow is 1309004320
+Total NACK Flow is 104
+Running - 1 - 1309004320
+Updated - Time 1309004320
+..... Received a MSG -- host 64 to target 8, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1309004320 1309004320 -  1 0 - 28 0 1 - 64 8 0
+OP MSGnexto[elem.host][elem.proc] 1304298080 (64 0) - nextgr[elem.host][elem.nic] 1304298080( 64  0) - time  1309004320
+++ size is 28,  host [64] searching matching queue for src target 8 tag 0
+Compared element is -> 31 0 vs 8 0
+Compared element is -> 30 0 vs 8 0
+Compared element is -> 29 0 vs 8 0
+Compared element is -> 28 0 vs 8 0
+Compared element is -> 27 0 vs 8 0
+Compared element is -> 26 0 vs 8 0
+Compared element is -> 25 0 vs 8 0
+Compared element is -> 24 0 vs 8 0
+Compared element is -> 23 0 vs 8 0
+Compared element is -> 22 0 vs 8 0
+Compared element is -> 21 0 vs 8 0
+Compared element is -> 20 0 vs 8 0
+Compared element is -> 19 0 vs 8 0
+Compared element is -> 18 0 vs 8 0
+Compared element is -> 15 0 vs 8 0
+Compared element is -> 14 0 vs 8 0
+Compared element is -> 13 0 vs 8 0
+Compared element is -> 12 0 vs 8 0
+Compared element is -> 11 0 vs 8 0
+Compared element is -> 10 0 vs 8 0
+Compared element is -> 9 0 vs 8 0
+Compared element is -> 8 0 vs 8 0
+Searching for MATCHCurrent elem time is 1309004320 while NS3 1309004320
+Simulating Until Called
+Flow Finished 9@64@0 at 1309088360
+Flow NDP_9_64 flow_id 1000000009 finished at 1309.09 total bytes 2002944
+Completion Time Flow is 1309088360
+Total NACK Flow is 102
+Running - 1 - 1309088360
+Updated - Time 1309088360
+..... Received a MSG -- host 64 to target 9, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1309088360 1309088360 -  1 0 - 27 0 1 - 64 9 0
+OP MSGnexto[elem.host][elem.proc] 1309004320 (64 0) - nextgr[elem.host][elem.nic] 1309004320( 64  0) - time  1309088360
+++ size is 27,  host [64] searching matching queue for src target 9 tag 0
+Compared element is -> 31 0 vs 9 0
+Compared element is -> 30 0 vs 9 0
+Compared element is -> 29 0 vs 9 0
+Compared element is -> 28 0 vs 9 0
+Compared element is -> 27 0 vs 9 0
+Compared element is -> 26 0 vs 9 0
+Compared element is -> 25 0 vs 9 0
+Compared element is -> 24 0 vs 9 0
+Compared element is -> 23 0 vs 9 0
+Compared element is -> 22 0 vs 9 0
+Compared element is -> 21 0 vs 9 0
+Compared element is -> 20 0 vs 9 0
+Compared element is -> 19 0 vs 9 0
+Compared element is -> 18 0 vs 9 0
+Compared element is -> 15 0 vs 9 0
+Compared element is -> 14 0 vs 9 0
+Compared element is -> 13 0 vs 9 0
+Compared element is -> 12 0 vs 9 0
+Compared element is -> 11 0 vs 9 0
+Compared element is -> 10 0 vs 9 0
+Compared element is -> 9 0 vs 9 0
+Searching for MATCHCurrent elem time is 1309088360 while NS3 1309088360
+Simulating Until Called
+Flow Finished 6@64@0 at 1311441480
+Flow NDP_6_64 flow_id 1000000006 finished at 1311.44 total bytes 2002944
+Completion Time Flow is 1311441480
+Total NACK Flow is 102
+Running - 1 - 1311441480
+Updated - Time 1311441480
+..... Received a MSG -- host 64 to target 6, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1311441480 1311441480 -  1 0 - 26 0 1 - 64 6 0
+OP MSGnexto[elem.host][elem.proc] 1309088360 (64 0) - nextgr[elem.host][elem.nic] 1309088360( 64  0) - time  1311441480
+++ size is 26,  host [64] searching matching queue for src target 6 tag 0
+Compared element is -> 31 0 vs 6 0
+Compared element is -> 30 0 vs 6 0
+Compared element is -> 29 0 vs 6 0
+Compared element is -> 28 0 vs 6 0
+Compared element is -> 27 0 vs 6 0
+Compared element is -> 26 0 vs 6 0
+Compared element is -> 25 0 vs 6 0
+Compared element is -> 24 0 vs 6 0
+Compared element is -> 23 0 vs 6 0
+Compared element is -> 22 0 vs 6 0
+Compared element is -> 21 0 vs 6 0
+Compared element is -> 20 0 vs 6 0
+Compared element is -> 19 0 vs 6 0
+Compared element is -> 18 0 vs 6 0
+Compared element is -> 15 0 vs 6 0
+Compared element is -> 14 0 vs 6 0
+Compared element is -> 13 0 vs 6 0
+Compared element is -> 12 0 vs 6 0
+Compared element is -> 11 0 vs 6 0
+Compared element is -> 10 0 vs 6 0
+Compared element is -> 7 0 vs 6 0
+Compared element is -> 6 0 vs 6 0
+Searching for MATCHCurrent elem time is 1311441480 while NS3 1311441480
+Simulating Until Called
+Flow Finished 12@64@0 at 1311945720
+Flow NDP_12_64 flow_id 1000000012 finished at 1311.95 total bytes 2002944
+Completion Time Flow is 1311945720
+Total NACK Flow is 103
+Running - 1 - 1311945720
+Updated - Time 1311945720
+..... Received a MSG -- host 64 to target 12, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1311945720 1311945720 -  1 0 - 25 0 1 - 64 12 0
+OP MSGnexto[elem.host][elem.proc] 1311441480 (64 0) - nextgr[elem.host][elem.nic] 1311441480( 64  0) - time  1311945720
+++ size is 25,  host [64] searching matching queue for src target 12 tag 0
+Compared element is -> 31 0 vs 12 0
+Compared element is -> 30 0 vs 12 0
+Compared element is -> 29 0 vs 12 0
+Compared element is -> 28 0 vs 12 0
+Compared element is -> 27 0 vs 12 0
+Compared element is -> 26 0 vs 12 0
+Compared element is -> 25 0 vs 12 0
+Compared element is -> 24 0 vs 12 0
+Compared element is -> 23 0 vs 12 0
+Compared element is -> 22 0 vs 12 0
+Compared element is -> 21 0 vs 12 0
+Compared element is -> 20 0 vs 12 0
+Compared element is -> 19 0 vs 12 0
+Compared element is -> 18 0 vs 12 0
+Compared element is -> 15 0 vs 12 0
+Compared element is -> 14 0 vs 12 0
+Compared element is -> 13 0 vs 12 0
+Compared element is -> 12 0 vs 12 0
+Searching for MATCHCurrent elem time is 1311945720 while NS3 1311945720
+Simulating Until Called
+Flow Finished 13@64@0 at 1312029760
+Flow NDP_13_64 flow_id 1000000013 finished at 1312.03 total bytes 2002944
+Completion Time Flow is 1312029760
+Total NACK Flow is 103
+Running - 1 - 1312029760
+Updated - Time 1312029760
+..... Received a MSG -- host 64 to target 13, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1312029760 1312029760 -  1 0 - 24 0 1 - 64 13 0
+OP MSGnexto[elem.host][elem.proc] 1311945720 (64 0) - nextgr[elem.host][elem.nic] 1311945720( 64  0) - time  1312029760
+++ size is 24,  host [64] searching matching queue for src target 13 tag 0
+Compared element is -> 31 0 vs 13 0
+Compared element is -> 30 0 vs 13 0
+Compared element is -> 29 0 vs 13 0
+Compared element is -> 28 0 vs 13 0
+Compared element is -> 27 0 vs 13 0
+Compared element is -> 26 0 vs 13 0
+Compared element is -> 25 0 vs 13 0
+Compared element is -> 24 0 vs 13 0
+Compared element is -> 23 0 vs 13 0
+Compared element is -> 22 0 vs 13 0
+Compared element is -> 21 0 vs 13 0
+Compared element is -> 20 0 vs 13 0
+Compared element is -> 19 0 vs 13 0
+Compared element is -> 18 0 vs 13 0
+Compared element is -> 15 0 vs 13 0
+Compared element is -> 14 0 vs 13 0
+Compared element is -> 13 0 vs 13 0
+Searching for MATCHCurrent elem time is 1312029760 while NS3 1312029760
+Simulating Until Called
+Flow Finished 25@64@0 at 1312954200
+Flow NDP_25_64 flow_id 1000000025 finished at 1312.95 total bytes 2002944
+Completion Time Flow is 1312954200
+Total NACK Flow is 103
+Running - 1 - 1312954200
+Updated - Time 1312954200
+..... Received a MSG -- host 64 to target 25, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1312954200 1312954200 -  1 0 - 23 0 1 - 64 25 0
+OP MSGnexto[elem.host][elem.proc] 1312029760 (64 0) - nextgr[elem.host][elem.nic] 1312029760( 64  0) - time  1312954200
+++ size is 23,  host [64] searching matching queue for src target 25 tag 0
+Compared element is -> 31 0 vs 25 0
+Compared element is -> 30 0 vs 25 0
+Compared element is -> 29 0 vs 25 0
+Compared element is -> 28 0 vs 25 0
+Compared element is -> 27 0 vs 25 0
+Compared element is -> 26 0 vs 25 0
+Compared element is -> 25 0 vs 25 0
+Searching for MATCHCurrent elem time is 1312954200 while NS3 1312954200
+Simulating Until Called
+Flow Finished 30@64@0 at 1313374400
+Flow NDP_30_64 flow_id 1000000030 finished at 1313.37 total bytes 2002944
+Completion Time Flow is 1313374400
+Total NACK Flow is 102
+Running - 1 - 1313374400
+Updated - Time 1313374400
+..... Received a MSG -- host 64 to target 30, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1313374400 1313374400 -  1 0 - 22 0 1 - 64 30 0
+OP MSGnexto[elem.host][elem.proc] 1312954200 (64 0) - nextgr[elem.host][elem.nic] 1312954200( 64  0) - time  1313374400
+++ size is 22,  host [64] searching matching queue for src target 30 tag 0
+Compared element is -> 31 0 vs 30 0
+Compared element is -> 30 0 vs 30 0
+Searching for MATCHCurrent elem time is 1313374400 while NS3 1313374400
+Simulating Until Called
+Flow Finished 19@64@0 at 1314803080
+Flow NDP_19_64 flow_id 1000000019 finished at 1314.8 total bytes 2002944
+Completion Time Flow is 1314803080
+Total NACK Flow is 104
+Running - 1 - 1314803080
+Updated - Time 1314803080
+..... Received a MSG -- host 64 to target 19, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1314803080 1314803080 -  1 0 - 21 0 1 - 64 19 0
+OP MSGnexto[elem.host][elem.proc] 1313374400 (64 0) - nextgr[elem.host][elem.nic] 1313374400( 64  0) - time  1314803080
+++ size is 21,  host [64] searching matching queue for src target 19 tag 0
+Compared element is -> 31 0 vs 19 0
+Compared element is -> 29 0 vs 19 0
+Compared element is -> 28 0 vs 19 0
+Compared element is -> 27 0 vs 19 0
+Compared element is -> 26 0 vs 19 0
+Compared element is -> 24 0 vs 19 0
+Compared element is -> 23 0 vs 19 0
+Compared element is -> 22 0 vs 19 0
+Compared element is -> 21 0 vs 19 0
+Compared element is -> 20 0 vs 19 0
+Compared element is -> 19 0 vs 19 0
+Searching for MATCHCurrent elem time is 1314803080 while NS3 1314803080
+Simulating Until Called
+Flow Finished 27@64@0 at 1315475400
+Flow NDP_27_64 flow_id 1000000027 finished at 1315.48 total bytes 2002944
+Completion Time Flow is 1315475400
+Total NACK Flow is 103
+Running - 1 - 1315475400
+Updated - Time 1315475400
+..... Received a MSG -- host 64 to target 27, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1315475400 1315475400 -  1 0 - 20 0 1 - 64 27 0
+OP MSGnexto[elem.host][elem.proc] 1314803080 (64 0) - nextgr[elem.host][elem.nic] 1314803080( 64  0) - time  1315475400
+++ size is 20,  host [64] searching matching queue for src target 27 tag 0
+Compared element is -> 31 0 vs 27 0
+Compared element is -> 29 0 vs 27 0
+Compared element is -> 28 0 vs 27 0
+Compared element is -> 27 0 vs 27 0
+Searching for MATCHCurrent elem time is 1315475400 while NS3 1315475400
+Simulating Until Called
+Flow Finished 3@64@0 at 1316063680
+Flow NDP_3_64 flow_id 1000000003 finished at 1316.06 total bytes 2002944
+Completion Time Flow is 1316063680
+Total NACK Flow is 104
+Running - 1 - 1316063680
+Updated - Time 1316063680
+..... Received a MSG -- host 64 to target 3, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1316063680 1316063680 -  1 0 - 19 0 1 - 64 3 0
+OP MSGnexto[elem.host][elem.proc] 1315475400 (64 0) - nextgr[elem.host][elem.nic] 1315475400( 64  0) - time  1316063680
+++ size is 19,  host [64] searching matching queue for src target 3 tag 0
+Compared element is -> 31 0 vs 3 0
+Compared element is -> 29 0 vs 3 0
+Compared element is -> 28 0 vs 3 0
+Compared element is -> 26 0 vs 3 0
+Compared element is -> 24 0 vs 3 0
+Compared element is -> 23 0 vs 3 0
+Compared element is -> 22 0 vs 3 0
+Compared element is -> 21 0 vs 3 0
+Compared element is -> 20 0 vs 3 0
+Compared element is -> 18 0 vs 3 0
+Compared element is -> 15 0 vs 3 0
+Compared element is -> 14 0 vs 3 0
+Compared element is -> 11 0 vs 3 0
+Compared element is -> 10 0 vs 3 0
+Compared element is -> 7 0 vs 3 0
+Compared element is -> 5 0 vs 3 0
+Compared element is -> 3 0 vs 3 0
+Searching for MATCHCurrent elem time is 1316063680 while NS3 1316063680
+Simulating Until Called
+Flow Finished 10@64@0 at 1316567920
+Flow NDP_10_64 flow_id 1000000010 finished at 1316.57 total bytes 2002944
+Completion Time Flow is 1316567920
+Total NACK Flow is 105
+Running - 1 - 1316567920
+Updated - Time 1316567920
+..... Received a MSG -- host 64 to target 10, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1316567920 1316567920 -  1 0 - 18 0 1 - 64 10 0
+OP MSGnexto[elem.host][elem.proc] 1316063680 (64 0) - nextgr[elem.host][elem.nic] 1316063680( 64  0) - time  1316567920
+++ size is 18,  host [64] searching matching queue for src target 10 tag 0
+Compared element is -> 31 0 vs 10 0
+Compared element is -> 29 0 vs 10 0
+Compared element is -> 28 0 vs 10 0
+Compared element is -> 26 0 vs 10 0
+Compared element is -> 24 0 vs 10 0
+Compared element is -> 23 0 vs 10 0
+Compared element is -> 22 0 vs 10 0
+Compared element is -> 21 0 vs 10 0
+Compared element is -> 20 0 vs 10 0
+Compared element is -> 18 0 vs 10 0
+Compared element is -> 15 0 vs 10 0
+Compared element is -> 14 0 vs 10 0
+Compared element is -> 11 0 vs 10 0
+Compared element is -> 10 0 vs 10 0
+Searching for MATCHCurrent elem time is 1316567920 while NS3 1316567920
+Simulating Until Called
+Flow Finished 28@64@0 at 1317912560
+Flow NDP_28_64 flow_id 1000000028 finished at 1317.91 total bytes 2002944
+Completion Time Flow is 1317912560
+Total NACK Flow is 105
+Running - 1 - 1317912560
+Updated - Time 1317912560
+..... Received a MSG -- host 64 to target 28, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1317912560 1317912560 -  1 0 - 17 0 1 - 64 28 0
+OP MSGnexto[elem.host][elem.proc] 1316567920 (64 0) - nextgr[elem.host][elem.nic] 1316567920( 64  0) - time  1317912560
+++ size is 17,  host [64] searching matching queue for src target 28 tag 0
+Compared element is -> 31 0 vs 28 0
+Compared element is -> 29 0 vs 28 0
+Compared element is -> 28 0 vs 28 0
+Searching for MATCHCurrent elem time is 1317912560 while NS3 1317912560
+Simulating Until Called
+Flow Finished 5@64@0 at 1318500840
+Flow NDP_5_64 flow_id 1000000005 finished at 1318.5 total bytes 2002944
+Completion Time Flow is 1318500840
+Total NACK Flow is 105
+Running - 1 - 1318500840
+Updated - Time 1318500840
+..... Received a MSG -- host 64 to target 5, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1318500840 1318500840 -  1 0 - 16 0 1 - 64 5 0
+OP MSGnexto[elem.host][elem.proc] 1317912560 (64 0) - nextgr[elem.host][elem.nic] 1317912560( 64  0) - time  1318500840
+++ size is 16,  host [64] searching matching queue for src target 5 tag 0
+Compared element is -> 31 0 vs 5 0
+Compared element is -> 29 0 vs 5 0
+Compared element is -> 26 0 vs 5 0
+Compared element is -> 24 0 vs 5 0
+Compared element is -> 23 0 vs 5 0
+Compared element is -> 22 0 vs 5 0
+Compared element is -> 21 0 vs 5 0
+Compared element is -> 20 0 vs 5 0
+Compared element is -> 18 0 vs 5 0
+Compared element is -> 15 0 vs 5 0
+Compared element is -> 14 0 vs 5 0
+Compared element is -> 11 0 vs 5 0
+Compared element is -> 7 0 vs 5 0
+Compared element is -> 5 0 vs 5 0
+Searching for MATCHCurrent elem time is 1318500840 while NS3 1318500840
+Simulating Until Called
+Flow Finished 18@64@0 at 1319257200
+Flow NDP_18_64 flow_id 1000000018 finished at 1319.26 total bytes 2002944
+Completion Time Flow is 1319257200
+Total NACK Flow is 105
+Running - 1 - 1319257200
+Updated - Time 1319257200
+..... Received a MSG -- host 64 to target 18, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1319257200 1319257200 -  1 0 - 15 0 1 - 64 18 0
+OP MSGnexto[elem.host][elem.proc] 1318500840 (64 0) - nextgr[elem.host][elem.nic] 1318500840( 64  0) - time  1319257200
+++ size is 15,  host [64] searching matching queue for src target 18 tag 0
+Compared element is -> 31 0 vs 18 0
+Compared element is -> 29 0 vs 18 0
+Compared element is -> 26 0 vs 18 0
+Compared element is -> 24 0 vs 18 0
+Compared element is -> 23 0 vs 18 0
+Compared element is -> 22 0 vs 18 0
+Compared element is -> 21 0 vs 18 0
+Compared element is -> 20 0 vs 18 0
+Compared element is -> 18 0 vs 18 0
+Searching for MATCHCurrent elem time is 1319257200 while NS3 1319257200
+Simulating Until Called
+Flow Finished 24@64@0 at 1319761440
+Flow NDP_24_64 flow_id 1000000024 finished at 1319.76 total bytes 2002944
+Completion Time Flow is 1319761440
+Total NACK Flow is 106
+Running - 1 - 1319761440
+Updated - Time 1319761440
+..... Received a MSG -- host 64 to target 24, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1319761440 1319761440 -  1 0 - 14 0 1 - 64 24 0
+OP MSGnexto[elem.host][elem.proc] 1319257200 (64 0) - nextgr[elem.host][elem.nic] 1319257200( 64  0) - time  1319761440
+++ size is 14,  host [64] searching matching queue for src target 24 tag 0
+Compared element is -> 31 0 vs 24 0
+Compared element is -> 29 0 vs 24 0
+Compared element is -> 26 0 vs 24 0
+Compared element is -> 24 0 vs 24 0
+Searching for MATCHCurrent elem time is 1319761440 while NS3 1319761440
+Simulating Until Called
+Flow Finished 26@64@0 at 1319929520
+Flow NDP_26_64 flow_id 1000000026 finished at 1319.93 total bytes 2002944
+Completion Time Flow is 1319929520
+Total NACK Flow is 106
+Running - 1 - 1319929520
+Updated - Time 1319929520
+..... Received a MSG -- host 64 to target 26, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1319929520 1319929520 -  1 0 - 13 0 1 - 64 26 0
+OP MSGnexto[elem.host][elem.proc] 1319761440 (64 0) - nextgr[elem.host][elem.nic] 1319761440( 64  0) - time  1319929520
+++ size is 13,  host [64] searching matching queue for src target 26 tag 0
+Compared element is -> 31 0 vs 26 0
+Compared element is -> 29 0 vs 26 0
+Compared element is -> 26 0 vs 26 0
+Searching for MATCHCurrent elem time is 1319929520 while NS3 1319929520
+Simulating Until Called
+Flow Finished 29@64@0 at 1320181640
+Flow NDP_29_64 flow_id 1000000029 finished at 1320.18 total bytes 2002944
+Completion Time Flow is 1320181640
+Total NACK Flow is 106
+Running - 1 - 1320181640
+Updated - Time 1320181640
+..... Received a MSG -- host 64 to target 29, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1320181640 1320181640 -  1 0 - 12 0 1 - 64 29 0
+OP MSGnexto[elem.host][elem.proc] 1319929520 (64 0) - nextgr[elem.host][elem.nic] 1319929520( 64  0) - time  1320181640
+++ size is 12,  host [64] searching matching queue for src target 29 tag 0
+Compared element is -> 31 0 vs 29 0
+Compared element is -> 29 0 vs 29 0
+Searching for MATCHCurrent elem time is 1320181640 while NS3 1320181640
+Simulating Until Called
+Flow Finished 31@64@0 at 1320349720
+Flow NDP_31_64 flow_id 1000000031 finished at 1320.35 total bytes 2002944
+Completion Time Flow is 1320349720
+Total NACK Flow is 107
+Running - 1 - 1320349720
+Updated - Time 1320349720
+..... Received a MSG -- host 64 to target 31, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1320349720 1320349720 -  1 0 - 11 0 1 - 64 31 0
+OP MSGnexto[elem.host][elem.proc] 1320181640 (64 0) - nextgr[elem.host][elem.nic] 1320181640( 64  0) - time  1320349720
+++ size is 11,  host [64] searching matching queue for src target 31 tag 0
+Compared element is -> 31 0 vs 31 0
+Searching for MATCHCurrent elem time is 1320349720 while NS3 1320349720
+Simulating Until Called
+Flow Finished 1@64@0 at 1320433760
+Flow NDP_1_64 flow_id 1000000001 finished at 1320.43 total bytes 2002944
+Completion Time Flow is 1320433760
+Total NACK Flow is 107
+Running - 1 - 1320433760
+Updated - Time 1320433760
+..... Received a MSG -- host 64 to target 1, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1320433760 1320433760 -  1 0 - 10 0 1 - 64 1 0
+OP MSGnexto[elem.host][elem.proc] 1320349720 (64 0) - nextgr[elem.host][elem.nic] 1320349720( 64  0) - time  1320433760
+++ size is 10,  host [64] searching matching queue for src target 1 tag 0
+Compared element is -> 23 0 vs 1 0
+Compared element is -> 22 0 vs 1 0
+Compared element is -> 21 0 vs 1 0
+Compared element is -> 20 0 vs 1 0
+Compared element is -> 15 0 vs 1 0
+Compared element is -> 14 0 vs 1 0
+Compared element is -> 11 0 vs 1 0
+Compared element is -> 7 0 vs 1 0
+Compared element is -> 2 0 vs 1 0
+Compared element is -> 1 0 vs 1 0
+Searching for MATCHCurrent elem time is 1320433760 while NS3 1320433760
+Simulating Until Called
+Flow Finished 2@64@0 at 1320517800
+Flow NDP_2_64 flow_id 1000000002 finished at 1320.52 total bytes 2002944
+Completion Time Flow is 1320517800
+Total NACK Flow is 107
+Running - 1 - 1320517800
+Updated - Time 1320517800
+..... Received a MSG -- host 64 to target 2, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1320517800 1320517800 -  1 0 - 9 0 1 - 64 2 0
+OP MSGnexto[elem.host][elem.proc] 1320433760 (64 0) - nextgr[elem.host][elem.nic] 1320433760( 64  0) - time  1320517800
+++ size is 9,  host [64] searching matching queue for src target 2 tag 0
+Compared element is -> 23 0 vs 2 0
+Compared element is -> 22 0 vs 2 0
+Compared element is -> 21 0 vs 2 0
+Compared element is -> 20 0 vs 2 0
+Compared element is -> 15 0 vs 2 0
+Compared element is -> 14 0 vs 2 0
+Compared element is -> 11 0 vs 2 0
+Compared element is -> 7 0 vs 2 0
+Compared element is -> 2 0 vs 2 0
+Searching for MATCHCurrent elem time is 1320517800 while NS3 1320517800
+Simulating Until Called
+Flow Finished 11@64@0 at 1320938000
+Flow NDP_11_64 flow_id 1000000011 finished at 1320.94 total bytes 2002944
+Completion Time Flow is 1320938000
+Total NACK Flow is 106
+Running - 1 - 1320938000
+Updated - Time 1320938000
+..... Received a MSG -- host 64 to target 11, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1320938000 1320938000 -  1 0 - 8 0 1 - 64 11 0
+OP MSGnexto[elem.host][elem.proc] 1320517800 (64 0) - nextgr[elem.host][elem.nic] 1320517800( 64  0) - time  1320938000
+++ size is 8,  host [64] searching matching queue for src target 11 tag 0
+Compared element is -> 23 0 vs 11 0
+Compared element is -> 22 0 vs 11 0
+Compared element is -> 21 0 vs 11 0
+Compared element is -> 20 0 vs 11 0
+Compared element is -> 15 0 vs 11 0
+Compared element is -> 14 0 vs 11 0
+Compared element is -> 11 0 vs 11 0
+Searching for MATCHCurrent elem time is 1320938000 while NS3 1320938000
+Simulating Until Called
+Flow Finished 22@64@0 at 1321526280
+Flow NDP_22_64 flow_id 1000000022 finished at 1321.53 total bytes 2002944
+Completion Time Flow is 1321526280
+Total NACK Flow is 107
+Running - 1 - 1321526280
+Updated - Time 1321526280
+..... Received a MSG -- host 64 to target 22, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1321526280 1321526280 -  1 0 - 7 0 1 - 64 22 0
+OP MSGnexto[elem.host][elem.proc] 1320938000 (64 0) - nextgr[elem.host][elem.nic] 1320938000( 64  0) - time  1321526280
+++ size is 7,  host [64] searching matching queue for src target 22 tag 0
+Compared element is -> 23 0 vs 22 0
+Compared element is -> 22 0 vs 22 0
+Searching for MATCHCurrent elem time is 1321526280 while NS3 1321526280
+Simulating Until Called
+Flow Finished 14@64@0 at 1322954960
+Flow NDP_14_64 flow_id 1000000014 finished at 1322.95 total bytes 2002944
+Completion Time Flow is 1322954960
+Total NACK Flow is 108
+Running - 1 - 1322954960
+Updated - Time 1322954960
+..... Received a MSG -- host 64 to target 14, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1322954960 1322954960 -  1 0 - 6 0 1 - 64 14 0
+OP MSGnexto[elem.host][elem.proc] 1321526280 (64 0) - nextgr[elem.host][elem.nic] 1321526280( 64  0) - time  1322954960
+++ size is 6,  host [64] searching matching queue for src target 14 tag 0
+Compared element is -> 23 0 vs 14 0
+Compared element is -> 21 0 vs 14 0
+Compared element is -> 20 0 vs 14 0
+Compared element is -> 15 0 vs 14 0
+Compared element is -> 14 0 vs 14 0
+Searching for MATCHCurrent elem time is 1322954960 while NS3 1322954960
+Simulating Until Called
+Flow Finished 21@64@0 at 1323375160
+Flow NDP_21_64 flow_id 1000000021 finished at 1323.38 total bytes 2002944
+Completion Time Flow is 1323375160
+Total NACK Flow is 108
+Running - 1 - 1323375160
+Updated - Time 1323375160
+..... Received a MSG -- host 64 to target 21, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1323375160 1323375160 -  1 0 - 5 0 1 - 64 21 0
+OP MSGnexto[elem.host][elem.proc] 1322954960 (64 0) - nextgr[elem.host][elem.nic] 1322954960( 64  0) - time  1323375160
+++ size is 5,  host [64] searching matching queue for src target 21 tag 0
+Compared element is -> 23 0 vs 21 0
+Compared element is -> 21 0 vs 21 0
+Searching for MATCHCurrent elem time is 1323375160 while NS3 1323375160
+Simulating Until Called
+Flow Finished 23@64@0 at 1323543240
+Flow NDP_23_64 flow_id 1000000023 finished at 1323.54 total bytes 2002944
+Completion Time Flow is 1323543240
+Total NACK Flow is 108
+Running - 1 - 1323543240
+Updated - Time 1323543240
+..... Received a MSG -- host 64 to target 23, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1323543240 1323543240 -  1 0 - 4 0 1 - 64 23 0
+OP MSGnexto[elem.host][elem.proc] 1323375160 (64 0) - nextgr[elem.host][elem.nic] 1323375160( 64  0) - time  1323543240
+++ size is 4,  host [64] searching matching queue for src target 23 tag 0
+Compared element is -> 23 0 vs 23 0
+Searching for MATCHCurrent elem time is 1323543240 while NS3 1323543240
+Simulating Until Called
+Flow Finished 15@64@0 at 1324803840
+Flow NDP_15_64 flow_id 1000000015 finished at 1324.8 total bytes 2002944
+Completion Time Flow is 1324803840
+Total NACK Flow is 109
+Running - 1 - 1324803840
+Updated - Time 1324803840
+..... Received a MSG -- host 64 to target 15, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1324803840 1324803840 -  1 0 - 3 0 1 - 64 15 0
+OP MSGnexto[elem.host][elem.proc] 1323543240 (64 0) - nextgr[elem.host][elem.nic] 1323543240( 64  0) - time  1324803840
+++ size is 3,  host [64] searching matching queue for src target 15 tag 0
+Compared element is -> 20 0 vs 15 0
+Compared element is -> 15 0 vs 15 0
+Searching for MATCHCurrent elem time is 1324803840 while NS3 1324803840
+Simulating Until Called
+Flow Finished 7@64@0 at 1325980400
+Flow NDP_7_64 flow_id 1000000007 finished at 1325.98 total bytes 2002944
+Completion Time Flow is 1325980400
+Total NACK Flow is 109
+Running - 1 - 1325980400
+Updated - Time 1325980400
+..... Received a MSG -- host 64 to target 7, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1325980400 1325980400 -  1 0 - 2 0 1 - 64 7 0
+OP MSGnexto[elem.host][elem.proc] 1324803840 (64 0) - nextgr[elem.host][elem.nic] 1324803840( 64  0) - time  1325980400
+++ size is 2,  host [64] searching matching queue for src target 7 tag 0
+Compared element is -> 20 0 vs 7 0
+Compared element is -> 7 0 vs 7 0
+Searching for MATCHCurrent elem time is 1325980400 while NS3 1325980400
+Simulating Until Called
+Flow Finished 20@64@0 at 1329762200
+Flow NDP_20_64 flow_id 1000000020 finished at 1329.76 total bytes 2002944
+Completion Time Flow is 1329762200
+Total NACK Flow is 114
+Running - 1 - 1329762200
+Updated - Time 1329762200
+..... Received a MSG -- host 64 to target 20, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 1329762200 1329762200 -  1 0 - 1 0 1 - 64 20 0
+OP MSGnexto[elem.host][elem.proc] 1325980400 (64 0) - nextgr[elem.host][elem.nic] 1325980400( 64  0) - time  1329762200
+++ size is 1,  host [64] searching matching queue for src target 20 tag 0
+Compared element is -> 20 0 vs 20 0
+Searching for MATCHCurrent elem time is 1329762200 while NS3 1329762200
+..... NOT Received a MSG
+
+
+RunTime Total LGS -> 142ms
+
+
+htsim Terminates at 1329762200
+
+
+Remaining 128
+PERFORMANCE: Processes: 128 	 Events: 64 	 Time: 0 s 	 Speed: inf ev/s
+AQ is 0
+Times: 
+Host 0: 0
+Host 1: 0
+Host 2: 0
+Host 3: 0
+Host 4: 0
+Host 5: 0
+Host 6: 0
+Host 7: 0
+Host 8: 0
+Host 9: 0
+Host 10: 0
+Host 11: 0
+Host 12: 0
+Host 13: 0
+Host 14: 0
+Host 15: 0
+Host 16: 0
+Host 17: 0
+Host 18: 0
+Host 19: 0
+Host 20: 0
+Host 21: 0
+Host 22: 0
+Host 23: 0
+Host 24: 0
+Host 25: 0
+Host 26: 0
+Host 27: 0
+Host 28: 0
+Host 29: 0
+Host 30: 0
+Host 31: 0
+Host 32: 0
+Host 33: 0
+Host 34: 0
+Host 35: 0
+Host 36: 0
+Host 37: 0
+Host 38: 0
+Host 39: 0
+Host 40: 0
+Host 41: 0
+Host 42: 0
+Host 43: 0
+Host 44: 0
+Host 45: 0
+Host 46: 0
+Host 47: 0
+Host 48: 0
+Host 49: 0
+Host 50: 0
+Host 51: 0
+Host 52: 0
+Host 53: 0
+Host 54: 0
+Host 55: 0
+Host 56: 0
+Host 57: 0
+Host 58: 0
+Host 59: 0
+Host 60: 0
+Host 61: 0
+Host 62: 0
+Host 63: 0
+Host 64: 1329762200
+Host 65: 0
+Host 66: 0
+Host 67: 0
+Host 68: 0
+Host 69: 0
+Host 70: 0
+Host 71: 0
+Host 72: 0
+Host 73: 0
+Host 74: 0
+Host 75: 0
+Host 76: 0
+Host 77: 0
+Host 78: 0
+Host 79: 0
+Host 80: 0
+Host 81: 0
+Host 82: 0
+Host 83: 0
+Host 84: 0
+Host 85: 0
+Host 86: 0
+Host 87: 0
+Host 88: 0
+Host 89: 0
+Host 90: 0
+Host 91: 0
+Host 92: 0
+Host 93: 0
+Host 94: 0
+Host 95: 0
+Host 96: 0
+Host 97: 0
+Host 98: 0
+Host 99: 0
+Host 100: 0
+Host 101: 0
+Host 102: 0
+Host 103: 0
+Host 104: 0
+Host 105: 0
+Host 106: 0
+Host 107: 0
+Host 108: 0
+Host 109: 0
+Host 110: 0
+Host 111: 0
+Host 112: 0
+Host 113: 0
+Host 114: 0
+Host 115: 0
+Host 116: 0
+Host 117: 0
+Host 118: 0
+Host 119: 0
+Host 120: 0
+Host 121: 0
+Host 122: 0
+Host 123: 0
+Host 124: 0
+Host 125: 0
+Host 126: 0
+Host 127: 0
+Maximum finishing time at host 64: 1329762200 (1.32976 s)
+Mean number of subflows -nan

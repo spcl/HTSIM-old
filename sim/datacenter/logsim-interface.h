@@ -6,6 +6,7 @@
 #include "fat_tree_topology.h"
 #include "lgs/logsim.h"
 #include "uec.h"
+#include "uec_drop.h"
 #include <string>
 #include <unordered_map>
 
@@ -14,8 +15,15 @@ class NdpRtxTimerScanner;
 class NdpPullPacer;
 class Topology;
 class UecRtxTimerScanner;
+class SwiftTrimmingRtxTimerScanner;
+class UecDropRtxTimerScanner;
 
-enum ProtocolName { NDP_PROTOCOL, UEC_PROTOCOL, SWIFT_PROTOCOL };
+enum ProtocolName {
+    NDP_PROTOCOL,
+    UEC_PROTOCOL,
+    SWIFT_PROTOCOL,
+    UEC_DROP_PROTOCOL
+};
 
 /* ... */
 class MsgInfo {
@@ -38,6 +46,7 @@ class LogSimInterface {
                     std::vector<const Route *> ***);
     std::unordered_map<std::string, MsgInfo> active_sends;
     std::unordered_map<std::string, UecSrc *> connection_log;
+    std::unordered_map<std::string, SwiftTrimmingSrc *> connection_log_swift;
     void htsim_schedule(u_int32_t, int, int, int, u_int64_t, int);
     void send_event(int from, int to, int size, int tag,
                     u_int64_t start_time_event);
@@ -75,12 +84,16 @@ class LogSimInterface {
     int _cwd;
     graph_node_properties *_latest_recv;
     vector<UecSrc *> _uecSrcVector;
+    vector<UecDropSrc *> _uecDropSrcVector;
+    vector<SwiftTrimmingSrc *> _swiftTrimmingSrcVector;
     vector<NdpSrc *> _ndpSrcVector;
     ProtocolName _protocolName;
     NdpPullPacer *_pacer;
     NdpRtxTimerScanner *_ndpRtxScanner;
     int _queuesize;
     UecRtxTimerScanner *_uecRtxScanner;
+    UecDropRtxTimerScanner *_uecDropRtxScanner;
+    SwiftTrimmingRtxTimerScanner *_swiftTrimmingRtxScanner;
     std::unordered_map<int, NdpPullPacer *> _puller_map;
     bool _use_good_entropies;
     bool _ignore_ecn_ack;

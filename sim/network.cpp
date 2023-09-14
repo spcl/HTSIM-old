@@ -82,9 +82,7 @@ PacketSink *Packet::sendOn() {
     } else if (_next_routed_hop) {
         nextsink = _next_routed_hop;
         // printf("Test\n");
-    }
-
-    else {
+    } else {
         assert(0);
     }
     // cout << "sendOn nextsink is: " << nextsink->nodename() << endl;

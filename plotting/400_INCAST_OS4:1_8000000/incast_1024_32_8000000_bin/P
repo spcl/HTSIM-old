@@ -1,0 +1,30 @@
+no_of_nodes 1024
+KMin: 20
+KMax: 80
+cwnd 448500
+Speed is 400000
+Project Path "/home/tommaso/csg-htsim"
+Using subflow count 1
+Logging to uec_entry
+Logging path choices to uec_entry.paths
+Name Running: NDP
+Fat Tree topology with 0.7us links and 0us switching latency.
+Set params 1024
+QueueSize 448500
+_no_of_nodes 1024
+K 16
+Queue type 3
+total switches: ToR 128 NAGG 128 NCORE 16 srv_per_tor 8
+SRC0->LS0
+SRC1->LS0
+SRC2->LS0
+SRC3->LS0
+SRC4->LS0
+SRC5->LS0
+SRC6->LS0
+SRC7->LS0
+SRC8->LS1
+SRC9->LS1
+SRC10->LS1
+SRC11->LS1
+SRC12->LS1

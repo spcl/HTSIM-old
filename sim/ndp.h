@@ -60,7 +60,10 @@ class NdpSrc : public PacketSink, public EventSource, public TriggerTarget {
     void set_dst(uint32_t dst) { _dstaddr = dst; }
     void set_traffic_logger(TrafficLogger *pktlogger);
     void startflow();
-    void setCwnd(uint32_t cwnd) { _cwnd = cwnd; }
+    void setCwnd(uint32_t cwnd) {
+        _cwnd = cwnd;
+        _maxcwnd = cwnd;
+    }
     static void setMinRTO(uint32_t min_rto_in_us) {
         _min_rto = timeFromUs((uint32_t)min_rto_in_us);
     }
@@ -123,6 +126,8 @@ class NdpSrc : public PacketSink, public EventSource, public TriggerTarget {
     // PULL_BASED route strategies
     uint16_t _crt_path;
     uint16_t _crt_direction;
+    int _next_pathid;
+    uint64_t _maxcwnd = 0;
     uint16_t _same_path_burst; // how many packets in a row to use same ECMP
                                // value (default is 1)
     void set_path_burst(uint16_t path_burst) { _same_path_burst = path_burst; }
@@ -356,12 +361,12 @@ class NdpSink : public PacketSink, public DataReceiver {
     double _alpha;
 
     // Mechanism
-    void send_ack(simtime_picosec ts, NdpPacket::seq_t ackno,
-                  NdpPacket::seq_t pacer_no, bool ecn_marked,
-                  bool enqueue_pull);
+    void send_ack(simtime_picosec ts, bool, NdpPacket::seq_t ackno,
+                  NdpPacket::seq_t pacer_no, bool ecn_marked, bool enqueue_pull,
+                  int);
     void send_nack(simtime_picosec ts, NdpPacket::seq_t ackno,
                    NdpPacket::seq_t pacer_no, bool enqueue_pull,
-                   bool ecn_marked);
+                   bool ecn_marked, int);
     void permute_paths();
 
     // Path History

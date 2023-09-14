@@ -1,0 +1,4684 @@
+no_of_nodes 128
+KMin: 20
+KMax: 80
+cwnd 448500
+Speed is 400000
+Using subflow count 1
+Logging to uec_entry
+Logging path choices to uec_entry.paths
+Name Running: NDP
+Fat Tree topology with 0.7us links and 0us switching latency.
+Set params 128
+QueueSize 448500
+_no_of_nodes 128
+K 8
+Queue type 3
+total switches: ToR 32 NAGG 32 NCORE 4 srv_per_tor 4
+SRC0->LS0
+SRC1->LS0
+SRC2->LS0
+SRC3->LS0
+SRC4->LS1
+SRC5->LS1
+SRC6->LS1
+SRC7->LS1
+SRC8->LS2
+SRC9->LS2
+SRC10->LS2
+SRC11->LS2
+SRC12->LS3
+SRC13->LS3
+SRC14->LS3
+SRC15->LS3
+SRC16->LS4
+SRC17->LS4
+SRC18->LS4
+SRC19->LS4
+SRC20->LS5
+SRC21->LS5
+SRC22->LS5
+SRC23->LS5
+SRC24->LS6
+SRC25->LS6
+SRC26->LS6
+SRC27->LS6
+SRC28->LS7
+SRC29->LS7
+SRC30->LS7
+SRC31->LS7
+SRC32->LS8
+SRC33->LS8
+SRC34->LS8
+SRC35->LS8
+SRC36->LS9
+SRC37->LS9
+SRC38->LS9
+SRC39->LS9
+SRC40->LS10
+SRC41->LS10
+SRC42->LS10
+SRC43->LS10
+SRC44->LS11
+SRC45->LS11
+SRC46->LS11
+SRC47->LS11
+SRC48->LS12
+SRC49->LS12
+SRC50->LS12
+SRC51->LS12
+SRC52->LS13
+SRC53->LS13
+SRC54->LS13
+SRC55->LS13
+SRC56->LS14
+SRC57->LS14
+SRC58->LS14
+SRC59->LS14
+SRC60->LS15
+SRC61->LS15
+SRC62->LS15
+SRC63->LS15
+SRC64->LS16
+SRC65->LS16
+SRC66->LS16
+SRC67->LS16
+SRC68->LS17
+SRC69->LS17
+SRC70->LS17
+SRC71->LS17
+SRC72->LS18
+SRC73->LS18
+SRC74->LS18
+SRC75->LS18
+SRC76->LS19
+SRC77->LS19
+SRC78->LS19
+SRC79->LS19
+SRC80->LS20
+SRC81->LS20
+SRC82->LS20
+SRC83->LS20
+SRC84->LS21
+SRC85->LS21
+SRC86->LS21
+SRC87->LS21
+SRC88->LS22
+SRC89->LS22
+SRC90->LS22
+SRC91->LS22
+SRC92->LS23
+SRC93->LS23
+SRC94->LS23
+SRC95->LS23
+SRC96->LS24
+SRC97->LS24
+SRC98->LS24
+SRC99->LS24
+SRC100->LS25
+SRC101->LS25
+SRC102->LS25
+SRC103->LS25
+SRC104->LS26
+SRC105->LS26
+SRC106->LS26
+SRC107->LS26
+SRC108->LS27
+SRC109->LS27
+SRC110->LS27
+SRC111->LS27
+SRC112->LS28
+SRC113->LS28
+SRC114->LS28
+SRC115->LS28
+SRC116->LS29
+SRC117->LS29
+SRC118->LS29
+SRC119->LS29
+SRC120->LS30
+SRC121->LS30
+SRC122->LS30
+SRC123->LS30
+SRC124->LS31
+SRC125->LS31
+SRC126->LS31
+SRC127->LS31
+LS0->US0
+LS0->US1
+LS0->US2
+LS0->US3
+LS1->US0
+LS1->US1
+LS1->US2
+LS1->US3
+LS2->US0
+LS2->US1
+LS2->US2
+LS2->US3
+LS3->US0
+LS3->US1
+LS3->US2
+LS3->US3
+LS4->US4
+LS4->US5
+LS4->US6
+LS4->US7
+LS5->US4
+LS5->US5
+LS5->US6
+LS5->US7
+LS6->US4
+LS6->US5
+LS6->US6
+LS6->US7
+LS7->US4
+LS7->US5
+LS7->US6
+LS7->US7
+LS8->US8
+LS8->US9
+LS8->US10
+LS8->US11
+LS9->US8
+LS9->US9
+LS9->US10
+LS9->US11
+LS10->US8
+LS10->US9
+LS10->US10
+LS10->US11
+LS11->US8
+LS11->US9
+LS11->US10
+LS11->US11
+LS12->US12
+LS12->US13
+LS12->US14
+LS12->US15
+LS13->US12
+LS13->US13
+LS13->US14
+LS13->US15
+LS14->US12
+LS14->US13
+LS14->US14
+LS14->US15
+LS15->US12
+LS15->US13
+LS15->US14
+LS15->US15
+LS16->US16
+LS16->US17
+LS16->US18
+LS16->US19
+LS17->US16
+LS17->US17
+LS17->US18
+LS17->US19
+LS18->US16
+LS18->US17
+LS18->US18
+LS18->US19
+LS19->US16
+LS19->US17
+LS19->US18
+LS19->US19
+LS20->US20
+LS20->US21
+LS20->US22
+LS20->US23
+LS21->US20
+LS21->US21
+LS21->US22
+LS21->US23
+LS22->US20
+LS22->US21
+LS22->US22
+LS22->US23
+LS23->US20
+LS23->US21
+LS23->US22
+LS23->US23
+LS24->US24
+LS24->US25
+LS24->US26
+LS24->US27
+LS25->US24
+LS25->US25
+LS25->US26
+LS25->US27
+LS26->US24
+LS26->US25
+LS26->US26
+LS26->US27
+LS27->US24
+LS27->US25
+LS27->US26
+LS27->US27
+LS28->US28
+LS28->US29
+LS28->US30
+LS28->US31
+LS29->US28
+LS29->US29
+LS29->US30
+LS29->US31
+LS30->US28
+LS30->US29
+LS30->US30
+LS30->US31
+LS31->US28
+LS31->US29
+LS31->US30
+LS31->US31
+US0->CS0
+US1->CS1
+US2->CS2
+US3->CS3
+US4->CS0
+US5->CS1
+US6->CS2
+US7->CS3
+US8->CS0
+US9->CS1
+US10->CS2
+US11->CS3
+US12->CS0
+US13->CS1
+US14->CS2
+US15->CS3
+US16->CS0
+US17->CS1
+US18->CS2
+US19->CS3
+US20->CS0
+US21->CS1
+US22->CS2
+US23->CS3
+US24->CS0
+US25->CS1
+US26->CS2
+US27->CS3
+US28->CS0
+US29->CS1
+US30->CS2
+US31->CS3
+Starting LGS InterfaceCurrent working directory: "/home/tommaso/csg-htsim/plotting"
+LogGP network backend; size: 128 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O=0, P=128, S=65535
+Starting 128
+----------------------------    ENTERING WHILE        // ---------------------------- | 0 0 -  1 1 - 0 0 256 - 0 78 0
+sink tag is 0
+Scheduling Event (0@78@0) of size 16000 from 0 to 78 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (1@90@0) of size 16000 from 1 to 90 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (2@70@0) of size 16000 from 2 to 70 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (3@116@0) of size 16000 from 3 to 116 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (4@96@0) of size 16000 from 4 to 96 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (5@126@0) of size 16000 from 5 to 126 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (6@118@0) of size 16000 from 6 to 118 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (7@76@0) of size 16000 from 7 to 76 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (8@99@0) of size 16000 from 8 to 99 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (9@87@0) of size 16000 from 9 to 87 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (10@117@0) of size 16000 from 10 to 117 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (11@119@0) of size 16000 from 11 to 119 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (12@88@0) of size 16000 from 12 to 88 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (13@94@0) of size 16000 from 13 to 94 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (14@104@0) of size 16000 from 14 to 104 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (15@85@0) of size 16000 from 15 to 85 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (16@97@0) of size 16000 from 16 to 97 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (17@71@0) of size 16000 from 17 to 71 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (18@74@0) of size 16000 from 18 to 74 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (19@110@0) of size 16000 from 19 to 110 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (20@127@0) of size 16000 from 20 to 127 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (21@121@0) of size 16000 from 21 to 121 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (22@120@0) of size 16000 from 22 to 120 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (23@102@0) of size 16000 from 23 to 102 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (24@86@0) of size 16000 from 24 to 86 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (25@64@0) of size 16000 from 25 to 64 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (26@101@0) of size 16000 from 26 to 101 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (27@92@0) of size 16000 from 27 to 92 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (28@73@0) of size 16000 from 28 to 73 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (29@114@0) of size 16000 from 29 to 114 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (30@106@0) of size 16000 from 30 to 106 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (31@111@0) of size 16000 from 31 to 111 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (32@66@0) of size 16000 from 32 to 66 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (33@79@0) of size 16000 from 33 to 79 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (34@82@0) of size 16000 from 34 to 82 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (35@75@0) of size 16000 from 35 to 75 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (36@109@0) of size 16000 from 36 to 109 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (37@98@0) of size 16000 from 37 to 98 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (38@105@0) of size 16000 from 38 to 105 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (39@68@0) of size 16000 from 39 to 68 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (40@115@0) of size 16000 from 40 to 115 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (41@107@0) of size 16000 from 41 to 107 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (42@69@0) of size 16000 from 42 to 69 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (43@67@0) of size 16000 from 43 to 67 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (44@123@0) of size 16000 from 44 to 123 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (45@72@0) of size 16000 from 45 to 72 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (46@83@0) of size 16000 from 46 to 83 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (47@80@0) of size 16000 from 47 to 80 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (48@112@0) of size 16000 from 48 to 112 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (49@84@0) of size 16000 from 49 to 84 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (50@89@0) of size 16000 from 50 to 89 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (51@125@0) of size 16000 from 51 to 125 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (52@113@0) of size 16000 from 52 to 113 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (53@91@0) of size 16000 from 53 to 91 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (54@65@0) of size 16000 from 54 to 65 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (55@100@0) of size 16000 from 55 to 100 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (56@124@0) of size 16000 from 56 to 124 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (57@81@0) of size 16000 from 57 to 81 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (58@95@0) of size 16000 from 58 to 95 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 336585040
+Scheduling Event (59@108@0) of size 16000 from 59 to 108 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (60@93@0) of size 16000 from 60 to 93 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (61@103@0) of size 16000 from 61 to 103 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (62@77@0) of size 16000 from 62 to 77 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (63@122@0) of size 16000 from 63 to 122 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (64@21@0) of size 16000 from 64 to 21 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (65@59@0) of size 16000 from 65 to 59 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (66@37@0) of size 16000 from 66 to 37 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (67@57@0) of size 16000 from 67 to 57 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (68@28@0) of size 16000 from 68 to 28 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (69@31@0) of size 16000 from 69 to 31 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (70@17@0) of size 16000 from 70 to 17 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (71@16@0) of size 16000 from 71 to 16 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (72@61@0) of size 16000 from 72 to 61 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (73@56@0) of size 16000 from 73 to 56 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (74@23@0) of size 16000 from 74 to 23 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (75@60@0) of size 16000 from 75 to 60 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (76@36@0) of size 16000 from 76 to 36 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (77@30@0) of size 16000 from 77 to 30 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (78@10@0) of size 16000 from 78 to 10 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (79@3@0) of size 16000 from 79 to 3 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (80@43@0) of size 16000 from 80 to 43 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (81@22@0) of size 16000 from 81 to 22 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (82@11@0) of size 16000 from 82 to 11 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (83@48@0) of size 16000 from 83 to 48 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (84@47@0) of size 16000 from 84 to 47 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (85@13@0) of size 16000 from 85 to 13 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (86@27@0) of size 16000 from 86 to 27 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (87@53@0) of size 16000 from 87 to 53 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (88@51@0) of size 16000 from 88 to 51 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (89@2@0) of size 16000 from 89 to 2 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (90@55@0) of size 16000 from 90 to 55 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (91@35@0) of size 16000 from 91 to 35 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (92@38@0) of size 16000 from 92 to 38 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (93@34@0) of size 16000 from 93 to 34 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (94@6@0) of size 16000 from 94 to 6 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (95@20@0) of size 16000 from 95 to 20 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (96@45@0) of size 16000 from 96 to 45 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (97@26@0) of size 16000 from 97 to 26 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (98@44@0) of size 16000 from 98 to 44 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (99@42@0) of size 16000 from 99 to 42 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (100@58@0) of size 16000 from 100 to 58 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (101@7@0) of size 16000 from 101 to 7 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (102@18@0) of size 16000 from 102 to 18 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (103@41@0) of size 16000 from 103 to 41 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (104@33@0) of size 16000 from 104 to 33 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (105@1@0) of size 16000 from 105 to 1 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (106@62@0) of size 16000 from 106 to 62 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (107@24@0) of size 16000 from 107 to 24 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (108@25@0) of size 16000 from 108 to 25 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (109@63@0) of size 16000 from 109 to 63 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (110@50@0) of size 16000 from 110 to 50 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (111@46@0) of size 16000 from 111 to 46 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (112@5@0) of size 16000 from 112 to 5 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (113@52@0) of size 16000 from 113 to 52 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (114@54@0) of size 16000 from 114 to 54 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (115@32@0) of size 16000 from 115 to 32 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (116@19@0) of size 16000 from 116 to 19 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (117@0@0) of size 16000 from 117 to 0 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (118@9@0) of size 16000 from 118 to 9 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (119@14@0) of size 16000 from 119 to 14 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (120@4@0) of size 16000 from 120 to 4 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (121@49@0) of size 16000 from 121 to 49 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (122@39@0) of size 16000 from 122 to 39 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (123@40@0) of size 16000 from 123 to 40 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (124@12@0) of size 16000 from 124 to 12 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (125@8@0) of size 16000 from 125 to 8 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (126@15@0) of size 16000 from 126 to 15 tag 0 start_tiem 94330702938104 - Time is 0
+ sink tag is 0
+Scheduling Event (127@29@0) of size 16000 from 127 to 29 tag 0 start_tiem 94330702938104 - Time is 0
+ Current elem time is 0 while NS3 0
+Simulating Until Called
+startflow NDP_0_78 CWND 448500 rts 0 at 0
+startflow NDP_1_90 CWND 448500 rts 0 at 0
+startflow NDP_2_70 CWND 448500 rts 0 at 0
+startflow NDP_3_116 CWND 448500 rts 0 at 0
+startflow NDP_4_96 CWND 448500 rts 0 at 0
+startflow NDP_5_126 CWND 448500 rts 0 at 0
+startflow NDP_6_118 CWND 448500 rts 0 at 0
+startflow NDP_7_76 CWND 448500 rts 0 at 0
+startflow NDP_8_99 CWND 448500 rts 0 at 0
+startflow NDP_9_87 CWND 448500 rts 0 at 0
+startflow NDP_10_117 CWND 448500 rts 0 at 0
+startflow NDP_11_119 CWND 448500 rts 0 at 0
+startflow NDP_12_88 CWND 448500 rts 0 at 0
+startflow NDP_13_94 CWND 448500 rts 0 at 0
+startflow NDP_14_104 CWND 448500 rts 0 at 0
+startflow NDP_15_85 CWND 448500 rts 0 at 0
+startflow NDP_16_97 CWND 448500 rts 0 at 0
+startflow NDP_17_71 CWND 448500 rts 0 at 0
+startflow NDP_18_74 CWND 448500 rts 0 at 0
+startflow NDP_19_110 CWND 448500 rts 0 at 0
+startflow NDP_20_127 CWND 448500 rts 0 at 0
+startflow NDP_21_121 CWND 448500 rts 0 at 0
+startflow NDP_22_120 CWND 448500 rts 0 at 0
+startflow NDP_23_102 CWND 448500 rts 0 at 0
+startflow NDP_24_86 CWND 448500 rts 0 at 0
+startflow NDP_25_64 CWND 448500 rts 0 at 0
+startflow NDP_26_101 CWND 448500 rts 0 at 0
+startflow NDP_27_92 CWND 448500 rts 0 at 0
+startflow NDP_28_73 CWND 448500 rts 0 at 0
+startflow NDP_29_114 CWND 448500 rts 0 at 0
+startflow NDP_30_106 CWND 448500 rts 0 at 0
+startflow NDP_31_111 CWND 448500 rts 0 at 0
+startflow NDP_32_66 CWND 448500 rts 0 at 0
+startflow NDP_33_79 CWND 448500 rts 0 at 0
+startflow NDP_34_82 CWND 448500 rts 0 at 0
+startflow NDP_35_75 CWND 448500 rts 0 at 0
+startflow NDP_36_109 CWND 448500 rts 0 at 0
+startflow NDP_37_98 CWND 448500 rts 0 at 0
+startflow NDP_38_105 CWND 448500 rts 0 at 0
+startflow NDP_39_68 CWND 448500 rts 0 at 0
+startflow NDP_40_115 CWND 448500 rts 0 at 0
+startflow NDP_41_107 CWND 448500 rts 0 at 0
+startflow NDP_42_69 CWND 448500 rts 0 at 0
+startflow NDP_43_67 CWND 448500 rts 0 at 0
+startflow NDP_44_123 CWND 448500 rts 0 at 0
+startflow NDP_45_72 CWND 448500 rts 0 at 0
+startflow NDP_46_83 CWND 448500 rts 0 at 0
+startflow NDP_47_80 CWND 448500 rts 0 at 0
+startflow NDP_48_112 CWND 448500 rts 0 at 0
+startflow NDP_49_84 CWND 448500 rts 0 at 0
+startflow NDP_50_89 CWND 448500 rts 0 at 0
+startflow NDP_51_125 CWND 448500 rts 0 at 0
+startflow NDP_52_113 CWND 448500 rts 0 at 0
+startflow NDP_53_91 CWND 448500 rts 0 at 0
+startflow NDP_54_65 CWND 448500 rts 0 at 0
+startflow NDP_55_100 CWND 448500 rts 0 at 0
+startflow NDP_56_124 CWND 448500 rts 0 at 0
+startflow NDP_57_81 CWND 448500 rts 0 at 0
+startflow NDP_58_95 CWND 448500 rts 0 at 0
+startflow NDP_59_108 CWND 448500 rts 0 at 0
+startflow NDP_60_93 CWND 448500 rts 0 at 0
+startflow NDP_61_103 CWND 448500 rts 0 at 0
+startflow NDP_62_77 CWND 448500 rts 0 at 0
+startflow NDP_63_122 CWND 448500 rts 0 at 0
+startflow NDP_64_21 CWND 448500 rts 0 at 0
+startflow NDP_65_59 CWND 448500 rts 0 at 0
+startflow NDP_66_37 CWND 448500 rts 0 at 0
+startflow NDP_67_57 CWND 448500 rts 0 at 0
+startflow NDP_68_28 CWND 448500 rts 0 at 0
+startflow NDP_69_31 CWND 448500 rts 0 at 0
+startflow NDP_70_17 CWND 448500 rts 0 at 0
+startflow NDP_71_16 CWND 448500 rts 0 at 0
+startflow NDP_72_61 CWND 448500 rts 0 at 0
+startflow NDP_73_56 CWND 448500 rts 0 at 0
+startflow NDP_74_23 CWND 448500 rts 0 at 0
+startflow NDP_75_60 CWND 448500 rts 0 at 0
+startflow NDP_76_36 CWND 448500 rts 0 at 0
+startflow NDP_77_30 CWND 448500 rts 0 at 0
+startflow NDP_78_10 CWND 448500 rts 0 at 0
+startflow NDP_79_3 CWND 448500 rts 0 at 0
+startflow NDP_80_43 CWND 448500 rts 0 at 0
+startflow NDP_81_22 CWND 448500 rts 0 at 0
+startflow NDP_82_11 CWND 448500 rts 0 at 0
+startflow NDP_83_48 CWND 448500 rts 0 at 0
+startflow NDP_84_47 CWND 448500 rts 0 at 0
+startflow NDP_85_13 CWND 448500 rts 0 at 0
+startflow NDP_86_27 CWND 448500 rts 0 at 0
+startflow NDP_87_53 CWND 448500 rts 0 at 0
+startflow NDP_88_51 CWND 448500 rts 0 at 0
+startflow NDP_89_2 CWND 448500 rts 0 at 0
+startflow NDP_90_55 CWND 448500 rts 0 at 0
+startflow NDP_91_35 CWND 448500 rts 0 at 0
+startflow NDP_92_38 CWND 448500 rts 0 at 0
+startflow NDP_93_34 CWND 448500 rts 0 at 0
+startflow NDP_94_6 CWND 448500 rts 0 at 0
+startflow NDP_95_20 CWND 448500 rts 0 at 0
+startflow NDP_96_45 CWND 448500 rts 0 at 0
+startflow NDP_97_26 CWND 448500 rts 0 at 0
+startflow NDP_98_44 CWND 448500 rts 0 at 0
+startflow NDP_99_42 CWND 448500 rts 0 at 0
+startflow NDP_100_58 CWND 448500 rts 0 at 0
+startflow NDP_101_7 CWND 448500 rts 0 at 0
+startflow NDP_102_18 CWND 448500 rts 0 at 0
+startflow NDP_103_41 CWND 448500 rts 0 at 0
+startflow NDP_104_33 CWND 448500 rts 0 at 0
+startflow NDP_105_1 CWND 448500 rts 0 at 0
+startflow NDP_106_62 CWND 448500 rts 0 at 0
+startflow NDP_107_24 CWND 448500 rts 0 at 0
+startflow NDP_108_25 CWND 448500 rts 0 at 0
+startflow NDP_109_63 CWND 448500 rts 0 at 0
+startflow NDP_110_50 CWND 448500 rts 0 at 0
+startflow NDP_111_46 CWND 448500 rts 0 at 0
+startflow NDP_112_5 CWND 448500 rts 0 at 0
+startflow NDP_113_52 CWND 448500 rts 0 at 0
+startflow NDP_114_54 CWND 448500 rts 0 at 0
+startflow NDP_115_32 CWND 448500 rts 0 at 0
+startflow NDP_116_19 CWND 448500 rts 0 at 0
+startflow NDP_117_0 CWND 448500 rts 0 at 0
+startflow NDP_118_9 CWND 448500 rts 0 at 0
+startflow NDP_119_14 CWND 448500 rts 0 at 0
+startflow NDP_120_4 CWND 448500 rts 0 at 0
+startflow NDP_121_49 CWND 448500 rts 0 at 0
+startflow NDP_122_39 CWND 448500 rts 0 at 0
+startflow NDP_123_40 CWND 448500 rts 0 at 0
+startflow NDP_124_12 CWND 448500 rts 0 at 0
+startflow NDP_125_8 CWND 448500 rts 0 at 0
+startflow NDP_126_15 CWND 448500 rts 0 at 0
+startflow NDP_127_29 CWND 448500 rts 0 at 0
+Dest 78 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 0  - PoDPos 0 -------- 4 -> 16
+1) ID 0 - K 0  2) k 0 Next Upper 16
+
+Dest 96 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 0  - PoDPos 0 -------- 6 -> 24
+1) ID 0 - K 0  2) k 0 Next Upper 24
+
+Dest 99 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 3  - PoDPos 3 -------- 6 -> 24
+1) ID 3 - K 3  2) k 3 Next Upper 27
+
+Dest 88 - FTK 8 - k 0 - HOSTPOD 5 - 4160 - ID 0  - PoDPos 0 -------- 5 -> 20
+1) ID 0 - K 0  2) k 0 Next Upper 20
+
+Dest 97 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 7  - PoDPos 3 -------- 6 -> 24
+1) ID 7 - K 3  2) k 3 Next Upper 27
+
+Dest 127 - FTK 8 - k 3 - HOSTPOD 7 - 4160 - ID 7  - PoDPos 3 -------- 7 -> 28
+1) ID 7 - K 3  2) k 3 Next Upper 31
+
+Dest 86 - FTK 8 - k 0 - HOSTPOD 5 - 4160 - ID 4  - PoDPos 0 -------- 5 -> 20
+1) ID 4 - K 0  2) k 0 Next Upper 20
+
+Dest 73 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 5  - PoDPos 1 -------- 4 -> 16
+1) ID 5 - K 1  2) k 1 Next Upper 17
+
+Dest 66 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 11  - PoDPos 3 -------- 4 -> 16
+1) ID 11 - K 3  2) k 3 Next Upper 19
+
+Dest 109 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 11  - PoDPos 3 -------- 6 -> 24
+1) ID 11 - K 3  2) k 3 Next Upper 27
+
+Dest 115 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 10  - PoDPos 2 -------- 7 -> 28
+1) ID 10 - K 2  2) k 2 Next Upper 30
+
+Dest 123 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 10  - PoDPos 2 -------- 7 -> 28
+1) ID 10 - K 2  2) k 2 Next Upper 30
+
+Dest 112 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 12  - PoDPos 0 -------- 7 -> 28
+1) ID 12 - K 0  2) k 0 Next Upper 28
+
+Dest 113 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 12  - PoDPos 0 -------- 7 -> 28
+1) ID 12 - K 0  2) k 0 Next Upper 28
+
+Dest 124 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 14  - PoDPos 2 -------- 7 -> 28
+1) ID 14 - K 2  2) k 2 Next Upper 30
+
+Dest 93 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 14  - PoDPos 2 -------- 5 -> 20
+1) ID 14 - K 2  2) k 2 Next Upper 22
+
+Dest 21 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 28 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 2  2) k 2 Next Upper 6
+
+Dest 61 - FTK 8 - k 2 - HOSTPOD 3 - 4160 - ID 18  - PoDPos 2 -------- 3 -> 12
+1) ID 18 - K 2  2) k 2 Next Upper 14
+
+Dest 36 - FTK 8 - k 2 - HOSTPOD 2 - 4160 - ID 18  - PoDPos 2 -------- 2 -> 8
+1) ID 18 - K 2  2) k 2 Next Upper 10
+
+Dest 43 - FTK 8 - k 0 - HOSTPOD 2 - 4160 - ID 20  - PoDPos 0 -------- 2 -> 8
+1) ID 20 - K 0  2) k 0 Next Upper 8
+
+Dest 47 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 21  - PoDPos 1 -------- 2 -> 8
+1) ID 21 - K 1  2) k 1 Next Upper 9
+
+Dest 51 - FTK 8 - k 0 - HOSTPOD 3 - 4160 - ID 20  - PoDPos 0 -------- 3 -> 12
+1) ID 20 - K 0  2) k 0 Next Upper 12
+
+Dest 38 - FTK 8 - k 0 - HOSTPOD 2 - 4160 - ID 20  - PoDPos 0 -------- 2 -> 8
+1) ID 20 - K 0  2) k 0 Next Upper 8
+
+Dest 45 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 25  - PoDPos 1 -------- 2 -> 8
+1) ID 25 - K 1  2) k 1 Next Upper 9
+
+Dest 58 - FTK 8 - k 2 - HOSTPOD 3 - 4160 - ID 26  - PoDPos 2 -------- 3 -> 12
+1) ID 26 - K 2  2) k 2 Next Upper 14
+
+Dest 33 - FTK 8 - k 2 - HOSTPOD 2 - 4160 - ID 26  - PoDPos 2 -------- 2 -> 8
+1) ID 26 - K 2  2) k 2 Next Upper 10
+
+Dest 25 - FTK 8 - k 1 - HOSTPOD 1 - 4160 - ID 25  - PoDPos 1 -------- 1 -> 4
+1) ID 25 - K 1  2) k 1 Next Upper 5
+
+Dest 5 - FTK 8 - k 0 - HOSTPOD 0 - 4160 - ID 28  - PoDPos 0 -------- 0 -> 0
+1) ID 28 - K 0  2) k 0 Next Upper 0
+
+Dest 19 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 28  - PoDPos 0 -------- 1 -> 4
+1) ID 28 - K 0  2) k 0 Next Upper 4
+
+Dest 4 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 31  - PoDPos 3 -------- 0 -> 0
+1) ID 31 - K 3  2) k 3 Next Upper 3
+
+Dest 12 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 31  - PoDPos 3 -------- 0 -> 0
+1) ID 31 - K 3  2) k 3 Next Upper 3
+
+Dest 90 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 2  - PoDPos 2 -------- 5 -> 20
+1) ID 2 - K 2  2) k 2 Next Upper 22
+
+Dest 94 - FTK 8 - k 3 - HOSTPOD 5 - 4160 - ID 3  - PoDPos 3 -------- 5 -> 20
+1) ID 3 - K 3  2) k 3 Next Upper 23
+
+Dest 121 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 6  - PoDPos 2 -------- 7 -> 28
+1) ID 6 - K 2  2) k 2 Next Upper 30
+
+Dest 114 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 4  - PoDPos 0 -------- 7 -> 28
+1) ID 4 - K 0  2) k 0 Next Upper 28
+
+Dest 98 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 10  - PoDPos 2 -------- 6 -> 24
+1) ID 10 - K 2  2) k 2 Next Upper 26
+
+Dest 72 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 11  - PoDPos 3 -------- 4 -> 16
+1) ID 11 - K 3  2) k 3 Next Upper 19
+
+Dest 84 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 14  - PoDPos 2 -------- 5 -> 20
+1) ID 14 - K 2  2) k 2 Next Upper 22
+
+Dest 91 - FTK 8 - k 3 - HOSTPOD 5 - 4160 - ID 15  - PoDPos 3 -------- 5 -> 20
+1) ID 15 - K 3  2) k 3 Next Upper 23
+
+Dest 103 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 15  - PoDPos 3 -------- 6 -> 24
+1) ID 15 - K 3  2) k 3 Next Upper 27
+
+Dest 59 - FTK 8 - k 3 - HOSTPOD 3 - 4160 - ID 19  - PoDPos 3 -------- 3 -> 12
+1) ID 19 - K 3  2) k 3 Next Upper 15
+
+Dest 31 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 56 - FTK 8 - k 3 - HOSTPOD 3 - 4160 - ID 19  - PoDPos 3 -------- 3 -> 12
+1) ID 19 - K 3  2) k 3 Next Upper 15
+
+Dest 22 - FTK 8 - k 1 - HOSTPOD 1 - 4160 - ID 21  - PoDPos 1 -------- 1 -> 4
+1) ID 21 - K 1  2) k 1 Next Upper 5
+
+Dest 13 - FTK 8 - k 0 - HOSTPOD 0 - 4160 - ID 20  - PoDPos 0 -------- 0 -> 0
+1) ID 20 - K 0  2) k 0 Next Upper 0
+
+Dest 2 - FTK 8 - k 1 - HOSTPOD 0 - 4160 - ID 21  - PoDPos 1 -------- 0 -> 0
+1) ID 21 - K 1  2) k 1 Next Upper 1
+
+Dest 7 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 27  - PoDPos 3 -------- 0 -> 0
+1) ID 27 - K 3  2) k 3 Next Upper 3
+
+Dest 52 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 29  - PoDPos 1 -------- 3 -> 12
+1) ID 29 - K 1  2) k 1 Next Upper 13
+
+Dest 49 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 29  - PoDPos 1 -------- 3 -> 12
+1) ID 29 - K 1  2) k 1 Next Upper 13
+
+Dest 8 - FTK 8 - k 0 - HOSTPOD 0 - 4160 - ID 28  - PoDPos 0 -------- 0 -> 0
+1) ID 28 - K 0  2) k 0 Next Upper 0
+
+Dest 70 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 1  - PoDPos 1 -------- 4 -> 16
+1) ID 1 - K 1  2) k 1 Next Upper 17
+
+Dest 118 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 2  - PoDPos 2 -------- 7 -> 28
+1) ID 2 - K 2  2) k 2 Next Upper 30
+
+Dest 117 - FTK 8 - k 1 - HOSTPOD 7 - 4160 - ID 1  - PoDPos 1 -------- 7 -> 28
+1) ID 1 - K 1  2) k 1 Next Upper 29
+
+Dest 74 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 5  - PoDPos 1 -------- 4 -> 16
+1) ID 5 - K 1  2) k 1 Next Upper 17
+
+Dest 101 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 6  - PoDPos 2 -------- 6 -> 24
+1) ID 6 - K 2  2) k 2 Next Upper 26
+
+Dest 106 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 6  - PoDPos 2 -------- 6 -> 24
+1) ID 6 - K 2  2) k 2 Next Upper 26
+
+Dest 82 - FTK 8 - k 1 - HOSTPOD 5 - 4160 - ID 9  - PoDPos 1 -------- 5 -> 20
+1) ID 9 - K 1  2) k 1 Next Upper 21
+
+Dest 89 - FTK 8 - k 3 - HOSTPOD 5 - 4160 - ID 15  - PoDPos 3 -------- 5 -> 20
+1) ID 15 - K 3  2) k 3 Next Upper 23
+
+Dest 65 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 14  - PoDPos 2 -------- 4 -> 16
+1) ID 14 - K 2  2) k 2 Next Upper 18
+
+Dest 95 - FTK 8 - k 1 - HOSTPOD 5 - 4160 - ID 13  - PoDPos 1 -------- 5 -> 20
+1) ID 13 - K 1  2) k 1 Next Upper 21
+
+Dest 23 - FTK 8 - k 1 - HOSTPOD 1 - 4160 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 1  2) k 1 Next Upper 5
+
+Dest 10 - FTK 8 - k 0 - HOSTPOD 0 - 4160 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 6 - FTK 8 - k 1 - HOSTPOD 0 - 4160 - ID 21  - PoDPos 1 -------- 0 -> 0
+1) ID 21 - K 1  2) k 1 Next Upper 1
+
+Dest 44 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 27  - PoDPos 3 -------- 2 -> 8
+1) ID 27 - K 3  2) k 3 Next Upper 11
+
+Dest 18 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 24  - PoDPos 0 -------- 1 -> 4
+1) ID 24 - K 0  2) k 0 Next Upper 4
+
+Dest 50 - FTK 8 - k 3 - HOSTPOD 3 - 4160 - ID 27  - PoDPos 3 -------- 3 -> 12
+1) ID 27 - K 3  2) k 3 Next Upper 15
+
+Dest 9 - FTK 8 - k 1 - HOSTPOD 0 - 4160 - ID 29  - PoDPos 1 -------- 0 -> 0
+1) ID 29 - K 1  2) k 1 Next Upper 1
+
+Dest 15 - FTK 8 - k 1 - HOSTPOD 0 - 4160 - ID 29  - PoDPos 1 -------- 0 -> 0
+1) ID 29 - K 1  2) k 1 Next Upper 1
+
+Dest 116 - FTK 8 - k 3 - HOSTPOD 7 - 4160 - ID 3  - PoDPos 3 -------- 7 -> 28
+1) ID 3 - K 3  2) k 3 Next Upper 31
+
+Dest 76 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 1  - PoDPos 1 -------- 4 -> 16
+1) ID 1 - K 1  2) k 1 Next Upper 17
+
+Dest 85 - FTK 8 - k 1 - HOSTPOD 5 - 4160 - ID 1  - PoDPos 1 -------- 5 -> 20
+1) ID 1 - K 1  2) k 1 Next Upper 21
+
+Dest 102 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 4  - PoDPos 0 -------- 6 -> 24
+1) ID 4 - K 0  2) k 0 Next Upper 24
+
+Dest 67 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 11  - PoDPos 3 -------- 4 -> 16
+1) ID 11 - K 3  2) k 3 Next Upper 19
+
+Dest 80 - FTK 8 - k 1 - HOSTPOD 5 - 4160 - ID 9  - PoDPos 1 -------- 5 -> 20
+1) ID 9 - K 1  2) k 1 Next Upper 21
+
+Dest 125 - FTK 8 - k 1 - HOSTPOD 7 - 4160 - ID 13  - PoDPos 1 -------- 7 -> 28
+1) ID 13 - K 1  2) k 1 Next Upper 29
+
+Dest 57 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 17  - PoDPos 1 -------- 3 -> 12
+1) ID 17 - K 1  2) k 1 Next Upper 13
+
+Dest 48 - FTK 8 - k 2 - HOSTPOD 3 - 4160 - ID 22  - PoDPos 2 -------- 3 -> 12
+1) ID 22 - K 2  2) k 2 Next Upper 14
+
+Dest 53 - FTK 8 - k 2 - HOSTPOD 3 - 4160 - ID 22  - PoDPos 2 -------- 3 -> 12
+1) ID 22 - K 2  2) k 2 Next Upper 14
+
+Dest 35 - FTK 8 - k 2 - HOSTPOD 2 - 4160 - ID 22  - PoDPos 2 -------- 2 -> 8
+1) ID 22 - K 2  2) k 2 Next Upper 10
+
+Dest 20 - FTK 8 - k 3 - HOSTPOD 1 - 4160 - ID 23  - PoDPos 3 -------- 1 -> 4
+1) ID 23 - K 3  2) k 3 Next Upper 7
+
+Dest 14 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 30  - PoDPos 2 -------- 0 -> 0
+1) ID 30 - K 2  2) k 2 Next Upper 2
+
+Dest 40 - FTK 8 - k 0 - HOSTPOD 2 - 4160 - ID 28  - PoDPos 0 -------- 2 -> 8
+1) ID 28 - K 0  2) k 0 Next Upper 8
+
+Dest 96 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 3  - PoDPos 3 -------- 6 -> 24
+1) ID 3 - K 3  2) k 3 Next Upper 27
+
+Dest 99 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 2  - PoDPos 2 -------- 6 -> 24
+1) ID 2 - K 2  2) k 2 Next Upper 26
+
+Dest 97 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 4  - PoDPos 0 -------- 6 -> 24
+1) ID 4 - K 0  2) k 0 Next Upper 24
+
+Dest 66 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 8  - PoDPos 0 -------- 4 -> 16
+1) ID 8 - K 0  2) k 0 Next Upper 16
+
+Dest 115 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 8  - PoDPos 0 -------- 7 -> 28
+1) ID 8 - K 0  2) k 0 Next Upper 28
+
+Dest 124 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 12  - PoDPos 0 -------- 7 -> 28
+1) ID 12 - K 0  2) k 0 Next Upper 28
+
+Dest 36 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 17  - PoDPos 1 -------- 2 -> 8
+1) ID 17 - K 1  2) k 1 Next Upper 9
+
+Dest 51 - FTK 8 - k 3 - HOSTPOD 3 - 4160 - ID 23  - PoDPos 3 -------- 3 -> 12
+1) ID 23 - K 3  2) k 3 Next Upper 15
+
+Dest 38 - FTK 8 - k 2 - HOSTPOD 2 - 4160 - ID 22  - PoDPos 2 -------- 2 -> 8
+1) ID 22 - K 2  2) k 2 Next Upper 10
+
+Dest 33 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 27  - PoDPos 3 -------- 2 -> 8
+1) ID 27 - K 3  2) k 3 Next Upper 11
+
+Dest 25 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 26  - PoDPos 2 -------- 1 -> 4
+1) ID 26 - K 2  2) k 2 Next Upper 6
+
+Dest 4 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 30  - PoDPos 2 -------- 0 -> 0
+1) ID 30 - K 2  2) k 2 Next Upper 2
+
+Dest 71 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 6  - PoDPos 2 -------- 4 -> 16
+1) ID 6 - K 2  2) k 2 Next Upper 18
+
+Dest 64 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 5  - PoDPos 1 -------- 4 -> 16
+1) ID 5 - K 1  2) k 1 Next Upper 17
+
+Dest 98 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 8  - PoDPos 0 -------- 6 -> 24
+1) ID 8 - K 0  2) k 0 Next Upper 24
+
+Dest 31 - FTK 8 - k 1 - HOSTPOD 1 - 4160 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 1  2) k 1 Next Upper 5
+
+Dest 30 - FTK 8 - k 3 - HOSTPOD 1 - 4160 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 3  2) k 3 Next Upper 7
+
+Dest 7 - FTK 8 - k 1 - HOSTPOD 0 - 4160 - ID 25  - PoDPos 1 -------- 0 -> 0
+1) ID 25 - K 1  2) k 1 Next Upper 1
+
+Dest 63 - FTK 8 - k 0 - HOSTPOD 3 - 4160 - ID 24  - PoDPos 0 -------- 3 -> 12
+1) ID 24 - K 0  2) k 0 Next Upper 12
+
+Dest 52 - FTK 8 - k 3 - HOSTPOD 3 - 4160 - ID 31  - PoDPos 3 -------- 3 -> 12
+1) ID 31 - K 3  2) k 3 Next Upper 15
+
+Dest 106 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 7  - PoDPos 3 -------- 6 -> 24
+1) ID 7 - K 3  2) k 3 Next Upper 27
+
+Dest 105 - FTK 8 - k 1 - HOSTPOD 6 - 4160 - ID 9  - PoDPos 1 -------- 6 -> 24
+1) ID 9 - K 1  2) k 1 Next Upper 25
+
+Dest 77 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 12  - PoDPos 0 -------- 4 -> 16
+1) ID 12 - K 0  2) k 0 Next Upper 16
+
+Dest 11 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 23  - PoDPos 3 -------- 0 -> 0
+1) ID 23 - K 3  2) k 3 Next Upper 3
+
+Dest 15 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 30  - PoDPos 2 -------- 0 -> 0
+1) ID 30 - K 2  2) k 2 Next Upper 2
+
+Dest 92 - FTK 8 - k 3 - HOSTPOD 5 - 4160 - ID 7  - PoDPos 3 -------- 5 -> 20
+1) ID 7 - K 3  2) k 3 Next Upper 23
+
+Dest 100 - FTK 8 - k 1 - HOSTPOD 6 - 4160 - ID 13  - PoDPos 1 -------- 6 -> 24
+1) ID 13 - K 1  2) k 1 Next Upper 25
+
+Dest 53 - FTK 8 - k 3 - HOSTPOD 3 - 4160 - ID 23  - PoDPos 3 -------- 3 -> 12
+1) ID 23 - K 3  2) k 3 Next Upper 15
+
+Dest 32 - FTK 8 - k 2 - HOSTPOD 2 - 4160 - ID 30  - PoDPos 2 -------- 2 -> 8
+1) ID 30 - K 2  2) k 2 Next Upper 10
+
+Dest 90 - FTK 8 - k 0 - HOSTPOD 5 - 4160 - ID 0  - PoDPos 0 -------- 5 -> 20
+1) ID 0 - K 0  2) k 0 Next Upper 20
+
+Dest 126 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 0  - PoDPos 0 -------- 7 -> 28
+1) ID 0 - K 0  2) k 0 Next Upper 28
+
+Dest 87 - FTK 8 - k 3 - HOSTPOD 5 - 4160 - ID 3  - PoDPos 3 -------- 5 -> 20
+1) ID 3 - K 3  2) k 3 Next Upper 23
+
+Dest 71 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 7  - PoDPos 3 -------- 4 -> 16
+1) ID 7 - K 3  2) k 3 Next Upper 19
+
+Dest 120 - FTK 8 - k 3 - HOSTPOD 7 - 4160 - ID 7  - PoDPos 3 -------- 7 -> 28
+1) ID 7 - K 3  2) k 3 Next Upper 31
+
+Dest 64 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 0  2) k 0 Next Upper 16
+
+Dest 114 - FTK 8 - k 1 - HOSTPOD 7 - 4160 - ID 5  - PoDPos 1 -------- 7 -> 28
+1) ID 5 - K 1  2) k 1 Next Upper 29
+
+Dest 79 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 11  - PoDPos 3 -------- 4 -> 16
+1) ID 11 - K 3  2) k 3 Next Upper 19
+
+Dest 105 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 11  - PoDPos 3 -------- 6 -> 24
+1) ID 11 - K 3  2) k 3 Next Upper 27
+
+Dest 107 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 10  - PoDPos 2 -------- 6 -> 24
+1) ID 10 - K 2  2) k 2 Next Upper 26
+
+Dest 83 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 10  - PoDPos 2 -------- 5 -> 20
+1) ID 10 - K 2  2) k 2 Next Upper 22
+
+Dest 100 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 12  - PoDPos 0 -------- 6 -> 24
+1) ID 12 - K 0  2) k 0 Next Upper 24
+
+Dest 81 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 14  - PoDPos 2 -------- 5 -> 20
+1) ID 14 - K 2  2) k 2 Next Upper 22
+
+Dest 77 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 14  - PoDPos 2 -------- 4 -> 16
+1) ID 14 - K 2  2) k 2 Next Upper 18
+
+Dest 37 - FTK 8 - k 0 - HOSTPOD 2 - 4160 - ID 16  - PoDPos 0 -------- 2 -> 8
+1) ID 16 - K 0  2) k 0 Next Upper 8
+
+Dest 56 - FTK 8 - k 2 - HOSTPOD 3 - 4160 - ID 18  - PoDPos 2 -------- 3 -> 12
+1) ID 18 - K 2  2) k 2 Next Upper 14
+
+Dest 30 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 2  2) k 2 Next Upper 6
+
+Dest 27 - FTK 8 - k 1 - HOSTPOD 1 - 4160 - ID 21  - PoDPos 1 -------- 1 -> 4
+1) ID 21 - K 1  2) k 1 Next Upper 5
+
+Dest 55 - FTK 8 - k 0 - HOSTPOD 3 - 4160 - ID 20  - PoDPos 0 -------- 3 -> 12
+1) ID 20 - K 0  2) k 0 Next Upper 12
+
+Dest 34 - FTK 8 - k 0 - HOSTPOD 2 - 4160 - ID 20  - PoDPos 0 -------- 2 -> 8
+1) ID 20 - K 0  2) k 0 Next Upper 8
+
+Dest 26 - FTK 8 - k 1 - HOSTPOD 1 - 4160 - ID 25  - PoDPos 1 -------- 1 -> 4
+1) ID 25 - K 1  2) k 1 Next Upper 5
+
+Dest 1 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 26  - PoDPos 2 -------- 0 -> 0
+1) ID 26 - K 2  2) k 2 Next Upper 2
+
+Dest 63 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 25  - PoDPos 1 -------- 3 -> 12
+1) ID 25 - K 1  2) k 1 Next Upper 13
+
+Dest 0 - FTK 8 - k 0 - HOSTPOD 0 - 4160 - ID 28  - PoDPos 0 -------- 0 -> 0
+1) ID 28 - K 0  2) k 0 Next Upper 0
+
+Dest 39 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 31  - PoDPos 3 -------- 2 -> 8
+1) ID 31 - K 3  2) k 3 Next Upper 11
+
+Dest 29 - FTK 8 - k 3 - HOSTPOD 1 - 4160 - ID 31  - PoDPos 3 -------- 1 -> 4
+1) ID 31 - K 3  2) k 3 Next Upper 7
+
+Dest 104 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 3  - PoDPos 3 -------- 6 -> 24
+1) ID 3 - K 3  2) k 3 Next Upper 27
+
+Dest 127 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 6  - PoDPos 2 -------- 7 -> 28
+1) ID 6 - K 2  2) k 2 Next Upper 30
+
+Dest 111 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 4  - PoDPos 0 -------- 6 -> 24
+1) ID 4 - K 0  2) k 0 Next Upper 24
+
+Dest 109 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 10  - PoDPos 2 -------- 6 -> 24
+1) ID 10 - K 2  2) k 2 Next Upper 26
+
+Dest 80 - FTK 8 - k 3 - HOSTPOD 5 - 4160 - ID 11  - PoDPos 3 -------- 5 -> 20
+1) ID 11 - K 3  2) k 3 Next Upper 23
+
+Dest 89 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 14  - PoDPos 2 -------- 5 -> 20
+1) ID 14 - K 2  2) k 2 Next Upper 22
+
+Dest 122 - FTK 8 - k 3 - HOSTPOD 7 - 4160 - ID 15  - PoDPos 3 -------- 7 -> 28
+1) ID 15 - K 3  2) k 3 Next Upper 31
+
+Dest 17 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 61 - FTK 8 - k 3 - HOSTPOD 3 - 4160 - ID 19  - PoDPos 3 -------- 3 -> 12
+1) ID 19 - K 3  2) k 3 Next Upper 15
+
+Dest 11 - FTK 8 - k 1 - HOSTPOD 0 - 4160 - ID 21  - PoDPos 1 -------- 0 -> 0
+1) ID 21 - K 1  2) k 1 Next Upper 1
+
+Dest 55 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 21  - PoDPos 1 -------- 3 -> 12
+1) ID 21 - K 1  2) k 1 Next Upper 13
+
+Dest 41 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 27  - PoDPos 3 -------- 2 -> 8
+1) ID 27 - K 3  2) k 3 Next Upper 11
+
+Dest 54 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 29  - PoDPos 1 -------- 3 -> 12
+1) ID 29 - K 1  2) k 1 Next Upper 13
+
+Dest 39 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 29  - PoDPos 1 -------- 2 -> 8
+1) ID 29 - K 1  2) k 1 Next Upper 9
+
+Dest 12 - FTK 8 - k 0 - HOSTPOD 0 - 4160 - ID 28  - PoDPos 0 -------- 0 -> 0
+1) ID 28 - K 0  2) k 0 Next Upper 0
+
+Dest 78 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 1  - PoDPos 1 -------- 4 -> 16
+1) ID 1 - K 1  2) k 1 Next Upper 17
+
+Dest 87 - FTK 8 - k 1 - HOSTPOD 5 - 4160 - ID 1  - PoDPos 1 -------- 5 -> 20
+1) ID 1 - K 1  2) k 1 Next Upper 21
+
+Dest 110 - FTK 8 - k 1 - HOSTPOD 6 - 4160 - ID 5  - PoDPos 1 -------- 6 -> 24
+1) ID 5 - K 1  2) k 1 Next Upper 25
+
+Dest 75 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 9  - PoDPos 1 -------- 4 -> 16
+1) ID 9 - K 1  2) k 1 Next Upper 17
+
+Dest 113 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 14  - PoDPos 2 -------- 7 -> 28
+1) ID 14 - K 2  2) k 2 Next Upper 30
+
+Dest 60 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 17  - PoDPos 1 -------- 3 -> 12
+1) ID 17 - K 1  2) k 1 Next Upper 13
+
+Dest 42 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 27  - PoDPos 3 -------- 2 -> 8
+1) ID 27 - K 3  2) k 3 Next Upper 11
+
+Dest 46 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 27  - PoDPos 3 -------- 2 -> 8
+1) ID 27 - K 3  2) k 3 Next Upper 11
+
+Dest 0 - FTK 8 - k 1 - HOSTPOD 0 - 4160 - ID 29  - PoDPos 1 -------- 0 -> 0
+1) ID 29 - K 1  2) k 1 Next Upper 1
+
+Dest 70 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 3  - PoDPos 3 -------- 4 -> 16
+1) ID 3 - K 3  2) k 3 Next Upper 19
+
+Dest 104 - FTK 8 - k 1 - HOSTPOD 6 - 4160 - ID 1  - PoDPos 1 -------- 6 -> 24
+1) ID 1 - K 1  2) k 1 Next Upper 25
+
+Dest 107 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 11  - PoDPos 3 -------- 6 -> 24
+1) ID 11 - K 3  2) k 3 Next Upper 27
+
+Dest 123 - FTK 8 - k 1 - HOSTPOD 7 - 4160 - ID 9  - PoDPos 1 -------- 7 -> 28
+1) ID 9 - K 1  2) k 1 Next Upper 29
+
+Dest 84 - FTK 8 - k 1 - HOSTPOD 5 - 4160 - ID 13  - PoDPos 1 -------- 5 -> 20
+1) ID 13 - K 1  2) k 1 Next Upper 21
+
+Dest 59 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 17  - PoDPos 1 -------- 3 -> 12
+1) ID 17 - K 1  2) k 1 Next Upper 13
+
+Dest 13 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 22  - PoDPos 2 -------- 0 -> 0
+1) ID 22 - K 2  2) k 2 Next Upper 2
+
+Dest 6 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 23  - PoDPos 3 -------- 0 -> 0
+1) ID 23 - K 3  2) k 3 Next Upper 3
+
+Dest 19 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 30  - PoDPos 2 -------- 1 -> 4
+1) ID 30 - K 2  2) k 2 Next Upper 6
+
+Dest 99 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 0  - PoDPos 0 -------- 6 -> 24
+1) ID 0 - K 0  2) k 0 Next Upper 24
+
+Dest 115 - FTK 8 - k 1 - HOSTPOD 7 - 4160 - ID 9  - PoDPos 1 -------- 7 -> 28
+1) ID 9 - K 1  2) k 1 Next Upper 29
+
+Dest 45 - FTK 8 - k 2 - HOSTPOD 2 - 4160 - ID 26  - PoDPos 2 -------- 2 -> 8
+1) ID 26 - K 2  2) k 2 Next Upper 10
+
+Dest 33 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 25  - PoDPos 1 -------- 2 -> 8
+1) ID 25 - K 1  2) k 1 Next Upper 9
+
+Dest 94 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 2  - PoDPos 2 -------- 5 -> 20
+1) ID 2 - K 2  2) k 2 Next Upper 22
+
+Dest 79 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 10  - PoDPos 2 -------- 4 -> 16
+1) ID 10 - K 2  2) k 2 Next Upper 18
+
+Dest 81 - FTK 8 - k 3 - HOSTPOD 5 - 4160 - ID 15  - PoDPos 3 -------- 5 -> 20
+1) ID 15 - K 3  2) k 3 Next Upper 23
+
+Dest 59 - FTK 8 - k 2 - HOSTPOD 3 - 4160 - ID 18  - PoDPos 2 -------- 3 -> 12
+1) ID 18 - K 2  2) k 2 Next Upper 14
+
+Dest 26 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 24  - PoDPos 0 -------- 1 -> 4
+1) ID 24 - K 0  2) k 0 Next Upper 4
+
+Dest 0 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 31  - PoDPos 3 -------- 0 -> 0
+1) ID 31 - K 3  2) k 3 Next Upper 3
+
+Dest 83 - FTK 8 - k 0 - HOSTPOD 5 - 4160 - ID 8  - PoDPos 0 -------- 5 -> 20
+1) ID 8 - K 0  2) k 0 Next Upper 20
+
+Dest 77 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 13  - PoDPos 1 -------- 4 -> 16
+1) ID 13 - K 1  2) k 1 Next Upper 17
+
+Dest 60 - FTK 8 - k 0 - HOSTPOD 3 - 4160 - ID 16  - PoDPos 0 -------- 3 -> 12
+1) ID 16 - K 0  2) k 0 Next Upper 12
+
+Dest 78 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 2  - PoDPos 2 -------- 4 -> 16
+1) ID 2 - K 2  2) k 2 Next Upper 18
+
+Dest 114 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 6  - PoDPos 2 -------- 7 -> 28
+1) ID 6 - K 2  2) k 2 Next Upper 30
+
+Dest 124 - FTK 8 - k 1 - HOSTPOD 7 - 4160 - ID 13  - PoDPos 1 -------- 7 -> 28
+1) ID 13 - K 1  2) k 1 Next Upper 29
+
+Dest 38 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 21  - PoDPos 1 -------- 2 -> 8
+1) ID 21 - K 1  2) k 1 Next Upper 9
+
+Dest 96 - FTK 8 - k 1 - HOSTPOD 6 - 4160 - ID 1  - PoDPos 1 -------- 6 -> 24
+1) ID 1 - K 1  2) k 1 Next Upper 25
+
+Dest 76 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 3  - PoDPos 3 -------- 4 -> 16
+1) ID 3 - K 3  2) k 3 Next Upper 19
+
+Dest 117 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 2  - PoDPos 2 -------- 7 -> 28
+1) ID 2 - K 2  2) k 2 Next Upper 30
+
+Dest 74 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 0  2) k 0 Next Upper 16
+
+Dest 107 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 8  - PoDPos 0 -------- 6 -> 24
+1) ID 8 - K 0  2) k 0 Next Upper 24
+
+Dest 81 - FTK 8 - k 0 - HOSTPOD 5 - 4160 - ID 12  - PoDPos 0 -------- 5 -> 20
+1) ID 12 - K 0  2) k 0 Next Upper 20
+
+Dest 3 - FTK 8 - k 1 - HOSTPOD 0 - 4160 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 1  2) k 1 Next Upper 1
+
+Dest 34 - FTK 8 - k 2 - HOSTPOD 2 - 4160 - ID 22  - PoDPos 2 -------- 2 -> 8
+1) ID 22 - K 2  2) k 2 Next Upper 10
+
+Dest 24 - FTK 8 - k 3 - HOSTPOD 1 - 4160 - ID 27  - PoDPos 3 -------- 1 -> 4
+1) ID 27 - K 3  2) k 3 Next Upper 7
+
+Dest 49 - FTK 8 - k 2 - HOSTPOD 3 - 4160 - ID 30  - PoDPos 2 -------- 3 -> 12
+1) ID 30 - K 2  2) k 2 Next Upper 14
+
+Dest 86 - FTK 8 - k 1 - HOSTPOD 5 - 4160 - ID 5  - PoDPos 1 -------- 5 -> 20
+1) ID 5 - K 1  2) k 1 Next Upper 21
+
+Dest 68 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 8  - PoDPos 0 -------- 4 -> 16
+1) ID 8 - K 0  2) k 0 Next Upper 16
+
+Dest 41 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 25  - PoDPos 1 -------- 2 -> 8
+1) ID 25 - K 1  2) k 1 Next Upper 9
+
+Dest 25 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 24  - PoDPos 0 -------- 1 -> 4
+1) ID 24 - K 0  2) k 0 Next Upper 4
+
+Dest 5 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 31  - PoDPos 3 -------- 0 -> 0
+1) ID 31 - K 3  2) k 3 Next Upper 3
+
+Dest 111 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 7  - PoDPos 3 -------- 6 -> 24
+1) ID 7 - K 3  2) k 3 Next Upper 27
+
+Dest 68 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 9  - PoDPos 1 -------- 4 -> 16
+1) ID 9 - K 1  2) k 1 Next Upper 17
+
+Dest 8 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 30  - PoDPos 2 -------- 0 -> 0
+1) ID 30 - K 2  2) k 2 Next Upper 2
+
+Dest 64 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 7  - PoDPos 3 -------- 4 -> 16
+1) ID 7 - K 3  2) k 3 Next Upper 19
+
+Dest 91 - FTK 8 - k 1 - HOSTPOD 5 - 4160 - ID 13  - PoDPos 1 -------- 5 -> 20
+1) ID 13 - K 1  2) k 1 Next Upper 21
+
+Dest 27 - FTK 8 - k 3 - HOSTPOD 1 - 4160 - ID 23  - PoDPos 3 -------- 1 -> 4
+1) ID 23 - K 3  2) k 3 Next Upper 7
+
+Dest 116 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 0  - PoDPos 0 -------- 7 -> 28
+1) ID 0 - K 0  2) k 0 Next Upper 28
+
+Dest 119 - FTK 8 - k 3 - HOSTPOD 7 - 4160 - ID 3  - PoDPos 3 -------- 7 -> 28
+1) ID 3 - K 3  2) k 3 Next Upper 31
+
+Dest 121 - FTK 8 - k 3 - HOSTPOD 7 - 4160 - ID 7  - PoDPos 3 -------- 7 -> 28
+1) ID 7 - K 3  2) k 3 Next Upper 31
+
+Dest 92 - FTK 8 - k 0 - HOSTPOD 5 - 4160 - ID 4  - PoDPos 0 -------- 5 -> 20
+1) ID 4 - K 0  2) k 0 Next Upper 20
+
+Dest 111 - FTK 8 - k 1 - HOSTPOD 6 - 4160 - ID 5  - PoDPos 1 -------- 6 -> 24
+1) ID 5 - K 1  2) k 1 Next Upper 25
+
+Dest 68 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 11  - PoDPos 3 -------- 4 -> 16
+1) ID 11 - K 3  2) k 3 Next Upper 19
+
+Dest 69 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 10  - PoDPos 2 -------- 4 -> 16
+1) ID 10 - K 2  2) k 2 Next Upper 18
+
+Dest 72 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 10  - PoDPos 2 -------- 4 -> 16
+1) ID 10 - K 2  2) k 2 Next Upper 18
+
+Dest 65 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 12  - PoDPos 0 -------- 4 -> 16
+1) ID 12 - K 0  2) k 0 Next Upper 16
+
+Dest 108 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 14  - PoDPos 2 -------- 6 -> 24
+1) ID 14 - K 2  2) k 2 Next Upper 26
+
+Dest 17 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 2  2) k 2 Next Upper 6
+
+Dest 3 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Dest 22 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 20  - PoDPos 0 -------- 1 -> 4
+1) ID 20 - K 0  2) k 0 Next Upper 4
+
+Dest 35 - FTK 8 - k 0 - HOSTPOD 2 - 4160 - ID 20  - PoDPos 0 -------- 2 -> 8
+1) ID 20 - K 0  2) k 0 Next Upper 8
+
+Dest 44 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 25  - PoDPos 1 -------- 2 -> 8
+1) ID 25 - K 1  2) k 1 Next Upper 9
+
+Dest 62 - FTK 8 - k 2 - HOSTPOD 3 - 4160 - ID 26  - PoDPos 2 -------- 3 -> 12
+1) ID 26 - K 2  2) k 2 Next Upper 14
+
+Dest 50 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 25  - PoDPos 1 -------- 3 -> 12
+1) ID 25 - K 1  2) k 1 Next Upper 13
+
+Dest 32 - FTK 8 - k 0 - HOSTPOD 2 - 4160 - ID 28  - PoDPos 0 -------- 2 -> 8
+1) ID 28 - K 0  2) k 0 Next Upper 8
+
+Dest 40 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 31  - PoDPos 3 -------- 2 -> 8
+1) ID 31 - K 3  2) k 3 Next Upper 11
+
+Dest 88 - FTK 8 - k 3 - HOSTPOD 5 - 4160 - ID 3  - PoDPos 3 -------- 5 -> 20
+1) ID 3 - K 3  2) k 3 Next Upper 23
+
+Dest 120 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 6  - PoDPos 2 -------- 7 -> 28
+1) ID 6 - K 2  2) k 2 Next Upper 30
+
+Dest 73 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 0  2) k 0 Next Upper 16
+
+Dest 123 - FTK 8 - k 3 - HOSTPOD 7 - 4160 - ID 11  - PoDPos 3 -------- 7 -> 28
+1) ID 11 - K 3  2) k 3 Next Upper 31
+
+Dest 16 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 23 - FTK 8 - k 3 - HOSTPOD 1 - 4160 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 3  2) k 3 Next Upper 7
+
+Dest 58 - FTK 8 - k 3 - HOSTPOD 3 - 4160 - ID 27  - PoDPos 3 -------- 3 -> 12
+1) ID 27 - K 3  2) k 3 Next Upper 15
+
+Dest 32 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 29  - PoDPos 1 -------- 2 -> 8
+1) ID 29 - K 1  2) k 1 Next Upper 9
+
+Dest 119 - FTK 8 - k 1 - HOSTPOD 7 - 4160 - ID 1  - PoDPos 1 -------- 7 -> 28
+1) ID 1 - K 1  2) k 1 Next Upper 29
+
+Dest 100 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 14  - PoDPos 2 -------- 6 -> 24
+1) ID 14 - K 2  2) k 2 Next Upper 26
+
+Dest 30 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 45 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 27  - PoDPos 3 -------- 2 -> 8
+1) ID 27 - K 3  2) k 3 Next Upper 11
+
+Dest 88 - FTK 8 - k 1 - HOSTPOD 5 - 4160 - ID 1  - PoDPos 1 -------- 5 -> 20
+1) ID 1 - K 1  2) k 1 Next Upper 21
+
+Dest 127 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 4  - PoDPos 0 -------- 7 -> 28
+1) ID 4 - K 0  2) k 0 Next Upper 28
+
+Dest 69 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 11  - PoDPos 3 -------- 4 -> 16
+1) ID 11 - K 3  2) k 3 Next Upper 19
+
+Dest 37 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 17  - PoDPos 1 -------- 2 -> 8
+1) ID 17 - K 1  2) k 1 Next Upper 9
+
+Dest 27 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 22  - PoDPos 2 -------- 1 -> 4
+1) ID 22 - K 2  2) k 2 Next Upper 6
+
+Dest 55 - FTK 8 - k 2 - HOSTPOD 3 - 4160 - ID 22  - PoDPos 2 -------- 3 -> 12
+1) ID 22 - K 2  2) k 2 Next Upper 14
+
+Dest 120 - FTK 8 - k 1 - HOSTPOD 7 - 4160 - ID 5  - PoDPos 1 -------- 7 -> 28
+1) ID 5 - K 1  2) k 1 Next Upper 29
+
+Dest 17 - FTK 8 - k 3 - HOSTPOD 1 - 4160 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 3  2) k 3 Next Upper 7
+
+Dest 85 - FTK 8 - k 0 - HOSTPOD 5 - 4160 - ID 0  - PoDPos 0 -------- 5 -> 20
+1) ID 0 - K 0  2) k 0 Next Upper 20
+
+Dest 18 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 26  - PoDPos 2 -------- 1 -> 4
+1) ID 26 - K 2  2) k 2 Next Upper 6
+
+Dest 37 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 19  - PoDPos 3 -------- 2 -> 8
+1) ID 19 - K 3  2) k 3 Next Upper 11
+
+Dest 4 - FTK 8 - k 0 - HOSTPOD 0 - 4160 - ID 28  - PoDPos 0 -------- 0 -> 0
+1) ID 28 - K 0  2) k 0 Next Upper 0
+
+Dest 97 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 6  - PoDPos 2 -------- 6 -> 24
+1) ID 6 - K 2  2) k 2 Next Upper 26
+
+Dest 36 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 19  - PoDPos 3 -------- 2 -> 8
+1) ID 19 - K 3  2) k 3 Next Upper 11
+
+Dest 5 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 30  - PoDPos 2 -------- 0 -> 0
+1) ID 30 - K 2  2) k 2 Next Upper 2
+
+Dest 23 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 2  2) k 2 Next Upper 6
+
+Dest 113 - FTK 8 - k 3 - HOSTPOD 7 - 4160 - ID 15  - PoDPos 3 -------- 7 -> 28
+1) ID 15 - K 3  2) k 3 Next Upper 31
+
+Dest 71 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 5  - PoDPos 1 -------- 4 -> 16
+1) ID 5 - K 1  2) k 1 Next Upper 17
+
+Dest 86 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 6  - PoDPos 2 -------- 5 -> 20
+1) ID 6 - K 2  2) k 2 Next Upper 22
+
+Dest 7 - FTK 8 - k 0 - HOSTPOD 0 - 4160 - ID 24  - PoDPos 0 -------- 0 -> 0
+1) ID 24 - K 0  2) k 0 Next Upper 0
+
+Dest 78 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 3  - PoDPos 3 -------- 4 -> 16
+1) ID 3 - K 3  2) k 3 Next Upper 19
+
+Dest 119 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 0  - PoDPos 0 -------- 7 -> 28
+1) ID 0 - K 0  2) k 0 Next Upper 28
+
+Dest 67 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 9  - PoDPos 1 -------- 4 -> 16
+1) ID 9 - K 1  2) k 1 Next Upper 17
+
+Dest 42 - FTK 8 - k 2 - HOSTPOD 2 - 4160 - ID 26  - PoDPos 2 -------- 2 -> 8
+1) ID 26 - K 2  2) k 2 Next Upper 10
+
+Dest 1 - FTK 8 - k 1 - HOSTPOD 0 - 4160 - ID 25  - PoDPos 1 -------- 0 -> 0
+1) ID 25 - K 1  2) k 1 Next Upper 1
+
+Dest 85 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 2  - PoDPos 2 -------- 5 -> 20
+1) ID 2 - K 2  2) k 2 Next Upper 22
+
+Dest 95 - FTK 8 - k 3 - HOSTPOD 5 - 4160 - ID 15  - PoDPos 3 -------- 5 -> 20
+1) ID 15 - K 3  2) k 3 Next Upper 23
+
+Dest 21 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 2  2) k 2 Next Upper 6
+
+Dest 14 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 31  - PoDPos 3 -------- 0 -> 0
+1) ID 31 - K 3  2) k 3 Next Upper 3
+
+Dest 93 - FTK 8 - k 1 - HOSTPOD 5 - 4160 - ID 13  - PoDPos 1 -------- 5 -> 20
+1) ID 13 - K 1  2) k 1 Next Upper 21
+
+Dest 61 - FTK 8 - k 0 - HOSTPOD 3 - 4160 - ID 16  - PoDPos 0 -------- 3 -> 12
+1) ID 16 - K 0  2) k 0 Next Upper 12
+
+Dest 70 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 2  - PoDPos 2 -------- 4 -> 16
+1) ID 2 - K 2  2) k 2 Next Upper 18
+
+Dest 108 - FTK 8 - k 1 - HOSTPOD 6 - 4160 - ID 13  - PoDPos 1 -------- 6 -> 24
+1) ID 13 - K 1  2) k 1 Next Upper 25
+
+Dest 34 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 21  - PoDPos 1 -------- 2 -> 8
+1) ID 21 - K 1  2) k 1 Next Upper 9
+
+Dest 87 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 2  - PoDPos 2 -------- 5 -> 20
+1) ID 2 - K 2  2) k 2 Next Upper 22
+
+Dest 110 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 4  - PoDPos 0 -------- 6 -> 24
+1) ID 4 - K 0  2) k 0 Next Upper 24
+
+Dest 75 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 8  - PoDPos 0 -------- 4 -> 16
+1) ID 8 - K 0  2) k 0 Next Upper 16
+
+Dest 69 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 8  - PoDPos 0 -------- 4 -> 16
+1) ID 8 - K 0  2) k 0 Next Upper 16
+
+Dest 108 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 12  - PoDPos 0 -------- 6 -> 24
+1) ID 12 - K 0  2) k 0 Next Upper 24
+
+Dest 2 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 23  - PoDPos 3 -------- 0 -> 0
+1) ID 23 - K 3  2) k 3 Next Upper 3
+
+Dest 20 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 22  - PoDPos 2 -------- 1 -> 4
+1) ID 22 - K 2  2) k 2 Next Upper 6
+
+Dest 40 - FTK 8 - k 2 - HOSTPOD 2 - 4160 - ID 30  - PoDPos 2 -------- 2 -> 8
+1) ID 30 - K 2  2) k 2 Next Upper 10
+
+Dest 54 - FTK 8 - k 3 - HOSTPOD 3 - 4160 - ID 31  - PoDPos 3 -------- 3 -> 12
+1) ID 31 - K 3  2) k 3 Next Upper 15
+
+Dest 43 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 23  - PoDPos 3 -------- 2 -> 8
+1) ID 23 - K 3  2) k 3 Next Upper 11
+
+Dest 29 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 30  - PoDPos 2 -------- 1 -> 4
+1) ID 30 - K 2  2) k 2 Next Upper 6
+
+Dest 101 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 7  - PoDPos 3 -------- 6 -> 24
+1) ID 7 - K 3  2) k 3 Next Upper 27
+
+Dest 118 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 0  - PoDPos 0 -------- 7 -> 28
+1) ID 0 - K 0  2) k 0 Next Upper 28
+
+Dest 117 - FTK 8 - k 3 - HOSTPOD 7 - 4160 - ID 3  - PoDPos 3 -------- 7 -> 28
+1) ID 3 - K 3  2) k 3 Next Upper 31
+
+Dest 110 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 7  - PoDPos 3 -------- 6 -> 24
+1) ID 7 - K 3  2) k 3 Next Upper 27
+
+Dest 82 - FTK 8 - k 3 - HOSTPOD 5 - 4160 - ID 11  - PoDPos 3 -------- 5 -> 20
+1) ID 11 - K 3  2) k 3 Next Upper 23
+
+Dest 84 - FTK 8 - k 0 - HOSTPOD 5 - 4160 - ID 12  - PoDPos 0 -------- 5 -> 20
+1) ID 12 - K 0  2) k 0 Next Upper 20
+
+Dest 95 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 14  - PoDPos 2 -------- 5 -> 20
+1) ID 14 - K 2  2) k 2 Next Upper 22
+
+Dest 122 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 14  - PoDPos 2 -------- 7 -> 28
+1) ID 14 - K 2  2) k 2 Next Upper 30
+
+Dest 59 - FTK 8 - k 0 - HOSTPOD 3 - 4160 - ID 16  - PoDPos 0 -------- 3 -> 12
+1) ID 16 - K 0  2) k 0 Next Upper 12
+
+Dest 10 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Dest 11 - FTK 8 - k 0 - HOSTPOD 0 - 4160 - ID 20  - PoDPos 0 -------- 0 -> 0
+1) ID 20 - K 0  2) k 0 Next Upper 0
+
+Dest 42 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 25  - PoDPos 1 -------- 2 -> 8
+1) ID 25 - K 1  2) k 1 Next Upper 9
+
+Dest 24 - FTK 8 - k 2 - HOSTPOD 1 - 4160 - ID 26  - PoDPos 2 -------- 1 -> 4
+1) ID 26 - K 2  2) k 2 Next Upper 6
+
+Dest 46 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 25  - PoDPos 1 -------- 2 -> 8
+1) ID 25 - K 1  2) k 1 Next Upper 9
+
+Dest 52 - FTK 8 - k 0 - HOSTPOD 3 - 4160 - ID 28  - PoDPos 0 -------- 3 -> 12
+1) ID 28 - K 0  2) k 0 Next Upper 12
+
+Dest 9 - FTK 8 - k 0 - HOSTPOD 0 - 4160 - ID 28  - PoDPos 0 -------- 0 -> 0
+1) ID 28 - K 0  2) k 0 Next Upper 0
+
+Dest 15 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 31  - PoDPos 3 -------- 0 -> 0
+1) ID 31 - K 3  2) k 3 Next Upper 3
+
+Dest 43 - FTK 8 - k 1 - HOSTPOD 2 - 4160 - ID 21  - PoDPos 1 -------- 2 -> 8
+1) ID 21 - K 1  2) k 1 Next Upper 9
+
+Dest 29 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 28  - PoDPos 0 -------- 1 -> 4
+1) ID 28 - K 0  2) k 0 Next Upper 4
+
+Dest 3 - FTK 8 - k 0 - HOSTPOD 0 - 4160 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 26 - FTK 8 - k 3 - HOSTPOD 1 - 4160 - ID 27  - PoDPos 3 -------- 1 -> 4
+1) ID 27 - K 3  2) k 3 Next Upper 7
+
+Dest 19 - FTK 8 - k 1 - HOSTPOD 1 - 4160 - ID 29  - PoDPos 1 -------- 1 -> 4
+1) ID 29 - K 1  2) k 1 Next Upper 5
+
+Dest 121 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 4  - PoDPos 0 -------- 7 -> 28
+1) ID 4 - K 0  2) k 0 Next Upper 28
+
+Dest 2 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 22  - PoDPos 2 -------- 0 -> 0
+1) ID 22 - K 2  2) k 2 Next Upper 2
+
+Dest 9 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 30  - PoDPos 2 -------- 0 -> 0
+1) ID 30 - K 2  2) k 2 Next Upper 2
+
+Dest 16 - FTK 8 - k 3 - HOSTPOD 1 - 4160 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 3  2) k 3 Next Upper 7
+
+Dest 57 - FTK 8 - k 3 - HOSTPOD 3 - 4160 - ID 19  - PoDPos 3 -------- 3 -> 12
+1) ID 19 - K 3  2) k 3 Next Upper 15
+
+Dest 39 - FTK 8 - k 0 - HOSTPOD 2 - 4160 - ID 28  - PoDPos 0 -------- 2 -> 8
+1) ID 28 - K 0  2) k 0 Next Upper 8
+
+Dest 74 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 6  - PoDPos 2 -------- 4 -> 16
+1) ID 6 - K 2  2) k 2 Next Upper 18
+
+Dest 10 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Dest 41 - FTK 8 - k 0 - HOSTPOD 2 - 4160 - ID 24  - PoDPos 0 -------- 2 -> 8
+1) ID 24 - K 0  2) k 0 Next Upper 8
+
+Dest 72 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 9  - PoDPos 1 -------- 4 -> 16
+1) ID 9 - K 1  2) k 1 Next Upper 17
+
+Dest 117 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 0  - PoDPos 0 -------- 7 -> 28
+1) ID 0 - K 0  2) k 0 Next Upper 28
+
+Dest 62 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 25  - PoDPos 1 -------- 3 -> 12
+1) ID 25 - K 1  2) k 1 Next Upper 13
+
+Dest 124 - FTK 8 - k 3 - HOSTPOD 7 - 4160 - ID 15  - PoDPos 3 -------- 7 -> 28
+1) ID 15 - K 3  2) k 3 Next Upper 31
+
+Dest 116 - FTK 8 - k 2 - HOSTPOD 7 - 4160 - ID 2  - PoDPos 2 -------- 7 -> 28
+1) ID 2 - K 2  2) k 2 Next Upper 30
+
+Dest 71 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 0  2) k 0 Next Upper 16
+
+Dest 82 - FTK 8 - k 0 - HOSTPOD 5 - 4160 - ID 8  - PoDPos 0 -------- 5 -> 20
+1) ID 8 - K 0  2) k 0 Next Upper 20
+
+Dest 30 - FTK 8 - k 1 - HOSTPOD 1 - 4160 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 1  2) k 1 Next Upper 5
+
+Dest 1 - FTK 8 - k 3 - HOSTPOD 0 - 4160 - ID 27  - PoDPos 3 -------- 0 -> 0
+1) ID 27 - K 3  2) k 3 Next Upper 3
+
+Dest 58 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 25  - PoDPos 1 -------- 3 -> 12
+1) ID 25 - K 1  2) k 1 Next Upper 13
+
+Dest 65 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 13  - PoDPos 1 -------- 4 -> 16
+1) ID 13 - K 1  2) k 1 Next Upper 17
+
+Dest 47 - FTK 8 - k 3 - HOSTPOD 2 - 4160 - ID 23  - PoDPos 3 -------- 2 -> 8
+1) ID 23 - K 3  2) k 3 Next Upper 11
+
+Dest 76 - FTK 8 - k 0 - HOSTPOD 4 - 4160 - ID 0  - PoDPos 0 -------- 4 -> 16
+1) ID 0 - K 0  2) k 0 Next Upper 16
+
+Dest 102 - FTK 8 - k 3 - HOSTPOD 6 - 4160 - ID 7  - PoDPos 3 -------- 6 -> 24
+1) ID 7 - K 3  2) k 3 Next Upper 27
+
+Dest 101 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 4  - PoDPos 0 -------- 6 -> 24
+1) ID 4 - K 0  2) k 0 Next Upper 24
+
+Dest 67 - FTK 8 - k 2 - HOSTPOD 4 - 4160 - ID 10  - PoDPos 2 -------- 4 -> 16
+1) ID 10 - K 2  2) k 2 Next Upper 18
+
+Dest 80 - FTK 8 - k 2 - HOSTPOD 5 - 4160 - ID 10  - PoDPos 2 -------- 5 -> 20
+1) ID 10 - K 2  2) k 2 Next Upper 22
+
+Dest 48 - FTK 8 - k 0 - HOSTPOD 3 - 4160 - ID 20  - PoDPos 0 -------- 3 -> 12
+1) ID 20 - K 0  2) k 0 Next Upper 12
+
+Dest 13 - FTK 8 - k 1 - HOSTPOD 0 - 4160 - ID 21  - PoDPos 1 -------- 0 -> 0
+1) ID 21 - K 1  2) k 1 Next Upper 1
+
+Dest 85 - FTK 8 - k 3 - HOSTPOD 5 - 4160 - ID 3  - PoDPos 3 -------- 5 -> 20
+1) ID 3 - K 3  2) k 3 Next Upper 23
+
+Dest 106 - FTK 8 - k 0 - HOSTPOD 6 - 4160 - ID 4  - PoDPos 0 -------- 6 -> 24
+1) ID 4 - K 0  2) k 0 Next Upper 24
+
+Dest 105 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 10  - PoDPos 2 -------- 6 -> 24
+1) ID 10 - K 2  2) k 2 Next Upper 26
+
+Dest 28 - FTK 8 - k 0 - HOSTPOD 1 - 4160 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 18 - FTK 8 - k 3 - HOSTPOD 1 - 4160 - ID 27  - PoDPos 3 -------- 1 -> 4
+1) ID 27 - K 3  2) k 3 Next Upper 7
+
+Dest 66 - FTK 8 - k 1 - HOSTPOD 4 - 4160 - ID 9  - PoDPos 1 -------- 4 -> 16
+1) ID 9 - K 1  2) k 1 Next Upper 17
+
+Dest 61 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 17  - PoDPos 1 -------- 3 -> 12
+1) ID 17 - K 1  2) k 1 Next Upper 13
+
+Dest 21 - FTK 8 - k 1 - HOSTPOD 1 - 4160 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 1  2) k 1 Next Upper 5
+
+Dest 44 - FTK 8 - k 2 - HOSTPOD 2 - 4160 - ID 26  - PoDPos 2 -------- 2 -> 8
+1) ID 26 - K 2  2) k 2 Next Upper 10
+
+Dest 104 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 2  - PoDPos 2 -------- 6 -> 24
+1) ID 2 - K 2  2) k 2 Next Upper 26
+
+Dest 125 - FTK 8 - k 0 - HOSTPOD 7 - 4160 - ID 12  - PoDPos 0 -------- 7 -> 28
+1) ID 12 - K 0  2) k 0 Next Upper 28
+
+Dest 103 - FTK 8 - k 2 - HOSTPOD 6 - 4160 - ID 14  - PoDPos 2 -------- 6 -> 24
+1) ID 14 - K 2  2) k 2 Next Upper 26
+
+Dest 77 - FTK 8 - k 3 - HOSTPOD 4 - 4160 - ID 15  - PoDPos 3 -------- 4 -> 16
+1) ID 15 - K 3  2) k 3 Next Upper 19
+
+Dest 56 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 17  - PoDPos 1 -------- 3 -> 12
+1) ID 17 - K 1  2) k 1 Next Upper 13
+
+Dest 0 - FTK 8 - k 2 - HOSTPOD 0 - 4160 - ID 30  - PoDPos 2 -------- 0 -> 0
+1) ID 30 - K 2  2) k 2 Next Upper 2
+
+Dest 24 - FTK 8 - k 1 - HOSTPOD 1 - 4160 - ID 25  - PoDPos 1 -------- 1 -> 4
+1) ID 25 - K 1  2) k 1 Next Upper 5
+
+Dest 20 - FTK 8 - k 1 - HOSTPOD 1 - 4160 - ID 21  - PoDPos 1 -------- 1 -> 4
+1) ID 21 - K 1  2) k 1 Next Upper 5
+
+Dest 53 - FTK 8 - k 1 - HOSTPOD 3 - 4160 - ID 21  - PoDPos 1 -------- 3 -> 12
+1) ID 21 - K 1  2) k 1 Next Upper 13
+
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 1 - NUP 21
+Core -> Upper: _id 1 - NUP 21
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 1 - NUP 21
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 1 - NUP 21
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 1 - NUP 21
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 1 - NUP 21
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 1 - NUP 21
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 1 - NUP 21
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 1 - NUP 21
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 1 - NUP 21
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 1 - NUP 9
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 1 - NUP 5
+Dest 0 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 8 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 25  - PoDPos 1 -------- 0 -> 0
+1) ID 25 - K 1  2) k 1 Next Upper 1
+
+Dest 24 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 22  - PoDPos 2 -------- 1 -> 4
+1) ID 22 - K 2  2) k 2 Next Upper 6
+
+Dest 84 - FTK 8 - k 1 - HOSTPOD 5 - 64 - ID 9  - PoDPos 1 -------- 5 -> 20
+1) ID 9 - K 1  2) k 1 Next Upper 21
+
+Dest 32 - FTK 8 - k 1 - HOSTPOD 2 - 64 - ID 17  - PoDPos 1 -------- 2 -> 8
+1) ID 17 - K 1  2) k 1 Next Upper 9
+
+Dest 68 - FTK 8 - k 1 - HOSTPOD 4 - 64 - ID 5  - PoDPos 1 -------- 4 -> 16
+1) ID 5 - K 1  2) k 1 Next Upper 17
+
+Dest 120 - FTK 8 - k 3 - HOSTPOD 7 - 64 - ID 3  - PoDPos 3 -------- 7 -> 28
+1) ID 3 - K 3  2) k 3 Next Upper 31
+
+Dest 113 - FTK 8 - k 1 - HOSTPOD 7 - 64 - ID 13  - PoDPos 1 -------- 7 -> 28
+1) ID 13 - K 1  2) k 1 Next Upper 29
+
+Dest 119 - FTK 8 - k 2 - HOSTPOD 7 - 64 - ID 2  - PoDPos 2 -------- 7 -> 28
+1) ID 2 - K 2  2) k 2 Next Upper 30
+
+Dest 48 - FTK 8 - k 3 - HOSTPOD 3 - 64 - ID 31  - PoDPos 3 -------- 3 -> 12
+1) ID 31 - K 3  2) k 3 Next Upper 15
+
+Dest 95 - FTK 8 - k 1 - HOSTPOD 5 - 64 - ID 5  - PoDPos 1 -------- 5 -> 20
+1) ID 5 - K 1  2) k 1 Next Upper 21
+
+Dest 112 - FTK 8 - k 2 - HOSTPOD 7 - 64 - ID 2  - PoDPos 2 -------- 7 -> 28
+1) ID 2 - K 2  2) k 2 Next Upper 30
+
+Dest 1 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 22  - PoDPos 2 -------- 0 -> 0
+1) ID 22 - K 2  2) k 2 Next Upper 2
+
+Dest 20 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 29  - PoDPos 1 -------- 1 -> 4
+1) ID 29 - K 1  2) k 1 Next Upper 5
+
+Dest 104 - FTK 8 - k 2 - HOSTPOD 6 - 64 - ID 10  - PoDPos 2 -------- 6 -> 24
+1) ID 10 - K 2  2) k 2 Next Upper 26
+
+Dest 10 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 31  - PoDPos 3 -------- 0 -> 0
+1) ID 31 - K 3  2) k 3 Next Upper 3
+
+Dest 88 - FTK 8 - k 0 - HOSTPOD 5 - 64 - ID 12  - PoDPos 0 -------- 5 -> 20
+1) ID 12 - K 0  2) k 0 Next Upper 20
+
+Dest 2 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Dest 102 - FTK 8 - k 2 - HOSTPOD 6 - 64 - ID 6  - PoDPos 2 -------- 6 -> 24
+1) ID 6 - K 2  2) k 2 Next Upper 26
+
+Dest 101 - FTK 8 - k 0 - HOSTPOD 6 - 64 - ID 0  - PoDPos 0 -------- 6 -> 24
+1) ID 0 - K 0  2) k 0 Next Upper 24
+
+Dest 32 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 19  - PoDPos 3 -------- 2 -> 8
+1) ID 19 - K 3  2) k 3 Next Upper 11
+
+Dest 56 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 28  - PoDPos 0 -------- 3 -> 12
+1) ID 28 - K 0  2) k 0 Next Upper 12
+
+Dest 121 - FTK 8 - k 1 - HOSTPOD 7 - 64 - ID 13  - PoDPos 1 -------- 7 -> 28
+1) ID 13 - K 1  2) k 1 Next Upper 29
+
+Dest 60 - FTK 8 - k 1 - HOSTPOD 3 - 64 - ID 21  - PoDPos 1 -------- 3 -> 12
+1) ID 21 - K 1  2) k 1 Next Upper 13
+
+Dest 58 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 20  - PoDPos 0 -------- 3 -> 12
+1) ID 20 - K 0  2) k 0 Next Upper 12
+
+Dest 4 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 25  - PoDPos 1 -------- 0 -> 0
+1) ID 25 - K 1  2) k 1 Next Upper 1
+
+Dest 81 - FTK 8 - k 0 - HOSTPOD 5 - 64 - ID 4  - PoDPos 0 -------- 5 -> 20
+1) ID 4 - K 0  2) k 0 Next Upper 20
+
+Dest 73 - FTK 8 - k 1 - HOSTPOD 4 - 64 - ID 13  - PoDPos 1 -------- 4 -> 16
+1) ID 13 - K 1  2) k 1 Next Upper 17
+
+Dest 32 - FTK 8 - k 2 - HOSTPOD 2 - 64 - ID 18  - PoDPos 2 -------- 2 -> 8
+1) ID 18 - K 2  2) k 2 Next Upper 10
+
+Dest 96 - FTK 8 - k 0 - HOSTPOD 6 - 64 - ID 8  - PoDPos 0 -------- 6 -> 24
+1) ID 8 - K 0  2) k 0 Next Upper 24
+
+Dest 120 - FTK 8 - k 0 - HOSTPOD 7 - 64 - ID 0  - PoDPos 0 -------- 7 -> 28
+1) ID 0 - K 0  2) k 0 Next Upper 28
+
+Dest 83 - FTK 8 - k 1 - HOSTPOD 5 - 64 - ID 13  - PoDPos 1 -------- 5 -> 20
+1) ID 13 - K 1  2) k 1 Next Upper 21
+
+Dest 16 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 25  - PoDPos 1 -------- 1 -> 4
+1) ID 25 - K 1  2) k 1 Next Upper 5
+
+Dest 89 - FTK 8 - k 0 - HOSTPOD 5 - 64 - ID 0  - PoDPos 0 -------- 5 -> 20
+1) ID 0 - K 0  2) k 0 Next Upper 20
+
+Dest 38 - FTK 8 - k 1 - HOSTPOD 2 - 64 - ID 25  - PoDPos 1 -------- 2 -> 8
+1) ID 25 - K 1  2) k 1 Next Upper 9
+
+Dest 12 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 21  - PoDPos 1 -------- 0 -> 0
+1) ID 21 - K 1  2) k 1 Next Upper 1
+
+Dest 45 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 19  - PoDPos 3 -------- 2 -> 8
+1) ID 19 - K 3  2) k 3 Next Upper 11
+
+Dest 108 - FTK 8 - k 1 - HOSTPOD 6 - 64 - ID 5  - PoDPos 1 -------- 6 -> 24
+1) ID 5 - K 1  2) k 1 Next Upper 25
+
+Dest 92 - FTK 8 - k 3 - HOSTPOD 5 - 64 - ID 11  - PoDPos 3 -------- 5 -> 20
+1) ID 11 - K 3  2) k 3 Next Upper 23
+
+Dest 77 - FTK 8 - k 3 - HOSTPOD 4 - 64 - ID 7  - PoDPos 3 -------- 4 -> 16
+1) ID 7 - K 3  2) k 3 Next Upper 19
+
+Dest 23 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 26  - PoDPos 2 -------- 1 -> 4
+1) ID 26 - K 2  2) k 2 Next Upper 6
+
+Dest 3 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 28  - PoDPos 0 -------- 0 -> 0
+1) ID 28 - K 0  2) k 0 Next Upper 0
+
+Dest 51 - FTK 8 - k 3 - HOSTPOD 3 - 64 - ID 31  - PoDPos 3 -------- 3 -> 12
+1) ID 31 - K 3  2) k 3 Next Upper 15
+
+Dest 109 - FTK 8 - k 1 - HOSTPOD 6 - 64 - ID 13  - PoDPos 1 -------- 6 -> 24
+1) ID 13 - K 1  2) k 1 Next Upper 25
+
+Dest 37 - FTK 8 - k 0 - HOSTPOD 2 - 64 - ID 24  - PoDPos 0 -------- 2 -> 8
+1) ID 24 - K 0  2) k 0 Next Upper 8
+
+Dest 36 - FTK 8 - k 0 - HOSTPOD 2 - 64 - ID 24  - PoDPos 0 -------- 2 -> 8
+1) ID 24 - K 0  2) k 0 Next Upper 8
+
+Dest 21 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 31  - PoDPos 3 -------- 1 -> 4
+1) ID 31 - K 3  2) k 3 Next Upper 7
+
+Dest 124 - FTK 8 - k 0 - HOSTPOD 7 - 64 - ID 0  - PoDPos 0 -------- 7 -> 28
+1) ID 0 - K 0  2) k 0 Next Upper 28
+
+Dest 49 - FTK 8 - k 3 - HOSTPOD 3 - 64 - ID 23  - PoDPos 3 -------- 3 -> 12
+1) ID 23 - K 3  2) k 3 Next Upper 15
+
+Dest 47 - FTK 8 - k 2 - HOSTPOD 2 - 64 - ID 22  - PoDPos 2 -------- 2 -> 8
+1) ID 22 - K 2  2) k 2 Next Upper 10
+
+Dest 18 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 2  2) k 2 Next Upper 6
+
+Dest 76 - FTK 8 - k 0 - HOSTPOD 4 - 64 - ID 8  - PoDPos 0 -------- 4 -> 16
+1) ID 8 - K 0  2) k 0 Next Upper 16
+
+Dest 69 - FTK 8 - k 2 - HOSTPOD 4 - 64 - ID 6  - PoDPos 2 -------- 4 -> 16
+1) ID 6 - K 2  2) k 2 Next Upper 18
+
+Dest 72 - FTK 8 - k 2 - HOSTPOD 4 - 64 - ID 14  - PoDPos 2 -------- 4 -> 16
+1) ID 14 - K 2  2) k 2 Next Upper 18
+
+Dest 67 - FTK 8 - k 0 - HOSTPOD 4 - 64 - ID 12  - PoDPos 0 -------- 4 -> 16
+1) ID 12 - K 0  2) k 0 Next Upper 16
+
+Dest 88 - FTK 8 - k 1 - HOSTPOD 5 - 64 - ID 13  - PoDPos 1 -------- 5 -> 20
+1) ID 13 - K 1  2) k 1 Next Upper 21
+
+Dest 88 - FTK 8 - k 2 - HOSTPOD 5 - 64 - ID 14  - PoDPos 2 -------- 5 -> 20
+1) ID 14 - K 2  2) k 2 Next Upper 22
+
+Dest 50 - FTK 8 - k 1 - HOSTPOD 3 - 64 - ID 21  - PoDPos 1 -------- 3 -> 12
+1) ID 21 - K 1  2) k 1 Next Upper 13
+
+Dest 82 - FTK 8 - k 3 - HOSTPOD 5 - 64 - ID 3  - PoDPos 3 -------- 5 -> 20
+1) ID 3 - K 3  2) k 3 Next Upper 23
+
+Dest 87 - FTK 8 - k 2 - HOSTPOD 5 - 64 - ID 14  - PoDPos 2 -------- 5 -> 20
+1) ID 14 - K 2  2) k 2 Next Upper 22
+
+Dest 105 - FTK 8 - k 1 - HOSTPOD 6 - 64 - ID 1  - PoDPos 1 -------- 6 -> 24
+1) ID 1 - K 1  2) k 1 Next Upper 25
+
+Dest 62 - FTK 8 - k 1 - HOSTPOD 3 - 64 - ID 17  - PoDPos 1 -------- 3 -> 12
+1) ID 17 - K 1  2) k 1 Next Upper 13
+
+Dest 91 - FTK 8 - k 3 - HOSTPOD 5 - 64 - ID 11  - PoDPos 3 -------- 5 -> 20
+1) ID 11 - K 3  2) k 3 Next Upper 23
+
+Dest 116 - FTK 8 - k 3 - HOSTPOD 7 - 64 - ID 7  - PoDPos 3 -------- 7 -> 28
+1) ID 7 - K 3  2) k 3 Next Upper 31
+
+Dest 68 - FTK 8 - k 0 - HOSTPOD 4 - 64 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 0  2) k 0 Next Upper 16
+
+Dest 1 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 23  - PoDPos 3 -------- 0 -> 0
+1) ID 23 - K 3  2) k 3 Next Upper 3
+
+Dest 101 - FTK 8 - k 1 - HOSTPOD 6 - 64 - ID 1  - PoDPos 1 -------- 6 -> 24
+1) ID 1 - K 1  2) k 1 Next Upper 25
+
+Dest 108 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 7  - PoDPos 3 -------- 6 -> 24
+1) ID 7 - K 3  2) k 3 Next Upper 27
+
+Dest 37 - FTK 8 - k 2 - HOSTPOD 2 - 64 - ID 26  - PoDPos 2 -------- 2 -> 8
+1) ID 26 - K 2  2) k 2 Next Upper 10
+
+Dest 15 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 22  - PoDPos 2 -------- 0 -> 0
+1) ID 22 - K 2  2) k 2 Next Upper 2
+
+Dest 54 - FTK 8 - k 1 - HOSTPOD 3 - 64 - ID 17  - PoDPos 1 -------- 3 -> 12
+1) ID 17 - K 1  2) k 1 Next Upper 13
+
+Dest 55 - FTK 8 - k 1 - HOSTPOD 3 - 64 - ID 25  - PoDPos 1 -------- 3 -> 12
+1) ID 25 - K 1  2) k 1 Next Upper 13
+
+Dest 25 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 18  - PoDPos 2 -------- 1 -> 4
+1) ID 18 - K 2  2) k 2 Next Upper 6
+
+Dest 122 - FTK 8 - k 3 - HOSTPOD 7 - 64 - ID 11  - PoDPos 3 -------- 7 -> 28
+1) ID 11 - K 3  2) k 3 Next Upper 31
+
+Dest 125 - FTK 8 - k 2 - HOSTPOD 7 - 64 - ID 2  - PoDPos 2 -------- 7 -> 28
+1) ID 2 - K 2  2) k 2 Next Upper 30
+
+Dest 44 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 31  - PoDPos 3 -------- 2 -> 8
+1) ID 31 - K 3  2) k 3 Next Upper 11
+
+Dest 37 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 27  - PoDPos 3 -------- 2 -> 8
+1) ID 27 - K 3  2) k 3 Next Upper 11
+
+Dest 43 - FTK 8 - k 1 - HOSTPOD 2 - 64 - ID 17  - PoDPos 1 -------- 2 -> 8
+1) ID 17 - K 1  2) k 1 Next Upper 9
+
+Dest 61 - FTK 8 - k 1 - HOSTPOD 3 - 64 - ID 25  - PoDPos 1 -------- 3 -> 12
+1) ID 25 - K 1  2) k 1 Next Upper 13
+
+Dest 76 - FTK 8 - k 3 - HOSTPOD 4 - 64 - ID 11  - PoDPos 3 -------- 4 -> 16
+1) ID 11 - K 3  2) k 3 Next Upper 19
+
+Dest 63 - FTK 8 - k 1 - HOSTPOD 3 - 64 - ID 29  - PoDPos 1 -------- 3 -> 12
+1) ID 29 - K 1  2) k 1 Next Upper 13
+
+Dest 19 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 26  - PoDPos 2 -------- 1 -> 4
+1) ID 26 - K 2  2) k 2 Next Upper 6
+
+Dest 46 - FTK 8 - k 1 - HOSTPOD 2 - 64 - ID 21  - PoDPos 1 -------- 2 -> 8
+1) ID 21 - K 1  2) k 1 Next Upper 9
+
+Dest 30 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 24  - PoDPos 0 -------- 1 -> 4
+1) ID 24 - K 0  2) k 0 Next Upper 4
+
+Dest 7 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Dest 6 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 30  - PoDPos 2 -------- 0 -> 0
+1) ID 30 - K 2  2) k 2 Next Upper 2
+
+Dest 53 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 20  - PoDPos 0 -------- 3 -> 12
+1) ID 20 - K 0  2) k 0 Next Upper 12
+
+Dest 104 - FTK 8 - k 1 - HOSTPOD 6 - 64 - ID 9  - PoDPos 1 -------- 6 -> 24
+1) ID 9 - K 1  2) k 1 Next Upper 25
+
+Dest 109 - FTK 8 - k 0 - HOSTPOD 6 - 64 - ID 12  - PoDPos 0 -------- 6 -> 24
+1) ID 12 - K 0  2) k 0 Next Upper 24
+
+Dest 44 - FTK 8 - k 0 - HOSTPOD 2 - 64 - ID 28  - PoDPos 0 -------- 2 -> 8
+1) ID 28 - K 0  2) k 0 Next Upper 8
+
+Dest 25 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 3  2) k 3 Next Upper 7
+
+Dest 16 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 24  - PoDPos 0 -------- 1 -> 4
+1) ID 24 - K 0  2) k 0 Next Upper 4
+
+Dest 73 - FTK 8 - k 0 - HOSTPOD 4 - 64 - ID 12  - PoDPos 0 -------- 4 -> 16
+1) ID 12 - K 0  2) k 0 Next Upper 16
+
+Dest 110 - FTK 8 - k 2 - HOSTPOD 6 - 64 - ID 14  - PoDPos 2 -------- 6 -> 24
+1) ID 14 - K 2  2) k 2 Next Upper 26
+
+Dest 92 - FTK 8 - k 0 - HOSTPOD 5 - 64 - ID 8  - PoDPos 0 -------- 5 -> 20
+1) ID 8 - K 0  2) k 0 Next Upper 20
+
+Dest 44 - FTK 8 - k 2 - HOSTPOD 2 - 64 - ID 30  - PoDPos 2 -------- 2 -> 8
+1) ID 30 - K 2  2) k 2 Next Upper 10
+
+Dest 116 - FTK 8 - k 0 - HOSTPOD 7 - 64 - ID 4  - PoDPos 0 -------- 7 -> 28
+1) ID 4 - K 0  2) k 0 Next Upper 28
+
+Dest 90 - FTK 8 - k 3 - HOSTPOD 5 - 64 - ID 15  - PoDPos 3 -------- 5 -> 20
+1) ID 15 - K 3  2) k 3 Next Upper 23
+
+Dest 9 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 20  - PoDPos 0 -------- 0 -> 0
+1) ID 20 - K 0  2) k 0 Next Upper 0
+
+Dest 57 - FTK 8 - k 3 - HOSTPOD 3 - 64 - ID 23  - PoDPos 3 -------- 3 -> 12
+1) ID 23 - K 3  2) k 3 Next Upper 15
+
+Dest 33 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 19  - PoDPos 3 -------- 2 -> 8
+1) ID 19 - K 3  2) k 3 Next Upper 11
+
+Dest 17 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 1  2) k 1 Next Upper 5
+
+Dest 30 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 27  - PoDPos 3 -------- 1 -> 4
+1) ID 27 - K 3  2) k 3 Next Upper 7
+
+Dest 104 - FTK 8 - k 0 - HOSTPOD 6 - 64 - ID 8  - PoDPos 0 -------- 6 -> 24
+1) ID 8 - K 0  2) k 0 Next Upper 24
+
+Dest 77 - FTK 8 - k 1 - HOSTPOD 4 - 64 - ID 5  - PoDPos 1 -------- 4 -> 16
+1) ID 5 - K 1  2) k 1 Next Upper 17
+
+Dest 103 - FTK 8 - k 1 - HOSTPOD 6 - 64 - ID 9  - PoDPos 1 -------- 6 -> 24
+1) ID 9 - K 1  2) k 1 Next Upper 25
+
+Dest 83 - FTK 8 - k 0 - HOSTPOD 5 - 64 - ID 12  - PoDPos 0 -------- 5 -> 20
+1) ID 12 - K 0  2) k 0 Next Upper 20
+
+Dest 72 - FTK 8 - k 1 - HOSTPOD 4 - 64 - ID 13  - PoDPos 1 -------- 4 -> 16
+1) ID 13 - K 1  2) k 1 Next Upper 17
+
+Dest 35 - FTK 8 - k 2 - HOSTPOD 2 - 64 - ID 18  - PoDPos 2 -------- 2 -> 8
+1) ID 18 - K 2  2) k 2 Next Upper 10
+
+Dest 115 - FTK 8 - k 3 - HOSTPOD 7 - 64 - ID 11  - PoDPos 3 -------- 7 -> 28
+1) ID 11 - K 3  2) k 3 Next Upper 31
+
+Dest 112 - FTK 8 - k 1 - HOSTPOD 7 - 64 - ID 1  - PoDPos 1 -------- 7 -> 28
+1) ID 1 - K 1  2) k 1 Next Upper 29
+
+Dest 4 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 26  - PoDPos 2 -------- 0 -> 0
+1) ID 26 - K 2  2) k 2 Next Upper 2
+
+Dest 8 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 27  - PoDPos 3 -------- 0 -> 0
+1) ID 27 - K 3  2) k 3 Next Upper 3
+
+Dest 97 - FTK 8 - k 1 - HOSTPOD 6 - 64 - ID 5  - PoDPos 1 -------- 6 -> 24
+1) ID 5 - K 1  2) k 1 Next Upper 25
+
+Dest 114 - FTK 8 - k 2 - HOSTPOD 7 - 64 - ID 14  - PoDPos 2 -------- 7 -> 28
+1) ID 14 - K 2  2) k 2 Next Upper 30
+
+Dest 24 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 23  - PoDPos 3 -------- 1 -> 4
+1) ID 23 - K 3  2) k 3 Next Upper 7
+
+Dest 22 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 30  - PoDPos 2 -------- 1 -> 4
+1) ID 30 - K 2  2) k 2 Next Upper 6
+
+Dest 30 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 26  - PoDPos 2 -------- 1 -> 4
+1) ID 26 - K 2  2) k 2 Next Upper 6
+
+Dest 46 - FTK 8 - k 2 - HOSTPOD 2 - 64 - ID 22  - PoDPos 2 -------- 2 -> 8
+1) ID 22 - K 2  2) k 2 Next Upper 10
+
+Dest 46 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 23  - PoDPos 3 -------- 2 -> 8
+1) ID 23 - K 3  2) k 3 Next Upper 11
+
+Dest 0 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Dest 104 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 11  - PoDPos 3 -------- 6 -> 24
+1) ID 11 - K 3  2) k 3 Next Upper 27
+
+Dest 94 - FTK 8 - k 1 - HOSTPOD 5 - 64 - ID 1  - PoDPos 1 -------- 5 -> 20
+1) ID 1 - K 1  2) k 1 Next Upper 21
+
+Dest 75 - FTK 8 - k 3 - HOSTPOD 4 - 64 - ID 15  - PoDPos 3 -------- 4 -> 16
+1) ID 15 - K 3  2) k 3 Next Upper 19
+
+Dest 2 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 96 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 11  - PoDPos 3 -------- 6 -> 24
+1) ID 11 - K 3  2) k 3 Next Upper 27
+
+Dest 87 - FTK 8 - k 0 - HOSTPOD 5 - 64 - ID 12  - PoDPos 0 -------- 5 -> 20
+1) ID 12 - K 0  2) k 0 Next Upper 20
+
+Dest 56 - FTK 8 - k 2 - HOSTPOD 3 - 64 - ID 30  - PoDPos 2 -------- 3 -> 12
+1) ID 30 - K 2  2) k 2 Next Upper 14
+
+Dest 36 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 27  - PoDPos 3 -------- 2 -> 8
+1) ID 27 - K 3  2) k 3 Next Upper 11
+
+Dest 125 - FTK 8 - k 1 - HOSTPOD 7 - 64 - ID 1  - PoDPos 1 -------- 7 -> 28
+1) ID 1 - K 1  2) k 1 Next Upper 29
+
+Dest 50 - FTK 8 - k 2 - HOSTPOD 3 - 64 - ID 22  - PoDPos 2 -------- 3 -> 12
+1) ID 22 - K 2  2) k 2 Next Upper 14
+
+Dest 10 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 28  - PoDPos 0 -------- 0 -> 0
+1) ID 28 - K 0  2) k 0 Next Upper 0
+
+Dest 31 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 24  - PoDPos 0 -------- 1 -> 4
+1) ID 24 - K 0  2) k 0 Next Upper 4
+
+Dest 62 - FTK 8 - k 2 - HOSTPOD 3 - 64 - ID 18  - PoDPos 2 -------- 3 -> 12
+1) ID 18 - K 2  2) k 2 Next Upper 14
+
+Dest 99 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 11  - PoDPos 3 -------- 6 -> 24
+1) ID 11 - K 3  2) k 3 Next Upper 27
+
+Dest 70 - FTK 8 - k 0 - HOSTPOD 4 - 64 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 0  2) k 0 Next Upper 16
+
+Dest 14 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 27  - PoDPos 3 -------- 0 -> 0
+1) ID 27 - K 3  2) k 3 Next Upper 3
+
+Dest 48 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 28  - PoDPos 0 -------- 3 -> 12
+1) ID 28 - K 0  2) k 0 Next Upper 12
+
+Dest 9 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 23  - PoDPos 3 -------- 0 -> 0
+1) ID 23 - K 3  2) k 3 Next Upper 3
+
+Dest 57 - FTK 8 - k 2 - HOSTPOD 3 - 64 - ID 22  - PoDPos 2 -------- 3 -> 12
+1) ID 22 - K 2  2) k 2 Next Upper 14
+
+Dest 93 - FTK 8 - k 3 - HOSTPOD 5 - 64 - ID 11  - PoDPos 3 -------- 5 -> 20
+1) ID 11 - K 3  2) k 3 Next Upper 23
+
+Dest 106 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 15  - PoDPos 3 -------- 6 -> 24
+1) ID 15 - K 3  2) k 3 Next Upper 27
+
+Dest 0 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 18  - PoDPos 2 -------- 0 -> 0
+1) ID 18 - K 2  2) k 2 Next Upper 2
+
+Dest 39 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 19  - PoDPos 3 -------- 2 -> 8
+1) ID 19 - K 3  2) k 3 Next Upper 11
+
+Dest 65 - FTK 8 - k 3 - HOSTPOD 4 - 64 - ID 15  - PoDPos 3 -------- 4 -> 16
+1) ID 15 - K 3  2) k 3 Next Upper 19
+
+Dest 66 - FTK 8 - k 2 - HOSTPOD 4 - 64 - ID 10  - PoDPos 2 -------- 4 -> 16
+1) ID 10 - K 2  2) k 2 Next Upper 18
+
+Dest 7 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 16  - PoDPos 0 -------- 0 -> 0
+1) ID 16 - K 0  2) k 0 Next Upper 0
+
+Dest 57 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 20  - PoDPos 0 -------- 3 -> 12
+1) ID 20 - K 0  2) k 0 Next Upper 12
+
+Dest 70 - FTK 8 - k 2 - HOSTPOD 4 - 64 - ID 6  - PoDPos 2 -------- 4 -> 16
+1) ID 6 - K 2  2) k 2 Next Upper 18
+
+Dest 14 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 25  - PoDPos 1 -------- 0 -> 0
+1) ID 25 - K 1  2) k 1 Next Upper 1
+
+Dest 108 - FTK 8 - k 2 - HOSTPOD 6 - 64 - ID 6  - PoDPos 2 -------- 6 -> 24
+1) ID 6 - K 2  2) k 2 Next Upper 26
+
+Dest 31 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 26  - PoDPos 2 -------- 1 -> 4
+1) ID 26 - K 2  2) k 2 Next Upper 6
+
+Dest 3 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 30  - PoDPos 2 -------- 0 -> 0
+1) ID 30 - K 2  2) k 2 Next Upper 2
+
+Dest 22 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 28  - PoDPos 0 -------- 1 -> 4
+1) ID 28 - K 0  2) k 0 Next Upper 4
+
+Dest 15 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 20  - PoDPos 0 -------- 0 -> 0
+1) ID 20 - K 0  2) k 0 Next Upper 0
+
+Dest 121 - FTK 8 - k 0 - HOSTPOD 7 - 64 - ID 12  - PoDPos 0 -------- 7 -> 28
+1) ID 12 - K 0  2) k 0 Next Upper 28
+
+Dest 75 - FTK 8 - k 1 - HOSTPOD 4 - 64 - ID 13  - PoDPos 1 -------- 4 -> 16
+1) ID 13 - K 1  2) k 1 Next Upper 17
+
+Dest 107 - FTK 8 - k 1 - HOSTPOD 6 - 64 - ID 5  - PoDPos 1 -------- 6 -> 24
+1) ID 5 - K 1  2) k 1 Next Upper 25
+
+Dest 38 - FTK 8 - k 0 - HOSTPOD 2 - 64 - ID 24  - PoDPos 0 -------- 2 -> 8
+1) ID 24 - K 0  2) k 0 Next Upper 8
+
+Dest 103 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 11  - PoDPos 3 -------- 6 -> 24
+1) ID 11 - K 3  2) k 3 Next Upper 27
+
+Dest 62 - FTK 8 - k 3 - HOSTPOD 3 - 64 - ID 19  - PoDPos 3 -------- 3 -> 12
+1) ID 19 - K 3  2) k 3 Next Upper 15
+
+Dest 33 - FTK 8 - k 2 - HOSTPOD 2 - 64 - ID 18  - PoDPos 2 -------- 2 -> 8
+1) ID 18 - K 2  2) k 2 Next Upper 10
+
+Dest 31 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 25  - PoDPos 1 -------- 1 -> 4
+1) ID 25 - K 1  2) k 1 Next Upper 5
+
+Dest 75 - FTK 8 - k 0 - HOSTPOD 4 - 64 - ID 12  - PoDPos 0 -------- 4 -> 16
+1) ID 12 - K 0  2) k 0 Next Upper 16
+
+Dest 14 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 26  - PoDPos 2 -------- 0 -> 0
+1) ID 26 - K 2  2) k 2 Next Upper 2
+
+Dest 60 - FTK 8 - k 3 - HOSTPOD 3 - 64 - ID 23  - PoDPos 3 -------- 3 -> 12
+1) ID 23 - K 3  2) k 3 Next Upper 15
+
+Dest 29 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 29  - PoDPos 1 -------- 1 -> 4
+1) ID 29 - K 1  2) k 1 Next Upper 5
+
+Dest 103 - FTK 8 - k 2 - HOSTPOD 6 - 64 - ID 10  - PoDPos 2 -------- 6 -> 24
+1) ID 10 - K 2  2) k 2 Next Upper 26
+
+Dest 70 - FTK 8 - k 1 - HOSTPOD 4 - 64 - ID 5  - PoDPos 1 -------- 4 -> 16
+1) ID 5 - K 1  2) k 1 Next Upper 17
+
+Dest 93 - FTK 8 - k 2 - HOSTPOD 5 - 64 - ID 10  - PoDPos 2 -------- 5 -> 20
+1) ID 10 - K 2  2) k 2 Next Upper 22
+
+Dest 111 - FTK 8 - k 0 - HOSTPOD 6 - 64 - ID 8  - PoDPos 0 -------- 6 -> 24
+1) ID 8 - K 0  2) k 0 Next Upper 24
+
+Dest 18 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 3  2) k 3 Next Upper 7
+
+Dest 82 - FTK 8 - k 2 - HOSTPOD 5 - 64 - ID 2  - PoDPos 2 -------- 5 -> 20
+1) ID 2 - K 2  2) k 2 Next Upper 22
+
+Dest 25 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 1  2) k 1 Next Upper 5
+
+Dest 50 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 20  - PoDPos 0 -------- 3 -> 12
+1) ID 20 - K 0  2) k 0 Next Upper 12
+
+Dest 39 - FTK 8 - k 2 - HOSTPOD 2 - 64 - ID 18  - PoDPos 2 -------- 2 -> 8
+1) ID 18 - K 2  2) k 2 Next Upper 10
+
+Dest 4 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 24  - PoDPos 0 -------- 0 -> 0
+1) ID 24 - K 0  2) k 0 Next Upper 0
+
+Dest 79 - FTK 8 - k 3 - HOSTPOD 4 - 64 - ID 3  - PoDPos 3 -------- 4 -> 16
+1) ID 3 - K 3  2) k 3 Next Upper 19
+
+Dest 108 - FTK 8 - k 0 - HOSTPOD 6 - 64 - ID 4  - PoDPos 0 -------- 6 -> 24
+1) ID 4 - K 0  2) k 0 Next Upper 24
+
+Dest 101 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 3  - PoDPos 3 -------- 6 -> 24
+1) ID 3 - K 3  2) k 3 Next Upper 27
+
+Dest 90 - FTK 8 - k 0 - HOSTPOD 5 - 64 - ID 12  - PoDPos 0 -------- 5 -> 20
+1) ID 12 - K 0  2) k 0 Next Upper 20
+
+Dest 42 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 19  - PoDPos 3 -------- 2 -> 8
+1) ID 19 - K 3  2) k 3 Next Upper 11
+
+Dest 73 - FTK 8 - k 3 - HOSTPOD 4 - 64 - ID 15  - PoDPos 3 -------- 4 -> 16
+1) ID 15 - K 3  2) k 3 Next Upper 19
+
+Dest 46 - FTK 8 - k 0 - HOSTPOD 2 - 64 - ID 20  - PoDPos 0 -------- 2 -> 8
+1) ID 20 - K 0  2) k 0 Next Upper 8
+
+Dest 124 - FTK 8 - k 2 - HOSTPOD 7 - 64 - ID 2  - PoDPos 2 -------- 7 -> 28
+1) ID 2 - K 2  2) k 2 Next Upper 30
+
+Dest 59 - FTK 8 - k 1 - HOSTPOD 3 - 64 - ID 25  - PoDPos 1 -------- 3 -> 12
+1) ID 25 - K 1  2) k 1 Next Upper 13
+
+Dest 11 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 30  - PoDPos 2 -------- 0 -> 0
+1) ID 30 - K 2  2) k 2 Next Upper 2
+
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 2 - NUP 30
+Dest 45 - FTK 8 - k 1 - HOSTPOD 2 - 64 - ID 17  - PoDPos 1 -------- 2 -> 8
+1) ID 17 - K 1  2) k 1 Next Upper 9
+
+Dest 110 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 15  - PoDPos 3 -------- 6 -> 24
+1) ID 15 - K 3  2) k 3 Next Upper 27
+
+Dest 79 - FTK 8 - k 1 - HOSTPOD 4 - 64 - ID 1  - PoDPos 1 -------- 4 -> 16
+1) ID 1 - K 1  2) k 1 Next Upper 17
+
+Dest 124 - FTK 8 - k 3 - HOSTPOD 7 - 64 - ID 3  - PoDPos 3 -------- 7 -> 28
+1) ID 3 - K 3  2) k 3 Next Upper 31
+
+Dest 95 - FTK 8 - k 2 - HOSTPOD 5 - 64 - ID 6  - PoDPos 2 -------- 5 -> 20
+1) ID 6 - K 2  2) k 2 Next Upper 22
+
+Dest 16 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 26  - PoDPos 2 -------- 1 -> 4
+1) ID 26 - K 2  2) k 2 Next Upper 6
+
+Dest 54 - FTK 8 - k 3 - HOSTPOD 3 - 64 - ID 19  - PoDPos 3 -------- 3 -> 12
+1) ID 19 - K 3  2) k 3 Next Upper 15
+
+Dest 98 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 11  - PoDPos 3 -------- 6 -> 24
+1) ID 11 - K 3  2) k 3 Next Upper 27
+
+Dest 11 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 28  - PoDPos 0 -------- 0 -> 0
+1) ID 28 - K 0  2) k 0 Next Upper 0
+
+Dest 23 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 25  - PoDPos 1 -------- 1 -> 4
+1) ID 25 - K 1  2) k 1 Next Upper 5
+
+Dest 12 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 20  - PoDPos 0 -------- 0 -> 0
+1) ID 20 - K 0  2) k 0 Next Upper 0
+
+Dest 91 - FTK 8 - k 1 - HOSTPOD 5 - 64 - ID 9  - PoDPos 1 -------- 5 -> 20
+1) ID 9 - K 1  2) k 1 Next Upper 21
+
+Dest 112 - FTK 8 - k 3 - HOSTPOD 7 - 64 - ID 3  - PoDPos 3 -------- 7 -> 28
+1) ID 3 - K 3  2) k 3 Next Upper 31
+
+Dest 99 - FTK 8 - k 2 - HOSTPOD 6 - 64 - ID 10  - PoDPos 2 -------- 6 -> 24
+1) ID 10 - K 2  2) k 2 Next Upper 26
+
+Dest 11 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 31  - PoDPos 3 -------- 0 -> 0
+1) ID 31 - K 3  2) k 3 Next Upper 3
+
+Dest 60 - FTK 8 - k 2 - HOSTPOD 3 - 64 - ID 22  - PoDPos 2 -------- 3 -> 12
+1) ID 22 - K 2  2) k 2 Next Upper 14
+
+Dest 59 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 24  - PoDPos 0 -------- 3 -> 12
+1) ID 24 - K 0  2) k 0 Next Upper 12
+
+Dest 48 - FTK 8 - k 1 - HOSTPOD 3 - 64 - ID 29  - PoDPos 1 -------- 3 -> 12
+1) ID 29 - K 1  2) k 1 Next Upper 13
+
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 1 - NUP 21
+Dest 35 - FTK 8 - k 0 - HOSTPOD 2 - 64 - ID 16  - PoDPos 0 -------- 2 -> 8
+1) ID 16 - K 0  2) k 0 Next Upper 8
+
+Dest 11 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 29  - PoDPos 1 -------- 0 -> 0
+1) ID 29 - K 1  2) k 1 Next Upper 1
+
+Dest 27 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 20  - PoDPos 0 -------- 1 -> 4
+1) ID 20 - K 0  2) k 0 Next Upper 4
+
+Dest 61 - FTK 8 - k 2 - HOSTPOD 3 - 64 - ID 26  - PoDPos 2 -------- 3 -> 12
+1) ID 26 - K 2  2) k 2 Next Upper 14
+
+Dest 52 - FTK 8 - k 2 - HOSTPOD 3 - 64 - ID 30  - PoDPos 2 -------- 3 -> 12
+1) ID 30 - K 2  2) k 2 Next Upper 14
+
+Dest 4 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 27  - PoDPos 3 -------- 0 -> 0
+1) ID 27 - K 3  2) k 3 Next Upper 3
+
+Dest 39 - FTK 8 - k 0 - HOSTPOD 2 - 64 - ID 16  - PoDPos 0 -------- 2 -> 8
+1) ID 16 - K 0  2) k 0 Next Upper 8
+
+Dest 12 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 23  - PoDPos 3 -------- 0 -> 0
+1) ID 23 - K 3  2) k 3 Next Upper 3
+
+Dest 34 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 23  - PoDPos 3 -------- 2 -> 8
+1) ID 23 - K 3  2) k 3 Next Upper 11
+
+Dest 125 - FTK 8 - k 3 - HOSTPOD 7 - 64 - ID 3  - PoDPos 3 -------- 7 -> 28
+1) ID 3 - K 3  2) k 3 Next Upper 31
+
+Dest 107 - FTK 8 - k 0 - HOSTPOD 6 - 64 - ID 4  - PoDPos 0 -------- 6 -> 24
+1) ID 4 - K 0  2) k 0 Next Upper 24
+
+Dest 114 - FTK 8 - k 0 - HOSTPOD 7 - 64 - ID 12  - PoDPos 0 -------- 7 -> 28
+1) ID 12 - K 0  2) k 0 Next Upper 28
+
+Dest 105 - FTK 8 - k 2 - HOSTPOD 6 - 64 - ID 2  - PoDPos 2 -------- 6 -> 24
+1) ID 2 - K 2  2) k 2 Next Upper 26
+
+Dest 121 - FTK 8 - k 3 - HOSTPOD 7 - 64 - ID 15  - PoDPos 3 -------- 7 -> 28
+1) ID 15 - K 3  2) k 3 Next Upper 31
+
+Dest 81 - FTK 8 - k 2 - HOSTPOD 5 - 64 - ID 6  - PoDPos 2 -------- 5 -> 20
+1) ID 6 - K 2  2) k 2 Next Upper 22
+
+Dest 58 - FTK 8 - k 3 - HOSTPOD 3 - 64 - ID 23  - PoDPos 3 -------- 3 -> 12
+1) ID 23 - K 3  2) k 3 Next Upper 15
+
+Dest 36 - FTK 8 - k 1 - HOSTPOD 2 - 64 - ID 25  - PoDPos 1 -------- 2 -> 8
+1) ID 25 - K 1  2) k 1 Next Upper 9
+
+Dest 81 - FTK 8 - k 1 - HOSTPOD 5 - 64 - ID 5  - PoDPos 1 -------- 5 -> 20
+1) ID 5 - K 1  2) k 1 Next Upper 21
+
+Dest 2 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 3 - NUP 7
+Dest 1 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 21  - PoDPos 1 -------- 0 -> 0
+1) ID 21 - K 1  2) k 1 Next Upper 1
+
+Dest 24 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 21  - PoDPos 1 -------- 1 -> 4
+1) ID 21 - K 1  2) k 1 Next Upper 5
+
+Dest 82 - FTK 8 - k 0 - HOSTPOD 5 - 64 - ID 0  - PoDPos 0 -------- 5 -> 20
+1) ID 0 - K 0  2) k 0 Next Upper 20
+
+Dest 69 - FTK 8 - k 0 - HOSTPOD 4 - 64 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 0  2) k 0 Next Upper 16
+
+Dest 114 - FTK 8 - k 3 - HOSTPOD 7 - 64 - ID 15  - PoDPos 3 -------- 7 -> 28
+1) ID 15 - K 3  2) k 3 Next Upper 31
+
+Dest 51 - FTK 8 - k 2 - HOSTPOD 3 - 64 - ID 30  - PoDPos 2 -------- 3 -> 12
+1) ID 30 - K 2  2) k 2 Next Upper 14
+
+Dest 19 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 27  - PoDPos 3 -------- 1 -> 4
+1) ID 27 - K 3  2) k 3 Next Upper 7
+
+Dest 118 - FTK 8 - k 1 - HOSTPOD 7 - 64 - ID 1  - PoDPos 1 -------- 7 -> 28
+1) ID 1 - K 1  2) k 1 Next Upper 29
+
+Dest 91 - FTK 8 - k 2 - HOSTPOD 5 - 64 - ID 10  - PoDPos 2 -------- 5 -> 20
+1) ID 10 - K 2  2) k 2 Next Upper 22
+
+Dest 126 - FTK 8 - k 2 - HOSTPOD 7 - 64 - ID 2  - PoDPos 2 -------- 7 -> 28
+1) ID 2 - K 2  2) k 2 Next Upper 30
+
+Dest 20 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 31  - PoDPos 3 -------- 1 -> 4
+1) ID 31 - K 3  2) k 3 Next Upper 7
+
+Dest 84 - FTK 8 - k 3 - HOSTPOD 5 - 64 - ID 11  - PoDPos 3 -------- 5 -> 20
+1) ID 11 - K 3  2) k 3 Next Upper 23
+
+Dest 55 - FTK 8 - k 2 - HOSTPOD 3 - 64 - ID 26  - PoDPos 2 -------- 3 -> 12
+1) ID 26 - K 2  2) k 2 Next Upper 14
+
+Dest 114 - FTK 8 - k 1 - HOSTPOD 7 - 64 - ID 13  - PoDPos 1 -------- 7 -> 28
+1) ID 13 - K 1  2) k 1 Next Upper 29
+
+Dest 105 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 3  - PoDPos 3 -------- 6 -> 24
+1) ID 3 - K 3  2) k 3 Next Upper 27
+
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 3 - NUP 27
+Dest 43 - FTK 8 - k 0 - HOSTPOD 2 - 64 - ID 16  - PoDPos 0 -------- 2 -> 8
+1) ID 16 - K 0  2) k 0 Next Upper 8
+
+Dest 80 - FTK 8 - k 0 - HOSTPOD 5 - 64 - ID 8  - PoDPos 0 -------- 5 -> 20
+1) ID 8 - K 0  2) k 0 Next Upper 20
+
+Dest 58 - FTK 8 - k 1 - HOSTPOD 3 - 64 - ID 21  - PoDPos 1 -------- 3 -> 12
+1) ID 21 - K 1  2) k 1 Next Upper 13
+
+Dest 110 - FTK 8 - k 1 - HOSTPOD 6 - 64 - ID 13  - PoDPos 1 -------- 6 -> 24
+1) ID 13 - K 1  2) k 1 Next Upper 25
+
+Dest 77 - FTK 8 - k 0 - HOSTPOD 4 - 64 - ID 4  - PoDPos 0 -------- 4 -> 16
+1) ID 4 - K 0  2) k 0 Next Upper 16
+
+Dest 63 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 28  - PoDPos 0 -------- 3 -> 12
+1) ID 28 - K 0  2) k 0 Next Upper 12
+
+Dest 89 - FTK 8 - k 2 - HOSTPOD 5 - 64 - ID 2  - PoDPos 2 -------- 5 -> 20
+1) ID 2 - K 2  2) k 2 Next Upper 22
+
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 2 - NUP 26
+Dest 76 - FTK 8 - k 2 - HOSTPOD 4 - 64 - ID 10  - PoDPos 2 -------- 4 -> 16
+1) ID 10 - K 2  2) k 2 Next Upper 18
+
+Dest 106 - FTK 8 - k 0 - HOSTPOD 6 - 64 - ID 12  - PoDPos 0 -------- 6 -> 24
+1) ID 12 - K 0  2) k 0 Next Upper 24
+
+Dest 35 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 19  - PoDPos 3 -------- 2 -> 8
+1) ID 19 - K 3  2) k 3 Next Upper 11
+
+Dest 45 - FTK 8 - k 0 - HOSTPOD 2 - 64 - ID 16  - PoDPos 0 -------- 2 -> 8
+1) ID 16 - K 0  2) k 0 Next Upper 8
+
+Dest 42 - FTK 8 - k 0 - HOSTPOD 2 - 64 - ID 16  - PoDPos 0 -------- 2 -> 8
+1) ID 16 - K 0  2) k 0 Next Upper 8
+
+Dest 87 - FTK 8 - k 3 - HOSTPOD 5 - 64 - ID 15  - PoDPos 3 -------- 5 -> 20
+1) ID 15 - K 3  2) k 3 Next Upper 23
+
+Dest 116 - FTK 8 - k 2 - HOSTPOD 7 - 64 - ID 6  - PoDPos 2 -------- 7 -> 28
+1) ID 6 - K 2  2) k 2 Next Upper 30
+
+Dest 10 - FTK 8 - k 2 - HOSTPOD 0 - 64 - ID 30  - PoDPos 2 -------- 0 -> 0
+1) ID 30 - K 2  2) k 2 Next Upper 2
+
+Dest 118 - FTK 8 - k 3 - HOSTPOD 7 - 64 - ID 3  - PoDPos 3 -------- 7 -> 28
+1) ID 3 - K 3  2) k 3 Next Upper 31
+
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 1 - NUP 21
+Dest 68 - FTK 8 - k 3 - HOSTPOD 4 - 64 - ID 7  - PoDPos 3 -------- 4 -> 16
+1) ID 7 - K 3  2) k 3 Next Upper 19
+
+Dest 56 - FTK 8 - k 1 - HOSTPOD 3 - 64 - ID 29  - PoDPos 1 -------- 3 -> 12
+1) ID 29 - K 1  2) k 1 Next Upper 13
+
+Dest 55 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 24  - PoDPos 0 -------- 3 -> 12
+1) ID 24 - K 0  2) k 0 Next Upper 12
+
+Dest 42 - FTK 8 - k 1 - HOSTPOD 2 - 64 - ID 17  - PoDPos 1 -------- 2 -> 8
+1) ID 17 - K 1  2) k 1 Next Upper 9
+
+Dest 67 - FTK 8 - k 1 - HOSTPOD 4 - 64 - ID 13  - PoDPos 1 -------- 4 -> 16
+1) ID 13 - K 1  2) k 1 Next Upper 17
+
+Dest 127 - FTK 8 - k 1 - HOSTPOD 7 - 64 - ID 5  - PoDPos 1 -------- 7 -> 28
+1) ID 5 - K 1  2) k 1 Next Upper 29
+
+Dest 59 - FTK 8 - k 2 - HOSTPOD 3 - 64 - ID 26  - PoDPos 2 -------- 3 -> 12
+1) ID 26 - K 2  2) k 2 Next Upper 14
+
+Dest 100 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 15  - PoDPos 3 -------- 6 -> 24
+1) ID 15 - K 3  2) k 3 Next Upper 27
+
+Dest 32 - FTK 8 - k 0 - HOSTPOD 2 - 64 - ID 16  - PoDPos 0 -------- 2 -> 8
+1) ID 16 - K 0  2) k 0 Next Upper 8
+
+Dest 99 - FTK 8 - k 0 - HOSTPOD 6 - 64 - ID 8  - PoDPos 0 -------- 6 -> 24
+1) ID 8 - K 0  2) k 0 Next Upper 24
+
+Dest 111 - FTK 8 - k 2 - HOSTPOD 6 - 64 - ID 10  - PoDPos 2 -------- 6 -> 24
+1) ID 10 - K 2  2) k 2 Next Upper 26
+
+Dest 79 - FTK 8 - k 2 - HOSTPOD 4 - 64 - ID 2  - PoDPos 2 -------- 4 -> 16
+1) ID 2 - K 2  2) k 2 Next Upper 18
+
+Dest 28 - FTK 8 - k 3 - HOSTPOD 1 - 64 - ID 19  - PoDPos 3 -------- 1 -> 4
+1) ID 19 - K 3  2) k 3 Next Upper 7
+
+Dest 106 - FTK 8 - k 1 - HOSTPOD 6 - 64 - ID 13  - PoDPos 1 -------- 6 -> 24
+1) ID 13 - K 1  2) k 1 Next Upper 25
+
+Dest 126 - FTK 8 - k 1 - HOSTPOD 7 - 64 - ID 1  - PoDPos 1 -------- 7 -> 28
+1) ID 1 - K 1  2) k 1 Next Upper 29
+
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 0 - NUP 16
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 3 - NUP 23
+Dest 99 - FTK 8 - k 1 - HOSTPOD 6 - 64 - ID 9  - PoDPos 1 -------- 6 -> 24
+1) ID 9 - K 1  2) k 1 Next Upper 25
+
+Dest 3 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 31  - PoDPos 3 -------- 0 -> 0
+1) ID 31 - K 3  2) k 3 Next Upper 3
+
+Dest 7 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 19  - PoDPos 3 -------- 0 -> 0
+1) ID 19 - K 3  2) k 3 Next Upper 3
+
+Dest 120 - FTK 8 - k 1 - HOSTPOD 7 - 64 - ID 1  - PoDPos 1 -------- 7 -> 28
+1) ID 1 - K 1  2) k 1 Next Upper 29
+
+Dest 61 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 24  - PoDPos 0 -------- 3 -> 12
+1) ID 24 - K 0  2) k 0 Next Upper 12
+
+Dest 123 - FTK 8 - k 0 - HOSTPOD 7 - 64 - ID 8  - PoDPos 0 -------- 7 -> 28
+1) ID 8 - K 0  2) k 0 Next Upper 28
+
+Dest 15 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 23  - PoDPos 3 -------- 0 -> 0
+1) ID 23 - K 3  2) k 3 Next Upper 3
+
+Dest 68 - FTK 8 - k 2 - HOSTPOD 4 - 64 - ID 6  - PoDPos 2 -------- 4 -> 16
+1) ID 6 - K 2  2) k 2 Next Upper 18
+
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 1 - NUP 1
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 3 - NUP 15
+Dest 38 - FTK 8 - k 3 - HOSTPOD 2 - 64 - ID 27  - PoDPos 3 -------- 2 -> 8
+1) ID 27 - K 3  2) k 3 Next Upper 11
+
+Dest 81 - FTK 8 - k 3 - HOSTPOD 5 - 64 - ID 7  - PoDPos 3 -------- 5 -> 20
+1) ID 7 - K 3  2) k 3 Next Upper 23
+
+Dest 70 - FTK 8 - k 3 - HOSTPOD 4 - 64 - ID 7  - PoDPos 3 -------- 4 -> 16
+1) ID 7 - K 3  2) k 3 Next Upper 19
+
+Dest 39 - FTK 8 - k 1 - HOSTPOD 2 - 64 - ID 17  - PoDPos 1 -------- 2 -> 8
+1) ID 17 - K 1  2) k 1 Next Upper 9
+
+Dest 84 - FTK 8 - k 2 - HOSTPOD 5 - 64 - ID 10  - PoDPos 2 -------- 5 -> 20
+1) ID 10 - K 2  2) k 2 Next Upper 22
+
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 3 - NUP 19
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 0 - NUP 12
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 2 - NUP 2
+Core -> Upper: _id 3 - NUP 15
+Core -> Upper: _id 0 - NUP 8
+Dest 21 - FTK 8 - k 2 - HOSTPOD 1 - 64 - ID 30  - PoDPos 2 -------- 1 -> 4
+1) ID 30 - K 2  2) k 2 Next Upper 6
+
+Dest 125 - FTK 8 - k 0 - HOSTPOD 7 - 64 - ID 0  - PoDPos 0 -------- 7 -> 28
+1) ID 0 - K 0  2) k 0 Next Upper 28
+
+Dest 36 - FTK 8 - k 2 - HOSTPOD 2 - 64 - ID 26  - PoDPos 2 -------- 2 -> 8
+1) ID 26 - K 2  2) k 2 Next Upper 10
+
+Dest 89 - FTK 8 - k 3 - HOSTPOD 5 - 64 - ID 3  - PoDPos 3 -------- 5 -> 20
+1) ID 3 - K 3  2) k 3 Next Upper 23
+
+Dest 111 - FTK 8 - k 3 - HOSTPOD 6 - 64 - ID 11  - PoDPos 3 -------- 6 -> 24
+1) ID 11 - K 3  2) k 3 Next Upper 27
+
+Dest 103 - FTK 8 - k 0 - HOSTPOD 6 - 64 - ID 8  - PoDPos 0 -------- 6 -> 24
+1) ID 8 - K 0  2) k 0 Next Upper 24
+
+Core -> Upper: _id 2 - NUP 6
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 1 - NUP 17
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 1 - NUP 13
+Core -> Upper: _id 3 - NUP 31
+Dest 51 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 28  - PoDPos 0 -------- 3 -> 12
+1) ID 28 - K 0  2) k 0 Next Upper 12
+
+Dest 86 - FTK 8 - k 3 - HOSTPOD 5 - 64 - ID 7  - PoDPos 3 -------- 5 -> 20
+1) ID 7 - K 3  2) k 3 Next Upper 23
+
+Dest 122 - FTK 8 - k 1 - HOSTPOD 7 - 64 - ID 9  - PoDPos 1 -------- 7 -> 28
+1) ID 9 - K 1  2) k 1 Next Upper 29
+
+Dest 60 - FTK 8 - k 0 - HOSTPOD 3 - 64 - ID 20  - PoDPos 0 -------- 3 -> 12
+1) ID 20 - K 0  2) k 0 Next Upper 12
+
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 1 - NUP 21
+Core -> Upper: _id 3 - NUP 11
+Dest 109 - FTK 8 - k 2 - HOSTPOD 6 - 64 - ID 14  - PoDPos 2 -------- 6 -> 24
+1) ID 14 - K 2  2) k 2 Next Upper 26
+
+Dest 41 - FTK 8 - k 2 - HOSTPOD 2 - 64 - ID 26  - PoDPos 2 -------- 2 -> 8
+1) ID 26 - K 2  2) k 2 Next Upper 10
+
+Dest 7 - FTK 8 - k 1 - HOSTPOD 0 - 64 - ID 17  - PoDPos 1 -------- 0 -> 0
+1) ID 17 - K 1  2) k 1 Next Upper 1
+
+Core -> Upper: _id 2 - NUP 22
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 2 - NUP 30
+Core -> Upper: _id 3 - NUP 31
+Core -> Upper: _id 2 - NUP 14
+Core -> Upper: _id 3 - NUP 23
+Dest 18 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 16  - PoDPos 0 -------- 1 -> 4
+1) ID 16 - K 0  2) k 0 Next Upper 4
+
+Dest 6 - FTK 8 - k 3 - HOSTPOD 0 - 64 - ID 31  - PoDPos 3 -------- 0 -> 0
+1) ID 31 - K 3  2) k 3 Next Upper 3
+
+Core -> Upper: _id 0 - NUP 20
+Dest 93 - FTK 8 - k 0 - HOSTPOD 5 - 64 - ID 8  - PoDPos 0 -------- 5 -> 20
+1) ID 8 - K 0  2) k 0 Next Upper 20
+
+Dest 28 - FTK 8 - k 1 - HOSTPOD 1 - 64 - ID 17  - PoDPos 1 -------- 1 -> 4
+1) ID 17 - K 1  2) k 1 Next Upper 5
+
+Dest 14 - FTK 8 - k 0 - HOSTPOD 0 - 64 - ID 24  - PoDPos 0 -------- 0 -> 0
+1) ID 24 - K 0  2) k 0 Next Upper 0
+
+Dest 107 - FTK 8 - k 2 - HOSTPOD 6 - 64 - ID 6  - PoDPos 2 -------- 6 -> 24
+1) ID 6 - K 2  2) k 2 Next Upper 26
+
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 2 - NUP 18
+Core -> Upper: _id 3 - NUP 11
+Core -> Upper: _id 0 - NUP 8
+Core -> Upper: _id 3 - NUP 31
+Dest 20 - FTK 8 - k 0 - HOSTPOD 1 - 64 - ID 28  - PoDPos 0 -------- 1 -> 4
+1) ID 28 - K 0  2) k 0 Next Upper 4
+
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 2 - NUP 26
+Core -> Upper: _id 3 - NUP 27
+Core -> Upper: _id 3 - NUP 7
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 1 - NUP 25
+Core -> Upper: _id 3 - NUP 3
+Core -> Upper: _id 0 - NUP 28
+Core -> Upper: _id 2 - NUP 18
+Dest 75 - FTK 8 - k 2 - HOSTPOD 4 - 64 - ID 14  - PoDPos 2 -------- 4 -> 16
+1) ID 14 - K 2  2) k 2 Next Upper 18
+
+Core -> Upper: _id 3 - NUP 11
+Dest 87 - FTK 8 - k 1 - HOSTPOD 5 - 64 - ID 13  - PoDPos 1 -------- 5 -> 20
+1) ID 13 - K 1  2) k 1 Next Upper 21
+
+Core -> Upper: _id 0 - NUP 24
+Core -> Upper: _id 1 - NUP 29
+Core -> Upper: _id 3 - NUP 23
+Core -> Upper: _id 2 - NUP 10
+Core -> Upper: _id 0 - NUP 0
+Core -> Upper: _id 1 - NUP 5
+Core -> Upper: _id 0 - NUP 20
+Core -> Upper: _id 0 - NUP 4
+Core -> Upper: _id 2 - NUP 18
+Flow Finished 108@25@0 at 9573760
+Flow NDP_108_25 flow_id 1000000108 finished at 9.57376 total bytes 16384
+Completion Time Flow is 9573760
+Total NACK Flow is 0
+Running - 1 - 9573760
+Updated - Time 9573760
+..... Received a MSG -- host 25 to target 108, proc 0 - Type 1
+----------------------------    ENTERING WHILE        // ---------------------------- | 9573760 9573760 -  1 0 - 1 0 1 - 25 108 0
+OP MSGnexto[elem.host][elem.proc] 0 (25 0) - nextgr[elem.host][elem.nic] 0( 25  0) - time  9573760
+Searching for MATCHCurrent elem time is 9573760 while NS3 9573760
+Simulating Until Called
+Flow Finished 74@23@0 at 9656960
+Flow NDP_74_23 flow_id 1000000074 finished at 9.65696 total bytes 16384
+Completion Time Flow is 9656960
+Total NACK Flow is 0
+Running - 1 - 9656960
+Updated - Time 9656960
+..... Received a MSG -- host 23 to target 74, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9656960 9656960 -  1 0 - 1 0 1 - 23 74 0
+OP MSGnexto[elem.host][elem.proc] 0 (23 0) - nextgr[elem.host][elem.nic] 0( 23  0) - time  9656960
+Searching for MATCHCurrent elem time is 9656960 while NS3 9656960
+Simulating Until Called
+Flow Finished 112@5@0 at 9658240
+Flow NDP_112_5 flow_id 1000000112 finished at 9.65824 total bytes 16384
+Completion Time Flow is 9658240
+Total NACK Flow is 0
+Running - 1 - 9658240
+Updated - Time 9658240
+..... Received a MSG -- host 5 to target 112, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9658240 9658240 -  1 0 - 1 0 1 - 5 112 0
+OP MSGnexto[elem.host][elem.proc] 0 (5 0) - nextgr[elem.host][elem.nic] 0( 5  0) - time  9658240
+Searching for MATCHCurrent elem time is 9658240 while NS3 9658240
+Simulating Until Called
+Flow Finished 4@96@0 at 9738880
+Flow NDP_4_96 flow_id 1000000004 finished at 9.73888 total bytes 16384
+Completion Time Flow is 9738880
+Total NACK Flow is 0
+Running - 1 - 9738880
+Updated - Time 9738880
+..... Received a MSG -- host 96 to target 4, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9738880 9738880 -  1 0 - 1 0 1 - 96 4 0
+OP MSGnexto[elem.host][elem.proc] 0 (96 0) - nextgr[elem.host][elem.nic] 0( 96  0) - time  9738880
+Searching for MATCHCurrent elem time is 9738880 while NS3 9738880
+Simulating Until Called
+Flow Finished 92@38@0 at 9741440
+Flow NDP_92_38 flow_id 1000000092 finished at 9.74144 total bytes 16384
+Completion Time Flow is 9741440
+Total NACK Flow is 0
+Running - 1 - 9741440
+Updated - Time 9741440
+..... Received a MSG -- host 38 to target 92, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9741440 9741440 -  1 0 - 1 0 1 - 38 92 0
+OP MSGnexto[elem.host][elem.proc] 0 (38 0) - nextgr[elem.host][elem.nic] 0( 38  0) - time  9741440
+Searching for MATCHCurrent elem time is 9741440 while NS3 9741440
+Simulating Until Called
+Flow Finished 82@11@0 at 9822080
+Flow NDP_82_11 flow_id 1000000082 finished at 9.82208 total bytes 16384
+Completion Time Flow is 9822080
+Total NACK Flow is 0
+Running - 1 - 9822080
+Updated - Time 9822080
+..... Received a MSG -- host 11 to target 82, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9822080 9822080 -  1 0 - 1 0 1 - 11 82 0
+OP MSGnexto[elem.host][elem.proc] 0 (11 0) - nextgr[elem.host][elem.nic] 0( 11  0) - time  9822080
+Searching for MATCHCurrent elem time is 9822080 while NS3 9822080
+Simulating Until Called
+Flow Finished 16@97@0 at 9822080
+Flow NDP_16_97 flow_id 1000000016 finished at 9.82208 total bytes 16384
+Completion Time Flow is 9822080
+Total NACK Flow is 0
+Running - 1 - 9822080
+Updated - Time 9822080
+..... Received a MSG -- host 97 to target 16, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9822080 9822080 -  1 0 - 1 0 1 - 97 16 0
+OP MSGnexto[elem.host][elem.proc] 0 (97 0) - nextgr[elem.host][elem.nic] 0( 97  0) - time  9822080
+Searching for MATCHCurrent elem time is 9822080 while NS3 9822080
+Simulating Until Called
+Flow Finished 33@79@0 at 9822080
+Flow NDP_33_79 flow_id 1000000033 finished at 9.82208 total bytes 16384
+Completion Time Flow is 9822080
+Total NACK Flow is 0
+Running - 1 - 9822080
+Updated - Time 9822080
+..... Received a MSG -- host 79 to target 33, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9822080 9822080 -  1 0 - 1 0 1 - 79 33 0
+OP MSGnexto[elem.host][elem.proc] 0 (79 0) - nextgr[elem.host][elem.nic] 0( 79  0) - time  9822080
+Searching for MATCHCurrent elem time is 9822080 while NS3 9822080
+Simulating Until Called
+Flow Finished 91@35@0 at 9822080
+Flow NDP_91_35 flow_id 1000000091 finished at 9.82208 total bytes 16384
+Completion Time Flow is 9822080
+Total NACK Flow is 0
+Running - 1 - 9822080
+Updated - Time 9822080
+..... Received a MSG -- host 35 to target 91, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9822080 9822080 -  1 0 - 1 0 1 - 35 91 0
+OP MSGnexto[elem.host][elem.proc] 0 (35 0) - nextgr[elem.host][elem.nic] 0( 35  0) - time  9822080
+Searching for MATCHCurrent elem time is 9822080 while NS3 9822080
+Simulating Until Called
+Flow Finished 0@78@0 at 9823360
+Flow NDP_0_78 flow_id 1000000000 finished at 9.82336 total bytes 16384
+Completion Time Flow is 9823360
+Total NACK Flow is 0
+Running - 1 - 9823360
+Updated - Time 9823360
+..... Received a MSG -- host 78 to target 0, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9823360 9823360 -  1 0 - 1 0 1 - 78 0 0
+OP MSGnexto[elem.host][elem.proc] 0 (78 0) - nextgr[elem.host][elem.nic] 0( 78  0) - time  9823360
+Searching for MATCHCurrent elem time is 9823360 while NS3 9823360
+Simulating Until Called
+Flow Finished 69@31@0 at 9823360
+Flow NDP_69_31 flow_id 1000000069 finished at 9.82336 total bytes 16384
+Completion Time Flow is 9823360
+Total NACK Flow is 0
+Running - 1 - 9823360
+Updated - Time 9823360
+..... Received a MSG -- host 31 to target 69, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9823360 9823360 -  1 0 - 1 0 1 - 31 69 0
+OP MSGnexto[elem.host][elem.proc] 0 (31 0) - nextgr[elem.host][elem.nic] 0( 31  0) - time  9823360
+Searching for MATCHCurrent elem time is 9823360 while NS3 9823360
+Simulating Until Called
+Flow Finished 25@64@0 at 9823360
+Flow NDP_25_64 flow_id 1000000025 finished at 9.82336 total bytes 16384
+Completion Time Flow is 9823360
+Total NACK Flow is 0
+Running - 1 - 9823360
+Updated - Time 9823360
+..... Received a MSG -- host 64 to target 25, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9823360 9823360 -  1 0 - 1 0 1 - 64 25 0
+OP MSGnexto[elem.host][elem.proc] 0 (64 0) - nextgr[elem.host][elem.nic] 0( 64  0) - time  9823360
+Searching for MATCHCurrent elem time is 9823360 while NS3 9823360
+Simulating Until Called
+Flow Finished 44@123@0 at 9823360
+Flow NDP_44_123 flow_id 1000000044 finished at 9.82336 total bytes 16384
+Completion Time Flow is 9823360
+Total NACK Flow is 0
+Running - 1 - 9823360
+Updated - Time 9823360
+..... Received a MSG -- host 123 to target 44, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9823360 9823360 -  1 0 - 1 0 1 - 123 44 0
+OP MSGnexto[elem.host][elem.proc] 0 (123 0) - nextgr[elem.host][elem.nic] 0( 123  0) - time  9823360
+Searching for MATCHCurrent elem time is 9823360 while NS3 9823360
+Simulating Until Called
+Flow Finished 53@91@0 at 9824640
+Flow NDP_53_91 flow_id 1000000053 finished at 9.82464 total bytes 16384
+Completion Time Flow is 9824640
+Total NACK Flow is 0
+Running - 1 - 9824640
+Updated - Time 9824640
+..... Received a MSG -- host 91 to target 53, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9824640 9824640 -  1 0 - 1 0 1 - 91 53 0
+OP MSGnexto[elem.host][elem.proc] 0 (91 0) - nextgr[elem.host][elem.nic] 0( 91  0) - time  9824640
+Searching for MATCHCurrent elem time is 9824640 while NS3 9824640
+Simulating Until Called
+Flow Finished 65@59@0 at 9824640
+Flow NDP_65_59 flow_id 1000000065 finished at 9.82464 total bytes 16384
+Completion Time Flow is 9824640
+Total NACK Flow is 0
+Running - 1 - 9824640
+Updated - Time 9824640
+..... Received a MSG -- host 59 to target 65, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9824640 9824640 -  1 0 - 1 0 1 - 59 65 0
+OP MSGnexto[elem.host][elem.proc] 0 (59 0) - nextgr[elem.host][elem.nic] 0( 59  0) - time  9824640
+Searching for MATCHCurrent elem time is 9824640 while NS3 9824640
+Simulating Until Called
+Flow Finished 40@115@0 at 9905280
+Flow NDP_40_115 flow_id 1000000040 finished at 9.90528 total bytes 16384
+Completion Time Flow is 9905280
+Total NACK Flow is 0
+Running - 1 - 9905280
+Updated - Time 9905280
+..... Received a MSG -- host 115 to target 40, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9905280 9905280 -  1 0 - 1 0 1 - 115 40 0
+OP MSGnexto[elem.host][elem.proc] 0 (115 0) - nextgr[elem.host][elem.nic] 0( 115  0) - time  9905280
+Searching for MATCHCurrent elem time is 9905280 while NS3 9905280
+Simulating Until Called
+Flow Finished 31@111@0 at 9905280
+Flow NDP_31_111 flow_id 1000000031 finished at 9.90528 total bytes 16384
+Completion Time Flow is 9905280
+Total NACK Flow is 0
+Running - 1 - 9905280
+Updated - Time 9905280
+..... Received a MSG -- host 111 to target 31, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9905280 9905280 -  1 0 - 1 0 1 - 111 31 0
+OP MSGnexto[elem.host][elem.proc] 0 (111 0) - nextgr[elem.host][elem.nic] 0( 111  0) - time  9905280
+Searching for MATCHCurrent elem time is 9905280 while NS3 9905280
+Simulating Until Called
+Flow Finished 96@45@0 at 9907840
+Flow NDP_96_45 flow_id 1000000096 finished at 9.90784 total bytes 16384
+Completion Time Flow is 9907840
+Total NACK Flow is 0
+Running - 1 - 9907840
+Updated - Time 9907840
+..... Received a MSG -- host 45 to target 96, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9907840 9907840 -  1 0 - 1 0 1 - 45 96 0
+OP MSGnexto[elem.host][elem.proc] 0 (45 0) - nextgr[elem.host][elem.nic] 0( 45  0) - time  9907840
+Searching for MATCHCurrent elem time is 9907840 while NS3 9907840
+Simulating Until Called
+Flow Finished 101@7@0 at 9988480
+Flow NDP_101_7 flow_id 1000000101 finished at 9.98848 total bytes 16384
+Completion Time Flow is 9988480
+Total NACK Flow is 0
+Running - 1 - 9988480
+Updated - Time 9988480
+..... Received a MSG -- host 7 to target 101, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9988480 9988480 -  1 0 - 1 0 1 - 7 101 0
+OP MSGnexto[elem.host][elem.proc] 0 (7 0) - nextgr[elem.host][elem.nic] 0( 7  0) - time  9988480
+Searching for MATCHCurrent elem time is 9988480 while NS3 9988480
+Simulating Until Called
+Flow Finished 83@48@0 at 9988480
+Flow NDP_83_48 flow_id 1000000083 finished at 9.98848 total bytes 16384
+Completion Time Flow is 9988480
+Total NACK Flow is 0
+Running - 1 - 9988480
+Updated - Time 9988480
+..... Received a MSG -- host 48 to target 83, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9988480 9988480 -  1 0 - 1 0 1 - 48 83 0
+OP MSGnexto[elem.host][elem.proc] 0 (48 0) - nextgr[elem.host][elem.nic] 0( 48  0) - time  9988480
+Searching for MATCHCurrent elem time is 9988480 while NS3 9988480
+Simulating Until Called
+Flow Finished 76@36@0 at 9988480
+Flow NDP_76_36 flow_id 1000000076 finished at 9.98848 total bytes 16384
+Completion Time Flow is 9988480
+Total NACK Flow is 0
+Running - 1 - 9988480
+Updated - Time 9988480
+..... Received a MSG -- host 36 to target 76, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9988480 9988480 -  1 0 - 1 0 1 - 36 76 0
+OP MSGnexto[elem.host][elem.proc] 0 (36 0) - nextgr[elem.host][elem.nic] 0( 36  0) - time  9988480
+Searching for MATCHCurrent elem time is 9988480 while NS3 9988480
+Simulating Until Called
+Flow Finished 49@84@0 at 9988480
+Flow NDP_49_84 flow_id 1000000049 finished at 9.98848 total bytes 16384
+Completion Time Flow is 9988480
+Total NACK Flow is 0
+Running - 1 - 9988480
+Updated - Time 9988480
+..... Received a MSG -- host 84 to target 49, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9988480 9988480 -  1 0 - 1 0 1 - 84 49 0
+OP MSGnexto[elem.host][elem.proc] 0 (84 0) - nextgr[elem.host][elem.nic] 0( 84  0) - time  9988480
+Searching for MATCHCurrent elem time is 9988480 while NS3 9988480
+Simulating Until Called
+Flow Finished 78@10@0 at 9988480
+Flow NDP_78_10 flow_id 1000000078 finished at 9.98848 total bytes 16384
+Completion Time Flow is 9988480
+Total NACK Flow is 0
+Running - 1 - 9988480
+Updated - Time 9988480
+..... Received a MSG -- host 10 to target 78, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9988480 9988480 -  1 0 - 1 0 1 - 10 78 0
+OP MSGnexto[elem.host][elem.proc] 0 (10 0) - nextgr[elem.host][elem.nic] 0( 10  0) - time  9988480
+Searching for MATCHCurrent elem time is 9988480 while NS3 9988480
+Simulating Until Called
+Flow Finished 35@75@0 at 9989760
+Flow NDP_35_75 flow_id 1000000035 finished at 9.98976 total bytes 16384
+Completion Time Flow is 9989760
+Total NACK Flow is 0
+Running - 1 - 9989760
+Updated - Time 9989760
+..... Received a MSG -- host 75 to target 35, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9989760 9989760 -  1 0 - 1 0 1 - 75 35 0
+OP MSGnexto[elem.host][elem.proc] 0 (75 0) - nextgr[elem.host][elem.nic] 0( 75  0) - time  9989760
+Searching for MATCHCurrent elem time is 9989760 while NS3 9989760
+Simulating Until Called
+Flow Finished 2@70@0 at 9989760
+Flow NDP_2_70 flow_id 1000000002 finished at 9.98976 total bytes 16384
+Completion Time Flow is 9989760
+Total NACK Flow is 0
+Running - 1 - 9989760
+Updated - Time 9989760
+..... Received a MSG -- host 70 to target 2, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9989760 9989760 -  1 0 - 1 0 1 - 70 2 0
+OP MSGnexto[elem.host][elem.proc] 0 (70 0) - nextgr[elem.host][elem.nic] 0( 70  0) - time  9989760
+Searching for MATCHCurrent elem time is 9989760 while NS3 9989760
+Simulating Until Called
+Flow Finished 52@113@0 at 9989760
+Flow NDP_52_113 flow_id 1000000052 finished at 9.98976 total bytes 16384
+Completion Time Flow is 9989760
+Total NACK Flow is 0
+Running - 1 - 9989760
+Updated - Time 9989760
+..... Received a MSG -- host 113 to target 52, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9989760 9989760 -  1 0 - 1 0 1 - 113 52 0
+OP MSGnexto[elem.host][elem.proc] 0 (113 0) - nextgr[elem.host][elem.nic] 0( 113  0) - time  9989760
+Searching for MATCHCurrent elem time is 9989760 while NS3 9989760
+Simulating Until Called
+Flow Finished 116@19@0 at 9989760
+Flow NDP_116_19 flow_id 1000000116 finished at 9.98976 total bytes 16384
+Completion Time Flow is 9989760
+Total NACK Flow is 0
+Running - 1 - 9989760
+Updated - Time 9989760
+..... Received a MSG -- host 19 to target 116, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9989760 9989760 -  1 0 - 1 0 1 - 19 116 0
+OP MSGnexto[elem.host][elem.proc] 0 (19 0) - nextgr[elem.host][elem.nic] 0( 19  0) - time  9989760
+Searching for MATCHCurrent elem time is 9989760 while NS3 9989760
+Simulating Until Called
+Flow Finished 104@33@0 at 9991040
+Flow NDP_104_33 flow_id 1000000104 finished at 9.99104 total bytes 16384
+Completion Time Flow is 9991040
+Total NACK Flow is 0
+Running - 1 - 9991040
+Updated - Time 9991040
+..... Received a MSG -- host 33 to target 104, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9991040 9991040 -  1 0 - 1 0 1 - 33 104 0
+OP MSGnexto[elem.host][elem.proc] 0 (33 0) - nextgr[elem.host][elem.nic] 0( 33  0) - time  9991040
+Searching for MATCHCurrent elem time is 9991040 while NS3 9991040
+Simulating Until Called
+Flow Finished 13@94@0 at 9991040
+Flow NDP_13_94 flow_id 1000000013 finished at 9.99104 total bytes 16384
+Completion Time Flow is 9991040
+Total NACK Flow is 0
+Running - 1 - 9991040
+Updated - Time 9991040
+..... Received a MSG -- host 94 to target 13, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9991040 9991040 -  1 0 - 1 0 1 - 94 13 0
+OP MSGnexto[elem.host][elem.proc] 0 (94 0) - nextgr[elem.host][elem.nic] 0( 94  0) - time  9991040
+Searching for MATCHCurrent elem time is 9991040 while NS3 9991040
+Simulating Until Called
+Flow Finished 118@9@0 at 9991040
+Flow NDP_118_9 flow_id 1000000118 finished at 9.99104 total bytes 16384
+Completion Time Flow is 9991040
+Total NACK Flow is 0
+Running - 1 - 9991040
+Updated - Time 9991040
+..... Received a MSG -- host 9 to target 118, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 9991040 9991040 -  1 0 - 1 0 1 - 9 118 0
+OP MSGnexto[elem.host][elem.proc] 0 (9 0) - nextgr[elem.host][elem.nic] 0( 9  0) - time  9991040
+Searching for MATCHCurrent elem time is 9991040 while NS3 9991040
+Simulating Until Called
+Flow Finished 32@66@0 at 10071680
+Flow NDP_32_66 flow_id 1000000032 finished at 10.0717 total bytes 16384
+Completion Time Flow is 10071680
+Total NACK Flow is 0
+Running - 1 - 10071680
+Updated - Time 10071680
+..... Received a MSG -- host 66 to target 32, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10071680 10071680 -  1 0 - 1 0 1 - 66 32 0
+OP MSGnexto[elem.host][elem.proc] 0 (66 0) - nextgr[elem.host][elem.nic] 0( 66  0) - time  10071680
+Searching for MATCHCurrent elem time is 10071680 while NS3 10071680
+Simulating Until Called
+Flow Finished 62@77@0 at 10071680
+Flow NDP_62_77 flow_id 1000000062 finished at 10.0717 total bytes 16384
+Completion Time Flow is 10071680
+Total NACK Flow is 0
+Running - 1 - 10071680
+Updated - Time 10071680
+..... Received a MSG -- host 77 to target 62, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10071680 10071680 -  1 0 - 1 0 1 - 77 62 0
+OP MSGnexto[elem.host][elem.proc] 0 (77 0) - nextgr[elem.host][elem.nic] 0( 77  0) - time  10071680
+Searching for MATCHCurrent elem time is 10071680 while NS3 10071680
+Simulating Until Called
+Flow Finished 46@83@0 at 10071680
+Flow NDP_46_83 flow_id 1000000046 finished at 10.0717 total bytes 16384
+Completion Time Flow is 10071680
+Total NACK Flow is 0
+Running - 1 - 10071680
+Updated - Time 10071680
+..... Received a MSG -- host 83 to target 46, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10071680 10071680 -  1 0 - 1 0 1 - 83 46 0
+OP MSGnexto[elem.host][elem.proc] 0 (83 0) - nextgr[elem.host][elem.nic] 0( 83  0) - time  10071680
+Searching for MATCHCurrent elem time is 10071680 while NS3 10071680
+Simulating Until Called
+Flow Finished 90@55@0 at 10071680
+Flow NDP_90_55 flow_id 1000000090 finished at 10.0717 total bytes 16384
+Completion Time Flow is 10071680
+Total NACK Flow is 0
+Running - 1 - 10071680
+Updated - Time 10071680
+..... Received a MSG -- host 55 to target 90, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10071680 10071680 -  1 0 - 1 0 1 - 55 90 0
+OP MSGnexto[elem.host][elem.proc] 0 (55 0) - nextgr[elem.host][elem.nic] 0( 55  0) - time  10071680
+Searching for MATCHCurrent elem time is 10071680 while NS3 10071680
+Simulating Until Called
+Flow Finished 59@108@0 at 10071680
+Flow NDP_59_108 flow_id 1000000059 finished at 10.0717 total bytes 16384
+Completion Time Flow is 10071680
+Total NACK Flow is 0
+Running - 1 - 10071680
+Updated - Time 10071680
+..... Received a MSG -- host 108 to target 59, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10071680 10071680 -  1 0 - 1 0 1 - 108 59 0
+OP MSGnexto[elem.host][elem.proc] 0 (108 0) - nextgr[elem.host][elem.nic] 0( 108  0) - time  10071680
+Searching for MATCHCurrent elem time is 10071680 while NS3 10071680
+Simulating Until Called
+Flow Finished 55@100@0 at 10071680
+Flow NDP_55_100 flow_id 1000000055 finished at 10.0717 total bytes 16384
+Completion Time Flow is 10071680
+Total NACK Flow is 0
+Running - 1 - 10071680
+Updated - Time 10071680
+..... Received a MSG -- host 100 to target 55, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10071680 10071680 -  1 0 - 1 0 1 - 100 55 0
+OP MSGnexto[elem.host][elem.proc] 0 (100 0) - nextgr[elem.host][elem.nic] 0( 100  0) - time  10071680
+Searching for MATCHCurrent elem time is 10071680 while NS3 10071680
+Simulating Until Called
+Flow Finished 10@117@0 at 10071680
+Flow NDP_10_117 flow_id 1000000010 finished at 10.0717 total bytes 16384
+Completion Time Flow is 10071680
+Total NACK Flow is 0
+Running - 1 - 10071680
+Updated - Time 10071680
+..... Received a MSG -- host 117 to target 10, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10071680 10071680 -  1 0 - 1 0 1 - 117 10 0
+OP MSGnexto[elem.host][elem.proc] 0 (117 0) - nextgr[elem.host][elem.nic] 0( 117  0) - time  10071680
+Searching for MATCHCurrent elem time is 10071680 while NS3 10071680
+Simulating Until Called
+Flow Finished 34@82@0 at 10071680
+Flow NDP_34_82 flow_id 1000000034 finished at 10.0717 total bytes 16384
+Completion Time Flow is 10071680
+Total NACK Flow is 0
+Running - 1 - 10071680
+Updated - Time 10071680
+..... Received a MSG -- host 82 to target 34, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10071680 10071680 -  1 0 - 1 0 1 - 82 34 0
+OP MSGnexto[elem.host][elem.proc] 0 (82 0) - nextgr[elem.host][elem.nic] 0( 82  0) - time  10071680
+Searching for MATCHCurrent elem time is 10071680 while NS3 10071680
+Simulating Until Called
+Flow Finished 56@124@0 at 10072960
+Flow NDP_56_124 flow_id 1000000056 finished at 10.073 total bytes 16384
+Completion Time Flow is 10072960
+Total NACK Flow is 0
+Running - 1 - 10072960
+Updated - Time 10072960
+..... Received a MSG -- host 124 to target 56, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10072960 10072960 -  1 0 - 1 0 1 - 124 56 0
+OP MSGnexto[elem.host][elem.proc] 0 (124 0) - nextgr[elem.host][elem.nic] 0( 124  0) - time  10072960
+Searching for MATCHCurrent elem time is 10072960 while NS3 10072960
+Simulating Until Called
+Flow Finished 126@15@0 at 10072960
+Flow NDP_126_15 flow_id 1000000126 finished at 10.073 total bytes 16384
+Completion Time Flow is 10072960
+Total NACK Flow is 0
+Running - 1 - 10072960
+Updated - Time 10072960
+..... Received a MSG -- host 15 to target 126, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10072960 10072960 -  1 0 - 1 0 1 - 15 126 0
+OP MSGnexto[elem.host][elem.proc] 0 (15 0) - nextgr[elem.host][elem.nic] 0( 15  0) - time  10072960
+Searching for MATCHCurrent elem time is 10072960 while NS3 10072960
+Simulating Until Called
+Flow Finished 24@86@0 at 10072960
+Flow NDP_24_86 flow_id 1000000024 finished at 10.073 total bytes 16384
+Completion Time Flow is 10072960
+Total NACK Flow is 0
+Running - 1 - 10072960
+Updated - Time 10072960
+..... Received a MSG -- host 86 to target 24, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10072960 10072960 -  1 0 - 1 0 1 - 86 24 0
+OP MSGnexto[elem.host][elem.proc] 0 (86 0) - nextgr[elem.host][elem.nic] 0( 86  0) - time  10072960
+Searching for MATCHCurrent elem time is 10072960 while NS3 10072960
+Simulating Until Called
+Flow Finished 77@30@0 at 10072960
+Flow NDP_77_30 flow_id 1000000077 finished at 10.073 total bytes 16384
+Completion Time Flow is 10072960
+Total NACK Flow is 0
+Running - 1 - 10072960
+Updated - Time 10072960
+..... Received a MSG -- host 30 to target 77, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10072960 10072960 -  1 0 - 1 0 1 - 30 77 0
+OP MSGnexto[elem.host][elem.proc] 0 (30 0) - nextgr[elem.host][elem.nic] 0( 30  0) - time  10072960
+Searching for MATCHCurrent elem time is 10072960 while NS3 10072960
+Simulating Until Called
+Flow Finished 42@69@0 at 10072960
+Flow NDP_42_69 flow_id 1000000042 finished at 10.073 total bytes 16384
+Completion Time Flow is 10072960
+Total NACK Flow is 0
+Running - 1 - 10072960
+Updated - Time 10072960
+..... Received a MSG -- host 69 to target 42, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10072960 10072960 -  1 0 - 1 0 1 - 69 42 0
+OP MSGnexto[elem.host][elem.proc] 0 (69 0) - nextgr[elem.host][elem.nic] 0( 69  0) - time  10072960
+Searching for MATCHCurrent elem time is 10072960 while NS3 10072960
+Simulating Until Called
+Flow Finished 88@51@0 at 10154880
+Flow NDP_88_51 flow_id 1000000088 finished at 10.1549 total bytes 16384
+Completion Time Flow is 10154880
+Total NACK Flow is 0
+Running - 1 - 10154880
+Updated - Time 10154880
+..... Received a MSG -- host 51 to target 88, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10154880 10154880 -  1 0 - 1 0 1 - 51 88 0
+OP MSGnexto[elem.host][elem.proc] 0 (51 0) - nextgr[elem.host][elem.nic] 0( 51  0) - time  10154880
+Searching for MATCHCurrent elem time is 10154880 while NS3 10154880
+Simulating Until Called
+Flow Finished 22@120@0 at 10154880
+Flow NDP_22_120 flow_id 1000000022 finished at 10.1549 total bytes 16384
+Completion Time Flow is 10154880
+Total NACK Flow is 0
+Running - 1 - 10154880
+Updated - Time 10154880
+..... Received a MSG -- host 120 to target 22, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10154880 10154880 -  1 0 - 1 0 1 - 120 22 0
+OP MSGnexto[elem.host][elem.proc] 0 (120 0) - nextgr[elem.host][elem.nic] 0( 120  0) - time  10154880
+Searching for MATCHCurrent elem time is 10154880 while NS3 10154880
+Simulating Until Called
+Flow Finished 115@32@0 at 10154880
+Flow NDP_115_32 flow_id 1000000115 finished at 10.1549 total bytes 16384
+Completion Time Flow is 10154880
+Total NACK Flow is 0
+Running - 1 - 10154880
+Updated - Time 10154880
+..... Received a MSG -- host 32 to target 115, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10154880 10154880 -  1 0 - 1 0 1 - 32 115 0
+OP MSGnexto[elem.host][elem.proc] 0 (32 0) - nextgr[elem.host][elem.nic] 0( 32  0) - time  10154880
+Searching for MATCHCurrent elem time is 10154880 while NS3 10154880
+Simulating Until Called
+Flow Finished 123@40@0 at 10154880
+Flow NDP_123_40 flow_id 1000000123 finished at 10.1549 total bytes 16384
+Completion Time Flow is 10154880
+Total NACK Flow is 0
+Running - 1 - 10154880
+Updated - Time 10154880
+..... Received a MSG -- host 40 to target 123, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10154880 10154880 -  1 0 - 1 0 1 - 40 123 0
+OP MSGnexto[elem.host][elem.proc] 0 (40 0) - nextgr[elem.host][elem.nic] 0( 40  0) - time  10154880
+Searching for MATCHCurrent elem time is 10154880 while NS3 10154880
+Simulating Until Called
+Flow Finished 3@116@0 at 10154880
+Flow NDP_3_116 flow_id 1000000003 finished at 10.1549 total bytes 16384
+Completion Time Flow is 10154880
+Total NACK Flow is 0
+Running - 1 - 10154880
+Updated - Time 10154880
+..... Received a MSG -- host 116 to target 3, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10154880 10154880 -  1 0 - 1 0 1 - 116 3 0
+OP MSGnexto[elem.host][elem.proc] 0 (116 0) - nextgr[elem.host][elem.nic] 0( 116  0) - time  10154880
+Searching for MATCHCurrent elem time is 10154880 while NS3 10154880
+Simulating Until Called
+Flow Finished 105@1@0 at 10154880
+Flow NDP_105_1 flow_id 1000000105 finished at 10.1549 total bytes 16384
+Completion Time Flow is 10154880
+Total NACK Flow is 0
+Running - 1 - 10154880
+Updated - Time 10154880
+..... Received a MSG -- host 1 to target 105, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10154880 10154880 -  1 0 - 1 0 1 - 1 105 0
+OP MSGnexto[elem.host][elem.proc] 0 (1 0) - nextgr[elem.host][elem.nic] 0( 1  0) - time  10154880
+Searching for MATCHCurrent elem time is 10154880 while NS3 10154880
+Simulating Until Called
+Flow Finished 120@4@0 at 10154880
+Flow NDP_120_4 flow_id 1000000120 finished at 10.1549 total bytes 16384
+Completion Time Flow is 10154880
+Total NACK Flow is 0
+Running - 1 - 10154880
+Updated - Time 10154880
+..... Received a MSG -- host 4 to target 120, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10154880 10154880 -  1 0 - 1 0 1 - 4 120 0
+OP MSGnexto[elem.host][elem.proc] 0 (4 0) - nextgr[elem.host][elem.nic] 0( 4  0) - time  10154880
+Searching for MATCHCurrent elem time is 10154880 while NS3 10154880
+Simulating Until Called
+Flow Finished 58@95@0 at 10154880
+Flow NDP_58_95 flow_id 1000000058 finished at 10.1549 total bytes 16384
+Completion Time Flow is 10154880
+Total NACK Flow is 0
+Running - 1 - 10154880
+Updated - Time 10154880
+..... Received a MSG -- host 95 to target 58, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10154880 10154880 -  1 0 - 1 0 1 - 95 58 0
+OP MSGnexto[elem.host][elem.proc] 0 (95 0) - nextgr[elem.host][elem.nic] 0( 95  0) - time  10154880
+Searching for MATCHCurrent elem time is 10154880 while NS3 10154880
+Simulating Until Called
+Flow Finished 45@72@0 at 10154880
+Flow NDP_45_72 flow_id 1000000045 finished at 10.1549 total bytes 16384
+Completion Time Flow is 10154880
+Total NACK Flow is 0
+Running - 1 - 10154880
+Updated - Time 10154880
+..... Received a MSG -- host 72 to target 45, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10154880 10154880 -  1 0 - 1 0 1 - 72 45 0
+OP MSGnexto[elem.host][elem.proc] 0 (72 0) - nextgr[elem.host][elem.nic] 0( 72  0) - time  10154880
+Searching for MATCHCurrent elem time is 10154880 while NS3 10154880
+Simulating Until Called
+Flow Finished 99@42@0 at 10154880
+Flow NDP_99_42 flow_id 1000000099 finished at 10.1549 total bytes 16384
+Completion Time Flow is 10154880
+Total NACK Flow is 0
+Running - 1 - 10154880
+Updated - Time 10154880
+..... Received a MSG -- host 42 to target 99, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10154880 10154880 -  1 0 - 1 0 1 - 42 99 0
+OP MSGnexto[elem.host][elem.proc] 0 (42 0) - nextgr[elem.host][elem.nic] 0( 42  0) - time  10154880
+Searching for MATCHCurrent elem time is 10154880 while NS3 10154880
+Simulating Until Called
+Flow Finished 57@81@0 at 10156160
+Flow NDP_57_81 flow_id 1000000057 finished at 10.1562 total bytes 16384
+Completion Time Flow is 10156160
+Total NACK Flow is 0
+Running - 1 - 10156160
+Updated - Time 10156160
+..... Received a MSG -- host 81 to target 57, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10156160 10156160 -  1 0 - 1 0 1 - 81 57 0
+OP MSGnexto[elem.host][elem.proc] 0 (81 0) - nextgr[elem.host][elem.nic] 0( 81  0) - time  10156160
+Searching for MATCHCurrent elem time is 10156160 while NS3 10156160
+Simulating Until Called
+Flow Finished 94@6@0 at 10156160
+Flow NDP_94_6 flow_id 1000000094 finished at 10.1562 total bytes 16384
+Completion Time Flow is 10156160
+Total NACK Flow is 0
+Running - 1 - 10156160
+Updated - Time 10156160
+..... Received a MSG -- host 6 to target 94, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10156160 10156160 -  1 0 - 1 0 1 - 6 94 0
+OP MSGnexto[elem.host][elem.proc] 0 (6 0) - nextgr[elem.host][elem.nic] 0( 6  0) - time  10156160
+Searching for MATCHCurrent elem time is 10156160 while NS3 10156160
+Simulating Until Called
+Flow Finished 68@28@0 at 10156160
+Flow NDP_68_28 flow_id 1000000068 finished at 10.1562 total bytes 16384
+Completion Time Flow is 10156160
+Total NACK Flow is 0
+Running - 1 - 10156160
+Updated - Time 10156160
+..... Received a MSG -- host 28 to target 68, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10156160 10156160 -  1 0 - 1 0 1 - 28 68 0
+OP MSGnexto[elem.host][elem.proc] 0 (28 0) - nextgr[elem.host][elem.nic] 0( 28  0) - time  10156160
+Searching for MATCHCurrent elem time is 10156160 while NS3 10156160
+Simulating Until Called
+Flow Finished 100@58@0 at 10156160
+Flow NDP_100_58 flow_id 1000000100 finished at 10.1562 total bytes 16384
+Completion Time Flow is 10156160
+Total NACK Flow is 0
+Running - 1 - 10156160
+Updated - Time 10156160
+..... Received a MSG -- host 58 to target 100, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10156160 10156160 -  1 0 - 1 0 1 - 58 100 0
+OP MSGnexto[elem.host][elem.proc] 0 (58 0) - nextgr[elem.host][elem.nic] 0( 58  0) - time  10156160
+Searching for MATCHCurrent elem time is 10156160 while NS3 10156160
+Simulating Until Called
+Flow Finished 15@85@0 at 10157440
+Flow NDP_15_85 flow_id 1000000015 finished at 10.1574 total bytes 16384
+Completion Time Flow is 10157440
+Total NACK Flow is 0
+Running - 1 - 10157440
+Updated - Time 10157440
+..... Received a MSG -- host 85 to target 15, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10157440 10157440 -  1 0 - 1 0 1 - 85 15 0
+OP MSGnexto[elem.host][elem.proc] 0 (85 0) - nextgr[elem.host][elem.nic] 0( 85  0) - time  10157440
+Searching for MATCHCurrent elem time is 10157440 while NS3 10157440
+Simulating Until Called
+Flow Finished 102@18@0 at 10238080
+Flow NDP_102_18 flow_id 1000000102 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 18 to target 102, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 18 102 0
+OP MSGnexto[elem.host][elem.proc] 0 (18 0) - nextgr[elem.host][elem.nic] 0( 18  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 48@112@0 at 10238080
+Flow NDP_48_112 flow_id 1000000048 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 112 to target 48, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 112 48 0
+OP MSGnexto[elem.host][elem.proc] 0 (112 0) - nextgr[elem.host][elem.nic] 0( 112  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 124@12@0 at 10238080
+Flow NDP_124_12 flow_id 1000000124 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 12 to target 124, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 12 124 0
+OP MSGnexto[elem.host][elem.proc] 0 (12 0) - nextgr[elem.host][elem.nic] 0( 12  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 9@87@0 at 10238080
+Flow NDP_9_87 flow_id 1000000009 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 87 to target 9, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 87 9 0
+OP MSGnexto[elem.host][elem.proc] 0 (87 0) - nextgr[elem.host][elem.nic] 0( 87  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 81@22@0 at 10238080
+Flow NDP_81_22 flow_id 1000000081 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 22 to target 81, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 22 81 0
+OP MSGnexto[elem.host][elem.proc] 0 (22 0) - nextgr[elem.host][elem.nic] 0( 22  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 1@90@0 at 10238080
+Flow NDP_1_90 flow_id 1000000001 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 90 to target 1, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 90 1 0
+OP MSGnexto[elem.host][elem.proc] 0 (90 0) - nextgr[elem.host][elem.nic] 0( 90  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 63@122@0 at 10238080
+Flow NDP_63_122 flow_id 1000000063 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 122 to target 63, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 122 63 0
+OP MSGnexto[elem.host][elem.proc] 0 (122 0) - nextgr[elem.host][elem.nic] 0( 122  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 47@80@0 at 10238080
+Flow NDP_47_80 flow_id 1000000047 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 80 to target 47, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 80 47 0
+OP MSGnexto[elem.host][elem.proc] 0 (80 0) - nextgr[elem.host][elem.nic] 0( 80  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 79@3@0 at 10238080
+Flow NDP_79_3 flow_id 1000000079 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 3 to target 79, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 3 79 0
+OP MSGnexto[elem.host][elem.proc] 0 (3 0) - nextgr[elem.host][elem.nic] 0( 3  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 127@29@0 at 10238080
+Flow NDP_127_29 flow_id 1000000127 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 29 to target 127, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 29 127 0
+OP MSGnexto[elem.host][elem.proc] 0 (29 0) - nextgr[elem.host][elem.nic] 0( 29  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 54@65@0 at 10238080
+Flow NDP_54_65 flow_id 1000000054 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 65 to target 54, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 65 54 0
+OP MSGnexto[elem.host][elem.proc] 0 (65 0) - nextgr[elem.host][elem.nic] 0( 65  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 84@47@0 at 10238080
+Flow NDP_84_47 flow_id 1000000084 finished at 10.2381 total bytes 16384
+Completion Time Flow is 10238080
+Total NACK Flow is 0
+Running - 1 - 10238080
+Updated - Time 10238080
+..... Received a MSG -- host 47 to target 84, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10238080 10238080 -  1 0 - 1 0 1 - 47 84 0
+OP MSGnexto[elem.host][elem.proc] 0 (47 0) - nextgr[elem.host][elem.nic] 0( 47  0) - time  10238080
+Searching for MATCHCurrent elem time is 10238080 while NS3 10238080
+Simulating Until Called
+Flow Finished 70@17@0 at 10239360
+Flow NDP_70_17 flow_id 1000000070 finished at 10.2394 total bytes 16384
+Completion Time Flow is 10239360
+Total NACK Flow is 0
+Running - 1 - 10239360
+Updated - Time 10239360
+..... Received a MSG -- host 17 to target 70, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10239360 10239360 -  1 0 - 1 0 1 - 17 70 0
+OP MSGnexto[elem.host][elem.proc] 0 (17 0) - nextgr[elem.host][elem.nic] 0( 17  0) - time  10239360
+Searching for MATCHCurrent elem time is 10239360 while NS3 10239360
+Simulating Until Called
+Flow Finished 39@68@0 at 10239360
+Flow NDP_39_68 flow_id 1000000039 finished at 10.2394 total bytes 16384
+Completion Time Flow is 10239360
+Total NACK Flow is 0
+Running - 1 - 10239360
+Updated - Time 10239360
+..... Received a MSG -- host 68 to target 39, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10239360 10239360 -  1 0 - 1 0 1 - 68 39 0
+OP MSGnexto[elem.host][elem.proc] 0 (68 0) - nextgr[elem.host][elem.nic] 0( 68  0) - time  10239360
+Searching for MATCHCurrent elem time is 10239360 while NS3 10239360
+Simulating Until Called
+Flow Finished 113@52@0 at 10239360
+Flow NDP_113_52 flow_id 1000000113 finished at 10.2394 total bytes 16384
+Completion Time Flow is 10239360
+Total NACK Flow is 0
+Running - 1 - 10239360
+Updated - Time 10239360
+..... Received a MSG -- host 52 to target 113, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10239360 10239360 -  1 0 - 1 0 1 - 52 113 0
+OP MSGnexto[elem.host][elem.proc] 0 (52 0) - nextgr[elem.host][elem.nic] 0( 52  0) - time  10239360
+Searching for MATCHCurrent elem time is 10239360 while NS3 10239360
+Simulating Until Called
+Flow Finished 26@101@0 at 10239360
+Flow NDP_26_101 flow_id 1000000026 finished at 10.2394 total bytes 16384
+Completion Time Flow is 10239360
+Total NACK Flow is 0
+Running - 1 - 10239360
+Updated - Time 10239360
+..... Received a MSG -- host 101 to target 26, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10239360 10239360 -  1 0 - 1 0 1 - 101 26 0
+OP MSGnexto[elem.host][elem.proc] 0 (101 0) - nextgr[elem.host][elem.nic] 0( 101  0) - time  10239360
+Searching for MATCHCurrent elem time is 10239360 while NS3 10239360
+Simulating Until Called
+Flow Finished 85@13@0 at 10239360
+Flow NDP_85_13 flow_id 1000000085 finished at 10.2394 total bytes 16384
+Completion Time Flow is 10239360
+Total NACK Flow is 0
+Running - 1 - 10239360
+Updated - Time 10239360
+..... Received a MSG -- host 13 to target 85, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10239360 10239360 -  1 0 - 1 0 1 - 13 85 0
+OP MSGnexto[elem.host][elem.proc] 0 (13 0) - nextgr[elem.host][elem.nic] 0( 13  0) - time  10239360
+Searching for MATCHCurrent elem time is 10239360 while NS3 10239360
+Simulating Until Called
+Flow Finished 8@99@0 at 10321280
+Flow NDP_8_99 flow_id 1000000008 finished at 10.3213 total bytes 16384
+Completion Time Flow is 10321280
+Total NACK Flow is 0
+Running - 1 - 10321280
+Updated - Time 10321280
+..... Received a MSG -- host 99 to target 8, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10321280 10321280 -  1 0 - 1 0 1 - 99 8 0
+OP MSGnexto[elem.host][elem.proc] 0 (99 0) - nextgr[elem.host][elem.nic] 0( 99  0) - time  10321280
+Searching for MATCHCurrent elem time is 10321280 while NS3 10321280
+Simulating Until Called
+Flow Finished 103@41@0 at 10321280
+Flow NDP_103_41 flow_id 1000000103 finished at 10.3213 total bytes 16384
+Completion Time Flow is 10321280
+Total NACK Flow is 0
+Running - 1 - 10321280
+Updated - Time 10321280
+..... Received a MSG -- host 41 to target 103, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10321280 10321280 -  1 0 - 1 0 1 - 41 103 0
+OP MSGnexto[elem.host][elem.proc] 0 (41 0) - nextgr[elem.host][elem.nic] 0( 41  0) - time  10321280
+Searching for MATCHCurrent elem time is 10321280 while NS3 10321280
+Simulating Until Called
+Flow Finished 50@89@0 at 10321280
+Flow NDP_50_89 flow_id 1000000050 finished at 10.3213 total bytes 16384
+Completion Time Flow is 10321280
+Total NACK Flow is 0
+Running - 1 - 10321280
+Updated - Time 10321280
+..... Received a MSG -- host 89 to target 50, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10321280 10321280 -  1 0 - 1 0 1 - 89 50 0
+OP MSGnexto[elem.host][elem.proc] 0 (89 0) - nextgr[elem.host][elem.nic] 0( 89  0) - time  10321280
+Searching for MATCHCurrent elem time is 10321280 while NS3 10321280
+Simulating Until Called
+Flow Finished 36@109@0 at 10321280
+Flow NDP_36_109 flow_id 1000000036 finished at 10.3213 total bytes 16384
+Completion Time Flow is 10321280
+Total NACK Flow is 0
+Running - 1 - 10321280
+Updated - Time 10321280
+..... Received a MSG -- host 109 to target 36, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10321280 10321280 -  1 0 - 1 0 1 - 109 36 0
+OP MSGnexto[elem.host][elem.proc] 0 (109 0) - nextgr[elem.host][elem.nic] 0( 109  0) - time  10321280
+Searching for MATCHCurrent elem time is 10321280 while NS3 10321280
+Simulating Until Called
+Flow Finished 121@49@0 at 10321280
+Flow NDP_121_49 flow_id 1000000121 finished at 10.3213 total bytes 16384
+Completion Time Flow is 10321280
+Total NACK Flow is 0
+Running - 1 - 10321280
+Updated - Time 10321280
+..... Received a MSG -- host 49 to target 121, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10321280 10321280 -  1 0 - 1 0 1 - 49 121 0
+OP MSGnexto[elem.host][elem.proc] 0 (49 0) - nextgr[elem.host][elem.nic] 0( 49  0) - time  10321280
+Searching for MATCHCurrent elem time is 10321280 while NS3 10321280
+Simulating Until Called
+Flow Finished 17@71@0 at 10321280
+Flow NDP_17_71 flow_id 1000000017 finished at 10.3213 total bytes 16384
+Completion Time Flow is 10321280
+Total NACK Flow is 0
+Running - 1 - 10321280
+Updated - Time 10321280
+..... Received a MSG -- host 71 to target 17, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10321280 10321280 -  1 0 - 1 0 1 - 71 17 0
+OP MSGnexto[elem.host][elem.proc] 0 (71 0) - nextgr[elem.host][elem.nic] 0( 71  0) - time  10321280
+Searching for MATCHCurrent elem time is 10321280 while NS3 10321280
+Simulating Until Called
+Flow Finished 125@8@0 at 10321280
+Flow NDP_125_8 flow_id 1000000125 finished at 10.3213 total bytes 16384
+Completion Time Flow is 10321280
+Total NACK Flow is 0
+Running - 1 - 10321280
+Updated - Time 10321280
+..... Received a MSG -- host 8 to target 125, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10321280 10321280 -  1 0 - 1 0 1 - 8 125 0
+OP MSGnexto[elem.host][elem.proc] 0 (8 0) - nextgr[elem.host][elem.nic] 0( 8  0) - time  10321280
+Searching for MATCHCurrent elem time is 10321280 while NS3 10321280
+Simulating Until Called
+Flow Finished 64@21@0 at 10321280
+Flow NDP_64_21 flow_id 1000000064 finished at 10.3213 total bytes 16384
+Completion Time Flow is 10321280
+Total NACK Flow is 0
+Running - 1 - 10321280
+Updated - Time 10321280
+..... Received a MSG -- host 21 to target 64, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10321280 10321280 -  1 0 - 1 0 1 - 21 64 0
+OP MSGnexto[elem.host][elem.proc] 0 (21 0) - nextgr[elem.host][elem.nic] 0( 21  0) - time  10321280
+Searching for MATCHCurrent elem time is 10321280 while NS3 10321280
+Simulating Until Called
+Flow Finished 89@2@0 at 10321280
+Flow NDP_89_2 flow_id 1000000089 finished at 10.3213 total bytes 16384
+Completion Time Flow is 10321280
+Total NACK Flow is 0
+Running - 1 - 10321280
+Updated - Time 10321280
+..... Received a MSG -- host 2 to target 89, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10321280 10321280 -  1 0 - 1 0 1 - 2 89 0
+OP MSGnexto[elem.host][elem.proc] 0 (2 0) - nextgr[elem.host][elem.nic] 0( 2  0) - time  10321280
+Searching for MATCHCurrent elem time is 10321280 while NS3 10321280
+Simulating Until Called
+Flow Finished 71@16@0 at 10321280
+Flow NDP_71_16 flow_id 1000000071 finished at 10.3213 total bytes 16384
+Completion Time Flow is 10321280
+Total NACK Flow is 0
+Running - 1 - 10321280
+Updated - Time 10321280
+..... Received a MSG -- host 16 to target 71, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10321280 10321280 -  1 0 - 1 0 1 - 16 71 0
+OP MSGnexto[elem.host][elem.proc] 0 (16 0) - nextgr[elem.host][elem.nic] 0( 16  0) - time  10321280
+Searching for MATCHCurrent elem time is 10321280 while NS3 10321280
+Simulating Until Called
+Flow Finished 43@67@0 at 10321280
+Flow NDP_43_67 flow_id 1000000043 finished at 10.3213 total bytes 16384
+Completion Time Flow is 10321280
+Total NACK Flow is 0
+Running - 1 - 10321280
+Updated - Time 10321280
+..... Received a MSG -- host 67 to target 43, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10321280 10321280 -  1 0 - 1 0 1 - 67 43 0
+OP MSGnexto[elem.host][elem.proc] 0 (67 0) - nextgr[elem.host][elem.nic] 0( 67  0) - time  10321280
+Searching for MATCHCurrent elem time is 10321280 while NS3 10321280
+Simulating Until Called
+Flow Finished 38@105@0 at 10322560
+Flow NDP_38_105 flow_id 1000000038 finished at 10.3226 total bytes 16384
+Completion Time Flow is 10322560
+Total NACK Flow is 0
+Running - 1 - 10322560
+Updated - Time 10322560
+..... Received a MSG -- host 105 to target 38, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10322560 10322560 -  1 0 - 1 0 1 - 105 38 0
+OP MSGnexto[elem.host][elem.proc] 0 (105 0) - nextgr[elem.host][elem.nic] 0( 105  0) - time  10322560
+Searching for MATCHCurrent elem time is 10322560 while NS3 10322560
+Simulating Until Called
+Flow Finished 119@14@0 at 10404480
+Flow NDP_119_14 flow_id 1000000119 finished at 10.4045 total bytes 16384
+Completion Time Flow is 10404480
+Total NACK Flow is 0
+Running - 1 - 10404480
+Updated - Time 10404480
+..... Received a MSG -- host 14 to target 119, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10404480 10404480 -  1 0 - 1 0 1 - 14 119 0
+OP MSGnexto[elem.host][elem.proc] 0 (14 0) - nextgr[elem.host][elem.nic] 0( 14  0) - time  10404480
+Searching for MATCHCurrent elem time is 10404480 while NS3 10404480
+Simulating Until Called
+Flow Finished 60@93@0 at 10404480
+Flow NDP_60_93 flow_id 1000000060 finished at 10.4045 total bytes 16384
+Completion Time Flow is 10404480
+Total NACK Flow is 0
+Running - 1 - 10404480
+Updated - Time 10404480
+..... Received a MSG -- host 93 to target 60, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10404480 10404480 -  1 0 - 1 0 1 - 93 60 0
+OP MSGnexto[elem.host][elem.proc] 0 (93 0) - nextgr[elem.host][elem.nic] 0( 93  0) - time  10404480
+Searching for MATCHCurrent elem time is 10404480 while NS3 10404480
+Simulating Until Called
+Flow Finished 72@61@0 at 10404480
+Flow NDP_72_61 flow_id 1000000072 finished at 10.4045 total bytes 16384
+Completion Time Flow is 10404480
+Total NACK Flow is 0
+Running - 1 - 10404480
+Updated - Time 10404480
+..... Received a MSG -- host 61 to target 72, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10404480 10404480 -  1 0 - 1 0 1 - 61 72 0
+OP MSGnexto[elem.host][elem.proc] 0 (61 0) - nextgr[elem.host][elem.nic] 0( 61  0) - time  10404480
+Searching for MATCHCurrent elem time is 10404480 while NS3 10404480
+Simulating Until Called
+Flow Finished 11@119@0 at 10404480
+Flow NDP_11_119 flow_id 1000000011 finished at 10.4045 total bytes 16384
+Completion Time Flow is 10404480
+Total NACK Flow is 0
+Running - 1 - 10404480
+Updated - Time 10404480
+..... Received a MSG -- host 119 to target 11, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10404480 10404480 -  1 0 - 1 0 1 - 119 11 0
+OP MSGnexto[elem.host][elem.proc] 0 (119 0) - nextgr[elem.host][elem.nic] 0( 119  0) - time  10404480
+Searching for MATCHCurrent elem time is 10404480 while NS3 10404480
+Simulating Until Called
+Flow Finished 86@27@0 at 10404480
+Flow NDP_86_27 flow_id 1000000086 finished at 10.4045 total bytes 16384
+Completion Time Flow is 10404480
+Total NACK Flow is 0
+Running - 1 - 10404480
+Updated - Time 10404480
+..... Received a MSG -- host 27 to target 86, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10404480 10404480 -  1 0 - 1 0 1 - 27 86 0
+OP MSGnexto[elem.host][elem.proc] 0 (27 0) - nextgr[elem.host][elem.nic] 0( 27  0) - time  10404480
+Searching for MATCHCurrent elem time is 10404480 while NS3 10404480
+Simulating Until Called
+Flow Finished 122@39@0 at 10404480
+Flow NDP_122_39 flow_id 1000000122 finished at 10.4045 total bytes 16384
+Completion Time Flow is 10404480
+Total NACK Flow is 0
+Running - 1 - 10404480
+Updated - Time 10404480
+..... Received a MSG -- host 39 to target 122, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10404480 10404480 -  1 0 - 1 0 1 - 39 122 0
+OP MSGnexto[elem.host][elem.proc] 0 (39 0) - nextgr[elem.host][elem.nic] 0( 39  0) - time  10404480
+Searching for MATCHCurrent elem time is 10404480 while NS3 10404480
+Simulating Until Called
+Flow Finished 21@121@0 at 10404480
+Flow NDP_21_121 flow_id 1000000021 finished at 10.4045 total bytes 16384
+Completion Time Flow is 10404480
+Total NACK Flow is 0
+Running - 1 - 10404480
+Updated - Time 10404480
+..... Received a MSG -- host 121 to target 21, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10404480 10404480 -  1 0 - 1 0 1 - 121 21 0
+OP MSGnexto[elem.host][elem.proc] 0 (121 0) - nextgr[elem.host][elem.nic] 0( 121  0) - time  10404480
+Searching for MATCHCurrent elem time is 10404480 while NS3 10404480
+Simulating Until Called
+Flow Finished 51@125@0 at 10405760
+Flow NDP_51_125 flow_id 1000000051 finished at 10.4058 total bytes 16384
+Completion Time Flow is 10405760
+Total NACK Flow is 0
+Running - 1 - 10405760
+Updated - Time 10405760
+..... Received a MSG -- host 125 to target 51, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10405760 10405760 -  1 0 - 1 0 1 - 125 51 0
+OP MSGnexto[elem.host][elem.proc] 0 (125 0) - nextgr[elem.host][elem.nic] 0( 125  0) - time  10405760
+Searching for MATCHCurrent elem time is 10405760 while NS3 10405760
+Simulating Until Called
+Flow Finished 61@103@0 at 10405760
+Flow NDP_61_103 flow_id 1000000061 finished at 10.4058 total bytes 16384
+Completion Time Flow is 10405760
+Total NACK Flow is 0
+Running - 1 - 10405760
+Updated - Time 10405760
+..... Received a MSG -- host 103 to target 61, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10405760 10405760 -  1 0 - 1 0 1 - 103 61 0
+OP MSGnexto[elem.host][elem.proc] 0 (103 0) - nextgr[elem.host][elem.nic] 0( 103  0) - time  10405760
+Searching for MATCHCurrent elem time is 10405760 while NS3 10405760
+Simulating Until Called
+Flow Finished 12@88@0 at 10487680
+Flow NDP_12_88 flow_id 1000000012 finished at 10.4877 total bytes 16384
+Completion Time Flow is 10487680
+Total NACK Flow is 0
+Running - 1 - 10487680
+Updated - Time 10487680
+..... Received a MSG -- host 88 to target 12, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10487680 10487680 -  1 0 - 1 0 1 - 88 12 0
+OP MSGnexto[elem.host][elem.proc] 0 (88 0) - nextgr[elem.host][elem.nic] 0( 88  0) - time  10487680
+Searching for MATCHCurrent elem time is 10487680 while NS3 10487680
+Simulating Until Called
+Flow Finished 117@0@0 at 10487680
+Flow NDP_117_0 flow_id 1000000117 finished at 10.4877 total bytes 16384
+Completion Time Flow is 10487680
+Total NACK Flow is 0
+Running - 1 - 10487680
+Updated - Time 10487680
+..... Received a MSG -- host 0 to target 117, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10487680 10487680 -  1 0 - 1 0 1 - 0 117 0
+OP MSGnexto[elem.host][elem.proc] 0 (0 0) - nextgr[elem.host][elem.nic] 0( 0  0) - time  10487680
+Searching for MATCHCurrent elem time is 10487680 while NS3 10487680
+Simulating Until Called
+Flow Finished 80@43@0 at 10487680
+Flow NDP_80_43 flow_id 1000000080 finished at 10.4877 total bytes 16384
+Completion Time Flow is 10487680
+Total NACK Flow is 0
+Running - 1 - 10487680
+Updated - Time 10487680
+..... Received a MSG -- host 43 to target 80, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10487680 10487680 -  1 0 - 1 0 1 - 43 80 0
+OP MSGnexto[elem.host][elem.proc] 0 (43 0) - nextgr[elem.host][elem.nic] 0( 43  0) - time  10487680
+Searching for MATCHCurrent elem time is 10487680 while NS3 10487680
+Simulating Until Called
+Flow Finished 37@98@0 at 10487680
+Flow NDP_37_98 flow_id 1000000037 finished at 10.4877 total bytes 16384
+Completion Time Flow is 10487680
+Total NACK Flow is 0
+Running - 1 - 10487680
+Updated - Time 10487680
+..... Received a MSG -- host 98 to target 37, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10487680 10487680 -  1 0 - 1 0 1 - 98 37 0
+OP MSGnexto[elem.host][elem.proc] 0 (98 0) - nextgr[elem.host][elem.nic] 0( 98  0) - time  10487680
+Searching for MATCHCurrent elem time is 10487680 while NS3 10487680
+Simulating Until Called
+Flow Finished 41@107@0 at 10488960
+Flow NDP_41_107 flow_id 1000000041 finished at 10.489 total bytes 16384
+Completion Time Flow is 10488960
+Total NACK Flow is 0
+Running - 1 - 10488960
+Updated - Time 10488960
+..... Received a MSG -- host 107 to target 41, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10488960 10488960 -  1 0 - 1 0 1 - 107 41 0
+OP MSGnexto[elem.host][elem.proc] 0 (107 0) - nextgr[elem.host][elem.nic] 0( 107  0) - time  10488960
+Searching for MATCHCurrent elem time is 10488960 while NS3 10488960
+Simulating Until Called
+Flow Finished 97@26@0 at 10488960
+Flow NDP_97_26 flow_id 1000000097 finished at 10.489 total bytes 16384
+Completion Time Flow is 10488960
+Total NACK Flow is 0
+Running - 1 - 10488960
+Updated - Time 10488960
+..... Received a MSG -- host 26 to target 97, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10488960 10488960 -  1 0 - 1 0 1 - 26 97 0
+OP MSGnexto[elem.host][elem.proc] 0 (26 0) - nextgr[elem.host][elem.nic] 0( 26  0) - time  10488960
+Searching for MATCHCurrent elem time is 10488960 while NS3 10488960
+Simulating Until Called
+Flow Finished 7@76@0 at 10488960
+Flow NDP_7_76 flow_id 1000000007 finished at 10.489 total bytes 16384
+Completion Time Flow is 10488960
+Total NACK Flow is 0
+Running - 1 - 10488960
+Updated - Time 10488960
+..... Received a MSG -- host 76 to target 7, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10488960 10488960 -  1 0 - 1 0 1 - 76 7 0
+OP MSGnexto[elem.host][elem.proc] 0 (76 0) - nextgr[elem.host][elem.nic] 0( 76  0) - time  10488960
+Searching for MATCHCurrent elem time is 10488960 while NS3 10488960
+Simulating Until Called
+Flow Finished 114@54@0 at 10570880
+Flow NDP_114_54 flow_id 1000000114 finished at 10.5709 total bytes 16384
+Completion Time Flow is 10570880
+Total NACK Flow is 0
+Running - 1 - 10570880
+Updated - Time 10570880
+..... Received a MSG -- host 54 to target 114, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10570880 10570880 -  1 0 - 1 0 1 - 54 114 0
+OP MSGnexto[elem.host][elem.proc] 0 (54 0) - nextgr[elem.host][elem.nic] 0( 54  0) - time  10570880
+Searching for MATCHCurrent elem time is 10570880 while NS3 10570880
+Simulating Until Called
+Flow Finished 18@74@0 at 10570880
+Flow NDP_18_74 flow_id 1000000018 finished at 10.5709 total bytes 16384
+Completion Time Flow is 10570880
+Total NACK Flow is 0
+Running - 1 - 10570880
+Updated - Time 10570880
+..... Received a MSG -- host 74 to target 18, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10570880 10570880 -  1 0 - 1 0 1 - 74 18 0
+OP MSGnexto[elem.host][elem.proc] 0 (74 0) - nextgr[elem.host][elem.nic] 0( 74  0) - time  10570880
+Searching for MATCHCurrent elem time is 10570880 while NS3 10570880
+Simulating Until Called
+Flow Finished 98@44@0 at 10570880
+Flow NDP_98_44 flow_id 1000000098 finished at 10.5709 total bytes 16384
+Completion Time Flow is 10570880
+Total NACK Flow is 0
+Running - 1 - 10570880
+Updated - Time 10570880
+..... Received a MSG -- host 44 to target 98, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10570880 10570880 -  1 0 - 1 0 1 - 44 98 0
+OP MSGnexto[elem.host][elem.proc] 0 (44 0) - nextgr[elem.host][elem.nic] 0( 44  0) - time  10570880
+Searching for MATCHCurrent elem time is 10570880 while NS3 10570880
+Simulating Until Called
+Flow Finished 6@118@0 at 10570880
+Flow NDP_6_118 flow_id 1000000006 finished at 10.5709 total bytes 16384
+Completion Time Flow is 10570880
+Total NACK Flow is 0
+Running - 1 - 10570880
+Updated - Time 10570880
+..... Received a MSG -- host 118 to target 6, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10570880 10570880 -  1 0 - 1 0 1 - 118 6 0
+OP MSGnexto[elem.host][elem.proc] 0 (118 0) - nextgr[elem.host][elem.nic] 0( 118  0) - time  10570880
+Searching for MATCHCurrent elem time is 10570880 while NS3 10570880
+Simulating Until Called
+Flow Finished 95@20@0 at 10570880
+Flow NDP_95_20 flow_id 1000000095 finished at 10.5709 total bytes 16384
+Completion Time Flow is 10570880
+Total NACK Flow is 0
+Running - 1 - 10570880
+Updated - Time 10570880
+..... Received a MSG -- host 20 to target 95, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10570880 10570880 -  1 0 - 1 0 1 - 20 95 0
+OP MSGnexto[elem.host][elem.proc] 0 (20 0) - nextgr[elem.host][elem.nic] 0( 20  0) - time  10570880
+Searching for MATCHCurrent elem time is 10570880 while NS3 10570880
+Simulating Until Called
+Flow Finished 23@102@0 at 10570880
+Flow NDP_23_102 flow_id 1000000023 finished at 10.5709 total bytes 16384
+Completion Time Flow is 10570880
+Total NACK Flow is 0
+Running - 1 - 10570880
+Updated - Time 10570880
+..... Received a MSG -- host 102 to target 23, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10570880 10570880 -  1 0 - 1 0 1 - 102 23 0
+OP MSGnexto[elem.host][elem.proc] 0 (102 0) - nextgr[elem.host][elem.nic] 0( 102  0) - time  10570880
+Searching for MATCHCurrent elem time is 10570880 while NS3 10570880
+Simulating Until Called
+Flow Finished 14@104@0 at 10654080
+Flow NDP_14_104 flow_id 1000000014 finished at 10.6541 total bytes 16384
+Completion Time Flow is 10654080
+Total NACK Flow is 0
+Running - 1 - 10654080
+Updated - Time 10654080
+..... Received a MSG -- host 104 to target 14, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10654080 10654080 -  1 0 - 1 0 1 - 104 14 0
+OP MSGnexto[elem.host][elem.proc] 0 (104 0) - nextgr[elem.host][elem.nic] 0( 104  0) - time  10654080
+Searching for MATCHCurrent elem time is 10654080 while NS3 10654080
+Simulating Until Called
+Flow Finished 93@34@0 at 10654080
+Flow NDP_93_34 flow_id 1000000093 finished at 10.6541 total bytes 16384
+Completion Time Flow is 10654080
+Total NACK Flow is 0
+Running - 1 - 10654080
+Updated - Time 10654080
+..... Received a MSG -- host 34 to target 93, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10654080 10654080 -  1 0 - 1 0 1 - 34 93 0
+OP MSGnexto[elem.host][elem.proc] 0 (34 0) - nextgr[elem.host][elem.nic] 0( 34  0) - time  10654080
+Searching for MATCHCurrent elem time is 10654080 while NS3 10654080
+Simulating Until Called
+Flow Finished 28@73@0 at 10654080
+Flow NDP_28_73 flow_id 1000000028 finished at 10.6541 total bytes 16384
+Completion Time Flow is 10654080
+Total NACK Flow is 0
+Running - 1 - 10654080
+Updated - Time 10654080
+..... Received a MSG -- host 73 to target 28, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10654080 10654080 -  1 0 - 1 0 1 - 73 28 0
+OP MSGnexto[elem.host][elem.proc] 0 (73 0) - nextgr[elem.host][elem.nic] 0( 73  0) - time  10654080
+Searching for MATCHCurrent elem time is 10654080 while NS3 10654080
+Simulating Until Called
+Flow Finished 106@62@0 at 10654080
+Flow NDP_106_62 flow_id 1000000106 finished at 10.6541 total bytes 16384
+Completion Time Flow is 10654080
+Total NACK Flow is 0
+Running - 1 - 10654080
+Updated - Time 10654080
+..... Received a MSG -- host 62 to target 106, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10654080 10654080 -  1 0 - 1 0 1 - 62 106 0
+OP MSGnexto[elem.host][elem.proc] 0 (62 0) - nextgr[elem.host][elem.nic] 0( 62  0) - time  10654080
+Searching for MATCHCurrent elem time is 10654080 while NS3 10654080
+Simulating Until Called
+Flow Finished 107@24@0 at 10654080
+Flow NDP_107_24 flow_id 1000000107 finished at 10.6541 total bytes 16384
+Completion Time Flow is 10654080
+Total NACK Flow is 0
+Running - 1 - 10654080
+Updated - Time 10654080
+..... Received a MSG -- host 24 to target 107, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10654080 10654080 -  1 0 - 1 0 1 - 24 107 0
+OP MSGnexto[elem.host][elem.proc] 0 (24 0) - nextgr[elem.host][elem.nic] 0( 24  0) - time  10654080
+Searching for MATCHCurrent elem time is 10654080 while NS3 10654080
+Simulating Until Called
+Flow Finished 5@126@0 at 10654080
+Flow NDP_5_126 flow_id 1000000005 finished at 10.6541 total bytes 16384
+Completion Time Flow is 10654080
+Total NACK Flow is 0
+Running - 1 - 10654080
+Updated - Time 10654080
+..... Received a MSG -- host 126 to target 5, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10654080 10654080 -  1 0 - 1 0 1 - 126 5 0
+OP MSGnexto[elem.host][elem.proc] 0 (126 0) - nextgr[elem.host][elem.nic] 0( 126  0) - time  10654080
+Searching for MATCHCurrent elem time is 10654080 while NS3 10654080
+Simulating Until Called
+Flow Finished 20@127@0 at 10737280
+Flow NDP_20_127 flow_id 1000000020 finished at 10.7373 total bytes 16384
+Completion Time Flow is 10737280
+Total NACK Flow is 0
+Running - 1 - 10737280
+Updated - Time 10737280
+..... Received a MSG -- host 127 to target 20, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10737280 10737280 -  1 0 - 1 0 1 - 127 20 0
+OP MSGnexto[elem.host][elem.proc] 0 (127 0) - nextgr[elem.host][elem.nic] 0( 127  0) - time  10737280
+Searching for MATCHCurrent elem time is 10737280 while NS3 10737280
+Simulating Until Called
+Flow Finished 66@37@0 at 10737280
+Flow NDP_66_37 flow_id 1000000066 finished at 10.7373 total bytes 16384
+Completion Time Flow is 10737280
+Total NACK Flow is 0
+Running - 1 - 10737280
+Updated - Time 10737280
+..... Received a MSG -- host 37 to target 66, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10737280 10737280 -  1 0 - 1 0 1 - 37 66 0
+OP MSGnexto[elem.host][elem.proc] 0 (37 0) - nextgr[elem.host][elem.nic] 0( 37  0) - time  10737280
+Searching for MATCHCurrent elem time is 10737280 while NS3 10737280
+Simulating Until Called
+Flow Finished 19@110@0 at 10737280
+Flow NDP_19_110 flow_id 1000000019 finished at 10.7373 total bytes 16384
+Completion Time Flow is 10737280
+Total NACK Flow is 0
+Running - 1 - 10737280
+Updated - Time 10737280
+..... Received a MSG -- host 110 to target 19, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10737280 10737280 -  1 0 - 1 0 1 - 110 19 0
+OP MSGnexto[elem.host][elem.proc] 0 (110 0) - nextgr[elem.host][elem.nic] 0( 110  0) - time  10737280
+Searching for MATCHCurrent elem time is 10737280 while NS3 10737280
+Simulating Until Called
+Flow Finished 73@56@0 at 10738560
+Flow NDP_73_56 flow_id 1000000073 finished at 10.7386 total bytes 16384
+Completion Time Flow is 10738560
+Total NACK Flow is 0
+Running - 1 - 10738560
+Updated - Time 10738560
+..... Received a MSG -- host 56 to target 73, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10738560 10738560 -  1 0 - 1 0 1 - 56 73 0
+OP MSGnexto[elem.host][elem.proc] 0 (56 0) - nextgr[elem.host][elem.nic] 0( 56  0) - time  10738560
+Searching for MATCHCurrent elem time is 10738560 while NS3 10738560
+Simulating Until Called
+Flow Finished 111@46@0 at 10820480
+Flow NDP_111_46 flow_id 1000000111 finished at 10.8205 total bytes 16384
+Completion Time Flow is 10820480
+Total NACK Flow is 0
+Running - 1 - 10820480
+Updated - Time 10820480
+..... Received a MSG -- host 46 to target 111, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10820480 10820480 -  1 0 - 1 0 1 - 46 111 0
+OP MSGnexto[elem.host][elem.proc] 0 (46 0) - nextgr[elem.host][elem.nic] 0( 46  0) - time  10820480
+Searching for MATCHCurrent elem time is 10820480 while NS3 10820480
+Simulating Until Called
+Flow Finished 109@63@0 at 10820480
+Flow NDP_109_63 flow_id 1000000109 finished at 10.8205 total bytes 16384
+Completion Time Flow is 10820480
+Total NACK Flow is 0
+Running - 1 - 10820480
+Updated - Time 10820480
+..... Received a MSG -- host 63 to target 109, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10820480 10820480 -  1 0 - 1 0 1 - 63 109 0
+OP MSGnexto[elem.host][elem.proc] 0 (63 0) - nextgr[elem.host][elem.nic] 0( 63  0) - time  10820480
+Searching for MATCHCurrent elem time is 10820480 while NS3 10820480
+Simulating Until Called
+Flow Finished 27@92@0 at 10820480
+Flow NDP_27_92 flow_id 1000000027 finished at 10.8205 total bytes 16384
+Completion Time Flow is 10820480
+Total NACK Flow is 0
+Running - 1 - 10820480
+Updated - Time 10820480
+..... Received a MSG -- host 92 to target 27, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10820480 10820480 -  1 0 - 1 0 1 - 92 27 0
+OP MSGnexto[elem.host][elem.proc] 0 (92 0) - nextgr[elem.host][elem.nic] 0( 92  0) - time  10820480
+Searching for MATCHCurrent elem time is 10820480 while NS3 10820480
+Simulating Until Called
+Flow Finished 75@60@0 at 10903680
+Flow NDP_75_60 flow_id 1000000075 finished at 10.9037 total bytes 16384
+Completion Time Flow is 10903680
+Total NACK Flow is 0
+Running - 1 - 10903680
+Updated - Time 10903680
+..... Received a MSG -- host 60 to target 75, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10903680 10903680 -  1 0 - 1 0 1 - 60 75 0
+OP MSGnexto[elem.host][elem.proc] 0 (60 0) - nextgr[elem.host][elem.nic] 0( 60  0) - time  10903680
+Searching for MATCHCurrent elem time is 10903680 while NS3 10903680
+Simulating Until Called
+Flow Finished 29@114@0 at 10903680
+Flow NDP_29_114 flow_id 1000000029 finished at 10.9037 total bytes 16384
+Completion Time Flow is 10903680
+Total NACK Flow is 0
+Running - 1 - 10903680
+Updated - Time 10903680
+..... Received a MSG -- host 114 to target 29, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10903680 10903680 -  1 0 - 1 0 1 - 114 29 0
+OP MSGnexto[elem.host][elem.proc] 0 (114 0) - nextgr[elem.host][elem.nic] 0( 114  0) - time  10903680
+Searching for MATCHCurrent elem time is 10903680 while NS3 10903680
+Simulating Until Called
+Flow Finished 87@53@0 at 10986880
+Flow NDP_87_53 flow_id 1000000087 finished at 10.9869 total bytes 16384
+Completion Time Flow is 10986880
+Total NACK Flow is 0
+Running - 1 - 10986880
+Updated - Time 10986880
+..... Received a MSG -- host 53 to target 87, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10986880 10986880 -  1 0 - 1 0 1 - 53 87 0
+OP MSGnexto[elem.host][elem.proc] 0 (53 0) - nextgr[elem.host][elem.nic] 0( 53  0) - time  10986880
+Searching for MATCHCurrent elem time is 10986880 while NS3 10986880
+Simulating Until Called
+Flow Finished 30@106@0 at 10986880
+Flow NDP_30_106 flow_id 1000000030 finished at 10.9869 total bytes 16384
+Completion Time Flow is 10986880
+Total NACK Flow is 0
+Running - 1 - 10986880
+Updated - Time 10986880
+..... Received a MSG -- host 106 to target 30, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 10986880 10986880 -  1 0 - 1 0 1 - 106 30 0
+OP MSGnexto[elem.host][elem.proc] 0 (106 0) - nextgr[elem.host][elem.nic] 0( 106  0) - time  10986880
+Searching for MATCHCurrent elem time is 10986880 while NS3 10986880
+Simulating Until Called
+Flow Finished 67@57@0 at 11070080
+Flow NDP_67_57 flow_id 1000000067 finished at 11.0701 total bytes 16384
+Completion Time Flow is 11070080
+Total NACK Flow is 0
+Running - 1 - 11070080
+Updated - Time 11070080
+..... Received a MSG -- host 57 to target 67, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 11070080 11070080 -  1 0 - 1 0 1 - 57 67 0
+OP MSGnexto[elem.host][elem.proc] 0 (57 0) - nextgr[elem.host][elem.nic] 0( 57  0) - time  11070080
+Searching for MATCHCurrent elem time is 11070080 while NS3 11070080
+Simulating Until Called
+Flow Finished 110@50@0 at 11153280
+Flow NDP_110_50 flow_id 1000000110 finished at 11.1533 total bytes 16384
+Completion Time Flow is 11153280
+Total NACK Flow is 0
+Running - 1 - 11153280
+Updated - Time 11153280
+..... Received a MSG -- host 50 to target 110, proc 0 - Type 5
+----------------------------    ENTERING WHILE        // ---------------------------- | 11153280 11153280 -  1 0 - 1 0 1 - 50 110 0
+OP MSGnexto[elem.host][elem.proc] 0 (50 0) - nextgr[elem.host][elem.nic] 0( 50  0) - time  11153280
+Searching for MATCHCurrent elem time is 11153280 while NS3 11153280
+..... NOT Received a MSG
+
+
+RunTime Total LGS -> 5ms
+
+
+htsim Terminates at 11153280
+
+
+Remaining 128
+PERFORMANCE: Processes: 128 	 Events: 256 	 Time: 0 s 	 Speed: inf ev/s
+AQ is 0
+Times: 
+Host 0: 10487680
+Host 1: 10154880
+Host 2: 10321280
+Host 3: 10238080
+Host 4: 10154880
+Host 5: 9658240
+Host 6: 10156160
+Host 7: 9988480
+Host 8: 10321280
+Host 9: 9991040
+Host 10: 9988480
+Host 11: 9822080
+Host 12: 10238080
+Host 13: 10239360
+Host 14: 10404480
+Host 15: 10072960
+Host 16: 10321280
+Host 17: 10239360
+Host 18: 10238080
+Host 19: 9989760
+Host 20: 10570880
+Host 21: 10321280
+Host 22: 10238080
+Host 23: 9656960
+Host 24: 10654080
+Host 25: 9573760
+Host 26: 10488960
+Host 27: 10404480
+Host 28: 10156160
+Host 29: 10238080
+Host 30: 10072960
+Host 31: 9823360
+Host 32: 10154880
+Host 33: 9991040
+Host 34: 10654080
+Host 35: 9822080
+Host 36: 9988480
+Host 37: 10737280
+Host 38: 9741440
+Host 39: 10404480
+Host 40: 10154880
+Host 41: 10321280
+Host 42: 10154880
+Host 43: 10487680
+Host 44: 10570880
+Host 45: 9907840
+Host 46: 10820480
+Host 47: 10238080
+Host 48: 9988480
+Host 49: 10321280
+Host 50: 11153280
+Host 51: 10154880
+Host 52: 10239360
+Host 53: 10986880
+Host 54: 10570880
+Host 55: 10071680
+Host 56: 10738560
+Host 57: 11070080
+Host 58: 10156160
+Host 59: 9824640
+Host 60: 10903680
+Host 61: 10404480
+Host 62: 10654080
+Host 63: 10820480
+Host 64: 9823360
+Host 65: 10238080
+Host 66: 10071680
+Host 67: 10321280
+Host 68: 10239360
+Host 69: 10072960
+Host 70: 9989760
+Host 71: 10321280
+Host 72: 10154880
+Host 73: 10654080
+Host 74: 10570880
+Host 75: 9989760
+Host 76: 10488960
+Host 77: 10071680
+Host 78: 9823360
+Host 79: 9822080
+Host 80: 10238080
+Host 81: 10156160
+Host 82: 10071680
+Host 83: 10071680
+Host 84: 9988480
+Host 85: 10157440
+Host 86: 10072960
+Host 87: 10238080
+Host 88: 10487680
+Host 89: 10321280
+Host 90: 10238080
+Host 91: 9824640
+Host 92: 10820480
+Host 93: 10404480
+Host 94: 9991040
+Host 95: 10154880
+Host 96: 9738880
+Host 97: 9822080
+Host 98: 10487680
+Host 99: 10321280
+Host 100: 10071680
+Host 101: 10239360
+Host 102: 10570880
+Host 103: 10405760
+Host 104: 10654080
+Host 105: 10322560
+Host 106: 10986880
+Host 107: 10488960
+Host 108: 10071680
+Host 109: 10321280
+Host 110: 10737280
+Host 111: 9905280
+Host 112: 10238080
+Host 113: 9989760
+Host 114: 10903680
+Host 115: 9905280
+Host 116: 10154880
+Host 117: 10071680
+Host 118: 10570880
+Host 119: 10404480
+Host 120: 10154880
+Host 121: 10404480
+Host 122: 10238080
+Host 123: 9823360
+Host 124: 10072960
+Host 125: 10405760
+Host 126: 10654080
+Host 127: 10737280
+Maximum finishing time at host 50: 11153280 (0.0111533 s)
+Mean number of subflows -nan
