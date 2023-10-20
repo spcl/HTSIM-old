@@ -1,0 +1,387 @@
+num_ranks 128
+
+rank 0 {
+l1: send 4000b to 64 tag 0
+}
+
+rank 1 {
+}
+
+rank 2 {
+}
+
+rank 3 {
+}
+
+rank 4 {
+}
+
+rank 5 {
+}
+
+rank 6 {
+}
+
+rank 7 {
+}
+
+rank 8 {
+}
+
+rank 9 {
+}
+
+rank 10 {
+}
+
+rank 11 {
+}
+
+rank 12 {
+}
+
+rank 13 {
+}
+
+rank 14 {
+}
+
+rank 15 {
+}
+
+rank 16 {
+}
+
+rank 17 {
+}
+
+rank 18 {
+}
+
+rank 19 {
+}
+
+rank 20 {
+}
+
+rank 21 {
+}
+
+rank 22 {
+}
+
+rank 23 {
+}
+
+rank 24 {
+}
+
+rank 25 {
+}
+
+rank 26 {
+}
+
+rank 27 {
+}
+
+rank 28 {
+}
+
+rank 29 {
+}
+
+rank 30 {
+}
+
+rank 31 {
+}
+
+rank 32 {
+}
+
+rank 33 {
+}
+
+rank 34 {
+}
+
+rank 35 {
+}
+
+rank 36 {
+}
+
+rank 37 {
+}
+
+rank 38 {
+}
+
+rank 39 {
+}
+
+rank 40 {
+}
+
+rank 41 {
+}
+
+rank 42 {
+}
+
+rank 43 {
+}
+
+rank 44 {
+}
+
+rank 45 {
+}
+
+rank 46 {
+}
+
+rank 47 {
+}
+
+rank 48 {
+}
+
+rank 49 {
+}
+
+rank 50 {
+}
+
+rank 51 {
+}
+
+rank 52 {
+}
+
+rank 53 {
+}
+
+rank 54 {
+}
+
+rank 55 {
+}
+
+rank 56 {
+}
+
+rank 57 {
+}
+
+rank 58 {
+}
+
+rank 59 {
+}
+
+rank 60 {
+}
+
+rank 61 {
+}
+
+rank 62 {
+}
+
+rank 63 {
+}
+
+rank 64 {
+l1: recv 4000b from 0 tag 0
+}
+
+rank 65 {
+}
+
+rank 66 {
+}
+
+rank 67 {
+}
+
+rank 68 {
+}
+
+rank 69 {
+}
+
+rank 70 {
+}
+
+rank 71 {
+}
+
+rank 72 {
+}
+
+rank 73 {
+}
+
+rank 74 {
+}
+
+rank 75 {
+}
+
+rank 76 {
+}
+
+rank 77 {
+}
+
+rank 78 {
+}
+
+rank 79 {
+}
+
+rank 80 {
+}
+
+rank 81 {
+}
+
+rank 82 {
+}
+
+rank 83 {
+}
+
+rank 84 {
+}
+
+rank 85 {
+}
+
+rank 86 {
+}
+
+rank 87 {
+}
+
+rank 88 {
+}
+
+rank 89 {
+}
+
+rank 90 {
+}
+
+rank 91 {
+}
+
+rank 92 {
+}
+
+rank 93 {
+}
+
+rank 94 {
+}
+
+rank 95 {
+}
+
+rank 96 {
+}
+
+rank 97 {
+}
+
+rank 98 {
+}
+
+rank 99 {
+}
+
+rank 100 {
+}
+
+rank 101 {
+}
+
+rank 102 {
+}
+
+rank 103 {
+}
+
+rank 104 {
+}
+
+rank 105 {
+}
+
+rank 106 {
+}
+
+rank 107 {
+}
+
+rank 108 {
+}
+
+rank 109 {
+}
+
+rank 110 {
+}
+
+rank 111 {
+}
+
+rank 112 {
+}
+
+rank 113 {
+}
+
+rank 114 {
+}
+
+rank 115 {
+}
+
+rank 116 {
+}
+
+rank 117 {
+}
+
+rank 118 {
+}
+
+rank 119 {
+}
+
+rank 120 {
+}
+
+rank 121 {
+}
+
+rank 122 {
+}
+
+rank 123 {
+}
+
+rank 124 {
+}
+
+rank 125 {
+}
+
+rank 126 {
+}
+
+rank 127 {
+}

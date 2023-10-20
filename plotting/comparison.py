@@ -108,7 +108,7 @@ for subfolder in main_folder_path.iterdir():
                         result = re.search(r"Min FCT: (\d+)", line)
                         if result:
                             min_fct = int(result.group(1))
-                        result = re.search(r"Max FCT: (\d+)", line)
+                        result = re.search(r"OverallCompletion: (\d+)", line)
                         if result:
                             fct = int(result.group(1))
                             str_subfolder = str(subfolder)
@@ -133,7 +133,7 @@ for subfolder in main_folder_path.iterdir():
                             if "NDP" in line:
                                 list_group.append("EQDS")
                             elif "Swift" in line:
-                                list_group.append("Swift* with Trimming")
+                                list_group.append("Swift-like")
                             else:
                                 list_group.append(str(line.rstrip()))
                     list_fairness.append((fct-min_fct)/min_fct*100)
@@ -169,11 +169,21 @@ elif (minimum_value > 70):
 else:
     limit = minimum_value - 2'''
 
+# Function to deduplicate a list while preserving order
+def deduplicate_list(lst):
+    seen = set()
+    result = []
+    for item in lst:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result
+
+
 # Create a bar chart with multiple bars grouped by 'Group' within each 'Category'
-sns.set(style="darkgrid")
-
-plt.figure(figsize=(18, 12))  # Adjust the figure size (optional)
-
+list_rep = ["512KiB\nk=1", "512KiB\nk=1", "512KiB\nk=1", "1MiB\nk=1", "1MiB\nk=1", "1MiB\nk=1", "1MiB\nk=16", "1MiB\nk=16", "1MiB\nk=16", "512KiB\nk=8", "512KiB\nk=8", "512KiB\nk=8", "512KiB\nk=2", "512KiB\nk=2", "512KiB\nk=2", "512KiB\nk=16", "512KiB\nk=16", "512KiB\nk=16", "1MiB\nk=8", "1MiB\nk=8", "1MiB\nk=8", "1MiB\nk=2", "1MiB\nk=2", "1MiB\nk=2"]
+# Step 3: Plot the CDFs using Seaborn
+plt.figure(figsize=(10, 6.5))
 # Extract the numeric part of the 'Category' column and convert it to integers
 def extract_numeric(category):
     match = re.search(r'\d+', category)
@@ -182,27 +192,48 @@ def extract_numeric(category):
     return 0  # Return 0 if no numeric part is found
 
 #print(df)
-df['Category_Order'] = df['Category'].apply(extract_numeric)
+df['Alternative'] = list_rep
+df.drop("Category", axis=1, inplace=True)
+
+df['Category_Order'] = df['Alternative'].apply(extract_numeric)
+print(df)
+
 df = df.sort_values(by=['Category_Order', 'Group'], ignore_index=True)
 #print()
 #print(df)
-df_fairness['Category_Order'] = df_fairness['Category'].apply(extract_numeric)
-df_fairness = df_fairness.sort_values(by=['Category_Order', 'Group'])
 
-best_performer = df.groupby('Category')['Value'].transform('min')
+best_performer = df.groupby('Alternative')['Value'].transform('min')
 df['Relative_Performance'] = (best_performer / df['Value']) * 100
 
 #print(best_performer)
 #print(df)
 
-ax = sns.barplot(data=df, x='Category', y='Relative_Performance', hue='Group')
+# Define the custom sorting order
+custom_order = deduplicate_list([
+    "512KiB\nk=1", "512KiB\nk=1", "512KiB\nk=1", "512KiB\nk=2", "512KiB\nk=2", "512KiB\nk=2",
+    "512KiB\nk=8", "512KiB\nk=8", "512KiB\nk=8", "512KiB\nk=16", "512KiB\nk=16", "512KiB\nk=16",
+    "1MiB\nk=1", "1MiB\nk=1", "1MiB\nk=1", "1MiB\nk=2", "1MiB\nk=2", "1MiB\nk=2",
+    "1MiB\nk=8", "1MiB\nk=8", "1MiB\nk=8", "1MiB\nk=16", "1MiB\nk=16", "1MiB\nk=16"
+])
+# Create a categorical data type with the custom order
+custom_order_dtype = pd.CategoricalDtype(categories=custom_order, ordered=True)
+print(custom_order)
+# Apply the custom order to the 'Strings' column
+df['Alternative'] = df['Alternative'].astype(custom_order_dtype)
+
+# Sort the DataFrame based on the custom order
+df = df.sort_values(by='Alternative').reset_index(drop=True)
+
+custom_colors = ["#ff7f0e","#2fa234", "#1f77b4"] * 10 # Customize the colors as needed
+
+ax = sns.barplot(data=df, x='Alternative', y='Relative_Performance', hue='Group', palette=custom_colors)
 plt.ylim(65, 110)
 
 ax.set_yticklabels(ax.get_yticks(), size = 15)
 _, xlabels = plt.xticks()
 ax.set_xticklabels(xlabels, size=15)
 
-
+ax.set_axisbelow(True)
 
 #for idx, p in enumerate(ax.patches):
     ##print("1Exp {} - Algo {} - Value {}\n".format(str(df_fairness['Category'][idx]), str(df_fairness['Group'][idx]), int(df_fairness['Value'][idx])))
@@ -218,14 +249,13 @@ for p, val in zip(ax.patches, df['Fairness']):
     #print("2Exp {} - Algo {} - Value {}\n".format(str(df['Category'][idx]), str(df['Group'][idx]), int(df['Value'][idx])))
     ax.annotate("{}%".format(int(val)), (p.get_x() + p.get_width() / 2., p.get_height()), ha='center', va='center', fontsize=12, color='black')
 '''
-plt.title('Performance In different scenarios', fontsize=19)
-plt.xlabel('Experiment', fontsize=17)
-plt.ylabel('% of Best Performing', fontsize=17)
-plt.legend(fontsize=16)  # Add a legend for the groups
+plt.xlabel('Flow Completion Time (us)',fontsize=17)
+plt.ylabel('% of Best Performing within each experiment',fontsize=17)
+plt.title('Performance in different all-to-all scenarios 4:1 FT\nLink Speed 800Gbps - 4KiB MTU',fontsize=17)
+plt.grid()  #just add this
 
+# Show the plot
 plt.tight_layout()
-
-plt.savefig(args.folder + "/summary.png", bbox_inches='tight')
-#plt.show()
-
-
+plt.savefig(args.folder + "/scaling.svg", bbox_inches='tight')
+plt.savefig(args.folder + "/scaling.png", bbox_inches='tight')
+plt.savefig(args.folder + "/scaling.pdf", bbox_inches='tight')

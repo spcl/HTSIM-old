@@ -30,6 +30,7 @@ class UecDropPacket : public Packet {
         p->_type = UEC_DROP;
         p->_is_header = false;
         p->_bounced = false;
+        p->hop_count = 0;
         p->_seqno = seqno;
         p->_data_seqno = dataseqno;
         p->_syn = false;
@@ -58,6 +59,7 @@ class UecDropPacket : public Packet {
         p->_flags = 0;
         p->from = source.from;
         p->to = source.to;
+        p->hop_count = 0;
         p->tag = source.tag;
         p->_nexthop = source._nexthop;
         p->set_dst(source.to);
@@ -117,6 +119,7 @@ class UecDropAck : public Packet {
         p->_seqno = seqno;
         p->_ackno = ackno;
         p->_data_ackno = dackno;
+        p->hop_count = 0;
         p->_is_header = true;
         p->_flags = 0;
         // printf("Ack Destination %d\n", destination);
@@ -169,6 +172,7 @@ class UecDropNack : public Packet {
         p->_type = UECNACK_DROP;
         p->_seqno = seqno;
         p->_ackno = ackno;
+        p->hop_count = 0;
         p->_data_ackno = dackno;
         p->_is_header = true;
         p->_direction = NONE;

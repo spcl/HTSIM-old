@@ -52,10 +52,7 @@ for files in sorted(pathlist):
                 size_incast = int(result.group(1))
                 # Theoretical BW
                 latency = args.latency
-                #size_incast = round(size_incast / 2048) * 2048
-                #theoretical_bw = ((((size_incast * 0.03125) + size_incast ) * 8) * args.incast_degree / args.link_speed) + (latency * 12) + (64*8*12/args.link_speed) + (2048*8*(args.incast_degree-1)/args.link_speed)
-                theoretical_bw = ((((size_incast * 0.03125) + size_incast ) * 8) * args.incast_degree / args.link_speed) + (latency * 6) + (2112*8*6/args.link_speed) + (latency * 6) +  (64*8*6/args.link_speed)
-                #theoretical_bw = ((((size_incast * 0.031) + size_incast ) * 8) * args.incast_degree / 100) + (latency * 12) + (64*8*12/100)
+                theoretical_bw = ((((size_incast * 0.015625) + size_incast ) * 8) * args.incast_degree / args.link_speed) + (latency * 12) + ((4096+64)*8*6/args.link_speed) +  (64*8*6/args.link_speed)
             # BW
             result = re.search(r"Max FCT: (\d+.\d+)", line)
             if result:
@@ -69,9 +66,9 @@ for files in sorted(pathlist):
                     bw_1 = 1
                 if ("NDP" in str(files)):
                     bw_ndp[size_incast / 1000] = bw_1
-                elif ("BTS" in str(files)):
+                elif ("Swift" in str(files)):
                     bw_bts[size_incast / 1000] = bw_1
-                elif ("UEC" in str(files)):
+                elif ("SMaRTT" in str(files)):
                     bw_trimming[size_incast / 1000] = bw_1
         
 
@@ -86,49 +83,46 @@ y1 = list(bw_bts.values())
 y2 = list(bw_trimming.values())
 percentage_diff = [((y2_val - y1_val) / y1_val) * 100 for y1_val, y2_val in zip(y2, y1)]
 
-sns.set(style="darkgrid")
+plt.figure(figsize=(7, 5))
 
 # Increase the size of the plot
-plt.figure(figsize=(10, 6))
-# Plot Line 1
-x1 = list(bw_bts.keys())
-y1 = list(bw_bts.values())
-
-# Plot Line 2
-x2 = list(bw_trimming.keys())
-y2 = list(bw_trimming.values())
-plt.plot(x2, y2, marker='s', label='UEC Trimming')
+plt.figure(figsize=(6.65, 3.65))
 
 # Plot Line 3
 x3 = list(bw_ndp.keys())
 y3 = list(bw_ndp.values())
-plt.plot(x3, y3, marker='x', label='NDP')
+plt.plot(x3, y3, marker='x', label='EQDS', linewidth=2)
+
+# Plot Line 1
+x1 = list(bw_bts.keys())
+y1 = list(bw_bts.values())
+plt.plot(x1, y1, marker='s', label='Swift*', linewidth=2)
+
+
+
+
+# Plot Line 2
+x2 = list(bw_trimming.keys())
+y2 = list(bw_trimming.values())
+plt.plot(x2, y2, marker='s', label='SMaRTT', linewidth=2)
 
 x_vertical_line = args.bdp / 1000
-plt.axvline(x_vertical_line, color='gray', linestyle='dashed', alpha=0.3)
-
-# Add a horizontal dashed line at y=7 with low opacity
-#y_horizontal_line = (((size_incast * 0.03) + size_incast) * 8) / ()
-#print(my_bw)
-#plt.axhline(y_horizontal_line, color='gray', linestyle='dashed', alpha=0.3)
-
-# Add text annotation "Max BW" next to the horizontal line
-#plt.text(max(x2) - 0.1, y_horizontal_line, "Max Theoretical BW", color='gray', fontsize=10,
-#         ha='right', va='bottom')
+plt.axvline(x_vertical_line, color='gray', linestyle='dashed', alpha=0.3, linewidth=2)
 
 # Set x-axis to log2 scale
 plt.xscale('log', base=2)
-
+plt.ylim(0.8, 1.05)
 # Set plot labels and title
-plt.xlabel('Message Size (KiB)')
-plt.ylabel('Normalized Performance to Theoretical Best')
-plt.title('Scaling During {}:1 Incast - Link Speed {}Gbps - 2048B MTU'.format(args.incast_degree, args.link_speed))
-plt.legend()
-
- 
+plt.xlabel('Message Size (KiB)',fontsize=17)
+plt.ylabel('Normalized to Theo. Best',fontsize=17)
+plt.title('Scaling During {}:1 Incast\nLink Speed {}Gbps - 4KiB MTU'.format(args.incast_degree, args.link_speed),fontsize=17)
+#plt.gca().xaxis.set_major_formatter(FuncFormatter(lambda x, _: int(x)))
+plt.grid()  #just add this
+plt.legend([],[], frameon=False)
+plt.xticks(fontsize=16)  # Set the font size for x-axis tick labels
+plt.yticks(fontsize=16)  # Set the font size for y-axis tick labels
 # Make boxplot for one group only
 plt.tight_layout()
 plt.savefig(folder + "/scaling.png", bbox_inches='tight')
-
-
-plt.show()
+plt.savefig(folder + "/scaling.pdf", bbox_inches='tight')
+plt.savefig(folder + "/scaling.svg", bbox_inches='tight')

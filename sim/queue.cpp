@@ -4,6 +4,7 @@
 #include "queue_lossless.h"
 #include "swifttrimmingpacket.h"
 #include "uecpacket.h"
+#include "uecpacket_drop.h"
 #include <math.h>
 #include <sstream>
 
@@ -401,6 +402,8 @@ FairPriorityQueue::getPriority(Packet &pkt) {
     case TCPACK:
     case UECACK:
     case UECNACK:
+    case UECACK_DROP:
+    case UECNACK_DROP:
     case SWIFTTRIMMINGACK:
     case SWIFTTRIMMINGNACK:
     case NDPACK:
@@ -434,6 +437,18 @@ FairPriorityQueue::getPriority(Packet &pkt) {
             prio = Q_HI;
         } else {
             UecPacket *uec = dynamic_cast<UecPacket *>(&pkt);
+            if (uec->retransmitted()) {
+                prio = Q_MID;
+            } else {
+                prio = Q_LO;
+            }
+        }
+        break;
+    case UEC_DROP:
+        if (pkt.header_only()) {
+            prio = Q_HI;
+        } else {
+            UecDropPacket *uec = dynamic_cast<UecDropPacket *>(&pkt);
             if (uec->retransmitted()) {
                 prio = Q_MID;
             } else {

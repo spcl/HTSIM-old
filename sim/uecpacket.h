@@ -37,6 +37,7 @@ class UecPacket : public Packet {
         p->_flags = 0;
         p->_direction = NONE;
         p->_trim_direction = NONE;
+        p->hop_count = 0;
         p->set_dst(destination);
         // printf("Destination5 is %d\n", destination);
         return p;
@@ -59,6 +60,7 @@ class UecPacket : public Packet {
         p->from = source.from;
         p->to = source.to;
         p->tag = source.tag;
+        p->hop_count = 0;
         p->_nexthop = source._nexthop;
         p->set_dst(source.to);
         p->_direction = NONE;
@@ -118,6 +120,7 @@ class UecAck : public Packet {
         p->_data_ackno = dackno;
         p->_is_header = true;
         p->_flags = 0;
+        p->hop_count = 0;
         // printf("Ack Destination %d\n", destination);
         p->set_dst(destination);
         p->_direction = NONE;
@@ -172,6 +175,7 @@ class UecNack : public Packet {
         p->_is_header = true;
         p->_direction = NONE;
         p->_flags = 0;
+        p->hop_count = 0;
         p->set_dst(destination);
         return p;
     }

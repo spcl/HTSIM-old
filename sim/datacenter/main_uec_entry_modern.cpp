@@ -123,6 +123,7 @@ int main(int argc, char **argv) {
     double starting_cwnd_ratio = 0;
     double queue_size_ratio = 0;
     bool disable_case_3 = false;
+    bool disable_case_4 = false;
     int ratio_os_stage_1 = 1;
 
     int i = 1;
@@ -193,6 +194,11 @@ int main(int argc, char **argv) {
             disable_case_3 = atoi(argv[i + 1]);
             UecSrc::set_disable_case_3(disable_case_3);
             printf("DisableCase3: %d\n", disable_case_3);
+            i++;
+        } else if (!strcmp(argv[i], "-disable_case_4")) {
+            disable_case_4 = atoi(argv[i + 1]);
+            UecSrc::set_disable_case_4(disable_case_4);
+            printf("DisableCase4: %d\n", disable_case_4);
             i++;
         } else if (!strcmp(argv[i], "-number_entropies")) {
             number_entropies = atoi(argv[i + 1]);
@@ -344,6 +350,9 @@ int main(int argc, char **argv) {
             } else if (!strcmp(argv[i + 1], "delayB")) {
                 UecSrc::set_alogirthm("delayB");
                 printf("Name Running: SMaRTT\n");
+            } else if (!strcmp(argv[i + 1], "delayB_rtt")) {
+                UecSrc::set_alogirthm("delayB_rtt");
+                printf("Name Running: SMaRTT Per RTT\n");
             } else if (!strcmp(argv[i + 1], "delayC")) {
                 UecSrc::set_alogirthm("delayC");
             } else if (!strcmp(argv[i + 1], "delayD")) {

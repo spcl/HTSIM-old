@@ -130,9 +130,10 @@ static inline int match(const graph_node_properties &elem, ruq_t *q,
                q->size(), elem.host, elem.target, elem.tag);
     for (ruq_t::iterator iter = q->begin(); iter != q->end(); ++iter) {
         match_attempts++;
-        /*if (1)
+        if (1)
             printf("Compared element is -> %d %d vs %d %d\n", iter->src,
-        iter->tag, elem.target, elem.tag); fflush(stdout);*/
+                   iter->tag, elem.target, elem.tag);
+        fflush(stdout);
         if (elem.target == ANY_SOURCE || iter->src == ANY_SOURCE ||
             iter->src == elem.target) {
             if (elem.tag == ANY_TAG || iter->tag == ANY_TAG ||

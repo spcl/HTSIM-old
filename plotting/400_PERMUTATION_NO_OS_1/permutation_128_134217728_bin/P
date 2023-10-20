@@ -3208,7 +3208,7 @@ Scheduling Event (56@122@0) of size 134217728 from 56 to 122 tag 0 start_tiem 0 
 Scheduling Event (57@78@0) of size 134217728 from 57 to 78 tag 0 start_tiem 0 - Time is 0
  sink tag is 0
 Scheduling Event (58@79@0) of size 134217728 from 58 to 79 tag 0 start_tiem 0 - Time is 0
- sink tag is 1810705248
+ sink tag is 2085022560
 Scheduling Event (59@77@0) of size 134217728 from 59 to 77 tag 0 start_tiem 0 - Time is 0
  sink tag is 0
 Scheduling Event (60@106@0) of size 134217728 from 60 to 106 tag 0 start_tiem 0 - Time is 0
@@ -40928,14 +40928,14 @@ Searching for MATCHCurrent elem time is 3367702400 while NS3 3367702400
 ..... NOT Received a MSG
 
 
-RunTime Total LGS -> 90680ms
+RunTime Total LGS -> 84123ms
 
 
 htsim Terminates at 3367702400
 
 
 Remaining 128
-PERFORMANCE: Processes: 128 	 Events: 256 	 Time: 90 s 	 Speed: 2.84 ev/s
+PERFORMANCE: Processes: 128 	 Events: 256 	 Time: 84 s 	 Speed: 3.05 ev/s
 AQ is 0
 Times: 
 Host 0: 3337527040

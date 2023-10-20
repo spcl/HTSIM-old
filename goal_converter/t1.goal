@@ -1,0 +1,426 @@
+num_ranks 128
+
+rank 0 {
+l1: recv 5000000b from 112 tag 0
+l2: send 500000b to 120 tag 0
+l3: send 500000b to 121 tag 0
+l4: send 500000b to 122 tag 0
+l5: send 500000b to 123 tag 0
+l6: send 500000b to 124 tag 0
+l7: send 500000b to 125 tag 0
+l8: send 500000b to 126 tag 0
+l9: send 500000b to 127 tag 0
+l10: send 500000b to 119 tag 0
+l11: send 500000b to 118 tag 0
+l12: send 500000b to 117 tag 0
+l13: send 500000b to 116 tag 0
+l14: send 500000b to 115 tag 0
+l15: send 500000b to 114 tag 0
+l16: send 500000b to 113 tag 0
+l17: send 5000000b to 64 tag 0
+l17 requires l1
+}
+
+rank 1 {
+}
+
+rank 2 {
+}
+
+rank 3 {
+}
+
+rank 4 {
+}
+
+rank 5 {
+}
+
+rank 6 {
+}
+
+rank 7 {
+}
+
+rank 8 {
+}
+
+rank 9 {
+}
+
+rank 10 {
+}
+
+rank 11 {
+}
+
+rank 12 {
+}
+
+rank 13 {
+}
+
+rank 14 {
+}
+
+rank 15 {
+}
+
+rank 16 {
+l1: send 5000000b to 64 tag 0
+}
+
+rank 17 {
+l1: send 5000000b to 64 tag 0
+}
+
+rank 18 {
+l1: send 5000000b to 64 tag 0
+}
+
+rank 19 {
+}
+
+rank 20 {
+}
+
+rank 21 {
+}
+
+rank 22 {
+}
+
+rank 23 {
+}
+
+rank 24 {
+}
+
+rank 25 {
+}
+
+rank 26 {
+}
+
+rank 27 {
+}
+
+rank 28 {
+}
+
+rank 29 {
+}
+
+rank 30 {
+}
+
+rank 31 {
+}
+
+rank 32 {
+}
+
+rank 33 {
+}
+
+rank 34 {
+}
+
+rank 35 {
+}
+
+rank 36 {
+}
+
+rank 37 {
+}
+
+rank 38 {
+}
+
+rank 39 {
+}
+
+rank 40 {
+}
+
+rank 41 {
+}
+
+rank 42 {
+}
+
+rank 43 {
+}
+
+rank 44 {
+}
+
+rank 45 {
+}
+
+rank 46 {
+}
+
+rank 47 {
+}
+
+rank 48 {
+}
+
+rank 49 {
+}
+
+rank 50 {
+}
+
+rank 51 {
+}
+
+rank 52 {
+}
+
+rank 53 {
+}
+
+rank 54 {
+}
+
+rank 55 {
+}
+
+rank 56 {
+}
+
+rank 57 {
+}
+
+rank 58 {
+}
+
+rank 59 {
+}
+
+rank 60 {
+}
+
+rank 61 {
+}
+
+rank 62 {
+}
+
+rank 63 {
+}
+
+rank 64 {
+l1: recv 5000000b from 0 tag 0
+l2: recv 5000000b from 16 tag 0
+l3: recv 5000000b from 17 tag 0
+l4: recv 5000000b from 18 tag 0
+}
+
+rank 65 {
+}
+
+rank 66 {
+}
+
+rank 67 {
+}
+
+rank 68 {
+}
+
+rank 69 {
+}
+
+rank 70 {
+}
+
+rank 71 {
+}
+
+rank 72 {
+}
+
+rank 73 {
+}
+
+rank 74 {
+}
+
+rank 75 {
+}
+
+rank 76 {
+}
+
+rank 77 {
+}
+
+rank 78 {
+}
+
+rank 79 {
+}
+
+rank 80 {
+}
+
+rank 81 {
+}
+
+rank 82 {
+}
+
+rank 83 {
+}
+
+rank 84 {
+}
+
+rank 85 {
+}
+
+rank 86 {
+}
+
+rank 87 {
+}
+
+rank 88 {
+}
+
+rank 89 {
+}
+
+rank 90 {
+}
+
+rank 91 {
+}
+
+rank 92 {
+}
+
+rank 93 {
+}
+
+rank 94 {
+}
+
+rank 95 {
+}
+
+rank 96 {
+}
+
+rank 97 {
+}
+
+rank 98 {
+}
+
+rank 99 {
+}
+
+rank 100 {
+}
+
+rank 101 {
+}
+
+rank 102 {
+}
+
+rank 103 {
+}
+
+rank 104 {
+}
+
+rank 105 {
+}
+
+rank 106 {
+}
+
+rank 107 {
+}
+
+rank 108 {
+}
+
+rank 109 {
+}
+
+rank 110 {
+}
+
+rank 111 {
+}
+
+rank 112 {
+l1: send 5000000b to 0 tag 0
+}
+
+rank 113 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 114 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 115 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 116 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 117 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 118 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 119 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 120 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 121 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 122 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 123 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 124 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 125 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 126 {
+l1: recv 500000b from 0 tag 0
+}
+
+rank 127 {
+l1: recv 500000b from 0 tag 0
+}

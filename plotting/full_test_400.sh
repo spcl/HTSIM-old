@@ -1,5 +1,5 @@
 X_GAIN=0.5
-Y_GAIN=2.5
+Y_GAIN=2
 W_GAIN=2
 Z_GAIN=0.8
 MTU_SIZE=4096
@@ -14,10 +14,6 @@ echo ${CMD}
 eval ${CMD}
 
 # No OverSub Experiments
-for Incast_Message_Size in incast_128_8_64.bin
-do
-
-done
 SUB_FOLDER="4_1"
 CMD="rm -r ${FOLDER}/${SUB_FOLDER}"
 echo ${CMD}

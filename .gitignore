@@ -29,4 +29,15 @@ plotting/nack
 plotting/input
 plotting/ls_to_us
 plotting/us_to_cs
-*.goal
+*.goal./schedgen/uec_entry
+./.git/objects/pack/pack-6105733ff1fb78d826ec567fd4c8e1fe3ca62b6d.pack
+./.git/objects/pack/pack-08cca36f426f6e08126eab47932e6d490bc8ca73.pack
+./plotting/FOLDER_100_COMPARISON_LARGE/Perm_Large/P
+./plotting/FOLDER_100_COMPARISON_LARGE/Perm_Small_No_OS/P
+./plotting/INCAST_DROP_16_4MiB/uecComposite.tmp
+./plotting/FOLDER_400_COMPARISON_LARGE/Perm_Large/P
+./plotting/FOLDER_400_COMPARISON_LARGE/Perm_Small_No_OS/P
+./plotting/FOLDER_400_FULL_TEST_NO_OS/Perm_Large/P
+./plotting/FOLDER_800_COMPARISON/Perm_Large/P
+./plotting/FOLDER_800_COMPARISON/Perm_Small_No_OS/P
+./plotting/Parameter_Analysis_Permutation_YesOS_2000_400G/ndp.tmp

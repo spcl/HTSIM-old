@@ -56,20 +56,19 @@ UecDropSrc::UecDropSrc(UecDropLogger *logger, TrafficLogger *pktLogger,
 
     // new CC variables
     _hop_count = hops;
+    printf("Hop Count %d - Link Delay %d - Link Speed %d + MTU %d\n", hops,
+           LINK_DELAY_MODERN, LINK_SPEED_MODERN, PKT_SIZE_MODERN);
     _base_rtt = ((_hop_count * LINK_DELAY_MODERN) +
-                 (PKT_SIZE_MODERN * 8 / LINK_SPEED_MODERN * 1) +
-                 (PKT_SIZE_MODERN * 8 / (LINK_SPEED_MODERN / ratio_os_stage_1) *
-                  2) +
-                 (_hop_count * LINK_DELAY_MODERN) +
-                 (64 * 8 / LINK_SPEED_MODERN * 1) +
-                 (64 * 8 / (LINK_SPEED_MODERN / ratio_os_stage_1) * 2)) *
+                 ((PKT_SIZE_MODERN + 64) * 8 / LINK_SPEED_MODERN * _hop_count) +
+                 +(_hop_count * LINK_DELAY_MODERN) +
+                 (64 * 8 / LINK_SPEED_MODERN * _hop_count)) *
                 1000;
     _target_rtt =
             _base_rtt * ((target_rtt_percentage_over_base + 1) / 100.0 + 1);
 
     _rtt = _base_rtt;
-    _rto = rtt + _hop_count * queueDrainTime + (rtt * 90000);
-    _rto_margin = _rtt / 2;
+    _rto = _base_rtt * 2.1;
+    _rto_margin = _base_rtt / 8;
     _rtx_timeout = timeInf;
     _rtx_timeout_pending = false;
     _rtx_pending = false;
@@ -294,17 +293,6 @@ std::size_t UecDropSrc::get_sent_packet_idx(uint32_t pkt_seqno) {
     return _sent_packets.size();
 }
 
-void UecDropSrc::update_rtx_time() {
-    _rtx_timeout = timeInf;
-    for (const auto &sp : _sent_packets) {
-        auto timeout = sp.timer;
-        if (!sp.acked && !sp.nacked && !sp.timedOut &&
-            (timeout < _rtx_timeout || _rtx_timeout == timeInf)) {
-            _rtx_timeout = timeout;
-        }
-    }
-}
-
 void UecDropSrc::mark_received(UecDropAck &pkt) {
     // cummulative ack
     if (pkt.seqno() == 1) {
@@ -313,12 +301,13 @@ void UecDropSrc::mark_received(UecDropAck &pkt) {
                 _sent_packets[0].acked)) {
             _sent_packets.erase(_sent_packets.begin());
         }
-        update_rtx_time();
+
         return;
     }
     if (_sent_packets.empty() || _sent_packets[0].seqno > pkt.ackno()) {
         // duplicate ACK -- since we support OOO, this must be caused by
         // duplicate retransmission
+
         return;
     }
     auto i = get_sent_packet_idx(pkt.seqno());
@@ -333,32 +322,10 @@ void UecDropSrc::mark_received(UecDropAck &pkt) {
         auto timer = _sent_packets[i].timer;
         auto seqno = _sent_packets[i].seqno;
         auto nacked = _sent_packets[i].nacked;
-        _sent_packets[i] = SentPacketUecDrop(timer, seqno, true, false, false);
-        if (nacked) {
-            --_nack_rtx_pending;
-        }
+        _sent_packets[i] =
+                SentPacketUecDrop(timer, seqno, true, false, false, 0);
         _last_acked = seqno + _mss - 1;
-        if (_enableDistanceBasedRtx) {
-            bool trigger = true;
-            // TODO: this could be optimized with counters or bitsets,
-            // but I'm doing this the simple way to avoid bugs while
-            // we don't need the optimizations
-            for (std::size_t k = 1; k < _sent_packets.size() / 2; ++k) {
-                if (!_sent_packets[k].acked) {
-                    trigger = false;
-                    break;
-                }
-            }
-            if (trigger) {
-                // TODO: what's the proper way to act if this packet was
-                // NACK'ed? Not super relevant right now as we are not enabling
-                // this feature anyway
-                _sent_packets[0].timer = eventlist().now();
-                _rtx_timeout_pending = true;
-            }
-        }
     }
-    update_rtx_time();
 }
 
 void UecDropSrc::add_ack_path(const Route *rt) {
@@ -463,7 +430,7 @@ void UecDropSrc::do_fast_drop(bool ecn_or_trimmed) {
 
             double bonus_based_on_target = buffer_drop;
 
-            printf("Using Fast Drop2 - Flow %d@%d%d, Ecn %d, CWND %d, Saved "
+            /*printf("Using Fast Drop2 - Flow %d@%d%d, Ecn %d, CWND %d, Saved "
                    "Acked %d (dropping to %f - bonus1 %f 2 %f -> %f and %f) - "
                    "Previous "
                    "Window %lu - Next "
@@ -480,14 +447,16 @@ void UecDropSrc::do_fast_drop(bool ecn_or_trimmed) {
                    (saved_acked_bytes * bonus_based_on_target * bonus_drop +
                     _mss),
                    previous_window_end / 1000, next_window_end / 1000,
-                   eventlist().now() / 1000);
+                   eventlist().now() / 1000);*/
 
             _cwnd = max((double)(saved_acked_bytes * bonus_based_on_target *
                                  bonus_drop),
                         (double)_mss);
 
             //_cwnd = 40000;
-            ignore_for = (get_unacked() / (double)_mss) * 1.25;
+            ignore_for =
+                    ((get_unacked() / (double)_mss) + (_cwnd / (double)_mss)) *
+                    1.25;
             // int random_integer_wait = rand() % ignore_for;
             //  ignore_for += random_integer_wait;
             printf("Ignoring %d for %d pkts - New Wnd %d (%d %d)\n", from,
@@ -499,7 +468,10 @@ void UecDropSrc::do_fast_drop(bool ecn_or_trimmed) {
             need_fast_drop = false;
             _list_fast_decrease.push_back(
                     std::make_pair(eventlist().now() / 1000, 1));
+            /*printf("Updating List Fast Drop\n");
+            fflush(stdout);*/
             check_limits_cwnd();
+            last_fast_drop_event = eventlist().now();
 
             // Update XGAIN
             x_gain = min(initial_x_gain,
@@ -828,6 +800,7 @@ void UecDropSrc::processAck(UecDropAck &pkt, bool force_marked) {
            from, marked, GLOBAL_TIME / 1000, next_window_end / 1000);*/
 
     uint64_t newRtt = eventlist().now() - ts;
+    printf("Received ACK\n");
     mark_received(pkt);
 
     count_total_ack++;
@@ -835,7 +808,7 @@ void UecDropSrc::processAck(UecDropAck &pkt, bool force_marked) {
         count_total_ecn++;
         consecutive_good_medium = 0;
     }
-
+    // printf("Currently at Pkt %d\n", count_total_ack);
     if (from == 0 && count_total_ack % 10 == 0) {
         printf("Currently at Pkt %d\n", count_total_ack);
         // fflush(stdout);
@@ -872,6 +845,9 @@ void UecDropSrc::processAck(UecDropAck &pkt, bool force_marked) {
 
         printf("Completion Time Flow is %lu\n",
                eventlist().now() - _flow_start_time);
+
+        printf("Overall Completion at %lu\n", GLOBAL_TIME);
+        return;
     }
 
     if (seqno > _last_acked || true) { // TODO: new ack, we don't care about
@@ -926,7 +902,7 @@ void UecDropSrc::receivePacket(Packet &pkt) {
         _logger->logUecDrop(*this, UecDropLogger::UEC_RCV);
     }
     switch (pkt.type()) {
-    case UEC:
+    case UEC_DROP:
         // BTS
         if (_bts_enabled) {
             if (pkt.bounced()) {
@@ -936,13 +912,13 @@ void UecDropSrc::receivePacket(Packet &pkt) {
             }
         }
         break;
-    case UECACK:
+    case UECACK_DROP:
         // fflush(stdout);
         count_received++;
         processAck(dynamic_cast<UecDropAck &>(pkt), false);
         pkt.free();
         break;
-    case UECNACK:
+    case UECNACK_DROP:
         printf("NACK %d@%d@%d\n", from, to, tag);
         // fflush(stdout);
         if (_trimming_enabled) {
@@ -1187,6 +1163,11 @@ void UecDropSrc::adjust_window(simtime_picosec ts, bool ecn,
 
             // Delay Logic, Version B Logic
         } else if (algorithm_type == "delayB") {
+
+            /*printf("From %d - Changing Windows - Consecutive Good %d - Cwnd "
+                   "%d - Count %d vs %d\n",
+                   from, counter_consecutive_good_bytes, _cwnd, count_received,
+                   ignore_for);*/
 
             if (use_fast_drop) {
                 if (count_received >= ignore_for) {
@@ -1596,9 +1577,10 @@ void UecDropSrc::map_entropies() {
 
 void UecDropSrc::send_packets() {
     //_list_cwd.push_back(std::make_pair(eventlist().now() / 1000, _cwnd));
-    if (_rtx_pending) {
-        retransmit_packet();
+    if (need_fast_drop) {
+        return;
     }
+    retransmit_packet();
     // printf("Sent Packet Called, %d\n", from);
     _list_unacked.push_back(std::make_pair(eventlist().now() / 1000, _unacked));
     unsigned c = _cwnd;
@@ -1606,14 +1588,13 @@ void UecDropSrc::send_packets() {
     while ( //_last_acked + c >= _highest_sent + _mss &&
             get_unacked() + _mss <= c && _highest_sent <= _flow_size + 1) {
         uint64_t data_seq = 0;
-
-        // create packet
-        // printf("Dest 1 is %d\n", _dstaddr);
-        // //fflush(stdout);
+        // printf("Sending %d at %lu\n", from, GLOBAL_TIME / 1000);
+        //  create packet
+        //  printf("Dest 1 is %d\n", _dstaddr);
+        //  //fflush(stdout);
         UecDropPacket *p =
                 UecDropPacket::newpkt(_flow, *_route, _highest_sent + 1,
                                       data_seq, _mss, false, _dstaddr);
-
         // p->set_route(*_route);
         // int path_chosen = choose_route();
         // printf("Path Chosen %d - Size %d\n", path_chosen,
@@ -1637,18 +1618,6 @@ void UecDropSrc::send_packets() {
         p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATESEND);
         p->set_ts(eventlist().now());
 
-        if (COLLECT_DATA) {
-            // Sent
-            std::string file_name =
-                    PROJECT_ROOT_PATH / ("sim/output/sent/s" +
-                                         std::to_string(this->from) + ".txt ");
-            std::ofstream MyFile(file_name, std::ios_base::app);
-
-            MyFile << (GLOBAL_TIME) / 1000 << "," << 1 << std::endl;
-
-            MyFile.close();
-        }
-
         // send packet
         _highest_sent += _mss;
         _packets_sent += _mss;
@@ -1657,16 +1626,13 @@ void UecDropSrc::send_packets() {
         // Getting time until packet is really sent
         // printf("Sent Packet, %d\n", from);
         PacketSink *sink = p->sendOn();
+        printf("Sending\n");
         HostQueue *q = dynamic_cast<HostQueue *>(sink);
         assert(q);
         uint32_t service_time = q->serviceTime(*p);
         _sent_packets.push_back(
                 SentPacketUecDrop(eventlist().now() + service_time + _rto,
-                                  p->seqno(), false, false, false));
-
-        if (_rtx_timeout == timeInf) {
-            update_rtx_time();
-        }
+                                  p->seqno(), false, false, false, 0));
     }
 }
 
@@ -1688,8 +1654,9 @@ void UecDropSrc::set_paths(uint32_t no_of_paths) {
         _route_strategy != ECMP_FIB2_ECN && _route_strategy != REACTIVE_ECN &&
         _route_strategy != ECMP_RANDOM_ECN &&
         _route_strategy != ECMP_RANDOM2_ECN) {
-        cout << "Set paths (path_count) called with wrong route strategy"
-             << endl;
+        cout << "Set paths uec_drop (path_count) called with wrong route "
+                "strategy "
+             << _route_strategy << endl;
         abort();
     }
 
@@ -1806,51 +1773,52 @@ void UecDropSrc::rtx_timer_hook(simtime_picosec now, simtime_picosec period) {
     //     RTS. Check
     //             // if this applies to us
     // #endif
+    /*printf("Status1 - RTX Pending %d --> %d %d %d\n", _rtx_pending,
+           _highest_sent, _rtx_timeout, now + period < _rtx_timeout);
+    if (_highest_sent == 0) {
+        printf("Return1");
+        return;
+    }
 
-    if (_highest_sent == 0)
+    if (_rtx_timeout == timeInf || now + period < _rtx_timeout) {
+        printf("Return2 %d\n", _rtx_timeout == timeInf);
         return;
-    if (_rtx_timeout == timeInf || now + period < _rtx_timeout)
-        return;
+    }
+
+    printf("Status2 - RTX Pending %d\n", _rtx_pending);*/
+
+    do_fast_drop(false);
+    retransmit_packet();
 
     // here we can run into phase effects because the timer is checked
     // only periodically for ALL flows but if we keep the difference
     // between scanning time and real timeout time when restarting the
     // flows we should minimize them !
-    if (!_rtx_timeout_pending) {
+    /*if (!_rtx_timeout_pending) {
         _rtx_timeout_pending = true;
-        apply_timeout_penalty();
-
+        // apply_timeout_penalty();
+        simtime_picosec too_early = _rtx_timeout - now;
         cout << "At " << timeAsUs(now) << "us RTO " << timeAsUs(_rto)
              << "us RTT " << timeAsUs(_rtt) << "us SEQ " << _last_acked / _mss
-             << " CWND " << _cwnd / _mss << " Flow ID " << str() << endl;
-
-        _cwnd = _mss;
-
-        // check the timer difference between the event and the real value
-        simtime_picosec too_early = _rtx_timeout - now;
-        if (now > _rtx_timeout) {
-            // This might happen because we hold on retransmitting if we
-            // have enough packets in flight cout << "late_rtx_timeout: " <<
-            // _rtx_timeout << " now: " << now
-            //     << " now+rto: " << now + _rto << " rto: " << _rto <<
-            //     endl;
-            too_early = 0;
-        }
-        eventlist().sourceIsPendingRel(*this, too_early);
-    }
+             << " CWND " << _cwnd / _mss << " Flow ID " << str() << "Time"
+             << too_early << endl;
+        eventlist().sourceIsPendingRel(*this, 0);
+    }*/
 }
 
 bool UecDropSrc::resend_packet(std::size_t idx) {
 
     if (get_unacked() >= _cwnd) {
-        // printf("This si FALSE\n");
+        return false;
+    }
+    if (need_fast_drop) {
         return false;
     }
     assert(!_sent_packets[idx].acked);
 
     // this will cause retransmission not only of the offending
     // packet, but others close to timeout
-    _rto_margin = _rtt / 2;
+    // _rto_margin = _rtt / 2;
 
     const Route *rt;
     // if (_use_good_entropies && !_good_entropies.empty()) {
@@ -1864,6 +1832,7 @@ bool UecDropSrc::resend_packet(std::size_t idx) {
     UecDropPacket *p = UecDropPacket::newpkt(
             _flow, *_route, _sent_packets[idx].seqno, 0, _mss, true, _dstaddr);
     p->set_ts(eventlist().now());
+    // printf("From %d - Resending at %lu\n", from, GLOBAL_TIME);
 
     p->set_route(*_route);
     int crt = choose_route();
@@ -1873,6 +1842,7 @@ bool UecDropSrc::resend_packet(std::size_t idx) {
 
     p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATE);
     PacketSink *sink = p->sendOn();
+    printf("Sending\n");
     HostQueue *q = dynamic_cast<HostQueue *>(sink);
     assert(q);
     uint32_t service_time = q->serviceTime(*p);
@@ -1882,7 +1852,7 @@ bool UecDropSrc::resend_packet(std::size_t idx) {
     }
     _sent_packets[idx].timer = eventlist().now() + service_time + _rto;
     _sent_packets[idx].timedOut = false;
-    update_rtx_time();
+    // printf("Retransmitting %d at %lu\n", from, GLOBAL_TIME / 1000);
     return true;
 }
 
@@ -1891,13 +1861,21 @@ void UecDropSrc::retransmit_packet() {
     _rtx_pending = false;
     for (std::size_t i = 0; i < _sent_packets.size(); ++i) {
         auto &sp = _sent_packets[i];
-        if (_rtx_timeout_pending && !sp.acked && !sp.nacked &&
-            sp.timer <= eventlist().now() + _rto_margin) {
-            _cwnd = _mss;
+        if (!sp.acked && !sp.nacked && sp.timer <= eventlist().now()) {
             sp.timedOut = true;
+            sp.nRetrans++;
+            if (count_received >= ignore_for && sp.nRetrans <= 1) {
+                /*if (last_fast_drop_event == 0 ||
+                    eventlist().now() > last_fast_drop_event * 25)*/
+                need_fast_drop = true;
+                /*printf("Needing to Fast Drop %d-%d at %lu\n", from, sp.seqno,
+                       GLOBAL_TIME / 1000);*/
+            }
+            /*printf("Timed Out %d-%d at %lu\n", from, sp.seqno,
+                   GLOBAL_TIME / 1000);*/
             reduce_unacked(_mss);
         }
-        if (!sp.acked && (sp.timedOut || sp.nacked)) {
+        if (!sp.acked && sp.timedOut) {
             if (!resend_packet(i)) {
                 _rtx_pending = true;
             }
@@ -1962,14 +1940,14 @@ void UecDropSink::receivePacket(Packet &pkt) {
     // printf("Sink Received\n");
     // fflush(stdout);
     switch (pkt.type()) {
-    case UECACK:
-    case UECNACK:
+    case UECACK_DROP:
+    case UECNACK_DROP:
         // bounced, ignore
         pkt.free();
         // printf("Free4\n");
         // //fflush(stdout);
         return;
-    case UEC:
+    case UEC_DROP:
         // do what comes after the switch
         if (pkt.bounced()) {
             printf("Bounced at Sink, no sense\n");
@@ -2217,6 +2195,8 @@ void UecDropRtxTimerScanner::registerUecDrop(UecDropSrc &uecsrc) {
 void UecDropRtxTimerScanner::doNextEvent() {
     simtime_picosec now = eventlist().now();
     uecs_t::iterator i;
+    // printf("Was called at %lu\n", GLOBAL_TIME);
+
     for (i = _uecs.begin(); i != _uecs.end(); i++) {
         (*i)->rtx_timer_hook(now, _scanPeriod);
     }

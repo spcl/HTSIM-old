@@ -1,0 +1,209 @@
+num_ranks 16
+
+rank 0 {
+l1: send 1000000b to 10 tag 0
+l2: send 1000000b to 10 tag 1
+l3: send 1000000b to 12 tag 2
+l4: send 1000000b to 9 tag 3
+l5: send 1000000b to 13 tag 4
+l6: recv 1000000b from 12 tag 0
+l7: recv 1000000b from 13 tag 0
+l8: recv 1000000b from 14 tag 0
+l9: recv 1000000b from 9 tag 4
+}
+
+rank 1 {
+l1: send 1000000b to 12 tag 0
+l2: send 1000000b to 13 tag 1
+l3: send 1000000b to 15 tag 2
+l4: send 1000000b to 15 tag 3
+l5: send 1000000b to 8 tag 4
+l6: recv 1000000b from 9 tag 1
+l7: recv 1000000b from 13 tag 1
+l8: recv 1000000b from 14 tag 3
+l9: recv 1000000b from 8 tag 4
+}
+
+rank 2 {
+l1: send 1000000b to 12 tag 0
+l2: send 1000000b to 8 tag 1
+l3: send 1000000b to 13 tag 2
+l4: send 1000000b to 8 tag 3
+l5: send 1000000b to 11 tag 4
+l6: recv 1000000b from 8 tag 0
+l7: recv 1000000b from 11 tag 0
+l8: recv 1000000b from 8 tag 1
+l9: recv 1000000b from 9 tag 2
+l10: recv 1000000b from 11 tag 2
+l11: recv 1000000b from 8 tag 3
+l12: recv 1000000b from 12 tag 3
+l13: recv 1000000b from 11 tag 4
+l14: recv 1000000b from 12 tag 4
+}
+
+rank 3 {
+l1: send 1000000b to 11 tag 0
+l2: send 1000000b to 15 tag 1
+l3: send 1000000b to 13 tag 2
+l4: send 1000000b to 9 tag 3
+l5: send 1000000b to 14 tag 4
+l6: recv 1000000b from 15 tag 0
+l7: recv 1000000b from 11 tag 1
+l8: recv 1000000b from 10 tag 2
+l9: recv 1000000b from 9 tag 3
+l10: recv 1000000b from 10 tag 3
+l11: recv 1000000b from 11 tag 3
+l12: recv 1000000b from 13 tag 3
+l13: recv 1000000b from 15 tag 3
+l14: recv 1000000b from 13 tag 4
+}
+
+rank 4 {
+l1: send 1000000b to 12 tag 0
+l2: send 1000000b to 10 tag 1
+l3: send 1000000b to 13 tag 2
+l4: send 1000000b to 13 tag 3
+l5: send 1000000b to 8 tag 4
+l6: recv 1000000b from 9 tag 0
+l7: recv 1000000b from 14 tag 1
+l8: recv 1000000b from 13 tag 2
+l9: recv 1000000b from 14 tag 2
+l10: recv 1000000b from 15 tag 2
+l11: recv 1000000b from 14 tag 4
+}
+
+rank 5 {
+l1: send 1000000b to 13 tag 0
+l2: send 1000000b to 15 tag 1
+l3: send 1000000b to 15 tag 2
+l4: send 1000000b to 11 tag 3
+l5: send 1000000b to 14 tag 4
+l6: recv 1000000b from 15 tag 1
+}
+
+rank 6 {
+l1: send 1000000b to 9 tag 0
+l2: send 1000000b to 12 tag 1
+l3: send 1000000b to 9 tag 2
+l4: send 1000000b to 13 tag 3
+l5: send 1000000b to 12 tag 4
+l6: recv 1000000b from 10 tag 0
+l7: recv 1000000b from 10 tag 1
+l8: recv 1000000b from 8 tag 2
+}
+
+rank 7 {
+l1: send 1000000b to 11 tag 0
+l2: send 1000000b to 8 tag 1
+l3: send 1000000b to 8 tag 2
+l4: send 1000000b to 13 tag 3
+l5: send 1000000b to 9 tag 4
+l6: recv 1000000b from 12 tag 1
+l7: recv 1000000b from 12 tag 2
+l8: recv 1000000b from 10 tag 4
+l9: recv 1000000b from 15 tag 4
+}
+
+rank 8 {
+l1: send 1000000b to 2 tag 0
+l2: send 1000000b to 2 tag 1
+l3: send 1000000b to 6 tag 2
+l4: send 1000000b to 2 tag 3
+l5: send 1000000b to 1 tag 4
+l6: recv 1000000b from 2 tag 1
+l7: recv 1000000b from 7 tag 1
+l8: recv 1000000b from 7 tag 2
+l9: recv 1000000b from 2 tag 3
+l10: recv 1000000b from 1 tag 4
+l11: recv 1000000b from 4 tag 4
+}
+
+rank 9 {
+l1: send 1000000b to 4 tag 0
+l2: send 1000000b to 1 tag 1
+l3: send 1000000b to 2 tag 2
+l4: send 1000000b to 3 tag 3
+l5: send 1000000b to 0 tag 4
+l6: recv 1000000b from 6 tag 0
+l7: recv 1000000b from 6 tag 2
+l8: recv 1000000b from 0 tag 3
+l9: recv 1000000b from 3 tag 3
+l10: recv 1000000b from 7 tag 4
+}
+
+rank 10 {
+l1: send 1000000b to 6 tag 0
+l2: send 1000000b to 6 tag 1
+l3: send 1000000b to 3 tag 2
+l4: send 1000000b to 3 tag 3
+l5: send 1000000b to 7 tag 4
+l6: recv 1000000b from 0 tag 0
+l7: recv 1000000b from 0 tag 1
+l8: recv 1000000b from 4 tag 1
+}
+
+rank 11 {
+l1: send 1000000b to 2 tag 0
+l2: send 1000000b to 3 tag 1
+l3: send 1000000b to 2 tag 2
+l4: send 1000000b to 3 tag 3
+l5: send 1000000b to 2 tag 4
+l6: recv 1000000b from 3 tag 0
+l7: recv 1000000b from 7 tag 0
+l8: recv 1000000b from 5 tag 3
+l9: recv 1000000b from 2 tag 4
+}
+
+rank 12 {
+l1: send 1000000b to 0 tag 0
+l2: send 1000000b to 7 tag 1
+l3: send 1000000b to 7 tag 2
+l4: send 1000000b to 2 tag 3
+l5: send 1000000b to 2 tag 4
+l6: recv 1000000b from 1 tag 0
+l7: recv 1000000b from 2 tag 0
+l8: recv 1000000b from 4 tag 0
+l9: recv 1000000b from 6 tag 1
+l10: recv 1000000b from 0 tag 2
+l11: recv 1000000b from 6 tag 4
+}
+
+rank 13 {
+l1: send 1000000b to 0 tag 0
+l2: send 1000000b to 1 tag 1
+l3: send 1000000b to 4 tag 2
+l4: send 1000000b to 3 tag 3
+l5: send 1000000b to 3 tag 4
+l6: recv 1000000b from 5 tag 0
+l7: recv 1000000b from 1 tag 1
+l8: recv 1000000b from 2 tag 2
+l9: recv 1000000b from 3 tag 2
+l10: recv 1000000b from 4 tag 2
+l11: recv 1000000b from 4 tag 3
+l12: recv 1000000b from 6 tag 3
+l13: recv 1000000b from 7 tag 3
+l14: recv 1000000b from 0 tag 4
+}
+
+rank 14 {
+l1: send 1000000b to 0 tag 0
+l2: send 1000000b to 4 tag 1
+l3: send 1000000b to 4 tag 2
+l4: send 1000000b to 1 tag 3
+l5: send 1000000b to 4 tag 4
+l6: recv 1000000b from 3 tag 4
+l7: recv 1000000b from 5 tag 4
+}
+
+rank 15 {
+l1: send 1000000b to 3 tag 0
+l2: send 1000000b to 5 tag 1
+l3: send 1000000b to 4 tag 2
+l4: send 1000000b to 3 tag 3
+l5: send 1000000b to 7 tag 4
+l6: recv 1000000b from 3 tag 1
+l7: recv 1000000b from 5 tag 1
+l8: recv 1000000b from 1 tag 2
+l9: recv 1000000b from 5 tag 2
+l10: recv 1000000b from 1 tag 3
+}

@@ -89,11 +89,11 @@ class LogSimInterface {
     vector<NdpSrc *> _ndpSrcVector;
     ProtocolName _protocolName;
     NdpPullPacer *_pacer;
-    NdpRtxTimerScanner *_ndpRtxScanner;
+    NdpRtxTimerScanner *_ndpRtxScanner = NULL;
     int _queuesize;
-    UecRtxTimerScanner *_uecRtxScanner;
-    UecDropRtxTimerScanner *_uecDropRtxScanner;
-    SwiftTrimmingRtxTimerScanner *_swiftTrimmingRtxScanner;
+    UecRtxTimerScanner *_uecRtxScanner = NULL;
+    UecDropRtxTimerScanner *_uecDropRtxScanner = NULL;
+    SwiftTrimmingRtxTimerScanner *_swiftTrimmingRtxScanner = NULL;
     std::unordered_map<int, NdpPullPacer *> _puller_map;
     bool _use_good_entropies;
     bool _ignore_ecn_ack;

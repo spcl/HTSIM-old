@@ -253,6 +253,9 @@ void CompositeQueue::receivePacket(Packet &pkt) {
 
                 if (_drop_when_full) {
                     // Dropping Packet and returning
+                    /*printf("Queue Size %d - Max %d\n", _queuesize_low,
+                           _maxsize);*/
+                    printf("Dropping a PKT\n");
                     pkt.free();
                     return;
                 }
@@ -346,11 +349,17 @@ void CompositeQueue::receivePacket(Packet &pkt) {
             // _enqueued_high.size() << " ] STRIP" << endl;
             /* printf("Trimming at %s - Packet PathID %d\n", _nodename.c_str(),
                     pkt.pathid());*/
-            if (_drop_when_full) {
-                // Dropping Packet and returning
-                pkt.free();
-                return;
+            if (_queuesize_low + pkt.size() > _maxsize) {
+                if (_drop_when_full) {
+                    // Dropping Packet and returning
+                    /*printf("Queue Size %d - Max %d\n", _queuesize_low,
+                           _maxsize);*/
+                    printf("Dropping a PKT\n");
+                    pkt.free();
+                    return;
+                }
             }
+
             pkt.strip_payload();
             _num_stripped++;
             pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_TRIM);

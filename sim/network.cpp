@@ -232,6 +232,15 @@ string Packet::str() const {
     case UECNACK:
         s = "UECNACK";
         break;
+    case UEC_DROP:
+        s = "UEC_DROP";
+        break;
+    case UECACK_DROP:
+        s = "UECACK_DROP";
+        break;
+    case UECNACK_DROP:
+        s = "UECNACK_DROP";
+        break;
     }
     return s;
 }

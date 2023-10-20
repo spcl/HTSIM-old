@@ -12,6 +12,7 @@
 //#include "datacenter/logsim-interface.h"
 #include "network.h"
 #include "swifttrimmingpacket.h"
+#include "trigger.h"
 #include <functional>
 #include <list>
 #include <map>
@@ -33,7 +34,9 @@ class SentPacketSwift {
     bool timedOut;
 };
 
-class SwiftTrimmingSrc : public PacketSink, public EventSource {
+class SwiftTrimmingSrc : public PacketSink,
+                         public EventSource,
+                         public TriggerTarget {
     friend class SwiftTrimmingSink;
 
   public:
@@ -60,6 +63,11 @@ class SwiftTrimmingSrc : public PacketSink, public EventSource {
         printf("First Dest %d\n", dst);
         _dstaddr = dst;
     }
+
+    // called from a trigger to start the flow.
+    virtual void activate() { startflow(); }
+
+    void set_end_trigger(Trigger &trigger);
 
     inline void set_flowid(flowid_t flow_id) { _flow.set_flowid(flow_id); }
     inline flowid_t flow_id() const { return _flow.flow_id(); }
@@ -146,7 +154,7 @@ class SwiftTrimmingSrc : public PacketSink, public EventSource {
     virtual void rtx_timer_hook(simtime_picosec now, simtime_picosec period);
     void update_rtt(simtime_picosec delay);
     simtime_picosec targetDelay(uint32_t cwnd, const Route &route);
-
+    Trigger *_end_trigger = 0;
     // should really be private, but loggers want to see:
     uint64_t _highest_sent; // seqno is in bytes
     bool need_fast_drop = false;
@@ -377,7 +385,7 @@ class SwiftTrimmingSink : public PacketSink, public DataReceiver {
 
     void receivePacket(Packet &pkt) override;
     const string &nodename() override;
-
+    void set_end_trigger(Trigger &trigger);
     uint64_t cumulative_ack() override;
     uint32_t drops() override;
     void connect(SwiftTrimmingSrc &src, const Route *route);
@@ -389,6 +397,7 @@ class SwiftTrimmingSink : public PacketSink, public DataReceiver {
         printf("Set Strategy Num %d\n", _route_strategy);
     }
     static RouteStrategy _route_strategy;
+    Trigger *_end_trigger = 0;
 
   private:
     SwiftTrimmingAck::seq_t _cumulative_ack;

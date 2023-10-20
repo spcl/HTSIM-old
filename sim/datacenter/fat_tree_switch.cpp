@@ -69,9 +69,22 @@ void FatTreeSwitch::receivePacket(Packet &pkt) {
         if ((pkt.hop_count == 1) &&
             (pkt.type() == UEC || pkt.type() == NDP ||
              pkt.type() == SWIFTTRIMMING || pkt.type() == UEC_DROP)) {
+            /*printf("From %d - Hope == 1 %lu\n", pkt.from,
+                   SINGLE_PKT_TRASMISSION_TIME_MODERN);*/
             pkt.set_ts(GLOBAL_TIME -
                        (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000) -
                        (LINK_DELAY_MODERN * 1000));
+            if (COLLECT_DATA) {
+                // Sent
+                std::string file_name = PROJECT_ROOT_PATH /
+                                        ("sim/output/sent/s" +
+                                         std::to_string(this->from) + ".txt ");
+                std::ofstream MyFile(file_name, std::ios_base::app);
+
+                MyFile << (GLOBAL_TIME) / 1000 << "," << 1 << std::endl;
+
+                MyFile.close();
+            }
 
             /*printf("ID %d - Hop %d - Previous time %lu - New time %lu - "
                    "%lu %lu - Name %s\n",

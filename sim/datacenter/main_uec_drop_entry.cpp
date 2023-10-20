@@ -469,6 +469,7 @@ int main(int argc, char **argv) {
 
     UecDropSrc::setRouteStrategy(route_strategy);
     UecDropSink::setRouteStrategy(route_strategy);
+    CompositeQueue::set_drop_when_full(true);
 
     // Route *routeout, *routein;
     // double extrastarttime;
@@ -567,7 +568,7 @@ int main(int argc, char **argv) {
     printf("Starting LGS Interface");
     LogSimInterface *lgs = new LogSimInterface(NULL, &traffic_logger, eventlist,
                                                top, net_paths);
-    lgs->set_protocol(UEC_PROTOCOL);
+    lgs->set_protocol(UEC_DROP_PROTOCOL);
     lgs->set_cwd(cwnd);
     lgs->set_queue_size(queuesize);
     lgs->setReuse(reuse_entropy);

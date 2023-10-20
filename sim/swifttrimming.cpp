@@ -107,7 +107,7 @@ SwiftTrimmingSrc::SwiftTrimmingSrc(SwiftTrimmingLogger *logger,
     }
 
     // swift cc init
-    _ai = 0.5;      // increase constant.  Value is a guess
+    _ai = 2;        // increase constant.  Value is a guess
     _beta = 1;      // decrease constant.  Value is a guess
     _max_mdf = 0.5; // max multiplicate decrease factor.  Value is a guess
     _base_delay = _base_rtt; // configured base target delay.  To be confirmed
@@ -124,6 +124,10 @@ SwiftTrimmingSrc::SwiftTrimmingSrc(SwiftTrimmingLogger *logger,
 
     // cout << "_fs_alpha: " << _fs_alpha << endl;
     _fs_beta = -_fs_alpha / sqrt(_fs_max_cwnd);
+}
+
+void SwiftTrimmingSrc::set_end_trigger(Trigger &end_trigger) {
+    _end_trigger = &end_trigger;
 }
 
 // Add deconstructor and save data once we are done.
@@ -893,8 +897,14 @@ void SwiftTrimmingSrc::processAck(SwiftTrimmingAck &pkt, bool force_marked) {
         cout << "Flow " << nodename() << " completion time is "
              << timeAsMs(eventlist().now() - _flow_start_time) << endl;
 
-        printf("Completion Time Flow is %lu\n",
-               eventlist().now() - _flow_start_time);
+        printf("Completion Time Flow is %lu - Overall Time %lu\n",
+               eventlist().now() - _flow_start_time, GLOBAL_TIME);
+        printf("Overall Completion at %lu\n", GLOBAL_TIME);
+        if (_end_trigger) {
+            _end_trigger->activate();
+        }
+
+        return;
     }
 
     if (seqno > _last_acked || true) { // TODO: new ack, we don't care about
@@ -1604,6 +1614,10 @@ void SwiftTrimmingSrc::retransmit_packet() {
 SwiftTrimmingSink::SwiftTrimmingSink()
         : DataReceiver("sink"), _cumulative_ack{0}, _drops{0} {
     _nodename = "uecsink";
+}
+
+void SwiftTrimmingSink::set_end_trigger(Trigger &end_trigger) {
+    _end_trigger = &end_trigger;
 }
 
 void SwiftTrimmingSink::send_nack(simtime_picosec ts, bool marked,

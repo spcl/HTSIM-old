@@ -30,6 +30,7 @@ double UecSrc::y_gain = 1;
 double UecSrc::x_gain = 0.15;
 double UecSrc::z_gain = 1;
 double UecSrc::w_gain = 1;
+bool UecSrc::disable_case_4 = false;
 bool UecSrc::disable_case_3 = false;
 double UecSrc::starting_cwnd = 1;
 double UecSrc::bonus_drop = 1;
@@ -57,12 +58,9 @@ UecSrc::UecSrc(UecLogger *logger, TrafficLogger *pktLogger,
     // new CC variables
     _hop_count = hops;
     _base_rtt = ((_hop_count * LINK_DELAY_MODERN) +
-                 (PKT_SIZE_MODERN * 8 / LINK_SPEED_MODERN * 1) +
-                 (PKT_SIZE_MODERN * 8 / (LINK_SPEED_MODERN / ratio_os_stage_1) *
-                  2) +
-                 (_hop_count * LINK_DELAY_MODERN) +
-                 (64 * 8 / LINK_SPEED_MODERN * 1) +
-                 (64 * 8 / (LINK_SPEED_MODERN / ratio_os_stage_1) * 2)) *
+                 ((PKT_SIZE_MODERN + 64) * 8 / LINK_SPEED_MODERN * _hop_count) +
+                 +(_hop_count * LINK_DELAY_MODERN) +
+                 (64 * 8 / LINK_SPEED_MODERN * _hop_count)) *
                 1000;
     _target_rtt =
             _base_rtt * ((target_rtt_percentage_over_base + 1) / 100.0 + 1);
@@ -284,6 +282,10 @@ UecSrc::~UecSrc() {
 }
 
 void UecSrc::doNextEvent() { startflow(); }
+
+void UecSrc::set_end_trigger(Trigger &end_trigger) {
+    _end_trigger = &end_trigger;
+}
 
 std::size_t UecSrc::get_sent_packet_idx(uint32_t pkt_seqno) {
     for (std::size_t i = 0; i < _sent_packets.size(); ++i) {
@@ -530,10 +532,10 @@ void UecSrc::processNack(UecNack &pkt) {
             do_fast_drop(true);
         }
         if (count_received > ignore_for) {
-            reduce_cwnd(uint64_t(_mss * 1));
+            reduce_cwnd(uint64_t(_mss * 0.5));
         }
     } else {
-        reduce_cwnd(uint64_t(_mss * 1));
+        reduce_cwnd(uint64_t(_mss * 0.5));
     }
     check_limits_cwnd();
 
@@ -652,20 +654,7 @@ int UecSrc::choose_route() {
         break;
     }
     case ECMP_RANDOM_ECN: {
-        if (_highest_sent < _maxcwnd) { //_mss*_paths.size()
-            _crt_path++;
-            if (_crt_path == _paths.size()) {
-                // permute_paths();
-                _crt_path = 0;
-            }
-        } else {
-            if (_next_pathid == -1) {
-                assert(_paths.size() > 0);
-                _crt_path = random() % _paths.size();
-            } else {
-                _crt_path = _next_pathid;
-            }
-        }
+        _crt_path = from;
         break;
     }
     case ECMP_FIB_ECN: {
@@ -818,6 +807,7 @@ void UecSrc::processBts(UecPacket *pkt) {
 void UecSrc::processAck(UecAck &pkt, bool force_marked) {
     UecAck::seq_t seqno = pkt.ackno();
     simtime_picosec ts = pkt.ts();
+    // printf("Received ACK\n");
 
     consecutive_nack = 0;
     bool marked = pkt.flags() &
@@ -870,8 +860,14 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
         cout << "Flow " << nodename() << " completion time is "
              << timeAsMs(eventlist().now() - _flow_start_time) << endl;
 
-        printf("Completion Time Flow is %lu\n",
-               eventlist().now() - _flow_start_time);
+        printf("Completion Time Flow is %lu - Overall Time %lu\n",
+               eventlist().now() - _flow_start_time, GLOBAL_TIME);
+
+        printf("Overall Completion at %lu\n", GLOBAL_TIME);
+        if (_end_trigger) {
+            _end_trigger->activate();
+        }
+        return;
     }
 
     if (seqno > _last_acked || true) { // TODO: new ack, we don't care about
@@ -1187,13 +1183,18 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
             // Delay Logic, Version B Logic
         } else if (algorithm_type == "delayB") {
 
+            /*printf("From %d - Changing Windows - Consecutive Good %d - Cwnd "
+                   "%d - Count %d vs %d\n",
+                   from, counter_consecutive_good_bytes, _cwnd, count_received,
+                   ignore_for);*/
+
             if (use_fast_drop) {
                 if (count_received >= ignore_for) {
                     do_fast_drop(false);
                 }
             }
 
-            if (count_received < ignore_for) {
+            if (count_received < ignore_for && ecn) {
                 return;
             }
 
@@ -1206,7 +1207,10 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 _cwnd += min(uint32_t((((_target_rtt - rtt) / (double)rtt) *
                                        y_gain * _mss * (_mss / (double)_cwnd))),
                              uint32_t(_mss));
-                _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
+
+                if (!disable_case_4) {
+                    _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
+                }
 
                 if (COLLECT_DATA) {
                     _list_medium_increase_event.push_back(
@@ -1216,9 +1220,15 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 }
                 // Case 2 Hybrid Based Decrease || RTT Decrease
             } else if (ecn && rtt > _target_rtt) {
-                _cwnd -= min((w_gain * ((rtt - (double)_target_rtt) / rtt) *
-                              _mss) + _cwnd / (double)_bdp * z_gain * _mss,
-                             (double)_mss);
+                if (!disable_case_3) {
+                    _cwnd -= min((w_gain * ((rtt - (double)_target_rtt) / rtt) *
+                                  _mss) + _cwnd / (double)_bdp * z_gain * _mss,
+                                 (double)_mss);
+                } else {
+                    _cwnd -= min((w_gain * ((rtt - (double)_target_rtt) / rtt) *
+                                  _mss),
+                                 (double)_mss);
+                }
                 if (COLLECT_DATA) {
                     count_case_2.push_back(
                             std::make_pair(eventlist().now() / 1000, 1));
@@ -1236,7 +1246,80 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 // Case 4
             } else if (!ecn && rtt > _target_rtt) {
                 // Do nothing but fairness
-                _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
+                if (!disable_case_4) {
+                    _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
+                }
+                if (COLLECT_DATA) {
+                    count_case_4.push_back(
+                            std::make_pair(eventlist().now() / 1000, 1));
+                }
+            }
+
+            // Delay Logic, Version C Logic
+        } else if (algorithm_type == "delayB_rtt") {
+            if (use_fast_drop) {
+                if (count_received >= ignore_for) {
+                    do_fast_drop(false);
+                }
+            }
+
+            if (t_last_decrease == 0) {
+                t_last_decrease = eventlist().now();
+            }
+            can_decrease = (eventlist().now() - t_last_decrease) > _base_rtt;
+            if (count_received < ignore_for && ecn) {
+                return;
+            }
+
+            if ((increasing ||
+                 counter_consecutive_good_bytes > target_window) &&
+                use_fast_increase) {
+                fast_increase();
+                // Case 1 RTT Based Increase
+            } else if (!ecn && rtt < _target_rtt) {
+                _cwnd += min(uint32_t((((_target_rtt - rtt) / (double)rtt) *
+                                       y_gain * _mss * (_mss / (double)_cwnd))),
+                             uint32_t(_mss));
+
+                if (!disable_case_4) {
+                    _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
+                }
+
+                if (COLLECT_DATA) {
+                    _list_medium_increase_event.push_back(
+                            std::make_pair(eventlist().now() / 1000, 1));
+                    count_case_1.push_back(
+                            std::make_pair(eventlist().now() / 1000, 1));
+                }
+                // Case 2 Hybrid Based Decrease || RTT Decrease
+            } else if (ecn && rtt > _target_rtt && can_decrease) {
+                _cwnd -= min(
+                        ((w_gain * ((rtt - (double)_target_rtt) / rtt) * _mss) +
+                         _cwnd / (double)_bdp * z_gain * _mss) *
+                                (_cwnd / _mss),
+                        (double)_mss);
+                t_last_decrease = eventlist().now();
+                if (COLLECT_DATA) {
+                    count_case_2.push_back(
+                            std::make_pair(eventlist().now() / 1000, 1));
+                }
+                // Case 3 Gentle Decrease (Window based)
+            } else if (ecn && rtt < _target_rtt) {
+                if (!disable_case_3) {
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss *
+                                z_gain * (_cwnd / _mss));
+                    t_last_decrease = eventlist().now();
+                    if (COLLECT_DATA) {
+                        count_case_3.push_back(
+                                std::make_pair(eventlist().now() / 1000, 1));
+                    }
+                }
+                // Case 4
+            } else if (!ecn && rtt > _target_rtt) {
+                // Do nothing but fairness
+                if (!disable_case_4) {
+                    _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
+                }
                 if (COLLECT_DATA) {
                     count_case_4.push_back(
                             std::make_pair(eventlist().now() / 1000, 1));
@@ -1383,6 +1466,19 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 t_last_fairness = eventlist().now();
             }
         } else if (algorithm_type == "rtt") {
+            if (rtt < _target_rtt) {
+                _cwnd += min(uint32_t((((_target_rtt - rtt) / (double)rtt) *
+                                       y_gain * _mss * (_mss / (double)_cwnd))),
+                             uint32_t(_mss));
+                _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
+            } else if (rtt > target_rtt_percentage_over_base) {
+                if (count_received >= ignore_for) {
+                    _cwnd -= min((w_gain * ((rtt - (double)_target_rtt) / rtt) *
+                                  _mss),
+                                 (double)_mss * 0.5);
+                }
+            }
+        } else if (algorithm_type == "rtt_rtt") {
             // printf("Name Running: SMaRTT RTT Only\n");
             int b = 5;
             uint64_t custom_target_delay =
@@ -1432,15 +1528,15 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
             // printf("Name Running: SMaRTT ECN Only\n");
             if (use_fast_drop) {
                 if (count_received >= ignore_for) {
-                    do_fast_drop(false);
+                    // do_fast_drop(false);
                 }
             }
 
             if ((counter_consecutive_good_bytes > target_window) &&
                 use_fast_increase) {
-                fast_increase();
+                // fast_increase();
             } else if (!ecn) {
-                _cwnd += ((double)_mss / _cwnd) * _mss;
+                _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
             } else if (ecn) {
                 if (count_received >= ignore_for) {
                     reduce_cwnd(static_cast<double>(_mss) * 0.5);
@@ -1552,6 +1648,8 @@ void UecSrc::connect(Route *routeout, Route *routeback, UecSink &sink,
 void UecSrc::startflow() {
     ideal_x = x_gain;
     _flow_start_time = eventlist().now();
+    printf("Starting Flow from %d to %d tag %d - Time %lu\n", from, to, tag,
+           GLOBAL_TIME / 1000);
     send_packets();
 }
 
@@ -1635,18 +1733,6 @@ void UecSrc::send_packets() {
         p->flow().logTraffic(*p, *this, TrafficLogger::PKT_CREATESEND);
         p->set_ts(eventlist().now());
 
-        if (COLLECT_DATA) {
-            // Sent
-            std::string file_name =
-                    PROJECT_ROOT_PATH / ("sim/output/sent/s" +
-                                         std::to_string(this->from) + ".txt ");
-            std::ofstream MyFile(file_name, std::ios_base::app);
-
-            MyFile << (GLOBAL_TIME) / 1000 << "," << 1 << std::endl;
-
-            MyFile.close();
-        }
-
         // send packet
         _highest_sent += _mss;
         _packets_sent += _mss;
@@ -1686,8 +1772,8 @@ void UecSrc::set_paths(uint32_t no_of_paths) {
         _route_strategy != ECMP_FIB2_ECN && _route_strategy != REACTIVE_ECN &&
         _route_strategy != ECMP_RANDOM_ECN &&
         _route_strategy != ECMP_RANDOM2_ECN) {
-        cout << "Set paths (path_count) called with wrong route strategy"
-             << endl;
+        cout << "Set paths uec (path_count) called with wrong route strategy "
+             << _route_strategy << endl;
         abort();
     }
 
@@ -1910,6 +1996,10 @@ void UecSrc::retransmit_packet() {
 
 UecSink::UecSink() : DataReceiver("sink"), _cumulative_ack{0}, _drops{0} {
     _nodename = "uecsink";
+}
+
+void UecSink::set_end_trigger(Trigger &end_trigger) {
+    _end_trigger = &end_trigger;
 }
 
 void UecSink::send_nack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
@@ -2177,9 +2267,19 @@ void UecSink::set_paths(uint32_t no_of_paths) {
 
     case ECMP_FIB:
     case ECMP_FIB_ECN:
-    case ECMP_RANDOM_ECN:
     case ECMP_RANDOM2_ECN:
     case REACTIVE_ECN:
+        assert(_paths.size() == 0);
+        _paths.resize(no_of_paths);
+        _path_ids.resize(no_of_paths);
+        for (unsigned int i = 0; i < no_of_paths; i++) {
+            _paths[i] = NULL;
+            _path_ids[i] = i;
+        }
+        _crt_path = 0;
+        // permute_paths();
+        break;
+    case ECMP_RANDOM_ECN:
         assert(_paths.size() == 0);
         _paths.resize(no_of_paths);
         _path_ids.resize(no_of_paths);

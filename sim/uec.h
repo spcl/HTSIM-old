@@ -11,6 +11,7 @@
 #include "fairpullqueue.h"
 //#include "datacenter/logsim-interface.h"
 #include "network.h"
+#include "trigger.h"
 #include "uecpacket.h"
 #include <functional>
 #include <list>
@@ -33,7 +34,7 @@ class SentPacket {
     bool timedOut;
 };
 
-class UecSrc : public PacketSink, public EventSource {
+class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     friend class UecSink;
 
   public:
@@ -59,6 +60,11 @@ class UecSrc : public PacketSink, public EventSource {
         printf("First Dest %d\n", dst);
         _dstaddr = dst;
     }
+
+    // called from a trigger to start the flow.
+    virtual void activate() { startflow(); }
+
+    void set_end_trigger(Trigger &trigger);
 
     inline void set_flowid(flowid_t flow_id) { _flow.set_flowid(flow_id); }
     inline flowid_t flow_id() const { return _flow.flow_id(); }
@@ -130,6 +136,7 @@ class UecSrc : public PacketSink, public EventSource {
     static void set_w_gain(double value) { w_gain = value; }
     static void set_os_ratio_stage_1(double value) { ratio_os_stage_1 = value; }
     static void set_disable_case_3(double value) { disable_case_3 = value; }
+    static void set_disable_case_4(double value) { disable_case_4 = value; }
     static void set_starting_cwnd(double value) { starting_cwnd = value; }
     static void set_bonus_drop(double value) { bonus_drop = value; }
     static void set_buffer_drop(double value) { buffer_drop = value; }
@@ -144,6 +151,7 @@ class UecSrc : public PacketSink, public EventSource {
 
     virtual void rtx_timer_hook(simtime_picosec now, simtime_picosec period);
 
+    Trigger *_end_trigger = 0;
     // should really be private, but loggers want to see:
     uint64_t _highest_sent; // seqno is in bytes
     bool need_fast_drop = false;
@@ -211,6 +219,8 @@ class UecSrc : public PacketSink, public EventSource {
     static double z_gain;
     static double w_gain;
     static bool disable_case_3;
+    static bool disable_case_4;
+
     static double starting_cwnd;
     static double bonus_drop;
     static double buffer_drop;
@@ -361,17 +371,22 @@ class UecSink : public PacketSink, public DataReceiver {
     void receivePacket(Packet &pkt) override;
     const string &nodename() override;
 
+    void set_end_trigger(Trigger &trigger);
+
     uint64_t cumulative_ack() override;
     uint32_t drops() override;
     void connect(UecSrc &src, const Route *route);
     void set_paths(uint32_t num_paths);
     void set_src(uint32_t s) { _srcaddr = s; }
-    uint32_t from, to, tag;
+    uint32_t from = 0;
+    uint32_t to = 0;
+    uint32_t tag = 0;
     static void setRouteStrategy(RouteStrategy strat) {
         _route_strategy = strat;
         printf("Set Strategy Num %d\n", _route_strategy);
     }
     static RouteStrategy _route_strategy;
+    Trigger *_end_trigger = 0;
 
   private:
     UecAck::seq_t _cumulative_ack;

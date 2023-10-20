@@ -5,6 +5,8 @@ import seaborn as sns
 from pathlib import Path
 import matplotlib.pyplot as plt
 import argparse
+from  matplotlib.ticker import FuncFormatter
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_file', dest='input_file', type=str, help='File to parse.')
@@ -43,7 +45,7 @@ for files in sorted(pathlist):
         i += 1
 
 # set a grey background (use sns.set_theme() if seaborn version 0.11.0 or above) 
-sns.set(style="darkgrid")
+plt.figure(figsize=(7, 5))
 
 print(list_names)
 
@@ -58,25 +60,31 @@ for idx, names in enumerate(list_names):
 #hue_list = ['Group 1'] * len(list_fct[0]) + ['Group 2'] * len(list_fct[1])
 
 # Create the violin plot
+print(hue_list)
 my = sns.violinplot(x=hue_list, y=combined_data, cut=0)
-
+my.set_axisbelow(True)
 yticks, ylabels = plt.yticks()
 xticks, xlabels = plt.xticks()
-
+cax = my.figure.axes[-1]
+cax.tick_params(labelsize=15)
+my.set_yticklabels([str(round(i,1)) for i in my.get_yticks()], fontsize = 15)
 # set the x-axis ticklabel size
-my.set_xticklabels(xlabels, size=9)
+my.set_xticklabels(xlabels, size=12.4)
 
 #my.axhline(args.best_time, ls='--', color='black', linewidth=1.5, alpha=.6)
 
+plt.xlabel('Version of SMaRTT',fontsize=17)
+plt.ylabel('FCT (μs)',fontsize=17)
+plt.title('Flow Completion Time Permutation 4:1 4MiB\nLink Speed 800Gbps - 4KiB MTU',fontsize=17)
+plt.grid()  #just add this
+plt.gca().yaxis.set_major_formatter(FuncFormatter(lambda x, _: int(x)))
 
-my.set_title('Individual Flow Completion Time')
-my.set_ylabel('FCT (us)')
-my.set_xlabel('Sender Based Trimming UEC')
- 
 # Make boxplot for one group only
+plt.legend([],[], frameon=False)
 plt.tight_layout()
 if (args.name is not None):
     plt.savefig(folder + "/{}.png".format(args.name), bbox_inches='tight')
+    plt.savefig(folder + "/{}.pdf".format(args.name), bbox_inches='tight')
 else:
     plt.savefig(folder + "/fct.png", bbox_inches='tight')
 #plt.show()

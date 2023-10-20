@@ -261,7 +261,10 @@ class Packet {
     int pathid_echo = 0;
     int pathid_sender = 0;
 
-    uint32_t from, to, tag, my_idx;
+    uint32_t from = 0;
+    uint32_t to = 0;
+    uint32_t tag = 0;
+    uint32_t my_idx = 0;
     int previous_queue_bts = 0;
     const Route *get_route() { return _route; };
     bool _queue_full; // Queue is full, BTS indicates packet drop

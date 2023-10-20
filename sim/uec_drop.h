@@ -21,16 +21,19 @@ class UecDropSink;
 
 class SentPacketUecDrop {
   public:
-    SentPacketUecDrop(simtime_picosec t, uint64_t s, bool a, bool n, bool to)
-            : timer{t}, seqno{s}, acked{a}, nacked{n}, timedOut{to} {}
+    SentPacketUecDrop(simtime_picosec t, uint64_t s, bool a, bool n, bool to,
+                      int nR)
+            : timer{t}, seqno{s}, acked{a}, nacked{n}, timedOut{to},
+              nRetrans{nR} {}
     SentPacketUecDrop(const SentPacketUecDrop &sp)
             : timer{sp.timer}, seqno{sp.seqno}, acked{sp.acked},
-              nacked{sp.nacked}, timedOut{sp.timedOut} {}
+              nacked{sp.nacked}, timedOut{sp.timedOut}, nRetrans{sp.nRetrans} {}
     simtime_picosec timer;
     uint64_t seqno;
     bool acked;
     bool nacked;
     bool timedOut;
+    int nRetrans;
 };
 
 class UecDropSrc : public PacketSink, public EventSource {
@@ -135,7 +138,7 @@ class UecDropSrc : public PacketSink, public EventSource {
     static void set_bonus_drop(double value) { bonus_drop = value; }
     static void set_buffer_drop(double value) { buffer_drop = value; }
     static void setRouteStrategy(RouteStrategy strat) {
-        printf("Set Strategy Num %d\n", _route_strategy);
+        printf("Set Strategy Drop Num %d\n", _route_strategy);
         _route_strategy = strat;
     }
 
@@ -173,6 +176,7 @@ class UecDropSrc : public PacketSink, public EventSource {
     uint64_t _flow_start_time;
     uint64_t _next_check_window;
     uint64_t next_window_end = 0;
+    uint64_t last_fast_drop_event = 0;
     bool update_next_window = true;
     bool _start_timer_window = true;
     bool stop_decrease = false;

@@ -30,8 +30,10 @@ y_gain = 0
 z_gain = 0
 w_gain = 0
 DisableCase3 = 0
+DisableCase4 = 0
 bonus_drop_value = 0
 buffer_drop_value = 0
+overall_completion = []
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_file', dest='input_file', type=str, help='File to parse.')
@@ -39,6 +41,8 @@ parser.add_argument('--folder', dest='folder', type=str, help='Folder to parse a
 parser.add_argument('--scaling_plot', dest='scaling_plot', type=str, help='Scaling Plot Option', default=None)
 parser.add_argument('--parameter_analysis', dest='parameter_analysis', type=str, help='Parameter Analysis Option', default=None)
 parser.add_argument('--complex_name', dest='complex_name', type=str, help='Adv Name', default=None)
+parser.add_argument('--degree', dest='degree', type=str, help='degree incast', default="0")
+
 args = parser.parse_args()
 
 folder = args.folder
@@ -75,6 +79,11 @@ with open(folder + "/" + file_name) as file:
         if result:
             DisableCase3 = int(result.group(1))
 
+        # DisableCase4
+        result = re.search(r"DisableCase4: (\d+)", line)
+        if result:
+            DisableCase4 = int(result.group(1))
+
         # KMin
         result = re.search(r"KMin: (\d+)", line)
         if result:
@@ -104,6 +113,11 @@ with open(folder + "/" + file_name) as file:
         result = re.search(r"TargetRTT: (\d+)", line)
         if result:
             TargetRTT = int(result.group(1))
+
+        # TargetRTT
+        result = re.search(r"Overall Completion at (\d+)", line)
+        if result:
+            overall_completion.append(int(result.group(1)))
 
         # BW
         result = re.search(r"Speed is (\d+)", line)
@@ -170,13 +184,29 @@ with open(folder + "/" + file_name) as file:
     min_bw = (incast_size * 8 + (incast_size*8*0.03)) / (max_time - 8500)
 
 
+# Use re.search to find the first match
+pattern = r'\d+'
+matches = re.findall(pattern, args.degree)
+
+extracted_number = 0
+# Check if a match was found
+if len(matches) >= 2:
+# Extract the second matched number
+    extracted_number = matches[1]
 if (DisableCase3 == 1):
         name = name.rstrip()
         name += " No Case 3"
+if (DisableCase4 == 1):
+        name = name.rstrip()
+        name += " No Case 4"
 if (args.parameter_analysis is not None and int(args.parameter_analysis) == 1):
     file_name = folder + '/GeneratedReport{}.tmp'.format(args.complex_name)
 elif (args.scaling_plot is not None and int(args.scaling_plot) == 1):
     file_name = folder + '/GeneratedReport{}_{}.tmp'.format(name.rstrip(), size_m)
+elif (args.scaling_plot is not None and int(args.scaling_plot) == 2):
+    file_name = folder + '/GeneratedReport{}_{}.tmp'.format(name.rstrip(), extracted_number)
+elif (args.scaling_plot is not None and int(args.scaling_plot) == 3):
+    file_name = folder + '/GeneratedReport{}_{}_{}.tmp'.format(name.rstrip(), extracted_number, size_m)
 else:
     file_name = folder + '/GeneratedReport{}.tmp'.format(name.rstrip())
 
@@ -186,6 +216,17 @@ with open(file_name, 'w') as f:
 
     # BW
     f.write('Theo BW: {}\n'.format(bw_speed_gbps)) 
+
+    # KMax
+    pattern = r'\d+'
+    # Use re.search to find the first match
+    matches = re.findall(pattern, args.degree)
+
+    # Check if a match was found
+    if len(matches) >= 2:
+    # Extract the second matched number
+        extracted_number = matches[1]
+        f.write('IncastDegree: {}\n'.format(extracted_number)) 
 
     # Size Messages
     b = [0] * (len(list_fct) - len(list_size))
@@ -228,6 +269,9 @@ with open(file_name, 'w') as f:
     
     # DoExpGain
     f.write('DoExpGain: {}\n'.format(DoExpGain)) 
+
+    # DoExpGain
+    f.write('OverallCompletion: {}\n'.format(max(overall_completion)))
 
     # FastIncrease
     f.write('FastIncrease: {}\n'.format(FastIncrease)) 

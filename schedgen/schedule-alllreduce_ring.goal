@@ -1,0 +1,353 @@
+num_ranks 8
+
+rank 0 {
+l1: send 125b to 1 tag 0
+l2: recv 125b from 7 tag 0
+l3: send 125b to 1 tag 0
+l3 requires l2
+l4: recv 125b from 7 tag 0
+l5: send 125b to 1 tag 0
+l5 requires l4
+l6: recv 125b from 7 tag 0
+l7: send 125b to 1 tag 0
+l7 requires l6
+l8: recv 125b from 7 tag 0
+l9: send 125b to 1 tag 0
+l9 requires l8
+l10: recv 125b from 7 tag 0
+l11: send 125b to 1 tag 0
+l11 requires l10
+l12: recv 125b from 7 tag 0
+l13: send 125b to 1 tag 0
+l13 requires l12
+l14: recv 125b from 7 tag 0
+l15: send 125b to 1 tag 0
+l15 requires l14
+l16: recv 125b from 7 tag 0
+l17: send 125b to 1 tag 0
+l17 requires l16
+l18: recv 125b from 7 tag 0
+l19: send 125b to 1 tag 0
+l19 requires l18
+l20: recv 125b from 7 tag 0
+l21: send 125b to 1 tag 0
+l21 requires l20
+l22: recv 125b from 7 tag 0
+l23: send 125b to 1 tag 0
+l23 requires l22
+l24: recv 125b from 7 tag 0
+l25: send 125b to 1 tag 0
+l25 requires l24
+l26: recv 125b from 7 tag 0
+l27: send 125b to 1 tag 0
+l27 requires l26
+l28: recv 125b from 7 tag 0
+}
+
+rank 1 {
+l1: send 125b to 2 tag 0
+l2: recv 125b from 0 tag 0
+l3: send 125b to 2 tag 0
+l3 requires l2
+l4: recv 125b from 0 tag 0
+l5: send 125b to 2 tag 0
+l5 requires l4
+l6: recv 125b from 0 tag 0
+l7: send 125b to 2 tag 0
+l7 requires l6
+l8: recv 125b from 0 tag 0
+l9: send 125b to 2 tag 0
+l9 requires l8
+l10: recv 125b from 0 tag 0
+l11: send 125b to 2 tag 0
+l11 requires l10
+l12: recv 125b from 0 tag 0
+l13: send 125b to 2 tag 0
+l13 requires l12
+l14: recv 125b from 0 tag 0
+l15: send 125b to 2 tag 0
+l15 requires l14
+l16: recv 125b from 0 tag 0
+l17: send 125b to 2 tag 0
+l17 requires l16
+l18: recv 125b from 0 tag 0
+l19: send 125b to 2 tag 0
+l19 requires l18
+l20: recv 125b from 0 tag 0
+l21: send 125b to 2 tag 0
+l21 requires l20
+l22: recv 125b from 0 tag 0
+l23: send 125b to 2 tag 0
+l23 requires l22
+l24: recv 125b from 0 tag 0
+l25: send 125b to 2 tag 0
+l25 requires l24
+l26: recv 125b from 0 tag 0
+l27: send 125b to 2 tag 0
+l27 requires l26
+l28: recv 125b from 0 tag 0
+}
+
+rank 2 {
+l1: send 125b to 3 tag 0
+l2: recv 125b from 1 tag 0
+l3: send 125b to 3 tag 0
+l3 requires l2
+l4: recv 125b from 1 tag 0
+l5: send 125b to 3 tag 0
+l5 requires l4
+l6: recv 125b from 1 tag 0
+l7: send 125b to 3 tag 0
+l7 requires l6
+l8: recv 125b from 1 tag 0
+l9: send 125b to 3 tag 0
+l9 requires l8
+l10: recv 125b from 1 tag 0
+l11: send 125b to 3 tag 0
+l11 requires l10
+l12: recv 125b from 1 tag 0
+l13: send 125b to 3 tag 0
+l13 requires l12
+l14: recv 125b from 1 tag 0
+l15: send 125b to 3 tag 0
+l15 requires l14
+l16: recv 125b from 1 tag 0
+l17: send 125b to 3 tag 0
+l17 requires l16
+l18: recv 125b from 1 tag 0
+l19: send 125b to 3 tag 0
+l19 requires l18
+l20: recv 125b from 1 tag 0
+l21: send 125b to 3 tag 0
+l21 requires l20
+l22: recv 125b from 1 tag 0
+l23: send 125b to 3 tag 0
+l23 requires l22
+l24: recv 125b from 1 tag 0
+l25: send 125b to 3 tag 0
+l25 requires l24
+l26: recv 125b from 1 tag 0
+l27: send 125b to 3 tag 0
+l27 requires l26
+l28: recv 125b from 1 tag 0
+}
+
+rank 3 {
+l1: send 125b to 4 tag 0
+l2: recv 125b from 2 tag 0
+l3: send 125b to 4 tag 0
+l3 requires l2
+l4: recv 125b from 2 tag 0
+l5: send 125b to 4 tag 0
+l5 requires l4
+l6: recv 125b from 2 tag 0
+l7: send 125b to 4 tag 0
+l7 requires l6
+l8: recv 125b from 2 tag 0
+l9: send 125b to 4 tag 0
+l9 requires l8
+l10: recv 125b from 2 tag 0
+l11: send 125b to 4 tag 0
+l11 requires l10
+l12: recv 125b from 2 tag 0
+l13: send 125b to 4 tag 0
+l13 requires l12
+l14: recv 125b from 2 tag 0
+l15: send 125b to 4 tag 0
+l15 requires l14
+l16: recv 125b from 2 tag 0
+l17: send 125b to 4 tag 0
+l17 requires l16
+l18: recv 125b from 2 tag 0
+l19: send 125b to 4 tag 0
+l19 requires l18
+l20: recv 125b from 2 tag 0
+l21: send 125b to 4 tag 0
+l21 requires l20
+l22: recv 125b from 2 tag 0
+l23: send 125b to 4 tag 0
+l23 requires l22
+l24: recv 125b from 2 tag 0
+l25: send 125b to 4 tag 0
+l25 requires l24
+l26: recv 125b from 2 tag 0
+l27: send 125b to 4 tag 0
+l27 requires l26
+l28: recv 125b from 2 tag 0
+}
+
+rank 4 {
+l1: send 125b to 5 tag 0
+l2: recv 125b from 3 tag 0
+l3: send 125b to 5 tag 0
+l3 requires l2
+l4: recv 125b from 3 tag 0
+l5: send 125b to 5 tag 0
+l5 requires l4
+l6: recv 125b from 3 tag 0
+l7: send 125b to 5 tag 0
+l7 requires l6
+l8: recv 125b from 3 tag 0
+l9: send 125b to 5 tag 0
+l9 requires l8
+l10: recv 125b from 3 tag 0
+l11: send 125b to 5 tag 0
+l11 requires l10
+l12: recv 125b from 3 tag 0
+l13: send 125b to 5 tag 0
+l13 requires l12
+l14: recv 125b from 3 tag 0
+l15: send 125b to 5 tag 0
+l15 requires l14
+l16: recv 125b from 3 tag 0
+l17: send 125b to 5 tag 0
+l17 requires l16
+l18: recv 125b from 3 tag 0
+l19: send 125b to 5 tag 0
+l19 requires l18
+l20: recv 125b from 3 tag 0
+l21: send 125b to 5 tag 0
+l21 requires l20
+l22: recv 125b from 3 tag 0
+l23: send 125b to 5 tag 0
+l23 requires l22
+l24: recv 125b from 3 tag 0
+l25: send 125b to 5 tag 0
+l25 requires l24
+l26: recv 125b from 3 tag 0
+l27: send 125b to 5 tag 0
+l27 requires l26
+l28: recv 125b from 3 tag 0
+}
+
+rank 5 {
+l1: send 125b to 6 tag 0
+l2: recv 125b from 4 tag 0
+l3: send 125b to 6 tag 0
+l3 requires l2
+l4: recv 125b from 4 tag 0
+l5: send 125b to 6 tag 0
+l5 requires l4
+l6: recv 125b from 4 tag 0
+l7: send 125b to 6 tag 0
+l7 requires l6
+l8: recv 125b from 4 tag 0
+l9: send 125b to 6 tag 0
+l9 requires l8
+l10: recv 125b from 4 tag 0
+l11: send 125b to 6 tag 0
+l11 requires l10
+l12: recv 125b from 4 tag 0
+l13: send 125b to 6 tag 0
+l13 requires l12
+l14: recv 125b from 4 tag 0
+l15: send 125b to 6 tag 0
+l15 requires l14
+l16: recv 125b from 4 tag 0
+l17: send 125b to 6 tag 0
+l17 requires l16
+l18: recv 125b from 4 tag 0
+l19: send 125b to 6 tag 0
+l19 requires l18
+l20: recv 125b from 4 tag 0
+l21: send 125b to 6 tag 0
+l21 requires l20
+l22: recv 125b from 4 tag 0
+l23: send 125b to 6 tag 0
+l23 requires l22
+l24: recv 125b from 4 tag 0
+l25: send 125b to 6 tag 0
+l25 requires l24
+l26: recv 125b from 4 tag 0
+l27: send 125b to 6 tag 0
+l27 requires l26
+l28: recv 125b from 4 tag 0
+}
+
+rank 6 {
+l1: send 125b to 7 tag 0
+l2: recv 125b from 5 tag 0
+l3: send 125b to 7 tag 0
+l3 requires l2
+l4: recv 125b from 5 tag 0
+l5: send 125b to 7 tag 0
+l5 requires l4
+l6: recv 125b from 5 tag 0
+l7: send 125b to 7 tag 0
+l7 requires l6
+l8: recv 125b from 5 tag 0
+l9: send 125b to 7 tag 0
+l9 requires l8
+l10: recv 125b from 5 tag 0
+l11: send 125b to 7 tag 0
+l11 requires l10
+l12: recv 125b from 5 tag 0
+l13: send 125b to 7 tag 0
+l13 requires l12
+l14: recv 125b from 5 tag 0
+l15: send 125b to 7 tag 0
+l15 requires l14
+l16: recv 125b from 5 tag 0
+l17: send 125b to 7 tag 0
+l17 requires l16
+l18: recv 125b from 5 tag 0
+l19: send 125b to 7 tag 0
+l19 requires l18
+l20: recv 125b from 5 tag 0
+l21: send 125b to 7 tag 0
+l21 requires l20
+l22: recv 125b from 5 tag 0
+l23: send 125b to 7 tag 0
+l23 requires l22
+l24: recv 125b from 5 tag 0
+l25: send 125b to 7 tag 0
+l25 requires l24
+l26: recv 125b from 5 tag 0
+l27: send 125b to 7 tag 0
+l27 requires l26
+l28: recv 125b from 5 tag 0
+}
+
+rank 7 {
+l1: send 125b to 0 tag 0
+l2: recv 125b from 6 tag 0
+l3: send 125b to 0 tag 0
+l3 requires l2
+l4: recv 125b from 6 tag 0
+l5: send 125b to 0 tag 0
+l5 requires l4
+l6: recv 125b from 6 tag 0
+l7: send 125b to 0 tag 0
+l7 requires l6
+l8: recv 125b from 6 tag 0
+l9: send 125b to 0 tag 0
+l9 requires l8
+l10: recv 125b from 6 tag 0
+l11: send 125b to 0 tag 0
+l11 requires l10
+l12: recv 125b from 6 tag 0
+l13: send 125b to 0 tag 0
+l13 requires l12
+l14: recv 125b from 6 tag 0
+l15: send 125b to 0 tag 0
+l15 requires l14
+l16: recv 125b from 6 tag 0
+l17: send 125b to 0 tag 0
+l17 requires l16
+l18: recv 125b from 6 tag 0
+l19: send 125b to 0 tag 0
+l19 requires l18
+l20: recv 125b from 6 tag 0
+l21: send 125b to 0 tag 0
+l21 requires l20
+l22: recv 125b from 6 tag 0
+l23: send 125b to 0 tag 0
+l23 requires l22
+l24: recv 125b from 6 tag 0
+l25: send 125b to 0 tag 0
+l25 requires l24
+l26: recv 125b from 6 tag 0
+l27: send 125b to 0 tag 0
+l27 requires l26
+l28: recv 125b from 6 tag 0
+}

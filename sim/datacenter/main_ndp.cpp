@@ -105,19 +105,30 @@ void filter_paths(uint32_t src_id, vector<const Route *> &paths,
 }
 
 int main(int argc, char **argv) {
+    Packet::set_packet_size(PKT_SIZE_MODERN);
+    eventlist.setEndtime(timeFromSec(1));
     Clock c(timeFromSec(5 / 100.), eventlist);
-    mem_b queuesize = DEFAULT_QUEUE_SIZE;
-    linkspeed_bps linkspeed = speedFromMbps((double)HOST_NIC);
-    int packet_size = 9000;
-    uint32_t path_entropy_size = 10000000;
-    uint32_t no_of_conns = 0, cwnd = 15, no_of_nodes = DEFAULT_NODES;
-    uint32_t tiers = 3;    // we support 2 and 3 tier fattrees
-    double logtime = 0.25; // ms;
+    mem_b queuesize = INFINITE_BUFFER_SIZE;
+    int no_of_conns = 0, cwnd = 40, no_of_nodes = DEFAULT_NODES;
     stringstream filename(ios_base::out);
-    simtime_picosec hop_latency = timeFromUs((uint32_t)1);
-    simtime_picosec switch_latency = timeFromUs((uint32_t)0);
-    queue_type qt = COMPOSITE;
-
+    RouteStrategy route_strategy = ECMP_FIB;
+    std::string goal_filename;
+    linkspeed_bps linkspeed = speedFromMbps((double)HOST_NIC);
+    simtime_picosec hop_latency = timeFromNs((uint32_t)RTT);
+    simtime_picosec switch_latency = timeFromNs((uint32_t)0);
+    int packet_size = 2048;
+    int seed = -1;
+    int number_entropies = 256;
+    int fat_tree_k = 1; // 1:1 default
+    bool collect_data = false;
+    COLLECT_DATA = collect_data;
+    int kmin = -1;
+    int kmax = -1;
+    int ratio_os_stage_1 = 1;
+    int flowsize = -1;
+    simtime_picosec endtime = timeFromMs(1.2);
+    char *tm_file = NULL;
+    char *topo_file = NULL;
     bool log_sink = false;
     bool rts = false;
     bool log_tor_downqueue = false;
@@ -125,217 +136,94 @@ int main(int argc, char **argv) {
     bool log_traffic = false;
     bool log_switches = false;
     bool log_queue_usage = false;
-    double ecn_thresh = 0.5; // default marking threshold for ECN load balancing
-    RouteStrategy route_strategy = NOT_SET;
-    int seed = 13;
-    int path_burst = 1;
+
     int i = 1;
-
-    bool oversubscribed_congestion_control = false;
-
     filename << "logout.dat";
-    int end_time = 1000; // in microseconds
-
-    queue_type snd_type = FAIR_PRIO;
-
-    float ar_sticky_delta = 10;
-    FatTreeSwitch::sticky_choices ar_sticky = FatTreeSwitch::PER_PACKET;
-    uint64_t high_pfc = 15, low_pfc = 12;
-
-    char *tm_file = NULL;
 
     while (i < argc) {
         if (!strcmp(argv[i], "-o")) {
             filename.str(std::string());
             filename << argv[i + 1];
             i++;
-        } else if (!strcmp(argv[i], "-oversubscribed_cc")) {
-            oversubscribed_congestion_control = true;
         } else if (!strcmp(argv[i], "-conns")) {
             no_of_conns = atoi(argv[i + 1]);
             cout << "no_of_conns " << no_of_conns << endl;
             i++;
-        } else if (!strcmp(argv[i], "-end")) {
-            end_time = atoi(argv[i + 1]);
-            cout << "endtime(us) " << end_time << endl;
-            i++;
-        } else if (!strcmp(argv[i], "-rts")) {
-            rts = true;
-            cout << "rts enabled " << endl;
         } else if (!strcmp(argv[i], "-nodes")) {
             no_of_nodes = atoi(argv[i + 1]);
             cout << "no_of_nodes " << no_of_nodes << endl;
             i++;
-        } else if (!strcmp(argv[i], "-tiers")) {
-            tiers = atoi(argv[i + 1]);
-            cout << "tiers " << tiers << endl;
-            assert(tiers == 2 || tiers == 3);
+        } else if (!strcmp(argv[i], "-goal")) {
+            goal_filename = argv[i + 1];
             i++;
-        } else if (!strcmp(argv[i], "-queue_type")) {
-            if (!strcmp(argv[i + 1], "composite")) {
-                qt = COMPOSITE;
-            } else if (!strcmp(argv[i + 1], "composite_ecn")) {
-                qt = COMPOSITE_ECN;
-            } else if (!strcmp(argv[i + 1], "lossless")) {
-                qt = LOSSLESS;
-            } else if (!strcmp(argv[i + 1], "lossless_input")) {
-                qt = LOSSLESS_INPUT;
-            } else {
-                cout << "Unknown queue type " << argv[i + 1] << endl;
-                exit_error(argv[0]);
-            }
-            cout << "queue_type " << qt << endl;
+
+        } else if (!strcmp(argv[i], "-number_entropies")) {
+            number_entropies = atoi(argv[i + 1]);
             i++;
-        } else if (!strcmp(argv[i], "-host_queue_type")) {
-            if (!strcmp(argv[i + 1], "swift")) {
-                snd_type = SWIFT_SCHEDULER;
-            } else if (!strcmp(argv[i + 1], "prio")) {
-                snd_type = PRIORITY;
-            } else if (!strcmp(argv[i + 1], "fair_prio")) {
-                snd_type = FAIR_PRIO;
-            } else {
-                cout << "Unknown host queue type " << argv[i + 1]
-                     << " expecting one of swift|prio|fair_prio" << endl;
-                exit_error(argv[0]);
-            }
-            cout << "host queue_type " << snd_type << endl;
+        } else if (!strcmp(argv[i], "-kmax")) {
+            // kmin as percentage of queue size (0..100)
+            kmax = atoi(argv[i + 1]);
+            printf("KMax: %d\n", atoi(argv[i + 1]));
             i++;
-        } else if (!strcmp(argv[i], "-log")) {
-            if (!strcmp(argv[i + 1], "sink")) {
-                log_sink = true;
-            } else if (!strcmp(argv[i + 1], "sink")) {
-                cout << "logging sinks\n";
-                log_sink = true;
-            } else if (!strcmp(argv[i + 1], "tor_downqueue")) {
-                cout << "logging tor downqueues\n";
-                log_tor_downqueue = true;
-            } else if (!strcmp(argv[i + 1], "tor_upqueue")) {
-                cout << "logging tor upqueues\n";
-                log_tor_upqueue = true;
-            } else if (!strcmp(argv[i + 1], "switch")) {
-                cout << "logging total switch queues\n";
-                log_switches = true;
-            } else if (!strcmp(argv[i + 1], "traffic")) {
-                cout << "logging traffic\n";
-                log_traffic = true;
-            } else if (!strcmp(argv[i + 1], "queue_usage")) {
-                cout << "logging queue usage\n";
-                log_queue_usage = true;
-            } else {
-                exit_error(argv[0]);
-            }
+        } else if (!strcmp(argv[i], "-kmin")) {
+            // kmin as percentage of queue size (0..100)
+            kmin = atoi(argv[i + 1]);
+            printf("KMin: %d\n", atoi(argv[i + 1]));
             i++;
         } else if (!strcmp(argv[i], "-cwnd")) {
             cwnd = atoi(argv[i + 1]);
             cout << "cwnd " << cwnd << endl;
             i++;
-        } else if (!strcmp(argv[i], "-tm")) {
-            tm_file = argv[i + 1];
-            cout << "traffic matrix input file: " << tm_file << endl;
+        } else if (!strcmp(argv[i], "-flowsize")) {
+            flowsize = atoi(argv[i + 1]);
+            cout << "flowsize " << flowsize << endl;
             i++;
-        } else if (!strcmp(argv[i], "-q")) {
-            queuesize = atoi(argv[i + 1]);
-            i++;
-        } else if (!strcmp(argv[i], "-ecn_thresh")) {
-            // fraction of queuesize, between 0 and 1
-            ecn_thresh = atof(argv[i + 1]);
-            i++;
-        } else if (!strcmp(argv[i], "-logtime")) {
-            logtime = atof(argv[i + 1]);
-            cout << "logtime " << logtime << " ms" << endl;
+        } else if (!strcmp(argv[i], "-ratio_os_stage_1")) {
+            ratio_os_stage_1 = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-linkspeed")) {
             // linkspeed specified is in Mbps
             linkspeed = speedFromMbps(atof(argv[i + 1]));
+            LINK_SPEED_MODERN = atoi(argv[i + 1]);
+            printf("Speed is %lu\n", LINK_SPEED_MODERN);
+            LINK_SPEED_MODERN = LINK_SPEED_MODERN / 1000;
+            // Saving this for UEC reference, Gbps
             i++;
-        } else if (!strcmp(argv[i], "-seed")) {
-            seed = atoi(argv[i + 1]);
-            cout << "random seed " << seed << endl;
+        } else if (!strcmp(argv[i], "-k")) {
+            fat_tree_k = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-collect_data")) {
+            collect_data = atoi(argv[i + 1]);
+            COLLECT_DATA = collect_data;
+            i++;
+        } else if (!strcmp(argv[i], "-tm")) {
+            tm_file = argv[i + 1];
+            cout << "traffic matrix input file: " << tm_file << endl;
             i++;
         } else if (!strcmp(argv[i], "-mtu")) {
             packet_size = atoi(argv[i + 1]);
-            i++;
-        } else if (!strcmp(argv[i], "-paths")) {
-            path_entropy_size = atoi(argv[i + 1]);
-            cout << "no of paths " << path_entropy_size << endl;
-            i++;
-        } else if (!strcmp(argv[i], "-path_burst")) {
-            path_burst = atoi(argv[i + 1]);
-            cout << "path burst " << path_burst << endl;
-            i++;
-        } else if (!strcmp(argv[i], "-hop_latency")) {
-            hop_latency = timeFromUs(atof(argv[i + 1]));
-            cout << "Hop latency set to " << timeAsUs(hop_latency) << endl;
+            PKT_SIZE_MODERN =
+                    packet_size; // Saving this for UEC reference, Bytes
             i++;
         } else if (!strcmp(argv[i], "-switch_latency")) {
-            switch_latency = timeFromUs(atof(argv[i + 1]));
-            cout << "Switch latency set to " << timeAsUs(switch_latency)
-                 << endl;
+            switch_latency = timeFromNs(atof(argv[i + 1]));
             i++;
-        } else if (!strcmp(argv[i], "-ar_sticky_delta")) {
-            ar_sticky_delta = atof(argv[i + 1]);
-            cout << "Adaptive routing sticky delta " << ar_sticky_delta << "us"
-                 << endl;
+        } else if (!strcmp(argv[i], "-hop_latency")) {
+            hop_latency = timeFromNs(atof(argv[i + 1]));
+            LINK_DELAY_MODERN = hop_latency /
+                                1000; // Saving this for UEC reference, ps to ns
             i++;
-        } else if (!strcmp(argv[i], "-pfc_thresholds")) {
-            low_pfc = atoi(argv[i + 1]);
-            high_pfc = atoi(argv[i + 2]);
-            cout << "PFC thresholds high " << high_pfc << " low " << low_pfc
-                 << endl;
+        } else if (!strcmp(argv[i], "-seed")) {
+            seed = atoi(argv[i + 1]);
             i++;
-        } else if (!strcmp(argv[i], "-ar_granularity")) {
-            if (!strcmp(argv[i + 1], "packet"))
-                ar_sticky = FatTreeSwitch::PER_PACKET;
-            else if (!strcmp(argv[i + 1], "flow"))
-                ar_sticky = FatTreeSwitch::PER_FLOWLET;
-            else {
-                cout << "Expecting -ar_granularity packet|flow, found "
-                     << argv[i + 1] << endl;
-                exit(1);
-            }
-            i++;
-        } else if (!strcmp(argv[i], "-ar_method")) {
-            if (!strcmp(argv[i + 1], "pause")) {
-                cout << "Adaptive routing based on pause state " << endl;
-                FatTreeSwitch::fn = &FatTreeSwitch::compare_pause;
-            } else if (!strcmp(argv[i + 1], "queue")) {
-                cout << "Adaptive routing based on queue size " << endl;
-                FatTreeSwitch::fn = &FatTreeSwitch::compare_queuesize;
-            } else if (!strcmp(argv[i + 1], "bandwidth")) {
-                cout << "Adaptive routing based on bandwidth utilization "
-                     << endl;
-                FatTreeSwitch::fn = &FatTreeSwitch::compare_bandwidth;
-            } else if (!strcmp(argv[i + 1], "pqb")) {
-                cout << "Adaptive routing based on pause, queuesize and "
-                        "bandwidth utilization "
-                     << endl;
-                FatTreeSwitch::fn = &FatTreeSwitch::compare_pqb;
-            } else if (!strcmp(argv[i + 1], "pq")) {
-                cout << "Adaptive routing based on pause, queuesize" << endl;
-                FatTreeSwitch::fn = &FatTreeSwitch::compare_pq;
-            } else if (!strcmp(argv[i + 1], "pb")) {
-                cout << "Adaptive routing based on pause, bandwidth utilization"
-                     << endl;
-                FatTreeSwitch::fn = &FatTreeSwitch::compare_pb;
-            } else if (!strcmp(argv[i + 1], "qb")) {
-                cout << "Adaptive routing based on queuesize, bandwidth "
-                        "utilization"
-                     << endl;
-                FatTreeSwitch::fn = &FatTreeSwitch::compare_qb;
-            } else {
-                cout << "Unknown AR method expecting one of pause, queue, "
-                        "bandwidth, pqb, pq, pb, qb"
-                     << endl;
-                exit(1);
-            }
+        } else if (!strcmp(argv[i], "-q")) {
+            queuesize = (atoi(argv[i + 1]));
             i++;
         } else if (!strcmp(argv[i], "-strat")) {
             if (!strcmp(argv[i + 1], "perm")) {
                 route_strategy = SCATTER_PERMUTE;
             } else if (!strcmp(argv[i + 1], "rand")) {
                 route_strategy = SCATTER_RANDOM;
-            } else if (!strcmp(argv[i + 1], "ecmp")) {
-                route_strategy = SCATTER_ECMP;
             } else if (!strcmp(argv[i + 1], "pull")) {
                 route_strategy = PULL_BASED;
             } else if (!strcmp(argv[i + 1], "single")) {
@@ -343,106 +231,29 @@ int main(int argc, char **argv) {
             } else if (!strcmp(argv[i + 1], "ecmp_host")) {
                 route_strategy = ECMP_FIB;
                 FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
-            } else if (!strcmp(argv[i + 1], "rr_ecmp")) {
-                // this is the host route strategy;
-                route_strategy = ECMP_FIB_ECN;
-                qt = COMPOSITE_ECN_LB;
-                // this is the switch route strategy.
-                FatTreeSwitch::set_strategy(FatTreeSwitch::RR_ECMP);
-            } else if (!strcmp(argv[i + 1], "ecmp_host_ecn")) {
-                route_strategy = ECMP_FIB_ECN;
+            } else if (!strcmp(argv[i + 1], "ecmp_host_random_ecn")) {
+                route_strategy = ECMP_RANDOM_ECN;
                 FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
-                qt = COMPOSITE_ECN_LB;
-            } else if (!strcmp(argv[i + 1], "reactive_ecn")) {
-                // Jitu's suggestion for something really simple
-                // One path at a time, but switch whenever we get a trim or ecn
-                // this is the host route strategy;
-                route_strategy = REACTIVE_ECN;
+            } else if (!strcmp(argv[i + 1], "ecmp_host_random2_ecn")) {
+                route_strategy = ECMP_RANDOM2_ECN;
                 FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP);
-                qt = COMPOSITE_ECN_LB;
-            } else if (!strcmp(argv[i + 1], "ecmp_ar")) {
-                route_strategy = ECMP_FIB;
-                path_entropy_size = 1;
-                FatTreeSwitch::set_strategy(FatTreeSwitch::ADAPTIVE_ROUTING);
-            } else if (!strcmp(argv[i + 1], "ecmp_host_ar")) {
-                route_strategy = ECMP_FIB;
-                FatTreeSwitch::set_strategy(FatTreeSwitch::ECMP_ADAPTIVE);
-                // the stuff below obsolete
-                // FatTreeSwitch::set_ar_fraction(atoi(argv[i+2]));
-                // cout << "AR fraction: " << atoi(argv[i+2]) << endl;
-                // i++;
-            } else if (!strcmp(argv[i + 1], "ecmp_rr")) {
-                // switch round robin
-                route_strategy = ECMP_FIB;
-                path_entropy_size = 1;
-                FatTreeSwitch::set_strategy(FatTreeSwitch::RR);
             }
             i++;
-        } else {
-            cout << "Unknown parameter " << argv[i] << endl;
+        } else
             exit_error(argv[0]);
-        }
 
         i++;
     }
 
-    srand(seed);
-    srandom(seed);
-    cout << "Parsed args\n";
     Packet::set_packet_size(packet_size);
-
-    NdpSink::_oversubscribed_congestion_control =
-            oversubscribed_congestion_control;
-
-    if (oversubscribed_congestion_control)
-        cout << "Using oversubscribed congestion control " << endl;
-
-    FatTreeSwitch::_ar_sticky = ar_sticky;
-    FatTreeSwitch::_sticky_delta = timeFromUs(ar_sticky_delta);
-    FatTreeSwitch::_ecn_threshold_fraction = ecn_thresh;
-
-    LosslessInputQueue::_high_threshold = Packet::data_packet_size() * high_pfc;
-    LosslessInputQueue::_low_threshold = Packet::data_packet_size() * low_pfc;
-
-    eventlist.setEndtime(timeFromUs((uint32_t)end_time));
-    queuesize = memFromPkt(queuesize);
-
-    switch (route_strategy) {
-    case ECMP_FIB_ECN:
-    case REACTIVE_ECN:
-        if (qt != COMPOSITE_ECN_LB) {
-            fprintf(stderr,
-                    "Route Strategy is ECMP ECN.  Must use an ECN queue\n");
-            exit(1);
-        }
-        if (ecn_thresh <= 0 || ecn_thresh >= 1) {
-            fprintf(stderr, "Route Strategy is ECMP ECN.  ecn_thresh must be "
-                            "between 0 and 1\n");
-            exit(1);
-        }
-        // no break, fall through
-    case ECMP_FIB:
-    case SCATTER_ECMP:
-        if (path_entropy_size > 10000) {
-            fprintf(stderr, "Route Strategy is ECMP.  Must specify path count "
-                            "using -paths\n");
-            exit(1);
-        }
-        break;
-    case SINGLE_PATH:
-        if (path_entropy_size < 10000 && path_entropy_size > 1) {
-            fprintf(stderr, "Route Strategy is SINGLE_PATH, but multiple paths "
-                            "are specifiec using -paths\n");
-            exit(1);
-        }
-        break;
-    case NOT_SET:
-        fprintf(stderr, "Route Strategy not set.  Use the -strat param.  "
-                        "\nValid values are perm, rand, pull, rg and single\n");
-        exit(1);
-    default:
-        break;
+    if (seed != -1) {
+        srand(seed);
+        srandom(seed);
+    } else {
+        srand(time(NULL));
+        srandom(time(NULL));
     }
+    initializeLoggingFolders();
 
     // prepare the loggers
 
@@ -452,16 +263,6 @@ int main(int argc, char **argv) {
 
     cout << "Linkspeed set to " << linkspeed / 1000000000 << "Gbps" << endl;
     logfile.setStartTime(timeFromSec(0));
-
-    NdpSinkLoggerSampling sinkLogger =
-            NdpSinkLoggerSampling(timeFromMs(logtime), eventlist);
-    if (log_sink) {
-        logfile.addLogger(sinkLogger);
-    }
-    NdpTrafficLogger traffic_logger = NdpTrafficLogger();
-    if (log_traffic) {
-        logfile.addLogger(traffic_logger);
-    }
 
 #if PRINT_PATHS
     filename << ".paths";
@@ -473,8 +274,10 @@ int main(int argc, char **argv) {
     }
 #endif
 
+    printf("Name Running: NDP\n");
+
     NdpSrc::setMinRTO(50000); // increase RTO to avoid spurious retransmits
-    NdpSrc::setPathEntropySize(path_entropy_size);
+    NdpSrc::setPathEntropySize(number_entropies);
     NdpSrc::setRouteStrategy(route_strategy);
     NdpSink::setRouteStrategy(route_strategy);
 
@@ -497,10 +300,15 @@ int main(int argc, char **argv) {
         qlf->set_sample_period(timeFromUs(10.0));
     }
 #ifdef FAT_TREE
-    FatTreeTopology::set_tiers(tiers);
+    FatTreeTopology::set_tiers(3);
+    FatTreeTopology::set_os_stage_2(fat_tree_k);
+    FatTreeTopology::set_os_stage_1(ratio_os_stage_1);
+    if (kmin != -1 && kmax != -1) {
+        FatTreeTopology::set_ecn_thresholds_as_queue_percentage(kmin, kmax);
+    }
     FatTreeTopology *top = new FatTreeTopology(
-            no_of_nodes, linkspeed, queuesize, qlf, &eventlist, NULL, qt,
-            hop_latency, switch_latency, snd_type);
+            no_of_nodes, linkspeed, queuesize, NULL, &eventlist, NULL,
+            COMPOSITE, hop_latency, switch_latency);
 #endif
 
 #ifdef OV_FAT_TREE
@@ -597,7 +405,8 @@ int main(int argc, char **argv) {
         path_refcounts[dest][src]++;
 
         if (!net_paths[src][dest] && route_strategy != ECMP_FIB &&
-            route_strategy != ECMP_FIB_ECN && route_strategy != REACTIVE_ECN) {
+            route_strategy != ECMP_FIB_ECN && route_strategy != REACTIVE_ECN &&
+            route_strategy != ECMP_RANDOM2_ECN) {
             vector<const Route *> *paths =
                     top->get_bidir_paths(src, dest, false);
             net_paths[src][dest] = paths;
@@ -608,7 +417,8 @@ int main(int argc, char **argv) {
             */
         }
         if (!net_paths[dest][src] && route_strategy != ECMP_FIB &&
-            route_strategy != ECMP_FIB_ECN && route_strategy != REACTIVE_ECN) {
+            route_strategy != ECMP_FIB_ECN && route_strategy != REACTIVE_ECN &&
+            route_strategy != ECMP_RANDOM2_ECN) {
             vector<const Route *> *paths =
                     top->get_bidir_paths(dest, src, false);
             net_paths[dest][src] = paths;
@@ -628,7 +438,6 @@ int main(int argc, char **argv) {
         ndpSrc->setCwnd(cwnd * Packet::data_packet_size());
         ndp_srcs.push_back(ndpSrc);
         ndpSrc->set_dst(dest);
-        ndpSrc->set_path_burst(path_burst);
         if (crt->flowid) {
             ndpSrc->set_flowid(crt->flowid);
             assert(flowmap.find(crt->flowid) ==
@@ -682,6 +491,7 @@ int main(int argc, char **argv) {
             break;
         case ECMP_FIB:
         case ECMP_FIB_ECN:
+        case ECMP_RANDOM2_ECN:
         case REACTIVE_ECN: {
             Route *srctotor = new Route();
             srctotor->push_back(
@@ -702,8 +512,8 @@ int main(int argc, char **argv) {
                             ->getRemoteEndpoint());
 
             ndpSrc->connect(srctotor, dsttotor, *ndpSnk, crt->start);
-            ndpSrc->set_paths(path_entropy_size);
-            ndpSnk->set_paths(path_entropy_size);
+            ndpSrc->set_paths(number_entropies);
+            ndpSnk->set_paths(number_entropies);
 
             // register src and snk to receive packets from their respective
             // TORs.
@@ -758,10 +568,6 @@ int main(int argc, char **argv) {
             }
             delete net_paths[dest][src];
         }
-
-        if (log_sink) {
-            sinkLogger.monitorSink(ndpSnk);
-        }
     }
 
     for (size_t ix = 0; ix < no_of_nodes; ix++) {
@@ -785,6 +591,7 @@ int main(int argc, char **argv) {
     }
 
     cout << "Done" << endl;
+
     int new_pkts = 0, rtx_pkts = 0, bounce_pkts = 0;
     for (size_t ix = 0; ix < ndp_srcs.size(); ix++) {
         new_pkts += ndp_srcs[ix]->_new_packets_sent;
@@ -794,42 +601,9 @@ int main(int argc, char **argv) {
     cout << "New: " << new_pkts << " Rtx: " << rtx_pkts
          << " Bounced: " << bounce_pkts << endl;
 
-    /*list <const Route*>::iterator rt_i;
-      int counts[10]; int hop;
-      for (int i = 0; i < 10; i++)
-      counts[i] = 0;
-      for (rt_i = routes.begin(); rt_i != routes.end(); rt_i++) {
-      const Route* r = (*rt_i);
-      //print_route(*r);
-      #ifdef PRINTPATHS
-      cout << "Path:" << endl;
-      #endif
-      hop = 0;
-      for (int i = 0; i < r->size(); i++) {
-      PacketSink *ps = r->at(i);
-      CompositeQueue *q = dynamic_cast<CompositeQueue*>(ps);
-      if (q == 0) {
-      #ifdef PRINTPATHS
-      cout << ps->nodename() << endl;
-      #endif
-      } else {
-      #ifdef PRINTPATHS
-      cout << q->nodename() << " id=" << q->id << " " << q->num_packets() <<
-"pkts "
-                     << q->num_headers() << "hdrs " << q->num_acks() << "acks "
-<< q->num_nacks() << "nacks " << q->num_stripped() << "stripped"
-                     << endl;
-#endif
-                counts[hop] += q->num_stripped();
-                hop++;
-            }
-        }
-#ifdef PRINTPATHS
-        cout << endl;
-#endif
+    for (std::size_t i = 0; i < ndp_srcs.size(); ++i) {
+        delete ndp_srcs[i];
     }
-    for (int i = 0; i < 10; i++)
-    cout << "Hop " << i << " Count " << counts[i] << endl;*/
 }
 
 string ntoa(double n) {

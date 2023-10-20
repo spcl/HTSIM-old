@@ -41,14 +41,6 @@ LogSimInterface::LogSimInterface(UecLogger *logger, TrafficLogger *pktLogger,
     _topo = topo;
     _netPaths = routes;
     _latest_recv = new graph_node_properties();
-    _ndpRtxScanner =
-            new NdpRtxTimerScanner(timeFromUs((uint32_t)1000), *_eventlist);
-    _uecRtxScanner =
-            new UecRtxTimerScanner(BASE_RTT_MODERN * 1000, *_eventlist);
-    _uecDropRtxScanner =
-            new UecDropRtxTimerScanner(BASE_RTT_MODERN * 1000, *_eventlist);
-    _swiftTrimmingRtxScanner = new SwiftTrimmingRtxTimerScanner(
-            BASE_RTT_MODERN * 1000, *_eventlist);
 }
 
 void LogSimInterface::set_cwd(int cwd) { _cwd = cwd; }
@@ -79,6 +71,11 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
 
     // Create UEC Src and Dest
     if (_protocolName == UEC_PROTOCOL) {
+        if (_uecRtxScanner == NULL) {
+            _uecRtxScanner =
+                    new UecRtxTimerScanner(BASE_RTT_MODERN * 1000, *_eventlist);
+        }
+
         printf("Starting1 UEC LGS Setup\n");
         fflush(stdout);
         // This is updated inside UEC if it doesn't fit the default values
@@ -164,7 +161,11 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         printf("Finished UEC LGS Setup\n");
         fflush(stdout);
     } else if (_protocolName == UEC_DROP_PROTOCOL) {
-        printf("Starting1 UEC LGS Setup\n");
+        if (_uecDropRtxScanner == NULL) {
+            _uecDropRtxScanner = new UecDropRtxTimerScanner(50000, *_eventlist);
+        }
+
+        printf("Starting1 UEC DROP LGS Setup\n");
         fflush(stdout);
         // This is updated inside UEC if it doesn't fit the default values
         uint64_t rtt = BASE_RTT_MODERN * 1000;
@@ -249,6 +250,11 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         printf("Finished UEC LGS Setup\n");
         fflush(stdout);
     } else if (_protocolName == SWIFT_PROTOCOL) {
+        if (_swiftTrimmingRtxScanner == NULL) {
+            _swiftTrimmingRtxScanner = new SwiftTrimmingRtxTimerScanner(
+                    BASE_RTT_MODERN * 1000, *_eventlist);
+        }
+
         printf("Starting1 Swift LGS Setup\n");
         fflush(stdout);
         // This is updated inside UEC if it doesn't fit the default values
@@ -337,6 +343,10 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         printf("Finished UEC LGS Setup\n");
         fflush(stdout);
     } else if (_protocolName == NDP_PROTOCOL) {
+        if (_ndpRtxScanner == NULL) {
+            _ndpRtxScanner = new NdpRtxTimerScanner(timeFromUs((uint32_t)1000),
+                                                    *_eventlist);
+        }
 
         // NdpSrc::setRouteStrategy(SCATTER_RANDOM);
         // NdpSink::setRouteStrategy(SCATTER_RANDOM);
@@ -459,6 +469,10 @@ void LogSimInterface::terminate_sim() {
     } else if (_protocolName == UEC_PROTOCOL) {
         for (std::size_t i = 0; i < _uecSrcVector.size(); ++i) {
             delete _uecSrcVector[i];
+        }
+    } else if (_protocolName == UEC_DROP_PROTOCOL) {
+        for (std::size_t i = 0; i < _uecDropSrcVector.size(); ++i) {
+            delete _uecDropSrcVector[i];
         }
     }
 }
@@ -624,13 +638,13 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                            freeop->nic, (long unsigned int)freeop->size);
                 break;
             case OP_SEND:
-                if (0)
+                if (1)
                     printf("init %i (%i,%i) send to: %i, tag: %i, size: %lu\n",
                            host, freeop->proc, freeop->nic, freeop->target,
                            freeop->tag, (long unsigned int)freeop->size);
                 break;
             case OP_RECV:
-                if (0)
+                if (1)
                     printf("init %i (%i,%i) recvs from: %i, tag: %i, size: "
                            "%lu\n",
                            host, freeop->proc, freeop->nic, freeop->target,
@@ -654,21 +668,22 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 
     while (!aq.empty() || (size_queue(rq, p) > 0) || (size_queue(uq, p) > 0)/* ||
            !lgs_interface->all_sends_delivered()*/) {
-        if (cycles > 1000000) {
+        if (cycles > 100000) {
             printf("\nERROR: We are in some sort of loop in the main WHILE. "
                    "Breaking after 100k cycles\n\n");
             break;
         }
         printf("----------------------------    ENTERING WHILE        // "
-               "---------------------------- | %ld %ld -  %d %d - %d %d %lu - "
+               "---------------------------- | %d - %ld %ld -  %d %d - %d %d "
+               "Size AQ %lu - "
                "%d %d %d\n",
-               aq.top().time, htsim_time, 1, first_cycle, size_queue(rq, p),
-               size_queue(uq, p), aq.size(), aq.top().host, aq.top().target,
-               aq.top().tag);
+               aq.empty(), aq.top().time, htsim_time, 1, first_cycle,
+               size_queue(rq, p), size_queue(uq, p), aq.size(), aq.top().host,
+               aq.top().target, aq.top().tag);
 
         graph_node_properties temp_elem = aq.top();
         while (!aq.empty() && aq.top().time <= htsim_time) {
-            if (cycles > 1000000) {
+            if (cycles > 100000) {
                 printf("\nERROR: We are in some sort of loop in the main "
                        "WHILE. Breaking after 100k cycles\n\n");
                 exit(0);
@@ -747,11 +762,14 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                     lgs_interface->htsim_schedule(elem.host, elem.target,
                                                   elem.size, elem.tag,
                                                   elem.starttime, elem.offset);
-                    parser.schedules[elem.host].MarkNodeAsDone(elem.offset);
+                    printf("Send host %d - offset %d\n", elem.host,
+                           elem.offset);
+                    // parser.schedules[elem.host].MarkNodeAsDone(elem.offset);
                 }
             } break;
             case OP_RECV: {
-                if (0)
+                printf("OP_RECV\n");
+                if (1)
                     printf("[%i] found recv from %i - t: %lu (CPU: %i)\n",
                            elem.host, elem.target, (ulint)elem.time, elem.proc);
 
@@ -766,15 +784,22 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 
                 match_attempts = match(elem, &uq[elem.host], &matched_elem);
                 if (match_attempts >= 0) { // found it in local UQ
-                    if (print)
+                    if (1)
                         printf("-- found in local UQ\n");
                     // satisfy local requires
                     parser.schedules[elem.host].MarkNodeAsDone(elem.offset);
+
+                    printf("Recv host %d - offset %d\n", matched_elem.src,
+                           matched_elem.offset);
+                    // parser.schedules[matched_elem.src].MarkNodeAsDone(
+                    //         matched_elem.offset);
+                    // parser.schedules[elem.host].MarkNodeAsDone(elem.offset);
+
                     if (print)
                         printf("-- satisfy local requires\n");
                 } else { // not found in local UQ - add to RQ
 
-                    if (print)
+                    if (1)
                         printf("-- not found in local UQ -- add to RQ\n");
                     ruqelem_t nelem;
                     nelem.size = elem.size;
@@ -851,16 +876,21 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                                     elem.time - matched_elem.starttime);
                         }
 
-                        if (print)
+                        if (1)
                             printf("-- Found in RQ\n");
                         parser.schedules[elem.host].MarkNodeAsDone(
                                 matched_elem.offset);
+                        parser.schedules[elem.target].MarkNodeAsDone(
+                                elem.offset);
+                        printf("Unlocking also Elem.Target %d and Elem.offset "
+                               "%d\n",
+                               elem.target, elem.offset);
                         // check_hosts.push_back(elem.host);
                         // printf("Reached after DONE \n"); fflush(stdout);
 
                     } else { // not in RQ
 
-                        if (print)
+                        if (1)
                             printf("-- not found in RQ - add to UQ\n");
                         ruqelem_t nelem;
                         nelem.size = elem.size;
@@ -917,7 +947,9 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                 //  htsim_time = htsim_simulate_until(temp_elem.time,
                 //  &recev_msg);
             } else {
-                // printf("Running infinite\n");
+                printf("Running infinite - AQ Size %d - Temp Time %lu vs Htsim "
+                       "%lu - Global %lu\n",
+                       aq.size(), temp_elem.time, htsim_time, GLOBAL_TIME);
                 recev_msg = lgs_interface->htsim_simulate_until(100);
                 htsim_time = GLOBAL_TIME;
             }
@@ -974,7 +1006,8 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 #ifdef STRICT_ORDER
                 freeop->ts = aqtime++;
 #endif
-                // printf("We arrive here %d\n", freeop->type); fflush(stdout);
+                printf("We arrive here %d\n", freeop->type);
+                fflush(stdout);
                 switch (freeop->type) {
                 case OP_LOCOP:
                     freeop->time = nexto[host][freeop->proc];
