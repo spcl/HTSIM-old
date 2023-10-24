@@ -1,9 +1,11 @@
 // -*- c-basic-offset: 4; tab-width: 8; indent-tabs-mode: t -*-
 #include "config.h"
 #include "network.h"
+#include "queue_lossless_input.h"
 #include "randomqueue.h"
 #include <iostream>
 #include <math.h>
+
 #include <sstream>
 #include <string.h>
 //#include "subflow_control.h"
@@ -125,6 +127,8 @@ int main(int argc, char **argv) {
     bool disable_case_3 = false;
     bool disable_case_4 = false;
     int ratio_os_stage_1 = 1;
+    int pfc_low = 0;
+    int pfc_high = 0;
 
     int i = 1;
     filename << "logout.dat";
@@ -223,6 +227,12 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-seed")) {
             seed = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-pfc_low")) {
+            pfc_low = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-pfc_high")) {
+            pfc_high = atoi(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-collect_data")) {
             collect_data = atoi(argv[i + 1]);
@@ -341,6 +351,10 @@ int main(int argc, char **argv) {
                 queue_choice = COMPOSITE_BTS;
                 UecSrc::set_queue_type("composite_bts");
                 printf("Name Running: UEC BTS\n");
+            } else if (!strcmp(argv[i + 1], "lossless_input")) {
+                queue_choice = LOSSLESS_INPUT;
+                UecSrc::set_queue_type("lossless_input");
+                printf("Name Running: UEC Queueless\n");
             }
             i++;
         } else if (!strcmp(argv[i], "-algorithm")) {
@@ -392,6 +406,14 @@ int main(int argc, char **argv) {
     }
     Packet::set_packet_size(packet_size);
     initializeLoggingFolders();
+
+    if (pfc_high != 0) {
+        LosslessInputQueue::_high_threshold = pfc_low;
+        LosslessInputQueue::_low_threshold = pfc_high;
+    } else {
+        LosslessInputQueue::_high_threshold = Packet::data_packet_size() * 50;
+        LosslessInputQueue::_low_threshold = Packet::data_packet_size() * 25;
+    }
 
     // Routing
     // float ar_sticky_delta = 10;

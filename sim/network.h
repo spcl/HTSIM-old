@@ -260,7 +260,6 @@ class Packet {
     bool is_ack = false;
     int pathid_echo = 0;
     int pathid_sender = 0;
-
     uint32_t from = 0;
     uint32_t to = 0;
     uint32_t tag = 0;
@@ -271,6 +270,7 @@ class Packet {
     bool is_special = false;
     uint16_t queue_status;
     string switch_name;
+    bool pfc_just_happened = false;
 
   protected:
     virtual void set_route(PacketFlow &flow, const Route &route, int pkt_size,

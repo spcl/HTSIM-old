@@ -7,7 +7,8 @@
 #include <math.h>
 #include <sstream>
 
-LosslessOutputQueue::LosslessOutputQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist,
+LosslessOutputQueue::LosslessOutputQueue(linkspeed_bps bitrate, mem_b maxsize,
+                                         EventList &eventlist,
                                          QueueLogger *logger, int ECN, int K)
         : Queue(bitrate, maxsize, eventlist, logger), _state_send(READY) {
     // assume worst case: PAUSE frame waits for one MSS packet to be sent to
@@ -22,7 +23,8 @@ LosslessOutputQueue::LosslessOutputQueue(linkspeed_bps bitrate, mem_b maxsize, E
     _txbytes = 0;
 
     stringstream ss;
-    ss << "queue lossless output(" << bitrate / 1000000 << "Mb/s," << maxsize << "bytes)";
+    ss << "queue lossless output(" << bitrate / 1000000 << "Mb/s," << maxsize
+       << "bytes)";
     _nodename = ss.str();
 }
 
@@ -36,7 +38,22 @@ void LosslessOutputQueue::receivePacket(Packet &pkt) {
     }
 }
 
+bool LosslessOutputQueue::decide_ECN() {
+    // ECN mark on deque
+    if (_queuesize > _ecn_maxthresh) {
+        return true;
+    } else if (_queuesize > _ecn_minthresh) {
+        uint64_t p = (0x7FFFFFFF * (_queuesize - _ecn_minthresh)) /
+                     (_ecn_maxthresh - _ecn_minthresh);
+        if ((uint64_t)random() < p) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void LosslessOutputQueue::receivePacket(Packet &pkt, VirtualQueue *prev) {
+    printf("Received here1 %d\n", pkt.size());
     // is this a PAUSE frame?
     if (pkt.type() == ETH_PAUSE) {
         EthPausePacket *p = (EthPausePacket *)&pkt;
@@ -44,11 +61,14 @@ void LosslessOutputQueue::receivePacket(Packet &pkt, VirtualQueue *prev) {
         if (p->sleepTime() > 0) {
             // remote end is telling us to shut up.
             // assert(_state_send == READY);
-            if (_sending)
+            if (_sending) {
                 // we have a packet in flight
                 _state_send = PAUSE_RECEIVED;
-            else
+            } else {
+                printf("%s Pause Send for %d\n", _nodename.c_str(),
+                       p->sleepTime());
                 _state_send = PAUSED;
+            }
 
             // cout << timeAsMs(eventlist().now()) << " " << _name << " PAUSED
             // "<<endl;
@@ -57,7 +77,8 @@ void LosslessOutputQueue::receivePacket(Packet &pkt, VirtualQueue *prev) {
             _state_send = READY;
             // cout << timeAsMs(eventlist().now()) << " " << _name << " GO
             // "<<endl;
-
+            printf("%s Can Send Again %d at %ld\n", _nodename.c_str(),
+                   p->sleepTime(), eventlist().now() / 1000);
             // start transmission if we have packets to send!
             if (_enqueued.size() > 0 && !_sending)
                 beginService();
@@ -84,7 +105,8 @@ void LosslessOutputQueue::receivePacket(Packet &pkt, VirtualQueue *prev) {
     _queuesize += pkt.size();
 
     if (_queuesize > _maxsize) {
-        cout << " Queue " << _name << " LOSSLESS not working! I should have dropped this packet"
+        cout << " Queue " << _name
+             << " LOSSLESS not working! I should have dropped this packet"
              << _queuesize / Packet::data_packet_size() << endl;
     }
 
@@ -115,9 +137,13 @@ void LosslessOutputQueue::completeService() {
     //_enqueued.pop_back();
     _vq.pop_back();
 
-    // mark on deque
-    if (_ecn_enabled && _queuesize > _K)
+    printf("OUT (%s): MaxQueueSize %d - CurrentSize %d - PFC High %d - PFC Low "
+           "%d\n",
+           _nodename.c_str(), _maxsize, _queuesize, 1, 1);
+
+    if (decide_ECN()) {
         pkt->set_flags(pkt->flags() | ECN_CE);
+    }
 
     if (pkt->type() == HPCC) {
         // HPPC INT information adding to packet

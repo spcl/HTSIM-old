@@ -387,6 +387,7 @@ class UecSink : public PacketSink, public DataReceiver {
     }
     static RouteStrategy _route_strategy;
     Trigger *_end_trigger = 0;
+    bool pfc_just_seen = false;
 
   private:
     UecAck::seq_t _cumulative_ack;

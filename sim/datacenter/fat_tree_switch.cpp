@@ -28,6 +28,7 @@ void FatTreeSwitch::receivePacket(Packet &pkt) {
         // I must be in lossless mode!
         // find the egress queue that should process this, and pass it over for
         // processing.
+        printf("Received a Pause Packet\n");
         for (size_t i = 0; i < _ports.size(); i++) {
             LosslessQueue *q = (LosslessQueue *)_ports.at(i);
             if (q->getRemoteEndpoint() &&
@@ -39,6 +40,8 @@ void FatTreeSwitch::receivePacket(Packet &pkt) {
 
         return;
     }
+
+    printf("Node %s - Packet Received\n", nodename().c_str());
 
     // printf("Packet Destination is 3 %d\n", pkt.dst());
 

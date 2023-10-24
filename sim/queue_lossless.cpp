@@ -4,9 +4,11 @@
 #include <iostream>
 #include <math.h>
 
-LosslessQueue::LosslessQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &eventlist, QueueLogger *logger,
+LosslessQueue::LosslessQueue(linkspeed_bps bitrate, mem_b maxsize,
+                             EventList &eventlist, QueueLogger *logger,
                              Switch *sw)
-        : Queue(bitrate, maxsize, eventlist, logger), _state_send(READY), _state_recv(READY) {
+        : Queue(bitrate, maxsize, eventlist, logger), _state_send(READY),
+          _state_recv(READY) {
     // assume worst case: PAUSE frame waits for one MSS packet to be sent to
     // other switch, and there is an MSS just beginning to be sent when PAUSE
     // frame arrives; this means 2 packets per incoming port, and we must have
@@ -23,7 +25,8 @@ LosslessQueue::LosslessQueue(linkspeed_bps bitrate, mem_b maxsize, EventList &ev
 }
 
 void LosslessQueue::initThresholds() {
-    _high_threshold = _maxsize - (_switch->portCount()) * Packet::data_packet_size() * 5;
+    _high_threshold =
+            _maxsize - (_switch->portCount()) * Packet::data_packet_size() * 5;
 
     assert(_high_threshold > 0);
 
@@ -32,6 +35,7 @@ void LosslessQueue::initThresholds() {
 }
 
 void LosslessQueue::receivePacket(Packet &pkt) {
+    printf("Received here\n");
     // is this a PAUSE frame?
     if (pkt.type() == ETH_PAUSE) {
         EthPausePacket *p = (EthPausePacket *)&pkt;
@@ -84,7 +88,8 @@ void LosslessQueue::receivePacket(Packet &pkt) {
 
     if (_queuesize > _maxsize) {
         cout << " Queue " << _name << " switch (" << _switch->nodename() << ") "
-             << " LOSSLESS not working! I should have dropped this packet" << endl;
+             << " LOSSLESS not working! I should have dropped this packet"
+             << endl;
     }
 
     if (_logger)

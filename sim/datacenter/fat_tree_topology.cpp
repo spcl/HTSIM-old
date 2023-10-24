@@ -275,9 +275,16 @@ BaseQueue *FatTreeTopology::alloc_queue(QueueLogger *queueLogger,
     case LOSSLESS:
         return new LosslessQueue(speed, queuesize, *_eventlist, queueLogger,
                                  NULL);
-    case LOSSLESS_INPUT:
-        return new LosslessOutputQueue(speed, queuesize, *_eventlist,
-                                       queueLogger);
+    case LOSSLESS_INPUT: {
+        LosslessOutputQueue *q = new LosslessOutputQueue(
+                speed, queuesize, *_eventlist, queueLogger);
+        if (kmin != -1) {
+            q->set_ecn_thresholds((kmin / 100.0) * queuesize,
+                                  (kmax / 100.0) * queuesize);
+        }
+        printf("Creaint Lossless queue");
+        return q;
+    }
     case LOSSLESS_INPUT_ECN:
         return new LosslessOutputQueue(speed, memFromPkt(10000), *_eventlist,
                                        queueLogger, 1, memFromPkt(16));

@@ -938,6 +938,11 @@ void UecSrc::receivePacket(Packet &pkt) {
         processAck(dynamic_cast<UecAck &>(pkt), false);
         pkt.free();
         break;
+    case ETH_PAUSE:
+        printf("Src received a Pause\n");
+        // processPause((const EthPausePacket &)pkt);
+        pkt.free();
+        return;
     case UECNACK:
         printf("NACK %d@%d@%d\n", from, to, tag);
         // fflush(stdout);
@@ -2047,6 +2052,12 @@ bool UecSink::already_received(UecPacket &pkt) {
 void UecSink::receivePacket(Packet &pkt) {
     // printf("Sink Received\n");
     // fflush(stdout);
+
+    if (pkt.pfc_just_happened) {
+        printf("PFC Happened at %lu\n", GLOBAL_TIME);
+    }
+    pfc_just_seen = pkt.pfc_just_happened;
+
     switch (pkt.type()) {
     case UECACK:
     case UECNACK:
@@ -2211,6 +2222,7 @@ void UecSink::send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
     }
     assert(ack);
     ack->pathid_echo = path_id;
+    ack->pfc_just_happened = pfc_just_seen;
 
     // ack->inRoute = inRoute;
     ack->is_ack = true;

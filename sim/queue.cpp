@@ -261,6 +261,7 @@ simtime_picosec PriorityQueue::serviceTime(Packet &pkt) {
 
 void PriorityQueue::receivePacket(Packet &pkt) {
     // is this a PAUSE packet?
+    printf("Received2 here\n");
     if (pkt.type() == ETH_PAUSE) {
         EthPausePacket *p = (EthPausePacket *)&pkt;
 
