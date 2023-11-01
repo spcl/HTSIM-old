@@ -14,6 +14,10 @@
 #include "queue.h"
 #include <list>
 
+#define QUEUE_INVALID 0
+#define QUEUE_LOW 1
+#define QUEUE_HIGH 2
+
 class LosslessOutputQueue : public Queue {
   public:
     LosslessOutputQueue(linkspeed_bps bitrate, mem_b maxsize,

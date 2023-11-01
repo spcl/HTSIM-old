@@ -30,6 +30,7 @@ double UecSrc::y_gain = 1;
 double UecSrc::x_gain = 0.15;
 double UecSrc::z_gain = 1;
 double UecSrc::w_gain = 1;
+double UecSrc::quickadapt_lossless_rtt = 2.0;
 bool UecSrc::disable_case_4 = false;
 bool UecSrc::disable_case_3 = false;
 double UecSrc::starting_cwnd = 1;
@@ -564,6 +565,32 @@ void UecSrc::processNack(UecNack &pkt) {
     }
 }
 
+void UecSrc::simulateTrimEvent(UecAck &pkt) {
+
+    printf("Simulated Trim from %d - ECN 1, Path %d\n", from, pkt.pathid_echo);
+
+    consecutive_good_medium = 0;
+    // acked_bytes += _mss;
+    // saved_trimmed_bytes += 64;
+
+    if (count_received >= ignore_for) {
+        need_fast_drop = true;
+    }
+
+    // printf("Just NA CK from %d at %lu\n", from, eventlist().now() / 1000);
+
+    // Reduce Window Or Do Fast Drop
+    if (use_fast_drop) {
+        if (count_received >= ignore_for) {
+            do_fast_drop(true);
+        }
+    }
+
+    check_limits_cwnd();
+
+    //_list_nack.push_back(std::make_pair(eventlist().now() / 1000, 1));
+}
+
 /* Choose a route for a particular packet */
 int UecSrc::choose_route() {
 
@@ -813,6 +840,18 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
     bool marked = pkt.flags() &
                   ECN_ECHO; // ECN was marked on data packet and echoed on ACK
 
+    if (COLLECT_DATA && marked) {
+        std::string file_name =
+                PROJECT_ROOT_PATH /
+                ("sim/output/ecn/ecn" + std::to_string(pkt.from) + "_" +
+                 std::to_string(pkt.to) + ".txt");
+        std::ofstream MyFile(file_name, std::ios_base::app);
+
+        MyFile << eventlist().now() / 1000 << "," << marked << std::endl;
+
+        MyFile.close();
+    }
+
     /*printf("Packet from %d is ECN Marked %d - Time %lu - Next Window End "
            "%lu\n",
            from, marked, GLOBAL_TIME / 1000, next_window_end / 1000);*/
@@ -847,6 +886,16 @@ void UecSrc::processAck(UecAck &pkt, bool force_marked) {
         _list_rtt.push_back(std::make_tuple(
                 eventlist().now() / 1000, newRtt / 1000, pkt.seqno(),
                 pkt.ackno(), _base_rtt / 1000, _target_rtt / 1000));
+    }
+
+    if (newRtt > _base_rtt * quickadapt_lossless_rtt && marked &&
+        queue_type == "lossless_input") {
+        printf("PFC Src Happened at %lu - %d@%d\n", GLOBAL_TIME / 1000, from,
+               pkt.id());
+        simulateTrimEvent(dynamic_cast<UecAck &>(pkt));
+    } else {
+        printf("ACK Happened at %lu - %d@%d\n", GLOBAL_TIME / 1000, from,
+               pkt.id());
     }
 
     if (seqno >= _flow_size && _sent_packets.empty() && !_flow_finished) {
@@ -936,6 +985,11 @@ void UecSrc::receivePacket(Packet &pkt) {
         // fflush(stdout);
         count_received++;
         processAck(dynamic_cast<UecAck &>(pkt), false);
+        /*if (pkt.pfc_just_happened) {
+            printf("PFC Src Happened at %lu - %d@%d\n", GLOBAL_TIME / 1000,
+                   from, pkt.id());
+            simulateTrimEvent(dynamic_cast<UecAck &>(pkt));
+        }*/
         pkt.free();
         break;
     case ETH_PAUSE:
@@ -1533,13 +1587,13 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
             // printf("Name Running: SMaRTT ECN Only\n");
             if (use_fast_drop) {
                 if (count_received >= ignore_for) {
-                    // do_fast_drop(false);
+                    do_fast_drop(false);
                 }
             }
 
             if ((counter_consecutive_good_bytes > target_window) &&
                 use_fast_increase) {
-                // fast_increase();
+                fast_increase();
             } else if (!ecn) {
                 _cwnd += ((double)_mss / _cwnd) * x_gain * _mss;
             } else if (ecn) {
@@ -2052,11 +2106,15 @@ bool UecSink::already_received(UecPacket &pkt) {
 void UecSink::receivePacket(Packet &pkt) {
     // printf("Sink Received\n");
     // fflush(stdout);
-
     if (pkt.pfc_just_happened) {
-        printf("PFC Happened at %lu\n", GLOBAL_TIME);
+        pfc_just_seen = 1;
+        printf("PFC Sink Happened1 at %lu - %d@%d\n", GLOBAL_TIME / 1000, from,
+               pkt.id());
+    } else {
+        pfc_just_seen = 0;
+        printf("PFC Sink Happened0 at %lu - %d@%d\n", GLOBAL_TIME / 1000, from,
+               pkt.id());
     }
-    pfc_just_seen = pkt.pfc_just_happened;
 
     switch (pkt.type()) {
     case UECACK:
@@ -2202,7 +2260,8 @@ void UecSink::send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
 
         // set ECN echo only if that is selected strategy
         if (marked) {
-            // printf("ACK - ECN %d - From %d\n", path_id, from);
+            printf("ACK - ECN %d - From %d at %lu\n", path_id, from,
+                   GLOBAL_TIME / 1000);
             ack->set_flags(ECN_ECHO);
         } else {
             // printf("ACK - NO ECN\n");
@@ -2222,7 +2281,10 @@ void UecSink::send_ack(simtime_picosec ts, bool marked, UecAck::seq_t seqno,
     }
     assert(ack);
     ack->pathid_echo = path_id;
-    ack->pfc_just_happened = pfc_just_seen;
+    ack->pfc_just_happened = false;
+    if (pfc_just_seen == 1) {
+        ack->pfc_just_happened = true;
+    }
 
     // ack->inRoute = inRoute;
     ack->is_ack = true;

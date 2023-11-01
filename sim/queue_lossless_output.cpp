@@ -121,10 +121,39 @@ void LosslessOutputQueue::receivePacket(Packet &pkt, VirtualQueue *prev) {
 }
 
 void LosslessOutputQueue::beginService() {
-    assert(_state_send == READY && !_sending);
+    if (!_enqueued_high.empty() && !_enqueued_low.empty()) {
+        _crt++;
 
-    Queue::beginService();
-    _sending = 1;
+        if (_crt >= (_ratio_high + _ratio_low))
+            _crt = 0;
+
+        if (_crt < _ratio_high) {
+            _serv = QUEUE_HIGH;
+            eventlist().sourceIsPendingRel(*this,
+                                           drainTime(_enqueued_high.back()));
+        } else {
+            assert(_crt < _ratio_high + _ratio_low);
+            assert(_state_send == READY && !_sending);
+
+            Queue::beginService();
+            _sending = 1;
+            _serv = QUEUE_LOW;
+            eventlist().sourceIsPendingRel(*this,
+                                           drainTime(_enqueued_low.back()));
+        }
+        return;
+    }
+
+    if (!_enqueued_high.empty()) {
+        _serv = QUEUE_HIGH;
+        eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_high.back()));
+    } else if (!_enqueued_low.empty()) {
+        _serv = QUEUE_LOW;
+        eventlist().sourceIsPendingRel(*this, drainTime(_enqueued_low.back()));
+    } else {
+        assert(0);
+        _serv = QUEUE_INVALID;
+    }
 }
 
 void LosslessOutputQueue::completeService() {
@@ -143,6 +172,7 @@ void LosslessOutputQueue::completeService() {
 
     if (decide_ECN()) {
         pkt->set_flags(pkt->flags() | ECN_CE);
+        printf("Setting ECN Flag %lu\n", eventlist().now());
     }
 
     if (pkt->type() == HPCC) {

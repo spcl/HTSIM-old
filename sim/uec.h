@@ -135,6 +135,9 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     static void set_z_gain(double value) { z_gain = value; }
     static void set_w_gain(double value) { w_gain = value; }
     static void set_os_ratio_stage_1(double value) { ratio_os_stage_1 = value; }
+    static void set_quickadapt_lossless_rtt(double value) {
+        quickadapt_lossless_rtt = value;
+    }
     static void set_disable_case_3(double value) { disable_case_3 = value; }
     static void set_disable_case_4(double value) { disable_case_4 = value; }
     static void set_starting_cwnd(double value) { starting_cwnd = value; }
@@ -220,6 +223,7 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     static double w_gain;
     static bool disable_case_3;
     static bool disable_case_4;
+    static double quickadapt_lossless_rtt;
 
     static double starting_cwnd;
     static double bonus_drop;
@@ -357,6 +361,7 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     void reduce_cwnd(uint64_t amount);
     void processNack(UecNack &nack);
     void processBts(UecPacket *nack);
+    void simulateTrimEvent(UecAck &nack);
     void reduce_unacked(uint64_t amount);
     void check_limits_cwnd();
     void apply_timeout_penalty();
@@ -387,7 +392,7 @@ class UecSink : public PacketSink, public DataReceiver {
     }
     static RouteStrategy _route_strategy;
     Trigger *_end_trigger = 0;
-    bool pfc_just_seen = false;
+    int pfc_just_seen = -10;
 
   private:
     UecAck::seq_t _cumulative_ack;

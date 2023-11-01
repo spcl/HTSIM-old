@@ -37,6 +37,7 @@ class LosslessInputQueue : public Queue, public VirtualQueue {
 
     static uint64_t _low_threshold;
     static uint64_t _high_threshold;
+    static int _mark_pfc_amount;
 
     void set_ecn_threshold(mem_b ecn_thresh) {
         _ecn_minthresh = ecn_thresh;

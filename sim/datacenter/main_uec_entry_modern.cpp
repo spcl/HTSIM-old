@@ -129,6 +129,8 @@ int main(int argc, char **argv) {
     int ratio_os_stage_1 = 1;
     int pfc_low = 0;
     int pfc_high = 0;
+    int pfc_marking = 0;
+    double quickadapt_lossless_rtt = 2.0;
 
     int i = 1;
     filename << "logout.dat";
@@ -182,6 +184,12 @@ int main(int argc, char **argv) {
             // kmin as percentage of queue size (0..100)
             kmax = atoi(argv[i + 1]);
             printf("KMax: %d\n", atoi(argv[i + 1]));
+            i++;
+        } else if (!strcmp(argv[i], "-pfc_marking")) {
+            pfc_marking = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-quickadapt_lossless_rtt")) {
+            quickadapt_lossless_rtt = std::stod(argv[i + 1]);
             i++;
         } else if (!strcmp(argv[i], "-bts_trigger")) {
             bts_threshold = atoi(argv[i + 1]);
@@ -408,12 +416,15 @@ int main(int argc, char **argv) {
     initializeLoggingFolders();
 
     if (pfc_high != 0) {
-        LosslessInputQueue::_high_threshold = pfc_low;
-        LosslessInputQueue::_low_threshold = pfc_high;
+        LosslessInputQueue::_high_threshold = pfc_high;
+        LosslessInputQueue::_low_threshold = pfc_low;
+        LosslessInputQueue::_mark_pfc_amount = pfc_marking;
     } else {
         LosslessInputQueue::_high_threshold = Packet::data_packet_size() * 50;
         LosslessInputQueue::_low_threshold = Packet::data_packet_size() * 25;
+        LosslessInputQueue::_mark_pfc_amount = pfc_marking;
     }
+    UecSrc::set_quickadapt_lossless_rtt(quickadapt_lossless_rtt);
 
     // Routing
     // float ar_sticky_delta = 10;
