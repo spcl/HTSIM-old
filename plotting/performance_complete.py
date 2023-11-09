@@ -595,7 +595,7 @@ def main(args):
     print("Sent Plot")
     # Sent
     mean_sent = df5["Time"].mean()
-    df5['Sent'] = df5['Sent'].multiply(10000)
+    df5['Sent'] = df5['Sent'].multiply(11000)
     for i in df5['Node'].unique():
         sub_df5 = df5.loc[df5['Node'] == str(i)]
         fig.add_trace(

@@ -131,6 +131,9 @@ int main(int argc, char **argv) {
     int pfc_high = 0;
     int pfc_marking = 0;
     double quickadapt_lossless_rtt = 2.0;
+    int reaction_delay = 1;
+    bool stop_after_quick = false;
+    int precision_ts = 1;
 
     int i = 1;
     filename << "logout.dat";
@@ -207,10 +210,26 @@ int main(int argc, char **argv) {
             UecSrc::set_disable_case_3(disable_case_3);
             printf("DisableCase3: %d\n", disable_case_3);
             i++;
+        } else if (!strcmp(argv[i], "-reaction_delay")) {
+            reaction_delay = atoi(argv[i + 1]);
+            UecSrc::set_reaction_delay(reaction_delay);
+            printf("ReactionDelay: %d\n", reaction_delay);
+            i++;
+        } else if (!strcmp(argv[i], "-precision_ts")) {
+            precision_ts = atoi(argv[i + 1]);
+            FatTreeSwitch::set_precision_ts(precision_ts * 1000);
+            UecSrc::set_precision_ts(precision_ts * 1000);
+            printf("Precision: %d\n", precision_ts * 1000);
+            i++;
         } else if (!strcmp(argv[i], "-disable_case_4")) {
             disable_case_4 = atoi(argv[i + 1]);
             UecSrc::set_disable_case_4(disable_case_4);
             printf("DisableCase4: %d\n", disable_case_4);
+            i++;
+        } else if (!strcmp(argv[i], "-stop_after_quick")) {
+            stop_after_quick = atoi(argv[i + 1]);
+            UecSrc::set_stop_after_quick(stop_after_quick);
+            printf("StopAfterQuick: %d\n", stop_after_quick);
             i++;
         } else if (!strcmp(argv[i], "-number_entropies")) {
             number_entropies = atoi(argv[i + 1]);

@@ -34,6 +34,8 @@ DisableCase4 = 0
 bonus_drop_value = 0
 buffer_drop_value = 0
 overall_completion = []
+Precision = 0
+ReactionDelay = 0
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_file', dest='input_file', type=str, help='File to parse.')
@@ -42,6 +44,8 @@ parser.add_argument('--scaling_plot', dest='scaling_plot', type=str, help='Scali
 parser.add_argument('--parameter_analysis', dest='parameter_analysis', type=str, help='Parameter Analysis Option', default=None)
 parser.add_argument('--complex_name', dest='complex_name', type=str, help='Adv Name', default=None)
 parser.add_argument('--degree', dest='degree', type=str, help='degree incast', default="0")
+parser.add_argument('--precision_reaction', dest='precision_reaction', type=str, help='Parameter Analysis Option', default=None)
+
 
 args = parser.parse_args()
 
@@ -83,6 +87,16 @@ with open(folder + "/" + file_name) as file:
         result = re.search(r"DisableCase4: (\d+)", line)
         if result:
             DisableCase4 = int(result.group(1))
+
+        # ReactionDelay
+        result = re.search(r"ReactionDelay: (\d+)", line)
+        if result:
+            ReactionDelay = int(result.group(1))
+
+        # Precision
+        result = re.search(r"Precision: (\d+)", line)
+        if result:
+            Precision = int(result.group(1))
 
         # KMin
         result = re.search(r"KMin: (\d+)", line)
@@ -199,7 +213,10 @@ if (DisableCase3 == 1):
 if (DisableCase4 == 1):
         name = name.rstrip()
         name += " No Case 4"
-if (args.parameter_analysis is not None and int(args.parameter_analysis) == 1):
+
+if (args.precision_reaction is not None and int(args.precision_reaction) >= 1):
+    file_name = folder + '/GeneratedReport{}_{}_{}.tmp'.format(name.rstrip(),args.precision_reaction, ReactionDelay)
+elif (args.parameter_analysis is not None and int(args.parameter_analysis) == 1):
     file_name = folder + '/GeneratedReport{}.tmp'.format(args.complex_name)
 elif (args.scaling_plot is not None and int(args.scaling_plot) == 1):
     file_name = folder + '/GeneratedReport{}_{}.tmp'.format(name.rstrip(), size_m)
@@ -243,6 +260,12 @@ with open(file_name, 'w') as f:
     f.write('BTS Dropped: {}\n'.format(num_bts_dropped)) 
     f.write('ECN: {}\n'.format(num_ecn)) 
     f.write('NACK: {}\n'.format(num_nack)) 
+
+    # Precision
+    f.write('Precision: {}\n'.format(Precision)) 
+
+    # ReactionDelay
+    f.write('ReactionDelay: {}\n'.format(ReactionDelay)) 
 
     # Effective BW
     for idx, item in enumerate(list_fct):

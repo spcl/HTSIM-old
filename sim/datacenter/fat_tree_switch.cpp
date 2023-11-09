@@ -6,6 +6,8 @@
 #include "queue_lossless_output.h"
 #include "routetable.h"
 
+int FatTreeSwitch::precision_ts = 1;
+
 FatTreeSwitch::FatTreeSwitch(EventList &eventlist, string s, switch_type t,
                              uint32_t id, simtime_picosec delay,
                              FatTreeTopology *ft)
@@ -41,7 +43,7 @@ void FatTreeSwitch::receivePacket(Packet &pkt) {
         return;
     }
 
-    printf("Node %s - Packet Received\n", nodename().c_str());
+    // printf("Node %s - Packet Received\n", nodename().c_str());
 
     // printf("Packet Destination is 3 %d\n", pkt.dst());
 
@@ -73,10 +75,21 @@ void FatTreeSwitch::receivePacket(Packet &pkt) {
             (pkt.type() == UEC || pkt.type() == NDP ||
              pkt.type() == SWIFTTRIMMING || pkt.type() == UEC_DROP)) {
             /*printf("From %d - Hope == 1 %lu\n", pkt.from,
-                   SINGLE_PKT_TRASMISSION_TIME_MODERN);*/
+                   SINGLE_PKT_TRASMISSION_TIME_MODERN);
             pkt.set_ts(GLOBAL_TIME -
                        (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000) -
-                       (LINK_DELAY_MODERN * 1000));
+                       (LINK_DELAY_MODERN * 1000));*/
+            simtime_picosec my_time =
+                    GLOBAL_TIME - (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000) -
+                    (LINK_DELAY_MODERN * 1000);
+
+            if (precision_ts == 1) {
+                pkt.set_ts(my_time);
+            } else {
+                pkt.set_ts(((my_time + precision_ts - 1) / precision_ts) *
+                           precision_ts);
+            }
+
             if (COLLECT_DATA) {
                 // Sent
                 std::string file_name = PROJECT_ROOT_PATH /

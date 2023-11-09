@@ -157,11 +157,14 @@ class FatTreeSwitch : public Switch {
         _ar_fraction = f;
     }
 
+    static void set_precision_ts(int ts) { precision_ts = ts; }
+
     static routing_strategy _strategy;
     static uint16_t _ar_fraction;
     static uint16_t _ar_sticky;
     static simtime_picosec _sticky_delta;
     static double _ecn_threshold_fraction;
+    static int precision_ts;
 
   private:
     switch_type _type;

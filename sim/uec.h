@@ -139,10 +139,13 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
         quickadapt_lossless_rtt = value;
     }
     static void set_disable_case_3(double value) { disable_case_3 = value; }
+    static void set_reaction_delay(int value) { reaction_delay = value; }
+    static void set_precision_ts(int value) { precision_ts = value; }
     static void set_disable_case_4(double value) { disable_case_4 = value; }
     static void set_starting_cwnd(double value) { starting_cwnd = value; }
     static void set_bonus_drop(double value) { bonus_drop = value; }
     static void set_buffer_drop(double value) { buffer_drop = value; }
+    static void set_stop_after_quick(bool value) { stop_after_quick = value; }
     static void setRouteStrategy(RouteStrategy strat) {
         printf("Set Strategy Num %d\n", _route_strategy);
         _route_strategy = strat;
@@ -198,10 +201,13 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     int exp_avg_bts = 0;
     int exp_avg_route = 0;
     double alpha_route = 0.0625;
+    int current_pkt = 0;
+    bool pause_send = false;
 
     // Custom Parameters
     static std::string queue_type;
     static std::string algorithm_type;
+    static int precision_ts;
     static bool use_fast_drop;
     static int fast_drop_rtt;
     bool was_zero_before = false;
@@ -224,10 +230,12 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     static bool disable_case_3;
     static bool disable_case_4;
     static double quickadapt_lossless_rtt;
+    static int reaction_delay;
 
     static double starting_cwnd;
     static double bonus_drop;
     static double buffer_drop;
+    static bool stop_after_quick;
     static RouteStrategy _route_strategy;
 
   private:

@@ -24,6 +24,9 @@ bool EventList::doNextEvent() {
     EventSource *nextsource = _pendingsources.begin()->second;
     _pendingsources.erase(_pendingsources.begin());
     assert(nexteventtime >= _lasteventtime);
+
+    // nexteventtime = ((nexteventtime + 100000 - 1) / 100000) * 100000;
+
     GLOBAL_TIME = nexteventtime;
     _lasteventtime = nexteventtime; // set this before calling doNextEvent, so
                                     // that this::now() is accurate
