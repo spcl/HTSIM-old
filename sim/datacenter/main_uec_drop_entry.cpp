@@ -11,6 +11,8 @@
 #include "compositequeue.h"
 #include "connection_matrix.h"
 #include "eventlist.h"
+#include "queue_lossless_input.h"
+
 #include "firstfit.h"
 #include "logfile.h"
 #include "loggers.h"
@@ -115,15 +117,19 @@ int main(int argc, char **argv) {
     COLLECT_DATA = collect_data;
     bool use_super_fast_increase = false;
     double y_gain = 1;
-    double x_gain = 0.15;
+    double x_gain = 1.65;
     double z_gain = 1;
     double w_gain = 1;
+    int pfc_low = 0;
+    int pfc_high = 0;
+    int pfc_marking = 0;
     double bonus_drop = 1;
     double drop_value_buffer = 1;
     double starting_cwnd_ratio = 0;
     double queue_size_ratio = 0;
     bool disable_case_3 = false;
     int ratio_os_stage_1 = 1;
+    bool use_mixed = false;
 
     int i = 1;
     filename << "logout.dat";
@@ -186,6 +192,12 @@ int main(int argc, char **argv) {
             PKT_SIZE_MODERN =
                     packet_size; // Saving this for UEC reference, Bytes
             i++;
+        } else if (!strcmp(argv[i], "-pfc_low")) {
+            pfc_low = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-pfc_high")) {
+            pfc_high = atoi(argv[i + 1]);
+            i++;
         } else if (!strcmp(argv[i], "-reuse_entropy")) {
             reuse_entropy = atoi(argv[i + 1]);
             i++;
@@ -241,6 +253,11 @@ int main(int argc, char **argv) {
             use_super_fast_increase = atoi(argv[i + 1]);
             UecDropSrc::set_use_super_fast_increase(use_super_fast_increase);
             printf("FastIncreaseSuper: %d\n", use_super_fast_increase);
+            i++;
+        } else if (!strcmp(argv[i], "-use_mixed")) {
+            use_mixed = atoi(argv[i + 1]);
+            UecDropSrc::set_use_mixed(use_mixed);
+            printf("UseMixed: %d\n", use_mixed);
             i++;
         } else if (!strcmp(argv[i], "-gain_value_med_inc")) {
             gain_value_med_inc = std::stod(argv[i + 1]);
@@ -335,6 +352,10 @@ int main(int argc, char **argv) {
                 queue_choice = COMPOSITE_BTS;
                 UecDropSrc::set_queue_type("composite_bts");
                 printf("Name Running: UEC BTS\n");
+            } else if (!strcmp(argv[i + 1], "lossless_input")) {
+                queue_choice = LOSSLESS_INPUT;
+                UecSrc::set_queue_type("lossless_input");
+                printf("Name Running: UEC Queueless\n");
             }
             i++;
         } else if (!strcmp(argv[i], "-algorithm")) {
@@ -397,6 +418,18 @@ int main(int argc, char **argv) {
     }
     Packet::set_packet_size(packet_size);
     initializeLoggingFolders();
+
+    if (pfc_high != 0) {
+        LosslessInputQueue::_high_threshold = pfc_high;
+        LosslessInputQueue::_low_threshold = pfc_low;
+        LosslessInputQueue::_mark_pfc_amount = pfc_marking;
+        printf("PFC AMOUNT2 %d %d\n", pfc_high, pfc_low);
+    } else {
+        LosslessInputQueue::_high_threshold = Packet::data_packet_size() * 50;
+        LosslessInputQueue::_low_threshold = Packet::data_packet_size() * 25;
+        LosslessInputQueue::_mark_pfc_amount = pfc_marking;
+        printf("PFC AMOUNT1 %d %d\n", pfc_high, pfc_low);
+    }
 
     // Routing
     // float ar_sticky_delta = 10;

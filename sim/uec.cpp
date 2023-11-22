@@ -39,6 +39,7 @@ double UecSrc::buffer_drop = 1.2;
 int UecSrc::ratio_os_stage_1 = 1;
 int UecSrc::reaction_delay = 1;
 int UecSrc::precision_ts = 1;
+int UecSrc::once_per_rtt = 0;
 
 RouteStrategy UecSrc::_route_strategy = NOT_SET;
 RouteStrategy UecSink::_route_strategy = NOT_SET;
@@ -1295,7 +1296,62 @@ void UecSrc::adjust_window(simtime_picosec ts, bool ecn, simtime_picosec rtt) {
                 }
             }
 
+            if (t_last_decrease == 0) {
+                t_last_decrease = eventlist().now();
+            }
+            bool time_enough =
+                    (eventlist().now() - t_last_decrease) > _base_rtt;
+
             if (count_received < ignore_for && ecn) {
+                return;
+            }
+
+            // Special case, decrease once per RTT
+            if (ecn && time_enough && once_per_rtt == 1) {
+                if (rtt > _target_rtt) {
+                    _cwnd = _cwnd * max(0.5, 1 - 0.8 * ((rtt - _target_rtt) /
+                                                        (double)rtt));
+                } else {
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss *
+                                z_gain * 1);
+                }
+
+                t_last_decrease = eventlist().now();
+                return;
+            } else if (ecn && time_enough && once_per_rtt == 2) {
+                if (rtt > _target_rtt) {
+                    _cwnd -= 1 *
+                             min(((w_gain *
+                                   ((rtt - (double)_target_rtt) / rtt) * _mss) +
+                                  _cwnd / (double)_bdp * z_gain * _mss),
+                                 (double)_mss);
+                } else {
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss *
+                                z_gain * 1);
+                }
+
+                t_last_decrease = eventlist().now();
+                count_skipped = 0;
+                return;
+            } else if (ecn && time_enough && once_per_rtt == 3) {
+                if (rtt > _target_rtt) {
+                    _cwnd -= count_skipped *
+                             min(((w_gain *
+                                   ((rtt - (double)_target_rtt) / rtt) * _mss) +
+                                  _cwnd / (double)_bdp * z_gain * _mss),
+                                 (double)_mss);
+                } else {
+                    reduce_cwnd(static_cast<double>(_cwnd) / _bdp * _mss *
+                                z_gain * count_skipped);
+                }
+
+                t_last_decrease = eventlist().now();
+                count_skipped = 0;
+                return;
+            }
+
+            if (ecn && once_per_rtt >= 1) {
+                count_skipped++;
                 return;
             }
 
@@ -1756,6 +1812,7 @@ void UecSrc::connect(Route *routeout, Route *routeback, UecSink &sink,
     _flow._name = _name;
     _sink->connect(*this, routeback);
 
+    printf("StartTime is %lu\n", starttime);
     if (starttime != -1) {
         eventlist().sourceIsPending(*this, starttime);
     }

@@ -11,6 +11,7 @@
 #include <utility>
 
 bool CompositeQueue::_drop_when_full = false;
+bool CompositeQueue::_use_mixed = false;
 
 CompositeQueue::CompositeQueue(linkspeed_bps bitrate, mem_b maxsize,
                                EventList &eventlist, QueueLogger *logger)
@@ -86,8 +87,125 @@ void CompositeQueue::completeService() {
     Packet *pkt;
     if (_serv == QUEUE_LOW) {
 
+        // New
+        // Check What happens then
+        /*printf("Current Size is %d - Count %d\n", _enqueued_low._queue.size(),
+               _enqueued_low._count);
+        fflush(stdout);
+        int dropping = 0;
+        while (_enqueued_low._count > 0) {
+            int64_t diff = GLOBAL_TIME - _enqueued_low.peek()->enter_timestamp;
+            int64_t diff_budget = _enqueued_low.peek()->timeout_budget - diff;
+            int size_p = _enqueued_low.peek()->size();
+            if (diff_budget < 0) {
+
+                _enqueued_low.pop();
+                _queuesize_low -= size_p;
+                dropping++;
+            } else {
+                break;
+            }
+        }*/
+
+        // Edit Queue
+        /*if (_use_mixed) {
+            std::vector<Packet *> new_queue;
+            std::vector<Packet *> temp_queue = _enqueued_low._queue;
+            int count_good = 0;
+            int dropped_p = 0;
+            int initial_count = _enqueued_low._count;
+            for (int i = 0; i < _enqueued_low._count; i++) {
+                int64_t diff =
+                        GLOBAL_TIME - temp_queue[_enqueued_low._next_pop + i]
+                                              ->enter_timestamp;
+                int64_t diff_budget = temp_queue[_enqueued_low._next_pop + i]
+                                              ->timeout_budget -
+                                      diff;
+                int size_p = temp_queue[_enqueued_low._next_pop + i]->size();
+                if (diff_budget > 0) {
+                    _enqueued_low._queue[count_good] =
+                            temp_queue[_enqueued_low._next_pop + i];
+
+                    int64_t diff =
+                            GLOBAL_TIME -
+                            _enqueued_low._queue[count_good]->enter_timestamp;
+                    _enqueued_low._queue[count_good]->enter_timestamp =
+                            GLOBAL_TIME;
+                    int64_t diff_budget =
+                            _enqueued_low._queue[count_good]->timeout_budget -
+                            diff;
+                    _enqueued_low._queue[count_good]->timeout_budget =
+                            diff_budget;
+                    count_good++;
+                } else {
+                    dropped_p++;
+                    _queuesize_low -= size_p;
+                }
+            }
+            _enqueued_low._next_pop = 0;
+            _enqueued_low._next_push = count_good;
+            _enqueued_low._count = count_good;
+
+            if (dropped_p > 0) {
+                printf("Started With %d Pkts - Dropped %d Pkts - Count %d - "
+                       "Pop %d "
+                       "- Push %d\n",
+                       initial_count, dropped_p, _enqueued_low._count,
+                       _enqueued_low._next_pop, _enqueued_low._next_push);
+            }
+        }*/
+
+        if (_use_mixed) {
+            std::vector<Packet *> new_queue;
+            std::vector<Packet *> temp_queue = _enqueued_low._queue;
+            int count_good = 0;
+            int dropped_p = 0;
+            int initial_count = _enqueued_low._count;
+            for (int i = 0; i < _enqueued_low._count; i++) {
+                int64_t diff =
+                        GLOBAL_TIME - temp_queue[_enqueued_low._next_pop + i]
+                                              ->enter_timestamp;
+                int64_t diff_budget = temp_queue[_enqueued_low._next_pop + i]
+                                              ->timeout_budget -
+                                      diff;
+                int size_p = temp_queue[_enqueued_low._next_pop + i]->size();
+                if (diff_budget > 0) {
+                    _enqueued_low._queue[count_good] =
+                            temp_queue[_enqueued_low._next_pop + i];
+
+                    int64_t diff =
+                            GLOBAL_TIME -
+                            _enqueued_low._queue[count_good]->enter_timestamp;
+                    _enqueued_low._queue[count_good]->enter_timestamp =
+                            GLOBAL_TIME;
+                    int64_t diff_budget =
+                            _enqueued_low._queue[count_good]->timeout_budget -
+                            diff;
+                    count_good++;
+                } else {
+                    dropped_p++;
+                    _queuesize_low -= size_p;
+                }
+            }
+            _enqueued_low._next_pop = 0;
+            _enqueued_low._next_push = count_good;
+            _enqueued_low._count = count_good;
+
+            if (dropped_p > 0) {
+                printf("Started With %d Pkts - Dropped %d Pkts - Count %d - "
+                       "Pop %d "
+                       "- Push %d\n",
+                       initial_count, dropped_p, _enqueued_low._count,
+                       _enqueued_low._next_pop, _enqueued_low._next_push);
+            }
+        }
+
         assert(!_enqueued_low.empty());
+
         pkt = _enqueued_low.pop();
+        printf("Budget From %d - ID %d - Budget %li\n", pkt->from, pkt->id(),
+               pkt->timeout_budget);
+
         packets_seen++;
         // printf("Queue %s - Packets %d\n", _nodename.c_str(), packets_seen);
         _queuesize_low -= pkt->size();
@@ -330,7 +448,9 @@ void CompositeQueue::receivePacket(Packet &pkt) {
                    _nodename.c_str(), pkt.from, pkt.header_only(),
                    _queuesize_low, _enqueued_low.size());
             fflush(stdout);*/
+            pkt_p->enter_timestamp = GLOBAL_TIME;
             _enqueued_low.push(pkt_p);
+
             _queuesize_low += pkt.size();
             if (_logger)
                 _logger->logQueue(*this, QueueLogger::PKT_ENQUEUE, pkt);

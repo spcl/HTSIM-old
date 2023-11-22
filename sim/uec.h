@@ -135,6 +135,7 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     static void set_z_gain(double value) { z_gain = value; }
     static void set_w_gain(double value) { w_gain = value; }
     static void set_os_ratio_stage_1(double value) { ratio_os_stage_1 = value; }
+    static void set_once_per_rtt(int value) { once_per_rtt = value; }
     static void set_quickadapt_lossless_rtt(double value) {
         quickadapt_lossless_rtt = value;
     }
@@ -221,6 +222,7 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     static double delay_gain_value_med_inc;
     static int target_rtt_percentage_over_base;
     static int ratio_os_stage_1;
+    static int once_per_rtt;
 
     static double y_gain;
     static double x_gain;
@@ -275,6 +277,7 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     // SentPackets _sent_packets;
     uint64_t _highest_data_seq;
     uint64_t t_last_decrease = 0;
+    int count_skipped = 0;
     uint64_t t_last_fairness = 0;
     uint64_t t_last_clear_byte = 0;
     bool can_decrease = false;

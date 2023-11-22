@@ -55,10 +55,12 @@ class CompositeQueue : public Queue {
     static void set_drop_when_full(bool do_drop_full) {
         _drop_when_full = do_drop_full;
     }
+    static void set_use_mixed(bool use_m) { _use_mixed = use_m; }
 
     /*void set_os_link_ratio(int os_link_ratio) {
         _os_link_ratio = os_link_ratio;
     }*/
+    static bool _use_mixed;
     static bool _drop_when_full;
     int _num_packets;
     int _num_headers; // only includes data packets stripped to headers, not

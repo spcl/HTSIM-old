@@ -134,6 +134,8 @@ int main(int argc, char **argv) {
     int reaction_delay = 1;
     bool stop_after_quick = false;
     int precision_ts = 1;
+    int once_per_rtt = 0;
+    bool use_mixed = false;
 
     int i = 1;
     filename << "logout.dat";
@@ -162,6 +164,17 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-q")) {
             queuesize = atoi(argv[i + 1]);
+            i++;
+        } else if (!strcmp(argv[i], "-use_mixed")) {
+            use_mixed = atoi(argv[i + 1]);
+            // UecSrc::set_use_mixed(use_mixed);
+            CompositeQueue::set_use_mixed(use_mixed);
+            printf("UseMixed: %d\n", use_mixed);
+            i++;
+        } else if (!strcmp(argv[i], "-once_per_rtt")) {
+            once_per_rtt = atoi(argv[i + 1]);
+            UecSrc::set_once_per_rtt(once_per_rtt);
+            printf("OnceRTTDecrease: %d\n", once_per_rtt);
             i++;
         } else if (!strcmp(argv[i], "-linkspeed")) {
             // linkspeed specified is in Mbps

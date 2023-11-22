@@ -181,6 +181,9 @@ class Packet {
     int inc_id = 0;
     int hop_count = 0;
 
+    int64_t timeout_budget = 0;
+    uint64_t enter_timestamp = 0;
+
     inline void set_pathid(uint32_t p) { _pathid = p; }
     const Route *route() const { return _route; }
     const Route *reverse_route() const { return _route->reverse(); }

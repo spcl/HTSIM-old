@@ -20,6 +20,7 @@ int UecDropSrc::fast_drop_rtt = 1;
 bool UecDropSrc::do_jitter = false;
 bool UecDropSrc::do_exponential_gain = false;
 bool UecDropSrc::use_fast_increase = false;
+bool UecDropSrc::use_mixed = false;
 bool UecDropSrc::use_super_fast_increase = false;
 double UecDropSrc::exp_gain_value_med_inc = 1;
 double UecDropSrc::jitter_value_med_inc = 1;
@@ -67,7 +68,7 @@ UecDropSrc::UecDropSrc(UecDropLogger *logger, TrafficLogger *pktLogger,
             _base_rtt * ((target_rtt_percentage_over_base + 1) / 100.0 + 1);
 
     _rtt = _base_rtt;
-    _rto = _base_rtt * 2.1;
+    _rto = _base_rtt * 25;
     _rto_margin = _base_rtt / 8;
     _rtx_timeout = timeInf;
     _rtx_timeout_pending = false;
@@ -383,6 +384,10 @@ void UecDropSrc::check_limits_cwnd() {
 }
 
 void UecDropSrc::do_fast_drop(bool ecn_or_trimmed) {
+
+    if (use_fast_drop == false) {
+        return;
+    }
 
     if (eventlist().now() >= next_window_end) {
         uint64_t old_wind = next_window_end;
@@ -1175,7 +1180,7 @@ void UecDropSrc::adjust_window(simtime_picosec ts, bool ecn,
                 }
             }
 
-            if (count_received < ignore_for) {
+            if (count_received < ignore_for && ecn) {
                 return;
             }
 
@@ -1526,6 +1531,7 @@ void UecDropSrc::connect(Route *routeout, Route *routeback, UecDropSink &sink,
     _flow._name = _name;
     _sink->connect(*this, routeback);
 
+    printf("StartTime is %lu\n", starttime);
     if (starttime != -1) {
         eventlist().sourceIsPending(*this, starttime);
     }
@@ -1534,6 +1540,16 @@ void UecDropSrc::connect(Route *routeout, Route *routeback, UecDropSink &sink,
 void UecDropSrc::startflow() {
     ideal_x = x_gain;
     _flow_start_time = eventlist().now();
+    if (use_mixed) {
+        if (tag == 898) {
+            _rto = _base_rtt * 15;
+        } else {
+            _rto = _base_rtt * 1.40;
+        }
+    } else {
+        _rto = _base_rtt * 25;
+    }
+
     send_packets();
 }
 
@@ -1601,6 +1617,16 @@ void UecDropSrc::send_packets() {
         // _path_ids.size()); p->set_pathid(_path_ids[path_chosen]);
 
         p->set_route(*_route);
+        if (use_mixed) {
+            if (tag == 898) {
+                p->timeout_budget = _base_rtt * 20;
+            } else {
+                p->timeout_budget = _base_rtt * 0.41;
+            }
+        } else {
+            p->timeout_budget = _base_rtt * 200;
+        }
+
         int crt = choose_route();
         // crt = random() % _paths.size();
 
@@ -1834,6 +1860,16 @@ bool UecDropSrc::resend_packet(std::size_t idx) {
     p->set_ts(eventlist().now());
     // printf("From %d - Resending at %lu\n", from, GLOBAL_TIME);
 
+    if (use_mixed) {
+        if (tag == 898) {
+            p->timeout_budget = _base_rtt * 20;
+        } else {
+            p->timeout_budget = _base_rtt * 0.41 * 2;
+            _rto = _base_rtt * 2.2;
+        }
+    } else {
+        p->timeout_budget = _base_rtt * 200;
+    }
     p->set_route(*_route);
     int crt = choose_route();
     // crt = random() % _paths.size();

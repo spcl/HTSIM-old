@@ -144,7 +144,12 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         dsttotor->push_back(_topo->queues_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]
                                     ->getRemoteEndpoint());
 
-        uecSrc->connect(srctotor, dsttotor, *uecSink, GLOBAL_TIME);
+        if (tag == 99) {
+            uecSrc->connect(srctotor, dsttotor, *uecSink, GLOBAL_TIME + 100000);
+        } else {
+            uecSrc->connect(srctotor, dsttotor, *uecSink, GLOBAL_TIME);
+        }
+
         uecSrc->set_paths(path_entropy_size);
         uecSink->set_paths(path_entropy_size);
 
@@ -233,7 +238,12 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         dsttotor->push_back(_topo->queues_ns_nlp[to][_topo->HOST_POD_SWITCH(to)]
                                     ->getRemoteEndpoint());
 
-        uecSrc->connect(srctotor, dsttotor, *uecSink, GLOBAL_TIME);
+        if (tag == 989) {
+            uecSrc->connect(srctotor, dsttotor, *uecSink, GLOBAL_TIME + 100000);
+        } else {
+            uecSrc->connect(srctotor, dsttotor, *uecSink, GLOBAL_TIME);
+        }
+
         uecSrc->set_paths(path_entropy_size);
         uecSink->set_paths(path_entropy_size);
 

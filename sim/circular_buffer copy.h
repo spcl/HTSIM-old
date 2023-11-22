@@ -18,14 +18,14 @@ template <typename T> class CircularBuffer {
         _count = 0;
         _next_push = 0;
         _next_pop = 0;
-        _size = 256; // initial size; we'll resize if needed
+        _size = 8; // initial size; we'll resize if needed
         _queue.resize(_size);
     }
     CircularBuffer(int starting_size) {
         _count = 0;
         _next_push = 0;
         _next_pop = 0;
-        _size = 256; // initial size; we'll resize if needed
+        _size = starting_size; // initial size; we'll resize if needed
         _queue.resize(_size);
     }
 
@@ -83,6 +83,20 @@ template <typename T> class CircularBuffer {
     int size() { return _count; }
     std::vector<T> _queue;
     int _next_push, _next_pop, _count, _size;
+
+  private:
+    void validate() {
+        assert(_count < _size);
+        assert(_next_push < _size);
+        assert(_next_pop < _size);
+        if (_next_push > _next_pop) {
+            assert(_next_push - _next_pop == _count);
+        } else if (_next_push == _next_pop) {
+            assert(_count == 0);
+        } else {
+            assert(_next_push + _size - _next_pop == _count);
+        }
+    }
 };
 
 #endif

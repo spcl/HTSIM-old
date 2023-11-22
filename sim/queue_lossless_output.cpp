@@ -34,6 +34,7 @@ void LosslessOutputQueue::receivePacket(Packet &pkt) {
     else {
         LosslessInputQueue *q = pkt.get_ingress_queue();
         pkt.clear_ingress_queue();
+        pkt.enter_timestamp = GLOBAL_TIME;
         receivePacket(pkt, dynamic_cast<VirtualQueue *>(q));
     }
 }
@@ -131,8 +132,69 @@ void LosslessOutputQueue::completeService() {
     /* dequeue the packet */
     assert(!_enqueued.empty());
 
+    // Edit Queue
+    std::vector<Packet *> new_queue;
+    std::vector<Packet *> temp_queue = _enqueued._queue;
+    int count_good = 0;
+    int dropped_p = 0;
+    int initial_count = _enqueued._count;
+
+    for (int i = 0; i < _enqueued._count; i++) {
+        printf("Budget From %d - ID %d - PAcket Type %d - Enter TS %li - "
+               "Budget %li - Index %d - Time "
+               "%lu\n",
+               temp_queue[_enqueued._next_pop + i]->from,
+               temp_queue[_enqueued._next_pop + i]->id(),
+               temp_queue[_enqueued._next_pop + i]->type(),
+               temp_queue[_enqueued._next_pop + i]->enter_timestamp,
+               temp_queue[_enqueued._next_pop + i]->timeout_budget, i,
+               GLOBAL_TIME);
+
+        int64_t diff = GLOBAL_TIME -
+                       temp_queue[_enqueued._next_pop + i]->enter_timestamp;
+        int64_t diff_budget =
+                temp_queue[_enqueued._next_pop + i]->timeout_budget - diff;
+        int size_p = temp_queue[_enqueued._next_pop + i]->size();
+        if (diff_budget > 0 ||
+            _enqueued._queue[count_good]->type() == ETH_PAUSE ||
+            _enqueued._queue[count_good]->type() == UECACK_DROP) {
+            _enqueued._queue[count_good] = temp_queue[_enqueued._next_pop + i];
+
+            int64_t diff =
+                    GLOBAL_TIME - _enqueued._queue[count_good]->enter_timestamp;
+
+            int64_t diff_budget =
+                    _enqueued._queue[count_good]->timeout_budget - diff;
+            //_enqueued._queue[count_good]->timeout_budget = diff_budget;
+            count_good++;
+        } else {
+            dropped_p++;
+            _queuesize -= size_p;
+        }
+    }
+    _enqueued._next_pop = 0;
+    _enqueued._next_push = count_good;
+    _enqueued._count = count_good;
+
+    if (dropped_p > 0) {
+        printf("Started With %d Pkts - Dropped %d Pkts - Count %d - Pop %d "
+               "- Push %d\n",
+               initial_count, dropped_p, _enqueued._count, _enqueued._next_pop,
+               _enqueued._next_push);
+    } else {
+        printf("Not dropped\n");
+    }
+
+    fflush(stdout);
+    if (_enqueued._count <= 0) {
+        _sending = 0;
+        return;
+    }
     Packet *pkt = _enqueued.pop();
     VirtualQueue *q = _vq.back();
+
+    printf("Budget From %d - ID %d - Budget %li\n", pkt->from, pkt->id(),
+           pkt->timeout_budget);
 
     //_enqueued.pop_back();
     _vq.pop_back();

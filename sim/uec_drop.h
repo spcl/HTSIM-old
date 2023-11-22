@@ -112,6 +112,7 @@ class UecDropSrc : public PacketSink, public EventSource {
         do_exponential_gain = value;
     }
     static void set_use_fast_increase(bool value) { use_fast_increase = value; }
+    static void set_use_mixed(bool value) { use_mixed = value; }
     static void set_use_super_fast_increase(bool value) {
         use_super_fast_increase = value;
     }
@@ -195,6 +196,7 @@ class UecDropSrc : public PacketSink, public EventSource {
 
     // Custom Parameters
     static std::string queue_type;
+    static bool use_mixed;
     static std::string algorithm_type;
     static bool use_fast_drop;
     static int fast_drop_rtt;
