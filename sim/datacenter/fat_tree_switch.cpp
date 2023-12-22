@@ -81,7 +81,7 @@ void FatTreeSwitch::receivePacket(Packet &pkt) {
                        (LINK_DELAY_MODERN * 1000));*/
             simtime_picosec my_time =
                     GLOBAL_TIME - (SINGLE_PKT_TRASMISSION_TIME_MODERN * 1000) -
-                    (LINK_DELAY_MODERN * 1000);
+                    (70000000);
 
             if (precision_ts == 1) {
                 pkt.set_ts(my_time);
@@ -97,7 +97,8 @@ void FatTreeSwitch::receivePacket(Packet &pkt) {
                                          std::to_string(this->from) + ".txt ");
                 std::ofstream MyFile(file_name, std::ios_base::app);
 
-                MyFile << (GLOBAL_TIME) / 1000 << "," << 1 << std::endl;
+                MyFile << (GLOBAL_TIME - 70000000) / 1000 << "," << 1
+                       << std::endl;
 
                 MyFile.close();
             }

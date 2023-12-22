@@ -18,6 +18,7 @@ ECN = True
 def main(args):
     # Clean Data and Copy Data
     os.system("rm -r queue_size_normalized/")
+    os.system("rm -r queue_phantom/")
     os.system("rm -r rtt/")
     os.system("rm -r cwd/")
     os.system("rm -r ecn/")
@@ -37,6 +38,7 @@ def main(args):
     os.system("cp -a ../sim/output/cwd/. cwd/")
     os.system("cp -a ../sim/output/rtt/. rtt/")
     os.system("cp -a ../sim/output/queue/. queue_size_normalized/")
+    os.system("cp -a ../sim/output/queue_phantom/. queue_phantom/")
     os.system("cp -a ../sim/output/sent/. sent/")
     os.system("cp -a ../sim/output/ecn/. ecn/")
     os.system("cp -a ../sim/output/nack/. nack/")
@@ -127,6 +129,33 @@ def main(args):
         df3 = df3.iloc[::int(ratio)]
         # Reset the index of the new dataframe
         df3.reset_index(drop=True, inplace=True)
+
+
+    # Queue Phantom Data
+    colnames=['Time', 'Queue', 'KMin', 'KMax'] 
+    df30= pd.DataFrame(columns =colnames)
+    name = ['0'] * df30.shape[0]
+    df30 = df30.assign(Node=name)
+    df30.drop_duplicates('Time', inplace = True)
+
+    pathlist = Path('queue_phantom').glob('**/*.txt')
+    for files in natsort.natsorted(pathlist,reverse=False):
+        path_in_str = str(files)
+        temp_df30 = pd.read_csv(path_in_str, names=colnames, header=None, index_col=False, sep=',')
+        name = [str(path_in_str)] * temp_df30.shape[0]
+        temp_df30 = temp_df30.assign(Node=name)
+        temp_df30.drop_duplicates('Time', inplace = True)
+        df30 = pd.concat([df30, temp_df30])
+
+    kmin = df30["KMin"].max()
+    kmax = df30["KMax"].max()
+
+    if (len(df30) > 100000):
+        ratio = len(df30) / 50000
+        # DownScale
+        df30 = df30.iloc[::int(ratio)]
+        # Reset the index of the new dataframe
+        df30.reset_index(drop=True, inplace=True)
 
     # ECN Data
     colnames=['Time', 'ECN'] 
@@ -582,6 +611,23 @@ def main(args):
         )
         count += 1
 
+    # Phantom Queue
+    print("Queue Plot")
+    count = 0
+    df30['Queue'] = pd.to_numeric(df30['Queue'])
+    max_ele = df30[['Queue']].idxmax(1)
+    for i in df30['Node'].unique():
+        sub_df = df30.loc[df30['Node'] == str(i)]
+        if (skip_small_value is True and sub_df['Queue'].max() < 500):
+            count += 1
+            continue
+
+        fig.add_trace(
+            go.Scatter(x=sub_df["Time"], y=sub_df['Queue'], name="Queue " + str(i),   mode="markers",  marker=dict(size=1.4), line=dict(dash='dash', color="pink", width=3),  showlegend=True),
+            secondary_y=False,
+        )
+        count += 1
+
     print("ECN Plot")
     # ECN
     mean_ecn = df4["Time"].mean()
@@ -595,7 +641,7 @@ def main(args):
     print("Sent Plot")
     # Sent
     mean_sent = df5["Time"].mean()
-    df5['Sent'] = df5['Sent'].multiply(11000)
+    df5['Sent'] = df5['Sent'].multiply(y_sent)
     for i in df5['Node'].unique():
         sub_df5 = df5.loc[df5['Node'] == str(i)]
         fig.add_trace(
@@ -651,7 +697,7 @@ def main(args):
     if args.name is not None:
         my_title=args.name
     else:
-        my_title="<b>Permutation Across - 4:1 FT - 400Gbps - 2 MiB - UEC</b>"
+        my_title="<b>Incast 2:1 – 1:1 FT – 800Gbps – 4KiB MTU – 128MiB Flows - LoadBalancing ON</b>"
 
     # Add figure title
     fig.update_layout(title_text=my_title)
@@ -697,7 +743,7 @@ def main(args):
         font=dict(color=color[3], size=13),
         )
 
-    fig.add_shape(
+    '''fig.add_shape(
         type="line",
         x0=0,  # Start x-coordinate
         x1=max_x,  # End x-coordinate
@@ -714,7 +760,7 @@ def main(args):
         text="Target RTT",          # The text label you want to display
         showarrow=False,               # No arrow pointing to the label
         font=dict(size=12, color="black"),  # Customize the font size and color
-    )
+    )'''
 
     fig.add_shape(
         type="line",

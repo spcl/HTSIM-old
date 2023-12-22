@@ -1,0 +1,562 @@
+Name Running: SMaRTT
+no_of_nodes 128
+KMin: 20
+KMax: 80
+TargetRTT: 50
+FastIncrease: 1
+FastIncreaseSuper: 1
+FastDrop: 1
+Speed is 800000
+XGain: 0.800000
+YGain: 2.500000
+WGain: 2.000000
+ZGain: 1.000000
+BonusDrop: 0.800000
+BufferDrop: 1.000000
+Test 1.000000 50 -- 40
+Project Path "/home/tommaso/csg-htsim"
+Setting CWND to 1224000
+Using BDP of 1224000 - Queue is 1224000 - Starting Window is 1224000
+Using subflow count 1
+Logging to uec_entry
+Set Strategy Num 0
+Set Strategy Num 2
+Fat Tree topology with 1us links and 0us switching latency.
+Set params 128
+QueueSize 1224000
+_no_of_nodes 128
+K 8
+Queue type 3
+total switches: ToR 32 NAGG 32 NCORE 16 srv_per_tor 4
+SRC0->LS0
+SRC1->LS0
+SRC2->LS0
+SRC3->LS0
+SRC4->LS1
+SRC5->LS1
+SRC6->LS1
+SRC7->LS1
+SRC8->LS2
+SRC9->LS2
+SRC10->LS2
+SRC11->LS2
+SRC12->LS3
+SRC13->LS3
+SRC14->LS3
+SRC15->LS3
+SRC16->LS4
+SRC17->LS4
+SRC18->LS4
+SRC19->LS4
+SRC20->LS5
+SRC21->LS5
+SRC22->LS5
+SRC23->LS5
+SRC24->LS6
+SRC25->LS6
+SRC26->LS6
+SRC27->LS6
+SRC28->LS7
+SRC29->LS7
+SRC30->LS7
+SRC31->LS7
+SRC32->LS8
+SRC33->LS8
+SRC34->LS8
+SRC35->LS8
+SRC36->LS9
+SRC37->LS9
+SRC38->LS9
+SRC39->LS9
+SRC40->LS10
+SRC41->LS10
+SRC42->LS10
+SRC43->LS10
+SRC44->LS11
+SRC45->LS11
+SRC46->LS11
+SRC47->LS11
+SRC48->LS12
+SRC49->LS12
+SRC50->LS12
+SRC51->LS12
+SRC52->LS13
+SRC53->LS13
+SRC54->LS13
+SRC55->LS13
+SRC56->LS14
+SRC57->LS14
+SRC58->LS14
+SRC59->LS14
+SRC60->LS15
+SRC61->LS15
+SRC62->LS15
+SRC63->LS15
+SRC64->LS16
+SRC65->LS16
+SRC66->LS16
+SRC67->LS16
+SRC68->LS17
+SRC69->LS17
+SRC70->LS17
+SRC71->LS17
+SRC72->LS18
+SRC73->LS18
+SRC74->LS18
+SRC75->LS18
+SRC76->LS19
+SRC77->LS19
+SRC78->LS19
+SRC79->LS19
+SRC80->LS20
+SRC81->LS20
+SRC82->LS20
+SRC83->LS20
+SRC84->LS21
+SRC85->LS21
+SRC86->LS21
+SRC87->LS21
+SRC88->LS22
+SRC89->LS22
+SRC90->LS22
+SRC91->LS22
+SRC92->LS23
+SRC93->LS23
+SRC94->LS23
+SRC95->LS23
+SRC96->LS24
+SRC97->LS24
+SRC98->LS24
+SRC99->LS24
+SRC100->LS25
+SRC101->LS25
+SRC102->LS25
+SRC103->LS25
+SRC104->LS26
+SRC105->LS26
+SRC106->LS26
+SRC107->LS26
+SRC108->LS27
+SRC109->LS27
+SRC110->LS27
+SRC111->LS27
+SRC112->LS28
+SRC113->LS28
+SRC114->LS28
+SRC115->LS28
+SRC116->LS29
+SRC117->LS29
+SRC118->LS29
+SRC119->LS29
+SRC120->LS30
+SRC121->LS30
+SRC122->LS30
+SRC123->LS30
+SRC124->LS31
+SRC125->LS31
+SRC126->LS31
+SRC127->LS31
+LS0->US0
+LS0->US1
+LS0->US2
+LS0->US3
+LS1->US0
+LS1->US1
+LS1->US2
+LS1->US3
+LS2->US0
+LS2->US1
+LS2->US2
+LS2->US3
+LS3->US0
+LS3->US1
+LS3->US2
+LS3->US3
+LS4->US4
+LS4->US5
+LS4->US6
+LS4->US7
+LS5->US4
+LS5->US5
+LS5->US6
+LS5->US7
+LS6->US4
+LS6->US5
+LS6->US6
+LS6->US7
+LS7->US4
+LS7->US5
+LS7->US6
+LS7->US7
+LS8->US8
+LS8->US9
+LS8->US10
+LS8->US11
+LS9->US8
+LS9->US9
+LS9->US10
+LS9->US11
+LS10->US8
+LS10->US9
+LS10->US10
+LS10->US11
+LS11->US8
+LS11->US9
+LS11->US10
+LS11->US11
+LS12->US12
+LS12->US13
+LS12->US14
+LS12->US15
+LS13->US12
+LS13->US13
+LS13->US14
+LS13->US15
+LS14->US12
+LS14->US13
+LS14->US14
+LS14->US15
+LS15->US12
+LS15->US13
+LS15->US14
+LS15->US15
+LS16->US16
+LS16->US17
+LS16->US18
+LS16->US19
+LS17->US16
+LS17->US17
+LS17->US18
+LS17->US19
+LS18->US16
+LS18->US17
+LS18->US18
+LS18->US19
+LS19->US16
+LS19->US17
+LS19->US18
+LS19->US19
+LS20->US20
+LS20->US21
+LS20->US22
+LS20->US23
+LS21->US20
+LS21->US21
+LS21->US22
+LS21->US23
+LS22->US20
+LS22->US21
+LS22->US22
+LS22->US23
+LS23->US20
+LS23->US21
+LS23->US22
+LS23->US23
+LS24->US24
+LS24->US25
+LS24->US26
+LS24->US27
+LS25->US24
+LS25->US25
+LS25->US26
+LS25->US27
+LS26->US24
+LS26->US25
+LS26->US26
+LS26->US27
+LS27->US24
+LS27->US25
+LS27->US26
+LS27->US27
+LS28->US28
+LS28->US29
+LS28->US30
+LS28->US31
+LS29->US28
+LS29->US29
+LS29->US30
+LS29->US31
+LS30->US28
+LS30->US29
+LS30->US30
+LS30->US31
+LS31->US28
+LS31->US29
+LS31->US30
+LS31->US31
+US0->CS0
+Core 0 - Agg 0 - Latency 1000000
+US0->CS1
+Core 1 - Agg 0 - Latency 1000000
+US0->CS2
+Core 2 - Agg 0 - Latency 1000000
+US0->CS3
+Core 3 - Agg 0 - Latency 1000000
+US1->CS4
+Core 4 - Agg 1 - Latency 1000000
+US1->CS5
+Core 5 - Agg 1 - Latency 1000000
+US1->CS6
+Core 6 - Agg 1 - Latency 1000000
+US1->CS7
+Core 7 - Agg 1 - Latency 1000000
+US2->CS8
+Core 8 - Agg 2 - Latency 1000000
+US2->CS9
+Core 9 - Agg 2 - Latency 1000000
+US2->CS10
+Core 10 - Agg 2 - Latency 1000000
+US2->CS11
+Core 11 - Agg 2 - Latency 1000000
+US3->CS12
+Core 12 - Agg 3 - Latency 1000000
+US3->CS13
+Core 13 - Agg 3 - Latency 1000000
+US3->CS14
+Core 14 - Agg 3 - Latency 1000000
+US3->CS15
+Core 15 - Agg 3 - Latency 1000000
+US4->CS0
+Core 0 - Agg 4 - Latency 1000000
+US4->CS1
+Core 1 - Agg 4 - Latency 1000000
+US4->CS2
+Core 2 - Agg 4 - Latency 1000000
+US4->CS3
+Core 3 - Agg 4 - Latency 1000000
+US5->CS4
+Core 4 - Agg 5 - Latency 1000000
+US5->CS5
+Core 5 - Agg 5 - Latency 1000000
+US5->CS6
+Core 6 - Agg 5 - Latency 1000000
+US5->CS7
+Core 7 - Agg 5 - Latency 1000000
+US6->CS8
+Core 8 - Agg 6 - Latency 1000000
+US6->CS9
+Core 9 - Agg 6 - Latency 1000000
+US6->CS10
+Core 10 - Agg 6 - Latency 1000000
+US6->CS11
+Core 11 - Agg 6 - Latency 1000000
+US7->CS12
+Core 12 - Agg 7 - Latency 1000000
+US7->CS13
+Core 13 - Agg 7 - Latency 1000000
+US7->CS14
+Core 14 - Agg 7 - Latency 1000000
+US7->CS15
+Core 15 - Agg 7 - Latency 1000000
+US8->CS0
+Core 0 - Agg 8 - Latency 1000000
+US8->CS1
+Core 1 - Agg 8 - Latency 1000000
+US8->CS2
+Core 2 - Agg 8 - Latency 1000000
+US8->CS3
+Core 3 - Agg 8 - Latency 1000000
+US9->CS4
+Core 4 - Agg 9 - Latency 1000000
+US9->CS5
+Core 5 - Agg 9 - Latency 1000000
+US9->CS6
+Core 6 - Agg 9 - Latency 1000000
+US9->CS7
+Core 7 - Agg 9 - Latency 1000000
+US10->CS8
+Core 8 - Agg 10 - Latency 1000000
+US10->CS9
+Core 9 - Agg 10 - Latency 1000000
+US10->CS10
+Core 10 - Agg 10 - Latency 1000000
+US10->CS11
+Core 11 - Agg 10 - Latency 1000000
+US11->CS12
+Core 12 - Agg 11 - Latency 1000000
+US11->CS13
+Core 13 - Agg 11 - Latency 1000000
+US11->CS14
+Core 14 - Agg 11 - Latency 1000000
+US11->CS15
+Core 15 - Agg 11 - Latency 1000000
+US12->CS0
+Core 0 - Agg 12 - Latency 1000000
+US12->CS1
+Core 1 - Agg 12 - Latency 1000000
+US12->CS2
+Core 2 - Agg 12 - Latency 1000000
+US12->CS3
+Core 3 - Agg 12 - Latency 1000000
+US13->CS4
+Core 4 - Agg 13 - Latency 1000000
+US13->CS5
+Core 5 - Agg 13 - Latency 1000000
+US13->CS6
+Core 6 - Agg 13 - Latency 1000000
+US13->CS7
+Core 7 - Agg 13 - Latency 1000000
+US14->CS8
+Core 8 - Agg 14 - Latency 1000000
+US14->CS9
+Core 9 - Agg 14 - Latency 1000000
+US14->CS10
+Core 10 - Agg 14 - Latency 1000000
+US14->CS11
+Core 11 - Agg 14 - Latency 1000000
+US15->CS12
+Core 12 - Agg 15 - Latency 1000000
+US15->CS13
+Core 13 - Agg 15 - Latency 1000000
+US15->CS14
+Core 14 - Agg 15 - Latency 1000000
+US15->CS15
+Core 15 - Agg 15 - Latency 1000000
+US16->CS0
+Core 0 - Agg 16 - Latency 1000000
+US16->CS1
+Core 1 - Agg 16 - Latency 1000000
+US16->CS2
+Core 2 - Agg 16 - Latency 1000000
+US16->CS3
+Core 3 - Agg 16 - Latency 1000000
+US17->CS4
+Core 4 - Agg 17 - Latency 1000000
+US17->CS5
+Core 5 - Agg 17 - Latency 1000000
+US17->CS6
+Core 6 - Agg 17 - Latency 1000000
+US17->CS7
+Core 7 - Agg 17 - Latency 1000000
+US18->CS8
+Core 8 - Agg 18 - Latency 1000000
+US18->CS9
+Core 9 - Agg 18 - Latency 1000000
+US18->CS10
+Core 10 - Agg 18 - Latency 1000000
+US18->CS11
+Core 11 - Agg 18 - Latency 1000000
+US19->CS12
+Core 12 - Agg 19 - Latency 1000000
+US19->CS13
+Core 13 - Agg 19 - Latency 1000000
+US19->CS14
+Core 14 - Agg 19 - Latency 1000000
+US19->CS15
+Core 15 - Agg 19 - Latency 1000000
+US20->CS0
+Core 0 - Agg 20 - Latency 1000000
+US20->CS1
+Core 1 - Agg 20 - Latency 1000000
+US20->CS2
+Core 2 - Agg 20 - Latency 1000000
+US20->CS3
+Core 3 - Agg 20 - Latency 1000000
+US21->CS4
+Core 4 - Agg 21 - Latency 1000000
+US21->CS5
+Core 5 - Agg 21 - Latency 1000000
+US21->CS6
+Core 6 - Agg 21 - Latency 1000000
+US21->CS7
+Core 7 - Agg 21 - Latency 1000000
+US22->CS8
+Core 8 - Agg 22 - Latency 1000000
+US22->CS9
+Core 9 - Agg 22 - Latency 1000000
+US22->CS10
+Core 10 - Agg 22 - Latency 1000000
+US22->CS11
+Core 11 - Agg 22 - Latency 1000000
+US23->CS12
+Core 12 - Agg 23 - Latency 1000000
+US23->CS13
+Core 13 - Agg 23 - Latency 1000000
+US23->CS14
+Core 14 - Agg 23 - Latency 1000000
+US23->CS15
+Core 15 - Agg 23 - Latency 1000000
+US24->CS0
+Core 0 - Agg 24 - Latency 1000000
+US24->CS1
+Core 1 - Agg 24 - Latency 1000000
+US24->CS2
+Core 2 - Agg 24 - Latency 1000000
+US24->CS3
+Core 3 - Agg 24 - Latency 1000000
+US25->CS4
+Core 4 - Agg 25 - Latency 1000000
+US25->CS5
+Core 5 - Agg 25 - Latency 1000000
+US25->CS6
+Core 6 - Agg 25 - Latency 1000000
+US25->CS7
+Core 7 - Agg 25 - Latency 1000000
+US26->CS8
+Core 8 - Agg 26 - Latency 1000000
+US26->CS9
+Core 9 - Agg 26 - Latency 1000000
+US26->CS10
+Core 10 - Agg 26 - Latency 1000000
+US26->CS11
+Core 11 - Agg 26 - Latency 1000000
+US27->CS12
+Core 12 - Agg 27 - Latency 1000000
+US27->CS13
+Core 13 - Agg 27 - Latency 1000000
+US27->CS14
+Core 14 - Agg 27 - Latency 1000000
+US27->CS15
+Core 15 - Agg 27 - Latency 1000000
+US28->CS0
+Core 0 - Agg 28 - Latency 1000000
+US28->CS1
+Core 1 - Agg 28 - Latency 1000000
+US28->CS2
+Core 2 - Agg 28 - Latency 1000000
+US28->CS3
+Core 3 - Agg 28 - Latency 1000000
+US29->CS4
+Core 4 - Agg 29 - Latency 1000000
+US29->CS5
+Core 5 - Agg 29 - Latency 1000000
+US29->CS6
+Core 6 - Agg 29 - Latency 1000000
+US29->CS7
+Core 7 - Agg 29 - Latency 1000000
+US30->CS8
+Core 8 - Agg 30 - Latency 1000000
+US30->CS9
+Core 9 - Agg 30 - Latency 1000000
+US30->CS10
+Core 10 - Agg 30 - Latency 1000000
+US30->CS11
+Core 11 - Agg 30 - Latency 1000000
+US31->CS12
+Core 12 - Agg 31 - Latency 1000000
+US31->CS13
+Core 13 - Agg 31 - Latency 1000000
+US31->CS14
+Core 14 - Agg 31 - Latency 1000000
+US31->CS15
+Core 15 - Agg 31 - Latency 1000000
+Running incastt with 0 connections
+Starting LGS InterfaceLogGP network backend; size: 128 (1 CPUs, 1 NICs); L=2500, o=1500 g=1000, G=6, O=0, P=128, S=65535
+Starting 128
+init 0 (0,0) send to: 64, tag: 0, size: 2000000
+init 1 (0,0) send to: 64, tag: 0, size: 2000000
+init 2 (0,0) send to: 64, tag: 0, size: 2000000
+init 3 (0,0) send to: 64, tag: 0, size: 2000000
+init 64 (0,0) recvs from: 0, tag: 0, size: 2000000
+init 64 (0,0) recvs from: 1, tag: 0, size: 2000000
+init 64 (0,0) recvs from: 2, tag: 0, size: 2000000
+init 64 (0,0) recvs from: 3, tag: 0, size: 2000000
+----------------------------    ENTERING WHILE        // ---------------------------- | 0 - 0 0 -  1 1 - 0 0 Size AQ 8 - 0 64 0
+Active Queue Size 8 - Top Time 0 Type 1 - HTSIM Time 0
+Entering SendStarting1 UEC LGS Setup
+Link Delay 1000 - Link Speed 800 - Pkt Size 4096 - Base RTT 12246000 - Target RTT is 18491460 - BDP 1224600 - CWND 1224000 - Hops 6
+CWD Start 1224000 - From 0 To 64
+Setting 0 64 0
+First Dest 64
+StartTime is 0
+Set paths uec (path_count) called with wrong route strategy 2

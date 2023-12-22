@@ -2,6 +2,7 @@
 #ifndef LOGSIM_INTERFACE
 #define LOGSIM_INTERFACE
 
+#include "compute_event.h"
 #include "eventlist.h"
 #include "fat_tree_topology.h"
 #include "lgs/logsim.h"
@@ -50,6 +51,7 @@ class LogSimInterface {
     void htsim_schedule(u_int32_t, int, int, int, u_int64_t, int);
     void send_event(int from, int to, int size, int tag,
                     u_int64_t start_time_event);
+    void execute_compute(graph_node_properties elem, int p);
     void set_protocol(ProtocolName name) { _protocolName = name; };
     void set_cwd(int cwd);
     void setReuse(bool reuse) { _use_good_entropies = reuse; };
@@ -70,10 +72,13 @@ class LogSimInterface {
     bool all_sends_delivered();
     void ns3_terminate(int64_t &current_time);
     void flow_over(const Packet &);
+    void compute_over(int);
     graph_node_properties htsim_simulate_until(u_int64_t until);
     void update_latest_receive(graph_node_properties *recv_op);
     void reset_latest_receive();
     void terminate_sim();
+    int track_times[8192] = {0};
+    std::uint64_t htsim_time = 0;
 
   private:
     TrafficLogger *_flow;
@@ -82,6 +87,7 @@ class LogSimInterface {
     FatTreeTopology *_topo;
     std::vector<const Route *> ***_netPaths;
     int _cwd;
+    ComputeEvent *compute_events_handler;
     graph_node_properties *_latest_recv;
     vector<UecSrc *> _uecSrcVector;
     vector<UecDropSrc *> _uecDropSrcVector;

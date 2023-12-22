@@ -41,6 +41,11 @@ LogSimInterface::LogSimInterface(UecLogger *logger, TrafficLogger *pktLogger,
     _topo = topo;
     _netPaths = routes;
     _latest_recv = new graph_node_properties();
+    if (compute_events_handler == NULL) {
+        compute_events_handler = new ComputeEvent(_logger, *_eventlist);
+        compute_events_handler->set_compute_over_hook(std::bind(
+                &LogSimInterface::compute_over, this, std::placeholders::_1));
+    }
 }
 
 void LogSimInterface::set_cwd(int cwd) { _cwd = cwd; }
@@ -56,14 +61,24 @@ void LogSimInterface::htsim_schedule(u_int32_t host, int to, int size, int tag,
                           "@" + std::to_string(tag);
     printf("Scheduling Event (%s) of size %d from %d to %d tag %d start_tiem "
            "%lu - Time is %lu\n ",
-           to_hash.c_str(), size, host, to, tag, start_time_event, GLOBAL_TIME);
+           to_hash.c_str(), size, host, to, tag, start_time_event * 1000,
+           GLOBAL_TIME);
     MsgInfo entry;
-    entry.start_time = start_time_event;
+    entry.start_time = start_time_event * 1000;
     entry.total_bytes_msg = size;
     entry.offset = my_offset;
     entry.bytes_left_to_recv = size;
     entry.to_parse = 42;
     active_sends[to_hash] = entry;
+}
+
+void LogSimInterface::execute_compute(graph_node_properties comp_elem,
+                                      int size_p) {
+    if (_protocolName == UEC_PROTOCOL) {
+        printf("Running Compute of %d ns\n", comp_elem.size);
+        fflush(stdout);
+        compute_events_handler->setCompute(comp_elem.size);
+    }
 }
 
 void LogSimInterface::send_event(int from, int to, int size, int tag,
@@ -147,7 +162,7 @@ void LogSimInterface::send_event(int from, int to, int size, int tag,
         if (tag == 99) {
             uecSrc->connect(srctotor, dsttotor, *uecSink, GLOBAL_TIME + 100000);
         } else {
-            uecSrc->connect(srctotor, dsttotor, *uecSink, GLOBAL_TIME);
+            uecSrc->connect(srctotor, dsttotor, *uecSink, start_time_event);
         }
 
         uecSrc->set_paths(path_entropy_size);
@@ -465,6 +480,14 @@ void LogSimInterface::flow_over(const Packet &p) {
     return;
 }
 
+void LogSimInterface::compute_over(int i) {
+    printf("Compute is over, time is %lu vs htsim_time %lu\n", GLOBAL_TIME,
+           htsim_time);
+    fflush(stdout);
+    htsim_time = GLOBAL_TIME;
+    return;
+}
+
 void LogSimInterface::reset_latest_receive() { _latest_recv->updated = false; }
 
 void LogSimInterface::terminate_sim() {
@@ -537,12 +560,13 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
     const int G = 6;
     print = false;
     const uint32_t S = 65535;
-    std::uint64_t htsim_time = 0;
+    lgs_interface->htsim_time = 0;
 
     Parser parser(filename_goal, 0);
     Network net;
 
     const uint p = parser.schedules.size();
+
     const int ncpus = parser.GetNumCPU();
     const int nnics = parser.GetNumNIC();
 
@@ -663,7 +687,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
             default:
                 printf("not implemented!\n");
             }
-            freeop->time = htsim_time;
+            freeop->time = lgs_interface->htsim_time;
             aq.push(*freeop);
             // std::cout << "AQ size after push: " << aq.size() << "\n";
         }
@@ -678,7 +702,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
 
     while (!aq.empty() || (size_queue(rq, p) > 0) || (size_queue(uq, p) > 0)/* ||
            !lgs_interface->all_sends_delivered()*/) {
-        if (cycles > 100000) {
+        if (cycles > 10000) {
             printf("\nERROR: We are in some sort of loop in the main WHILE. "
                    "Breaking after 100k cycles\n\n");
             break;
@@ -687,13 +711,18 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                "---------------------------- | %d - %ld %ld -  %d %d - %d %d "
                "Size AQ %lu - "
                "%d %d %d\n",
-               aq.empty(), aq.top().time, htsim_time, 1, first_cycle,
-               size_queue(rq, p), size_queue(uq, p), aq.size(), aq.top().host,
-               aq.top().target, aq.top().tag);
+               aq.empty(), aq.top().time, lgs_interface->htsim_time, 1,
+               first_cycle, size_queue(rq, p), size_queue(uq, p), aq.size(),
+               aq.top().host, aq.top().target, aq.top().tag);
 
         graph_node_properties temp_elem = aq.top();
-        while (!aq.empty() && aq.top().time <= htsim_time) {
-            if (cycles > 100000) {
+
+        while (!aq.empty() && aq.top().time <= lgs_interface->htsim_time) {
+            printf("Active Queue Size %d - Top Time %lu Type %d - HTSIM Time "
+                   "%lu\n",
+                   aq.size(), aq.top().time, aq.top().type,
+                   lgs_interface->htsim_time);
+            if (cycles > 10000) {
                 printf("\nERROR: We are in some sort of loop in the main "
                        "WHILE. Breaking after 100k cycles\n\n");
                 exit(0);
@@ -718,9 +747,11 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                            elem.proc);
                 if (nexto[elem.host][elem.proc] <= elem.time) {
                     // check if OS Noise occurred
+                    printf("Executing compute of %d\n", elem.size);
                     osnoise.get_noise(elem.host, elem.time,
                                       elem.time + elem.size);
-                    nexto[elem.host][elem.proc] = elem.size + htsim_time;
+                    nexto[elem.host][elem.proc] =
+                            elem.size + lgs_interface->htsim_time;
                     // printf("====================== Updated time is %ld
                     // ===============================1\n",
                     // nexto[elem.host][elem.proc]);
@@ -731,17 +762,21 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                     parser.schedules[elem.host].MarkNodeAsStarted(elem.offset);
                     // parser.schedules[elem.host].MarkNodeAsDone(elem.offset);
                     elem.type = OP_LOCOP_IN_PROGRESS;
+                    lgs_interface->execute_compute(elem, p);
+                    // parser.schedules[elem.host].MarkNodeAsDone(elem.offset);
+                    // lgs_interface->htsim_time += elem.size;
                     // check_hosts.push_back(elem.host);
                     // add to timeline
                     // tlviz.add_loclop(elem.host, elem.time,
-                    // elem.time+elem.size, elem.proc);
+                    elem.time += elem.size;
+                    aq.push(elem);
                 } else {
                     if (print)
                         printf("-- locop local o not available -- "
                                "reinserting\n");
                     elem.time = nexto[elem.host][elem.proc];
                 }
-                aq.push(elem);
+                // aq.push(elem);
             } break;
 
             case OP_LOCOP_IN_PROGRESS: {
@@ -749,11 +784,12 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
             } break;
 
             case OP_SEND: { // a send op
-
-                // htsim_time = GLOBAL_TIME;
+                printf("Entering Send");
+                // lgs_interface->htsim_time = GLOBAL_TIME;
                 if (elem.target == 999999999 || elem.target == 9999999) {
                     std::cout << "Time at Step " << elem.host << ": "
-                              << htsim_time << " - Tag " << elem.tag << "\n";
+                              << lgs_interface->htsim_time << " - Tag "
+                              << elem.tag << "\n";
                     parser.schedules[elem.host].MarkNodeAsStarted(elem.offset);
                     parser.schedules[elem.host].MarkNodeAsDone(elem.offset);
                     break;
@@ -763,15 +799,16 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                     printf("[%i] found send to %i - t: %lu (CPU: %i)\n",
                            elem.host, elem.target, (ulint)elem.time, elem.proc);
                 if (std::max(nexto[elem.host][elem.proc],
-                             nextgs[elem.host][elem.nic]) <=
-                    elem.time) { // local o,g available!
+                             nextgs[elem.host][elem.nic]) <= elem.time ||
+                    true) { // local o,g available!
                     if (print)
                         printf("-- satisfy local irequires\n");
                     parser.schedules[elem.host].MarkNodeAsStarted(elem.offset);
 
                     lgs_interface->htsim_schedule(elem.host, elem.target,
                                                   elem.size, elem.tag,
-                                                  elem.starttime, elem.offset);
+                                                  GLOBAL_TIME, elem.offset);
+
                     printf("Send host %d - offset %d\n", elem.host,
                            elem.offset);
                     // parser.schedules[elem.host].MarkNodeAsDone(elem.offset);
@@ -948,20 +985,21 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
         // We Run NS-3 if we have a compute message or if we have still some
         // data in the network
         printf("Current elem time is %ld while NS3 %ld\n", temp_elem.time,
-               htsim_time);
+               lgs_interface->htsim_time);
         fflush(stdout);
         if (!lgs_interface
                      ->all_sends_delivered() /*&& temp_elem.type != OP_MSG*/) {
-            if (temp_elem.time > htsim_time) {
+            if (temp_elem.time > lgs_interface->htsim_time) {
                 // printf("Running until\n");
-                //  htsim_time = htsim_simulate_until(temp_elem.time,
-                //  &recev_msg);
+                //  lgs_interface->htsim_time =
+                //  htsim_simulate_until(temp_elem.time, &recev_msg);
             } else {
                 printf("Running infinite - AQ Size %d - Temp Time %lu vs Htsim "
                        "%lu - Global %lu\n",
-                       aq.size(), temp_elem.time, htsim_time, GLOBAL_TIME);
+                       aq.size(), temp_elem.time, lgs_interface->htsim_time,
+                       GLOBAL_TIME);
                 recev_msg = lgs_interface->htsim_simulate_until(100);
-                htsim_time = GLOBAL_TIME;
+                lgs_interface->htsim_time = GLOBAL_TIME;
             }
         }
         // How much time inside NS3
@@ -990,10 +1028,10 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
         for (Parser::schedules_t::iterator sched = parser.schedules.begin();
              sched != parser.schedules.end(); ++sched, ++host) {
             // printf("Starting to parse new ops %d\n", 1);
-            fflush(stdout);
-            // host = *iter;
-            // for(host = 0; host < p; host++)
-            // SerializedGraph *sched=&parser.schedules[host];
+            // fflush(stdout);
+            //  host = *iter;
+            //  for(host = 0; host < p; host++)
+            //  SerializedGraph *sched=&parser.schedules[host];
 
             // retrieve all free operations
             SerializedGraph::nodelist_t free_ops;
@@ -1029,7 +1067,7 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
                                (long unsigned int)freeop->time, freeop->offset);
                     break;
                 case OP_SEND:
-                    freeop->time = htsim_time;
+                    freeop->time = lgs_interface->htsim_time;
                     // freeop->time = std::max(nexto[host][freeop->proc],
                     // nextgs[host][freeop->nic]);
                     if (0)
@@ -1062,9 +1100,9 @@ int start_lgs(std::string filename_goal, LogSimInterface &lgs) {
         cycles++;
     }
     std::cout << "\n\nRunTime Total LGS -> " << global_time.count() << "ms\n";
-    // ns3_terminate(htsim_time);
+    // ns3_terminate(lgs_interface->htsim_time);
     lgs_interface->terminate_sim();
-    printf("\n\nhtsim Terminates at %ld\n\n\n", htsim_time);
+    printf("\n\nhtsim Terminates at %ld\n\n\n", lgs_interface->htsim_time);
     printf("Remaining %lu\n", parser.schedules.size());
 
     gettimeofday(&tend, NULL);

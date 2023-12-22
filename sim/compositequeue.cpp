@@ -12,6 +12,9 @@
 
 bool CompositeQueue::_drop_when_full = false;
 bool CompositeQueue::_use_mixed = false;
+bool CompositeQueue::_use_phantom = false;
+int CompositeQueue::_phantom_queue_size = 0;
+int CompositeQueue::_phantom_queue_slowdown = 10;
 
 CompositeQueue::CompositeQueue(linkspeed_bps bitrate, mem_b maxsize,
                                EventList &eventlist, QueueLogger *logger)
@@ -30,11 +33,32 @@ CompositeQueue::CompositeQueue(linkspeed_bps bitrate, mem_b maxsize,
     _ecn_minthresh = maxsize * 2; // don't set ECN by default
     _ecn_maxthresh = maxsize * 2; // don't set ECN by default
 
-    _queuesize_high = _queuesize_low = 0;
+    _draining_time_phantom =
+            ((4096 + 64) * 8.0) / 800; // Add paramters here eventually
+    _draining_time_phantom +=
+            (_draining_time_phantom * _phantom_queue_slowdown / 100.0);
+    _draining_time_phantom *= 1000;
+
+    _queuesize_high = _queuesize_low = _current_queuesize_phatom = 0;
     _serv = QUEUE_INVALID;
     stringstream ss;
     ss << "compqueue(" << bitrate / 1000000 << "Mb/s," << maxsize << "bytes)";
     _nodename = ss.str();
+}
+
+void CompositeQueue::decreasePhantom() {
+    _current_queuesize_phatom -= (4096 + 64);
+    if (_current_queuesize_phatom < 0) {
+        _current_queuesize_phatom = 0;
+    }
+    printf("Calling Phantom - Name %s - Size %d - Current Time %lu - Draining "
+           "Phantom "
+           "%lu\n",
+           _nodename.c_str(), _current_queuesize_phatom, GLOBAL_TIME / 1000,
+           _draining_time_phantom / 1000);
+    fflush(stdout);
+    _decrease_phantom_next = eventlist().now() + _draining_time_phantom;
+    eventlist().sourceIsPendingRel(*this, _draining_time_phantom);
 }
 
 void CompositeQueue::beginService() {
@@ -71,16 +95,38 @@ void CompositeQueue::beginService() {
 
 bool CompositeQueue::decide_ECN() {
     // ECN mark on deque
-    if (_queuesize_low > _ecn_maxthresh) {
-        return true;
-    } else if (_queuesize_low > _ecn_minthresh) {
-        uint64_t p = (0x7FFFFFFF * (_queuesize_low - _ecn_minthresh)) /
-                     (_ecn_maxthresh - _ecn_minthresh);
-        if ((uint64_t)random() < p) {
+
+    if (_use_phantom) {
+
+        _ecn_maxthresh = _phantom_queue_size / 100 * 70;
+        _ecn_minthresh = _phantom_queue_size / 100 * 40;
+
+        printf("Current Phantom Queue Size %d - Min %d - Max %d\n",
+               _current_queuesize_phatom, _ecn_minthresh, _ecn_maxthresh);
+
+        if (_current_queuesize_phatom > _ecn_maxthresh) {
             return true;
+        } else if (_current_queuesize_phatom > _ecn_minthresh) {
+            uint64_t p = (0x7FFFFFFF *
+                          (_current_queuesize_phatom - _ecn_minthresh)) /
+                         (_ecn_maxthresh - _ecn_minthresh);
+            if ((uint64_t)random() < p) {
+                return true;
+            }
         }
+        return false;
+    } else {
+        if (_queuesize_low > _ecn_maxthresh) {
+            return true;
+        } else if (_queuesize_low > _ecn_minthresh) {
+            uint64_t p = (0x7FFFFFFF * (_queuesize_low - _ecn_minthresh)) /
+                         (_ecn_maxthresh - _ecn_minthresh);
+            if ((uint64_t)random() < p) {
+                return true;
+            }
+        }
+        return false;
     }
-    return false;
 }
 
 void CompositeQueue::completeService() {
@@ -155,6 +201,11 @@ void CompositeQueue::completeService() {
             }
         }*/
 
+        _current_queuesize_phatom += 4096 + 64;
+        if (_current_queuesize_phatom > _phantom_queue_size) {
+            _current_queuesize_phatom = _phantom_queue_size;
+        }
+
         if (_use_mixed) {
             std::vector<Packet *> new_queue;
             std::vector<Packet *> temp_queue = _enqueued_low._queue;
@@ -203,8 +254,8 @@ void CompositeQueue::completeService() {
         assert(!_enqueued_low.empty());
 
         pkt = _enqueued_low.pop();
-        printf("Budget From %d - ID %d - Budget %li\n", pkt->from, pkt->id(),
-               pkt->timeout_budget);
+        /*printf("Budget From %d - ID %d - Budget %li\n", pkt->from, pkt->id(),
+               pkt->timeout_budget);*/
 
         packets_seen++;
         // printf("Queue %s - Packets %d\n", _nodename.c_str(), packets_seen);
@@ -218,17 +269,6 @@ void CompositeQueue::completeService() {
         // ECN mark on deque
         if (decide_ECN()) {
             pkt->set_flags(pkt->flags() | ECN_CE);
-            if (COLLECT_DATA) {
-                std::string file_name =
-                        PROJECT_ROOT_PATH /
-                        ("sim/output/ecn/ecn" + std::to_string(pkt->from) +
-                         "_" + std::to_string(pkt->to) + ".txt");
-                std::ofstream MyFile(file_name, std::ios_base::app);
-
-                MyFile << eventlist().now() / 1000 << "," << 1 << std::endl;
-
-                MyFile.close();
-            }
         }
 
         if (COLLECT_DATA && !pkt->header_only()) {
@@ -316,9 +356,21 @@ void CompositeQueue::completeService() {
 
     if (!_enqueued_high.empty() || !_enqueued_low.empty())
         beginService();
+
+    if (_current_queuesize_phatom >= 0 && first_time && _use_phantom) {
+        first_time = false;
+        decreasePhantom();
+    }
 }
 
-void CompositeQueue::doNextEvent() { completeService(); }
+void CompositeQueue::doNextEvent() {
+    // printf("Doing next event\n");
+    if (eventlist().now() == _decrease_phantom_next && _use_phantom) {
+        decreasePhantom();
+        return;
+    }
+    completeService();
+}
 
 void CompositeQueue::receivePacket(Packet &pkt) {
     pkt.flow().logTraffic(pkt, *this, TrafficLogger::PKT_ARRIVE);
@@ -351,6 +403,33 @@ void CompositeQueue::receivePacket(Packet &pkt) {
                 MyFile.close();
             }
         }
+
+        if (COLLECT_DATA) {
+            if (_current_queuesize_phatom != 0) {
+                std::string file_name =
+                        PROJECT_ROOT_PATH /
+                        ("sim/output/queue_phantom/queue_phantom" +
+                         _nodename.substr(_nodename.find(")") + 1) + ".txt");
+                std::ofstream MyFile(file_name, std::ios_base::app);
+
+                MyFile << eventlist().now() / 1000 << ","
+                       << int(_current_queuesize_phatom * 8 /
+                              (_bitrate / 1e9)) /
+                                  (1)
+                       << ","
+                       << int((_phantom_queue_size / 100 * 40) * 8 /
+                              (_bitrate / 1e9)) /
+                                  (1)
+                       << ","
+                       << int((_phantom_queue_size / 100 * 70) * 8 /
+                              (_bitrate / 1e9)) /
+                                  (1)
+                       << std::endl;
+
+                MyFile.close();
+            }
+        }
+
         if (_queuesize_low + pkt.size() <= _maxsize || drand() < 0.5) {
             // regular packet; don't drop the arriving packet
 

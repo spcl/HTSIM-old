@@ -342,6 +342,7 @@ class PacketSink {
 
     PacketSink *_remoteEndpoint;
     uint32_t from, to, tag;
+    simtime_picosec next_start_time;
 };
 
 // For speed, it may be useful to keep a database of all packets that

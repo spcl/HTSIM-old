@@ -25,7 +25,7 @@ class CompositeQueue : public Queue {
     virtual void receivePacket(Packet &pkt);
     virtual void doNextEvent();
     // should really be private, but loggers want to see
-    mem_b _queuesize_low, _queuesize_high;
+    mem_b _queuesize_low, _queuesize_high, _current_queuesize_phatom;
     int num_headers() const { return _num_headers; }
     int num_packets() const { return _num_packets; }
     int num_stripped() const { return _num_stripped; }
@@ -57,11 +57,26 @@ class CompositeQueue : public Queue {
     }
     static void set_use_mixed(bool use_m) { _use_mixed = use_m; }
 
+    static void set_use_phantom_queue(bool use_phantom) {
+        _use_phantom = use_phantom;
+    }
+
+    static void set_phantom_queue_size(int phantom_size) {
+        _phantom_queue_size = phantom_size;
+    }
+
+    static void set_phantom_queue_slowdown(int phantom_size_slow) {
+        _phantom_queue_slowdown = phantom_size_slow;
+    }
+
     /*void set_os_link_ratio(int os_link_ratio) {
         _os_link_ratio = os_link_ratio;
     }*/
     static bool _use_mixed;
     static bool _drop_when_full;
+    static bool _use_phantom;
+    static int _phantom_queue_size;
+    static int _phantom_queue_slowdown;
     int _num_packets;
     int _num_headers; // only includes data packets stripped to headers, not
                       // acks or nacks
@@ -71,11 +86,15 @@ class CompositeQueue : public Queue {
     int _num_stripped; // count of packets we stripped
     int _num_bounced;  // count of packets we bounced
     int packets_seen = 0;
+    bool first_time = true;
     int trimmed_seen = 0;
+    simtime_picosec _decrease_phantom_next = 0;
+    simtime_picosec _draining_time_phantom = 0;
 
   protected:
     // Mechanism
-    void beginService();    // start serving the item at the head of the queue
+    void beginService(); // start serving the item at the head of the queue
+    void decreasePhantom();
     void completeService(); // wrap up serving the item at the head of the queue
     bool decide_ECN();
 

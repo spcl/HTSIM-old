@@ -109,6 +109,12 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     static void set_fast_drop(bool value) { use_fast_drop = value; }
     static void set_fast_drop_rtt(int value) { fast_drop_rtt = value; }
 
+    static void set_explicit_rtt(int value) { explicit_base_rtt = value; }
+    static void set_explicit_bdp(int value) { explicit_bdp = value; }
+    static void set_explicit_target_rtt(int value) {
+        explicit_target_rtt = value;
+    }
+
     static void set_do_jitter(bool value) { do_jitter = value; }
     static void set_do_exponential_gain(bool value) {
         do_exponential_gain = value;
@@ -224,6 +230,10 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     static int ratio_os_stage_1;
     static int once_per_rtt;
 
+    static int explicit_target_rtt;
+    static int explicit_base_rtt;
+    static int explicit_bdp;
+
     static double y_gain;
     static double x_gain;
     double initial_x_gain = 0;
@@ -239,6 +249,7 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     static double buffer_drop;
     static bool stop_after_quick;
     static RouteStrategy _route_strategy;
+    bool first_quick_adapt = false;
 
   private:
     uint32_t _unacked;
@@ -319,6 +330,7 @@ class UecSrc : public PacketSink, public EventSource, public TriggerTarget {
     vector<pair<simtime_picosec, uint64_t>> _list_unacked;
     vector<pair<simtime_picosec, uint64_t>> _list_acked_bytes;
     vector<pair<simtime_picosec, uint64_t>> _list_ecn_rtt;
+    vector<pair<simtime_picosec, uint64_t>> _list_ecn_received;
     vector<pair<simtime_picosec, uint64_t>> _list_trimmed_rtt;
     vector<pair<simtime_picosec, uint64_t>> _list_nack;
     vector<pair<simtime_picosec, uint64_t>> _list_bts;

@@ -123,6 +123,11 @@ int main(int argc, char **argv) {
     double bonus_drop = 1;
     double drop_value_buffer = 1;
     double starting_cwnd_ratio = 0;
+    int explicit_starting_cwnd = 0;
+    int explicit_starting_buffer = 0;
+    int explicit_base_rtt = 0;
+    int explicit_target_rtt = 0;
+    int explicit_bdp = 0;
     double queue_size_ratio = 0;
     bool disable_case_3 = false;
     bool disable_case_4 = false;
@@ -136,6 +141,9 @@ int main(int argc, char **argv) {
     int precision_ts = 1;
     int once_per_rtt = 0;
     bool use_mixed = false;
+    int phantom_size;
+    int phantom_slowdown = 10;
+    bool use_phantom = false;
 
     int i = 1;
     filename << "logout.dat";
@@ -346,6 +354,25 @@ int main(int argc, char **argv) {
             starting_cwnd_ratio = std::stod(argv[i + 1]);
             printf("StartingWindowRatio: %f\n", starting_cwnd_ratio);
             i++;
+        } else if (!strcmp(argv[i], "-explicit_starting_cwnd")) {
+            explicit_starting_cwnd = atoi(argv[i + 1]);
+            printf("StartingWindowForced: %d\n", explicit_starting_cwnd);
+            i++;
+        } else if (!strcmp(argv[i], "-explicit_starting_buffer")) {
+            explicit_starting_buffer = atoi(argv[i + 1]);
+            printf("StartingBufferForced: %d\n", explicit_starting_buffer);
+            explicit_bdp = explicit_starting_buffer;
+            i++;
+        } else if (!strcmp(argv[i], "-explicit_base_rtt")) {
+            explicit_base_rtt = atoi(argv[i + 1]);
+            printf("BaseRTTForced: %d\n", explicit_base_rtt);
+            UecSrc::set_explicit_rtt(explicit_base_rtt);
+            i++;
+        } else if (!strcmp(argv[i], "-explicit_target_rtt")) {
+            explicit_target_rtt = atoi(argv[i + 1]);
+            printf("TargetRTTForced: %d\n", explicit_target_rtt);
+            UecSrc::set_explicit_target_rtt(explicit_target_rtt);
+            i++;
         } else if (!strcmp(argv[i], "-queue_size_ratio")) {
             queue_size_ratio = std::stod(argv[i + 1]);
             printf("QueueSizeRatio: %f\n", queue_size_ratio);
@@ -362,6 +389,21 @@ int main(int argc, char **argv) {
             i++;
         } else if (!strcmp(argv[i], "-goal")) {
             goal_filename = argv[i + 1];
+            i++;
+        } else if (!strcmp(argv[i], "-use_phantom")) {
+            use_phantom = atoi(argv[i + 1]);
+            printf("UsePhantomQueue: %d\n", use_phantom);
+            CompositeQueue::set_use_phantom_queue(use_phantom);
+            i++;
+        } else if (!strcmp(argv[i], "-phantom_size")) {
+            phantom_size = atoi(argv[i + 1]);
+            printf("PhantomQueueSize: %d\n", phantom_size);
+            CompositeQueue::set_phantom_queue_size(phantom_size);
+            i++;
+        } else if (!strcmp(argv[i], "-phantom_slowdown")) {
+            phantom_slowdown = atoi(argv[i + 1]);
+            printf("PhantomQueueSize: %d\n", phantom_slowdown);
+            CompositeQueue::set_phantom_queue_slowdown(phantom_slowdown);
             i++;
         } else if (!strcmp(argv[i], "-strat")) {
             if (!strcmp(argv[i + 1], "perm")) {
@@ -424,6 +466,9 @@ int main(int argc, char **argv) {
             } else if (!strcmp(argv[i + 1], "custom")) {
                 UecSrc::set_alogirthm("custom");
                 printf("Name Running: SMaRTT ECN Only Variable\n");
+            } else if (!strcmp(argv[i + 1], "intersmartt")) {
+                UecSrc::set_alogirthm("intersmartt");
+                printf("Name Running: SMaRTT InterDataCenter\n");
             }
             i++;
         } else
@@ -489,6 +534,15 @@ int main(int argc, char **argv) {
     } else {
         queuesize = bdp_local * queue_size_ratio;
     }
+
+    if (explicit_starting_buffer != 0) {
+        queuesize = explicit_starting_buffer;
+    }
+    if (explicit_starting_cwnd != 0) {
+        actual_starting_cwnd = explicit_starting_cwnd;
+        UecSrc::set_explicit_bdp(explicit_bdp);
+    }
+
     UecSrc::set_starting_cwnd(actual_starting_cwnd);
     printf("Setting CWND to %d\n", actual_starting_cwnd);
 

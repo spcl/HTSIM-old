@@ -380,7 +380,9 @@ void FatTreeTopology::init_network() {
                                              ntoa(srv));
             // if (logfile) logfile->writeName(*(queues_nlp_ns[tor][srv]));
 
-            pipes_nlp_ns[tor][srv] = new Pipe(_hop_latency, *_eventlist);
+            pipes_nlp_ns[tor][srv] = new Pipe(70000000, *_eventlist);
+            // pipes_nlp_ns[tor][srv] = new Pipe(_hop_latency, *_eventlist);
+
             pipes_nlp_ns[tor][srv]->setName("Pipe-LS" + ntoa(tor) + "->DST" +
                                             ntoa(srv));
             // if (logfile) logfile->writeName(*(pipes_nlp_ns[tor][srv]));
@@ -410,7 +412,9 @@ void FatTreeTopology::init_network() {
                                        switches_lp[tor]);
             }
 
-            pipes_ns_nlp[srv][tor] = new Pipe(_hop_latency, *_eventlist);
+            // pipes_ns_nlp[srv][tor] = new Pipe(_hop_latency, *_eventlist);
+            pipes_ns_nlp[srv][tor] = new Pipe(70000000, *_eventlist);
+
             pipes_ns_nlp[srv][tor]->setName("Pipe-SRC" + ntoa(srv) + "->LS" +
                                             ntoa(tor));
             // if (logfile) logfile->writeName(*(pipes_ns_nlp[srv][tor]));
@@ -532,10 +536,10 @@ void FatTreeTopology::init_network() {
                 /*queues_nup_nc[agg][core] =
                         alloc_queue(queueLogger, _queuesize, UPLINK);*/
 
-                if (agg == 0 && core == 0) {
+                if (core >= 0 && agg >= 0 && false) {
                     queues_nup_nc[agg][core] = alloc_queue(
                             queueLogger, _linkspeed / _os_ratio_stage_1,
-                            _queuesize / _os_ratio_stage_1, UPLINK, false);
+                            280000000 / _os_ratio_stage_1, UPLINK, false);
                 } else {
                     queues_nup_nc[agg][core] = alloc_queue(
                             queueLogger, _linkspeed / _os_ratio_stage_1,
@@ -547,7 +551,12 @@ void FatTreeTopology::init_network() {
                 cout << queues_nup_nc[agg][core]->str() << endl;
                 // if (logfile) logfile->writeName(*(queues_nup_nc[agg][core]));
 
-                pipes_nup_nc[agg][core] = new Pipe(_hop_latency, *_eventlist);
+                if (core >= 0 && agg >= 0 /*&& false*/) {
+                    pipes_nup_nc[agg][core] = new Pipe(700000000, *_eventlist);
+                } else {
+                    pipes_nup_nc[agg][core] =
+                            new Pipe(_hop_latency, *_eventlist);
+                }
                 pipes_nup_nc[agg][core]->setName("Pipe-US" + ntoa(agg) +
                                                  "->CS" + ntoa(core));
                 // if (logfile) logfile->writeName(*(pipes_nup_nc[agg][core]));
@@ -566,10 +575,16 @@ void FatTreeTopology::init_network() {
                     cout << "Adding link failure for agg_sw " << ntoa(agg)
                          << " l " << ntoa(l) << endl;
                 } else {
-
-                    queues_nc_nup[core][agg] = alloc_queue(
-                            queueLogger, _linkspeed / _os_ratio_stage_1,
-                            _queuesize / _os_ratio_stage_1, DOWNLINK, false);
+                    if (core >= 0 && agg >= 0 && false) {
+                        queues_nc_nup[core][agg] = alloc_queue(
+                                queueLogger, _linkspeed / _os_ratio_stage_1,
+                                280000000 / _os_ratio_stage_1, DOWNLINK, false);
+                    } else {
+                        queues_nc_nup[core][agg] = alloc_queue(
+                                queueLogger, _linkspeed / _os_ratio_stage_1,
+                                _queuesize / _os_ratio_stage_1, DOWNLINK,
+                                false);
+                    }
                 }
 
                 queues_nc_nup[core][agg]->setName("CS" + ntoa(core) + "->US" +
@@ -595,7 +610,15 @@ void FatTreeTopology::init_network() {
                 }
                 // if (logfile) logfile->writeName(*(queues_nc_nup[core][agg]));
 
-                pipes_nc_nup[core][agg] = new Pipe(_hop_latency, *_eventlist);
+                if (core >= 0 && agg >= 0 /*&& false*/) {
+                    pipes_nc_nup[core][agg] = new Pipe(700000000, *_eventlist);
+                } else {
+                    pipes_nc_nup[core][agg] =
+                            new Pipe(_hop_latency, *_eventlist);
+                }
+                printf("Core %d - Agg %d - Latency %lu\n", core, agg,
+                       _hop_latency);
+
                 pipes_nc_nup[core][agg]->setName("Pipe-CS" + ntoa(core) +
                                                  "->US" + ntoa(agg));
                 // if (logfile) logfile->writeName(*(pipes_nc_nup[core][agg]));

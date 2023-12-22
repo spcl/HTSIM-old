@@ -3,7 +3,8 @@
 #include <iostream>
 #include <sstream>
 
-Pipe::Pipe(simtime_picosec delay, EventList &eventlist) : EventSource(eventlist, "pipe"), _delay(delay) {
+Pipe::Pipe(simtime_picosec delay, EventList &eventlist)
+        : EventSource(eventlist, "pipe"), _delay(delay) {
     _count = 0;
     _next_insert = 0;
     _next_pop = 0;
